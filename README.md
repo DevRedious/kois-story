@@ -1,4 +1,4 @@
-● # 🎏 Koi's Story
+ # 🎏 Koi's Story
 
   > E-commerce platform for a koi carp breeding farm affiliated with the Konishi lineage.
   > Final project — [The Hacking Project](https://www.thehackingproject.org)
