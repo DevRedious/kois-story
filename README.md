@@ -7,7 +7,7 @@
   ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
   ![Hotwire](https://img.shields.io/badge/Hotwire-Turbo%20%2B%20Stimulus-9B59B6)
   ![Devise](https://img.shields.io/badge/Auth-Devise-orange)
-  ![Heroku](https://img.shields.io/badge/Deploy-Heroku-430098?logo=heroku&logoColor=white)
+
 
   ---
 
