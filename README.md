@@ -38,7 +38,7 @@
   | Authentication | Devise (roles: `visitor` / `admin`) |
   | Image upload | Cloudinary |
   | Emails | ActionMailer |
-  | Hosting | Heroku |
+  | Hosting | VPS |
 
   ## Team
 
