@@ -28,6 +28,8 @@ Le schéma s'articule autour de trois piliers :
 * Tags/Categories : Système N-N (via KoiTag) pour un filtrage efficace par caractéristiques.
 * Messages : Pour stocker et traiter les demandes du formulaire de contact.
 
+![Koi's Story ERD.png](Koi%27s%20Story%20ERD.png)
+
 ### 3.2. Front
 
 Le front sera développé avec Hotwire (Turbo + Stimulus) pour offrir une expérience fluide sans rechargement de pages (notamment pour les filtres du catalogue). Nous utiliserons Tailwind CSS (ou Bootstrap) pour garantir un rendu professionnel et responsive. L'accent est mis sur des composants visuels forts : galeries d'images HD et badges dynamiques.
@@ -68,3 +70,9 @@ Pour la présentation finale, nous ajouterons les fonctionnalités suivantes :
 * Système de tags complet pour une recherche granulaire.
 * Dashboard Admin avec un suivi simple de l'état du stock.
 * Identité visuelle léchée respectant les codes du luxe et de l'élevage Konishi.
+
+## 6. Notre mentor
+
+\[À compléter avec le nom de votre mentor THP\]
+
+
