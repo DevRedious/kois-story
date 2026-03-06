@@ -74,5 +74,3 @@ Pour la présentation finale, nous ajouterons les fonctionnalités suivantes :
 ## 6. Notre mentor
 
 \[À compléter avec le nom de votre mentor THP\]
-
-
