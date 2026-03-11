@@ -11,7 +11,8 @@
 
   <p align="center">
     <i>Digital showcase platform for a koi carp breeding farm affiliated with the Konishi lineage.</i><br>
-    Final project — <a href="https://www.thehackingproject.org">The Hacking Project</a>
+    Final project — <a href="https://www.thehackingproject.org">The Hacking Project</a><br>
+   Trello Board — <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>
   </p>
 </div>
 
@@ -49,15 +50,18 @@ In 3 years, Koi's Story aims to become the essential digital reference for acqui
 ### 1. Visitor Journey (Buyer)
 The goal is to allow the user to find a fish and contact the seller in **less than 3 clicks**.
 
-*   **Discovery & Home (/)**: Arrival on an immersive landing page.
-*   **Catalog Exploration (/catalogue)**: Browsing product cards with dynamic filtering (Hotwire) by variety, size, and price.
-*   **Product Detail View (/catalogue/:id)**: Examining HD photos and technical characteristics.
-*   **Contact (WhatsApp)**: One-click "Order via WhatsApp" button opening a pre-filled message.
+*   **Step 1: Discovery & Home (/)**: Arrival on an immersive landing page (visual hero of a pond).
+*   **Step 2: Catalog Exploration (/catalogue)**: Browsing product cards with dynamic filtering (Hotwire) by variety, size, and price.
+*   **Step 3: Product Detail View (/catalogue/:id)**: Examining HD photos and technical characteristics (size, estimated age, description).
+*   **Step 4: Contact (WhatsApp)**: One-click "Order via WhatsApp" button opening a pre-filled message with koi reference.
 
 ### 2. Administrator Journey (Manager)
-*   **Dashboard**: Overview of received messages and stock statistics.
-*   **Stock Management (CRUD)**: Adding, updating (available/sold), and deleting koi listings.
-*   **Message Management**: Reading and tracking contact requests.
+The goal is to provide a simplified interface for daily stock and contact management.
+
+*   **Step 1: Authentication (/users/sign_in)**: Secure access via Devise for administrators only.
+*   **Step 2: Dashboard**: Overview of received messages via the contact form and quick stock statistics.
+*   **Step 3: Stock Management (CRUD)**: Creating new listings (name, variety, price, size, Konishi badge), uploading photos (Cloudinary), and updating status (Available/Sold).
+*   **Step 4: Message Management**: Reading and tracking contact requests received by email/form.
 
 ### 3. Journey Visualization
 
@@ -74,13 +78,28 @@ graph TD
     F -->|Advice| G[Sale finalized]
 ```
 
+#### Administrator Flow
+```mermaid
+graph LR
+    Login[Devise Login] --> Dash[Admin Dashboard]
+    Dash --> Messages[Message Management]
+    Dash --> CRUD[Stock Management]
+    CRUD --> Create[Add Koi]
+    CRUD --> Update[Edit / Sell]
+    CRUD --> Delete[Delete]
+    Create --> Cloudinary[Upload HQ Images]
+```
+
 ## Wireframes
 
-### Interactive Prototype
-*   [Interactive Wireframes (HTML version)](docs/wireframes.html)
+### Home Page
+![Home Page Wireframe](docs/wireframe_accueil.svg)
 
-## Project Management
-*   **Trello Board**: [Koi's Story Trello](https://trello.com/b/u2kahNMY/kois-story)
+### Product Page
+![Product Page Wireframe](docs/wireframe_produit.svg)
+
+
+
 
 ## Tech Stack
 
