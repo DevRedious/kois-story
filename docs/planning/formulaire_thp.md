@@ -20,7 +20,7 @@ Nous utilisons SQLite pour sa simplicité et sa légèreté. Le schéma est stru
 
 <br>
 
-![kois_story_erd.png](kois_story_erd.png)
+![kois_story_erd.png](../assets/diagrams/kois_story_erd.png)
 
 <br>
 

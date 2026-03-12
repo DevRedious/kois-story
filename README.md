@@ -31,6 +31,54 @@
 - Contact form with email notification
 - Admin back-office (koi CRUD, message management)
 
+## Repository Status
+
+This repository is currently in the planning and documentation phase.
+
+The Rails application has not been scaffolded yet. At this stage, the repository contains:
+
+- product framing
+- UX documentation
+- design references
+- delivery planning
+- collaboration standards
+
+## Planned Setup
+
+Once implementation starts, the project is expected to use:
+
+- Ruby on Rails
+- SQLite
+- Hotwire
+- Devise
+- Cloudinary
+- ActionMailer
+- Atomic Design for UI composition
+
+## Environment
+
+An example configuration file is available at `.env.example`.
+
+## Working Standards
+
+- `Main` is the production branch
+- `DEV` is the integration branch
+- contributor branches are `Morgan`, `Romain`, and `Valentin`
+- all code and `README.md` content must stay in English
+- routes must remain RESTful
+- business logic belongs in models
+- UI components should follow Atomic Design
+
+## Repository Documents
+
+- `docs/README.md` for the documentation index
+- `docs/todo.md` for execution tracking
+- `docs/roadmap.md` for milestones
+- `docs/stack.md` for the planned stack
+- `CONTRIBUTING.md` for collaboration rules
+- `CONTRIBUTORS.md` for the contribution log
+- `SECURITY.md` for vulnerability reporting
+
 ## Executive Summary
 
 ### Presentation
@@ -93,10 +141,18 @@ graph LR
 ## Wireframes
 
 ### Home Page
-![Home Page Wireframe](docs/wireframe_accueil.svg)
+![Home Page Wireframe](docs/design/wireframes/wireframe_accueil.svg)
 
 ### Product Page
-![Product Page Wireframe](docs/wireframe_produit.svg)
+![Product Page Wireframe](docs/design/wireframes/wireframe_produit.svg)
+
+## Documentation
+
+The project documentation index is available in `docs/README.md`.
+
+## Changelog
+
+Project history is tracked in `CHANGELOG.md`.
 
 
 

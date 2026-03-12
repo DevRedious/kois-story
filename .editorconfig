@@ -1,0 +1,22 @@
+# Indique que ce fichier est la racine de configuration EditorConfig
+root = true
+
+# Regles par defaut pour tous les fichiers du depot
+[*]
+# Encodage standard du projet
+charset = utf-8
+# Force les fins de ligne Unix
+end_of_line = lf
+# Ajoute une ligne vide finale en fin de fichier
+insert_final_newline = true
+# Utilise des espaces pour l'indentation
+indent_style = space
+# Taille d'indentation par defaut
+indent_size = 2
+# Supprime les espaces inutiles en fin de ligne
+trim_trailing_whitespace = true
+
+# Exception pour les fichiers Markdown
+[*.md]
+# Garde les espaces finaux utiles au rendu Markdown
+trim_trailing_whitespace = false
