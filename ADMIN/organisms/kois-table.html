@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Kois Table</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Bold.otf'); font-weight: 700; }
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 28px; }
+
+    /* ── KOIS-TABLE ORGANISM ─────────────────────────────────── */
+    .panel {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,48,73,0.07);
+      overflow: hidden;
+    }
+
+    /* Panel header = filter-bar */
+    .panel-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid #e8ecf0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .panel-title {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+
+    /* Filter elements */
+    .filter-bar { display: flex; align-items: center; gap: 8px; flex: 1; flex-wrap: wrap; }
+    select, input[type="search"] {
+      font-family: var(--font-body); font-size: 0.8rem;
+      color: var(--bleu-profond); background: #fff;
+      border: 1.5px solid #d8dde3; border-radius: 6px;
+      padding: 6px 10px; outline: none; height: 34px;
+      transition: border-color 0.15s;
+    }
+    select:focus, input:focus { border-color: var(--bleu-profond); }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center; padding-right: 26px;
+    }
+    input[type="search"] { width: 180px; }
+    .spacer { flex: 1; }
+    .filter-count { font-size: 0.78rem; color: var(--gris-pierre); white-space: nowrap; }
+
+    /* Buttons */
+    .btn { display:inline-flex; align-items:center; gap:5px; height:34px; padding:0 14px; border-radius:6px; font-family:var(--font-body); font-size:0.8rem; font-weight:600; cursor:pointer; border:none; transition:opacity 0.15s; white-space:nowrap; }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary   { background: var(--rouge-koi); color: #fff; }
+    .btn-secondary { background: var(--bleu-profond); color: #fff; }
+    .btn-outline   { background: transparent; border:1.5px solid #d0d7de; color: var(--gris-pierre); }
+    .btn-danger    { background: #dc3545; color: #fff; }
+    .btn-sm { height:30px; padding:0 10px; font-size:0.75rem; }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    thead th {
+      padding: 11px 18px; text-align: left;
+      font-size: 0.67rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--gris-pierre); background: #f5f7f9;
+      border-bottom: 1px solid #e8ecf0;
+    }
+    tbody td {
+      padding: 13px 18px; border-bottom: 1px solid #f0f2f5;
+      color: var(--bleu-profond); vertical-align: middle;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: #fafbfc; }
+    tbody tr.vendu td { opacity: 0.6; }
+
+    /* Koi thumb */
+    .koi-thumb {
+      width: 46px; height: 46px; border-radius: 6px;
+      background: #e8ecf0; display: flex; align-items: center;
+      justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+    }
+    .koi-name    { font-weight: 600; font-size: 0.875rem; }
+    .koi-variety { font-size: 0.74rem; color: var(--gris-pierre); margin-top: 1px; }
+    .koi-price   { font-weight: 700; white-space: nowrap; }
+
+    /* Badges */
+    .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:20px; font-size:0.67rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; white-space:nowrap; }
+    .badge-konishi { background: var(--or-konishi); color: var(--bleu-profond); }
+    .badge-dispo   { background: #d4f0e0; color: #1a6e3e; }
+    .badge-vendu   { background: #e8ecf0; color: var(--gris-pierre); }
+
+    .row-actions { display: flex; gap: 6px; }
+
+    /* Empty state */
+    .empty { text-align: center; padding: 48px; color: var(--gris-pierre); font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ── KOIS-TABLE ORGANISM ───────────────────────────────── -->
+  <div class="panel">
+
+    <!-- Filter bar (panel header) -->
+    <div class="panel-header">
+      <span class="panel-title">Catalogue</span>
+      <div class="filter-bar">
+        <input type="search" placeholder="Rechercher…">
+        <select>
+          <option>Toutes variétés</option>
+          <option>Kohaku</option>
+          <option>Showa</option>
+          <option>Kujaku</option>
+          <option>Tancho</option>
+        </select>
+        <select>
+          <option>Tous statuts</option>
+          <option>Disponible</option>
+          <option>Vendu</option>
+        </select>
+        <div class="spacer"></div>
+        <span class="filter-count">19 koïs</span>
+        <a href="koi-form.html" class="btn btn-primary">＋ Nouveau koï</a>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Nom / Variété</th>
+          <th>Taille</th>
+          <th>Prix</th>
+          <th>Lignée</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+          <td><div class="koi-name">Sakura</div><div class="koi-variety">Kohaku</div></td>
+          <td>72 cm</td>
+          <td class="koi-price">1 800 €</td>
+          <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+          <td><span class="badge badge-dispo">Disponible</span></td>
+          <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+        </tr>
+        <tr>
+          <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+          <td><div class="koi-name">Ryū</div><div class="koi-variety">Showa</div></td>
+          <td>65 cm</td>
+          <td class="koi-price">2 400 €</td>
+          <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+          <td><span class="badge badge-dispo">Disponible</span></td>
+          <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+        </tr>
+        <tr>
+          <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+          <td><div class="koi-name">Himé</div><div class="koi-variety">Kujaku</div></td>
+          <td>58 cm</td>
+          <td class="koi-price">950 €</td>
+          <td>—</td>
+          <td><span class="badge badge-dispo">Disponible</span></td>
+          <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+        </tr>
+        <tr class="vendu">
+          <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+          <td><div class="koi-name">Taro</div><div class="koi-variety">Tancho</div></td>
+          <td>80 cm</td>
+          <td class="koi-price">3 200 €</td>
+          <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+          <td><span class="badge badge-vendu">Vendu</span></td>
+          <td><div class="row-actions"><button class="btn btn-outline btn-sm">Voir</button></div></td>
+        </tr>
+        <tr>
+          <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+          <td><div class="koi-name">Midori</div><div class="koi-variety">Butterfly</div></td>
+          <td>55 cm</td>
+          <td class="koi-price">720 €</td>
+          <td>—</td>
+          <td><span class="badge badge-dispo">Disponible</span></td>
+          <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>

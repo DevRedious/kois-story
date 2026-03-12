@@ -21,6 +21,7 @@
 - `design/brand/charte_graphique.html`
 - `design/wireframes/wireframes.md`
 - `design/wireframes/wireframes.html`
+- `planning/admin_implementation.md`
 - `planning/formulaire_thp.md`
 - `roadmap.md`
 - `stack.md`

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Molecule — Koi Row</title>
+  <style>
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Bold.otf'); font-weight: 700; }
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
+    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 10px; margin-top: 28px; }
+
+    /* Table wrapper */
+    .panel { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,48,73,0.07); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    thead th {
+      padding: 11px 18px;
+      text-align: left;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gris-pierre);
+      background: #f5f7f9;
+      border-bottom: 1px solid #e8ecf0;
+    }
+
+    /* ── KOI-ROW MOLECULE ────────────────────────────────────── */
+    .koi-row td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #f0f2f5;
+      color: var(--bleu-profond);
+      vertical-align: middle;
+    }
+    .koi-row:last-child td { border-bottom: none; }
+    .koi-row:hover td { background: #fafbfc; }
+    .koi-row.vendu td { opacity: 0.6; }
+
+    /* Thumb */
+    .koi-thumb {
+      width: 48px; height: 48px;
+      border-radius: 6px;
+      background: #e8ecf0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    /* Nom + variété groupés */
+    .koi-name { font-weight: 600; font-size: 0.875rem; }
+    .koi-variety { font-size: 0.75rem; color: var(--gris-pierre); margin-top: 1px; }
+
+    /* Prix */
+    .koi-price { font-weight: 700; font-size: 0.9rem; color: var(--bleu-profond); white-space: nowrap; }
+
+    /* Badges */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 9px; border-radius: 20px;
+      font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
+    }
+    .badge-konishi { background: var(--or-konishi); color: var(--bleu-profond); }
+    .badge-dispo   { background: #d4f0e0; color: #1a6e3e; }
+    .badge-vendu   { background: #e8ecf0; color: var(--gris-pierre); }
+
+    /* Actions */
+    .row-actions { display: flex; gap: 6px; white-space: nowrap; }
+    .btn { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; border-radius:6px; font-family:var(--font-body); font-size:0.775rem; font-weight:600; cursor:pointer; border:none; transition:opacity 0.15s; }
+    .btn:hover { opacity: 0.85; }
+    .btn-secondary { background: var(--bleu-profond); color: #fff; }
+    .btn-outline   { background: transparent; border:1.5px solid var(--bleu-profond); color: var(--bleu-profond); }
+    .btn-danger    { background: #dc3545; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <h3>Koi Rows — Dans leur contexte tableau</h3>
+
+  <div class="panel">
+    <table>
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Nom / Variété</th>
+          <th>Taille</th>
+          <th>Prix</th>
+          <th>Lignée</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Variante : disponible + Konishi -->
+        <tr class="koi-row">
+          <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+          <td>
+            <div class="koi-name">Sakura</div>
+            <div class="koi-variety">Kohaku</div>
+          </td>
+          <td>72 cm</td>
+          <td class="koi-price">1 800 €</td>
+          <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+          <td><span class="badge badge-dispo">Disponible</span></td>
+          <td class="row-actions">
+            <button class="btn btn-secondary">Éditer</button>
+            <button class="btn btn-danger">Supprimer</button>
+          </td>
+        </tr>
+
+        <!-- Variante : disponible sans Konishi -->
+        <tr class="koi-row">
+          <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+          <td>
+            <div class="koi-name">Midori</div>
+            <div class="koi-variety">Butterfly</div>
+          </td>
+          <td>55 cm</td>
+          <td class="koi-price">720 €</td>
+          <td>—</td>
+          <td><span class="badge badge-dispo">Disponible</span></td>
+          <td class="row-actions">
+            <button class="btn btn-secondary">Éditer</button>
+            <button class="btn btn-danger">Supprimer</button>
+          </td>
+        </tr>
+
+        <!-- Variante : vendu -->
+        <tr class="koi-row vendu">
+          <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+          <td>
+            <div class="koi-name">Taro</div>
+            <div class="koi-variety">Tancho</div>
+          </td>
+          <td>80 cm</td>
+          <td class="koi-price">3 200 €</td>
+          <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+          <td><span class="badge badge-vendu">Vendu</span></td>
+          <td class="row-actions">
+            <button class="btn btn-outline">Voir</button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

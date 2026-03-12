@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Messages Table</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Bold.otf'); font-weight: 700; }
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 28px; }
+
+    /* ── MESSAGES-TABLE ORGANISM ─────────────────────────────── */
+    .panel { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,48,73,0.07); overflow: hidden; }
+
+    .panel-header {
+      padding: 14px 20px; border-bottom: 1px solid #e8ecf0;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .panel-title { font-family: var(--font-title); font-size: 1rem; font-weight: 700; color: var(--bleu-profond); flex: 1; }
+
+    .unread-count {
+      font-size: 0.72rem; font-weight: 700; background: #fde8e8;
+      color: var(--rouge-koi); padding: 3px 10px; border-radius: 10px;
+    }
+
+    /* Buttons */
+    .btn { display:inline-flex; align-items:center; gap:5px; padding:6px 13px; border-radius:6px; font-family:var(--font-body); font-size:0.78rem; font-weight:600; cursor:pointer; border:none; transition:opacity 0.15s; }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--rouge-koi); color: #fff; }
+    .btn-outline { background: transparent; border:1.5px solid #d0d7de; color: var(--gris-pierre); }
+    .btn-sm { padding:5px 10px; font-size:0.74rem; }
+
+    /* Filter */
+    select {
+      font-family: var(--font-body); font-size: 0.8rem; color: var(--bleu-profond);
+      background: #fff; border: 1.5px solid #d8dde3; border-radius: 6px;
+      padding: 6px 28px 6px 10px; outline: none; height: 34px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+    }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    thead th {
+      padding: 11px 18px; text-align: left;
+      font-size: 0.67rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--gris-pierre); background: #f5f7f9;
+      border-bottom: 1px solid #e8ecf0;
+    }
+    .msg-row td {
+      padding: 13px 18px; border-bottom: 1px solid #f0f2f5;
+      color: var(--bleu-profond); vertical-align: middle;
+    }
+    .msg-row:last-child td { border-bottom: none; }
+    .msg-row:hover td { background: #fafbfc; }
+
+    /* Non lu */
+    .msg-row.unread td { background: rgba(0,48,73,0.025); font-weight: 500; }
+    .msg-row.unread td:first-child { border-left: 3px solid var(--rouge-koi); padding-left: 15px; }
+
+    /* Cellules */
+    .msg-date { white-space: nowrap; font-size: 0.82rem; }
+    .msg-time { font-size: 0.7rem; color: var(--gris-pierre); margin-top: 1px; }
+    .msg-sender strong { font-weight: 600; }
+    .msg-email { font-size: 0.74rem; color: var(--gris-pierre); margin-top: 1px; }
+    .msg-preview { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.82rem; color: var(--gris-pierre); }
+    .msg-row.unread .msg-preview { color: var(--bleu-profond); }
+
+    /* Badges */
+    .badge { display:inline-flex; align-items:center; padding:3px 9px; border-radius:20px; font-size:0.67rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; white-space:nowrap; }
+    .badge-nonlu { background: #fde8e8; color: var(--rouge-koi); }
+    .badge-lu    { background: #e8ecf0; color: var(--gris-pierre); }
+  </style>
+</head>
+<body>
+
+  <!-- ── MESSAGES-TABLE ORGANISM ───────────────────────────── -->
+  <div class="panel">
+
+    <!-- Panel header -->
+    <div class="panel-header">
+      <div class="panel-title">Messages reçus</div>
+      <span class="unread-count">3 non lus</span>
+      <select>
+        <option>Tous messages</option>
+        <option>Non lus</option>
+        <option>Lus</option>
+      </select>
+      <button class="btn btn-outline">Tout marquer comme lu</button>
+    </div>
+
+    <!-- Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Expéditeur</th>
+          <th>Message</th>
+          <th>Statut</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="msg-row unread">
+          <td class="msg-date">12/03/2026<div class="msg-time">14:32</div></td>
+          <td class="msg-sender"><strong>Thomas Lefèvre</strong><div class="msg-email">thomas.l@mail.fr</div></td>
+          <td class="msg-preview">Bonjour, je suis intéressé par le Kohaku Konishi ref #001…</td>
+          <td><span class="badge badge-nonlu">Non lu</span></td>
+          <td><button class="btn btn-primary btn-sm">Lire</button></td>
+        </tr>
+
+        <tr class="msg-row unread">
+          <td class="msg-date">12/03/2026<div class="msg-time">11:05</div></td>
+          <td class="msg-sender"><strong>Gérard Dupont</strong><div class="msg-email">gerard.dupont@koi.net</div></td>
+          <td class="msg-preview">Pourriez-vous me communiquer le certificat Konishi du Showa 65cm ?</td>
+          <td><span class="badge badge-nonlu">Non lu</span></td>
+          <td><button class="btn btn-primary btn-sm">Lire</button></td>
+        </tr>
+
+        <tr class="msg-row unread">
+          <td class="msg-date">11/03/2026<div class="msg-time">09:17</div></td>
+          <td class="msg-sender"><strong>Léa Martin</strong><div class="msg-email">lea.martin@gmail.com</div></td>
+          <td class="msg-preview">Je débute dans l'élevage de koï, est-ce que vous proposez des conseils ?</td>
+          <td><span class="badge badge-nonlu">Non lu</span></td>
+          <td><button class="btn btn-primary btn-sm">Lire</button></td>
+        </tr>
+
+        <tr class="msg-row">
+          <td class="msg-date">10/03/2026<div class="msg-time">16:44</div></td>
+          <td class="msg-sender">Camille Rousseau<div class="msg-email">c.rousseau@hotmail.fr</div></td>
+          <td class="msg-preview">Merci pour votre réponse rapide, à bientôt !</td>
+          <td><span class="badge badge-lu">Lu</span></td>
+          <td><button class="btn btn-outline btn-sm">Voir</button></td>
+        </tr>
+
+        <tr class="msg-row">
+          <td class="msg-date">08/03/2026<div class="msg-time">10:02</div></td>
+          <td class="msg-sender">Pierre Moreau<div class="msg-email">p.moreau@pro.com</div></td>
+          <td class="msg-preview">Je souhaite réserver le Showa 65cm avec un acompte, comment procéder ?</td>
+          <td><span class="badge badge-lu">Lu</span></td>
+          <td><button class="btn btn-outline btn-sm">Voir</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>

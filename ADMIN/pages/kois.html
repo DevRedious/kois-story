@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Koïs | Koi's Story</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Bold.otf'); font-weight: 700; }
+
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --sidebar-w:    240px;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); min-height: 100vh; display: flex; }
+
+    /* Sidebar */
+    .sidebar { position:fixed; top:0; left:0; bottom:0; width:var(--sidebar-w); background:var(--bleu-profond); display:flex; flex-direction:column; z-index:200; transition:transform 0.25s; }
+    .sidebar-brand { padding:26px 22px 20px; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .brand-title { font-family:var(--font-title); font-size:1.25rem; font-weight:700; color:#fff; }
+    .brand-sub   { font-size:0.63rem; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; color:var(--or-konishi); margin-top:3px; }
+    .sidebar-nav { flex:1; padding:14px 0; }
+    .nav-section { font-size:0.62rem; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.3); padding:12px 22px 4px; }
+    .nav-item { display:flex; align-items:center; gap:10px; padding:11px 22px; color:rgba(255,255,255,0.6); font-size:0.875rem; font-weight:500; cursor:pointer; border-left:3px solid transparent; transition:all 0.15s; text-decoration:none; }
+    .nav-item:hover { color:#fff; background:rgba(255,255,255,0.07); }
+    .nav-item.active { color:var(--or-konishi); border-left-color:var(--or-konishi); background:rgba(224,159,62,0.1); font-weight:600; }
+    .nav-icon { font-size:1rem; width:20px; text-align:center; flex-shrink:0; }
+    .nav-label { flex:1; }
+    .nav-badge { background:var(--rouge-koi); color:#fff; font-size:0.62rem; font-weight:700; border-radius:10px; padding:2px 7px; }
+    .sidebar-footer { padding:16px 22px; border-top:1px solid rgba(255,255,255,0.08); }
+    .admin-user { display:flex; align-items:center; gap:10px; }
+    .admin-avatar { width:32px; height:32px; border-radius:50%; background:var(--or-konishi); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:var(--bleu-profond); }
+    .admin-name { font-size:0.8rem; font-weight:600; color:#fff; }
+    .admin-role { font-size:0.62rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-top:1px; }
+
+    /* Main */
+    .main { margin-left:var(--sidebar-w); flex:1; display:flex; flex-direction:column; }
+    .topbar { position:sticky; top:0; height:60px; background:#fff; border-bottom:1px solid #e5e9ee; display:flex; align-items:center; justify-content:space-between; padding:0 28px; z-index:100; }
+    .topbar-left { display:flex; align-items:center; gap:12px; }
+    .topbar-right { display:flex; align-items:center; gap:10px; }
+    .topbar-title { font-family:var(--font-title); font-size:1.1rem; font-weight:700; color:var(--bleu-profond); }
+    .menu-burger { display:none; align-items:center; justify-content:center; background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--bleu-profond); padding:4px; }
+    .topbar-user { font-size:0.8rem; color:var(--gris-pierre); display:flex; align-items:center; gap:6px; }
+    .topbar-avatar { width:28px; height:28px; border-radius:50%; background:var(--or-konishi); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:var(--bleu-profond); }
+    .topbar-divider { width:1px; height:20px; background:#e5e9ee; }
+    .content { flex:1; padding:32px; }
+
+    /* Buttons */
+    .btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:6px; font-family:var(--font-body); font-size:0.83rem; font-weight:600; cursor:pointer; border:none; transition:opacity 0.15s, transform 0.1s; text-decoration:none; white-space:nowrap; }
+    .btn:hover { opacity:0.86; transform:translateY(-1px); }
+    .btn-primary   { background:var(--rouge-koi); color:#fff; }
+    .btn-secondary { background:var(--bleu-profond); color:#fff; }
+    .btn-outline   { background:transparent; border:1.5px solid #d0d7de; color:var(--gris-pierre); }
+    .btn-danger    { background:#dc3545; color:#fff; }
+    .btn-sm { padding:5px 10px; font-size:0.76rem; }
+
+    /* Panel */
+    .panel { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,48,73,0.07); overflow:hidden; }
+    .panel-header { padding:14px 20px; border-bottom:1px solid #e8ecf0; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .panel-title { font-family:var(--font-title); font-size:1rem; font-weight:700; color:var(--bleu-profond); margin-right:6px; white-space:nowrap; }
+
+    /* Filters */
+    select, input[type="search"] { font-family:var(--font-body); font-size:0.8rem; color:var(--bleu-profond); background:#fff; border:1.5px solid #d8dde3; border-radius:6px; padding:6px 10px; outline:none; height:34px; transition:border-color 0.15s; }
+    select:focus, input:focus { border-color:var(--bleu-profond); }
+    select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; padding-right:28px; }
+    input[type="search"] { width:180px; }
+    .spacer { flex:1; }
+    .filter-count { font-size:0.78rem; color:var(--gris-pierre); white-space:nowrap; }
+
+    /* Table */
+    table { width:100%; border-collapse:collapse; font-size:0.84rem; }
+    thead th { padding:11px 18px; text-align:left; font-size:0.67rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--gris-pierre); background:#f5f7f9; border-bottom:1px solid #e8ecf0; }
+    tbody td { padding:13px 18px; border-bottom:1px solid #f0f2f5; color:var(--bleu-profond); vertical-align:middle; }
+    tbody tr:last-child td { border-bottom:none; }
+    tbody tr:hover td { background:#fafbfc; }
+    tbody tr.vendu td { opacity:0.6; }
+    .koi-thumb { width:46px; height:46px; border-radius:6px; background:#e8ecf0; display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
+    .koi-name { font-weight:600; font-size:0.875rem; }
+    .koi-variety { font-size:0.74rem; color:var(--gris-pierre); margin-top:1px; }
+    .koi-price { font-weight:700; white-space:nowrap; }
+    .row-actions { display:flex; gap:6px; }
+    .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:20px; font-size:0.67rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; white-space:nowrap; }
+    .badge-konishi { background:var(--or-konishi); color:var(--bleu-profond); }
+    .badge-dispo   { background:#d4f0e0; color:#1a6e3e; }
+    .badge-vendu   { background:#e8ecf0; color:var(--gris-pierre); }
+
+    /* Overlay + responsive */
+    .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:199; }
+    .overlay.active { display:block; }
+    @media (max-width:768px) {
+      .sidebar { transform:translateX(calc(-1 * var(--sidebar-w))); }
+      .sidebar.open { transform:translateX(0); }
+      .main { margin-left:0; }
+      .topbar, .content { padding-left:16px; padding-right:16px; }
+      .menu-burger { display:flex !important; }
+      table { font-size:0.76rem; }
+      thead th, tbody td { padding:9px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-title" style="display: flex; align-items: center; gap: 10px;"><img src="../../docs/assets/LOGO MANU FINI 2.png" alt="" style="height: 28px; width: auto; border-radius: 50%;"> Koi's Story</div>
+    <div class="brand-sub">Administration</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Navigation</div>
+    <a href="dashboard.html" class="nav-item"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span><span class="nav-label">Dashboard</span></a>
+    <a href="kois.html" class="nav-item active"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></span><span class="nav-label">Gestion des Koïs</span></a>
+    <a href="messages.html" class="nav-item"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span><span class="nav-label">Messages</span><span class="nav-badge">3</span></a>
+    <div class="nav-section" style="margin-top:6px;">Site</div>
+    <a href="#" class="nav-item" style="opacity:0.5;"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="nav-label">Voir le site</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-user">
+      <div class="admin-avatar">MG</div>
+      <div><div class="admin-name">Mathilde G.</div><div class="admin-role">Administratrice</div></div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-burger" onclick="toggleSidebar()" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <span class="topbar-title">Gestion des Koïs</span>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-user"><div class="topbar-avatar">MG</div><span>Mathilde G.</span></div>
+      <div class="topbar-divider"></div>
+      <button class="btn btn-outline" style="padding:6px 12px; font-size:0.78rem;">Déconnexion</button>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- KOIS-TABLE (organism) -->
+    <div class="panel">
+
+      <!-- Filter bar -->
+      <div class="panel-header">
+        <span class="panel-title">Catalogue</span>
+        <input type="search" placeholder="Rechercher…">
+        <select><option>Toutes variétés</option><option>Kohaku</option><option>Showa</option><option>Kujaku</option><option>Tancho</option><option>Butterfly</option></select>
+        <select><option>Tous statuts</option><option>Disponible</option><option>Vendu</option></select>
+        <select><option>Toutes lignées</option><option>Konishi</option><option>Standard</option></select>
+        <div class="spacer"></div>
+        <span class="filter-count">19 koïs</span>
+        <a href="koi-form.html" class="btn btn-primary">＋ Nouveau koï</a>
+      </div>
+
+      <!-- Table -->
+      <table>
+        <thead>
+          <tr><th>Photo</th><th>Nom / Variété</th><th>Taille</th><th>Prix</th><th>Lignée</th><th>Statut</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+            <td><div class="koi-name">Sakura</div><div class="koi-variety">Kohaku</div></td>
+            <td>72 cm</td><td class="koi-price">1 800 €</td>
+            <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+            <td><span class="badge badge-dispo">Disponible</span></td>
+            <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+          </tr>
+          <tr>
+            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+            <td><div class="koi-name">Ryū</div><div class="koi-variety">Showa</div></td>
+            <td>65 cm</td><td class="koi-price">2 400 €</td>
+            <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+            <td><span class="badge badge-dispo">Disponible</span></td>
+            <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+          </tr>
+          <tr>
+            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+            <td><div class="koi-name">Himé</div><div class="koi-variety">Kujaku</div></td>
+            <td>58 cm</td><td class="koi-price">950 €</td>
+            <td>—</td>
+            <td><span class="badge badge-dispo">Disponible</span></td>
+            <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+          </tr>
+          <tr>
+            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+            <td><div class="koi-name">Yuki</div><div class="koi-variety">Tancho</div></td>
+            <td>62 cm</td><td class="koi-price">1 350 €</td>
+            <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+            <td><span class="badge badge-dispo">Disponible</span></td>
+            <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+          </tr>
+          <tr class="vendu">
+            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+            <td><div class="koi-name">Taro</div><div class="koi-variety">Tancho</div></td>
+            <td>80 cm</td><td class="koi-price">3 200 €</td>
+            <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+            <td><span class="badge badge-vendu">Vendu</span></td>
+            <td><div class="row-actions"><button class="btn btn-outline btn-sm">Voir</button></div></td>
+          </tr>
+          <tr>
+            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+            <td><div class="koi-name">Midori</div><div class="koi-variety">Butterfly</div></td>
+            <td>55 cm</td><td class="koi-price">720 €</td>
+            <td>—</td>
+            <td><span class="badge badge-dispo">Disponible</span></td>
+            <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+          </tr>
+          <tr>
+            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div></td>
+            <td><div class="koi-name">Hana</div><div class="koi-variety">Kohaku</div></td>
+            <td>68 cm</td><td class="koi-price">1 100 €</td>
+            <td><span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span></td>
+            <td><span class="badge badge-dispo">Disponible</span></td>
+            <td><div class="row-actions"><button class="btn btn-secondary btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('overlay').classList.toggle('active'); }
+  function closeSidebar()  { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('active'); }
+</script>
+<script src="../assets/js/admin.js"></script>
+</body>
+</html>

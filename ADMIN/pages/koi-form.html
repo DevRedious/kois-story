@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouveau Koï — Administration | Koi's Story</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Bold.otf'); font-weight: 700; }
+
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --vert-dispo:   #2D9E5A;
+      --sidebar-w:    240px;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); min-height: 100vh; display: flex; }
+
+    /* ── SIDEBAR ─────────────────────────────────────────────── */
+    .sidebar { position:fixed; top:0; left:0; bottom:0; width:var(--sidebar-w); background:var(--bleu-profond); display:flex; flex-direction:column; z-index:200; transition:transform 0.25s; }
+    .sidebar-brand { padding:26px 22px 20px; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .brand-title { font-family:var(--font-title); font-size:1.25rem; font-weight:700; color:#fff; display: flex; align-items: center; gap: 10px; }
+    .brand-title img { height: 28px; width: auto; border-radius: 50%; }
+    .brand-sub   { font-size:0.63rem; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; color:var(--or-konishi); margin-top:3px; }
+    .sidebar-nav { flex:1; padding:14px 0; }
+    .nav-section { font-size:0.62rem; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.3); padding:12px 22px 4px; }
+    .nav-item { display:flex; align-items:center; gap:10px; padding:11px 22px; color:rgba(255,255,255,0.6); font-size:0.875rem; font-weight:500; cursor:pointer; border-left:3px solid transparent; transition:all 0.15s; text-decoration:none; }
+    .nav-item:hover { color:#fff; background:rgba(255,255,255,0.07); }
+    .nav-item.active { color:var(--or-konishi); border-left-color:var(--or-konishi); background:rgba(224,159,62,0.1); font-weight:600; }
+    .nav-icon { font-size:1rem; width:20px; text-align:center; flex-shrink:0; }
+    .nav-icon svg { width: 18px; height: 18px; stroke: currentColor; }
+    .nav-label { flex:1; }
+    .nav-badge { background:var(--rouge-koi); color:#fff; font-size:0.62rem; font-weight:700; border-radius:10px; padding:2px 7px; }
+    .sidebar-footer { padding:16px 22px; border-top:1px solid rgba(255,255,255,0.08); }
+    .admin-user { display:flex; align-items:center; gap:10px; }
+    .admin-avatar { width:32px; height:32px; border-radius:50%; background:var(--or-konishi); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:var(--bleu-profond); }
+    .admin-name { font-size:0.8rem; font-weight:600; color:#fff; }
+    .admin-role { font-size:0.62rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-top:1px; }
+
+    /* ── MAIN ────────────────────────────────────────────────── */
+    .main { margin-left:var(--sidebar-w); flex:1; display:flex; flex-direction:column; }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; height:60px; background:#fff; border-bottom:1px solid #e5e9ee; display:flex; align-items:center; justify-content:space-between; padding:0 28px; z-index:100; }
+    .topbar-left { display:flex; align-items:center; gap:12px; }
+    .topbar-right { display:flex; align-items:center; gap:10px; }
+    .topbar-title { font-family:var(--font-title); font-size:1.1rem; font-weight:700; color:var(--bleu-profond); }
+    .menu-burger { display:none; align-items:center; justify-content:center; background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--bleu-profond); padding:4px; }
+    .menu-burger svg { width: 24px; height: 24px; stroke: currentColor; }
+    .topbar-user { font-size:0.8rem; color:var(--gris-pierre); display:flex; align-items:center; gap:6px; }
+    .topbar-avatar { width:28px; height:28px; border-radius:50%; background:var(--or-konishi); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:var(--bleu-profond); }
+    .topbar-divider { width:1px; height:20px; background:#e5e9ee; }
+    .btn { display:inline-flex; align-items:center; gap:6px; padding:8px 18px; border-radius:6px; font-family:var(--font-body); font-size:0.85rem; font-weight:600; cursor:pointer; border:none; transition:opacity 0.15s, transform 0.1s; text-decoration:none; }
+    .btn:hover { opacity:0.86; transform:translateY(-1px); }
+    .btn-primary   { background:var(--rouge-koi); color:#fff; }
+    .btn-secondary { background:var(--bleu-profond); color:#fff; }
+    .btn-outline   { background:transparent; border:1.5px solid #d0d7de; color:var(--gris-pierre); }
+
+    /* Content */
+    .content { flex:1; padding:32px; max-width: 900px; }
+
+    /* Page header */
+    .page-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+    .page-greeting { font-family:var(--font-title); font-size:1.5rem; font-weight:700; color:var(--bleu-profond); }
+    .breadcrumb { display:flex; align-items:center; gap:6px; font-size:0.85rem; color:var(--gris-pierre); margin-bottom: 8px; }
+    .breadcrumb a { color:var(--gris-pierre); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--bleu-profond); }
+    .breadcrumb .sep { opacity:0.4; }
+
+    /* ── FORMULAIRE ─────────────────────────────────────────── */
+    .form-container { background:#fff; border-radius:12px; box-shadow:0 1px 4px rgba(0,48,73,0.07); padding:32px; }
+    
+    .form-section { margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid #f0f2f5; }
+    .form-section:last-of-type { border-bottom:none; margin-bottom:0; }
+    .form-section-title { font-family:var(--font-title); font-size:1.1rem; font-weight:700; color:var(--bleu-profond); margin-bottom:20px; display:flex; align-items:center; gap:8px; }
+    .form-section-title .section-number { width:28px; height:28px; background:var(--bleu-profond); color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; font-family:var(--font-body); }
+
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+    .form-group { display:flex; flex-direction:column; gap:6px; }
+    .form-group.full-width { grid-column:1 / -1; }
+    
+    .form-label { font-size:0.85rem; font-weight:600; color:var(--bleu-profond); }
+    .form-label .required { color:var(--rouge-koi); margin-left:2px; }
+    .form-hint { font-size:0.78rem; color:var(--gris-pierre); margin-top:4px; }
+    
+    .form-input { padding:12px 16px; border:2px solid #e8ecf0; border-radius:8px; font-family:var(--font-body); font-size:0.95rem; color:var(--bleu-profond); background:#fff; transition:all 0.2s; width:100%; }
+    .form-input:hover { border-color:#d0d7de; }
+    .form-input:focus { outline:none; border-color:var(--bleu-profond); box-shadow:0 0 0 3px rgba(0,48,73,0.08); }
+    .form-input::placeholder { color:#aab4bd; }
+    textarea.form-input { min-height:120px; resize:vertical; }
+    select.form-input { cursor:pointer; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23003049' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:40px; }
+    
+    .form-input.error { border-color:var(--rouge-koi); }
+    .error-message { font-size:0.78rem; color:var(--rouge-koi); margin-top:4px; display:none; }
+    .form-input.error + .error-message { display:block; }
+
+    /* Toggles */
+    .toggle-group { display:flex; align-items:center; gap:12px; padding:8px 0; }
+    .toggle-switch { position:relative; width:48px; height:26px; }
+    .toggle-switch input { opacity:0; width:0; height:0; }
+    .toggle-slider { position:absolute; cursor:pointer; inset:0; background:#e0e5ea; border-radius:26px; transition:0.3s; }
+    .toggle-slider::before { content:''; position:absolute; height:20px; width:20px; left:3px; bottom:3px; background:#fff; border-radius:50%; transition:0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+    .toggle-switch input:checked + .toggle-slider { background:var(--vert-dispo); }
+    .toggle-switch input:checked + .toggle-slider::before { transform:translateX(22px); }
+    .toggle-label { font-size:0.9rem; font-weight:500; color:var(--bleu-profond); }
+    .toggle-hint { font-size:0.75rem; color:var(--gris-pierre); }
+
+    /* Image upload */
+    .image-upload { border:2px dashed #d0d7de; border-radius:12px; padding:40px; text-align:center; cursor:pointer; transition:all 0.2s; background:#fafbfc; }
+    .image-upload:hover { border-color:var(--bleu-profond); background:rgba(0,48,73,0.02); }
+    .image-upload-icon { width:64px; height:64px; background:rgba(0,48,73,0.06); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+    .image-upload-icon svg { width:32px; height:32px; stroke:var(--gris-pierre); }
+    .image-upload-text { font-size:1rem; font-weight:600; color:var(--bleu-profond); margin-bottom:8px; }
+    .image-upload-hint { font-size:0.85rem; color:var(--gris-pierre); }
+    .image-upload input { display:none; }
+    
+    .image-preview { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+    .image-preview-item { position:relative; width:100px; height:100px; border-radius:8px; overflow:hidden; }
+    .image-preview-item img { width:100%; height:100%; object-fit:cover; }
+    .image-remove { position:absolute; top:4px; right:4px; width:24px; height:24px; background:var(--rouge-koi); color:#fff; border:none; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:12px; }
+
+    /* Badges select */
+    .badge-select { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+    .badge-option { padding:6px 14px; background:#f5f7f9; border:2px solid transparent; border-radius:20px; font-size:0.85rem; cursor:pointer; transition:all 0.2s; }
+    .badge-option:hover { background:#e8ecf0; }
+    .badge-option.selected { background:rgba(224,159,62,0.15); border-color:var(--or-konishi); color:var(--bleu-profond); font-weight:600; }
+
+    /* Price input with currency */
+    .price-input-wrapper { position:relative; }
+    .price-currency { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--gris-pierre); font-weight:500; }
+    .price-input { padding-left:32px; }
+
+    /* Form actions */
+    .form-actions { display:flex; justify-content:flex-end; gap:12px; margin-top:32px; padding-top:24px; border-top:2px solid #f0f2f5; }
+    .form-actions .btn { padding:12px 28px; font-size:0.95rem; }
+
+    /* Overlay */
+    .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:199; }
+    .overlay.active { display:block; }
+
+    /* Responsive */
+    @media (max-width:768px) {
+      .sidebar { transform:translateX(calc(-1 * var(--sidebar-w))); }
+      .sidebar.open { transform:translateX(0); }
+      .main { margin-left:0; }
+      .content { padding:24px 16px; }
+      .form-row { grid-template-columns:1fr; }
+      .menu-burger { display:flex; }
+      .form-container { padding:24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-title">
+        <img src="../../docs/assets/LOGO MANU FINI 2.png" alt="">
+        Koi's Story
+      </div>
+      <div class="brand-sub">Administration</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Navigation</div>
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="kois.html" class="nav-item active">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></span>
+        <span class="nav-label">Gestion des Koïs</span>
+      </a>
+      <a href="messages.html" class="nav-item">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
+        <span class="nav-label">Messages</span>
+        <span class="nav-badge">3</span>
+      </a>
+      <div class="nav-section" style="margin-top:6px;">Site</div>
+      <a href="../../VISITORS/pages/home.html" class="nav-item" target="_blank">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span>
+        <span class="nav-label">Voir le site</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="admin-user">
+        <div class="admin-avatar">MG</div>
+        <div>
+          <div class="admin-name">Mathilde G.</div>
+          <div class="admin-role">Administratrice</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-burger" onclick="toggleSidebar()" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <span class="topbar-title">Nouveau Koï</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-user">
+          <div class="topbar-avatar">MG</div>
+          <span>Mathilde G.</span>
+        </div>
+        <div class="topbar-divider"></div>
+        <button class="btn btn-outline" onclick="if(confirm('Voulez-vous vraiment vous déconnecter ?')) window.location.href='login.html'">Déconnexion</button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="dashboard.html">Dashboard</a>
+        <span class="sep">/</span>
+        <a href="kois.html">Gestion des Koïs</a>
+        <span class="sep">/</span>
+        <span>Nouveau Koï</span>
+      </div>
+
+      <div class="page-header">
+        <h1 class="page-greeting">Ajouter un nouveau koï</h1>
+      </div>
+
+      <!-- Formulaire -->
+      <form class="form-container" id="koiForm">
+        
+        <!-- Section 1: Informations de base -->
+        <div class="form-section">
+          <h2 class="form-section-title">
+            <span class="section-number">1</span>
+            Informations de base
+          </h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nom du koï <span class="required">*</span></label>
+              <input type="text" class="form-input" name="name" placeholder="Ex: Sakura" required>
+              <span class="error-message">Ce champ est obligatoire</span>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Variété <span class="required">*</span></label>
+              <select class="form-input" name="variety" required>
+                <option value="">Sélectionner une variété</option>
+                <option value="kohaku">Kohaku</option>
+                <option value="sanke">Sanke</option>
+                <option value="showa">Showa</option>
+                <option value="butterfly">Butterfly</option>
+                <option value="tancho">Tancho</option>
+                <option value="kujaku">Kujaku</option>
+                <option value="asagi">Asagi</option>
+                <option value="shusui">Shusui</option>
+                <option value="utsurimono">Utsurimono</option>
+              </select>
+              <span class="error-message">Veuillez sélectionner une variété</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Taille (cm) <span class="required">*</span></label>
+              <input type="number" class="form-input" name="size" placeholder="Ex: 72" min="1" max="150" required>
+              <p class="form-hint">Taille actuelle du koï en centimètres</p>
+              <span class="error-message">Veuillez entrer une taille valide</span>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Prix (€) <span class="required">*</span></label>
+              <div class="price-input-wrapper">
+                <span class="price-currency">€</span>
+                <input type="number" class="form-input price-input" name="price" placeholder="Ex: 1800" min="0" step="10" required>
+              </div>
+              <p class="form-hint">Prix en euros TTC</p>
+              <span class="error-message">Veuillez entrer un prix valide</span>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">Description</label>
+            <textarea class="form-input" name="description" placeholder="Description détaillée du koï, ses particularités, son histoire..."></textarea>
+            <p class="form-hint">Cette description sera affichée sur la fiche produit</p>
+          </div>
+        </div>
+
+        <!-- Section 2: Photos -->
+        <div class="form-section">
+          <h2 class="form-section-title">
+            <span class="section-number">2</span>
+            Photos
+          </h2>
+          
+          <div class="form-group">
+            <label class="form-label">Images du koï <span class="required">*</span></label>
+            <div class="image-upload" onclick="document.getElementById('koiImages').click()">
+              <div class="image-upload-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+              </div>
+              <div class="image-upload-text">Cliquez pour ajouter des photos</div>
+              <div class="image-upload-hint">JPG, PNG ou WebP • Max 5 Mo par image</div>
+              <input type="file" id="koiImages" name="images" multiple accept="image/*" onchange="handleImageUpload(this)">
+            </div>
+            <div class="image-preview" id="imagePreview"></div>
+            <p class="form-hint">Ajoutez au moins une photo. La première sera utilisée comme image principale.</p>
+          </div>
+        </div>
+
+        <!-- Section 3: Caractéristiques -->
+        <div class="form-section">
+          <h2 class="form-section-title">
+            <span class="section-number">3</span>
+            Caractéristiques
+          </h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Âge estimé</label>
+              <select class="form-input" name="age">
+                <option value="">Non spécifié</option>
+                <option value="1">1 an</option>
+                <option value="2">2 ans</option>
+                <option value="3">3 ans</option>
+                <option value="4">4 ans</option>
+                <option value="5">5 ans</option>
+                <option value="6+">6 ans et plus</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Sexe</label>
+              <select class="form-input" name="gender">
+                <option value="">Non déterminé</option>
+                <option value="male">Mâle</option>
+                <option value="female">Femelle</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Lignée Konishi</label>
+            <div class="toggle-group">
+              <label class="toggle-switch">
+                <input type="checkbox" name="konishi_lineage" id="konishiToggle">
+                <span class="toggle-slider"></span>
+              </label>
+              <div>
+                <div class="toggle-label">Ce koï est issu de la lignée Konishi</div>
+                <div class="toggle-hint">Affichera le badge "★ Konishi" sur la fiche produit</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Disponibilité -->
+        <div class="form-section">
+          <h2 class="form-section-title">
+            <span class="section-number">4</span>
+            Disponibilité
+          </h2>
+          
+          <div class="form-group">
+            <label class="form-label">Statut</label>
+            <div class="toggle-group">
+              <label class="toggle-switch">
+                <input type="checkbox" name="available" checked>
+                <span class="toggle-slider"></span>
+              </label>
+              <div>
+                <div class="toggle-label">Disponible à la vente</div>
+                <div class="toggle-hint">Décocher si le koï est déjà vendu ou réservé</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+          <a href="kois.html" class="btn btn-outline">Annuler</a>
+          <button type="submit" class="btn btn-primary">Enregistrer le koï</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Toggle sidebar mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+
+    // Gestion de l'upload d'images
+    function handleImageUpload(input) {
+      const preview = document.getElementById('imagePreview');
+      const files = input.files;
+      
+      if (files.length > 0) {
+        // Réinitialise la prévisualisation
+        preview.innerHTML = '';
+        
+        Array.from(files).forEach((file, index) => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const div = document.createElement('div');
+            div.className = 'image-preview-item';
+            div.innerHTML = `
+              <img src="${e.target.result}" alt="Preview ${index + 1}">
+              <button type="button" class="image-remove" onclick="removeImage(this)">✕</button>
+            `;
+            preview.appendChild(div);
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+    }
+
+    // Supprimer une image de la prévisualisation
+    function removeImage(btn) {
+      btn.closest('.image-preview-item').remove();
+    }
+
+    // Validation du formulaire
+    document.getElementById('koiForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Simulation d'envoi
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Enregistrement...';
+      submitBtn.disabled = true;
+      
+      setTimeout(() => {
+        alert('Koï enregistré avec succès !');
+        window.location.href = 'kois.html';
+      }, 1500);
+    });
+
+    // Validation en temps réel
+    document.querySelectorAll('.form-input[required]').forEach(input => {
+      input.addEventListener('blur', function() {
+        if (!this.value.trim()) {
+          this.classList.add('error');
+        } else {
+          this.classList.remove('error');
+        }
+      });
+      
+      input.addEventListener('input', function() {
+        this.classList.remove('error');
+      });
+    });
+
+    console.log('🐟 Formulaire nouveau koï chargé !');
+  </script>
+</body>
+</html>

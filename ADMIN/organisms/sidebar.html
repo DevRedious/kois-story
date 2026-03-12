@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Sidebar</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Bold.otf'); font-weight: 700; }
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); }
+
+    /* ── SIDEBAR ORGANISM ────────────────────────────────────── */
+    .sidebar {
+      width: 240px;
+      min-height: 100vh;
+      background: var(--bleu-profond);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Brand */
+    .sidebar-brand {
+      padding: 28px 24px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .brand-title {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+    .brand-sub {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--or-konishi);
+      margin-top: 3px;
+    }
+
+    /* Nav */
+    .sidebar-nav { flex: 1; padding: 16px 0; }
+
+    .nav-section {
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.3);
+      padding: 14px 24px 4px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 24px;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .nav-item:hover { color: #fff; background: rgba(255,255,255,0.07); }
+    .nav-item.active {
+      color: var(--or-konishi);
+      border-left-color: var(--or-konishi);
+      background: rgba(224,159,62,0.1);
+      font-weight: 600;
+    }
+    .nav-icon { font-size: 1rem; width: 20px; text-align: center; flex-shrink: 0; }
+    .nav-label { flex: 1; }
+    .nav-badge {
+      background: var(--rouge-koi);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 2px 7px;
+    }
+
+    /* Footer */
+    .sidebar-footer {
+      padding: 18px 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .admin-user { display: flex; align-items: center; gap: 10px; }
+    .admin-avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--or-konishi);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+      flex-shrink: 0;
+    }
+    .admin-name  { font-size: 0.8rem; font-weight: 600; color: #fff; }
+    .admin-role  { font-size: 0.62rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1px; }
+  </style>
+</head>
+<body>
+
+  <!-- ── SIDEBAR ORGANISM ──────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <div class="sidebar-brand">
+      <div class="brand-title" style="display: flex; align-items: center; gap: 10px;"><img src="../../docs/assets/LOGO MANU FINI 2.png" alt="" style="height: 28px; width: auto; border-radius: 50%;"> Koi's Story</div>
+      <div class="brand-sub">Administration</div>
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <div class="nav-section">Navigation</div>
+
+      <div class="nav-item active">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>
+        <span class="nav-label">Dashboard</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></span>
+        <span class="nav-label">Gestion des Koïs</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
+        <span class="nav-label">Messages</span>
+        <span class="nav-badge">3</span>
+      </div>
+
+      <div class="nav-section" style="margin-top:8px;">Site</div>
+
+      <div class="nav-item" style="opacity:0.5; cursor:default;">
+        <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span>
+        <span class="nav-label">Voir le site</span>
+      </div>
+
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-user">
+        <div class="admin-avatar">MG</div>
+        <div>
+          <div class="admin-name">Mathilde G.</div>
+          <div class="admin-role">Administratrice</div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+</body>
+</html>

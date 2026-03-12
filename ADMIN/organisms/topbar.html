@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Topbar</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); }
+
+    /* ── TOPBAR ORGANISM ─────────────────────────────────────── */
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #e5e9ee;
+      height: 60px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Left */
+    .topbar-left { display: flex; align-items: center; gap: 14px; }
+
+    .menu-burger {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--bleu-profond);
+      padding: 4px;
+    }
+    @media (max-width: 768px) { .menu-burger { display: flex; } }
+
+    .topbar-title {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+    }
+
+    /* Breadcrumb optionnel */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--gris-pierre);
+    }
+    .breadcrumb a { color: var(--gris-pierre); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--bleu-profond); }
+    .breadcrumb .sep { opacity: 0.4; }
+    .breadcrumb .current { color: var(--bleu-profond); font-weight: 500; }
+
+    /* Right */
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+
+    .topbar-user {
+      font-size: 0.8rem;
+      color: var(--gris-pierre);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .topbar-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--or-konishi);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 14px; border-radius: 6px;
+      font-family: var(--font-body); font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; border: none; transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-outline { background: transparent; border:1.5px solid #d0d7de; color: var(--gris-pierre); }
+    .btn-primary { background: var(--rouge-koi); color: #fff; }
+
+    /* Divider */
+    .topbar-divider { width: 1px; height: 20px; background: #e5e9ee; }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOPBAR ORGANISM ───────────────────────────────────── -->
+
+  <!-- Variant 1 : Dashboard -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <div class="topbar-title">Dashboard</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-user">
+        <div class="topbar-avatar">MG</div>
+        Mathilde G.
+      </div>
+      <div class="topbar-divider"></div>
+      <button class="btn btn-outline">Déconnexion</button>
+    </div>
+  </header>
+
+  <br>
+
+  <!-- Variant 2 : Page avec breadcrumb + CTA -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <div>
+        <div class="topbar-title">Gestion des Koïs</div>
+        <div class="breadcrumb">
+          <a href="#">Admin</a>
+          <span class="sep">›</span>
+          <span class="current">Koïs</span>
+        </div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-primary">＋ Nouveau koï</button>
+      <div class="topbar-divider"></div>
+      <div class="topbar-user">
+        <div class="topbar-avatar">MG</div>
+      </div>
+    </div>
+  </header>
+
+  <br>
+
+  <!-- Variant 3 : Messages avec compteur -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <div class="topbar-title">Messages <span style="font-size:0.75rem; font-family:var(--font-body); font-weight:600; color:var(--rouge-koi); background:#fde8e8; padding:2px 8px; border-radius:10px; margin-left:6px;">3 non lus</span></div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-outline">Tout marquer lu</button>
+      <div class="topbar-divider"></div>
+      <div class="topbar-user">
+        <div class="topbar-avatar">MG</div>
+        Mathilde G.
+      </div>
+    </div>
+  </header>
+
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Koi Detail</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --vert-wa:      #25D366;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
+
+    /* ── KOI DETAIL ORGANISM ─────────────────────────────────── */
+    .koi-detail {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px;
+    }
+
+    /* Breadcrumb */
+    .koi-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      font-size: 0.9rem;
+    }
+    
+    .koi-breadcrumb a {
+      color: var(--gris-pierre);
+      text-decoration: none;
+    }
+    
+    .koi-breadcrumb a:hover {
+      color: var(--bleu-profond);
+    }
+    
+    .koi-breadcrumb span {
+      color: var(--bleu-profond);
+      font-weight: 500;
+    }
+
+    /* Main layout */
+    .koi-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Gallery */
+    .koi-gallery {
+      position: sticky;
+      top: 100px;
+    }
+    
+    .koi-gallery-main {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
+      aspect-ratio: 4/3;
+    }
+    
+    .koi-gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .koi-gallery-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--or-konishi);
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+    }
+    
+    .koi-gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .koi-gallery-nav:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .koi-gallery-nav.prev { left: 16px; }
+    .koi-gallery-nav.next { right: 16px; }
+    
+    .koi-gallery-thumbs {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    
+    .koi-gallery-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    
+    .koi-gallery-thumb.active {
+      border-color: var(--or-konishi);
+    }
+    
+    .koi-gallery-thumb:hover {
+      transform: translateY(-2px);
+    }
+    
+    .koi-gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Info */
+    .koi-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .koi-header h1 {
+      font-family: var(--font-title);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+      margin-bottom: 8px;
+    }
+    
+    .koi-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .koi-meta-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      background: rgba(0,48,73,0.06);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--bleu-profond);
+    }
+    
+    .koi-meta-badge.konishi {
+      background: var(--or-konishi);
+      color: var(--bleu-profond);
+      font-weight: 600;
+    }
+
+    /* Price block */
+    .koi-price-block {
+      padding: 24px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,48,73,0.06);
+    }
+    
+    .koi-price-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gris-pierre);
+      margin-bottom: 8px;
+    }
+    
+    .koi-price {
+      font-family: var(--font-title);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+      margin-bottom: 16px;
+    }
+    
+    .koi-price-currency {
+      font-family: var(--font-body);
+      font-size: 0.5em;
+      vertical-align: super;
+      margin-right: 4px;
+    }
+    
+    .koi-cta-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 18px;
+      background: var(--vert-wa);
+      color: #fff;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+    }
+    
+    .koi-cta-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    }
+    
+    .koi-cta-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--gris-pierre);
+      margin-top: 12px;
+    }
+
+    /* Specs */
+    .koi-specs {
+      padding: 24px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,48,73,0.06);
+    }
+    
+    .koi-specs-title {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+      margin-bottom: 16px;
+    }
+    
+    .koi-specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    
+    .koi-spec {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .koi-spec-label {
+      font-size: 0.8rem;
+      color: var(--gris-pierre);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .koi-spec-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--bleu-profond);
+    }
+
+    /* Description */
+    .koi-description {
+      padding: 24px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,48,73,0.06);
+    }
+    
+    .koi-description-title {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+      margin-bottom: 12px;
+    }
+    
+    .koi-description-text {
+      font-size: 1rem;
+      color: var(--gris-pierre);
+      line-height: 1.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .koi-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      
+      .koi-gallery {
+        position: relative;
+        top: 0;
+      }
+      
+      .koi-header h1 {
+        font-size: 2rem;
+      }
+      
+      .koi-price {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="koi-detail">
+    <!-- Breadcrumb -->
+    <nav class="koi-breadcrumb">
+      <a href="#">Accueil</a>
+      <span>/</span>
+      <a href="#">Catalogue</a>
+      <span>/</span>
+      <span>Sakura</span>
+    </nav>
+
+    <!-- Grid -->
+    <div class="koi-detail-grid">
+      <!-- Gallery -->
+      <div class="koi-gallery">
+        <div class="koi-gallery-main">
+          <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Sakura">
+          <span class="koi-gallery-badge">★ Lignée Konishi</span>
+          <button class="koi-gallery-nav prev">❮</button>
+          <button class="koi-gallery-nav next">❯</button>
+        </div>
+        <div class="koi-gallery-thumbs">
+          <div class="koi-gallery-thumb active">
+            <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="">
+          </div>
+          <div class="koi-gallery-thumb">
+            <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="">
+          </div>
+          <div class="koi-gallery-thumb">
+            <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="koi-info">
+        <div class="koi-header">
+          <h1>Sakura</h1>
+          <div class="koi-meta">
+            <span class="koi-meta-badge konishi">★ Konishi</span>
+            <span class="koi-meta-badge">Kohaku</span>
+            <span class="koi-meta-badge">72 cm</span>
+            <span class="koi-meta-badge">2 ans</span>
+          </div>
+        </div>
+
+        <div class="koi-price-block">
+          <div class="koi-price-label">Prix</div>
+          <div class="koi-price"><span class="koi-price-currency">€</span>1 800</div>
+          <a href="#" class="koi-cta-whatsapp"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 24px; width: auto; margin-right: 8px;"> Commander via WhatsApp</a>
+          <p class="koi-cta-note">Message pré-rempli avec la référence du koï</p>
+        </div>
+
+        <div class="koi-specs">
+          <h3 class="koi-specs-title">Caractéristiques</h3>
+          <div class="koi-specs-grid">
+            <div class="koi-spec">
+              <span class="koi-spec-label">Variété</span>
+              <span class="koi-spec-value">Kohaku</span>
+            </div>
+            <div class="koi-spec">
+              <span class="koi-spec-label">Taille</span>
+              <span class="koi-spec-value">72 cm</span>
+            </div>
+            <div class="koi-spec">
+              <span class="koi-spec-label">Âge estimé</span>
+              <span class="koi-spec-value">2 ans</span>
+            </div>
+            <div class="koi-spec">
+              <span class="koi-spec-label">Lignée</span>
+              <span class="koi-spec-value" style="color: var(--or-konishi);">Konishi ★</span>
+            </div>
+            <div class="koi-spec">
+              <span class="koi-spec-label">Sexe</span>
+              <span class="koi-spec-value">Femelle</span>
+            </div>
+            <div class="koi-spec">
+              <span class="koi-spec-label">Référence</span>
+              <span class="koi-spec-value">KOI-001</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="koi-description">
+          <h3 class="koi-description-title">Description</h3>
+          <p class="koi-description-text">
+            Sakura est une magnifique Kohaku issue de la prestigieuse lignée Konishi. 
+            Ses motifs rouges bien définis sur fond blanc immaculé en font un spécimen 
+            d'exception. Cette carpe koï présente une excellente conformation avec une 
+            nageoire caudale puissante et une peau lustrée caractéristique des meilleurs 
+            spécimens de cette variété.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koi's Story — Élevage de carpes koï d'exception</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); color: var(--bleu-profond); }
+
+    /* ── HEADER ──────────────────────────────────────────────── */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .header.scrolled {
+      background: #fff;
+      box-shadow: 0 2px 20px rgba(0,48,73,0.08);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1400px; margin: 0 auto; padding: 20px 32px;
+    }
+    .header-logo { display: flex; flex-direction: column; text-decoration: none; }
+    .header-logo-name {
+      font-family: var(--font-title); font-size: 1.6rem; font-weight: 700; 
+      color: #fff; transition: color 0.3s;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .header.scrolled .header-logo-name { color: var(--bleu-profond); text-shadow: none; }
+    .header-logo-tagline {
+      font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--or-konishi); margin-top: 3px;
+    }
+    .header-nav { display: flex; align-items: center; gap: 8px; }
+    .header-nav-list { display: flex; gap: 4px; list-style: none; }
+    .header-nav-link {
+      padding: 10px 16px; font-size: 0.95rem; font-weight: 500;
+      color: #fff; text-decoration: none; border-radius: 8px;
+      transition: all 0.2s; text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+    .header.scrolled .header-nav-link { color: var(--bleu-profond); text-shadow: none; }
+    .header-nav-link:hover, .header-nav-link.active { 
+      background: rgba(255,255,255,0.15); color: var(--or-konishi); 
+    }
+    .header.scrolled .header-nav-link:hover { background: rgba(0,48,73,0.04); }
+    .header-cta {
+      padding: 12px 22px; background: var(--rouge-koi); color: #fff;
+      border-radius: 8px; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s; margin-left: 16px;
+    }
+    .header-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(214,40,40,0.3); }
+    .header-mobile-btn {
+      display: none; width: 44px; height: 44px; background: none;
+      border: none; font-size: 1.5rem; color: #fff; cursor: pointer;
+    }
+    .header.scrolled .header-mobile-btn { color: var(--bleu-profond); }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,48,73,0.85) 0%, rgba(0,48,73,0.6) 50%, rgba(0,48,73,0.4) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1; text-align: center;
+      padding: 140px 32px 100px; max-width: 900px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; background: rgba(224,159,62,0.2);
+      border: 1px solid rgba(224,159,62,0.4); border-radius: 30px;
+      font-size: 0.85rem; font-weight: 600; color: var(--or-konishi);
+      margin-bottom: 28px; backdrop-filter: blur(4px);
+    }
+    .hero-title {
+      font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700; color: #fff; line-height: 1.1;
+      margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .hero-title-accent { color: var(--or-konishi); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.85);
+      line-height: 1.7; margin-bottom: 40px; max-width: 600px;
+      margin-left: auto; margin-right: auto;
+    }
+    .hero-cta-group { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px; border-radius: 10px; font-size: 1rem;
+      font-weight: 600; text-decoration: none; transition: all 0.3s ease;
+    }
+    .hero-cta-primary {
+      background: var(--rouge-koi); color: #fff;
+      box-shadow: 0 4px 20px rgba(214,40,40,0.3);
+    }
+    .hero-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(214,40,40,0.4); }
+    .hero-cta-secondary {
+      background: rgba(255,255,255,0.1); color: #fff;
+      border: 2px solid rgba(255,255,255,0.3); backdrop-filter: blur(4px);
+    }
+    .hero-cta-secondary:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.5); }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 48px;
+      margin-top: 60px; padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-value {
+      font-family: var(--font-title); font-size: 2.5rem; font-weight: 700;
+      color: #fff; line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 6px;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── FEATURED KOIS ───────────────────────────────────────── */
+    .featured {
+      padding: 100px 32px; max-width: 1400px; margin: 0 auto;
+    }
+    .featured-header {
+      text-align: center; max-width: 600px; margin: 0 auto 48px;
+    }
+    .featured-header h2 {
+      font-family: var(--font-title); font-size: 2.5rem; font-weight: 700;
+      color: var(--bleu-profond); margin-bottom: 12px;
+    }
+    .featured-header p { font-size: 1.1rem; color: var(--gris-pierre); }
+    .featured-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px;
+    }
+
+    /* Koi Card */
+    .koi-card {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,48,73,0.06); transition: all 0.3s ease; cursor: pointer;
+    }
+    .koi-card:hover {
+      transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,48,73,0.12);
+    }
+    .koi-card:hover .koi-card-image img { transform: scale(1.05); }
+    .koi-card-image {
+      position: relative; width: 100%; aspect-ratio: 4/3;
+      overflow: hidden; background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
+    }
+    .koi-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .koi-card-badges {
+      position: absolute; top: 12px; left: 12px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .koi-card-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 5px 10px; border-radius: 20px; font-size: 0.7rem;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .koi-card-badge--konishi { background: var(--or-konishi); color: var(--bleu-profond); }
+    .koi-card-badge--new { background: var(--rouge-koi); color: #fff; }
+    .koi-card-content { padding: 18px; }
+    .koi-card-header {
+      display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;
+    }
+    .koi-card-name {
+      font-family: var(--font-title); font-size: 1.25rem; font-weight: 700; color: var(--bleu-profond);
+    }
+    .koi-card-variety {
+      display: inline-flex; align-items: center; padding: 3px 10px;
+      background: rgba(0,48,73,0.06); border-radius: 20px;
+      font-size: 0.75rem; font-weight: 500; color: var(--bleu-profond); margin-top: 4px;
+    }
+    .koi-card-size { font-size: 0.85rem; color: var(--gris-pierre); font-weight: 500; }
+    .koi-card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0f2f5;
+    }
+    .koi-card-price {
+      font-family: var(--font-title); font-size: 1.4rem; font-weight: 700; color: var(--bleu-profond);
+    }
+    .koi-card-price-currency {
+      font-family: var(--font-body); font-size: 0.7rem; vertical-align: super; margin-right: 1px;
+    }
+    .koi-card-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 16px; background: var(--rouge-koi); color: #fff;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s ease;
+    }
+    .koi-card-cta:hover { background: #b82020; }
+    .featured-view-all {
+      text-align: center; margin-top: 48px;
+    }
+    .featured-view-all-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 32px; background: var(--bleu-profond); color: #fff;
+      border-radius: 10px; font-size: 1rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .featured-view-all-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,48,73,0.2); }
+
+    /* ── ABOUT SECTION ───────────────────────────────────────── */
+    .about {
+      padding: 100px 32px; background: #fff;
+    }
+    .about-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .about-image {
+      border-radius: 24px; overflow: hidden; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
+    }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .about-content h2 {
+      font-family: var(--font-title); font-size: 2.2rem; font-weight: 700;
+      color: var(--bleu-profond); margin-bottom: 20px;
+    }
+    .about-content p {
+      font-size: 1.05rem; color: var(--gris-pierre); line-height: 1.8; margin-bottom: 16px;
+    }
+    .about-konishi-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; background: rgba(224,159,62,0.1);
+      border: 2px solid var(--or-konishi); border-radius: 10px;
+      font-size: 0.9rem; font-weight: 600; color: var(--bleu-profond); margin-top: 8px;
+    }
+
+    /* ── CTA SECTION ─────────────────────────────────────────── */
+    .cta-section {
+      padding: 100px 32px; background: var(--bleu-profond);
+    }
+    .cta-inner {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--font-title); font-size: 2.5rem; font-weight: 700;
+      color: #fff; margin-bottom: 16px;
+    }
+    .cta-section p {
+      font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 32px;
+    }
+    .cta-whatsapp-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 18px 36px; background: #25D366; color: #fff;
+      border-radius: 12px; font-size: 1.1rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    }
+    .cta-whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(37,211,102,0.4); }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    .footer {
+      background: var(--bleu-profond); color: #fff; padding: 60px 32px 32px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .footer-logo {
+      font-family: var(--font-title); font-size: 1.8rem; font-weight: 700;
+      color: #fff; text-decoration: none;
+    }
+    .footer-logo span { color: var(--or-konishi); }
+    .footer-tagline {
+      font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 280px;
+    }
+    .footer-konishi-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; background: rgba(224,159,62,0.15);
+      border: 1px solid rgba(224,159,62,0.3); border-radius: 8px;
+      font-size: 0.8rem; font-weight: 600; color: var(--or-konishi); margin-top: 8px;
+    }
+    .footer-column h4 {
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--or-konishi); margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.9rem; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 12px; font-size: 0.9rem; color: rgba(255,255,255,0.75);
+    }
+    .footer-contact-item strong { color: #fff; display: block; margin-bottom: 2px; }
+    .footer-whatsapp {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; background: #25D366; color: #fff;
+      border-radius: 8px; text-decoration: none; font-weight: 600;
+      font-size: 0.9rem; margin-top: 8px; transition: all 0.2s;
+    }
+    .footer-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,211,102,0.3); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-copyright { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a {
+      font-size: 0.8rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .header-nav {
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; background: #fff; padding: 16px;
+        gap: 8px; transform: translateY(-100%); opacity: 0; visibility: hidden;
+        transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,48,73,0.1);
+      }
+      .header-nav.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
+      .header-nav-list { flex-direction: column; width: 100%; gap: 4px; }
+      .header-nav-link { width: 100%; padding: 14px 16px; text-align: center; color: var(--bleu-profond); }
+      .header-cta { width: 100%; margin-left: 0; text-align: center; margin-top: 8px; }
+      .header-mobile-btn { display: flex; align-items: center; justify-content: center; }
+      .hero-stats { gap: 24px; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .featured-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="home.html" class="header-logo" aria-label="Accueil">
+        <img src="../../docs/assets/LOGO MANU FINI 2.png" alt="Koi's Story" style="height: 50px; width: auto;">
+      </a>
+      <nav class="header-nav" id="headerNav">
+        <ul class="header-nav-list">
+          <li><a href="home.html" class="header-nav-link active">Accueil</a></li>
+          <li><a href="catalogue.html" class="header-nav-link">Catalogue</a></li>
+          <li><a href="farm.html" class="header-nav-link">Notre élevage</a></li>
+          <li><a href="contact.html" class="header-nav-link">Contact</a></li>
+        </ul>
+        <a href="#" class="header-cta">Voir le catalogue</a>
+      </nav>
+      <button class="header-mobile-btn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Bassin de koïs">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-badge">★ Affilié à la lignée Konishi</span>
+      <h1 class="hero-title">
+        L'excellence des<br><span class="hero-title-accent">carpes koï</span> d'exception
+      </h1>
+      <p class="hero-subtitle">
+        Découvrez notre sélection de spécimens uniques, élevés avec passion 
+        et issue de la prestigieuse lignée Konishi.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#catalogue" class="hero-cta hero-cta-primary">Explorer le catalogue →</a>
+        <a href="#about" class="hero-cta hero-cta-secondary">Découvrir notre élevage</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-value">12</div><div class="hero-stat-label">Koïs disponibles</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">8</div><div class="hero-stat-label">Lignée Konishi</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">7</div><div class="hero-stat-label">Années d'expertise</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Koïs -->
+  <section class="featured" id="catalogue">
+    <div class="featured-header">
+      <h2>Nos koïs en vedette</h2>
+      <p>Découvrez une sélection de nos plus beaux spécimens disponibles à la vente</p>
+    </div>
+    <div class="featured-grid">
+      <article class="koi-card">
+        <div class="koi-card-image">
+          <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Sakura">
+          <div class="koi-card-badges"><span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span></div>
+        </div>
+        <div class="koi-card-content">
+          <div class="koi-card-header">
+            <div><h4 class="koi-card-name">Sakura</h4><span class="koi-card-variety">Kohaku</span></div>
+            <span class="koi-card-size">72 cm</span>
+          </div>
+          <div class="koi-card-footer">
+            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 800</span>
+            <a href="#" class="koi-card-cta">Voir →</a>
+          </div>
+        </div>
+      </article>
+      <article class="koi-card">
+        <div class="koi-card-image">
+          <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Midori">
+          <div class="koi-card-badges">
+            <span class="koi-card-badge koi-card-badge--new">Nouveau</span>
+            <span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span>
+          </div>
+        </div>
+        <div class="koi-card-content">
+          <div class="koi-card-header">
+            <div><h4 class="koi-card-name">Midori</h4><span class="koi-card-variety">Butterfly</span></div>
+            <span class="koi-card-size">55 cm</span>
+          </div>
+          <div class="koi-card-footer">
+            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>2 400</span>
+            <a href="#" class="koi-card-cta">Voir →</a>
+          </div>
+        </div>
+      </article>
+      <article class="koi-card">
+        <div class="koi-card-image">
+          <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Kenzan">
+        </div>
+        <div class="koi-card-content">
+          <div class="koi-card-header">
+            <div><h4 class="koi-card-name">Kenzan</h4><span class="koi-card-variety">Showa</span></div>
+            <span class="koi-card-size">68 cm</span>
+          </div>
+          <div class="koi-card-footer">
+            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 650</span>
+            <a href="#" class="koi-card-cta">Voir →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="featured-view-all">
+      <a href="#" class="featured-view-all-btn">Voir tout le catalogue →</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-image">
+        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Notre élevage">
+      </div>
+      <div class="about-content">
+        <h2>Une passion transmise avec excellence</h2>
+        <p>
+          Situé au cœur de la région lyonnaise, notre élevage est dédié à la sélection 
+          et l'élevage de carpes koï d'exception depuis 2018.
+        </p>
+        <p>
+          Porté par Mathilde et Emmanuel, notre ferme se distingue par son affiliation 
+          exclusive à la prestigieuse lignée Konishi, gage de qualité reconnu mondialement.
+        </p>
+        <span class="about-konishi-badge">★ Membre officiel de la lignée Konishi</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2>Intéressé par nos koïs ?</h2>
+      <p>Contactez-nous directement sur WhatsApp pour des conseils personnalisés et des photos supplémentaires.</p>
+      <a href="https://wa.me/33612345678" class="cta-whatsapp-btn"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 24px; width: auto; margin-right: 8px;"> Nous contacter sur WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="home.html" class="footer-logo" aria-label="Accueil"><img src="../../docs/assets/LOGO MANU FINI 2.png" alt="Koi's Story" style="height: 60px; width: auto;"></a>
+          <p class="footer-tagline">Élevage de carpes koï d'exception, affilié à la prestigieuse lignée Konishi.</p>
+          <span class="footer-konishi-badge">★ Membre officiel de la lignée Konishi</span>
+        </div>
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="home.html">Accueil</a></li>
+            <li><a href="catalogue.html">Catalogue</a></li>
+            <li><a href="farm.html">Notre élevage</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Informations</h4>
+          <ul class="footer-links">
+            <li><a href="home.html#">Livraison</a></li>
+            <li><a href="home.html#">Garantie santé</a></li>
+            <li><a href="contact.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <span style="color: var(--or-konishi);">●</span>
+            <div><strong>Adresse</strong>123 Route des Étangs<br>69000 Lyon</div>
+          </div>
+          <a href="#" class="footer-whatsapp"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 20px; width: auto; margin-right: 6px;"> WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Koi's Story. Tous droits réservés.</p>
+        <div class="footer-legal">
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

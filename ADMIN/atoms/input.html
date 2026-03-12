@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atom — Input</title>
+  <style>
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; max-width: 520px; }
+    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 28px; }
+
+    /* ── INPUT ATOM ──────────────────────────────────────────── */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 16px;
+    }
+    .field label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--bleu-profond);
+    }
+    .field .hint {
+      font-size: 0.72rem;
+      color: var(--gris-pierre);
+    }
+    .field .error-msg {
+      font-size: 0.72rem;
+      color: var(--rouge-koi);
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    select,
+    textarea {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--bleu-profond);
+      background: #fff;
+      border: 1.5px solid #d0d7de;
+      border-radius: 6px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      width: 100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--bleu-profond);
+      box-shadow: 0 0 0 3px rgba(0,48,73,0.1);
+    }
+    input.error, select.error, textarea.error {
+      border-color: var(--rouge-koi);
+      box-shadow: 0 0 0 3px rgba(214,40,40,0.1);
+    }
+    input:disabled, select:disabled, textarea:disabled {
+      background: #f0f2f5;
+      color: var(--gris-pierre);
+      cursor: not-allowed;
+    }
+    textarea { resize: vertical; min-height: 100px; }
+    select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+
+    /* Checkbox */
+    .checkbox-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .checkbox-field input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--bleu-profond);
+      cursor: pointer;
+    }
+    .checkbox-field span {
+      font-size: 0.875rem;
+      color: var(--bleu-profond);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <h3>Champs texte</h3>
+  <div class="field">
+    <label for="nom">Nom du koï</label>
+    <input type="text" id="nom" placeholder="ex. Sakura">
+  </div>
+  <div class="field">
+    <label for="email">Email expéditeur</label>
+    <input type="email" id="email" placeholder="contact@exemple.fr">
+    <span class="hint">Utilisé pour la réponse admin uniquement.</span>
+  </div>
+  <div class="field">
+    <label for="prix">Prix (€)</label>
+    <input type="number" id="prix" placeholder="0" min="0">
+  </div>
+
+  <h3>Select</h3>
+  <div class="field">
+    <label for="variete">Variété</label>
+    <select id="variete">
+      <option value="">-- Choisir --</option>
+      <option>Kohaku</option>
+      <option>Showa</option>
+      <option>Kujaku</option>
+      <option>Tancho</option>
+      <option>Butterfly</option>
+    </select>
+  </div>
+
+  <h3>Textarea</h3>
+  <div class="field">
+    <label for="desc">Description</label>
+    <textarea id="desc" placeholder="Description du koï, particularités, historique…"></textarea>
+  </div>
+
+  <h3>Checkbox</h3>
+  <label class="checkbox-field">
+    <input type="checkbox"> <span>Lignée Konishi</span>
+  </label>
+  <br>
+  <label class="checkbox-field">
+    <input type="checkbox" checked> <span>Disponible à la vente</span>
+  </label>
+
+  <h3>Erreur</h3>
+  <div class="field">
+    <label for="nom-err">Nom du koï</label>
+    <input type="text" id="nom-err" class="error" value="">
+    <span class="error-msg">Ce champ est obligatoire.</span>
+  </div>
+
+  <h3>Désactivé</h3>
+  <div class="field">
+    <label>Champ désactivé</label>
+    <input type="text" disabled value="Non modifiable">
+  </div>
+
+</body>
+</html>

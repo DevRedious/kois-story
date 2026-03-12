@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Farm Gallery</title>
+  <style>
+    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-title:   'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
+
+    /* ── FARM GALLERY ORGANISM ───────────────────────────────── */
+    .farm-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 32px;
+    }
+
+    /* Header */
+    .farm-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+    
+    .farm-header h2 {
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+      margin-bottom: 16px;
+    }
+    
+    .farm-header p {
+      font-size: 1.1rem;
+      color: var(--gris-pierre);
+      line-height: 1.7;
+    }
+
+    /* Team/Breeders */
+    .farm-breeders {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-bottom: 64px;
+    }
+    
+    .breeder-card {
+      text-align: center;
+    }
+    
+    .breeder-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      border: 4px solid var(--or-konishi);
+    }
+    
+    .breeder-name {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+      margin-bottom: 4px;
+    }
+    
+    .breeder-role {
+      font-size: 0.9rem;
+      color: var(--or-konishi);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    
+    .breeder-bio {
+      font-size: 0.9rem;
+      color: var(--gris-pierre);
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    /* Stats */
+    .farm-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    
+    .farm-stat {
+      text-align: center;
+      padding: 32px 24px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,48,73,0.06);
+    }
+    
+    .farm-stat-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    
+    .farm-stat-value {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--bleu-profond);
+    }
+    
+    .farm-stat-label {
+      font-size: 0.9rem;
+      color: var(--gris-pierre);
+      margin-top: 4px;
+    }
+
+    /* Gallery */
+    .farm-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 200px);
+      gap: 16px;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .gallery-item.large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    
+    .gallery-item.wide {
+      grid-column: span 2;
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,48,73,0.7) 0%, transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    
+    .gallery-caption {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Konishi section */
+    .farm-konishi {
+      margin-top: 80px;
+      padding: 48px;
+      background: linear-gradient(135deg, var(--bleu-profond) 0%, #002538 100%);
+      border-radius: 24px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    .konishi-logo {
+      text-align: center;
+      padding: 32px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      border: 2px solid var(--or-konishi);
+    }
+    
+    .konishi-logo span {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      color: var(--or-konishi);
+    }
+    
+    .konishi-content h3 {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    
+    .konishi-content p {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    
+    .konishi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--or-konishi);
+      border-radius: 8px;
+      color: var(--bleu-profond);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .farm-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .farm-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 160px);
+      }
+      
+      .gallery-item.large {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+      
+      .farm-konishi {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .farm-breeders {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .farm-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="farm-section">
+    <!-- Header -->
+    <div class="farm-header">
+      <h2>Notre élevage</h2>
+      <p>
+        Situé au cœur de la région lyonnaise, notre ferme est dédiée à l'élevage 
+        de carpes koï d'exception depuis 2018. Notre passion et notre expertise 
+        nous ont valu l'affiliation à la prestigieuse lignée Konishi.
+      </p>
+    </div>
+
+    <!-- Breeders -->
+    <div class="farm-breeders">
+      <div class="breeder-card">
+        <div class="breeder-avatar">👩</div>
+        <h3 class="breeder-name">Mathilde</h3>
+        <p class="breeder-role">Co-fondatrice & Éleveuse</p>
+        <p class="breeder-bio">
+          Passionnée par les koïs depuis son enfance au Japon, 
+          Mathilde apporte son expertise unique en sélection génétique.
+        </p>
+      </div>
+      <div class="breeder-card">
+        <div class="breeder-avatar">👨</div>
+        <h3 class="breeder-name">Emmanuel</h3>
+        <p class="breeder-role">Co-fondateur & Expert</p>
+        <p class="breeder-bio">
+          Ancien chef cuisinier reconverti, Emmanuel a consacré 
+          les 10 dernières années à l'étude des carpes koï.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="farm-stats">
+      <div class="farm-stat">
+        <div class="farm-stat-icon">🐟</div>
+        <div class="farm-stat-value">500+</div>
+        <div class="farm-stat-label">Koïs élevés</div>
+      </div>
+      <div class="farm-stat">
+        <div class="farm-stat-icon">🏆</div>
+        <div class="farm-stat-value">8</div>
+        <div class="farm-stat-label">Prix remportés</div>
+      </div>
+      <div class="farm-stat">
+        <div class="farm-stat-icon">★</div>
+        <div class="farm-stat-value">2018</div>
+        <div class="farm-stat-label">Affiliation Konishi</div>
+      </div>
+      <div class="farm-stat">
+        <div class="farm-stat-icon">💧</div>
+        <div class="farm-stat-value">2000m²</div>
+        <div class="farm-stat-label">Bassins d'élevage</div>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="farm-gallery">
+      <div class="gallery-item large">
+        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Bassin principal">
+        <div class="gallery-overlay">
+          <span class="gallery-caption">Notre bassin principal</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koï">
+      </div>
+      <div class="gallery-item">
+        <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Koï">
+      </div>
+      <div class="gallery-item wide">
+        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Vue aérienne">
+        <div class="gallery-overlay">
+          <span class="gallery-caption">Vue d'ensemble de la ferme</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Konishi affiliation -->
+    <div class="farm-konishi">
+      <div class="konishi-logo">
+        <span>★</span>
+        <p style="color: var(--or-konishi); font-weight: 600; margin-top: 8px;">Lignée Konishi</p>
+      </div>
+      <div class="konishi-content">
+        <h3>Membre officiel de la lignée Konishi</h3>
+        <p>
+          L'affiliation à la lignée Konishi est un gage d'excellence reconnu mondialement. 
+          Cette distinction nous permet d'accéder aux meilleures lignées génétiques et 
+          de proposer à nos clients des spécimens d'une qualité exceptionnelle.
+        </p>
+        <span class="konishi-badge">★ Certifié Konishi depuis 2018</span>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

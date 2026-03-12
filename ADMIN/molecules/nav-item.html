@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Molecule — Nav Item</title>
+  <style>
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
+    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
+    :root {
+      --rouge-koi:    #D62828;
+      --bleu-profond: #003049;
+      --or-konishi:   #E09F3E;
+      --gris-pierre:  #6C757D;
+      --blanc-perle:  #F8F9FA;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bleu-profond); padding: 32px; }
+    h3 { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 8px; margin-top: 24px; }
+    .nav-group { width: 240px; }
+
+    /* ── NAV-ITEM MOLECULE ───────────────────────────────────── */
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 20px;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      border-radius: 0 6px 6px 0;
+      transition: all 0.15s;
+      user-select: none;
+      text-decoration: none;
+    }
+    .nav-item:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.07);
+    }
+    .nav-item.active {
+      color: var(--or-konishi);
+      border-left-color: var(--or-konishi);
+      background: rgba(224,159,62,0.1);
+      font-weight: 600;
+    }
+    .nav-item.disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .nav-icon {
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .nav-label { flex: 1; }
+
+    /* Badge compteur */
+    .nav-badge {
+      background: var(--rouge-koi);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 2px 7px;
+      line-height: 1.2;
+    }
+    .nav-badge.zero {
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* Section label */
+    .nav-section {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.3);
+      padding: 14px 20px 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-group">
+
+    <div class="nav-section">Navigation</div>
+
+    <div class="nav-item active">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>
+      <span class="nav-label">Dashboard</span>
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></span>
+      <span class="nav-label">Gestion des Koïs</span>
+    </div>
+
+    <div class="nav-item">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
+      <span class="nav-label">Messages</span>
+      <span class="nav-badge">3</span>
+    </div>
+
+    <div class="nav-section" style="margin-top:8px;">Site</div>
+
+    <div class="nav-item">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span>
+      <span class="nav-label">Voir le site</span>
+    </div>
+
+    <div class="nav-item disabled">
+      <span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span>
+      <span class="nav-label">Paramètres</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
