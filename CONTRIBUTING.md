@@ -2,23 +2,20 @@
 
 ## Branch model
 
-This project follows a fixed branch policy:
+This project follows a two-branch policy:
 
-- `Morgan`
-- `Romain`
-- `Valentin`
-- `DEV` for integration and testing
-- `Main` for production
+- `dev` — integration and testing
+- `main` — production
 
-Do not commit directly to `Main`.
+Do not commit directly to `main`.
 
 ## Workflow
 
-1. Start from your dedicated contributor branch.
+1. Create a feature branch from `dev`.
 2. Keep commits focused and easy to review.
-3. Open a pull request toward `DEV`.
+3. Open a pull request toward `dev`.
 4. Validate documentation and repository consistency before merge.
-5. Merge `DEV` into `Main` only when the release is ready.
+5. Merge `dev` into `main` only when the release is ready.
 
 ## Commit messages
 
