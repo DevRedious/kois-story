@@ -62,6 +62,13 @@ Maximum 2 polices principales.
 - Pas de photos floues
 - Minimum 1 photo produit par fiche, idéalement 3 angles
 
+**Règles de mise en forme (Anti-distorsion) :**
+- **Object-fit** : Utiliser systématiquement `object-fit: cover` sur les conteneurs d'images pour éviter que les photos ne soient écrasées ou étirées.
+- **Ratios imposés** :
+  - **Hero** : Format panoramique, hauteur fixe (ex: 600px sur desktop, 40vh sur mobile).
+  - **Cards** : Ratio 3:4 (Portrait) pour uniformiser la grille du catalogue.
+  - **Modules transverses** : Ratio 4:3 ou 1:1.
+
 ---
 
 ## 6. Composants UI
@@ -89,6 +96,14 @@ Contenu affiché (dans l'ordre) :
 | Fond | Texte |
 |---|---|
 | `#E09F3E` | `#003049` |
+
+### Card produit
+**Image** : Ratio 3:4 obligatoire, `object-fit: cover`.
+**Style** : Bordures arrondies `radius-md` (12px).
+
+### Hero visuel
+**Image** : Doit couvrir toute la largeur (`w-full`), `object-fit: cover`.
+**Cadrage** : Point focal centré pour garantir la visibilité du poisson sur tous les écrans.
 
 ---
 
