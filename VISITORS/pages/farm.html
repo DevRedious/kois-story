@@ -46,7 +46,7 @@
     /* ── STORY SECTION ───────────────────────────────────────── */
     .story { padding: 80px 32px; max-width: 1200px; margin: 0 auto; }
     .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .story-image { border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%); }
+    .story-image { border-radius: 24px; overflow: hidden; aspect-ratio: 3/4; background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%); }
     .story-image img { width: 100%; height: 100%; object-fit: cover; }
     .story-content h2 { font-family: var(--font-title); font-size: 2.2rem; font-weight: 700; color: var(--bleu-profond); margin-bottom: 20px; }
     .story-content p { font-size: 1.05rem; color: var(--gris-pierre); line-height: 1.8; margin-bottom: 16px; }
@@ -172,11 +172,10 @@
       <nav class="header-nav" id="headerNav">
         <ul class="header-nav-list">
           <li><a href="home.html" class="header-nav-link">Accueil</a></li>
-          <li><a href="catalogue.html" class="header-nav-link">Catalogue</a></li>
           <li><a href="farm.html" class="header-nav-link active">Notre élevage</a></li>
           <li><a href="contact.html" class="header-nav-link">Contact</a></li>
         </ul>
-        <a href="#" class="header-cta">Voir le catalogue</a>
+        <a href="catalogue.html" class="header-cta">Voir le catalogue</a>
       </nav>
       <button class="header-mobile-btn" aria-label="Menu">☰</button>
     </div>
@@ -289,32 +288,7 @@
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section class="gallery">
-    <div class="gallery-inner">
-      <div class="gallery-header">
-        <h2>Galerie photos</h2>
-        <p>Un aperçu de notre ferme et de nos installations</p>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item large">
-          <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Bassin principal">
-          <div class="gallery-overlay"><span class="gallery-caption">Notre bassin principal</span></div>
-        </div>
-        <div class="gallery-item">
-          <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koï">
-        </div>
-        <div class="gallery-item">
-          <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Koï">
-        </div>
-        <div class="gallery-item wide">
-          <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Vue d'ensemble">
-          <div class="gallery-overlay"><span class="gallery-caption">Vue d'ensemble de la ferme</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  
   <!-- CTA -->
   <section class="cta">
     <div class="cta-inner">
