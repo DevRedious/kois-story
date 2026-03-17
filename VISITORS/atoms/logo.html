@@ -21,6 +21,15 @@
     .logo--footer { opacity: 0.92; }
     .logo--footer:hover { opacity: 1; }
 
+    /* ── SITE-LOGO — version indépendante fixe (nouvelle navbar) ──── */
+    .site-logo {
+      display: inline-block;
+      pointer-events: all;
+      transition: opacity var(--t-base), transform var(--t-base);
+    }
+    .site-logo img { height: 72px; width: auto; display: block; }
+    .site-logo--hidden { opacity: 0; pointer-events: none; transform: translateY(-6px); }
+
     .demo-dark  { background: var(--c-black); }
     .demo-light { background: var(--c-cream); }
   </style>
@@ -45,6 +54,21 @@
     <a href="home.html" class="logo logo--header">
       <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
     </a>
+  </div>
+
+  <p class="demo-label" style="margin-top:var(--sp-8)">Variante site-logo — logo indépendant (nouvelle navbar pill)</p>
+  <div class="demo-section demo-dark" style="position:relative; min-height:100px;">
+    <a href="home.html" class="site-logo" style="position:absolute; top:var(--sp-5); left:var(--sp-8);">
+      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
+    </a>
+  </div>
+
+  <p class="demo-label" style="margin-top:var(--sp-8)">Variante site-logo--hidden (état masqué)</p>
+  <div class="demo-section demo-dark" style="position:relative; min-height:100px;">
+    <a href="home.html" class="site-logo site-logo--hidden" style="position:absolute; top:var(--sp-5); left:var(--sp-8);">
+      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
+    </a>
+    <p style="color:var(--w-50); font-size:var(--text-sm); padding:var(--sp-5) var(--sp-8); padding-top:calc(var(--sp-5) + 72px + var(--sp-3))">Logo masqué (opacity:0) — utilisé sur la home quand le hero est visible</p>
   </div>
 </body>
 </html>
