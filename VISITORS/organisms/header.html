@@ -4,170 +4,128 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Organism — Header | Koi's Story</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
   <style>
-    :root {
-      --color-red:    #e60000;
-      --color-wine:   #630f0f;
-      --color-black:  #000000;
-      --color-cream:  #f5f5f2;
-      --color-white:  #ffffff;
-      --color-red-dark:  #cc0000;
-      --color-red-light: #ff1a1a;
-      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
-      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
-      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans:  'Open Sans', system-ui, sans-serif;
-      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
-      --sp-5: 1.25rem; --sp-6: 1.5rem; --sp-8: 2rem; --sp-10: 2.5rem;
-      --r-full: 9999px; --r-md: .5rem;
-      --t-fast: 150ms ease; --t-base: 300ms ease;
+    /* ── SITE HEADER ORGANISM ───────────────────────────────────────────── */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--header-height);
+      display: flex; align-items: center;
+      padding: 0 var(--sp-8);
+      background: transparent;
+      transition: background var(--t-base), box-shadow var(--t-base);
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); -webkit-font-smoothing: antialiased; }
-    ul { list-style: none; }
-    a { text-decoration: none; color: inherit; }
+    .site-header--scrolled {
+      background: var(--c-black);
+      box-shadow: var(--shadow-lg);
+    }
+    .header__inner {
+      width: 100%; max-width: var(--max-width); margin: 0 auto;
+      display: flex; align-items: center; gap: var(--sp-8);
+    }
+    .header__logo { flex-shrink: 0; }
+    .header__logo img { height: 48px; width: auto; display: block; }
 
-    /* ── HEADER ORGANISM ─────────────────────────────────────────── */
-    .header {
-      position: fixed;
-      top: 0; left: 0; right: 0; z-index: 1000;
-      background: var(--gray-900);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.5);
-      border-bottom: 1px solid var(--gray-800);
-      height: 75px;
+    .header__nav { flex: 1; display: flex; justify-content: center; }
+    .header__nav ul { display: flex; gap: var(--sp-6); list-style: none; align-items: center; }
+    .header__nav a {
+      font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600;
+      color: var(--c-white); letter-spacing: 0.04em;
+      padding-bottom: 3px; border-bottom: 2px solid transparent;
+      transition: border-color var(--t-fast);
     }
-    .header-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      max-width: 1400px; margin: 0 auto; padding: 0 var(--sp-10); height: 100%;
-    }
+    .header__nav a:hover, .header__nav a.active { border-bottom-color: var(--c-red); }
 
-    /* Logo */
-    .header-logo { display: flex; align-items: center; gap: var(--sp-3); }
-    .header-logo-circle {
-      width: 50px; height: 50px; border-radius: var(--r-full);
-      background: radial-gradient(circle at 30% 30%, var(--color-red-light), var(--color-wine));
-      border: 2px solid var(--color-wine);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      color: white; font-family: var(--font-serif); font-size: 9px; font-weight: 700;
-      text-align: center; line-height: 1.1; flex-shrink: 0;
-      transition: transform var(--t-base);
+    .header__cta {
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-2) var(--sp-4); background: var(--c-wa); color: var(--c-white);
+      border-radius: var(--r-full); font-family: var(--font-sans);
+      font-size: var(--text-sm); font-weight: 700;
+      transition: background var(--t-fast);
     }
-    .header-logo:hover .header-logo-circle { transform: scale(1.05); }
-    .header-logo-text { color: white; font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; line-height: 1; }
-    .header-logo-sub { color: var(--gray-300); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .header__cta:hover { background: #25d366; }
 
-    /* Nav */
-    .header-nav-list { display: flex; align-items: center; height: 75px; }
-    .header-nav-link {
-      color: white; padding: 0 var(--sp-4); font-size: 0.82rem; font-weight: 600;
-      height: 75px; display: flex; align-items: center;
-      transition: all var(--t-base); position: relative;
-      text-transform: uppercase; letter-spacing: 0.03em;
+    .header__burger {
+      display: none; flex-direction: column; gap: 5px; margin-left: auto; cursor: pointer;
     }
-    .header-nav-link:hover,
-    .header-nav-link.active { color: var(--color-red); background: rgba(255,255,255,0.04); }
-    .header-nav-link.active::after {
-      content: ''; position: absolute; bottom: 0; left: 20%; right: 20%;
-      height: 3px; background: var(--color-red);
+    .header__burger span { display: block; width: 24px; height: 2px; background: var(--c-white); }
+
+    @media (max-width: 900px) {
+      .header__nav { display: none; }
+      .header__burger { display: flex; }
+      .header__cta { display: none; }
+      .header__nav.open {
+        display: flex; position: fixed; top: var(--header-height); left: 0; right: 0;
+        background: var(--c-black); flex-direction: column;
+        padding: var(--sp-6) var(--sp-8);
+      }
+      .header__nav.open ul { flex-direction: column; gap: var(--sp-4); }
     }
 
-    /* Phone */
-    .header-phone {
-      color: white; font-size: 0.82rem; font-weight: 600;
-      display: flex; align-items: center; gap: var(--sp-2); white-space: nowrap;
+    /* Demo hero */
+    .demo-hero {
+      height: 100vh; background: var(--c-black);
+      background-image: url('../../docs/assets/carpe-koi-showa-scaled-hero.jpg');
+      background-size: cover; background-position: center;
+      display: flex; align-items: center; justify-content: center;
     }
-    .header-phone::before { content: '📞'; font-size: 0.9rem; }
-
-    /* Mobile */
-    .header-mobile-btn {
-      display: none; background: none; border: none; color: white;
-      font-size: 1.4rem; cursor: pointer; padding: var(--sp-2); line-height: 1;
+    .demo-hero__overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.45); pointer-events: none;
     }
-    .header-nav-mobile {
-      display: none;
-      position: absolute; top: 75px; left: 0; right: 0;
-      background: var(--gray-900); border-top: 1px solid var(--gray-800);
-      padding: var(--sp-4); flex-direction: column; gap: var(--sp-1);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    }
-    .header-nav-mobile.is-open { display: flex; }
-    .header-nav-mobile .header-nav-link {
-      height: auto; padding: var(--sp-3) var(--sp-4);
-      border-radius: var(--r-md); justify-content: center;
-    }
-    .header-nav-mobile .header-phone {
-      justify-content: center; padding: var(--sp-3);
-      border-top: 1px solid var(--gray-800); margin-top: var(--sp-2);
-    }
-
-    /* Spacer */
-    .header-spacer { height: 75px; }
-
-    /* Demo */
-    .demo-content { padding: 3rem 2rem; max-width: 700px; margin: 0 auto; }
-    .demo-content h1 { font-family: var(--font-serif); font-size: 2rem; color: var(--gray-900); margin-bottom: 1rem; }
-    .demo-content p { color: var(--gray-500); line-height: 1.8; }
-
-    @media (max-width: 1024px) { .header-inner { padding: 0 var(--sp-6); } }
-    @media (max-width: 768px) {
-      .header-nav-list, .header-phone { display: none; }
-      .header-mobile-btn { display: block; }
-    }
+    .demo-hero { position: relative; }
+    .demo-hero p { color: var(--w-70); font-size: var(--text-xl); position: relative; z-index: 1; }
   </style>
 </head>
-<body>
+<body style="margin:0; background:#000000">
 
-  <!-- HEADER DARK FIXE -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="/" class="header-logo">
-        <div class="header-logo-circle">KOÏ'S<br>STORY</div>
-        <div>
-          <div class="header-logo-text">Koi's Story</div>
-          <div class="header-logo-sub">Lignée Konishi</div>
-        </div>
+  <header class="site-header" id="site-header">
+    <div class="header__inner">
+      <a href="../pages/home.html" class="header__logo">
+        <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
       </a>
-      <nav>
-        <ul class="header-nav-list">
-          <li><a href="/" class="header-nav-link active">Accueil</a></li>
-          <li><a href="/decouvrir" class="header-nav-link">Nous découvrir</a></li>
-          <li><a href="/kois" class="header-nav-link">Nos Koïs</a></li>
-          <li><a href="/materiel" class="header-nav-link">Matériel</a></li>
-          <li><a href="/nourriture" class="header-nav-link">Nourriture</a></li>
-          <li><a href="/soins" class="header-nav-link">Soins</a></li>
-          <li><a href="/azukari" class="header-nav-link">Azukari</a></li>
+
+      <nav class="header__nav" id="header-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="../pages/home.html" class="active">Accueil</a></li>
+          <li><a href="../pages/kois.html">Nos Koïs</a></li>
+          <li><a href="../pages/materiel.html">Matériel</a></li>
+          <li><a href="../pages/nourriture.html">Nourriture</a></li>
+          <li><a href="../pages/soins.html">Soins</a></li>
+          <li><a href="../pages/azukari.html">Azukari</a></li>
         </ul>
       </nav>
-      <span class="header-phone">06 XX XX XX XX</span>
-      <button class="header-mobile-btn" onclick="document.getElementById('mobileNav').classList.toggle('is-open')" aria-label="Menu">☰</button>
+
+      <a href="https://wa.me/33600000000" class="header__cta" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Contact WhatsApp
+      </a>
+
+      <button class="header__burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <nav id="mobileNav" class="header-nav-mobile">
-      <a href="/" class="header-nav-link active">Accueil</a>
-      <a href="/decouvrir" class="header-nav-link">Nous découvrir</a>
-      <a href="/kois" class="header-nav-link">Nos Koïs</a>
-      <a href="/materiel" class="header-nav-link">Matériel</a>
-      <a href="/nourriture" class="header-nav-link">Nourriture</a>
-      <a href="/soins" class="header-nav-link">Soins</a>
-      <a href="/azukari" class="header-nav-link">Azukari</a>
-      <span class="header-phone">06 XX XX XX XX</span>
-    </nav>
   </header>
 
-  <div class="header-spacer"></div>
-
-  <div class="demo-content">
-    <h1>Header dark fixe</h1>
-    <p>
-      Header toujours sombre (var(--gray-900) = #0a0a0a), fixé en haut de la page.
-      Logo avec cercle rouge dégradé + texte Playfair Display. Navigation en majuscules.
-      Active state avec trait rouge en bas. Numéro de téléphone à droite.
-      Sur mobile : menu hamburger remplace la nav.
-    </p>
+  <!-- Demo hero pour voir la transition -->
+  <div class="demo-hero" id="demo-hero">
+    <div class="demo-hero__overlay"></div>
+    <p>Section hero — scrollez pour voir la transition du header</p>
   </div>
+  <div style="height:200vh; background:var(--c-cream)"></div>
 
+  <script src="../assets/js/header.js"></script>
+  <script>
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('header-nav');
+    burger.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+    });
+  </script>
 </body>
 </html>

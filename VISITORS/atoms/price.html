@@ -4,159 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Price | Koi's Story</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
   <style>
-    :root {
-      --color-red:    #e60000;
-      --color-wine:   #630f0f;
-      --color-black:  #000000;
-      --color-cream:  #f5f5f2;
-      --color-white:  #ffffff;
-      --color-red-dark:  #cc0000;
-      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
-      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
-      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans:  'Open Sans', system-ui, sans-serif;
-      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
-      --r-full: 9999px;
-      --t-base: 300ms ease;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); line-height: 1.6; padding: 2rem; -webkit-font-smoothing: antialiased; }
-    .demo-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 0.75rem; margin-top: 2rem; }
-    .group { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-end; }
+    body { padding: var(--sp-8); background: var(--c-cream); }
+    .demo-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+      letter-spacing: var(--tracking-wider); color: var(--n-55); margin-bottom: var(--sp-4);
+      margin-top: var(--sp-8); }
+    .group { display: flex; flex-wrap: wrap; gap: var(--sp-6); align-items: baseline; }
+    .demo-dark { background: var(--c-black); padding: var(--sp-6); border-radius: var(--r-xl);
+      margin-top: var(--sp-4); display: flex; flex-wrap: wrap; gap: var(--sp-6); align-items: baseline; }
 
-    /* ── PRICE ATOM ──────────────────────────────────────────────── */
+    /* ── PRICE ATOM ─────────────────────────────────────────────────────── */
     .price {
-      font-family: var(--font-serif);
-      font-weight: 700;
-      color: var(--gray-800);
-      line-height: 1;
-    }
-
-    .price-currency {
-      font-family: var(--font-sans);
-      font-weight: 600;
-      font-size: 0.55em;
-      vertical-align: super;
-      margin-right: 2px;
-    }
-
-    /* Tailles */
-    .price--sm { font-size: 1.1rem; }
-    .price--md { font-size: 1.5rem; }
-    .price--lg { font-size: 2rem; }
-    .price--xl { font-size: 2.8rem; }
-
-    /* Couleurs */
-    .price--red   { color: var(--color-red); }
-    .price--wine  { color: var(--color-wine); }
-    .price--dark  { color: var(--gray-900); }
-    .price--white { color: var(--color-white); }
-    .price--muted {
-      color: var(--gray-400);
-      text-decoration: line-through;
-      opacity: 0.7;
-    }
-
-    /* Avec label */
-    .price-block {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .price-label {
-      font-family: var(--font-sans);
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--gray-400);
-    }
-
-    /* Badge prix "sur card" — fond rouge */
-    .price-badge {
       display: inline-flex;
       align-items: baseline;
       gap: 2px;
-      background: var(--color-red);
-      color: var(--color-white);
-      padding: 6px 14px;
-      border-radius: var(--r-full);
       font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 700;
+      color: var(--c-red);
       line-height: 1;
     }
-    .price-badge .price-currency {
-      color: rgba(255,255,255,0.8);
+    .price__currency {
+      font-size: 0.55em;
+      font-weight: 700;
+      vertical-align: super;
+      margin-right: 1px;
+    }
+    .price__amount {
+      font-weight: 700;
+    }
+    .price__cents {
+      font-size: 0.50em;
+      font-weight: 400;
+      vertical-align: super;
     }
 
+    /* Tailles */
+    .price--sm  { font-size: var(--text-xl); }
+    .price--md  { font-size: var(--text-2xl); }
+    .price--lg  { font-size: var(--text-3xl); }
+    .price--hero { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+
     /* Sur fond sombre */
-    .dark-bg {
-      background: var(--gray-900);
-      padding: 1.5rem;
-      border-radius: 0.75rem;
-    }
+    .price--white { color: var(--c-white); }
+
+    /* Prix barré (vendu/réservé) */
+    .price--struck { text-decoration: line-through; opacity: 0.45; }
   </style>
 </head>
 <body>
-
-  <p class="demo-label">Tailles (sm / md / lg / xl)</p>
+  <p class="demo-label">Taille small (cards liste)</p>
   <div class="group">
-    <span class="price price--sm"><span class="price-currency">€</span>720</span>
-    <span class="price price--md"><span class="price-currency">€</span>1 800</span>
-    <span class="price price--lg"><span class="price-currency">€</span>2 500</span>
-    <span class="price price--xl"><span class="price-currency">€</span>3 800</span>
+    <span class="price price--sm">
+      <span class="price__currency">€</span>
+      <span class="price__amount">450</span>
+    </span>
+    <span class="price price--sm">
+      <span class="price__currency">€</span>
+      <span class="price__amount">1 200</span>
+    </span>
   </div>
 
-  <p class="demo-label">Variantes couleur</p>
+  <p class="demo-label">Taille medium (cards catalogue)</p>
   <div class="group">
-    <span class="price price--lg"><span class="price-currency">€</span>1 800</span>
-    <span class="price price--lg price--red"><span class="price-currency">€</span>2 400</span>
-    <span class="price price--lg price--wine"><span class="price-currency">€</span>3 200</span>
-    <span class="price price--lg price--muted"><span class="price-currency">€</span>2 000</span>
+    <span class="price price--md">
+      <span class="price__currency">€</span>
+      <span class="price__amount">850</span>
+    </span>
+    <span class="price price--md">
+      <span class="price__currency">€</span>
+      <span class="price__amount">2 400</span>
+    </span>
   </div>
 
-  <p class="demo-label">Avec label descriptif</p>
+  <p class="demo-label">Taille large (fiche produit)</p>
   <div class="group">
-    <div class="price-block">
-      <span class="price-label">Prix</span>
-      <span class="price price--lg"><span class="price-currency">€</span>1 800</span>
-    </div>
-    <div class="price-block">
-      <span class="price-label">À partir de</span>
-      <span class="price price--xl price--red"><span class="price-currency">€</span>720</span>
-    </div>
-    <div class="price-block">
-      <span class="price-label">Ancien prix</span>
-      <span class="price price--md price--muted"><span class="price-currency">€</span>2 200</span>
-    </div>
-  </div>
-
-  <p class="demo-label">Badge prix (sur card produit)</p>
-  <div class="group">
-    <span class="price-badge"><span class="price-currency">€</span>1 800</span>
-    <span class="price-badge"><span class="price-currency">€</span>3 200</span>
-    <span class="price-badge"><span class="price-currency">€</span>720</span>
+    <span class="price price--lg">
+      <span class="price__currency">€</span>
+      <span class="price__amount">1 800</span>
+    </span>
+    <span class="price price--lg price--struck">
+      <span class="price__currency">€</span>
+      <span class="price__amount">2 200</span>
+    </span>
   </div>
 
   <p class="demo-label">Sur fond sombre</p>
-  <div class="dark-bg">
-    <div class="group">
-      <div class="price-block">
-        <span class="price-label" style="color: var(--gray-400);">Prix</span>
-        <span class="price price--xl price--white"><span class="price-currency">€</span>2 400</span>
-      </div>
-      <div class="price-block">
-        <span class="price-label" style="color: var(--gray-400);">À partir de</span>
-        <span class="price price--lg price--red"><span class="price-currency">€</span>720</span>
-      </div>
-    </div>
+  <div class="demo-dark">
+    <span class="price price--hero price--white">
+      <span class="price__currency">€</span>
+      <span class="price__amount">3 500</span>
+    </span>
   </div>
-
 </body>
 </html>

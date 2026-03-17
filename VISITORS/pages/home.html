@@ -3,362 +3,469 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Koi's Story — Élevage de carpes koïs lignée Konishi</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Accueil | Koi's Story</title>
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
   <style>
-    :root {
-      --color-red:#e60000; --color-wine:#630f0f; --color-black:#000000;
-      --color-cream:#f5f5f2; --color-white:#ffffff;
-      --color-red-dark:#cc0000; --color-red-light:#ff1a1a;
-      --gray-900:#0a0a0a; --gray-800:#1a1a1a; --gray-700:#2d2d2d;
-      --gray-600:#404040; --gray-500:#525252; --gray-400:#737373;
-      --gray-300:#a3a3a3; --gray-200:#d4d4d4; --gray-100:#f0f0ee;
-      --color-wa:#25d366;
-      --font-serif:'Playfair Display',Georgia,serif;
-      --font-sans:'Open Sans',system-ui,sans-serif;
-      --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem;
-      --sp-5:1.25rem; --sp-6:1.5rem; --sp-8:2rem; --sp-10:2.5rem;
-      --sp-12:3rem; --sp-16:4rem; --sp-20:5rem;
-      --shadow-red:0 4px 20px rgba(230,0,0,0.4);
-      --r-sm:.375rem; --r-md:.5rem; --r-lg:.75rem; --r-xl:1rem; --r-full:9999px;
-      --t-fast:150ms ease; --t-base:300ms ease;
+    body { margin: 0; background: var(--c-cream); }
+
+    /* ── HEADER ─────────────────────────────────────────────────────── */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--header-height); display: flex; align-items: center;
+      padding: 0 var(--sp-8); background: transparent;
+      transition: background var(--t-base), box-shadow var(--t-base);
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{font-family:var(--font-sans);background:var(--color-cream);color:var(--gray-800);line-height:1.6;-webkit-font-smoothing:antialiased;}
-    img{max-width:100%;height:auto;display:block;}
-    a{text-decoration:none;color:inherit;}
-    ul{list-style:none;}
+    .site-header--scrolled { background: var(--c-black); box-shadow: var(--shadow-lg); }
+    .header__inner {
+      width: 100%; max-width: var(--max-width); margin: 0 auto;
+      display: flex; align-items: center; gap: var(--sp-8);
+    }
+    .header__logo img { height: 48px; width: auto; display: block; }
+    .header__nav { flex: 1; display: flex; justify-content: center; }
+    .header__nav ul { display: flex; gap: var(--sp-6); list-style: none; align-items: center; }
+    .header__nav a {
+      font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600;
+      color: var(--c-white); letter-spacing: 0.04em; padding-bottom: 3px;
+      border-bottom: 2px solid transparent; transition: border-color var(--t-fast);
+    }
+    .header__nav a:hover, .header__nav a.active { border-bottom-color: var(--c-red); }
+    .header__cta {
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-2) var(--sp-4); background: var(--c-wa); color: var(--c-white);
+      border-radius: var(--r-full); font-family: var(--font-sans);
+      font-size: var(--text-sm); font-weight: 700; transition: background var(--t-fast);
+    }
+    .header__cta:hover { background: #25d366; }
+    .header__burger { display: none; flex-direction: column; gap: 5px; margin-left: auto; cursor: pointer; }
+    .header__burger span { display: block; width: 24px; height: 2px; background: var(--c-white); }
+    @media (max-width: 900px) {
+      .header__nav { display: none; }
+      .header__burger { display: flex; }
+      .header__cta { display: none; }
+      .header__nav.open {
+        display: flex; position: fixed; top: var(--header-height); left: 0; right: 0;
+        background: var(--c-black); flex-direction: column; padding: var(--sp-6) var(--sp-8);
+      }
+      .header__nav.open ul { flex-direction: column; gap: var(--sp-4); }
+    }
 
-    /* ── HEADER ─────────────────────────────────────────────────── */
-    .header{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--gray-900);box-shadow:0 2px 20px rgba(0,0,0,0.5);border-bottom:1px solid var(--gray-800);height:75px;}
-    .header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto;padding:0 var(--sp-10);height:100%;}
-    .header-logo{display:flex;align-items:center;gap:var(--sp-3);}
-    .header-logo-circle{width:50px;height:50px;border-radius:var(--r-full);background:radial-gradient(circle at 30% 30%,var(--color-red-light),var(--color-wine));border:2px solid var(--color-wine);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;font-family:var(--font-serif);font-size:9px;font-weight:700;text-align:center;line-height:1.1;flex-shrink:0;}
-    .header-logo-text{color:white;font-family:var(--font-serif);font-size:1.1rem;font-weight:700;line-height:1;}
-    .header-logo-sub{color:var(--gray-300);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;}
-    .header-nav-list{display:flex;align-items:center;height:75px;}
-    .header-nav-link{color:white;padding:0 var(--sp-4);font-size:0.82rem;font-weight:600;height:75px;display:flex;align-items:center;transition:all var(--t-base);position:relative;text-transform:uppercase;letter-spacing:0.03em;}
-    .header-nav-link:hover,.header-nav-link.active{color:var(--color-red);background:rgba(255,255,255,0.04);}
-    .header-nav-link.active::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:3px;background:var(--color-red);}
-    .header-phone{color:white;font-size:0.82rem;font-weight:600;display:flex;align-items:center;gap:var(--sp-2);white-space:nowrap;}
-    .header-phone::before{content:'📞';font-size:0.9rem;}
-    .header-mobile-btn{display:none;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;padding:var(--sp-2);}
-    .header-nav-mobile{display:none;position:absolute;top:75px;left:0;right:0;background:var(--gray-900);border-top:1px solid var(--gray-800);padding:var(--sp-4);flex-direction:column;gap:var(--sp-1);box-shadow:0 8px 24px rgba(0,0,0,0.4);}
-    .header-nav-mobile.is-open{display:flex;}
-    .header-nav-mobile .header-nav-link{height:auto;padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);justify-content:center;}
-    .header-nav-mobile .header-phone{justify-content:center;padding:var(--sp-3);border-top:1px solid var(--gray-800);margin-top:var(--sp-2);}
+    /* ── HERO ────────────────────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      background-image: url('../../docs/assets/carpe-koi-showa-scaled-hero.jpg');
+      background-size: cover; background-position: center 30%;
+    }
+    .hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 60%, transparent 100%);
+    }
+    .hero__content {
+      position: relative; z-index: 2; max-width: var(--max-width); margin: 0 auto;
+      padding: var(--sp-24) var(--sp-10); width: 100%;
+    }
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-2) var(--sp-4); background: var(--c-wine); color: var(--c-cream);
+      border-radius: var(--r-full); font-size: var(--text-sm); font-weight: 700;
+      text-transform: uppercase; letter-spacing: var(--tracking-wide); margin-bottom: var(--sp-5);
+    }
+    .hero__title {
+      font-family: var(--font-serif); font-size: var(--text-hero); font-weight: 900;
+      color: var(--c-white); line-height: var(--leading-tight); margin-bottom: var(--sp-5); max-width: 780px;
+    }
+    .hero__subtitle {
+      font-size: var(--text-lg); color: var(--w-70); line-height: var(--leading-normal);
+      margin-bottom: var(--sp-8); max-width: 560px;
+    }
+    .hero__ctas { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+    .hero__wave { position: absolute; bottom: -1px; left: 0; right: 0; z-index: 3; line-height: 0; }
+    .hero__wave svg { display: block; width: 100%; }
 
-    /* ── HERO ───────────────────────────────────────────────────── */
-    .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
-    .hero-bg{position:absolute;inset:0;z-index:0;}
-    .hero-bg img{width:100%;height:100%;object-fit:cover;}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(245,245,242,0.97) 0%,rgba(245,245,242,0.90) 30%,rgba(245,245,242,0.50) 58%,rgba(245,245,242,0.0) 78%);}
-    .hero-content{position:relative;z-index:1;padding:120px var(--sp-16) 80px;max-width:640px;}
-    .hero-badge{display:inline-flex;align-items:center;gap:var(--sp-2);padding:8px 16px;background:var(--color-wine);color:#f5c842;border-radius:var(--r-full);border:1px solid rgba(245,200,66,0.25);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-5);}
-    .hero-title{font-family:var(--font-serif);font-size:clamp(2.8rem,6vw,4.8rem);font-weight:700;color:var(--gray-900);line-height:1.05;margin-bottom:var(--sp-5);}
-    .hero-title em{color:var(--color-red);font-style:italic;}
-    .hero-subtitle{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--gray-600);line-height:1.75;margin-bottom:var(--sp-8);max-width:480px;}
-    .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-bottom:var(--sp-10);}
-    .btn-hero-primary{display:inline-flex;align-items:center;gap:var(--sp-2);padding:15px 30px;background:var(--color-red);color:white;border-radius:var(--r-md);font-size:0.95rem;font-weight:700;box-shadow:var(--shadow-red);transition:all var(--t-base);}
-    .btn-hero-primary:hover{background:var(--color-red-dark);transform:translateY(-2px);}
-    .btn-hero-dark{display:inline-flex;align-items:center;gap:var(--sp-2);padding:15px 30px;background:var(--gray-900);color:white;border-radius:var(--r-md);font-size:0.95rem;font-weight:700;transition:all var(--t-base);}
-    .btn-hero-dark:hover{background:var(--gray-800);transform:translateY(-2px);}
-    .hero-stats{display:flex;gap:var(--sp-8);padding-top:var(--sp-8);border-top:1px solid var(--gray-200);}
-    .hero-stat-val{font-family:var(--font-serif);font-size:2.2rem;font-weight:700;color:var(--gray-900);line-height:1;}
-    .hero-stat-lbl{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--gray-400);margin-top:3px;}
-    .hero-scroll{position:absolute;bottom:var(--sp-8);left:var(--sp-16);display:flex;align-items:center;gap:var(--sp-2);z-index:1;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);animation:float 2.5s ease-in-out infinite;}
-    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+    /* ── BOUTONS COMMUNS ─────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-3) var(--sp-6); border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700;
+      border: 2px solid transparent; transition: background var(--t-fast), color var(--t-fast),
+      border-color var(--t-fast), transform var(--t-fast); text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn--primary { background: var(--c-red); color: var(--c-white); border-color: var(--c-red); }
+    .btn--primary:hover { background: var(--c-wine); }
+    .btn--ghost-white { background: transparent; color: var(--c-white); border-color: var(--c-white); }
+    .btn--ghost-white:hover { background: var(--c-white); color: var(--c-black); }
+    .btn--ghost { background: transparent; color: var(--c-wine); border-color: var(--c-wine); }
+    .btn--ghost:hover { background: var(--c-wine); color: var(--c-white); }
+    .btn--lg { padding: var(--sp-4) var(--sp-10); font-size: var(--text-lg); }
 
-    /* ── SECTIONS COMMUNES ──────────────────────────────────────── */
-    .section{padding:var(--sp-20) var(--sp-10);}
-    .section-inner{max-width:1400px;margin:0 auto;}
-    .section--dark{background:var(--gray-900);color:var(--gray-300);}
-    .section-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-red);margin-bottom:var(--sp-3);}
-    .section-title{font-family:var(--font-serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-4);}
-    .section--dark .section-title{color:white;}
-    .section-title-white{color:white;}
-    .section-sub{font-size:0.95rem;color:var(--gray-500);line-height:1.75;max-width:600px;margin-bottom:var(--sp-10);}
-    .section--dark .section-sub{color:var(--gray-400);}
+    /* ── FEATURES ────────────────────────────────────────────────────── */
+    .features { padding: var(--sp-20) var(--sp-10); }
+    .features__inner { max-width: var(--max-width); margin: 0 auto; }
+    .features__header { text-align: center; margin-bottom: var(--sp-12); }
+    .section-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--c-red); margin-bottom: var(--sp-3); }
+    .section-title { font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 700; color: var(--c-black); line-height: var(--leading-snug); }
+    .features__grid {
+      display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: var(--sp-5);
+    }
+    .feature-main {
+      grid-row: 1/3; background: var(--c-black); border-radius: var(--r-2xl);
+      padding: var(--sp-12) var(--sp-10); display: flex; flex-direction: column;
+      justify-content: flex-end; min-height: 440px; position: relative; overflow: hidden;
+    }
+    .feature-main::before {
+      content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(99,15,15,0.35) 0%, transparent 70%);
+    }
+    .feature-main__icon { font-size: 4rem; margin-bottom: var(--sp-5); line-height: 1; position: relative; }
+    .feature-main__badge {
+      display: inline-flex; padding: var(--sp-2) var(--sp-4); background: var(--c-wine);
+      color: var(--c-cream); border-radius: var(--r-full); font-size: var(--text-xs);
+      font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wide);
+      margin-bottom: var(--sp-4); position: relative;
+    }
+    .feature-main__title { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700; color: var(--c-white); margin-bottom: var(--sp-4); line-height: var(--leading-snug); position: relative; }
+    .feature-main__text { font-size: var(--text-base); color: var(--w-70); line-height: var(--leading-normal); position: relative; }
+    .feature-small {
+      background: var(--c-white); border-radius: var(--r-xl); padding: var(--sp-6);
+      box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--sp-3);
+    }
+    .feature-small__icon { font-size: 2rem; line-height: 1; }
+    .feature-small__title { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 700; color: var(--c-black); }
+    .feature-small__text { font-size: var(--text-sm); color: var(--n-55); line-height: var(--leading-normal); }
 
-    /* ── FEATURES GRID ──────────────────────────────────────────── */
-    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-6);}
-    .feature-card{background:var(--color-white);border-radius:var(--r-xl);padding:var(--sp-6);box-shadow:0 2px 10px rgba(0,0,0,0.06);}
-    .feature-icon{width:48px;height:48px;border-radius:var(--r-md);background:rgba(230,0,0,0.08);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:var(--sp-4);}
-    .feature-title{font-family:var(--font-serif);font-size:1.15rem;font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-2);}
-    .feature-desc{font-size:0.85rem;color:var(--gray-500);line-height:1.65;}
+    /* ── KOI SHOWCASE ────────────────────────────────────────────────── */
+    .koi-showcase { padding: var(--sp-20) var(--sp-10); background: var(--c-cream); }
+    .koi-showcase__inner { max-width: var(--max-width); margin: 0 auto; }
+    .koi-showcase__header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: var(--sp-8); }
+    .koi-showcase__link { font-size: var(--text-sm); font-weight: 700; color: var(--c-red); text-decoration: underline; text-underline-offset: 3px; }
+    .editorial {
+      position: relative; border-radius: var(--r-xl); overflow: hidden;
+      background: var(--c-black); aspect-ratio: 16/6; margin-bottom: var(--sp-6);
+    }
+    .editorial img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-slow); }
+    .editorial:hover img { transform: scale(1.03); }
+    .editorial__overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.72) 0%, transparent 60%); }
+    .editorial__content { position: absolute; inset: 0; padding: var(--sp-10); display: flex; flex-direction: column; justify-content: center; max-width: 520px; }
+    .editorial__badge { display: inline-flex; padding: 3px 10px; background: var(--c-wine); color: var(--c-cream); border-radius: var(--r-full); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wide); margin-bottom: var(--sp-4); }
+    .editorial__title { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; color: var(--c-white); line-height: var(--leading-snug); margin-bottom: var(--sp-2); }
+    .editorial__sub { font-size: var(--text-base); color: var(--w-70); margin-bottom: var(--sp-5); }
+    .editorial__cta { display: flex; align-items: center; gap: var(--sp-4); }
+    .editorial__price { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700; color: var(--c-red); }
+    .editorial__price sup { font-size: 0.5em; vertical-align: super; }
+    .koi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-6); margin-bottom: var(--sp-10); }
+    .koi-card { background: var(--c-white); border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform var(--t-base), box-shadow var(--t-base); display: flex; flex-direction: column; }
+    .koi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .koi-card__thumb { position: relative; aspect-ratio: 3/4; background: var(--n-08); overflow: hidden; }
+    .koi-card__thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-slow); }
+    .koi-card:hover .koi-card__thumb img { transform: scale(1.06); }
+    .koi-card__badges { position: absolute; top: var(--sp-3); left: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-1); }
+    .badge { display: inline-flex; align-items: center; gap: 3px; padding: 3px 8px; border-radius: var(--r-full); font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wide); line-height: 1; white-space: nowrap; }
+    .badge--konishi { background: var(--c-wine); color: var(--c-cream); }
+    .badge--new     { background: var(--c-red);  color: var(--c-white); }
+    .badge--variety { background: var(--c-wine-10); color: var(--c-wine); border: 1px solid var(--c-wine-20); }
+    .koi-card__body { padding: var(--sp-4); flex: 1; display: flex; flex-direction: column; gap: var(--sp-2); }
+    .koi-card__name { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 700; color: var(--c-black); }
+    .koi-card__specs { font-size: var(--text-sm); color: var(--n-55); }
+    .koi-card__price { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700; color: var(--c-red); margin-top: auto; }
+    .koi-card__price sup { font-size: 0.5em; vertical-align: super; }
+    .koi-card__footer { padding: var(--sp-3) var(--sp-4); border-top: 1px solid var(--n-08); }
+    .koi-card__btn { display: block; width: 100%; padding: var(--sp-2) var(--sp-4); background: var(--c-red); color: var(--c-white); border-radius: var(--r-md); text-align: center; font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 700; transition: background var(--t-fast); text-decoration: none; }
+    .koi-card__btn:hover { background: var(--c-wine); }
+    .koi-showcase__footer { text-align: center; }
 
-    /* ── KOI GRID ───────────────────────────────────────────────── */
-    .koi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5);}
-    .koi-card{background:var(--color-white);border-radius:var(--r-xl);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);transition:transform var(--t-base),box-shadow var(--t-base);cursor:pointer;}
-    .koi-card:hover{transform:translateY(-5px);box-shadow:0 10px 28px rgba(0,0,0,0.13);}
-    .koi-card:hover .kc-img img{transform:scale(1.06);}
-    .kc-img{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#1a1a2e,#0f3460);}
-    .kc-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-base);}
-    .kc-badges{position:absolute;top:var(--sp-2);left:var(--sp-2);display:flex;flex-direction:column;gap:var(--sp-1);}
-    .kc-badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:var(--r-full);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;}
-    .kc-badge--k{background:var(--color-wine);color:#f5c842;border:1px solid rgba(245,200,66,0.3);}
-    .kc-badge--n{background:var(--color-red);color:white;}
-    .kc-body{padding:var(--sp-4);}
-    .kc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--sp-1);}
-    .kc-name{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--gray-900);}
-    .kc-age{font-size:0.68rem;font-weight:700;color:var(--gray-400);text-transform:uppercase;}
-    .kc-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-2);}
-    .kc-tag{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:2px 7px;border-radius:var(--r-full);background:rgba(99,15,15,0.09);color:var(--color-wine);border:1px solid rgba(99,15,15,0.15);}
-    .kc-size{font-size:0.75rem;color:var(--gray-500);margin-bottom:var(--sp-3);}
-    .kc-footer{display:flex;justify-content:space-between;align-items:center;padding-top:var(--sp-3);border-top:1px solid var(--gray-100);}
-    .kc-price{font-family:var(--font-serif);font-size:1.3rem;font-weight:700;color:var(--color-red);line-height:1;}
-    .kc-price-cur{font-family:var(--font-sans);font-size:0.55em;vertical-align:super;font-weight:600;}
-    .kc-cta{padding:8px 13px;background:var(--color-red);color:white;border-radius:var(--r-md);font-size:0.75rem;font-weight:700;transition:all var(--t-fast);}
-    .kc-cta:hover{background:var(--color-red-dark);transform:translateY(-1px);}
-    .catalogue-link{display:inline-flex;align-items:center;gap:var(--sp-2);padding:14px 28px;background:var(--color-red);color:white;border-radius:var(--r-md);font-size:0.95rem;font-weight:700;margin-top:var(--sp-8);transition:all var(--t-base);}
-    .catalogue-link:hover{background:var(--color-red-dark);transform:translateY(-2px);}
+    /* ── KONISHI BAND ─────────────────────────────────────────────────── */
+    .konishi-band { background: var(--c-black); position: relative; overflow: hidden; }
+    .konishi-band::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(var(--w-10) 1px, transparent 1px), linear-gradient(90deg, var(--w-10) 1px, transparent 1px); background-size: 80px 80px; pointer-events: none; }
+    .wave { line-height: 0; }
+    .wave svg { display: block; width: 100%; }
+    .konishi-band__inner { max-width: var(--max-width); margin: 0 auto; padding: var(--sp-20) var(--sp-10); display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: center; position: relative; z-index: 1; }
+    .konishi-band__title { font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 900; color: var(--c-white); line-height: var(--leading-snug); margin-bottom: var(--sp-5); }
+    .konishi-band__text { font-size: var(--text-base); color: var(--w-70); line-height: var(--leading-normal); margin-bottom: var(--sp-6); }
+    .konishi-band__img { display: flex; align-items: center; justify-content: center; padding: var(--sp-10); }
+    .konishi-band__img img { max-height: 200px; width: auto; opacity: 0.85; }
 
-    /* ── KONISHI BAND ───────────────────────────────────────────── */
-    .konishi-band{background:var(--gray-900);padding:var(--sp-16) var(--sp-10);}
-    .konishi-band-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-12);align-items:center;}
-    .konishi-band-img{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/3;}
-    .konishi-band-img img{width:100%;height:100%;object-fit:cover;}
-    .konishi-badge{display:inline-flex;align-items:center;gap:var(--sp-2);padding:6px 14px;background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.22);border-radius:var(--r-full);font-size:0.7rem;font-weight:700;color:#f5c842;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:var(--sp-4);}
-    .konishi-title{font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:white;margin-bottom:var(--sp-4);}
-    .konishi-text{font-size:0.92rem;color:var(--gray-400);line-height:1.75;}
+    /* ── CONTACT RAPIDE ──────────────────────────────────────────────── */
+    .contact-quick { padding: var(--sp-20) var(--sp-10); background: var(--c-cream); }
+    .contact-quick__inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: start; }
+    .contact-quick__left h2 { font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 700; color: var(--c-black); margin-bottom: var(--sp-4); }
+    .contact-quick__left p { font-size: var(--text-base); color: var(--n-55); line-height: var(--leading-normal); margin-bottom: var(--sp-6); }
+    .contact-form { background: var(--c-white); border-radius: var(--r-xl); padding: var(--sp-8); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--sp-4); }
+    .field { display: flex; flex-direction: column; gap: var(--sp-2); }
+    .field label { font-size: var(--text-sm); font-weight: 600; color: var(--c-black); }
+    .field input, .field textarea, .field select {
+      width: 100%; padding: var(--sp-3) var(--sp-4); background: var(--c-cream);
+      border: 1px solid var(--n-17); border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: var(--text-base); color: var(--c-black);
+      transition: border-color var(--t-fast); outline: none;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--c-red); box-shadow: 0 0 0 3px var(--c-red-10); }
+    .field textarea { resize: vertical; min-height: 110px; }
+    .form-submit { width: 100%; padding: var(--sp-3); background: var(--c-red); color: var(--c-white); border: none; border-radius: var(--r-md); font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700; cursor: pointer; transition: background var(--t-fast); }
+    .form-submit:hover { background: var(--c-wine); }
+    .contact-quick__info { display: flex; flex-direction: column; gap: var(--sp-5); }
+    .info-item { display: flex; gap: var(--sp-4); align-items: flex-start; }
+    .info-item__icon { font-size: 1.5rem; flex-shrink: 0; }
+    .info-item__text strong { font-size: var(--text-sm); font-weight: 700; color: var(--c-black); display: block; margin-bottom: 2px; }
+    .info-item__text p { font-size: var(--text-sm); color: var(--n-55); line-height: var(--leading-normal); }
 
-    /* ── CONTACT SECTION ────────────────────────────────────────── */
-    .contact-section{background:var(--color-white);padding:var(--sp-16) var(--sp-10);}
-    .contact-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-12);align-items:start;}
-    .contact-map{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/3;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-size:3rem;}
-    .contact-info-title{font-family:var(--font-serif);font-size:1.8rem;font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-4);}
-    .contact-info-item{display:flex;gap:var(--sp-3);margin-bottom:var(--sp-4);font-size:0.9rem;color:var(--gray-600);}
-    .contact-info-icon{font-size:1.1rem;}
-    .wa-btn-full{display:flex;align-items:center;justify-content:center;gap:var(--sp-2);width:100%;padding:15px;background:var(--color-wa);color:white;border-radius:var(--r-md);font-size:0.95rem;font-weight:700;transition:all var(--t-base);margin-top:var(--sp-5);}
-    .wa-btn-full:hover{background:#1db954;transform:translateY(-2px);}
+    /* ── FOOTER ──────────────────────────────────────────────────────── */
+    .site-footer { background: var(--c-black); }
+    .footer__inner { max-width: var(--max-width); margin: 0 auto; padding: var(--sp-16) var(--sp-10) var(--sp-8); }
+    .footer__top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: var(--sp-10); margin-bottom: var(--sp-12); }
+    .footer__brand { display: flex; flex-direction: column; gap: var(--sp-5); }
+    .footer__logo img { height: 48px; width: auto; opacity: 0.9; }
+    .footer__tagline { font-size: var(--text-sm); color: var(--w-50); line-height: var(--leading-normal); }
+    .footer__wa { display: inline-flex; align-items: center; gap: var(--sp-2); padding: var(--sp-3) var(--sp-5); background: var(--c-wa); color: var(--c-white); border-radius: var(--r-full); font-size: var(--text-sm); font-weight: 700; text-decoration: none; width: fit-content; transition: background var(--t-fast); }
+    .footer__wa:hover { background: #25d366; }
+    .footer__col h4 { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--w-50); margin-bottom: var(--sp-4); }
+    .footer__col ul { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .footer__col a { font-size: var(--text-sm); color: var(--c-white); transition: color var(--t-fast); }
+    .footer__col a:hover { color: var(--c-red); }
+    .footer__bottom { border-top: 1px solid var(--w-10); padding-top: var(--sp-6); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); flex-wrap: wrap; }
+    .footer__copy { font-size: var(--text-sm); color: var(--w-50); }
+    .footer__legal { display: flex; gap: var(--sp-5); }
+    .footer__legal a { font-size: var(--text-sm); color: var(--w-50); transition: color var(--t-fast); }
+    .footer__legal a:hover { color: var(--c-white); }
 
-    /* ── FOOTER ─────────────────────────────────────────────────── */
-    .footer{background:var(--gray-900);color:var(--gray-300);padding:var(--sp-16) 0 var(--sp-8);border-top:1px solid var(--gray-800);}
-    .footer-inner{max-width:1400px;margin:0 auto;padding:0 var(--sp-10);display:grid;grid-template-columns:1.5fr repeat(5,1fr);gap:var(--sp-8);}
-    .footer-brand-logo{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4);}
-    .footer-brand-circle{width:44px;height:44px;border-radius:var(--r-full);background:radial-gradient(circle at 30% 30%,var(--color-red-light),var(--color-wine));border:2px solid var(--color-wine);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;font-family:var(--font-serif);font-size:8px;font-weight:700;text-align:center;line-height:1.1;}
-    .footer-brand-name{font-family:var(--font-serif);font-size:1.05rem;font-weight:700;color:white;}
-    .footer-brand-desc{font-size:0.8rem;color:var(--gray-400);line-height:1.65;margin-bottom:var(--sp-5);}
-    .footer-wa{display:inline-flex;align-items:center;gap:var(--sp-2);background:var(--color-wa);color:white;padding:var(--sp-3) var(--sp-5);border-radius:var(--r-full);font-size:0.82rem;font-weight:700;transition:all var(--t-base);}
-    .footer-wa:hover{transform:translateY(-2px);}
-    .footer-col-title{color:var(--color-red);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:var(--sp-4);}
-    .footer-links{display:flex;flex-direction:column;gap:var(--sp-2);}
-    .footer-links a{font-size:0.8rem;color:var(--gray-400);transition:color var(--t-fast);}
-    .footer-links a:hover{color:white;}
-    .footer-bottom{max-width:1400px;margin:var(--sp-10) auto 0;padding:var(--sp-6) var(--sp-10) 0;border-top:1px solid var(--gray-800);display:flex;justify-content:space-between;align-items:center;font-size:0.73rem;color:var(--gray-500);}
+    /* CTA flottant */
+    .cta-wa-float { position: fixed; bottom: var(--sp-6); right: var(--sp-6); z-index: 200; display: inline-flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-6); background: var(--c-wa); color: var(--c-white); border-radius: var(--r-full); font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700; text-decoration: none; box-shadow: var(--shadow-wa); transition: transform var(--t-fast); }
+    .cta-wa-float:hover { transform: scale(1.04); }
 
-    /* ── WA FIXED ───────────────────────────────────────────────── */
-    .wa-fixed{position:fixed;bottom:var(--sp-6);right:var(--sp-6);z-index:999;width:60px;height:60px;border-radius:var(--r-full);background:var(--color-wa);color:white;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.5);transition:all var(--t-base);}
-    .wa-fixed:hover{transform:scale(1.1) translateY(-2px);}
-
-    /* ── RESPONSIVE ─────────────────────────────────────────────── */
-    @media(max-width:1200px){.koi-grid{grid-template-columns:repeat(3,1fr);}}
-    @media(max-width:1024px){.header-inner,.section,.section-inner,.konishi-band,.contact-section{padding-left:var(--sp-6);padding-right:var(--sp-6);}.footer-inner{grid-template-columns:repeat(3,1fr);padding:0 var(--sp-6);}.footer-bottom{padding:var(--sp-4) var(--sp-6) 0;}.features-grid{grid-template-columns:1fr 1fr;}.konishi-band-inner,.contact-inner{grid-template-columns:1fr;}.hero-content{padding:120px var(--sp-10) 80px;}.hero-scroll{left:var(--sp-10);}}
-    @media(max-width:768px){.header-nav-list,.header-phone{display:none;}.header-mobile-btn{display:block;}.hero{min-height:85vh;align-items:flex-end;}.hero-overlay{background:linear-gradient(to top,rgba(245,245,242,0.97) 0%,rgba(245,245,242,0.88) 40%,rgba(245,245,242,0.0) 80%);}.hero-content{padding:var(--sp-12) var(--sp-6) var(--sp-10);max-width:100%;}.hero-stats{gap:var(--sp-5);}.hero-scroll{display:none;}.section{padding:var(--sp-12) var(--sp-4);}.features-grid{grid-template-columns:1fr;}.koi-grid{grid-template-columns:repeat(2,1fr);}.footer-inner{grid-template-columns:1fr 1fr;gap:var(--sp-6);}.footer-bottom{flex-direction:column;gap:var(--sp-2);text-align:center;}}
-    @media(max-width:480px){.koi-grid{grid-template-columns:1fr;}}
+    /* Responsive */
+    @media (max-width: 900px) {
+      .features__grid { grid-template-columns: 1fr; }
+      .feature-main { grid-row: auto; }
+      .koi-grid { grid-template-columns: repeat(2, 1fr); }
+      .konishi-band__inner { grid-template-columns: 1fr; }
+      .contact-quick__inner { grid-template-columns: 1fr; }
+      .footer__top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .koi-grid { grid-template-columns: 1fr; }
+      .footer__top { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="header-inner">
-    <a href="home.html" class="header-logo">
-      <div class="header-logo-circle">KOÏ'S<br>STORY</div>
-      <div><div class="header-logo-text">Koi's Story</div><div class="header-logo-sub">Lignée Konishi</div></div>
-    </a>
-    <nav>
-      <ul class="header-nav-list">
-        <li><a href="home.html" class="header-nav-link active">Accueil</a></li>
-        <li><a href="decouvrir.html" class="header-nav-link">Nous découvrir</a></li>
-        <li><a href="kois.html" class="header-nav-link">Nos Koïs</a></li>
-        <li><a href="materiel.html" class="header-nav-link">Matériel</a></li>
-        <li><a href="nourriture.html" class="header-nav-link">Nourriture</a></li>
-        <li><a href="soins.html" class="header-nav-link">Soins</a></li>
-        <li><a href="azukari.html" class="header-nav-link">Azukari</a></li>
+<header class="site-header" id="site-header">
+  <div class="header__inner">
+    <a href="home.html" class="header__logo"><img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story"></a>
+    <nav class="header__nav" id="header-nav">
+      <ul>
+        <li><a href="home.html" class="active">Accueil</a></li>
+        <li><a href="kois.html">Nos Koïs</a></li>
+        <li><a href="materiel.html">Matériel</a></li>
+        <li><a href="nourriture.html">Nourriture</a></li>
+        <li><a href="soins.html">Soins</a></li>
+        <li><a href="azukari.html">Azukari</a></li>
       </ul>
     </nav>
-    <span class="header-phone">06 XX XX XX XX</span>
-    <button class="header-mobile-btn" onclick="document.getElementById('mNav').classList.toggle('is-open')">☰</button>
+    <a href="https://wa.me/33600000000" class="header__cta" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Contact
+    </a>
+    <button class="header__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
-  <nav id="mNav" class="header-nav-mobile">
-    <a href="home.html" class="header-nav-link active">Accueil</a>
-    <a href="decouvrir.html" class="header-nav-link">Nous découvrir</a>
-    <a href="kois.html" class="header-nav-link">Nos Koïs</a>
-    <a href="materiel.html" class="header-nav-link">Matériel</a>
-    <a href="nourriture.html" class="header-nav-link">Nourriture</a>
-    <a href="soins.html" class="header-nav-link">Soins</a>
-    <a href="azukari.html" class="header-nav-link">Azukari</a>
-    <span class="header-phone">06 XX XX XX XX</span>
-  </nav>
 </header>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=1600&h=900&fit=crop" alt="Carpes koïs dans un bassin">
-    <div class="hero-overlay"></div>
-  </div>
-  <div class="hero-content">
-    <span class="hero-badge">★ Seul éleveur Konishi en France</span>
-    <h1 class="hero-title">Koi's<br><em>Story</em></h1>
-    <p class="hero-subtitle">Carpes koïs d'exception issues de la prestigieuse lignée Konishi. Élevage passionné à Gueugnon — qualité, traçabilité, conseil.</p>
-    <div class="hero-ctas">
-      <a href="kois.html" class="btn-hero-primary">Voir nos Koïs →</a>
-      <a href="decouvrir.html" class="btn-hero-dark">Notre élevage</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="hero-stat-val">12+</div><div class="hero-stat-lbl">Koïs disponibles</div></div>
-      <div><div class="hero-stat-val">★ K</div><div class="hero-stat-lbl">Lignée Konishi</div></div>
-      <div><div class="hero-stat-val">FR</div><div class="hero-stat-lbl">Seul éleveur</div></div>
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <span class="hero__badge">★ Seul élevage Konishi en France</span>
+    <h1 class="hero__title">Des koïs d'exception,<br>issus de la lignée Konishi</h1>
+    <p class="hero__subtitle">Mathilde &amp; Emmanuel vous proposent des carpes koïs sélectionnées avec passion. Livraison dans un rayon de 50 km. Sur rendez-vous uniquement.</p>
+    <div class="hero__ctas">
+      <a href="kois.html" class="btn btn--primary">Voir le catalogue</a>
+      <a href="decouvrir.html" class="btn btn--ghost-white">Notre élevage</a>
     </div>
   </div>
-  <div class="hero-scroll">↓ Découvrir</div>
+  <div class="hero__wave"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5f5f2"/></svg></div>
 </section>
 
 <!-- FEATURES -->
-<section class="section" style="background:var(--color-white);">
-  <div class="section-inner">
-    <div class="section-eyebrow">Pourquoi Koi's Story</div>
-    <h2 class="section-title">L'excellence à chaque étape</h2>
-    <p class="section-sub">De la sélection des géniteurs à la livraison, nous garantissons qualité et traçabilité.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">★</div>
-        <h3 class="feature-title">Lignée Konishi certifiée</h3>
-        <p class="feature-desc">Seul éleveur en France affilié à la lignée Konishi. Chaque koï est accompagné de son certificat d'authenticité.</p>
+<section class="features">
+  <div class="features__inner">
+    <div class="features__header" data-animate="fade-up">
+      <p class="section-label">Pourquoi Koi's Story</p>
+      <h2 class="section-title">L'excellence Konishi,<br>accessible en France</h2>
+    </div>
+    <div class="features__grid">
+      <div class="feature-main" data-animate="fade-up">
+        <div class="feature-main__icon">鯉</div>
+        <span class="feature-main__badge">★ Unique en France</span>
+        <h3 class="feature-main__title">Seul élevage français<br>partenaire Konishi</h3>
+        <p class="feature-main__text">La lignée Konishi est reconnue mondialement pour sa génétique d'exception. Mathilde et Emmanuel sont les seuls éleveurs français officiellement certifiés. Chaque koï est livré avec son certificat d'authenticité.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔍</div>
-        <h3 class="feature-title">Traçabilité complète</h3>
-        <p class="feature-desc">Origine, lignée, classe d'âge, sexe — chaque paramètre est documenté et transparent. Aucune surprise.</p>
+      <div class="feature-small" data-animate="fade-up" data-delay="1">
+        <span class="feature-small__icon">🚚</span>
+        <h3 class="feature-small__title">Livraison 50 km</h3>
+        <p class="feature-small__text">Transport sécurisé avec oxygénation. Sur rendez-vous dans un rayon de 50 km.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">💬</div>
-        <h3 class="feature-title">Conseil WhatsApp direct</h3>
-        <p class="feature-desc">Mathilde & Emmanuel répondent directement, avec photos et conseils personnalisés selon votre bassin.</p>
+      <div class="feature-small" data-animate="fade-up" data-delay="2">
+        <span class="feature-small__icon">📋</span>
+        <h3 class="feature-small__title">Suivi &amp; conseils</h3>
+        <p class="feature-small__text">Conseils d'intégration, alimentation, santé. Emmanuel répond via WhatsApp.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- KOÏ EN VEDETTE -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-eyebrow">Nos spécimens</div>
-    <h2 class="section-title">Koïs disponibles</h2>
-    <p class="section-sub">Sélection actuelle — tous nos koïs sont disponibles à la vente directe via WhatsApp.</p>
+<!-- KOI SHOWCASE -->
+<section class="koi-showcase">
+  <div class="koi-showcase__inner">
+    <div class="koi-showcase__header" data-animate="fade-up">
+      <div>
+        <p class="section-label">Le catalogue</p>
+        <h2 class="section-title">Nos spécimens disponibles</h2>
+      </div>
+      <a href="kois.html" class="koi-showcase__link">Voir tout →</a>
+    </div>
+    <a href="product.html" class="editorial" data-animate="fade-scale">
+      <img src="../../docs/assets/carpe-koi-showa-scaled-hero.jpg" alt="Hanabi">
+      <div class="editorial__overlay"></div>
+      <div class="editorial__content">
+        <span class="editorial__badge">★ Spécimen du mois</span>
+        <h3 class="editorial__title">Hanabi</h3>
+        <p class="editorial__sub">Showa · 70 cm · Sansaï · Femelle</p>
+        <div class="editorial__cta">
+          <span class="editorial__price"><sup>€</sup>3 500</span>
+          <span class="btn btn--primary">Voir la fiche →</span>
+        </div>
+      </div>
+    </a>
     <div class="koi-grid">
-
-      <article class="koi-card">
-        <div class="kc-img">
-          <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=280&h=380&fit=crop" alt="Sakura">
-          <div class="kc-badges"><span class="kc-badge kc-badge--k">★ Konishi</span></div>
+      <article class="koi-card" data-animate="fade-up">
+        <div class="koi-card__thumb">
+          <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Sakura">
+          <div class="koi-card__badges"><span class="badge badge--konishi">★ Konishi</span><span class="badge badge--new">Nouveau</span></div>
         </div>
-        <div class="kc-body">
-          <div class="kc-top"><h4 class="kc-name">Sakura</h4><span class="kc-age">Nisaï</span></div>
-          <div class="kc-tags"><span class="kc-tag">Kohaku</span><span class="kc-tag">♀</span></div>
-          <p class="kc-size">72 cm</p>
-          <div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>1 800</span><a href="product.html" class="kc-cta">Voir →</a></div>
+        <div class="koi-card__body">
+          <h3 class="koi-card__name">Sakura</h3>
+          <div><span class="badge badge--variety">Grand Voile Suda</span></div>
+          <p class="koi-card__specs">♀ Femelle · 55 cm · Nisaï</p>
+          <div class="koi-card__price"><sup>€</sup>1 800</div>
         </div>
+        <div class="koi-card__footer"><a href="product.html" class="koi-card__btn">Voir →</a></div>
       </article>
-
-      <article class="koi-card">
-        <div class="kc-img">
-          <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=280&h=380&fit=crop" alt="Midori">
-          <div class="kc-badges"><span class="kc-badge kc-badge--n">Nouveau</span><span class="kc-badge kc-badge--k">★ Konishi</span></div>
+      <article class="koi-card" data-animate="fade-up" data-delay="1">
+        <div class="koi-card__thumb">
+          <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Butterfly Tancho">
+          <div class="koi-card__badges"><span class="badge badge--konishi">★ Konishi</span></div>
         </div>
-        <div class="kc-body">
-          <div class="kc-top"><h4 class="kc-name">Midori</h4><span class="kc-age">Sansaï</span></div>
-          <div class="kc-tags"><span class="kc-tag">Butterfly</span><span class="kc-tag">♀</span></div>
-          <p class="kc-size">55 cm</p>
-          <div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>2 400</span><a href="product.html" class="kc-cta">Voir →</a></div>
+        <div class="koi-card__body">
+          <h3 class="koi-card__name">Butterfly Tancho</h3>
+          <div><span class="badge badge--variety">Kujaku</span></div>
+          <p class="koi-card__specs">♂ Mâle · 48 cm · Tosaï</p>
+          <div class="koi-card__price"><sup>€</sup>950</div>
         </div>
+        <div class="koi-card__footer"><a href="product.html" class="koi-card__btn">Voir →</a></div>
       </article>
-
-      <article class="koi-card">
-        <div class="kc-img">
-          <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=280&h=380&fit=crop&crop=right" alt="Hana">
+      <article class="koi-card" data-animate="fade-up" data-delay="2">
+        <div class="koi-card__thumb">
+          <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Asahi">
         </div>
-        <div class="kc-body">
-          <div class="kc-top"><h4 class="kc-name">Hana</h4><span class="kc-age">Nisaï</span></div>
-          <div class="kc-tags"><span class="kc-tag">Sanke</span><span class="kc-tag">♂</span></div>
-          <p class="kc-size">68 cm</p>
-          <div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>1 450</span><a href="product.html" class="kc-cta">Voir →</a></div>
+        <div class="koi-card__body">
+          <h3 class="koi-card__name">Asahi</h3>
+          <div><span class="badge badge--variety">Showa</span></div>
+          <p class="koi-card__specs">♀ Femelle · 62 cm · Sansaï</p>
+          <div class="koi-card__price"><sup>€</sup>2 400</div>
         </div>
+        <div class="koi-card__footer"><a href="product.html" class="koi-card__btn">Voir →</a></div>
       </article>
-
-      <article class="koi-card">
-        <div class="kc-img" style="background:linear-gradient(135deg,#1a1a2e,#0a1a2a);">
-          <div class="kc-badges"><span class="kc-badge kc-badge--k">★ Konishi</span></div>
-        </div>
-        <div class="kc-body">
-          <div class="kc-top"><h4 class="kc-name">Yuki</h4><span class="kc-age">Tosaï</span></div>
-          <div class="kc-tags"><span class="kc-tag">Tancho</span><span class="kc-tag">♀</span></div>
-          <p class="kc-size">45 cm</p>
-          <div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>720</span><a href="product.html" class="kc-cta">Voir →</a></div>
-        </div>
-      </article>
-
     </div>
-    <div style="text-align:center;"><a href="kois.html" class="catalogue-link">Voir tout le catalogue →</a></div>
+    <div class="koi-showcase__footer">
+      <a href="kois.html" class="btn btn--primary btn--lg">Voir tout le catalogue</a>
+    </div>
   </div>
 </section>
 
-<!-- KONISHI PARTNERSHIP -->
+<!-- KONISHI BAND -->
 <div class="konishi-band">
-  <div class="konishi-band-inner">
-    <div>
-      <div class="konishi-badge">★ Partenariat officiel depuis 2022</div>
-      <h2 class="konishi-title">La lignée Konishi — Un héritage japonais unique</h2>
-      <p class="konishi-text" style="margin-bottom:1.5rem;">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Notre partenariat exclusif avec la lignée Konishi fait de Koi's Story le seul éleveur en France à proposer des spécimens certifiés, avec traçabilité complète et certificats d'authenticité remis à chaque acquéreur.
-      </p>
-      <a href="decouvrir.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:12px 24px;background:var(--color-red);color:white;border-radius:0.5rem;font-size:0.88rem;font-weight:700;transition:all 300ms ease;">En savoir plus →</a>
+  <div class="wave"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#000000"/></svg></div>
+  <div class="konishi-band__inner">
+    <div data-animate="fade-right">
+      <p class="section-label" style="color:var(--c-red)">Partenaire officiel</p>
+      <h2 class="konishi-band__title">La lignée Konishi :<br>l'excellence japonaise</h2>
+      <p class="konishi-band__text">Fondé au Japon, l'élevage Konishi est reconnu mondialement. Mathilde et Emmanuel sont les seuls importateurs français officiellement certifiés. Chaque koï est livré avec son certificat d'authenticité.</p>
+      <a href="decouvrir.html" class="btn btn--ghost-white">Découvrir le partenariat →</a>
     </div>
-    <div class="konishi-band-img">
-      <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&h=450&fit=crop" alt="Partenariat Konishi">
+    <div class="konishi-band__img" data-animate="fade-left">
+      <img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi">
     </div>
   </div>
+  <div class="wave"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5f5f2"/></svg></div>
 </div>
 
-<!-- CONTACT -->
-<section class="contact-section">
-  <div class="contact-inner">
-    <div>
-      <div class="section-eyebrow">Nous trouver</div>
-      <h2 class="contact-info-title">Visitez notre élevage</h2>
-      <div class="contact-info-item"><span class="contact-info-icon">📍</span><div><strong>Gueugnon (71)</strong><br>Sur rendez-vous uniquement</div></div>
-      <div class="contact-info-item"><span class="contact-info-icon">📞</span><div>06 XX XX XX XX</div></div>
-      <div class="contact-info-item"><span class="contact-info-icon">✉️</span><div>contact@koisstory.fr</div></div>
-      <a href="https://wa.me/33600000000" class="wa-btn-full">💬 Contacter sur WhatsApp</a>
+<!-- CONTACT RAPIDE -->
+<section class="contact-quick">
+  <div class="contact-quick__inner">
+    <div class="contact-quick__left" data-animate="fade-right">
+      <p class="section-label">Contact</p>
+      <h2>Vous avez une question ?</h2>
+      <p>Envoyez-nous un message, nous répondons sous 24 h. Ou contactez-nous directement via WhatsApp pour une réponse immédiate.</p>
+      <div class="contact-quick__info">
+        <div class="info-item"><span class="info-item__icon">📍</span><div class="info-item__text"><strong>Adresse</strong><p>GUEUGNON, France<br>Livraison dans un rayon de 50 km</p></div></div>
+        <div class="info-item"><span class="info-item__icon">⏰</span><div class="info-item__text"><strong>Horaires</strong><p>Sur rendez-vous uniquement</p></div></div>
+        <div class="info-item"><span class="info-item__icon">💬</span><div class="info-item__text"><strong>WhatsApp</strong><p><a href="https://wa.me/33600000000" target="_blank" rel="noopener" style="color:var(--c-wa);font-weight:700">Contacter directement</a></p></div></div>
+      </div>
     </div>
-    <div class="contact-map">🗺️</div>
+    <form class="contact-form" novalidate data-animate="fade-left">
+      <div class="field"><label>Prénom &amp; Nom *</label><input type="text" placeholder="Votre nom" required></div>
+      <div class="field"><label>Email *</label><input type="email" placeholder="vous@exemple.fr" required></div>
+      <div class="field"><label>Message *</label><textarea placeholder="Votre question..." required></textarea></div>
+      <button type="submit" class="form-submit">Envoyer le message</button>
+    </form>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand-logo"><div class="footer-brand-circle">KOÏ'S<br>STORY</div><span class="footer-brand-name">Koi's Story</span></div>
-      <p class="footer-brand-desc">Élevage de carpes koïs de lignée Konishi en France. Passion, qualité et traçabilité depuis Gueugnon (71).</p>
-      <a href="https://wa.me/33600000000" class="footer-wa">💬 WhatsApp</a>
+<footer class="site-footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="home.html" class="footer__logo"><img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story"></a>
+        <p class="footer__tagline">Élevage de carpes koïs Konishi.<br>Sur rendez-vous · 50 km.</p>
+        <a href="https://wa.me/33600000000" class="footer__wa" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Contacter
+        </a>
+      </div>
+      <div class="footer__col"><h4>Nos Koïs</h4><ul><li><a href="kois.html">Catalogue</a></li><li><a href="kois.html">Lignée Konishi</a></li></ul></div>
+      <div class="footer__col"><h4>Produits</h4><ul><li><a href="materiel.html">Matériel</a></li><li><a href="nourriture.html">Nourriture</a></li><li><a href="soins.html">Soins</a></li><li><a href="azukari.html">Azukari</a></li></ul></div>
+      <div class="footer__col"><h4>L'élevage</h4><ul><li><a href="decouvrir.html">Nous découvrir</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     </div>
-    <div><div class="footer-col-title">Nos Koïs</div><div class="footer-links"><a href="kois.html">Catalogue</a><a href="kois.html">Kohaku</a><a href="kois.html">Showa</a><a href="kois.html">Sanke</a><a href="kois.html">★ Konishi</a></div></div>
-    <div><div class="footer-col-title">Matériel</div><div class="footer-links"><a href="materiel.html">Filtration</a><a href="materiel.html">Pompes</a><a href="materiel.html">UV & O₂</a><a href="materiel.html">Chauffage</a></div></div>
-    <div><div class="footer-col-title">Nourriture</div><div class="footer-links"><a href="nourriture.html">Konishi coulant</a><a href="nourriture.html">Konishi flottant</a><a href="nourriture.html">Vitamines</a><a href="nourriture.html">Distributeurs</a></div></div>
-    <div><div class="footer-col-title">Soins</div><div class="footer-links"><a href="soins.html">Microscope</a><a href="soins.html">Tests d'eau</a><a href="soins.html">Traitements</a></div></div>
-    <div><div class="footer-col-title">Nous découvrir</div><div class="footer-links"><a href="decouvrir.html">Notre histoire</a><a href="azukari.html">Azukari</a><a href="contact.html">Contact</a></div></div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Koi's Story. Tous droits réservés.</p>
+      <div class="footer__legal"><a href="#">Mentions légales</a><a href="contact.html">Contact</a></div>
+    </div>
   </div>
-  <div class="footer-bottom"><span>© 2026 Koi's Story — Gueugnon (71)</span><span>Élevage Konishi certifié · Seul en France</span></div>
 </footer>
 
-<!-- WhatsApp fixe -->
-<a href="https://wa.me/33600000000" class="wa-fixed" title="WhatsApp">💬</a>
+<!-- CTA flottant -->
+<a href="https://wa.me/33600000000" class="cta-wa-float" target="_blank" rel="noopener">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Contacter l'élevage
+</a>
 
+<script src="../assets/js/header.js"></script>
+<script src="../assets/js/animations.js"></script>
+
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('header-nav');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+</script>
 </body>
 </html>

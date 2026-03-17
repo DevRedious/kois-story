@@ -4,211 +4,127 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Molecule — Shop Card | Koi's Story</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
   <style>
-    :root {
-      --color-red:    #e60000;
-      --color-wine:   #630f0f;
-      --color-black:  #000000;
-      --color-cream:  #f5f5f2;
-      --color-white:  #ffffff;
-      --color-red-dark:  #cc0000;
-      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
-      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
-      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
-      --color-wa: #25d366;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans:  'Open Sans', system-ui, sans-serif;
-      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
-      --sp-5: 1.25rem; --sp-6: 1.5rem;
-      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-xl: 1rem; --r-full: 9999px;
-      --t-fast: 150ms ease; --t-base: 300ms ease;
+    body { padding: var(--sp-8); background: var(--c-cream); }
+    .demo-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-6); max-width: 960px;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); line-height: 1.6; padding: 2rem; -webkit-font-smoothing: antialiased; }
-    a { text-decoration: none; color: inherit; }
-    .demo-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 0.75rem; margin-top: 2rem; }
-    .group { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: flex-start; }
 
-    /* ── SHOP CARD MOLECULE ──────────────────────────────────────── */
+    /* ── SHOP CARD MOLECULE ─────────────────────────────────────────────── */
     .shop-card {
-      background: var(--color-white);
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      background: var(--c-white); border-radius: var(--r-xl);
+      overflow: hidden; box-shadow: var(--shadow-sm);
       transition: transform var(--t-base), box-shadow var(--t-base);
-      width: 240px;
+      display: flex; flex-direction: column;
     }
-    .shop-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    .shop-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    /* Image 4/3 */
+    .shop-card__thumb {
+      position: relative; aspect-ratio: 4 / 3;
+      background: var(--n-08); overflow: hidden;
+    }
+    .shop-card__thumb img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; transition: transform var(--t-slow);
+    }
+    .shop-card:hover .shop-card__thumb img { transform: scale(1.05); }
+
+    /* Placeholder icône */
+    .shop-card__icon {
+      position: absolute; inset: 0; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 3rem; color: var(--n-17);
     }
 
-    /* Image placeholder */
-    .shop-card-img {
-      width: 100%; aspect-ratio: 1/1;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3.5rem;
-      background: linear-gradient(135deg, var(--placeholder-from, #f0f0ee), var(--placeholder-to, #e0e0dd));
-      position: relative;
+    /* Badge catégorie */
+    .badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 3px 8px; border-radius: var(--r-full);
+      font-family: var(--font-sans); font-size: var(--text-xs);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: var(--tracking-wide); line-height: 1;
     }
-    /* Couleurs par catégorie */
-    .shop-card-img--filtration   { --placeholder-from: #dbeafe; --placeholder-to: #bfdbfe; }
-    .shop-card-img--pompe        { --placeholder-from: #d1fae5; --placeholder-to: #a7f3d0; }
-    .shop-card-img--uv           { --placeholder-from: #ede9fe; --placeholder-to: #ddd6fe; }
-    .shop-card-img--nourriture   { --placeholder-from: #fef3c7; --placeholder-to: #fde68a; }
-    .shop-card-img--soin         { --placeholder-from: #fee2e2; --placeholder-to: #fecaca; }
-    .shop-card-img--test         { --placeholder-from: #d1fae5; --placeholder-to: #6ee7b7; }
-    .shop-card-img--chauffage    { --placeholder-from: #fed7aa; --placeholder-to: #fdba74; }
-
-    .shop-card-category {
-      position: absolute; top: var(--sp-2); left: var(--sp-2);
-      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.06em; padding: 3px 9px; border-radius: var(--r-full);
-      background: rgba(0,0,0,0.08); color: var(--gray-600);
+    .badge--category {
+      position: absolute; top: var(--sp-3); left: var(--sp-3);
+      background: var(--c-wine); color: var(--c-cream);
     }
 
-    /* Body */
-    .shop-card-body { padding: var(--sp-4); }
+    /* Corps */
+    .shop-card__body { padding: var(--sp-4) var(--sp-4) var(--sp-3); flex: 1; display: flex; flex-direction: column; gap: var(--sp-2); }
 
-    .shop-card-name {
-      font-family: var(--font-sans); font-size: 0.95rem; font-weight: 700;
-      color: var(--gray-900); margin-bottom: var(--sp-1); line-height: 1.3;
+    .shop-card__name {
+      font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 700;
+      color: var(--c-black); line-height: var(--leading-snug);
     }
-    .shop-card-desc {
-      font-size: 0.8rem; color: var(--gray-500); line-height: 1.5;
-      margin-bottom: var(--sp-4);
-    }
-
-    /* CTA WhatsApp */
-    .shop-card-cta {
-      display: flex; align-items: center; justify-content: center; gap: var(--sp-2);
-      width: 100%; padding: 10px;
-      background: var(--color-wa); color: white;
-      border-radius: var(--r-md); font-size: 0.8rem; font-weight: 700;
-      text-decoration: none; transition: all var(--t-fast);
-    }
-    .shop-card-cta:hover {
-      background: #1db954; transform: translateY(-1px);
+    .shop-card__desc {
+      font-size: var(--text-sm); color: var(--n-55);
+      line-height: var(--leading-normal); flex: 1;
     }
 
-    /* Variante horizontale */
-    .shop-card--horizontal {
-      width: 100%; display: flex; align-items: stretch;
+    /* Footer */
+    .shop-card__footer { padding: var(--sp-3) var(--sp-4); border-top: 1px solid var(--n-08); }
+    .shop-card__btn {
+      display: block; width: 100%; padding: var(--sp-2) var(--sp-4);
+      background: transparent; color: var(--c-wine);
+      border: 2px solid var(--c-wine); border-radius: var(--r-md);
+      text-align: center; font-family: var(--font-sans);
+      font-size: var(--text-sm); font-weight: 700;
+      transition: background var(--t-fast), color var(--t-fast);
+      text-decoration: none; cursor: pointer;
     }
-    .shop-card--horizontal .shop-card-img {
-      width: 120px; aspect-ratio: auto; flex-shrink: 0; font-size: 2.5rem;
-    }
-    .shop-card--horizontal .shop-card-body {
-      flex: 1; display: flex; flex-direction: column; justify-content: space-between;
-    }
+    .shop-card__btn:hover { background: var(--c-wine); color: var(--c-white); }
   </style>
 </head>
 <body>
+  <div class="demo-grid">
 
-  <p class="demo-label">Cards boutique — Matériel</p>
-  <div class="group">
-    <div class="shop-card">
-      <div class="shop-card-img shop-card-img--filtration">
-        🔧
-        <span class="shop-card-category">Filtration</span>
+    <article class="shop-card">
+      <div class="shop-card__thumb">
+        <div class="shop-card__icon">⚙️</div>
+        <span class="badge badge--category">Filtration</span>
       </div>
-      <div class="shop-card-body">
-        <div class="shop-card-name">Système de filtration biologique</div>
-        <p class="shop-card-desc">Filtration multi-chambre adaptée aux grands bassins koïs. Efficacité optimale.</p>
-        <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20votre%20filtration%20biologique" class="shop-card-cta">💬 Nous contacter</a>
+      <div class="shop-card__body">
+        <h3 class="shop-card__name">Filtre biologique</h3>
+        <p class="shop-card__desc">Filtration mécanique et biologique pour bassins jusqu'à 50 000 L. Compatible pompes 3 000–8 000 L/h.</p>
       </div>
-    </div>
+      <div class="shop-card__footer">
+        <button class="shop-card__btn">En savoir plus</button>
+      </div>
+    </article>
 
-    <div class="shop-card">
-      <div class="shop-card-img shop-card-img--pompe">
-        💧
-        <span class="shop-card-category">Pompes</span>
+    <article class="shop-card">
+      <div class="shop-card__thumb">
+        <div class="shop-card__icon">💧</div>
+        <span class="badge badge--category">Pompes</span>
       </div>
-      <div class="shop-card-body">
-        <div class="shop-card-name">Pompe bassin haute performance</div>
-        <p class="shop-card-desc">Débit fort, basse consommation. Idéale pour bassins de 5 000 à 50 000 L.</p>
-        <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20pompes%20bassins" class="shop-card-cta">💬 Nous contacter</a>
+      <div class="shop-card__body">
+        <h3 class="shop-card__name">Pompe de bassin</h3>
+        <p class="shop-card__desc">Pompe à eau haute performance, débit réglable, très faible consommation. Idéale pour Kohaku et Showa.</p>
       </div>
-    </div>
+      <div class="shop-card__footer">
+        <button class="shop-card__btn">En savoir plus</button>
+      </div>
+    </article>
 
-    <div class="shop-card">
-      <div class="shop-card-img shop-card-img--uv">
-        ☀️
-        <span class="shop-card-category">UV</span>
+    <article class="shop-card">
+      <div class="shop-card__thumb">
+        <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="UV Stérilisateur">
+        <span class="badge badge--category">UV</span>
       </div>
-      <div class="shop-card-body">
-        <div class="shop-card-name">Stérilisateur UV</div>
-        <p class="shop-card-desc">Élimine algues et bactéries. Eau cristalline garantie pour vos koïs.</p>
-        <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20UV" class="shop-card-cta">💬 Nous contacter</a>
+      <div class="shop-card__body">
+        <h3 class="shop-card__name">Stérilisateur UV</h3>
+        <p class="shop-card__desc">Élimine bactéries et algues en suspension. Eau cristalline garantie. De 25 W à 110 W.</p>
       </div>
-    </div>
+      <div class="shop-card__footer">
+        <button class="shop-card__btn">En savoir plus</button>
+      </div>
+    </article>
 
-    <div class="shop-card">
-      <div class="shop-card-img shop-card-img--chauffage">
-        🌡️
-        <span class="shop-card-category">Chauffage</span>
-      </div>
-      <div class="shop-card-body">
-        <div class="shop-card-name">Chauffage titane bassin</div>
-        <p class="shop-card-desc">Température stable toute l'année. Protection anticorrosion titanium grade.</p>
-        <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20chauffages%20bassin" class="shop-card-cta">💬 Nous contacter</a>
-      </div>
-    </div>
   </div>
-
-  <p class="demo-label">Cards boutique — Nourriture</p>
-  <div class="group">
-    <div class="shop-card">
-      <div class="shop-card-img shop-card-img--nourriture">
-        🐟
-        <span class="shop-card-category">Nourriture</span>
-      </div>
-      <div class="shop-card-body">
-        <div class="shop-card-name">Nourriture Konishi coulant</div>
-        <p class="shop-card-desc">Granulés premium de la marque Konishi. Formule coulante, croissance optimale.</p>
-        <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20nourriture%20Konishi%20coulant" class="shop-card-cta">💬 Nous contacter</a>
-      </div>
-    </div>
-
-    <div class="shop-card">
-      <div class="shop-card-img shop-card-img--nourriture" style="--placeholder-from: #fde68a; --placeholder-to: #fcd34d;">
-        🌿
-        <span class="shop-card-category">Vitamines</span>
-      </div>
-      <div class="shop-card-body">
-        <div class="shop-card-name">Vitamines Mucus+</div>
-        <p class="shop-card-desc">Renforce la barrière muqueuse. Résistance aux maladies et au stress.</p>
-        <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20les%20Vitamines%20Mucus%2B" class="shop-card-cta">💬 Nous contacter</a>
-      </div>
-    </div>
-  </div>
-
-  <p class="demo-label">Version horizontale</p>
-  <div style="max-width: 480px; display: flex; flex-direction: column; gap: 0.75rem;">
-    <div class="shop-card shop-card--horizontal">
-      <div class="shop-card-img shop-card-img--test">🔬</div>
-      <div class="shop-card-body">
-        <div>
-          <div class="shop-card-name">Microscope de diagnostic</div>
-          <p class="shop-card-desc">Détection précoce parasites et bactéries.</p>
-        </div>
-        <a href="https://wa.me/33600000000" class="shop-card-cta">💬 Nous contacter</a>
-      </div>
-    </div>
-    <div class="shop-card shop-card--horizontal">
-      <div class="shop-card-img shop-card-img--soin">💊</div>
-      <div class="shop-card-body">
-        <div>
-          <div class="shop-card-name">Traitement eau du bassin</div>
-          <p class="shop-card-desc">Neutralise chlore et métaux lourds.</p>
-        </div>
-        <a href="https://wa.me/33600000000" class="shop-card-cta">💬 Nous contacter</a>
-      </div>
-    </div>
-  </div>
-
 </body>
 </html>

@@ -1,0 +1,143 @@
+/* ==========================================================================
+   tokens.css — Design tokens Koi's Story V3
+   Palette : #e60000 · #630f0f · #000000 · #f5f5f2 · #ffffff · #25d366
+   ========================================================================== */
+
+:root {
+
+  /* ── Couleurs ──────────────────────────────────────────────────────── */
+  --c-red:    #e60000;
+  --c-wine:   #630f0f;
+  --c-black:  #000000;
+  --c-cream:  #f5f5f2;
+  --c-white:  #ffffff;
+  --c-wa:     #25d366;
+
+  /* Teintes dérivées (rgba uniquement) */
+  --c-red-10:  rgba(230, 0, 0, 0.10);
+  --c-red-20:  rgba(230, 0, 0, 0.20);
+  --c-red-40:  rgba(230, 0, 0, 0.40);
+  --c-wine-10: rgba(99, 15, 15, 0.10);
+  --c-wine-20: rgba(99, 15, 15, 0.20);
+
+  /* Neutres (dérivés de #000 sur fond clair) */
+  --n-90: rgba(0, 0, 0, 0.90);
+  --n-75: rgba(0, 0, 0, 0.75);
+  --n-55: rgba(0, 0, 0, 0.55);
+  --n-36: rgba(0, 0, 0, 0.36);
+  --n-17: rgba(0, 0, 0, 0.17);
+  --n-08: rgba(0, 0, 0, 0.08);
+
+  /* Neutres (dérivés de #fff sur fond sombre) */
+  --w-90: rgba(255, 255, 255, 0.90);
+  --w-70: rgba(255, 255, 255, 0.70);
+  --w-50: rgba(255, 255, 255, 0.50);
+  --w-20: rgba(255, 255, 255, 0.20);
+  --w-10: rgba(255, 255, 255, 0.10);
+  --w-06: rgba(255, 255, 255, 0.06);
+
+  /* ── Typographie ───────────────────────────────────────────────────── */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+
+  --text-xs:   0.68rem;   /* 10.9px — labels, badges */
+  --text-sm:   0.80rem;   /* 12.8px — captions, meta */
+  --text-base: 0.95rem;   /* 15.2px — corps de texte */
+  --text-lg:   1.10rem;   /* 17.6px — intro, sous-titres */
+  --text-xl:   1.40rem;   /* 22.4px — titres secondaires */
+  --text-2xl:  1.80rem;   /* 28.8px */
+  --text-3xl:  2.40rem;   /* 38.4px */
+  --text-hero: clamp(3rem, 7vw, 5.5rem);
+
+  --leading-tight:  1.10;
+  --leading-snug:   1.35;
+  --leading-normal: 1.60;
+  --leading-loose:  1.80;
+
+  --tracking-wide:  0.06em;
+  --tracking-wider: 0.10em;
+
+  /* ── Espacements ───────────────────────────────────────────────────── */
+  --sp-1:  0.25rem;   /*  4px */
+  --sp-2:  0.50rem;   /*  8px */
+  --sp-3:  0.75rem;   /* 12px */
+  --sp-4:  1.00rem;   /* 16px */
+  --sp-5:  1.25rem;   /* 20px */
+  --sp-6:  1.50rem;   /* 24px */
+  --sp-8:  2.00rem;   /* 32px */
+  --sp-10: 2.50rem;   /* 40px */
+  --sp-12: 3.00rem;   /* 48px */
+  --sp-16: 4.00rem;   /* 64px */
+  --sp-20: 5.00rem;   /* 80px */
+  --sp-24: 6.00rem;   /* 96px */
+
+  /* ── Rayons ────────────────────────────────────────────────────────── */
+  --r-sm:   0.25rem;
+  --r-md:   0.50rem;
+  --r-lg:   0.75rem;
+  --r-xl:   1.00rem;
+  --r-2xl:  1.50rem;
+  --r-full: 9999px;
+
+  /* ── Ombres ────────────────────────────────────────────────────────── */
+  --shadow-sm:  0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.16);
+  --shadow-red: 0 4px 20px rgba(230, 0, 0, 0.40);
+  --shadow-wa:  0 4px 20px rgba(37, 211, 102, 0.45);
+
+  /* ── Transitions ───────────────────────────────────────────────────── */
+  --t-fast:   150ms ease;
+  --t-base:   300ms ease;
+  --t-slow:   500ms ease;
+
+  /* ── Layout ────────────────────────────────────────────────────────── */
+  --max-width:       1400px;
+  --header-height:   72px;
+  --section-padding: var(--sp-20) var(--sp-10);
+}
+
+/* Surcharge pour sections sombres — portée sur .dark ou section[data-theme="dark"] */
+[data-theme="dark"] {
+  --c-text:        var(--c-white);
+  --c-text-muted:  var(--w-70);
+  --c-text-faint:  var(--w-50);
+  --c-border:      var(--w-10);
+  --c-surface:     var(--w-06);
+}
+
+[data-theme="light"] {
+  --c-text:        var(--c-black);
+  --c-text-muted:  var(--n-75);
+  --c-text-faint:  var(--n-55);
+  --c-border:      var(--n-17);
+  --c-surface:     var(--c-white);
+}
+
+/* ── Scroll-triggered animations ──────────────────────────────────────── */
+:root {
+  --anim-duration: 600ms;
+  --anim-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-animate] {
+  opacity: 0;
+  transition: opacity var(--anim-duration) var(--anim-ease),
+              transform var(--anim-duration) var(--anim-ease);
+}
+[data-animate="fade-up"]    { transform: translateY(28px); }
+[data-animate="fade-left"]  { transform: translateX(-36px); }
+[data-animate="fade-right"] { transform: translateX(36px); }
+[data-animate="fade-scale"] { transform: scale(0.97); }
+[data-animate="fade"]       { /* opacity only */ }
+
+[data-animate].is-visible   { opacity: 1; transform: none; }
+
+[data-delay="1"] { transition-delay: 80ms; }
+[data-delay="2"] { transition-delay: 160ms; }
+[data-delay="3"] { transition-delay: 240ms; }
+[data-delay="4"] { transition-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] { opacity: 1; transform: none; transition: none; }
+}
