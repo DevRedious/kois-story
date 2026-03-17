@@ -225,7 +225,10 @@
       position: absolute; inset: 0;
       background-image: url('../../docs/assets/carpe-koi-showa-scaled-hero.jpg');
       background-size: cover; background-position: center 30%;
+      animation: hero-zoom 18s ease-in-out infinite alternate;
+      transform-origin: center;
     }
+    @keyframes hero-zoom { from { transform: scale(1); } to { transform: scale(1.08); } }
     .hero__overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 60%, transparent 100%);
@@ -425,8 +428,14 @@
     .footer__copy { font-size: var(--text-sm); color: var(--w-30); white-space: nowrap; margin-left: auto; }
 
     /* CTA flottant */
-    .cta-wa-float { position: fixed; bottom: var(--sp-6); right: var(--sp-6); z-index: 200; display: inline-flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-6); background: var(--c-wa); color: var(--c-white); border-radius: var(--r-full); font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700; text-decoration: none; box-shadow: var(--shadow-wa); transition: transform var(--t-fast); }
-    .cta-wa-float:hover { transform: scale(1.04); }
+    .cta-wa-float { position: fixed; bottom: var(--sp-6); right: var(--sp-6); z-index: 200; display: inline-flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-6); background: var(--c-wa); color: var(--c-white); border-radius: var(--r-full); font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700; text-decoration: none; box-shadow: var(--shadow-wa); }
+
+    /* ── MOTIONS SPÉCIFIQUES HOME ─────────────────────────────────────── */
+    /* Editorial : hover enrichi (home uniquement) */
+    .editorial__overlay { transition: background var(--t-slow); }
+    .editorial:hover img { transform: scale(1.06); }
+    .editorial:hover .editorial__overlay { background: linear-gradient(to right, rgba(0,0,0,0.86) 0%, transparent 65%); }
+    @media (prefers-reduced-motion: reduce) { .hero__bg { animation: none; } }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -493,34 +502,6 @@
     </div>
   </div>
   <div class="hero__wave"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5f5f2"/></svg></div>
-</section>
-
-<!-- FEATURES -->
-<section class="features">
-  <div class="features__inner">
-    <div class="features__header" data-animate="fade-up">
-      <p class="section-label">Pourquoi Koi's Story</p>
-      <h2 class="section-title">L'excellence Konishi,<br>accessible en France</h2>
-    </div>
-    <div class="features__grid">
-      <div class="feature-main" data-animate="fade-up">
-        <div class="feature-main__icon">鯉</div>
-        <span class="feature-main__badge">★ Unique en France</span>
-        <h3 class="feature-main__title">Seul élevage français<br>partenaire Konishi</h3>
-        <p class="feature-main__text">La lignée Konishi est reconnue mondialement pour sa génétique d'exception. Mathilde et Emmanuel sont les seuls éleveurs français officiellement certifiés. Chaque koï est livré avec son certificat d'authenticité.</p>
-      </div>
-      <div class="feature-small" data-animate="fade-up" data-delay="1">
-        <span class="feature-small__icon">🚚</span>
-        <h3 class="feature-small__title">Livraison 50 km</h3>
-        <p class="feature-small__text">Transport sécurisé avec oxygénation. Sur rendez-vous dans un rayon de 50 km.</p>
-      </div>
-      <div class="feature-small" data-animate="fade-up" data-delay="2">
-        <span class="feature-small__icon">📋</span>
-        <h3 class="feature-small__title">Suivi &amp; conseils</h3>
-        <p class="feature-small__text">Conseils d'intégration, alimentation, santé. Emmanuel répond via WhatsApp.</p>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- KOI SHOWCASE -->
@@ -592,13 +573,41 @@
   </div>
 </section>
 
+<!-- FEATURES -->
+<section class="features">
+  <div class="features__inner">
+    <div class="features__header" data-animate="fade-up">
+      <p class="section-label">Pourquoi Koi's Story</p>
+      <h2 class="section-title"><span class="title-line">L'excellence Konishi,</span><span class="title-line">accessible en France</span></h2>
+    </div>
+    <div class="features__grid">
+      <div class="feature-main" data-animate="fade-up">
+        <div class="feature-main__icon">鯉</div>
+        <span class="feature-main__badge">★ Unique en France</span>
+        <h3 class="feature-main__title">Seul élevage français<br>partenaire Konishi</h3>
+        <p class="feature-main__text">La lignée Konishi est reconnue mondialement pour sa génétique d'exception. Mathilde et Emmanuel sont les seuls éleveurs français officiellement certifiés. Chaque koï est livré avec son certificat d'authenticité.</p>
+      </div>
+      <div class="feature-small" data-animate="fade-up" data-delay="1">
+        <span class="feature-small__icon">🚚</span>
+        <h3 class="feature-small__title">Livraison 50 km</h3>
+        <p class="feature-small__text">Transport sécurisé avec oxygénation. Sur rendez-vous dans un rayon de 50 km.</p>
+      </div>
+      <div class="feature-small" data-animate="fade-up" data-delay="2">
+        <span class="feature-small__icon">📋</span>
+        <h3 class="feature-small__title">Suivi &amp; conseils</h3>
+        <p class="feature-small__text">Conseils d'intégration, alimentation, santé. Emmanuel répond via WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- KONISHI BAND -->
 <div class="konishi-band">
   <div class="wave"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#000000"/></svg></div>
   <div class="konishi-band__inner">
     <div data-animate="fade-right">
       <p class="section-label" style="color:var(--c-red)">Partenaire officiel</p>
-      <h2 class="konishi-band__title">La lignée Konishi :<br>l'excellence japonaise</h2>
+      <h2 class="konishi-band__title"><span class="title-line">La lignée Konishi :</span><span class="title-line">l'excellence japonaise</span></h2>
       <p class="konishi-band__text">Fondé au Japon, l'élevage Konishi est reconnu mondialement. Mathilde et Emmanuel sont les seuls importateurs français officiellement certifiés. Chaque koï est livré avec son certificat d'authenticité.</p>
       <a href="decouvrir.html" class="btn btn--ghost-white">Découvrir le partenariat →</a>
     </div>
@@ -760,6 +769,21 @@
       e.currentTarget.classList.toggle('open');
     }
   });
+
+  /* Mouse parallax — hero background */
+  const heroBg = document.querySelector('.hero__bg');
+  const heroSection = document.getElementById('hero');
+  if (heroBg && heroSection && window.matchMedia('(hover: hover)').matches) {
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const cx = (e.clientX - rect.left) / rect.width - 0.5;
+      const cy = (e.clientY - rect.top) / rect.height - 0.5;
+      heroBg.style.transform = `scale(1.08) translate(${cx * -18}px, ${cy * -12}px)`;
+    });
+    heroSection.addEventListener('mouseleave', () => {
+      heroBg.style.transform = '';
+    });
+  }
 </script>
 </body>
 </html>
