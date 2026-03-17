@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos Koïs — Catalogue | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--color-red:#e60000;--color-wine:#630f0f;--color-cream:#f5f5f2;--color-white:#ffffff;--color-red-dark:#cc0000;--color-red-light:#ff1a1a;--gray-900:#0a0a0a;--gray-800:#1a1a1a;--gray-700:#2d2d2d;--gray-600:#404040;--gray-500:#525252;--gray-400:#737373;--gray-300:#a3a3a3;--gray-200:#d4d4d4;--gray-100:#f0f0ee;--color-wa:#25d366;--font-serif:'Playfair Display',Georgia,serif;--font-sans:'Open Sans',system-ui,sans-serif;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.25rem;--sp-6:1.5rem;--sp-8:2rem;--sp-10:2.5rem;--sp-16:4rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;--t-fast:150ms ease;--t-base:300ms ease;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-sans);background:var(--color-cream);color:#1a1a1a;line-height:1.6;-webkit-font-smoothing:antialiased;}
+    img{max-width:100%;height:auto;display:block;}
+    a{text-decoration:none;color:inherit;}
+    ul{list-style:none;}
+
+    /* HEADER */
+    .header{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--gray-900);box-shadow:0 2px 20px rgba(0,0,0,0.5);border-bottom:1px solid var(--gray-800);height:75px;}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto;padding:0 var(--sp-10);height:100%;}
+    .header-logo{display:flex;align-items:center;gap:var(--sp-3);}
+    .header-logo-circle{width:50px;height:50px;border-radius:var(--r-full);background:radial-gradient(circle at 30% 30%,var(--color-red-light),var(--color-wine));border:2px solid var(--color-wine);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;font-family:var(--font-serif);font-size:9px;font-weight:700;text-align:center;line-height:1.1;flex-shrink:0;}
+    .header-logo-text{color:white;font-family:var(--font-serif);font-size:1.1rem;font-weight:700;line-height:1;}
+    .header-logo-sub{color:var(--gray-300);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;}
+    .header-nav-list{display:flex;align-items:center;height:75px;}
+    .header-nav-link{color:white;padding:0 var(--sp-4);font-size:0.82rem;font-weight:600;height:75px;display:flex;align-items:center;transition:all var(--t-base);position:relative;text-transform:uppercase;letter-spacing:0.03em;}
+    .header-nav-link:hover,.header-nav-link.active{color:var(--color-red);background:rgba(255,255,255,0.04);}
+    .header-nav-link.active::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:3px;background:var(--color-red);}
+    .header-phone{color:white;font-size:0.82rem;font-weight:600;display:flex;align-items:center;gap:var(--sp-2);white-space:nowrap;}
+    .header-phone::before{content:'📞';}
+    .header-mobile-btn{display:none;background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;padding:var(--sp-2);}
+    .header-nav-mobile{display:none;position:absolute;top:75px;left:0;right:0;background:var(--gray-900);border-top:1px solid var(--gray-800);padding:var(--sp-4);flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+    .header-nav-mobile.is-open{display:flex;}
+    .header-nav-mobile .header-nav-link{height:auto;padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);justify-content:center;}
+    .header-nav-mobile .header-phone{justify-content:center;padding:var(--sp-3);border-top:1px solid var(--gray-800);margin-top:var(--sp-2);}
+
+    /* HERO INTERNE */
+    .hero-internal{position:relative;height:45vh;min-height:300px;display:flex;align-items:center;overflow:hidden;}
+    .hero-internal-bg{position:absolute;inset:0;}
+    .hero-internal-bg img{width:100%;height:100%;object-fit:cover;}
+    .hero-internal-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.88) 0%,rgba(10,10,10,0.65) 45%,rgba(10,10,10,0.2) 75%,transparent 100%);}
+    .hero-internal-content{position:relative;z-index:1;padding:120px var(--sp-10) 60px;}
+    .hero-badge{display:inline-flex;align-items:center;gap:var(--sp-2);padding:6px 14px;background:rgba(245,200,66,0.12);border:1px solid rgba(245,200,66,0.25);border-radius:var(--r-full);font-size:0.7rem;font-weight:700;color:#f5c842;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:var(--sp-4);}
+    .hero-internal-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;color:white;margin-bottom:var(--sp-3);}
+    .hero-internal-sub{font-size:0.95rem;color:rgba(255,255,255,0.7);}
+
+    /* CATALOGUE */
+    .catalogue{max-width:1400px;margin:0 auto;padding:var(--sp-10) var(--sp-10) var(--sp-16);}
+    .cat-toolbar{display:flex;flex-wrap:wrap;gap:var(--sp-4);align-items:flex-end;padding:var(--sp-5);background:var(--color-white);border-radius:var(--r-lg);box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid var(--gray-100);margin-bottom:var(--sp-8);}
+    .filter-group{display:flex;flex-direction:column;gap:4px;flex:1;min-width:130px;}
+    .filter-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--gray-500);}
+    .filter-select{padding:9px 32px 9px 10px;border:2px solid var(--gray-200);border-radius:var(--r-md);font-family:var(--font-sans);font-size:0.85rem;color:var(--gray-800);background:var(--color-white);appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath fill='%23404040' d='M5 7L0 0h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;outline:none;}
+    .filter-select:focus{border-color:var(--color-red);}
+    .filter-konishi{display:flex;align-items:center;gap:var(--sp-2);padding:9px 12px;border:2px solid var(--gray-200);border-radius:var(--r-md);cursor:pointer;user-select:none;transition:all var(--t-fast);}
+    .filter-konishi.active{border-color:var(--color-wine);background:rgba(99,15,15,0.05);}
+    .filter-konishi span{font-size:0.8rem;font-weight:700;color:var(--color-wine);}
+    .filter-btn{padding:9px 18px;border-radius:var(--r-md);font-family:var(--font-sans);font-size:0.82rem;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all var(--t-fast);}
+    .filter-btn--reset{background:transparent;color:var(--gray-500);border-color:var(--gray-200);}
+    .filter-btn--apply{background:var(--color-red);color:white;border-color:var(--color-red);}
+    .cat-count{font-size:0.82rem;color:var(--gray-500);margin-bottom:var(--sp-5);}
+    .cat-count strong{color:var(--color-red);font-weight:700;}
+
+    /* GRID */
+    .koi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-5);}
+    .koi-card{background:var(--color-white);border-radius:var(--r-xl);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);transition:transform var(--t-base),box-shadow var(--t-base);cursor:pointer;}
+    .koi-card:hover{transform:translateY(-5px);box-shadow:0 10px 28px rgba(0,0,0,0.13);}
+    .koi-card:hover .kc-img img{transform:scale(1.06);}
+    .kc-img{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#1a1a2e,#0f3460);}
+    .kc-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-base);}
+    .kc-badges{position:absolute;top:var(--sp-2);left:var(--sp-2);display:flex;flex-direction:column;gap:4px;}
+    .kc-badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:var(--r-full);font-size:0.6rem;font-weight:700;text-transform:uppercase;}
+    .kc-badge--k{background:var(--color-wine);color:#f5c842;border:1px solid rgba(245,200,66,0.3);}
+    .kc-badge--n{background:var(--color-red);color:white;}
+    .kc-badge--sold{background:var(--gray-600);color:var(--gray-200);}
+    .koi-card--sold .kc-img::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.4);}
+    .kc-body{padding:var(--sp-4);}
+    .kc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;}
+    .kc-name{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--gray-900);}
+    .kc-age{font-size:0.66rem;font-weight:700;color:var(--gray-400);text-transform:uppercase;}
+    .kc-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-2);}
+    .kc-tag{font-size:0.62rem;font-weight:700;text-transform:uppercase;padding:2px 7px;border-radius:var(--r-full);background:rgba(99,15,15,0.09);color:var(--color-wine);border:1px solid rgba(99,15,15,0.14);}
+    .kc-size{font-size:0.75rem;color:var(--gray-500);margin-bottom:var(--sp-3);}
+    .kc-footer{display:flex;justify-content:space-between;align-items:center;padding-top:var(--sp-3);border-top:1px solid var(--gray-100);}
+    .kc-price{font-family:var(--font-serif);font-size:1.3rem;font-weight:700;color:var(--color-red);line-height:1;}
+    .kc-price-cur{font-family:var(--font-sans);font-size:0.55em;vertical-align:super;font-weight:600;}
+    .kc-cta{padding:8px 13px;background:var(--color-red);color:white;border-radius:var(--r-md);font-size:0.75rem;font-weight:700;transition:all var(--t-fast);}
+    .kc-cta:hover{background:var(--color-red-dark);transform:translateY(-1px);}
+    .koi-card--sold .kc-price{color:var(--gray-400);text-decoration:line-through;}
+    .koi-card--sold .kc-cta{background:var(--gray-500);pointer-events:none;}
+
+    /* FOOTER */
+    .footer{background:var(--gray-900);color:var(--gray-300);padding:var(--sp-16) 0 var(--sp-8);border-top:1px solid var(--gray-800);}
+    .footer-inner{max-width:1400px;margin:0 auto;padding:0 var(--sp-10);display:grid;grid-template-columns:1.5fr repeat(5,1fr);gap:var(--sp-8);}
+    .footer-col-title{color:var(--color-red);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:var(--sp-4);}
+    .footer-links{display:flex;flex-direction:column;gap:var(--sp-2);}
+    .footer-links a{font-size:0.8rem;color:var(--gray-400);}
+    .footer-links a:hover{color:white;}
+    .footer-bottom{max-width:1400px;margin:var(--sp-10) auto 0;padding:var(--sp-6) var(--sp-10) 0;border-top:1px solid var(--gray-800);display:flex;justify-content:space-between;font-size:0.73rem;color:var(--gray-500);}
+    .wa-fixed{position:fixed;bottom:var(--sp-6);right:var(--sp-6);z-index:999;width:60px;height:60px;border-radius:var(--r-full);background:var(--color-wa);color:white;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.5);transition:all var(--t-base);}
+    .wa-fixed:hover{transform:scale(1.1) translateY(-2px);}
+
+    @media(max-width:1200px){.koi-grid{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:900px){.koi-grid{grid-template-columns:repeat(2,1fr);}.catalogue{padding:var(--sp-8) var(--sp-6) var(--sp-12);}}
+    @media(max-width:768px){.header-nav-list,.header-phone{display:none;}.header-mobile-btn{display:block;}.hero-internal-content{padding:120px var(--sp-6) 50px;}.footer-inner{grid-template-columns:1fr 1fr;padding:0 var(--sp-4);}.footer-bottom{flex-direction:column;gap:var(--sp-2);padding:var(--sp-4) var(--sp-4) 0;}}
+    @media(max-width:480px){.koi-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="home.html" class="header-logo">
+      <div class="header-logo-circle">KOÏ'S<br>STORY</div>
+      <div><div class="header-logo-text">Koi's Story</div><div class="header-logo-sub">Lignée Konishi</div></div>
+    </a>
+    <nav><ul class="header-nav-list">
+      <li><a href="home.html" class="header-nav-link">Accueil</a></li>
+      <li><a href="decouvrir.html" class="header-nav-link">Nous découvrir</a></li>
+      <li><a href="kois.html" class="header-nav-link active">Nos Koïs</a></li>
+      <li><a href="materiel.html" class="header-nav-link">Matériel</a></li>
+      <li><a href="nourriture.html" class="header-nav-link">Nourriture</a></li>
+      <li><a href="soins.html" class="header-nav-link">Soins</a></li>
+      <li><a href="azukari.html" class="header-nav-link">Azukari</a></li>
+    </ul></nav>
+    <span class="header-phone">06 XX XX XX XX</span>
+    <button class="header-mobile-btn" onclick="document.getElementById('mNav').classList.toggle('is-open')">☰</button>
+  </div>
+  <nav id="mNav" class="header-nav-mobile">
+    <a href="home.html" class="header-nav-link">Accueil</a><a href="decouvrir.html" class="header-nav-link">Nous découvrir</a>
+    <a href="kois.html" class="header-nav-link active">Nos Koïs</a><a href="materiel.html" class="header-nav-link">Matériel</a>
+    <a href="nourriture.html" class="header-nav-link">Nourriture</a><a href="soins.html" class="header-nav-link">Soins</a>
+    <a href="azukari.html" class="header-nav-link">Azukari</a>
+    <span class="header-phone">06 XX XX XX XX</span>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-internal">
+  <div class="hero-internal-bg">
+    <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=1400&h=600&fit=crop" alt="Nos Koïs">
+    <div class="hero-internal-overlay"></div>
+  </div>
+  <div class="hero-internal-content">
+    <div class="hero-badge">★ Lignée Konishi</div>
+    <h1 class="hero-internal-title">Nos Koïs</h1>
+    <p class="hero-internal-sub">Catalogue complet — tous nos spécimens disponibles à la vente directe.</p>
+  </div>
+</section>
+
+<!-- CATALOGUE -->
+<div class="catalogue">
+
+  <div class="cat-toolbar">
+    <div class="filter-group">
+      <label class="filter-label">Variété</label>
+      <select class="filter-select"><option>Toutes les variétés</option><option>Kohaku</option><option>Sanke</option><option>Showa</option><option>Butterfly</option><option>Tancho</option><option>Kujaku</option><option>Asagi</option><option>Goshiki</option></select>
+    </div>
+    <div class="filter-group">
+      <label class="filter-label">Classe d'âge</label>
+      <select class="filter-select"><option>Toutes classes</option><option>Tosaï</option><option>Jumbo Tosaï</option><option>Nisaï</option><option>Sansaï</option><option>Yonsaï</option><option>Gosai</option></select>
+    </div>
+    <div class="filter-group">
+      <label class="filter-label">Sexe</label>
+      <select class="filter-select"><option>Tous</option><option>♂ Mâle</option><option>♀ Femelle</option></select>
+    </div>
+    <div class="filter-group">
+      <label class="filter-label">Taille</label>
+      <select class="filter-select"><option>Toutes tailles</option><option>&lt; 50 cm</option><option>50 – 70 cm</option><option>70 – 90 cm</option><option>&gt; 90 cm</option></select>
+    </div>
+    <div style="flex:0;"><label class="filter-label">Lignée</label>
+      <div class="filter-konishi active" onclick="this.classList.toggle('active')"><span>★ Konishi uniquement</span></div>
+    </div>
+    <div style="display:flex;gap:0.5rem;align-items:flex-end;flex:0;">
+      <button class="filter-btn filter-btn--reset">✕</button>
+      <button class="filter-btn filter-btn--apply">Filtrer</button>
+    </div>
+  </div>
+
+  <p class="cat-count"><strong>9</strong> koïs disponibles</p>
+
+  <div class="koi-grid">
+    <article class="koi-card">
+      <div class="kc-img"><img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=280&h=380&fit=crop" alt="Sakura"><div class="kc-badges"><span class="kc-badge kc-badge--k">★ Konishi</span></div></div>
+      <div class="kc-body"><div class="kc-top"><h4 class="kc-name">Sakura</h4><span class="kc-age">Nisaï</span></div><div class="kc-tags"><span class="kc-tag">Kohaku</span><span class="kc-tag">♀</span></div><p class="kc-size">72 cm</p><div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>1 800</span><a href="product.html" class="kc-cta">Voir →</a></div></div>
+    </article>
+    <article class="koi-card">
+      <div class="kc-img"><img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=280&h=380&fit=crop" alt="Midori"><div class="kc-badges"><span class="kc-badge kc-badge--n">Nouveau</span><span class="kc-badge kc-badge--k">★ Konishi</span></div></div>
+      <div class="kc-body"><div class="kc-top"><h4 class="kc-name">Midori</h4><span class="kc-age">Sansaï</span></div><div class="kc-tags"><span class="kc-tag">Butterfly</span><span class="kc-tag">♀</span></div><p class="kc-size">55 cm</p><div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>2 400</span><a href="product.html" class="kc-cta">Voir →</a></div></div>
+    </article>
+    <article class="koi-card">
+      <div class="kc-img"><img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=280&h=380&fit=crop&crop=right" alt="Hana"></div>
+      <div class="kc-body"><div class="kc-top"><h4 class="kc-name">Hana</h4><span class="kc-age">Nisaï</span></div><div class="kc-tags"><span class="kc-tag">Sanke</span><span class="kc-tag">♂</span></div><p class="kc-size">68 cm</p><div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>1 450</span><a href="product.html" class="kc-cta">Voir →</a></div></div>
+    </article>
+    <article class="koi-card">
+      <div class="kc-img" style="background:linear-gradient(135deg,#1a1a2e,#0a1a2a);"><div class="kc-badges"><span class="kc-badge kc-badge--k">★ Konishi</span></div></div>
+      <div class="kc-body"><div class="kc-top"><h4 class="kc-name">Yuki</h4><span class="kc-age">Tosaï</span></div><div class="kc-tags"><span class="kc-tag">Tancho</span><span class="kc-tag">♀</span></div><p class="kc-size">45 cm</p><div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>720</span><a href="product.html" class="kc-cta">Voir →</a></div></div>
+    </article>
+    <article class="koi-card">
+      <div class="kc-img" style="background:linear-gradient(135deg,#2a1a0a,#1a0a00);"></div>
+      <div class="kc-body"><div class="kc-top"><h4 class="kc-name">Kenzan</h4><span class="kc-age">Sansaï</span></div><div class="kc-tags"><span class="kc-tag">Kujaku</span><span class="kc-tag">♂</span></div><p class="kc-size">85 cm</p><div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>3 800</span><a href="product.html" class="kc-cta">Voir →</a></div></div>
+    </article>
+    <article class="koi-card koi-card--sold">
+      <div class="kc-img"><img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=280&h=380&fit=crop&crop=left" alt="Taro"><div class="kc-badges"><span class="kc-badge kc-badge--sold">Vendu</span></div></div>
+      <div class="kc-body"><div class="kc-top"><h4 class="kc-name">Taro</h4><span class="kc-age">Yonsaï</span></div><div class="kc-tags"><span class="kc-tag">Showa</span></div><p class="kc-size">80 cm</p><div class="kc-footer"><span class="kc-price"><span class="kc-price-cur">€</span>3 200</span><span class="kc-cta">Vendu</span></div></div>
+    </article>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;"><div style="width:44px;height:44px;border-radius:9999px;background:radial-gradient(circle at 30% 30%,var(--color-red-light),var(--color-wine));border:2px solid var(--color-wine);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;font-family:var(--font-serif);font-size:8px;font-weight:700;text-align:center;line-height:1.1;">KOÏ'S<br>STORY</div><span style="font-family:var(--font-serif);font-size:1.05rem;font-weight:700;color:white;">Koi's Story</span></div>
+      <p style="font-size:0.8rem;color:var(--gray-400);">Élevage Konishi · Gueugnon (71)</p>
+      <a href="https://wa.me/33600000000" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-wa);color:white;padding:0.75rem 1.25rem;border-radius:9999px;font-size:0.82rem;font-weight:700;">💬 WhatsApp</a>
+    </div>
+    <div><div class="footer-col-title">Nos Koïs</div><div class="footer-links"><a href="kois.html">Catalogue</a><a href="kois.html">Kohaku</a><a href="kois.html">★ Konishi</a></div></div>
+    <div><div class="footer-col-title">Matériel</div><div class="footer-links"><a href="materiel.html">Filtration</a><a href="materiel.html">Pompes</a></div></div>
+    <div><div class="footer-col-title">Nourriture</div><div class="footer-links"><a href="nourriture.html">Konishi</a><a href="nourriture.html">Vitamines</a></div></div>
+    <div><div class="footer-col-title">Soins</div><div class="footer-links"><a href="soins.html">Tests</a><a href="soins.html">Traitements</a></div></div>
+    <div><div class="footer-col-title">Nous découvrir</div><div class="footer-links"><a href="decouvrir.html">Notre histoire</a><a href="azukari.html">Azukari</a></div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Koi's Story</span><span>Lignée Konishi certifiée</span></div>
+</footer>
+
+<a href="https://wa.me/33600000000" class="wa-fixed" title="WhatsApp">💬</a>
+</body>
+</html>

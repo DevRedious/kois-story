@@ -3,157 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Molecule — Contact Form</title>
+  <title>Molecule — Contact Form | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
     :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --color-red-dark:  #cc0000;
+      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
+      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
+      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+      --sp-5: 1.25rem; --sp-6: 1.5rem; --sp-8: 2rem;
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-xl: 1rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease;
     }
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 32px; }
-    .group { max-width: 500px; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); line-height: 1.6; padding: 2rem; -webkit-font-smoothing: antialiased; }
+    .demo-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 0.75rem; margin-top: 2rem; }
+    .group { max-width: 520px; }
 
-    /* ── CONTACT FORM MOLECULE ───────────────────────────────── */
+    /* ── CONTACT FORM MOLECULE ───────────────────────────────────── */
     .contact-form {
-      background: #fff;
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(0,48,73,0.06);
+      background: var(--color-white);
+      padding: var(--sp-8);
+      border-radius: var(--r-xl);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
-    
-    .contact-form-header {
-      margin-bottom: 24px;
-    }
-    
+
+    .contact-form-header { margin-bottom: var(--sp-6); }
     .contact-form-title {
-      font-family: var(--font-title);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      margin-bottom: 8px;
+      font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700;
+      color: var(--gray-900); margin-bottom: var(--sp-2);
     }
-    
-    .contact-form-subtitle {
-      font-size: 0.95rem;
-      color: var(--gris-pierre);
-    }
+    .contact-form-subtitle { font-size: 0.9rem; color: var(--gray-500); }
 
-    /* Form fields */
+    /* Fields */
     .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4);
     }
-    
     .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
+      display: flex; flex-direction: column; gap: var(--sp-1);
+      margin-bottom: var(--sp-4);
     }
-    
+    .form-group:last-of-type { margin-bottom: 0; }
+
     .form-label {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--bleu-profond);
+      font-size: 0.82rem; font-weight: 700; color: var(--gray-700);
+      text-transform: uppercase; letter-spacing: 0.04em;
     }
-    
-    .form-label .required {
-      color: var(--rouge-koi);
-      margin-left: 2px;
-    }
-    
+    .form-label .required { color: var(--color-red); margin-left: 2px; }
+
     .form-input {
-      padding: 14px 16px;
-      border: 2px solid #e8ecf0;
-      border-radius: 10px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--bleu-profond);
-      background: #fff;
-      transition: all 0.2s ease;
-      width: 100%;
+      width: 100%; padding: 12px 14px;
+      border: 2px solid var(--gray-200); border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: 0.95rem; color: var(--gray-800);
+      background: var(--color-white); outline: none;
+      transition: border-color var(--t-base), box-shadow var(--t-base);
     }
-    
-    .form-input:hover {
-      border-color: #d0d7de;
-    }
-    
+    .form-input:hover { border-color: var(--gray-300); }
     .form-input:focus {
-      outline: none;
-      border-color: var(--bleu-profond);
-      box-shadow: 0 0 0 3px rgba(0,48,73,0.08);
+      border-color: var(--color-red);
+      box-shadow: 0 0 0 3px rgba(230,0,0,0.1);
     }
-    
-    .form-input::placeholder {
-      color: #aab4bd;
-    }
-    
-    textarea.form-input {
-      min-height: 140px;
-      resize: vertical;
-    }
-    
+    .form-input::placeholder { color: var(--gray-300); }
+
+    textarea.form-input { min-height: 140px; resize: vertical; line-height: 1.6; }
+
     select.form-input {
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23003049' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 40px;
+      cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath fill='%23404040' d='M5 7L0 0h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 38px;
     }
 
-    /* Submit button */
+    .form-helper { font-size: 0.75rem; color: var(--gray-400); }
+
+    /* Submit */
+    .form-submit-row { margin-top: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3); }
     .form-submit {
-      width: 100%;
-      padding: 16px;
-      background: var(--bleu-profond);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      margin-top: 8px;
+      width: 100%; padding: 15px;
+      background: var(--color-red); color: white;
+      border: 2px solid var(--color-red); border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: all var(--t-base);
     }
-    
-    .form-submit:hover {
-      background: #002538;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,48,73,0.2);
-    }
-
-    /* Alternative layout - compact */
-    .contact-form--compact {
-      padding: 24px;
-    }
-    
-    .contact-form--compact .contact-form-title {
-      font-size: 1.2rem;
-    }
-    
-    .contact-form--compact .form-row {
-      grid-template-columns: 1fr;
-    }
+    .form-submit:hover { background: var(--color-red-dark); border-color: var(--color-red-dark); transform: translateY(-1px); }
+    .form-note { font-size: 0.75rem; color: var(--gray-400); text-align: center; }
   </style>
 </head>
 <body>
 
-  <h3>Formulaire de contact complet</h3>
+  <p class="demo-label">Formulaire de contact complet</p>
   <div class="group">
     <form class="contact-form">
       <div class="contact-form-header">
@@ -185,43 +133,46 @@
       <div class="form-group">
         <label class="form-label">Sujet</label>
         <select class="form-input">
-          <option value="">Choisissez un sujet...</option>
-          <option value="info">Renseignement sur un koï</option>
+          <option value="">Choisissez un sujet…</option>
+          <option value="koi">Renseignement sur un koï</option>
           <option value="visit">Visite de l'élevage</option>
           <option value="purchase">Achat / Commande</option>
-          <option value="other">Autre</option>
+          <option value="azukari">Service Azukari</option>
+          <option value="other">Autre question</option>
         </select>
       </div>
 
       <div class="form-group">
         <label class="form-label">Votre message <span class="required">*</span></label>
-        <textarea class="form-input" placeholder="Bonjour, je suis intéressé par..." required></textarea>
+        <textarea class="form-input" placeholder="Bonjour, je suis intéressé par…" required></textarea>
+        <span class="form-helper">Minimum 20 caractères. Soyez précis dans votre demande.</span>
       </div>
 
-      <button type="submit" class="form-submit">Envoyer le message</button>
+      <div class="form-submit-row">
+        <button type="submit" class="form-submit">Envoyer le message</button>
+        <p class="form-note">Ou contactez-nous directement : 📞 06 XX XX XX XX</p>
+      </div>
     </form>
   </div>
 
-  <h3>Version compacte</h3>
+  <p class="demo-label">Version compacte</p>
   <div class="group">
-    <form class="contact-form contact-form--compact">
-      <div class="contact-form-header">
-        <h3 class="contact-form-title">Contact rapide</h3>
+    <form class="contact-form" style="padding: 1.5rem;">
+      <div class="contact-form-header" style="margin-bottom: 1rem;">
+        <h3 class="contact-form-title" style="font-size: 1.2rem;">Contact rapide</h3>
       </div>
-
       <div class="form-group">
         <input type="text" class="form-input" placeholder="Votre nom">
       </div>
-
       <div class="form-group">
         <input type="email" class="form-input" placeholder="Votre email">
       </div>
-
       <div class="form-group">
-        <textarea class="form-input" placeholder="Votre message..."></textarea>
+        <textarea class="form-input" style="min-height: 100px;" placeholder="Votre message…"></textarea>
       </div>
-
-      <button type="submit" class="form-submit">Envoyer</button>
+      <div class="form-submit-row" style="margin-top: 0.75rem;">
+        <button type="submit" class="form-submit">Envoyer</button>
+      </div>
     </form>
   </div>
 

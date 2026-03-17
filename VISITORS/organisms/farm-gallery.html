@@ -3,373 +3,248 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organism — Farm Gallery</title>
+  <title>Organism — Farm Gallery | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
     :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --color-red-dark:  #cc0000;
+      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
+      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
+      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
+      --color-wa: #25d366;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+      --sp-5: 1.25rem; --sp-6: 1.5rem; --sp-8: 2rem; --sp-10: 2.5rem; --sp-16: 4rem;
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-xl: 1rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease;
     }
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
 
-    /* ── FARM GALLERY ORGANISM ───────────────────────────────── */
+    /* ── FARM GALLERY / "NOUS DÉCOUVRIR" ORGANISM ────────────────── */
     .farm-section {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 80px 32px;
+      max-width: 1400px; margin: 0 auto;
+      padding: var(--sp-16) var(--sp-10);
     }
 
-    /* Header */
-    .farm-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 48px;
+    /* Section header */
+    .farm-header { text-align: center; margin-bottom: var(--sp-12); }
+    .farm-eyebrow {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--color-red); margin-bottom: var(--sp-3);
     }
-    
-    .farm-header h2 {
-      font-family: var(--font-title);
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      margin-bottom: 16px;
+    .farm-title {
+      font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+      color: var(--gray-900); margin-bottom: var(--sp-4);
     }
-    
-    .farm-header p {
-      font-size: 1.1rem;
-      color: var(--gris-pierre);
-      line-height: 1.7;
+    .farm-subtitle {
+      font-size: 1.05rem; color: var(--gray-500); line-height: 1.75; max-width: 600px; margin: 0 auto;
     }
 
-    /* Team/Breeders */
-    .farm-breeders {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      margin-bottom: 64px;
+    /* Bio layout (photo + texte) */
+    .farm-bio {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--sp-12); align-items: center;
+      margin-bottom: var(--sp-16);
     }
-    
-    .breeder-card {
-      text-align: center;
+    .farm-bio--reverse { direction: rtl; }
+    .farm-bio--reverse > * { direction: ltr; }
+
+    .farm-bio-img {
+      position: relative; border-radius: var(--r-xl); overflow: hidden;
+      aspect-ratio: 4/3;
     }
-    
-    .breeder-avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      border: 4px solid var(--or-konishi);
-    }
-    
-    .breeder-name {
-      font-family: var(--font-title);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      margin-bottom: 4px;
-    }
-    
-    .breeder-role {
-      font-size: 0.9rem;
-      color: var(--or-konishi);
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-    
-    .breeder-bio {
-      font-size: 0.9rem;
-      color: var(--gris-pierre);
-      max-width: 280px;
-      line-height: 1.6;
+    .farm-bio-img img { width: 100%; height: 100%; object-fit: cover; }
+    .farm-bio-img-badge {
+      position: absolute; bottom: var(--sp-4); left: var(--sp-4);
+      background: var(--color-wine); color: #f5c842;
+      padding: 6px 14px; border-radius: var(--r-full);
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
     }
 
-    /* Stats */
-    .farm-stats {
+    .farm-bio-content {}
+    .farm-bio-eyebrow { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-red); margin-bottom: var(--sp-3); }
+    .farm-bio-title { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--gray-900); margin-bottom: var(--sp-4); }
+    .farm-bio-text { font-size: 0.95rem; color: var(--gray-600); line-height: 1.8; margin-bottom: var(--sp-5); }
+
+    /* Valeurs */
+    .farm-values { display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-6); }
+    .farm-value { display: flex; align-items: flex-start; gap: var(--sp-3); }
+    .farm-value-icon {
+      width: 36px; height: 36px; border-radius: var(--r-md);
+      background: rgba(230,0,0,0.08); color: var(--color-red);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .farm-value-title { font-size: 0.88rem; font-weight: 700; color: var(--gray-900); margin-bottom: 2px; }
+    .farm-value-desc { font-size: 0.8rem; color: var(--gray-500); }
+
+    /* Galerie photo */
+    .farm-gallery-title {
+      font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700;
+      color: var(--gray-900); margin-bottom: var(--sp-6); text-align: center;
+    }
+    .farm-gallery-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-bottom: 64px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 220px);
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-16);
     }
-    
-    .farm-stat {
-      text-align: center;
-      padding: 32px 24px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px rgba(0,48,73,0.06);
+    .farm-gallery-item {
+      border-radius: var(--r-lg); overflow: hidden;
+      position: relative; background: var(--gray-700);
     }
-    
-    .farm-stat-icon {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
+    .farm-gallery-item:first-child {
+      grid-row: 1 / 3; border-radius: var(--r-xl);
     }
-    
-    .farm-stat-value {
-      font-family: var(--font-title);
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-    }
-    
-    .farm-stat-label {
-      font-size: 0.9rem;
-      color: var(--gris-pierre);
-      margin-top: 4px;
+    .farm-gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-base); }
+    .farm-gallery-item:hover img { transform: scale(1.04); }
+    .farm-gallery-item-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: var(--sp-4) var(--sp-4) var(--sp-3);
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+      color: white; font-size: 0.8rem; font-weight: 600;
     }
 
-    /* Gallery */
-    .farm-gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, 200px);
-      gap: 16px;
-    }
-    
-    .gallery-item {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-    
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    
-    .gallery-item.large {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-    
-    .gallery-item.wide {
-      grid-column: span 2;
-    }
-    
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,48,73,0.7) 0%, transparent 60%);
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
-    
-    .gallery-caption {
-      color: #fff;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    /* Konishi section */
+    /* Konishi partnership */
     .farm-konishi {
-      margin-top: 80px;
-      padding: 48px;
-      background: linear-gradient(135deg, var(--bleu-profond) 0%, #002538 100%);
-      border-radius: 24px;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 48px;
+      background: var(--gray-900);
+      border-radius: var(--r-xl); padding: var(--sp-10);
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-10);
       align-items: center;
     }
-    
-    .konishi-logo {
-      text-align: center;
-      padding: 32px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 16px;
-      border: 2px solid var(--or-konishi);
+    .farm-konishi-badge {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      background: rgba(245,200,66,0.12); border: 1px solid rgba(245,200,66,0.25);
+      border-radius: var(--r-full); padding: 6px 14px;
+      font-size: 0.72rem; font-weight: 700; color: #f5c842;
+      text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: var(--sp-4);
     }
-    
-    .konishi-logo span {
-      font-family: var(--font-title);
-      font-size: 3rem;
-      color: var(--or-konishi);
+    .farm-konishi-title { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: white; margin-bottom: var(--sp-4); }
+    .farm-konishi-text { font-size: 0.92rem; color: var(--gray-400); line-height: 1.75; }
+    .farm-konishi-img {
+      border-radius: var(--r-xl); overflow: hidden; aspect-ratio: 4/3;
     }
-    
-    .konishi-content h3 {
-      font-family: var(--font-title);
-      font-size: 1.8rem;
-      color: #fff;
-      margin-bottom: 16px;
-    }
-    
-    .konishi-content p {
-      color: rgba(255,255,255,0.8);
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-    
-    .konishi-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background: var(--or-konishi);
-      border-radius: 8px;
-      color: var(--bleu-profond);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
+    .farm-konishi-img img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      .farm-stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .farm-gallery {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 160px);
-      }
-      
-      .gallery-item.large {
-        grid-column: span 2;
-        grid-row: span 1;
-      }
-      
-      .farm-konishi {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      
-      .farm-breeders {
-        flex-direction: column;
-        align-items: center;
-      }
+    @media (max-width: 1024px) {
+      .farm-section { padding: var(--sp-12) var(--sp-6); }
+      .farm-bio { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .farm-konishi { grid-template-columns: 1fr; }
     }
-    
-    @media (max-width: 600px) {
-      .farm-stats {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 768px) {
+      .farm-gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .farm-gallery-item:first-child { grid-row: auto; }
     }
   </style>
 </head>
 <body>
 
   <section class="farm-section">
+
     <!-- Header -->
     <div class="farm-header">
-      <h2>Notre élevage</h2>
-      <p>
-        Situé au cœur de la région lyonnaise, notre ferme est dédiée à l'élevage 
-        de carpes koï d'exception depuis 2018. Notre passion et notre expertise 
-        nous ont valu l'affiliation à la prestigieuse lignée Konishi.
+      <div class="farm-eyebrow">Notre histoire</div>
+      <h2 class="farm-title">Mathilde & Emmanuel</h2>
+      <p class="farm-subtitle">
+        Deux passionnés, un élevage d'exception. Découvrez l'histoire de Koi's Story et
+        notre partenariat unique avec la lignée Konishi.
       </p>
     </div>
 
-    <!-- Breeders -->
-    <div class="farm-breeders">
-      <div class="breeder-card">
-        <div class="breeder-avatar">👩</div>
-        <h3 class="breeder-name">Mathilde</h3>
-        <p class="breeder-role">Co-fondatrice & Éleveuse</p>
-        <p class="breeder-bio">
-          Passionnée par les koïs depuis son enfance au Japon, 
-          Mathilde apporte son expertise unique en sélection génétique.
+    <!-- Bio -->
+    <div class="farm-bio">
+      <div class="farm-bio-img">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&h=450&fit=crop" alt="Élevage Koi's Story">
+        <span class="farm-bio-img-badge">★ Élevage Konishi</span>
+      </div>
+      <div class="farm-bio-content">
+        <div class="farm-bio-eyebrow">Notre élevage</div>
+        <h3 class="farm-bio-title">Une passion née<br>de l'amour de l'eau</h3>
+        <p class="farm-bio-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mathilde et Emmanuel ont fondé
+          Koi's Story à Gueugnon, animés par une passion commune pour les carpes koïs et l'excellence
+          japonaise. Leur rencontre avec la lignée Konishi a transformé leur élevage en une référence
+          unique en France.
         </p>
-      </div>
-      <div class="breeder-card">
-        <div class="breeder-avatar">👨</div>
-        <h3 class="breeder-name">Emmanuel</h3>
-        <p class="breeder-role">Co-fondateur & Expert</p>
-        <p class="breeder-bio">
-          Ancien chef cuisinier reconverti, Emmanuel a consacré 
-          les 10 dernières années à l'étude des carpes koï.
-        </p>
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="farm-stats">
-      <div class="farm-stat">
-        <div class="farm-stat-icon">🐟</div>
-        <div class="farm-stat-value">500+</div>
-        <div class="farm-stat-label">Koïs élevés</div>
-      </div>
-      <div class="farm-stat">
-        <div class="farm-stat-icon">🏆</div>
-        <div class="farm-stat-value">8</div>
-        <div class="farm-stat-label">Prix remportés</div>
-      </div>
-      <div class="farm-stat">
-        <div class="farm-stat-icon">★</div>
-        <div class="farm-stat-value">2018</div>
-        <div class="farm-stat-label">Affiliation Konishi</div>
-      </div>
-      <div class="farm-stat">
-        <div class="farm-stat-icon">💧</div>
-        <div class="farm-stat-value">2000m²</div>
-        <div class="farm-stat-label">Bassins d'élevage</div>
-      </div>
-    </div>
-
-    <!-- Gallery -->
-    <div class="farm-gallery">
-      <div class="gallery-item large">
-        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Bassin principal">
-        <div class="gallery-overlay">
-          <span class="gallery-caption">Notre bassin principal</span>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koï">
-      </div>
-      <div class="gallery-item">
-        <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Koï">
-      </div>
-      <div class="gallery-item wide">
-        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Vue aérienne">
-        <div class="gallery-overlay">
-          <span class="gallery-caption">Vue d'ensemble de la ferme</span>
+        <div class="farm-values">
+          <div class="farm-value">
+            <div class="farm-value-icon">🎯</div>
+            <div>
+              <div class="farm-value-title">Qualité certifiée</div>
+              <div class="farm-value-desc">Chaque koï est vérifié, photographié et accompagné de son certificat.</div>
+            </div>
+          </div>
+          <div class="farm-value">
+            <div class="farm-value-icon">🔍</div>
+            <div>
+              <div class="farm-value-title">Traçabilité complète</div>
+              <div class="farm-value-desc">Origine, lignée, classe d'âge — tout est documenté et transparent.</div>
+            </div>
+          </div>
+          <div class="farm-value">
+            <div class="farm-value-icon">💬</div>
+            <div>
+              <div class="farm-value-title">Conseil personnalisé</div>
+              <div class="farm-value-desc">Mathilde & Emmanuel répondent à chaque question, par WhatsApp ou en visite.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Konishi affiliation -->
+    <!-- Galerie photos bassins -->
+    <h3 class="farm-gallery-title">Nos bassins</h3>
+    <div class="farm-gallery-grid">
+      <div class="farm-gallery-item">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=500&h=600&fit=crop" alt="Bassin principal">
+        <div class="farm-gallery-item-label">Bassin principal — 50 000 L</div>
+      </div>
+      <div class="farm-gallery-item">
+        <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=400&h=220&fit=crop" alt="Bassin Konishi">
+        <div class="farm-gallery-item-label">Bassin Konishi</div>
+      </div>
+      <div class="farm-gallery-item">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=400&h=220&fit=crop&crop=top" alt="Filtration">
+        <div class="farm-gallery-item-label">Système de filtration</div>
+      </div>
+      <div class="farm-gallery-item">
+        <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=400&h=220&fit=crop&crop=bottom" alt="Nurserie">
+        <div class="farm-gallery-item-label">Nurserie Tosaï</div>
+      </div>
+      <div class="farm-gallery-item">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=400&h=220&fit=crop&crop=left" alt="Vue aérienne">
+        <div class="farm-gallery-item-label">Vue d'ensemble</div>
+      </div>
+    </div>
+
+    <!-- Partenariat Konishi -->
     <div class="farm-konishi">
-      <div class="konishi-logo">
-        <span>★</span>
-        <p style="color: var(--or-konishi); font-weight: 600; margin-top: 8px;">Lignée Konishi</p>
-      </div>
-      <div class="konishi-content">
-        <h3>Membre officiel de la lignée Konishi</h3>
-        <p>
-          L'affiliation à la lignée Konishi est un gage d'excellence reconnu mondialement. 
-          Cette distinction nous permet d'accéder aux meilleures lignées génétiques et 
-          de proposer à nos clients des spécimens d'une qualité exceptionnelle.
+      <div>
+        <div class="farm-konishi-badge">★ Partenariat officiel depuis 2022</div>
+        <h3 class="farm-konishi-title">La lignée Konishi — Un héritage japonais</h3>
+        <p class="farm-konishi-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. La lignée Konishi est l'une des
+          plus réputées au monde dans l'élevage de carpes koïs. Notre partenariat exclusif nous
+          permet d'être le seul éleveur en France à proposer des spécimens certifiés Konishi,
+          avec traçabilité complète et certificats d'authenticité.
         </p>
-        <span class="konishi-badge">★ Certifié Konishi depuis 2018</span>
+      </div>
+      <div class="farm-konishi-img">
+        <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=500&h=380&fit=crop" alt="Partenariat Konishi">
       </div>
     </div>
+
   </section>
 
 </body>

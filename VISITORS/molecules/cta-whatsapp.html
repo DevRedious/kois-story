@@ -3,261 +3,189 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Molecule — CTA WhatsApp</title>
+  <title>Molecule — CTA WhatsApp | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
     :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --vert-wa:      #25D366;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
+      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
+      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
+      --color-wa: #25d366;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+      --sp-5: 1.25rem; --sp-6: 1.5rem; --sp-8: 2rem;
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-xl: 1rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease;
     }
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 32px; }
-    .group { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; max-width: 600px; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); line-height: 1.6; padding: 2rem; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .demo-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 0.75rem; margin-top: 2rem; }
+    .group { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-start; max-width: 640px; }
 
-    /* ── CTA WHATSAPP MOLECULE ───────────────────────────────── */
-    .cta-whatsapp {
+    /* ── CTA WHATSAPP MOLECULE ───────────────────────────────────── */
+
+    /* Version standard (page contact) */
+    .cta-wa {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      padding: 28px;
-      background: linear-gradient(135deg, rgba(37,211,102,0.08) 0%, rgba(37,211,102,0.03) 100%);
-      border: 2px solid rgba(37,211,102,0.2);
-      border-radius: 16px;
+      gap: var(--sp-4);
+      padding: var(--sp-8);
+      background: linear-gradient(135deg, rgba(37,211,102,0.07) 0%, rgba(37,211,102,0.02) 100%);
+      border: 2px solid rgba(37,211,102,0.22);
+      border-radius: var(--r-xl);
       text-align: center;
     }
-    
-    .cta-whatsapp-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
+    .cta-wa-icon {
+      width: 60px; height: 60px; border-radius: var(--r-full);
+      background: var(--color-wa);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin: 0 auto;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.35);
     }
-    
-    .cta-whatsapp-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--vert-wa);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
+    .cta-wa-title {
+      font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+      color: var(--gray-900);
     }
-    
-    .cta-whatsapp-title {
-      font-family: var(--font-title);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
+    .cta-wa-text {
+      font-size: 0.92rem; color: var(--gray-500); line-height: 1.7;
+      max-width: 360px; margin: 0 auto;
     }
-    
-    .cta-whatsapp-text {
-      font-size: 0.95rem;
-      color: var(--gris-pierre);
-      line-height: 1.6;
-      max-width: 360px;
-    }
-
-    /* Button */
-    .cta-whatsapp-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 32px;
-      background: var(--vert-wa);
-      color: #fff;
-      border-radius: 12px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
+    .cta-wa-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
+      padding: 14px 28px;
+      background: var(--color-wa); color: white;
+      border-radius: var(--r-lg); font-family: var(--font-sans);
+      font-size: 0.95rem; font-weight: 700; text-decoration: none;
+      transition: all var(--t-base);
       box-shadow: 0 4px 16px rgba(37,211,102,0.3);
     }
-    
-    .cta-whatsapp-btn:hover {
+    .cta-wa-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+      box-shadow: 0 6px 22px rgba(37,211,102,0.45);
     }
-
-    /* Product context */
-    .cta-whatsapp--product {
-      text-align: left;
-      background: #fff;
-      border-color: #e8ecf0;
-      box-shadow: 0 2px 12px rgba(0,48,73,0.06);
-    }
-    
-    .cta-whatsapp--product .cta-whatsapp-header {
-      flex-direction: row;
-      align-items: flex-start;
-      text-align: left;
-    }
-    
-    .cta-whatsapp--product .cta-whatsapp-icon {
-      width: 48px;
-      height: 48px;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-    }
-    
-    .cta-whatsapp-product-info h4 {
-      font-family: var(--font-title);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      margin-bottom: 4px;
-    }
-    
-    .cta-whatsapp-product-info p {
-      font-size: 0.85rem;
-      color: var(--gris-pierre);
-    }
-    
-    .cta-whatsapp-product-info strong {
-      color: var(--or-konishi);
-    }
-
-    /* Inline version */
-    .cta-whatsapp--inline {
-      flex-direction: row;
-      align-items: center;
-      padding: 16px 20px;
-      gap: 16px;
-    }
-    
-    .cta-whatsapp--inline .cta-whatsapp-icon {
-      width: 44px;
-      height: 44px;
-      font-size: 1.4rem;
-    }
-    
-    .cta-whatsapp--inline .cta-whatsapp-content {
-      flex: 1;
-    }
-    
-    .cta-whatsapp--inline .cta-whatsapp-title {
-      font-size: 1rem;
-    }
-    
-    .cta-whatsapp--inline .cta-whatsapp-text {
-      font-size: 0.85rem;
-    }
-    
-    .cta-whatsapp--inline .cta-whatsapp-btn {
-      padding: 12px 24px;
-      font-size: 0.9rem;
-    }
-
-    /* Trust badges */
-    .cta-whatsapp-trust {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding-top: 16px;
+    .cta-wa-trust {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: var(--sp-5);
+      padding-top: var(--sp-4);
       border-top: 1px solid rgba(37,211,102,0.15);
     }
-    
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: var(--gris-pierre);
+    .cta-wa-trust-item { font-size: 0.78rem; color: var(--gray-400); }
+    .cta-wa-trust-item::before { content: '✓ '; color: var(--color-wa); font-weight: 700; }
+
+    /* Version produit (fiche koï) */
+    .cta-wa--product {
+      text-align: left;
+      background: var(--color-white);
+      border-color: var(--gray-200);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
+    .cta-wa-product-row {
+      display: flex; align-items: flex-start; gap: var(--sp-4);
+    }
+    .cta-wa-product-icon {
+      width: 48px; height: 48px; border-radius: var(--r-full);
+      background: var(--color-wa);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .cta-wa-product-info h4 {
+      font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700;
+      color: var(--gray-900); margin-bottom: 4px;
+    }
+    .cta-wa-product-info p { font-size: 0.82rem; color: var(--gray-500); }
+    .cta-wa-product-info .konishi { color: var(--color-wine); font-weight: 700; }
+    .cta-wa--product .cta-wa-btn { width: 100%; justify-content: center; }
+    .cta-wa-note { font-size: 0.75rem; color: var(--gray-400); text-align: center; }
+
+    /* Version inline compacte */
+    .cta-wa--inline {
+      flex-direction: row; align-items: center;
+      padding: var(--sp-4) var(--sp-5); gap: var(--sp-4);
+      text-align: left;
+    }
+    .cta-wa--inline .cta-wa-text-block { flex: 1; }
+    .cta-wa--inline .cta-wa-title { font-size: 0.95rem; }
+    .cta-wa--inline .cta-wa-text { font-size: 0.82rem; max-width: none; margin: 0; }
+    .cta-wa--inline .cta-wa-btn { padding: 10px 20px; font-size: 0.85rem; flex-shrink: 0; }
+
+    /* Bouton fixe (bas de page) */
+    .cta-wa-fixed {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      width: 58px; height: 58px; border-radius: var(--r-full);
+      background: var(--color-wa); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      text-decoration: none; transition: all var(--t-base);
+    }
+    .cta-wa-fixed:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.6); }
   </style>
 </head>
 <body>
 
-  <h3>CTA Standard — Page contact</h3>
+  <p class="demo-label">CTA Standard — Page Contact / Sidebar</p>
   <div class="group">
-    <div class="cta-whatsapp">
-      <div class="cta-whatsapp-header">
-        <div class="cta-whatsapp-icon" style="background: transparent;"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 40px; width: auto;"></div>
-        <h4 class="cta-whatsapp-title">Une question ?</h4>
-      </div>
-      <p class="cta-whatsapp-text">
-        Contactez-nous directement sur WhatsApp pour obtenir des conseils personnalisés 
+    <div class="cta-wa" style="width: 380px;">
+      <div class="cta-wa-icon">💬</div>
+      <h4 class="cta-wa-title">Une question ?</h4>
+      <p class="cta-wa-text">
+        Contactez-nous directement sur WhatsApp pour des conseils personnalisés
         et des photos supplémentaires de nos koïs.
       </p>
-      <a href="https://wa.me/33612345678" class="cta-whatsapp-btn">
-        <img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 20px; width: auto; margin-right: 6px;"> Contacter sur WhatsApp
+      <a href="https://wa.me/33600000000" class="cta-wa-btn">
+        💬 Contacter sur WhatsApp
       </a>
-      <div class="cta-whatsapp-trust">
-        <span class="trust-item">✓ Réponse sous 2h</span>
-        <span class="trust-item">✓ Conseil personnalisé</span>
-        <span class="trust-item">✓ Photos sur demande</span>
+      <div class="cta-wa-trust">
+        <span class="cta-wa-trust-item">Réponse sous 2h</span>
+        <span class="cta-wa-trust-item">Conseil personnalisé</span>
+        <span class="cta-wa-trust-item">Photos sur demande</span>
       </div>
     </div>
   </div>
 
-  <h3>CTA Produit — Fiche koï</h3>
+  <p class="demo-label">CTA Produit — Fiche Koï</p>
   <div class="group">
-    <div class="cta-whatsapp cta-whatsapp--product">
-      <div class="cta-whatsapp-header">
-        <div class="cta-whatsapp-icon" style="background: transparent;"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 40px; width: auto;"></div>
-        <div class="cta-whatsapp-product-info">
-          <h4>Intéressé par ce koï ?</h4>
-          <p>
-            <strong>Sakura</strong> — Kohaku 72cm — 
-            <span style="color: var(--or-konishi); font-weight: 600;">★ Konishi</span>
-          </p>
+    <div class="cta-wa cta-wa--product" style="width: 420px;">
+      <div class="cta-wa-product-row">
+        <div class="cta-wa-product-icon">💬</div>
+        <div class="cta-wa-product-info">
+          <h4>Intéressé par Sakura ?</h4>
+          <p>Kohaku · 72 cm · <span class="konishi">★ Lignée Konishi</span></p>
         </div>
       </div>
-      <p class="cta-whatsapp-text" style="margin-left: 64px;">
-        Envoyez-nous un message pré-rempli avec la référence de ce spécimen. 
-        Nous vous répondrons rapidement avec plus d'informations.
+      <p style="font-size: 0.88rem; color: var(--gray-500); line-height: 1.6;">
+        Envoyez-nous un message pré-rempli avec la référence de ce koï.
+        Nous vous répondrons rapidement.
       </p>
-      <a href="https://wa.me/33612345678?text=Bonjour,%20je%20suis%20intéressé%20par%20le%20koï%20Sakura%20(Kohaku%2072cm)%20-%20Réf:%20KOI-001" 
-         class="cta-whatsapp-btn" style="margin-left: 64px; align-self: flex-start;">
-        <img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 20px; width: auto; margin-right: 6px;"> Commander ce koï
+      <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20ko%C3%AF%20Sakura%20(Kohaku%2C%2072%20cm)%20-%20Lignée%20Konishi"
+         class="cta-wa-btn">
+        💬 Demander par WhatsApp
       </a>
+      <p class="cta-wa-note">Acompte · Livraison spécialisée possible</p>
     </div>
   </div>
 
-  <h3>CTA Inline — Compact</h3>
-  <div class="group">
-    <div class="cta-whatsapp cta-whatsapp--inline">
-      <div class="cta-whatsapp-icon" style="background: transparent;"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 40px; width: auto;"></div>
-      <div class="cta-whatsapp-content">
-        <h4 class="cta-whatsapp-title">Commander par WhatsApp</h4>
-        <p class="cta-whatsapp-text">Message pré-rempli avec la référence du koï</p>
+  <p class="demo-label">CTA Inline — Compact</p>
+  <div class="group" style="max-width: 560px;">
+    <div class="cta-wa cta-wa--inline" style="width: 100%;">
+      <div style="font-size: 1.6rem;">💬</div>
+      <div class="cta-wa-text-block">
+        <div class="cta-wa-title">Nous contacter</div>
+        <p class="cta-wa-text">Message pré-rempli • Réponse rapide</p>
       </div>
-      <a href="#" class="cta-whatsapp-btn">Contacter</a>
+      <a href="https://wa.me/33600000000" class="cta-wa-btn">WhatsApp</a>
     </div>
   </div>
 
-  <h3>CTA avec prix — Fiche produit</h3>
-  <div class="group">
-    <div class="cta-whatsapp cta-whatsapp--product">
-      <div class="cta-whatsapp-header">
-        <div class="cta-whatsapp-icon" style="background: transparent;"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 40px; width: auto;"></div>
-        <div class="cta-whatsapp-product-info">
-          <h4>Sakura — <span style="font-family: var(--font-title); color: var(--bleu-profond);">€1 800</span></h4>
-          <p>Kohaku 72cm — ★ Lignée Konishi</p>
-        </div>
-      </div>
-      <a href="#" class="cta-whatsapp-btn" style="width: 100%; margin-top: 8px;">
-        <img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 20px; width: auto; margin-right: 6px;"> Commander via WhatsApp
-      </a>
-      <p style="font-size: 0.8rem; color: var(--gris-pierre); text-align: center; margin-top: 8px;">
-        Paiement sécurisé • Conseil personnalisé • Livraison possible
-      </p>
-    </div>
-  </div>
+  <p class="demo-label">Bouton fixe (bas de page)</p>
+  <a href="https://wa.me/33600000000" class="cta-wa-fixed" title="WhatsApp">💬</a>
 
 </body>
 </html>

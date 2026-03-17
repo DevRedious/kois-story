@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azukari — Pension pour koïs | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-red:#e60000;--color-wine:#630f0f;--color-black:#000000;--color-cream:#f5f5f2;--color-white:#ffffff;
+      --gray-900:#0a0a0a;--gray-800:#1a1a1a;--gray-700:#2d2d2d;--gray-600:#404040;--gray-500:#525252;--gray-400:#737373;--gray-300:#a3a3a3;--gray-200:#d4d4d4;--gray-100:#f0f0ee;
+      --color-wa:#25d366;
+      --font-serif:'Playfair Display',Georgia,serif;--font-sans:'Open Sans',system-ui,sans-serif;
+      --sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.25rem;--sp-6:1.5rem;--sp-8:2rem;--sp-10:2.5rem;--sp-12:3rem;--sp-16:4rem;
+      --r-sm:.375rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;
+      --t-fast:150ms ease;--t-base:300ms ease;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-sans);background:var(--color-cream);color:var(--gray-800);-webkit-font-smoothing:antialiased;}
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+
+    .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;height:75px;background:var(--gray-900);display:flex;align-items:center;padding:0 var(--sp-8);gap:var(--sp-8);border-bottom:1px solid rgba(255,255,255,0.06);}
+    .header-logo{display:flex;align-items:center;gap:var(--sp-3);flex-shrink:0;}
+    .logo-circle{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--color-red),var(--color-wine));display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;font-size:1.1rem;color:white;}
+    .logo-text{font-family:var(--font-serif);font-size:1.15rem;font-weight:700;color:white;line-height:1.2;}
+    .logo-text span{color:var(--color-red);}
+    .header-nav{display:flex;align-items:center;flex:1;justify-content:center;}
+    .header-nav a{color:rgba(255,255,255,0.75);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;padding:0 var(--sp-4);height:75px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color var(--t-fast),border-color var(--t-fast);}
+    .header-nav a:hover{color:white;}
+    .header-nav a.active{color:white;border-bottom-color:var(--color-red);}
+    .header-phone{font-size:0.8rem;font-weight:600;color:white;flex-shrink:0;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:var(--sp-2);}
+    .hamburger span{display:block;width:24px;height:2px;background:white;}
+    .mobile-nav{display:none;position:fixed;top:75px;left:0;right:0;background:var(--gray-800);z-index:999;padding:var(--sp-4) 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .mobile-nav.open{display:block;}
+    .mobile-nav a{display:block;padding:var(--sp-3) var(--sp-8);color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;border-left:3px solid transparent;}
+    .mobile-nav a.active{color:white;border-left-color:var(--color-red);}
+    @media(max-width:1024px){.header-nav{display:none;}.hamburger{display:flex;}.header-phone{display:none;}}
+
+    /* HERO — Azukari spécial (gold tones) */
+    .page-hero{margin-top:75px;position:relative;height:55vh;min-height:380px;overflow:hidden;}
+    .page-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0a0a 0%,#1a1205 40%,#2d2005 100%);}
+    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.92) 0%,rgba(10,10,10,0.55) 55%,rgba(10,10,10,0.15) 100%);}
+    .page-hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 var(--sp-10);max-width:1400px;margin:0 auto;}
+    .page-hero-kanji{font-size:5rem;line-height:1;margin-bottom:var(--sp-4);opacity:0.25;color:#f5c842;}
+    .page-hero-badge{display:inline-flex;align-items:center;gap:var(--sp-2);background:rgba(245,200,66,0.12);border:1px solid rgba(245,200,66,0.3);border-radius:var(--r-full);padding:5px 14px;font-size:0.72rem;font-weight:700;color:#f5c842;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:var(--sp-4);}
+    .page-hero-title{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:white;line-height:1.1;margin-bottom:var(--sp-4);}
+    .page-hero-title em{font-style:italic;color:#f5c842;}
+    .page-hero-sub{font-size:1rem;color:rgba(255,255,255,0.72);max-width:520px;line-height:1.75;margin-bottom:var(--sp-8);}
+    .page-hero-cta{display:flex;gap:var(--sp-4);}
+    .btn-gold{display:inline-flex;align-items:center;gap:var(--sp-2);background:#f5c842;color:#1a1205;font-size:0.9rem;font-weight:700;padding:14px 28px;border-radius:var(--r-md);transition:background var(--t-fast);}
+    .btn-gold:hover{background:#e8b800;}
+    .btn-wa{display:inline-flex;align-items:center;gap:var(--sp-2);background:var(--color-wa);color:white;font-size:0.9rem;font-weight:700;padding:14px 28px;border-radius:var(--r-md);transition:background var(--t-fast);}
+    .btn-wa:hover{background:#1da851;}
+    .breadcrumb{position:absolute;bottom:var(--sp-4);left:0;right:0;padding:0 var(--sp-10);z-index:2;font-size:0.75rem;color:rgba(255,255,255,0.45);}
+    .breadcrumb a{color:rgba(255,255,255,0.45);}
+    .breadcrumb span{margin:0 var(--sp-2);}
+
+    /* BODY */
+    .page-body{max-width:1400px;margin:0 auto;padding:var(--sp-16) var(--sp-10);}
+
+    /* What is azukari */
+    .azukari-intro{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-12);align-items:center;margin-bottom:var(--sp-16);}
+    .azukari-intro-img{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#0a2744,#1a4a7a);}
+    .azukari-intro-img img{width:100%;height:100%;object-fit:cover;}
+    .azukari-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-red);margin-bottom:var(--sp-3);}
+    .azukari-title{font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-5);line-height:1.25;}
+    .azukari-text{font-size:0.95rem;color:var(--gray-600);line-height:1.85;margin-bottom:var(--sp-5);}
+    .azukari-kanji-block{display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-4);background:var(--gray-100);border-radius:var(--r-lg);border-left:4px solid #f5c842;}
+    .azukari-kanji{font-size:2.5rem;color:#f5c842;line-height:1;}
+    .azukari-kanji-text{font-size:0.85rem;color:var(--gray-600);line-height:1.6;}
+    .azukari-kanji-text strong{display:block;color:var(--gray-900);margin-bottom:2px;}
+
+    /* Services grid */
+    .section-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-red);margin-bottom:var(--sp-3);text-align:center;}
+    .section-title{font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-3);text-align:center;}
+    .section-sub{font-size:0.95rem;color:var(--gray-500);line-height:1.7;text-align:center;max-width:560px;margin:0 auto var(--sp-10);}
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-6);margin-bottom:var(--sp-16);}
+    .service-card{background:white;border-radius:var(--r-xl);padding:var(--sp-6);border:1px solid var(--gray-200);transition:box-shadow var(--t-base);}
+    .service-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.08);}
+    .service-icon{width:56px;height:56px;border-radius:var(--r-md);background:rgba(245,200,66,0.12);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:var(--sp-5);}
+    .service-title{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-3);}
+    .service-text{font-size:0.85rem;color:var(--gray-500);line-height:1.7;margin-bottom:var(--sp-4);}
+    .service-feature{font-size:0.8rem;font-weight:600;color:var(--color-wine);display:flex;align-items:center;gap:var(--sp-2);}
+    .service-feature::before{content:"✓";color:#f5c842;}
+
+    /* Process steps */
+    .process-section{margin-bottom:var(--sp-16);}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-6);position:relative;}
+    .process-steps::before{content:"";position:absolute;top:32px;left:10%;right:10%;height:2px;background:linear-gradient(to right,var(--color-red),#f5c842);z-index:0;}
+    .process-step{text-align:center;position:relative;z-index:1;}
+    .step-number{width:64px;height:64px;border-radius:50%;background:var(--gray-900);border:3px solid #f5c842;display:flex;align-items:center;justify-content:center;margin:0 auto var(--sp-4);font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:#f5c842;}
+    .step-title{font-weight:700;font-size:0.9rem;color:var(--gray-900);margin-bottom:var(--sp-2);}
+    .step-text{font-size:0.78rem;color:var(--gray-500);line-height:1.5;}
+
+    /* Pricing */
+    .pricing-section{margin-bottom:var(--sp-16);}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-6);}
+    .pricing-card{background:white;border-radius:var(--r-xl);padding:var(--sp-6);border:2px solid var(--gray-200);transition:border-color var(--t-base);}
+    .pricing-card:hover{border-color:var(--color-red);}
+    .pricing-card.featured{border-color:#f5c842;background:linear-gradient(to bottom,#fffdf0,white);}
+    .pricing-badge{display:inline-block;background:var(--color-wine);color:#f5c842;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:var(--r-full);margin-bottom:var(--sp-4);}
+    .pricing-badge.gold{background:#f5c842;color:#1a1205;}
+    .pricing-name{font-family:var(--font-serif);font-size:1.2rem;font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-2);}
+    .pricing-duration{font-size:0.82rem;color:var(--gray-500);margin-bottom:var(--sp-4);}
+    .pricing-price{font-family:var(--font-serif);font-size:2rem;font-weight:700;color:var(--color-red);margin-bottom:var(--sp-5);}
+    .pricing-price span{font-size:0.9rem;font-weight:400;color:var(--gray-400);font-family:var(--font-sans);}
+    .pricing-features{display:flex;flex-direction:column;gap:var(--sp-2);margin-bottom:var(--sp-6);}
+    .pricing-feature{font-size:0.82rem;color:var(--gray-600);display:flex;align-items:center;gap:var(--sp-2);}
+    .pricing-feature::before{content:"✓";color:#f5c842;font-weight:700;flex-shrink:0;}
+    .pricing-note{font-size:0.72rem;color:var(--gray-400);font-style:italic;}
+    .btn-wa-block{display:flex;align-items:center;justify-content:center;gap:var(--sp-2);background:var(--color-wa);color:white;font-size:0.85rem;font-weight:700;padding:12px 24px;border-radius:var(--r-md);transition:background var(--t-fast);}
+    .btn-wa-block:hover{background:#1da851;}
+
+    /* FAQ */
+    .faq-section{margin-bottom:var(--sp-16);}
+    .faq-list{display:flex;flex-direction:column;gap:var(--sp-3);}
+    .faq-item{background:white;border-radius:var(--r-lg);padding:var(--sp-5) var(--sp-6);border:1px solid var(--gray-200);}
+    .faq-question{font-weight:700;font-size:0.92rem;color:var(--gray-900);margin-bottom:var(--sp-2);}
+    .faq-answer{font-size:0.85rem;color:var(--gray-500);line-height:1.7;}
+
+    /* Final CTA */
+    .final-cta{background:var(--gray-900);border-radius:var(--r-xl);padding:var(--sp-12) var(--sp-10);text-align:center;}
+    .final-cta-kanji{font-size:3rem;color:rgba(245,200,66,0.2);margin-bottom:var(--sp-4);}
+    .final-cta-title{font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:white;margin-bottom:var(--sp-4);}
+    .final-cta-title em{font-style:italic;color:#f5c842;}
+    .final-cta-text{font-size:0.95rem;color:var(--gray-400);line-height:1.75;max-width:560px;margin:0 auto var(--sp-8);}
+    .final-cta-actions{display:flex;align-items:center;justify-content:center;gap:var(--sp-4);}
+
+    /* FOOTER */
+    .site-footer{background:var(--gray-900);color:rgba(255,255,255,0.7);padding:var(--sp-16) var(--sp-10) var(--sp-8);}
+    .footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-10);}
+    .footer-brand p{font-size:0.82rem;line-height:1.7;color:var(--gray-400);margin-bottom:var(--sp-5);}
+    .footer-brand .logo-circle{width:48px;height:48px;font-size:1.2rem;margin-bottom:var(--sp-4);}
+    .footer-brand .logo-text{font-size:1.3rem;margin-bottom:var(--sp-4);}
+    .footer-konishi-tag{display:inline-flex;align-items:center;gap:var(--sp-2);background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.2);border-radius:var(--r-full);padding:4px 12px;font-size:0.7rem;font-weight:700;color:#f5c842;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--sp-5);}
+    .footer-col-title{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-red);margin-bottom:var(--sp-4);}
+    .footer-links{display:flex;flex-direction:column;gap:var(--sp-2);}
+    .footer-links a{font-size:0.82rem;color:var(--gray-400);transition:color var(--t-fast);}
+    .footer-links a:hover{color:white;}
+    .footer-bottom{max-width:1400px;margin:0 auto;padding-top:var(--sp-6);border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--gray-500);}
+    @media(max-width:1024px){.azukari-intro{grid-template-columns:1fr;gap:var(--sp-8);}.services-grid{grid-template-columns:1fr 1fr;}.process-steps{grid-template-columns:repeat(2,1fr);}.process-steps::before{display:none;}.pricing-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}.footer-grid{grid-template-columns:1fr 1fr 1fr;}.final-cta-actions{flex-direction:column;}}
+    @media(max-width:768px){.services-grid{grid-template-columns:1fr;}.process-steps{grid-template-columns:1fr 1fr;}.footer-grid{grid-template-columns:1fr 1fr;}.page-body{padding:var(--sp-10) var(--sp-6);}.page-hero-cta{flex-direction:column;gap:var(--sp-3);}}
+    @media(max-width:480px){.process-steps{grid-template-columns:1fr;}}
+
+    .wa-fixed{position:fixed;bottom:var(--sp-6);right:var(--sp-6);z-index:999;width:56px;height:56px;background:var(--color-wa);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform var(--t-fast);}
+    .wa-fixed:hover{transform:scale(1.1);}
+    .wa-fixed svg{width:28px;height:28px;fill:white;}
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-logo">
+      <div class="logo-circle">K</div>
+      <div class="logo-text">Koi's <span>Story</span></div>
+    </div>
+    <nav class="header-nav">
+      <a href="home.html">Accueil</a>
+      <a href="decouvrir.html">Nous découvrir</a>
+      <a href="kois.html">Nos Koïs</a>
+      <a href="materiel.html">Matériel</a>
+      <a href="nourriture.html">Nourriture</a>
+      <a href="soins.html">Soins</a>
+      <a href="azukari.html" class="active">Azukari</a>
+    </nav>
+    <div class="header-phone">📞 +33 6 00 00 00 00</div>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="home.html">Accueil</a>
+    <a href="decouvrir.html">Nous découvrir</a>
+    <a href="kois.html">Nos Koïs</a>
+    <a href="materiel.html">Matériel</a>
+    <a href="nourriture.html">Nourriture</a>
+    <a href="soins.html">Soins</a>
+    <a href="azukari.html" class="active">Azukari</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-kanji">預かり</div>
+      <div class="page-hero-badge">★ Service Konishi — Tradition japonaise</div>
+      <h1 class="page-hero-title">Azukari —<br><em>La pension pour koïs</em></h1>
+      <p class="page-hero-sub">Confiez vos précieux koïs à Mathilde et Emmanuel pendant votre absence. Surveillance quotidienne, alimentation adaptée, soins professionnels.</p>
+      <div class="page-hero-cta">
+        <a href="https://wa.me/33600000000?text=Bonjour%2C+je+voudrais+des+informations+sur+le+service+Azukari." class="btn-wa" target="_blank">📱 Demander un devis</a>
+        <a href="#process" class="btn-gold">Comment ça marche</a>
+      </div>
+    </div>
+    <div class="breadcrumb">
+      <a href="home.html">Accueil</a><span>›</span> Azukari
+    </div>
+  </div>
+
+  <main class="page-body">
+
+    <!-- Intro — What is Azukari -->
+    <div class="azukari-intro">
+      <div class="azukari-intro-img">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&h=450&fit=crop" alt="Bassin Azukari Koi's Story">
+      </div>
+      <div>
+        <div class="azukari-eyebrow">Le concept</div>
+        <h2 class="azukari-title">Azukari — Qu'est-ce que c'est ?</h2>
+        <p class="azukari-text">L'azukari (預かり) est une pratique japonaise qui consiste à confier ses koïs à un éleveur professionnel pour une période déterminée. C'est une tradition ancestrale dans le monde du koï, permettant à vos poissons de bénéficier des conditions d'élevage optimales de Koi's Story.</p>
+        <p class="azukari-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pendant votre absence, vos koïs sont traités comme les nôtres : alimentation quotidienne adaptée à la saison, surveillance de la qualité de l'eau, soins si nécessaire, et rapports réguliers via WhatsApp.</p>
+        <div class="azukari-kanji-block">
+          <div class="azukari-kanji">預</div>
+          <div class="azukari-kanji-text">
+            <strong>Azukari (預かり)</strong>
+            Signifie "prendre en charge" ou "garder en confiance". Dans le monde des koïs, c'est confier son poisson à un maître éleveur.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services inclus -->
+    <div class="section-eyebrow">Ce qui est inclus</div>
+    <h2 class="section-title">Nos services Azukari</h2>
+    <p class="section-sub">Un suivi quotidien professionnel, la même qualité de soins qu'un éleveur japonais certifié Konishi.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🍽️</div>
+        <div class="service-title">Alimentation quotidienne</div>
+        <div class="service-text">Alimentation adaptée à la saison, à la température de l'eau et au stade de croissance de vos koïs. Nourriture premium utilisée par nos éleveurs.</div>
+        <div class="service-feature">Programme alimentaire personnalisé</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔬</div>
+        <div class="service-title">Analyse de l'eau</div>
+        <div class="service-text">Tests quotidiens des paramètres essentiels : pH, NH3, NO2, NO3, O2, KH. Corrections immédiates si nécessaire.</div>
+        <div class="service-feature">Rapport eau hebdomadaire inclus</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📸</div>
+        <div class="service-title">Rapports WhatsApp</div>
+        <div class="service-text">Photos de vos koïs envoyées régulièrement. Vous restez informé de l'état de vos poissons tout au long de leur séjour.</div>
+        <div class="service-feature">Photos 2× par semaine minimum</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏥</div>
+        <div class="service-title">Soins si nécessaire</div>
+        <div class="service-text">Détection précoce des maladies, traitements adaptés. Emmanuel et Mathilde réagissent immédiatement à tout signe inhabituel.</div>
+        <div class="service-feature">Soins de base inclus</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌡️</div>
+        <div class="service-title">Adaptation saisonnière</div>
+        <div class="service-text">Nos bassins maintiennent des conditions optimales en toute saison. Système de chauffage et aération contrôlés en permanence.</div>
+        <div class="service-feature">Température optimale garantie</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <div class="service-title">Amélioration colorielle</div>
+        <div class="service-text">En option, programme d'alimentation spécifique pour l'intensification des couleurs. Résultats visibles en 4–8 semaines.</div>
+        <div class="service-feature">Option Color Enhancement +</div>
+      </div>
+    </div>
+
+    <!-- Processus -->
+    <div class="process-section" id="process">
+      <div class="section-eyebrow">Comment ça marche</div>
+      <h2 class="section-title">4 étapes simples</h2>
+      <p class="section-sub">Un processus transparent, de la prise de contact jusqu'au retour de vos koïs.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-title">Contact &amp; Devis</div>
+          <div class="step-text">Contactez-nous via WhatsApp avec le nombre de koïs, leurs tailles et la durée souhaitée. Réponse sous 24h.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-title">Remise des poissons</div>
+          <div class="step-text">Vous déposez vos koïs à Gueugnon (ou livraison spécialisée possible). Quarantaine de 48h à l'arrivée.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-title">Séjour &amp; Suivi</div>
+          <div class="step-text">Photos régulières, rapports eau, soins inclus. Vous restez informé à chaque étape du séjour de vos poissons.</div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-title">Retour des koïs</div>
+          <div class="step-text">Remise en sac oxygéné avec rapport de séjour complet. Transport spécialisé disponible sur devis.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarifs indicatifs -->
+    <div class="pricing-section">
+      <div class="section-eyebrow">Tarification</div>
+      <h2 class="section-title">Formules Azukari</h2>
+      <p class="section-sub">Tarifs indicatifs — devis personnalisé selon le nombre et la taille des koïs. Contactez-nous.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <span class="pricing-badge">Courte durée</span>
+          <div class="pricing-name">Azukari Standard</div>
+          <div class="pricing-duration">1 à 4 semaines</div>
+          <div class="pricing-price">Sur devis <span>/ poisson / semaine</span></div>
+          <div class="pricing-features">
+            <div class="pricing-feature">Alimentation quotidienne</div>
+            <div class="pricing-feature">Analyse eau 3×/semaine</div>
+            <div class="pricing-feature">Photos 1×/semaine</div>
+            <div class="pricing-feature">Soins de base inclus</div>
+          </div>
+          <a href="https://wa.me/33600000000?text=Bonjour%2C+je+voudrais+un+devis+Azukari+Standard." class="btn-wa-block" target="_blank">📱 Demander devis</a>
+        </div>
+        <div class="pricing-card featured">
+          <span class="pricing-badge gold">★ Recommandé</span>
+          <div class="pricing-name">Azukari Premium</div>
+          <div class="pricing-duration">1 à 3 mois</div>
+          <div class="pricing-price">Sur devis <span>/ poisson / mois</span></div>
+          <div class="pricing-features">
+            <div class="pricing-feature">Alimentation quotidienne premium</div>
+            <div class="pricing-feature">Analyse eau quotidienne</div>
+            <div class="pricing-feature">Photos 2×/semaine</div>
+            <div class="pricing-feature">Soins complets inclus</div>
+            <div class="pricing-feature">Rapport de séjour détaillé</div>
+          </div>
+          <a href="https://wa.me/33600000000?text=Bonjour%2C+je+voudrais+un+devis+Azukari+Premium." class="btn-wa-block" target="_blank">📱 Demander devis</a>
+        </div>
+        <div class="pricing-card">
+          <span class="pricing-badge">Croissance</span>
+          <div class="pricing-name">Azukari Tosai</div>
+          <div class="pricing-duration">3 à 12 mois — jeunes koïs</div>
+          <div class="pricing-price">Sur devis <span>/ poisson / mois</span></div>
+          <div class="pricing-features">
+            <div class="pricing-feature">Spécial jeunes koïs (Tosai)</div>
+            <div class="pricing-feature">Programme croissance optimisé</div>
+            <div class="pricing-feature">Suivi taille &amp; poids mensuel</div>
+            <div class="pricing-feature">Option enhancement couleur</div>
+            <div class="pricing-feature">Bilan complet à restitution</div>
+          </div>
+          <a href="https://wa.me/33600000000?text=Bonjour%2C+je+voudrais+un+devis+Azukari+Tosai." class="btn-wa-block" target="_blank">📱 Demander devis</a>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:0.8rem;color:var(--gray-400);margin-top:var(--sp-6);">* Tarifs indicatifs selon la taille et le nombre de koïs. Devis personnalisé obligatoire. Transport spécialisé possible sur devis séparé.</p>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="section-eyebrow">Questions fréquentes</div>
+      <h2 class="section-title" style="margin-bottom:var(--sp-8);">Tout ce que vous voulez savoir</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">Y a-t-il une période d'adaptation à l'arrivée ?</div>
+          <div class="faq-answer">Oui, tous les koïs entrants sont mis en quarantaine 48h dans un bassin dédié, avec analyse de l'eau et observation comportementale, avant d'être intégrés dans nos bassins principaux.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Puis-je venir rendre visite à mes koïs pendant leur séjour ?</div>
+          <div class="faq-answer">Absolument ! Les visites sont encouragées sur rendez-vous. Vous pouvez observer vos koïs dans leurs bassins de séjour. Contactez-nous pour organiser votre visite.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Que se passe-t-il si un koï tombe malade pendant le séjour ?</div>
+          <div class="faq-answer">Vous êtes informé immédiatement. Les soins de base (traitements antiparasitaires, sel, désinfectants) sont inclus dans le tarif. En cas de traitement spécialisé, nous vous consultons avant d'agir et les frais supplémentaires sont facturés au coût réel.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Comment s'organise le transport de mes koïs ?</div>
+          <div class="faq-answer">Vous pouvez déposer et récupérer vos koïs directement à Gueugnon. Un service de transport spécialisé (sacs oxygénés, camion équipé) peut être organisé sur devis selon la distance et le nombre de poissons.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Y a-t-il un nombre minimum ou maximum de koïs acceptés ?</div>
+          <div class="faq-answer">Nous acceptons dès 1 koï. La capacité maximale de nos bassins Azukari est de 15 à 20 poissons simultanément. Au-delà, contactez-nous pour étudier la faisabilité selon les tailles et variétés.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final-cta">
+      <div class="final-cta-kanji">預かり</div>
+      <h2 class="final-cta-title">Partez serein —<br><em>Vos koïs sont entre de bonnes mains</em></h2>
+      <p class="final-cta-text">Confier ses précieux koïs est une décision importante. Chez Koi's Story, nous traitons chaque poisson avec le même soin que nos propres Konishi. Contactez-nous pour obtenir un devis personnalisé.</p>
+      <div class="final-cta-actions">
+        <a href="https://wa.me/33600000000?text=Bonjour%2C+je+voudrais+un+devis+Azukari+pour+mes+ko%C3%AFs." class="btn-wa" target="_blank">📱 Demander un devis Azukari</a>
+        <a href="decouvrir.html" class="btn-gold">En savoir plus sur l'élevage</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-circle">K</div>
+        <div class="logo-text">Koi's <span>Story</span></div>
+        <p>Élevage de carpes koïs d'exception à Gueugnon. Partenaire exclusif de la lignée Konishi en France depuis 2022.</p>
+        <div class="footer-konishi-tag">★ Éleveur Konishi certifié</div>
+      </div>
+      <div><div class="footer-col-title">Nos Koïs</div><div class="footer-links"><a href="kois.html">Catalogue</a><a href="kois.html">Kohaku</a><a href="kois.html">Konishi ★</a></div></div>
+      <div><div class="footer-col-title">Matériel</div><div class="footer-links"><a href="materiel.html">Filtration</a><a href="materiel.html">Pompes</a><a href="materiel.html">UV</a></div></div>
+      <div><div class="footer-col-title">Nourriture</div><div class="footer-links"><a href="nourriture.html">Croissance</a><a href="nourriture.html">Couleur</a><a href="nourriture.html">Premium</a></div></div>
+      <div><div class="footer-col-title">Soins</div><div class="footer-links"><a href="soins.html">Anti-parasites</a><a href="soins.html">Tests eau</a></div></div>
+      <div><div class="footer-col-title">Nous découvrir</div><div class="footer-links"><a href="decouvrir.html">Notre histoire</a><a href="azukari.html">Azukari</a><a href="contact.html">Contact</a></div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Koi's Story — Mathilde &amp; Emmanuel, Gueugnon</span>
+      <span>Élevage Konishi certifié · Livraison spécialisée</span>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/33600000000" class="wa-fixed" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+</body>
+</html>

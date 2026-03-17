@@ -3,167 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atom — Koi Thumbnail</title>
+  <title>Atom — Koi Thumb | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    
     :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-body:    'Inter', system-ui, sans-serif;
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --color-red-dark:  #cc0000;
+      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
+      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
+      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-xl: 1rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease;
     }
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 24px; }
-    .group { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); line-height: 1.6; padding: 2rem; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    .demo-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 0.75rem; margin-top: 2rem; }
+    .group { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
 
-    /* ── KOI THUMB ATOM ──────────────────────────────────────── */
+    /* ── KOI THUMB ATOM ──────────────────────────────────────────── */
     .koi-thumb {
       position: relative;
-      border-radius: 12px;
+      border-radius: var(--r-lg);
       overflow: hidden;
-      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
-    
     .koi-thumb img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      transition: transform var(--t-base);
+      display: block;
     }
-    
-    .koi-thumb:hover img {
-      transform: scale(1.05);
-    }
+    .koi-thumb:hover img { transform: scale(1.06); }
 
-    /* Sizes */
-    .koi-thumb-sm { width: 80px; height: 80px; }
-    .koi-thumb-md { width: 120px; height: 120px; }
-    .koi-thumb-lg { width: 180px; height: 180px; }
-    .koi-thumb-xl { width: 280px; height: 280px; }
+    /* Tailles fixes */
+    .koi-thumb--xs { width: 60px;  height: 60px; }
+    .koi-thumb--sm { width: 90px;  height: 90px; }
+    .koi-thumb--md { width: 130px; height: 130px; }
+    .koi-thumb--lg { width: 200px; height: 200px; }
+    .koi-thumb--xl { width: 300px; height: 300px; }
 
-    /* Aspect ratios */
-    .koi-thumb-card { width: 100%; aspect-ratio: 4/3; }
-    .koi-thumb-hero { width: 100%; aspect-ratio: 16/10; }
-    .koi-thumb-square { width: 100%; aspect-ratio: 1/1; }
+    /* Ratios */
+    .koi-thumb--portrait  { width: 220px; aspect-ratio: 3/4; height: auto; }
+    .koi-thumb--landscape { width: 100%;  aspect-ratio: 16/9; height: auto; }
+    .koi-thumb--card      { width: 100%;  aspect-ratio: 4/3; height: auto; }
+    .koi-thumb--square    { width: 100%;  aspect-ratio: 1/1; height: auto; }
 
-    /* Overlays */
+    /* Overlay gradient bas */
     .koi-thumb-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,48,73,0.6) 0%, transparent 50%);
-      display: flex;
-      align-items: flex-end;
-      padding: 12px;
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
+      display: flex; align-items: flex-end;
+      padding: var(--sp-3);
     }
-    
+    .koi-thumb-overlay-text {
+      color: var(--color-white);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Badge position (Konishi) */
     .koi-thumb-badge {
       position: absolute;
-      top: 10px;
-      left: 10px;
-    }
-    
-    .koi-thumb-sold {
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 600;
+      top: var(--sp-2);
+      left: var(--sp-2);
+      background: var(--color-wine);
+      color: #f5c842;
+      font-size: 0.62rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gris-pierre);
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: var(--r-full);
+      border: 1px solid rgba(245,200,66,0.3);
     }
 
-    /* Gallery nav */
+    /* Sold overlay */
+    .koi-thumb-sold {
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.55);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gray-600);
+    }
+
+    /* Gallery nav buttons */
     .koi-thumb-nav {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 12px;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--sp-3);
       pointer-events: none;
     }
-    
     .koi-thumb-nav-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+      width: 34px; height: 34px; border-radius: var(--r-full);
       background: rgba(255,255,255,0.9);
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      pointer-events: auto;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
+      border: none; cursor: pointer; pointer-events: auto;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; transition: all var(--t-fast);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
-    
     .koi-thumb-nav-btn:hover {
-      background: #fff;
+      background: var(--color-white);
       transform: scale(1.1);
     }
+
+    /* Dot indicators */
+    .koi-thumb-dots {
+      position: absolute; bottom: var(--sp-3); left: 50%; transform: translateX(-50%);
+      display: flex; gap: var(--sp-1);
+    }
+    .koi-thumb-dot {
+      width: 6px; height: 6px; border-radius: var(--r-full);
+      background: rgba(255,255,255,0.5);
+    }
+    .koi-thumb-dot.active { background: var(--color-white); }
   </style>
 </head>
 <body>
 
-  <h3>Tailles fixes</h3>
-  <div class="group">
-    <div class="koi-thumb koi-thumb-sm">🐟</div>
-    <div class="koi-thumb koi-thumb-md">🐟</div>
-    <div class="koi-thumb koi-thumb-lg">🐟</div>
-    <div class="koi-thumb koi-thumb-xl">🐟</div>
+  <p class="demo-label">Tailles fixes</p>
+  <div class="group" style="align-items: flex-end;">
+    <div class="koi-thumb koi-thumb--xs" title="XS 60px">🐟</div>
+    <div class="koi-thumb koi-thumb--sm" title="SM 90px">🐟</div>
+    <div class="koi-thumb koi-thumb--md" title="MD 130px">🐟</div>
+    <div class="koi-thumb koi-thumb--lg" title="LG 200px">🐟</div>
   </div>
 
-  <h3>Ratios (avec images placeholder)</h3>
-  <div class="group" style="width: 300px;">
-    <div class="koi-thumb koi-thumb-card">
-      <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koi">
+  <p class="demo-label">Ratios (portrait, card, landscape)</p>
+  <div class="group" style="max-width: 700px;">
+    <div class="koi-thumb koi-thumb--portrait">
+      <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=300&h=400&fit=crop" alt="Koï portrait">
     </div>
-  </div>
-  <div class="group" style="width: 300px;">
-    <div class="koi-thumb koi-thumb-hero">
-      <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Koi">
-      <div class="koi-thumb-overlay">
-        <span style="color: #fff; font-size: 0.85rem; font-weight: 600;">Vue de la ferme</span>
+    <div style="flex: 1; min-width: 200px;">
+      <div class="koi-thumb koi-thumb--card">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=400&h=300&fit=crop" alt="Koï card">
       </div>
     </div>
   </div>
 
-  <h3>Avec badge Konishi</h3>
+  <p class="demo-label">Avec badge Konishi</p>
   <div class="group">
-    <div class="koi-thumb koi-thumb-lg">
-      <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Koi">
-      <span class="koi-thumb-badge" style="background: var(--or-konishi); color: var(--bleu-profond); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600;">★ Konishi</span>
+    <div class="koi-thumb koi-thumb--lg">
+      <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=200&h=200&fit=crop" alt="Koï Konishi">
+      <span class="koi-thumb-badge">★ Konishi</span>
     </div>
   </div>
 
-  <h3>Vendu (overlay)</h3>
+  <p class="demo-label">Overlay gradient bas</p>
+  <div class="group" style="max-width: 400px;">
+    <div class="koi-thumb koi-thumb--landscape">
+      <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&h=340&fit=crop" alt="Bassin koï">
+      <div class="koi-thumb-overlay">
+        <span class="koi-thumb-overlay-text">Bassin principal — élevage Gueugnon</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="demo-label">Vendu (overlay sold)</p>
   <div class="group">
-    <div class="koi-thumb koi-thumb-lg">
-      <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koi">
+    <div class="koi-thumb koi-thumb--lg">
+      <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=200&h=200&fit=crop" alt="Vendu">
       <div class="koi-thumb-sold">Vendu</div>
     </div>
   </div>
 
-  <h3>Galerie avec navigation</h3>
-  <div class="group" style="width: 400px;">
-    <div class="koi-thumb koi-thumb-hero">
-      <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Koi">
+  <p class="demo-label">Galerie avec navigation</p>
+  <div class="group" style="max-width: 480px;">
+    <div class="koi-thumb koi-thumb--landscape">
+      <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=480&h=270&fit=crop" alt="Galerie koï">
       <div class="koi-thumb-nav">
         <button class="koi-thumb-nav-btn">❮</button>
         <button class="koi-thumb-nav-btn">❯</button>
+      </div>
+      <div class="koi-thumb-dots">
+        <span class="koi-thumb-dot active"></span>
+        <span class="koi-thumb-dot"></span>
+        <span class="koi-thumb-dot"></span>
+        <span class="koi-thumb-dot"></span>
       </div>
     </div>
   </div>

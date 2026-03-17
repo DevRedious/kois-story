@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nous découvrir — Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-red:#e60000;--color-wine:#630f0f;--color-black:#000000;--color-cream:#f5f5f2;--color-white:#ffffff;
+      --gray-900:#0a0a0a;--gray-800:#1a1a1a;--gray-700:#2d2d2d;--gray-600:#404040;--gray-500:#525252;--gray-400:#737373;--gray-300:#a3a3a3;--gray-200:#d4d4d4;--gray-100:#f0f0ee;
+      --color-wa:#25d366;
+      --font-serif:'Playfair Display',Georgia,serif;--font-sans:'Open Sans',system-ui,sans-serif;
+      --sp-1:.25rem;--sp-2:.5rem;--sp-3:.75rem;--sp-4:1rem;--sp-5:1.25rem;--sp-6:1.5rem;--sp-8:2rem;--sp-10:2.5rem;--sp-12:3rem;--sp-16:4rem;
+      --r-sm:.375rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;
+      --t-fast:150ms ease;--t-base:300ms ease;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-sans);background:var(--color-cream);color:var(--gray-800);-webkit-font-smoothing:antialiased;}
+    img{display:block;max-width:100%;}
+    a{text-decoration:none;color:inherit;}
+
+    /* ── HEADER ── */
+    .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;height:75px;background:var(--gray-900);display:flex;align-items:center;padding:0 var(--sp-8);gap:var(--sp-8);border-bottom:1px solid rgba(255,255,255,0.06);}
+    .header-logo{display:flex;align-items:center;gap:var(--sp-3);flex-shrink:0;}
+    .logo-circle{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--color-red),var(--color-wine));display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;font-size:1.1rem;color:white;}
+    .logo-text{font-family:var(--font-serif);font-size:1.15rem;font-weight:700;color:white;line-height:1.2;}
+    .logo-text span{color:var(--color-red);}
+    .header-nav{display:flex;align-items:center;gap:0;flex:1;justify-content:center;}
+    .header-nav a{color:rgba(255,255,255,0.75);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;padding:0 var(--sp-4);height:75px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color var(--t-fast),border-color var(--t-fast);}
+    .header-nav a:hover{color:white;}
+    .header-nav a.active{color:white;border-bottom-color:var(--color-red);}
+    .header-phone{font-size:0.8rem;font-weight:600;color:white;flex-shrink:0;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:var(--sp-2);}
+    .hamburger span{display:block;width:24px;height:2px;background:white;}
+    .mobile-nav{display:none;position:fixed;top:75px;left:0;right:0;background:var(--gray-800);z-index:999;padding:var(--sp-4) 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .mobile-nav.open{display:block;}
+    .mobile-nav a{display:block;padding:var(--sp-3) var(--sp-8);color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;border-left:3px solid transparent;}
+    .mobile-nav a.active{color:white;border-left-color:var(--color-red);}
+    @media(max-width:1024px){.header-nav{display:none;}.hamburger{display:flex;}.header-phone{display:none;}}
+
+    /* ── INTERNAL HERO ── */
+    .page-hero{margin-top:75px;position:relative;height:45vh;min-height:320px;overflow:hidden;background:var(--gray-900);}
+    .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;}
+    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.85) 0%,rgba(10,10,10,0.4) 60%,transparent 100%);}
+    .page-hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 var(--sp-10);max-width:1400px;margin:0 auto;}
+    .page-hero-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-red);margin-bottom:var(--sp-3);}
+    .page-hero-title{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:white;line-height:1.15;margin-bottom:var(--sp-4);}
+    .page-hero-title em{font-style:italic;color:var(--color-red);}
+    .page-hero-sub{font-size:1rem;color:rgba(255,255,255,0.75);max-width:500px;line-height:1.7;}
+    .breadcrumb{position:absolute;bottom:var(--sp-4);left:0;right:0;padding:0 var(--sp-10);z-index:2;font-size:0.75rem;color:rgba(255,255,255,0.5);}
+    .breadcrumb a{color:rgba(255,255,255,0.5);}
+    .breadcrumb a:hover{color:white;}
+    .breadcrumb span{margin:0 var(--sp-2);}
+
+    /* ── MAIN CONTENT ── */
+    .page-body{max-width:1400px;margin:0 auto;padding:var(--sp-16) var(--sp-10);}
+
+    /* Bio section */
+    .bio-section{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-12);align-items:center;margin-bottom:var(--sp-16);}
+    .bio-section.reverse{direction:rtl;}
+    .bio-section.reverse>*{direction:ltr;}
+    .bio-img{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/3;position:relative;}
+    .bio-img img{width:100%;height:100%;object-fit:cover;}
+    .bio-img-badge{position:absolute;bottom:var(--sp-4);left:var(--sp-4);background:var(--color-wine);color:#f5c842;padding:6px 14px;border-radius:var(--r-full);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+    .bio-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-red);margin-bottom:var(--sp-3);}
+    .bio-title{font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-4);line-height:1.2;}
+    .bio-text{font-size:0.95rem;color:var(--gray-600);line-height:1.85;margin-bottom:var(--sp-5);}
+    .bio-values{display:flex;flex-direction:column;gap:var(--sp-3);}
+    .bio-value{display:flex;align-items:flex-start;gap:var(--sp-3);}
+    .bio-value-icon{width:36px;height:36px;border-radius:var(--r-md);background:rgba(230,0,0,0.08);color:var(--color-red);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+    .bio-value-title{font-size:0.88rem;font-weight:700;color:var(--gray-900);margin-bottom:2px;}
+    .bio-value-desc{font-size:0.8rem;color:var(--gray-500);}
+
+    /* Stats band */
+    .stats-band{background:var(--gray-900);border-radius:var(--r-xl);padding:var(--sp-10);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-6);text-align:center;margin-bottom:var(--sp-16);}
+    .stat-item{}
+    .stat-number{font-family:var(--font-serif);font-size:2.5rem;font-weight:700;color:var(--color-red);line-height:1;}
+    .stat-label{font-size:0.8rem;color:var(--gray-400);margin-top:var(--sp-2);text-transform:uppercase;letter-spacing:0.06em;}
+
+    /* Gallery grid */
+    .section-title{font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-2);text-align:center;}
+    .section-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-red);margin-bottom:var(--sp-3);text-align:center;}
+    .section-sub{font-size:0.95rem;color:var(--gray-500);line-height:1.7;text-align:center;max-width:560px;margin:0 auto var(--sp-10);}
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,220px);gap:var(--sp-3);margin-bottom:var(--sp-16);}
+    .gallery-item{border-radius:var(--r-lg);overflow:hidden;position:relative;background:var(--gray-700);}
+    .gallery-item:first-child{grid-row:1/3;border-radius:var(--r-xl);}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-base);}
+    .gallery-item:hover img{transform:scale(1.04);}
+    .gallery-label{position:absolute;bottom:0;left:0;right:0;padding:var(--sp-4) var(--sp-4) var(--sp-3);background:linear-gradient(to top,rgba(0,0,0,0.65) 0%,transparent 100%);color:white;font-size:0.8rem;font-weight:600;}
+
+    /* Konishi block */
+    .konishi-block{background:var(--gray-900);border-radius:var(--r-xl);padding:var(--sp-10);display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-10);align-items:center;margin-bottom:var(--sp-16);}
+    .konishi-badge{display:inline-flex;align-items:center;gap:var(--sp-2);background:rgba(245,200,66,0.12);border:1px solid rgba(245,200,66,0.25);border-radius:var(--r-full);padding:6px 14px;font-size:0.72rem;font-weight:700;color:#f5c842;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:var(--sp-4);}
+    .konishi-title{font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:white;margin-bottom:var(--sp-4);line-height:1.25;}
+    .konishi-text{font-size:0.92rem;color:var(--gray-400);line-height:1.8;margin-bottom:var(--sp-6);}
+    .konishi-list{display:flex;flex-direction:column;gap:var(--sp-3);}
+    .konishi-list-item{display:flex;align-items:center;gap:var(--sp-3);font-size:0.88rem;color:var(--gray-300);}
+    .konishi-list-item::before{content:"✓";color:#f5c842;font-weight:700;flex-shrink:0;}
+    .konishi-img{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:4/3;}
+    .konishi-img img{width:100%;height:100%;object-fit:cover;}
+
+    /* Visit CTA */
+    .visit-cta{background:var(--color-cream);border:1px solid var(--gray-200);border-radius:var(--r-xl);padding:var(--sp-10);display:grid;grid-template-columns:1fr auto;gap:var(--sp-8);align-items:center;}
+    .visit-cta-title{font-family:var(--font-serif);font-size:1.6rem;font-weight:700;color:var(--gray-900);margin-bottom:var(--sp-3);}
+    .visit-cta-text{font-size:0.92rem;color:var(--gray-600);line-height:1.7;}
+    .visit-cta-actions{display:flex;flex-direction:column;gap:var(--sp-3);flex-shrink:0;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);font-family:var(--font-sans);font-weight:600;border:none;cursor:pointer;border-radius:var(--r-md);transition:all var(--t-fast);text-decoration:none;white-space:nowrap;}
+    .btn-primary{background:var(--color-red);color:white;padding:14px 28px;font-size:0.9rem;}
+    .btn-primary:hover{background:#cc0000;}
+    .btn-wa{background:var(--color-wa);color:white;padding:14px 28px;font-size:0.9rem;}
+    .btn-wa:hover{background:#1da851;}
+    .btn-outline{background:transparent;color:var(--gray-700);padding:14px 28px;font-size:0.9rem;border:1px solid var(--gray-300);}
+    .btn-outline:hover{border-color:var(--gray-600);color:var(--gray-900);}
+
+    /* ── FOOTER ── */
+    .site-footer{background:var(--gray-900);color:rgba(255,255,255,0.7);padding:var(--sp-16) var(--sp-10) var(--sp-8);}
+    .footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:var(--sp-8);margin-bottom:var(--sp-10);}
+    .footer-brand .logo-circle{width:48px;height:48px;font-size:1.2rem;margin-bottom:var(--sp-4);}
+    .footer-brand .logo-text{font-size:1.3rem;margin-bottom:var(--sp-4);}
+    .footer-brand p{font-size:0.82rem;line-height:1.7;color:var(--gray-400);margin-bottom:var(--sp-5);}
+    .footer-konishi-tag{display:inline-flex;align-items:center;gap:var(--sp-2);background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.2);border-radius:var(--r-full);padding:4px 12px;font-size:0.7rem;font-weight:700;color:#f5c842;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--sp-5);}
+    .footer-col-title{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-red);margin-bottom:var(--sp-4);}
+    .footer-links{display:flex;flex-direction:column;gap:var(--sp-2);}
+    .footer-links a{font-size:0.82rem;color:var(--gray-400);transition:color var(--t-fast);}
+    .footer-links a:hover{color:white;}
+    .footer-bottom{max-width:1400px;margin:0 auto;padding-top:var(--sp-6);border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:var(--gray-500);}
+    @media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr 1fr;}.bio-section{grid-template-columns:1fr;gap:var(--sp-8);}.bio-section.reverse{direction:ltr;}.konishi-block{grid-template-columns:1fr;}.stats-band{grid-template-columns:repeat(2,1fr);}.visit-cta{grid-template-columns:1fr;}.visit-cta-actions{flex-direction:row;}}
+    @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}.gallery-item:first-child{grid-row:auto;}.page-body{padding:var(--sp-10) var(--sp-6);}.stats-band{grid-template-columns:1fr 1fr;padding:var(--sp-6);}}
+
+    /* WhatsApp fixed */
+    .wa-fixed{position:fixed;bottom:var(--sp-6);right:var(--sp-6);z-index:999;width:56px;height:56px;background:var(--color-wa);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform var(--t-fast);}
+    .wa-fixed:hover{transform:scale(1.1);}
+    .wa-fixed svg{width:28px;height:28px;fill:white;}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-logo">
+      <div class="logo-circle">K</div>
+      <div class="logo-text">Koi's <span>Story</span></div>
+    </div>
+    <nav class="header-nav">
+      <a href="home.html">Accueil</a>
+      <a href="decouvrir.html" class="active">Nous découvrir</a>
+      <a href="kois.html">Nos Koïs</a>
+      <a href="materiel.html">Matériel</a>
+      <a href="nourriture.html">Nourriture</a>
+      <a href="soins.html">Soins</a>
+      <a href="azukari.html">Azukari</a>
+    </nav>
+    <div class="header-phone">📞 +33 6 00 00 00 00</div>
+    <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="home.html">Accueil</a>
+    <a href="decouvrir.html" class="active">Nous découvrir</a>
+    <a href="kois.html">Nos Koïs</a>
+    <a href="materiel.html">Matériel</a>
+    <a href="nourriture.html">Nourriture</a>
+    <a href="soins.html">Soins</a>
+    <a href="azukari.html">Azukari</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=1400&h=600&fit=crop" alt="Élevage Koi's Story">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">Notre histoire</div>
+      <h1 class="page-hero-title">Mathilde &amp; Emmanuel —<br><em>Une passion, un élevage</em></h1>
+      <p class="page-hero-sub">Découvrez l'histoire de Koi's Story, notre élevage à Gueugnon et notre partenariat exclusif avec la lignée Konishi.</p>
+    </div>
+    <div class="breadcrumb">
+      <a href="home.html">Accueil</a><span>›</span> Nous découvrir
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <main class="page-body">
+
+    <!-- Bio Mathilde & Emmanuel -->
+    <div class="bio-section">
+      <div class="bio-img">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&h=450&fit=crop" alt="Mathilde et Emmanuel">
+        <span class="bio-img-badge">★ Fondateurs de Koi's Story</span>
+      </div>
+      <div>
+        <div class="bio-eyebrow">Qui sommes-nous</div>
+        <h2 class="bio-title">Une passion née<br>de l'amour de l'eau</h2>
+        <p class="bio-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mathilde et Emmanuel ont fondé Koi's Story à Gueugnon, animés par une passion commune pour les carpes koïs et l'excellence japonaise. Depuis plus de dix ans, ils sélectionnent, élèvent et accompagnent chaque poisson avec le même soin.</p>
+        <p class="bio-text">Leur rencontre avec la lignée Konishi a transformé leur élevage en une référence unique en France — les seuls à proposer des spécimens certifiés Konishi avec traçabilité complète.</p>
+        <div class="bio-values">
+          <div class="bio-value">
+            <div class="bio-value-icon">🎯</div>
+            <div>
+              <div class="bio-value-title">Qualité certifiée</div>
+              <div class="bio-value-desc">Chaque koï est vérifié, photographié et accompagné de son certificat individuel.</div>
+            </div>
+          </div>
+          <div class="bio-value">
+            <div class="bio-value-icon">🔍</div>
+            <div>
+              <div class="bio-value-title">Traçabilité complète</div>
+              <div class="bio-value-desc">Origine, lignée, classe d'âge — tout est documenté et transparent.</div>
+            </div>
+          </div>
+          <div class="bio-value">
+            <div class="bio-value-icon">💬</div>
+            <div>
+              <div class="bio-value-title">Conseil personnalisé</div>
+              <div class="bio-value-desc">Mathilde &amp; Emmanuel répondent à chaque question, par WhatsApp ou en visite.</div>
+            </div>
+          </div>
+          <div class="bio-value">
+            <div class="bio-value-icon">🌊</div>
+            <div>
+              <div class="bio-value-title">Passion authentique</div>
+              <div class="bio-value-desc">Chaque koï est élevé avec amour, dans des conditions optimales depuis le tout début.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-band">
+      <div class="stat-item">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Années d'expérience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">200+</div>
+        <div class="stat-label">Koïs disponibles</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">50k L</div>
+        <div class="stat-label">Volume des bassins</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Seul</div>
+        <div class="stat-label">Éleveur Konishi en France</div>
+      </div>
+    </div>
+
+    <!-- Photo gallery: bassins -->
+    <div class="section-eyebrow">Nos installations</div>
+    <h2 class="section-title">Les bassins de Koi's Story</h2>
+    <p class="section-sub">Un élevage pensé pour le bien-être des poissons : filtration optimisée, eau analysée quotidiennement, bassins de quarantaine séparés.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=500&h=600&fit=crop" alt="Bassin principal">
+        <div class="gallery-label">Bassin principal — 50 000 L</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=400&h=220&fit=crop" alt="Bassin Konishi">
+        <div class="gallery-label">Bassin Konishi dédié</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=400&h=220&fit=crop&crop=top" alt="Filtration">
+        <div class="gallery-label">Système de filtration</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=400&h=220&fit=crop&crop=bottom" alt="Nurserie">
+        <div class="gallery-label">Nurserie Tosaï</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=400&h=220&fit=crop&crop=left" alt="Vue d'ensemble">
+        <div class="gallery-label">Vue d'ensemble du site</div>
+      </div>
+    </div>
+
+    <!-- Konishi partnership -->
+    <div class="konishi-block">
+      <div>
+        <div class="konishi-badge">★ Partenariat officiel depuis 2022</div>
+        <h2 class="konishi-title">La lignée Konishi —<br>Un héritage japonais d'exception</h2>
+        <p class="konishi-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. La lignée Konishi est l'une des plus réputées au monde dans l'élevage de carpes koïs. Notre partenariat exclusif nous permet d'être le seul éleveur en France à proposer des spécimens certifiés Konishi, avec traçabilité complète et certificats d'authenticité numérotés.</p>
+        <div class="konishi-list">
+          <div class="konishi-list-item">Spécimens sélectionnés au Japon par la famille Konishi</div>
+          <div class="konishi-list-item">Certificat d'authenticité individuel pour chaque koï</div>
+          <div class="konishi-list-item">Numéro de traçabilité de la lignée d'origine</div>
+          <div class="konishi-list-item">Seul éleveur certifié Konishi en France</div>
+          <div class="konishi-list-item">Partenariat renouvelé annuellement avec audits qualité</div>
+        </div>
+      </div>
+      <div class="konishi-img">
+        <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=500&h=380&fit=crop" alt="Partenariat Konishi">
+      </div>
+    </div>
+
+    <!-- Visit CTA -->
+    <div class="visit-cta">
+      <div>
+        <h3 class="visit-cta-title">Venez nous rendre visite à Gueugnon</h3>
+        <p class="visit-cta-text">Mathilde et Emmanuel vous accueillent sur rendez-vous pour vous présenter l'élevage, les bassins et les koïs disponibles. Une expérience unique pour choisir votre futur poisson dans les meilleures conditions.</p>
+      </div>
+      <div class="visit-cta-actions">
+        <a href="https://wa.me/33600000000?text=Bonjour%2C+je+souhaite+visiter+l%27%C3%A9levage+Koi%27s+Story.+Quels+cr%C3%A9neaux+sont+disponibles+%3F" class="btn btn-wa" target="_blank">📱 Prendre rendez-vous</a>
+        <a href="contact.html" class="btn btn-outline">Nous contacter</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-circle">K</div>
+        <div class="logo-text">Koi's <span>Story</span></div>
+        <p>Élevage de carpes koïs d'exception à Gueugnon. Partenaire exclusif de la lignée Konishi en France depuis 2022.</p>
+        <div class="footer-konishi-tag">★ Éleveur Konishi certifié</div>
+        <a href="https://wa.me/33600000000" class="btn btn-wa" style="font-size:0.82rem;padding:10px 18px;" target="_blank">📱 WhatsApp</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Nos Koïs</div>
+        <div class="footer-links">
+          <a href="kois.html">Catalogue</a>
+          <a href="kois.html">Kohaku</a>
+          <a href="kois.html">Showa</a>
+          <a href="kois.html">Sanke</a>
+          <a href="kois.html">Konishi ★</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Matériel</div>
+        <div class="footer-links">
+          <a href="materiel.html">Filtration</a>
+          <a href="materiel.html">Pompes</a>
+          <a href="materiel.html">UV</a>
+          <a href="materiel.html">Bassins</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Nourriture</div>
+        <div class="footer-links">
+          <a href="nourriture.html">Croissance</a>
+          <a href="nourriture.html">Couleur</a>
+          <a href="nourriture.html">Hiver</a>
+          <a href="nourriture.html">Premium</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Soins</div>
+        <div class="footer-links">
+          <a href="soins.html">Anti-parasites</a>
+          <a href="soins.html">Traitements</a>
+          <a href="soins.html">Tests eau</a>
+          <a href="soins.html">Sel de bassin</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Nous découvrir</div>
+        <div class="footer-links">
+          <a href="decouvrir.html">Notre histoire</a>
+          <a href="decouvrir.html">Konishi</a>
+          <a href="azukari.html">Azukari</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Koi's Story — Mathilde &amp; Emmanuel, Gueugnon</span>
+      <span>Élevage Konishi certifié · Livraison spécialisée</span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp fixed -->
+  <a href="https://wa.me/33600000000" class="wa-fixed" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+</body>
+</html>

@@ -3,118 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atom — Badge Visitor</title>
+  <title>Atom — Badge | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
     :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --vert-dispo:   #2D9E5A;
-      --font-body:    'Inter', system-ui, sans-serif;
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --color-red-dark:  #cc0000;
+      --color-red-light: #ff1a1a;
+      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
+      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
+      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
+      --color-wa: #25d366;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease;
     }
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 24px; }
-    .group { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); line-height: 1.6; padding: 2rem; -webkit-font-smoothing: antialiased; }
+    .demo-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 0.75rem; margin-top: 2rem; }
+    .group { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
 
-    /* ── BADGE ATOM ──────────────────────────────────────────── */
+    /* ── BADGE ATOM ──────────────────────────────────────────────── */
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: var(--r-full);
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
+      line-height: 1;
       white-space: nowrap;
     }
 
-    /* Variants */
-    .badge-konishi { 
-      background: var(--or-konishi); 
-      color: var(--bleu-profond); 
-    }
-    
-    .badge-available { 
-      background: #d4f0e0; 
-      color: var(--vert-dispo); 
-    }
-    
-    .badge-sold { 
-      background: #e8ecf0; 
-      color: var(--gris-pierre); 
-    }
-    
-    .badge-variety { 
-      background: rgba(0,48,73,0.08); 
-      color: var(--bleu-profond); 
-    }
-    
-    .badge-size { 
-      background: rgba(214,40,40,0.08); 
-      color: var(--rouge-koi); 
-    }
-    
-    .badge-featured { 
-      background: var(--rouge-koi); 
-      color: #fff; 
+    /* ── Konishi ── */
+    .badge--konishi {
+      background: var(--color-wine);
+      color: #f5c842;
+      border: 1px solid rgba(245,200,66,0.3);
     }
 
-    /* Sizes */
-    .badge-sm { padding: 4px 8px; font-size: 0.65rem; }
-    .badge-lg { padding: 8px 16px; font-size: 0.85rem; }
-
-    /* With dot */
-    .badge-dot::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
+    /* ── Disponibilité ── */
+    .badge--available {
+      background: #14532d;
+      color: #bbf7d0;
     }
+    .badge--sold {
+      background: var(--gray-600);
+      color: var(--gray-200);
+    }
+    .badge--reserved {
+      background: #78350f;
+      color: #fde68a;
+    }
+    .badge--new {
+      background: var(--color-red);
+      color: var(--color-white);
+    }
+
+    /* ── Variété ── */
+    .badge--variety {
+      background: rgba(99,15,15,0.10);
+      color: var(--color-wine);
+      border: 1px solid rgba(99,15,15,0.18);
+    }
+
+    /* ── Classe d'âge ── */
+    .badge--age {
+      background: rgba(230,0,0,0.08);
+      color: var(--color-red-dark);
+      border: 1px solid rgba(230,0,0,0.14);
+    }
+
+    /* ── Sexe ── */
+    .badge--male {
+      background: rgba(29,78,216,0.09);
+      color: #1d4ed8;
+      border: 1px solid rgba(29,78,216,0.18);
+    }
+    .badge--female {
+      background: rgba(190,24,93,0.09);
+      color: #be185d;
+      border: 1px solid rgba(190,24,93,0.18);
+    }
+
+    /* ── Tailles ── */
+    .badge--sm { font-size: 0.6rem; padding: 3px 8px; }
+    .badge--lg { font-size: 0.78rem; padding: 6px 14px; }
   </style>
 </head>
 <body>
 
-  <h3>Lignée Konishi — Premium</h3>
+  <p class="demo-label">Konishi — Badge lignée certifiée</p>
   <div class="group">
-    <span class="badge badge-konishi">★ Konishi</span>
-    <span class="badge badge-konishi badge-lg">★ Lignée Konishi</span>
-    <span class="badge badge-konishi badge-sm">★ K</span>
+    <span class="badge badge--konishi">★ Lignée Konishi</span>
+    <span class="badge badge--konishi badge--lg">★ Lignée Konishi</span>
+    <span class="badge badge--konishi badge--sm">★ Konishi</span>
   </div>
 
-  <h3>Disponibilité</h3>
+  <p class="demo-label">Disponibilité</p>
   <div class="group">
-    <span class="badge badge-available badge-dot">Disponible</span>
-    <span class="badge badge-sold">Vendu</span>
+    <span class="badge badge--available">● Disponible</span>
+    <span class="badge badge--sold">Vendu</span>
+    <span class="badge badge--reserved">Réservé</span>
+    <span class="badge badge--new">Nouveau</span>
   </div>
 
-  <h3>Variété de koï</h3>
+  <p class="demo-label">Variété</p>
   <div class="group">
-    <span class="badge badge-variety">Kohaku</span>
-    <span class="badge badge-variety">Sanke</span>
-    <span class="badge badge-variety">Showa</span>
-    <span class="badge badge-variety">Butterfly</span>
-    <span class="badge badge-variety">Tancho</span>
+    <span class="badge badge--variety">Kohaku</span>
+    <span class="badge badge--variety">Showa</span>
+    <span class="badge badge--variety">Sanke</span>
+    <span class="badge badge--variety">Butterfly</span>
+    <span class="badge badge--variety">Tancho</span>
+    <span class="badge badge--variety">Kujaku</span>
+    <span class="badge badge--variety">Asagi</span>
+    <span class="badge badge--variety">Goshiki</span>
   </div>
 
-  <h3>Taille</h3>
+  <p class="demo-label">Classe d'âge</p>
   <div class="group">
-    <span class="badge badge-size">65 cm</span>
-    <span class="badge badge-size badge-sm">72 cm</span>
+    <span class="badge badge--age">Tosaï</span>
+    <span class="badge badge--age">Jumbo Tosaï</span>
+    <span class="badge badge--age">Nisaï</span>
+    <span class="badge badge--age">Sansaï</span>
+    <span class="badge badge--age">Yonsaï</span>
+    <span class="badge badge--age">Gosai</span>
   </div>
 
-  <h3>Mis en avant</h3>
+  <p class="demo-label">Sexe</p>
   <div class="group">
-    <span class="badge badge-featured">Nouveauté</span>
-    <span class="badge badge-featured">Coup de cœur</span>
+    <span class="badge badge--male">♂ Mâle</span>
+    <span class="badge badge--female">♀ Femelle</span>
+  </div>
+
+  <p class="demo-label">Combinaison type card produit</p>
+  <div class="group">
+    <span class="badge badge--konishi">★ Konishi</span>
+    <span class="badge badge--variety">Kohaku</span>
+    <span class="badge badge--age">Nisaï</span>
+    <span class="badge badge--female">♀ Femelle</span>
+    <span class="badge badge--available">● Disponible</span>
   </div>
 
 </body>

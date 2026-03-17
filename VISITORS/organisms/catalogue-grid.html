@@ -3,456 +3,315 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organism — Catalogue Grid</title>
+  <title>Organism — Catalogue Grid | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
     :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --color-red-dark:  #cc0000;
+      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
+      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
+      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+      --sp-5: 1.25rem; --sp-6: 1.5rem; --sp-8: 2rem; --sp-10: 2.5rem; --sp-16: 4rem;
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-xl: 1rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease;
     }
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
 
-    /* ── CATALOGUE GRID ORGANISM ─────────────────────────────── */
+    /* ── CATALOGUE GRID ORGANISM ─────────────────────────────────── */
     .catalogue {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 60px 32px;
+      max-width: 1400px; margin: 0 auto;
+      padding: var(--sp-16) var(--sp-10);
     }
 
     /* Header */
     .catalogue-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: var(--sp-8); flex-wrap: wrap; gap: var(--sp-4);
     }
-    
-    .catalogue-title-group h2 {
-      font-family: var(--font-title);
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      margin-bottom: 8px;
+    .catalogue-eyebrow {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--color-red); margin-bottom: var(--sp-2);
     }
-    
-    .catalogue-title-group p {
-      font-size: 1rem;
-      color: var(--gris-pierre);
+    .catalogue-title {
+      font-family: var(--font-serif); font-size: 2.2rem; font-weight: 700;
+      color: var(--gray-900); line-height: 1.15;
     }
-    
-    .catalogue-view-all {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      background: var(--bleu-profond);
-      color: #fff;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    
-    .catalogue-view-all:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,48,73,0.2);
-    }
+    .catalogue-count { font-size: 0.85rem; color: var(--gray-400); }
+    .catalogue-count strong { color: var(--color-red); font-weight: 700; }
 
-    /* Filter bar (simplified) */
+    /* Filter bar */
     .catalogue-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 32px;
-      padding: 20px 24px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,48,73,0.04);
+      display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: flex-end;
+      padding: var(--sp-5) var(--sp-5);
+      background: var(--color-white); border-radius: var(--r-lg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--gray-100);
+      margin-bottom: var(--sp-8);
     }
-    
+    .filter-group { display: flex; flex-direction: column; gap: var(--sp-1); flex: 1; min-width: 140px; }
+    .filter-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray-500); }
     .filter-select {
-      padding: 10px 36px 10px 14px;
-      border: 2px solid #e8ecf0;
-      border-radius: 8px;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: var(--bleu-profond);
-      background: #fff;
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23003049' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
+      padding: 9px 32px 9px 11px; border: 2px solid var(--gray-200); border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: 0.85rem; color: var(--gray-800);
+      background: var(--color-white); appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath fill='%23404040' d='M5 7L0 0h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+      outline: none; transition: border-color var(--t-fast);
     }
-    
-    .filter-toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      background: rgba(224,159,62,0.1);
-      border: 2px solid transparent;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--bleu-profond);
-      cursor: pointer;
-      margin-left: auto;
+    .filter-select:focus { border-color: var(--color-red); }
+    .filter-konishi {
+      display: flex; align-items: center; gap: var(--sp-2);
+      padding: 9px 13px; border: 2px solid var(--gray-200); border-radius: var(--r-md);
+      cursor: pointer; transition: all var(--t-fast); user-select: none;
     }
-    
-    .filter-toggle:hover {
-      border-color: var(--or-konishi);
+    .filter-konishi.active { border-color: var(--color-wine); background: rgba(99,15,15,0.05); }
+    .filter-konishi span { font-size: 0.82rem; font-weight: 700; color: var(--color-wine); }
+    .filter-btn {
+      padding: 9px 18px; border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: 0.82rem; font-weight: 700;
+      cursor: pointer; border: 2px solid transparent; transition: all var(--t-fast);
     }
+    .filter-btn--reset { background: transparent; color: var(--gray-500); border-color: var(--gray-200); }
+    .filter-btn--apply { background: var(--color-red); color: white; border-color: var(--color-red); }
+    .filter-btn--apply:hover { background: var(--color-red-dark); }
 
     /* Grid */
     .catalogue-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-6);
+      margin-bottom: var(--sp-10);
     }
 
-    /* Koi Card (embedded) */
+    /* Card */
     .koi-card {
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,48,73,0.06);
-      transition: all 0.3s ease;
-      cursor: pointer;
+      background: var(--color-white); border-radius: var(--r-xl);
+      overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: transform var(--t-base), box-shadow var(--t-base); cursor: pointer;
     }
-    
-    .koi-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0,48,73,0.12);
+    .koi-card:hover { transform: translateY(-5px); box-shadow: 0 10px 28px rgba(0,0,0,0.13); }
+    .koi-card:hover .koi-card-img img { transform: scale(1.06); }
+
+    .koi-card-img {
+      position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
     }
-    
-    .koi-card:hover .koi-card-image img {
-      transform: scale(1.05);
+    .koi-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-base); }
+
+    .koi-card-badges { position: absolute; top: var(--sp-2); left: var(--sp-2); display: flex; flex-direction: column; gap: var(--sp-1); }
+    .badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 3px 9px; border-radius: var(--r-full);
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1;
     }
-    
-    .koi-card-image {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
+    .badge--konishi { background: var(--color-wine); color: #f5c842; border: 1px solid rgba(245,200,66,0.3); }
+    .badge--new { background: var(--color-red); color: white; }
+    .badge--sold { background: var(--gray-600); color: var(--gray-200); }
+
+    .koi-card-body { padding: var(--sp-4); }
+    .koi-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--sp-1); }
+    .koi-card-name { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--gray-900); }
+    .koi-card-age { font-size: 0.7rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; }
+    .koi-card-tags { display: flex; gap: var(--sp-1); flex-wrap: wrap; margin-bottom: var(--sp-2); }
+    .koi-tag {
+      font-size: 0.64rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+      padding: 2px 7px; border-radius: var(--r-full);
+      background: rgba(99,15,15,0.08); color: var(--color-wine); border: 1px solid rgba(99,15,15,0.14);
     }
-    
-    .koi-card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    
-    .koi-card-badges {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    
-    .koi-card-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    
-    .koi-card-badge--konishi { background: var(--or-konishi); color: var(--bleu-profond); }
-    .koi-card-badge--new { background: var(--rouge-koi); color: #fff; }
-    .koi-card-badge--sold { background: var(--gris-pierre); color: #fff; }
-    
-    .koi-card-content {
-      padding: 18px;
-    }
-    
-    .koi-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 8px;
-    }
-    
-    .koi-card-name {
-      font-family: var(--font-title);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-    }
-    
-    .koi-card-variety {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 10px;
-      background: rgba(0,48,73,0.06);
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--bleu-profond);
-      margin-top: 4px;
-    }
-    
-    .koi-card-size {
-      font-size: 0.85rem;
-      color: var(--gris-pierre);
-      font-weight: 500;
-    }
-    
+    .koi-card-size { font-size: 0.75rem; color: var(--gray-500); margin-bottom: var(--sp-3); }
     .koi-card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #f0f2f5;
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: var(--sp-3); border-top: 1px solid var(--gray-100);
     }
-    
-    .koi-card-price {
-      font-family: var(--font-title);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
+    .koi-price { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 700; color: var(--color-red); line-height: 1; }
+    .koi-price-cur { font-family: var(--font-sans); font-size: 0.6em; vertical-align: super; margin-right: 1px; }
+    .koi-cta {
+      padding: 8px 13px; background: var(--color-red); color: white;
+      border-radius: var(--r-md); font-size: 0.75rem; font-weight: 700; transition: all var(--t-fast);
     }
-    
-    .koi-card-price-currency {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      vertical-align: super;
-      margin-right: 1px;
-    }
-    
-    .koi-card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 16px;
-      background: var(--rouge-koi);
-      color: #fff;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    
-    .koi-card-cta:hover {
-      background: #b82020;
-    }
+    .koi-cta:hover { background: var(--color-red-dark); transform: translateY(-1px); }
+    .koi-card--sold .koi-price { color: var(--gray-400); text-decoration: line-through; }
+    .koi-card--sold .koi-cta { background: var(--gray-500); pointer-events: none; }
 
     /* Empty state */
     .catalogue-empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 80px 32px;
+      grid-column: 1 / -1; text-align: center; padding: var(--sp-16);
+      color: var(--gray-400);
     }
-    
-    .catalogue-empty-icon {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      opacity: 0.5;
-    }
-    
-    .catalogue-empty h3 {
-      font-family: var(--font-title);
-      font-size: 1.5rem;
-      color: var(--bleu-profond);
-      margin-bottom: 8px;
-    }
-    
-    .catalogue-empty p {
-      color: var(--gris-pierre);
-      margin-bottom: 24px;
-    }
-    
-    .catalogue-empty-btn {
-      display: inline-flex;
-      padding: 12px 24px;
-      background: var(--bleu-profond);
-      color: #fff;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-    }
+    .catalogue-empty h3 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--gray-600); margin-bottom: var(--sp-2); }
 
-    /* Load more */
-    .catalogue-load-more {
-      display: flex;
-      justify-content: center;
-      margin-top: 48px;
-    }
-    
-    .load-more-btn {
-      padding: 14px 32px;
-      background: transparent;
-      border: 2px solid var(--bleu-profond);
-      border-radius: 8px;
-      color: var(--bleu-profond);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .load-more-btn:hover {
-      background: var(--bleu-profond);
-      color: #fff;
+    /* Responsive */
+    @media (max-width: 1200px) { .catalogue-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px) { .catalogue-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) {
+      .catalogue { padding: var(--sp-8) var(--sp-4); }
+      .catalogue-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <section class="catalogue">
-    <!-- Header -->
     <div class="catalogue-header">
-      <div class="catalogue-title-group">
-        <h2>Nos koïs disponibles</h2>
-        <p>12 spécimens sélectionnés avec soin</p>
+      <div>
+        <div class="catalogue-eyebrow">Élevage Konishi · Gueugnon</div>
+        <h2 class="catalogue-title">Nos Koïs</h2>
       </div>
-      <a href="#" class="catalogue-view-all">Voir tout le catalogue →</a>
+      <div class="catalogue-count"><strong>9</strong> spécimens disponibles</div>
     </div>
 
-    <!-- Filters -->
+    <!-- Filtres -->
     <div class="catalogue-filters">
-      <select class="filter-select">
-        <option>Toutes les variétés</option>
-        <option>Kohaku</option>
-        <option>Sanke</option>
-        <option>Showa</option>
-        <option>Butterfly</option>
-      </select>
-      <select class="filter-select">
-        <option>Toutes les tailles</option>
-        <option>&lt; 50 cm</option>
-        <option>50 - 70 cm</option>
-        <option>&gt; 70 cm</option>
-      </select>
-      <select class="filter-select">
-        <option>Prix croissant</option>
-        <option>Prix décroissant</option>
-        <option>Nouveautés</option>
-      </select>
-      <button class="filter-toggle">★ Konishi uniquement</button>
+      <div class="filter-group">
+        <label class="filter-label">Variété</label>
+        <select class="filter-select">
+          <option>Toutes les variétés</option>
+          <option>Kohaku</option><option>Sanke</option><option>Showa</option>
+          <option>Butterfly</option><option>Tancho</option><option>Kujaku</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">Classe d'âge</label>
+        <select class="filter-select">
+          <option>Toutes les classes</option>
+          <option>Tosaï</option><option>Jumbo Tosaï</option><option>Nisaï</option>
+          <option>Sansaï</option><option>Yonsaï</option><option>Gosai</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">Sexe</label>
+        <select class="filter-select">
+          <option>Tous</option><option>♂ Mâle</option><option>♀ Femelle</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label">Taille</label>
+        <select class="filter-select">
+          <option>Toutes tailles</option>
+          <option>&lt; 50 cm</option><option>50 – 70 cm</option>
+          <option>70 – 90 cm</option><option>&gt; 90 cm</option>
+        </select>
+      </div>
+      <div style="flex: 0;">
+        <label class="filter-label">Lignée</label>
+        <div class="filter-konishi active" onclick="this.classList.toggle('active')">
+          <span>★ Konishi uniquement</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: flex-end; flex: 0;">
+        <button class="filter-btn filter-btn--reset">✕ Reset</button>
+        <button class="filter-btn filter-btn--apply">Filtrer</button>
+      </div>
     </div>
 
-    <!-- Grid -->
+    <!-- Grille -->
     <div class="catalogue-grid">
-      <!-- Card 1 -->
+
       <article class="koi-card">
-        <div class="koi-card-image">
-          <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Sakura">
-          <div class="koi-card-badges">
-            <span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span>
-          </div>
+        <div class="koi-card-img">
+          <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=300&h=400&fit=crop" alt="Sakura">
+          <div class="koi-card-badges"><span class="badge badge--konishi">★ Konishi</span></div>
         </div>
-        <div class="koi-card-content">
-          <div class="koi-card-header">
-            <div>
-              <h4 class="koi-card-name">Sakura</h4>
-              <span class="koi-card-variety">Kohaku</span>
-            </div>
-            <span class="koi-card-size">72 cm</span>
-          </div>
+        <div class="koi-card-body">
+          <div class="koi-card-top"><h4 class="koi-card-name">Sakura</h4><span class="koi-card-age">Nisaï</span></div>
+          <div class="koi-card-tags"><span class="koi-tag">Kohaku</span><span class="koi-tag">♀</span></div>
+          <p class="koi-card-size">72 cm</p>
           <div class="koi-card-footer">
-            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 800</span>
-            <a href="#" class="koi-card-cta">Voir →</a>
+            <span class="koi-price"><span class="koi-price-cur">€</span>1 800</span>
+            <a href="/kois/sakura" class="koi-cta">Voir →</a>
           </div>
         </div>
       </article>
 
-      <!-- Card 2 -->
       <article class="koi-card">
-        <div class="koi-card-image">
-          <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Midori">
-          <div class="koi-card-badges">
-            <span class="koi-card-badge koi-card-badge--new">Nouveau</span>
-            <span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span>
-          </div>
+        <div class="koi-card-img">
+          <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=300&h=400&fit=crop" alt="Midori">
+          <div class="koi-card-badges"><span class="badge badge--new">Nouveau</span><span class="badge badge--konishi">★ Konishi</span></div>
         </div>
-        <div class="koi-card-content">
-          <div class="koi-card-header">
-            <div>
-              <h4 class="koi-card-name">Midori</h4>
-              <span class="koi-card-variety">Butterfly</span>
-            </div>
-            <span class="koi-card-size">55 cm</span>
-          </div>
+        <div class="koi-card-body">
+          <div class="koi-card-top"><h4 class="koi-card-name">Midori</h4><span class="koi-card-age">Sansaï</span></div>
+          <div class="koi-card-tags"><span class="koi-tag">Butterfly</span><span class="koi-tag">♀</span></div>
+          <p class="koi-card-size">55 cm</p>
           <div class="koi-card-footer">
-            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>2 400</span>
-            <a href="#" class="koi-card-cta">Voir →</a>
+            <span class="koi-price"><span class="koi-price-cur">€</span>2 400</span>
+            <a href="/kois/midori" class="koi-cta">Voir →</a>
           </div>
         </div>
       </article>
 
-      <!-- Card 3 -->
       <article class="koi-card">
-        <div class="koi-card-image">
-          <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Taro">
+        <div class="koi-card-img">
+          <img src="https://images.unsplash.com/photo-1540991774962-7e03e05b4ed6?w=300&h=400&fit=crop&crop=right" alt="Hana">
         </div>
-        <div class="koi-card-content">
-          <div class="koi-card-header">
-            <div>
-              <h4 class="koi-card-name">Kenzan</h4>
-              <span class="koi-card-variety">Showa</span>
-            </div>
-            <span class="koi-card-size">68 cm</span>
-          </div>
+        <div class="koi-card-body">
+          <div class="koi-card-top"><h4 class="koi-card-name">Hana</h4><span class="koi-card-age">Nisaï</span></div>
+          <div class="koi-card-tags"><span class="koi-tag">Sanke</span><span class="koi-tag">♂</span></div>
+          <p class="koi-card-size">68 cm</p>
           <div class="koi-card-footer">
-            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 650</span>
-            <a href="#" class="koi-card-cta">Voir →</a>
+            <span class="koi-price"><span class="koi-price-cur">€</span>1 450</span>
+            <a href="/kois/hana" class="koi-cta">Voir →</a>
           </div>
         </div>
       </article>
 
-      <!-- Card 4 -->
-      <article class="koi-card">
-        <div class="koi-card-image">
-          <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Hana">
-          <div class="koi-card-badges">
-            <span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span>
-          </div>
+      <article class="koi-card koi-card--sold">
+        <div class="koi-card-img">
+          <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=300&h=400&fit=crop&crop=left" alt="Taro">
+          <div class="koi-card-badges"><span class="badge badge--sold">Vendu</span></div>
         </div>
-        <div class="koi-card-content">
-          <div class="koi-card-header">
-            <div>
-              <h4 class="koi-card-name">Hana</h4>
-              <span class="koi-card-variety">Sanke</span>
-            </div>
-            <span class="koi-card-size">80 cm</span>
-          </div>
+        <div class="koi-card-body">
+          <div class="koi-card-top"><h4 class="koi-card-name">Taro</h4><span class="koi-card-age">Yonsaï</span></div>
+          <div class="koi-card-tags"><span class="koi-tag">Showa</span></div>
+          <p class="koi-card-size">80 cm</p>
           <div class="koi-card-footer">
-            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>3 200</span>
-            <a href="#" class="koi-card-cta">Voir →</a>
+            <span class="koi-price"><span class="koi-price-cur">€</span>3 200</span>
+            <span class="koi-cta">Vendu</span>
           </div>
         </div>
       </article>
-    </div>
 
-    <!-- Load more -->
-    <div class="catalogue-load-more">
-      <button class="load-more-btn">Charger plus de koïs</button>
+      <article class="koi-card">
+        <div class="koi-card-img" style="background: linear-gradient(135deg, #1a2a3a, #0a1a2a);">
+          <div class="koi-card-badges"><span class="badge badge--konishi">★ Konishi</span></div>
+        </div>
+        <div class="koi-card-body">
+          <div class="koi-card-top"><h4 class="koi-card-name">Yuki</h4><span class="koi-card-age">Tosaï</span></div>
+          <div class="koi-card-tags"><span class="koi-tag">Tancho</span><span class="koi-tag">♀</span></div>
+          <p class="koi-card-size">45 cm</p>
+          <div class="koi-card-footer">
+            <span class="koi-price"><span class="koi-price-cur">€</span>720</span>
+            <a href="/kois/yuki" class="koi-cta">Voir →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="koi-card">
+        <div class="koi-card-img" style="background: linear-gradient(135deg, #2a1a0a, #1a0a00);">
+        </div>
+        <div class="koi-card-body">
+          <div class="koi-card-top"><h4 class="koi-card-name">Kenzan</h4><span class="koi-card-age">Sansaï</span></div>
+          <div class="koi-card-tags"><span class="koi-tag">Kujaku</span><span class="koi-tag">♂</span></div>
+          <p class="koi-card-size">85 cm</p>
+          <div class="koi-card-footer">
+            <span class="koi-price"><span class="koi-price-cur">€</span>3 800</span>
+            <a href="/kois/kenzan" class="koi-cta">Voir →</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 

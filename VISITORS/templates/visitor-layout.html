@@ -3,291 +3,328 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Template — Visitor Layout</title>
+  <title>Template — Visitor Layout | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
     :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      font-family: var(--font-body);
-      background: var(--blanc-perle);
-      color: var(--bleu-profond);
-      line-height: 1.6;
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --color-red-dark:  #cc0000;
+      --color-red-light: #ff1a1a;
+      --gray-900: #0a0a0a;
+      --gray-800: #1a1a1a;
+      --gray-700: #2d2d2d;
+      --gray-600: #404040;
+      --gray-500: #525252;
+      --gray-400: #737373;
+      --gray-300: #a3a3a3;
+      --gray-200: #d4d4d4;
+      --gray-100: #f0f0ee;
+      --color-wa: #25d366;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem;  --sp-3: .75rem;
+      --sp-4: 1rem;   --sp-5: 1.25rem; --sp-6: 1.5rem;
+      --sp-8: 2rem;   --sp-10: 2.5rem; --sp-12: 3rem;
+      --sp-16: 4rem;  --sp-20: 5rem;   --sp-24: 6rem;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.12);
+      --shadow-md:  0 4px 12px rgba(0,0,0,0.15);
+      --shadow-lg:  0 8px 30px rgba(0,0,0,0.15);
+      --shadow-xl:  0 20px 50px rgba(0,0,0,0.2);
+      --shadow-red: 0 4px 20px rgba(230,0,0,0.4);
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-xl: 1rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease; --t-slow: 500ms ease;
     }
 
-    /* ── LAYOUT STRUCTURE ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── LAYOUT ─────────────────────────────────────────────────── */
     .layout {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    /* Header (fixed) */
-    .layout-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: #fff;
-      box-shadow: 0 2px 20px rgba(0,48,73,0.08);
+    /* ── HEADER ─────────────────────────────────────────────────── */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--gray-900);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      border-bottom: 1px solid var(--gray-800);
+      height: 75px;
     }
-    
-    .layout-header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 16px 32px;
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1400px; margin: 0 auto; padding: 0 var(--sp-10); height: 100%;
     }
+    .header-logo { display: flex; align-items: center; gap: var(--sp-3); text-decoration: none; }
+    .header-logo-circle {
+      width: 50px; height: 50px; border-radius: var(--r-full);
+      background: radial-gradient(circle at 30% 30%, var(--color-red-light), var(--color-wine));
+      border: 2px solid var(--color-wine);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: white; font-family: var(--font-serif); font-size: 9px; font-weight: 700;
+      text-align: center; line-height: 1.1; flex-shrink: 0;
+    }
+    .header-logo-text { color: white; font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; line-height: 1; }
+    .header-logo-sub { color: var(--gray-300); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; }
 
-    /* Logo */
-    .layout-logo {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
+    .header-nav-list { display: flex; align-items: center; gap: 0; list-style: none; height: 75px; }
+    .header-nav-link {
+      color: white; padding: 0 var(--sp-4); font-size: 0.82rem; font-weight: 600;
+      height: 75px; display: flex; align-items: center;
+      transition: all var(--t-base); position: relative;
+      text-transform: uppercase; letter-spacing: 0.03em;
     }
-    
-    .layout-logo-name {
-      font-family: var(--font-title);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      line-height: 1;
+    .header-nav-link:hover, .header-nav-link.active { color: var(--color-red); background: rgba(255,255,255,0.04); }
+    .header-nav-link.active::after {
+      content: ''; position: absolute; bottom: 0; left: 20%; right: 20%;
+      height: 3px; background: var(--color-red);
     }
-    
-    .layout-logo-tagline {
-      font-size: 0.65rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--or-konishi);
-      margin-top: 3px;
-    }
+    .header-phone { color: white; font-size: 0.82rem; font-weight: 600; display: flex; align-items: center; gap: var(--sp-2); white-space: nowrap; }
+    .header-phone::before { content: '📞'; font-size: 0.9rem; }
 
-    /* Navigation */
-    .layout-nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    /* Mobile menu */
+    .header-mobile-btn {
+      display: none; background: none; border: none; color: white;
+      font-size: 1.4rem; cursor: pointer; padding: var(--sp-2); line-height: 1;
     }
-    
-    .layout-nav-list {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      list-style: none;
-    }
-    
-    .layout-nav-link {
-      padding: 10px 16px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--bleu-profond);
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-    
-    .layout-nav-link:hover {
-      background: rgba(0,48,73,0.04);
-      color: var(--rouge-koi);
-    }
-    
-    .layout-nav-link.active {
-      color: var(--rouge-koi);
-      font-weight: 600;
-    }
-
-    /* CTA */
-    .layout-cta {
-      padding: 12px 22px;
-      background: var(--rouge-koi);
-      color: #fff;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin-left: 16px;
-    }
-    
-    .layout-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(214,40,40,0.3);
-    }
-
-    /* Mobile menu button */
-    .layout-mobile-btn {
+    .header-nav-mobile {
       display: none;
-      width: 44px;
-      height: 44px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--bleu-profond);
-      cursor: pointer;
+      position: absolute; top: 75px; left: 0; right: 0;
+      background: var(--gray-900); border-top: 1px solid var(--gray-800);
+      padding: var(--sp-4); flex-direction: column; gap: var(--sp-2);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
+    .header-nav-mobile.is-open { display: flex; }
+    .header-nav-mobile .header-nav-link {
+      height: auto; padding: var(--sp-3) var(--sp-4);
+      border-radius: var(--r-md); width: 100%; justify-content: center;
+    }
+    .header-nav-mobile .header-phone { justify-content: center; padding: var(--sp-3); }
 
-    /* Main content area */
+    /* ── MAIN ───────────────────────────────────────────────────── */
     .layout-main {
       flex: 1;
-      padding-top: 80px; /* Space for fixed header */
+      padding-top: 75px;
     }
 
-    /* Footer */
-    .layout-footer {
-      background: var(--bleu-profond);
-      color: #fff;
-      padding: 60px 32px 32px;
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    .footer {
+      background: var(--gray-900);
+      color: var(--gray-300);
+      padding: var(--sp-16) 0 var(--sp-8);
+      border-top: 1px solid var(--gray-800);
     }
-    
-    .layout-footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
+    .footer-inner {
+      max-width: 1400px; margin: 0 auto; padding: 0 var(--sp-10);
+      display: grid; grid-template-columns: 1.4fr repeat(5, 1fr); gap: var(--sp-8);
     }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .layout-header-inner {
-        padding: 12px 20px;
-      }
-      
-      .layout-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        background: #fff;
-        padding: 16px;
-        gap: 8px;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0,48,73,0.1);
-      }
-      
-      .layout-nav.is-open {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      .layout-nav-list {
-        flex-direction: column;
-        width: 100%;
-        gap: 4px;
-      }
-      
-      .layout-nav-link {
-        width: 100%;
-        padding: 14px 16px;
-        text-align: center;
-      }
-      
-      .layout-cta {
-        width: 100%;
-        margin-left: 0;
-        text-align: center;
-        margin-top: 8px;
-      }
-      
-      .layout-mobile-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .layout-main {
-        padding-top: 70px;
-      }
+    .footer-brand-logo { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+    .footer-brand-circle {
+      width: 48px; height: 48px; border-radius: var(--r-full);
+      background: radial-gradient(circle at 30% 30%, var(--color-red-light), var(--color-wine));
+      border: 2px solid var(--color-wine);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: white; font-family: var(--font-serif); font-size: 8px; font-weight: 700;
+      text-align: center; line-height: 1.1;
+    }
+    .footer-brand-name { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: white; }
+    .footer-brand-desc { font-size: 0.82rem; color: var(--gray-400); line-height: 1.6; margin-bottom: var(--sp-5); }
+    .footer-wa-btn {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      background: var(--color-wa); color: white; padding: var(--sp-3) var(--sp-5);
+      border-radius: var(--r-full); font-size: 0.85rem; font-weight: 700;
+      transition: all var(--t-base);
+    }
+    .footer-wa-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+    .footer-col-title { color: var(--color-red); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--sp-4); }
+    .footer-links { display: flex; flex-direction: column; gap: var(--sp-2); }
+    .footer-links a { font-size: 0.85rem; color: var(--gray-400); transition: color var(--t-fast); }
+    .footer-links a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1400px; margin: var(--sp-10) auto 0; padding: var(--sp-6) var(--sp-10) 0;
+      border-top: 1px solid var(--gray-800);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--gray-500);
     }
 
-    /* Demo content styling */
+    /* ── WHATSAPP FIXED ─────────────────────────────────────────── */
+    .wa-fixed {
+      position: fixed; bottom: var(--sp-6); right: var(--sp-6); z-index: 999;
+      width: 60px; height: 60px; border-radius: var(--r-full);
+      background: var(--color-wa); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      transition: all var(--t-base); cursor: pointer;
+    }
+    .wa-fixed:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.6); }
+
+    /* ── DEMO ───────────────────────────────────────────────────── */
     .demo-section {
-      padding: 60px 32px;
-      max-width: 800px;
-      margin: 0 auto;
+      padding: var(--sp-16) var(--sp-8);
+      max-width: 800px; margin: 0 auto; text-align: center;
     }
-    
     .demo-section h1 {
-      font-family: var(--font-title);
-      font-size: 2rem;
-      color: var(--bleu-profond);
-      margin-bottom: 16px;
+      font-family: var(--font-serif); font-size: 2.5rem; font-weight: 700;
+      color: var(--gray-800); margin-bottom: var(--sp-4);
     }
-    
-    .demo-section p {
-      color: var(--gris-pierre);
-      line-height: 1.8;
+    .demo-section p { color: var(--gray-500); font-size: 1rem; line-height: 1.8; }
+    .demo-tag {
+      display: inline-block; background: var(--color-red); color: white;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; padding: var(--sp-1) var(--sp-3);
+      border-radius: var(--r-full); margin-bottom: var(--sp-4);
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .header-inner { padding: 0 var(--sp-6); }
+      .footer-inner { grid-template-columns: repeat(3, 1fr); }
+      .footer-bottom { padding: var(--sp-6) var(--sp-6) 0; }
+    }
+    @media (max-width: 768px) {
+      .header-nav-list, .header-phone { display: none; }
+      .header-mobile-btn { display: block; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: var(--sp-6); padding: 0 var(--sp-6); }
+      .footer-bottom { flex-direction: column; gap: var(--sp-2); text-align: center; padding: var(--sp-4) var(--sp-4) 0; }
     }
   </style>
 </head>
 <body>
+<div class="layout">
 
-  <div class="layout">
-    <!-- Header -->
-    <header class="layout-header">
-      <div class="layout-header-inner">
-        <a href="#" class="layout-logo">
-          <span class="layout-logo-name">Koi's Story</span>
-          <span class="layout-logo-tagline">Lignée Konishi</span>
-        </a>
-        
-        <nav class="layout-nav" id="layoutNav">
-          <ul class="layout-nav-list">
-            <li><a href="#" class="layout-nav-link active">Accueil</a></li>
-            <li><a href="#" class="layout-nav-link">Catalogue</a></li>
-            <li><a href="#" class="layout-nav-link">Notre élevage</a></li>
-            <li><a href="#" class="layout-nav-link">Contact</a></li>
-          </ul>
-          <a href="#" class="layout-cta">Voir le catalogue</a>
-        </nav>
-        
-        <button class="layout-mobile-btn" onclick="document.getElementById('layoutNav').classList.toggle('is-open')">☰</button>
-      </div>
-    </header>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <div class="header-logo-circle">KOÏ'S<br>STORY</div>
+        <div>
+          <div class="header-logo-text">Koi's Story</div>
+          <div class="header-logo-sub">Lignée Konishi</div>
+        </div>
+      </a>
+      <nav>
+        <ul class="header-nav-list">
+          <li><a href="/" class="header-nav-link active">Accueil</a></li>
+          <li><a href="/decouvrir" class="header-nav-link">Nous découvrir</a></li>
+          <li><a href="/kois" class="header-nav-link">Nos Koïs</a></li>
+          <li><a href="/materiel" class="header-nav-link">Matériel</a></li>
+          <li><a href="/nourriture" class="header-nav-link">Nourriture</a></li>
+          <li><a href="/soins" class="header-nav-link">Soins</a></li>
+          <li><a href="/azukari" class="header-nav-link">Azukari</a></li>
+        </ul>
+      </nav>
+      <span class="header-phone">06 XX XX XX XX</span>
+      <button class="header-mobile-btn" onclick="document.getElementById('mobileNav').classList.toggle('is-open')" aria-label="Menu">☰</button>
+    </div>
+    <nav id="mobileNav" class="header-nav-mobile">
+      <a href="/" class="header-nav-link active">Accueil</a>
+      <a href="/decouvrir" class="header-nav-link">Nous découvrir</a>
+      <a href="/kois" class="header-nav-link">Nos Koïs</a>
+      <a href="/materiel" class="header-nav-link">Matériel</a>
+      <a href="/nourriture" class="header-nav-link">Nourriture</a>
+      <a href="/soins" class="header-nav-link">Soins</a>
+      <a href="/azukari" class="header-nav-link">Azukari</a>
+      <span class="header-phone">06 XX XX XX XX</span>
+    </nav>
+  </header>
 
-    <!-- Main Content -->
-    <main class="layout-main">
-      <div class="demo-section">
-        <h1>Template de layout visiteur</h1>
-        <p>
-          Ce template sert de base pour toutes les pages de l'espace visiteur. 
-          Il inclut le header fixe avec navigation, une zone de contenu principale 
-          extensible, et le footer. Le header devient un menu hamburger sur mobile.
-        </p>
-      </div>
-    </main>
+  <!-- MAIN CONTENT -->
+  <main class="layout-main">
+    <div class="demo-section">
+      <span class="demo-tag">Template</span>
+      <h1>Visitor Layout</h1>
+      <p>
+        Ce template est la base de toutes les pages visiteur. Il inclut le header dark fixe
+        avec la navigation complète, la zone de contenu principale, le footer sombre à 6 colonnes,
+        et le bouton WhatsApp fixe. Remplacer le contenu de <code>&lt;main&gt;</code> par les sections de page.
+      </p>
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer class="layout-footer">
-      <div class="layout-footer-inner" style="text-align: center; color: rgba(255,255,255,0.5);">
-        <p>© 2026 Koi's Story — Footer à compléter avec le composant footer.html</p>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <!-- Brand -->
+      <div>
+        <div class="footer-brand-logo">
+          <div class="footer-brand-circle">KOÏ'S<br>STORY</div>
+          <span class="footer-brand-name">Koi's Story</span>
+        </div>
+        <p class="footer-brand-desc">Élevage de carpes koïs de lignée Konishi en France. Passion, qualité et traçabilité depuis Gueugnon.</p>
+        <a href="https://wa.me/33600000000" class="footer-wa-btn">💬 WhatsApp</a>
       </div>
-    </footer>
-  </div>
+      <!-- Nav cols -->
+      <div>
+        <div class="footer-col-title">Nos Koïs</div>
+        <div class="footer-links">
+          <a href="/kois">Catalogue</a>
+          <a href="/kois?variety=kohaku">Kohaku</a>
+          <a href="/kois?variety=showa">Showa</a>
+          <a href="/kois?variety=sanke">Sanke</a>
+          <a href="/kois?konishi=true">Lignée Konishi</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Matériel</div>
+        <div class="footer-links">
+          <a href="/materiel">Filtration</a>
+          <a href="/materiel">Pompes bassins</a>
+          <a href="/materiel">UV & Oxygène</a>
+          <a href="/materiel">Skimmers</a>
+          <a href="/materiel">Chauffage</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Nourriture</div>
+        <div class="footer-links">
+          <a href="/nourriture">Konishi coulant</a>
+          <a href="/nourriture">Konishi flottant</a>
+          <a href="/nourriture">Vitamines Mucus+</a>
+          <a href="/nourriture">Vitamine C</a>
+          <a href="/nourriture">Distributeurs</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Soins</div>
+        <div class="footer-links">
+          <a href="/soins">Microscope</a>
+          <a href="/soins">Tests d'eau</a>
+          <a href="/soins">Traitement bassin</a>
+          <a href="/soins">Traitement koï</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Nous découvrir</div>
+        <div class="footer-links">
+          <a href="/decouvrir">Notre histoire</a>
+          <a href="/decouvrir">Partenariat Konishi</a>
+          <a href="/azukari">Service Azukari</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Koi's Story — Mathilde & Emmanuel, Gueugnon</span>
+      <span>Élevage Konishi certifié · France</span>
+    </div>
+  </footer>
+</div>
+
+<!-- WhatsApp fixed button -->
+<a href="https://wa.me/33600000000" class="wa-fixed" title="Nous contacter sur WhatsApp">💬</a>
 
 </body>
 </html>

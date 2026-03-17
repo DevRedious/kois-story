@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Shop Section | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --color-red-dark:  #cc0000;
+      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
+      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
+      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
+      --color-wa: #25d366;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+      --sp-5: 1.25rem; --sp-6: 1.5rem; --sp-8: 2rem; --sp-10: 2.5rem; --sp-16: 4rem;
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-xl: 1rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── SHOP SECTION ORGANISM ───────────────────────────────────── */
+    .shop-section {
+      max-width: 1400px; margin: 0 auto;
+      padding: var(--sp-16) var(--sp-10);
+    }
+
+    /* Header */
+    .shop-section-header { margin-bottom: var(--sp-10); }
+    .shop-eyebrow {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--color-red); margin-bottom: var(--sp-2);
+    }
+    .shop-title {
+      font-family: var(--font-serif); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700;
+      color: var(--gray-900); margin-bottom: var(--sp-3);
+    }
+    .shop-desc {
+      font-size: 0.95rem; color: var(--gray-500); line-height: 1.7; max-width: 600px;
+    }
+
+    /* Category section */
+    .shop-category { margin-bottom: var(--sp-12); }
+    .shop-category-header {
+      display: flex; align-items: center; gap: var(--sp-4);
+      margin-bottom: var(--sp-6);
+    }
+    .shop-category-title {
+      font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700;
+      color: var(--gray-900);
+    }
+    .shop-category-line { flex: 1; height: 1px; background: var(--gray-200); }
+    .shop-category-count { font-size: 0.78rem; color: var(--gray-400); font-weight: 600; }
+
+    /* Grid */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-5);
+    }
+    .shop-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+    /* Card */
+    .shop-card {
+      background: var(--color-white); border-radius: var(--r-xl);
+      overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      transition: transform var(--t-base), box-shadow var(--t-base);
+    }
+    .shop-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.11); }
+
+    .shop-card-img {
+      width: 100%; aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem; position: relative;
+      background: linear-gradient(135deg, var(--from, #f0f0ee), var(--to, #e0e0dd));
+    }
+    .shop-card-cat {
+      position: absolute; top: var(--sp-2); left: var(--sp-2);
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 3px 8px; border-radius: var(--r-full);
+      background: rgba(0,0,0,0.08); color: var(--gray-600);
+    }
+    .shop-card-body { padding: var(--sp-4); }
+    .shop-card-name {
+      font-size: 0.9rem; font-weight: 700; color: var(--gray-900);
+      margin-bottom: var(--sp-1); line-height: 1.3;
+    }
+    .shop-card-desc {
+      font-size: 0.78rem; color: var(--gray-500); line-height: 1.55; margin-bottom: var(--sp-4);
+    }
+    .shop-card-cta {
+      display: flex; align-items: center; justify-content: center; gap: var(--sp-2);
+      width: 100%; padding: 10px;
+      background: var(--color-wa); color: white;
+      border-radius: var(--r-md); font-size: 0.78rem; font-weight: 700;
+      transition: all var(--t-fast);
+    }
+    .shop-card-cta:hover { background: #1db954; transform: translateY(-1px); }
+
+    /* CTA bas de section */
+    .shop-contact-cta {
+      margin-top: var(--sp-12); text-align: center;
+      padding: var(--sp-10) var(--sp-6);
+      background: var(--gray-900); border-radius: var(--r-xl);
+    }
+    .shop-contact-cta h3 {
+      font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700;
+      color: white; margin-bottom: var(--sp-3);
+    }
+    .shop-contact-cta p { font-size: 0.92rem; color: var(--gray-400); margin-bottom: var(--sp-6); }
+    .shop-contact-btn {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: 14px 28px; background: var(--color-wa); color: white;
+      border-radius: var(--r-full); font-size: 0.95rem; font-weight: 700;
+      transition: all var(--t-base); box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    }
+    .shop-contact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(37,211,102,0.5); }
+
+    @media (max-width: 1200px) { .shop-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px)  { .shop-grid, .shop-grid--3 { grid-template-columns: repeat(2, 1fr); } .shop-section { padding: var(--sp-10) var(--sp-6); } }
+    @media (max-width: 600px)  { .shop-grid, .shop-grid--3 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <section class="shop-section">
+
+    <div class="shop-section-header">
+      <div class="shop-eyebrow">Équipement & Santé</div>
+      <h2 class="shop-title">Matériel & Produits</h2>
+      <p class="shop-desc">
+        Retrouvez les équipements et produits que nous utilisons et recommandons
+        pour vos bassins et la santé de vos koïs. Commandez via WhatsApp.
+      </p>
+    </div>
+
+    <!-- Filtration & Équipement -->
+    <div class="shop-category">
+      <div class="shop-category-header">
+        <h3 class="shop-category-title">Filtration & Équipement</h3>
+        <div class="shop-category-line"></div>
+        <span class="shop-category-count">7 produits</span>
+      </div>
+      <div class="shop-grid">
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #dbeafe; --to: #bfdbfe;">🔧<span class="shop-card-cat">Filtration</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Filtration biologique multi-chambre</div>
+            <p class="shop-card-desc">Idéale pour bassins 10 000 – 50 000 L. Efficacité maximale, entretien simplifié.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20filtration%20biologique" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #d1fae5; --to: #a7f3d0;">💧<span class="shop-card-cat">Pompes</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Pompe bassin haute performance</div>
+            <p class="shop-card-desc">Débit 5 000 à 30 000 L/h. Basse consommation, moteur longue durée.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20pompes%20bassins" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #ede9fe; --to: #ddd6fe;">☀️<span class="shop-card-cat">UV</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Stérilisateur UV</div>
+            <p class="shop-card-desc">Élimine algues, bactéries et parasites. Eau cristalline garantie.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20stérilisateurs%20UV" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #fed7aa; --to: #fdba74;">🌡️<span class="shop-card-cat">Chauffage</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Chauffage titane bassin</div>
+            <p class="shop-card-desc">Température stable toute l'année. Anticorrosion titanium — compatible koïs.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20chauffages%20bassins" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nourriture -->
+    <div class="shop-category">
+      <div class="shop-category-header">
+        <h3 class="shop-category-title">Nourriture Konishi</h3>
+        <div class="shop-category-line"></div>
+        <span class="shop-category-count">6 produits</span>
+      </div>
+      <div class="shop-grid">
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #fef3c7; --to: #fde68a;">🐟<span class="shop-card-cat">Nourriture</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Nourriture Konishi coulant</div>
+            <p class="shop-card-desc">Granulés premium Konishi. Formule coulante pour alimentation naturelle en fond de bassin.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20la%20nourriture%20Konishi%20coulant" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #d1fae5; --to: #6ee7b7;">🌿<span class="shop-card-cat">Vitamines</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Vitamines Mucus+</div>
+            <p class="shop-card-desc">Renforce la barrière muqueuse. Améliore la résistance aux maladies et au stress.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20les%20Vitamines%20Mucus%2B" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #fde68a; --to: #fcd34d;">⏰<span class="shop-card-cat">Distributeur</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Distributeur automatique</div>
+            <p class="shop-card-desc">Programmable, adapté aux granulés Konishi. Idéal pour vacances ou absentéisme.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20vos%20distributeurs%20automatiques" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Soins -->
+    <div class="shop-category">
+      <div class="shop-category-header">
+        <h3 class="shop-category-title">Soins & Traitements</h3>
+        <div class="shop-category-line"></div>
+        <span class="shop-category-count">4 produits</span>
+      </div>
+      <div class="shop-grid shop-grid--3">
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #d1fae5; --to: #6ee7b7;">🔬<span class="shop-card-cat">Diagnostic</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Microscope de diagnostic</div>
+            <p class="shop-card-desc">Détection précoce des parasites et bactéries. Indispensable pour l'éleveur sérieux.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20microscope%20de%20diagnostic" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #fee2e2; --to: #fecaca;">💊<span class="shop-card-cat">Traitement</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Traitement eau du bassin</div>
+            <p class="shop-card-desc">Neutralise chlore, chloramines et métaux lourds. Sécurise l'eau en cas de changement.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20les%20traitements%20eau%20bassin" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img" style="--from: #fde8c9; --to: #fcd5a0;">🧪<span class="shop-card-cat">Tests</span></div>
+          <div class="shop-card-body">
+            <div class="shop-card-name">Tests d'eau du bassin</div>
+            <p class="shop-card-desc">pH, KH, NH4, NO2, NO3 — kit complet pour surveiller la qualité de l'eau régulièrement.</p>
+            <a href="https://wa.me/33600000000?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20les%20kits%20de%20test%20d%27eau" class="shop-card-cta">💬 Nous contacter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA bas de section -->
+    <div class="shop-contact-cta">
+      <h3>Vous ne trouvez pas ce que vous cherchez ?</h3>
+      <p>Contactez-nous directement. Nous sourçons également des produits spécifiques sur demande.</p>
+      <a href="https://wa.me/33600000000" class="shop-contact-btn">💬 Contacter sur WhatsApp</a>
+    </div>
+
+  </section>
+
+</body>
+</html>

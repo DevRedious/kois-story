@@ -3,142 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atom — Button Visitor</title>
+  <title>Atom — Button | Koi's Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    
     :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-body:    'Inter', system-ui, sans-serif;
-      --font-title:   'Playfair Display', Georgia, serif;
+      --color-red:    #e60000;
+      --color-wine:   #630f0f;
+      --color-black:  #000000;
+      --color-cream:  #f5f5f2;
+      --color-white:  #ffffff;
+      --color-red-dark:  #cc0000;
+      --color-red-light: #ff1a1a;
+      --gray-900: #0a0a0a; --gray-800: #1a1a1a; --gray-700: #2d2d2d;
+      --gray-600: #404040; --gray-500: #525252; --gray-400: #737373;
+      --gray-300: #a3a3a3; --gray-200: #d4d4d4; --gray-100: #f0f0ee;
+      --color-wa: #25d366;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Open Sans', system-ui, sans-serif;
+      --sp-1: .25rem; --sp-2: .5rem; --sp-3: .75rem; --sp-4: 1rem;
+      --sp-5: 1.25rem; --sp-6: 1.5rem; --sp-8: 2rem;
+      --shadow-red: 0 4px 20px rgba(230,0,0,0.4);
+      --r-sm: .375rem; --r-md: .5rem; --r-lg: .75rem; --r-full: 9999px;
+      --t-fast: 150ms ease; --t-base: 300ms ease;
     }
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 24px; }
-    .group { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    body { font-family: var(--font-sans); background: var(--color-cream); color: var(--gray-800); line-height: 1.6; padding: 2rem; -webkit-font-smoothing: antialiased; }
+    .demo-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 0.75rem; margin-top: 2rem; }
+    .group { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 
-    /* ── BUTTON ATOM VISITOR ─────────────────────────────────── */
+    /* ── BUTTON ATOM ─────────────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      font-weight: 600;
+      gap: var(--sp-2);
+      padding: 13px 26px;
+      border-radius: var(--r-md);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 700;
       cursor: pointer;
-      border: none;
+      border: 2px solid transparent;
       line-height: 1;
-      transition: all 0.2s ease;
+      transition: all var(--t-base);
       text-decoration: none;
+      letter-spacing: 0.02em;
     }
-    
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,48,73,0.15); }
+    .btn:hover { transform: translateY(-2px); }
     .btn:active { transform: translateY(0); }
 
-    /* Variants */
-    .btn-primary { 
-      background: var(--rouge-koi); 
-      color: #fff; 
+    /* Primary — rouge */
+    .btn--primary {
+      background: var(--color-red);
+      color: var(--color-white);
+      border-color: var(--color-red);
     }
-    .btn-primary:hover { box-shadow: 0 4px 16px rgba(214,40,40,0.3); }
-    
-    .btn-secondary { 
-      background: var(--bleu-profond); 
-      color: #fff; 
+    .btn--primary:hover {
+      background: var(--color-red-dark);
+      border-color: var(--color-red-dark);
+      box-shadow: var(--shadow-red);
     }
-    .btn-secondary:hover { box-shadow: 0 4px 16px rgba(0,48,73,0.25); }
-    
-    .btn-outline { 
-      background: transparent; 
-      border: 2px solid var(--bleu-profond); 
-      color: var(--bleu-profond); 
+
+    /* Dark */
+    .btn--dark {
+      background: var(--gray-900);
+      color: var(--color-white);
+      border-color: var(--gray-900);
     }
-    .btn-outline:hover { background: var(--bleu-profond); color: #fff; }
-    
-    .btn-gold { 
-      background: var(--or-konishi); 
-      color: var(--bleu-profond); 
+    .btn--dark:hover {
+      background: var(--gray-800);
+      border-color: var(--gray-800);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
-    .btn-gold:hover { box-shadow: 0 4px 16px rgba(224,159,62,0.4); }
-    
-    .btn-whatsapp { 
-      background: #25D366; 
-      color: #fff; 
+
+    /* Outline rouge */
+    .btn--outline {
+      background: transparent;
+      color: var(--color-red);
+      border-color: var(--color-red);
     }
-    .btn-whatsapp:hover { box-shadow: 0 4px 16px rgba(37,211,102,0.35); }
+    .btn--outline:hover {
+      background: var(--color-red);
+      color: var(--color-white);
+      box-shadow: var(--shadow-red);
+    }
+
+    /* Outline light (pour fonds sombres) */
+    .btn--outline-light {
+      background: transparent;
+      color: var(--color-white);
+      border-color: rgba(255,255,255,0.6);
+    }
+    .btn--outline-light:hover {
+      background: var(--color-white);
+      color: var(--gray-900);
+      border-color: var(--color-white);
+    }
+
+    /* WhatsApp */
+    .btn--whatsapp {
+      background: var(--color-wa);
+      color: var(--color-white);
+      border-color: var(--color-wa);
+    }
+    .btn--whatsapp:hover {
+      background: #1db954;
+      border-color: #1db954;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    }
 
     /* Sizes */
-    .btn-sm { padding: 10px 18px; font-size: 0.85rem; }
-    .btn-lg { padding: 18px 36px; font-size: 1.05rem; }
-    .btn-xl { padding: 20px 40px; font-size: 1.1rem; }
+    .btn--sm  { padding: 9px 18px; font-size: 0.8rem; }
+    .btn--lg  { padding: 16px 34px; font-size: 1rem; }
+    .btn--xl  { padding: 18px 40px; font-size: 1.05rem; }
 
-    /* With icon */
-    .btn-icon { width: 44px; height: 44px; padding: 0; border-radius: 50%; }
-    .btn-icon.btn-sm { width: 36px; height: 36px; }
-    .btn-icon.btn-lg { width: 56px; height: 56px; }
+    /* Icon-only round */
+    .btn--icon {
+      width: 44px; height: 44px; padding: 0;
+      border-radius: var(--r-full);
+    }
+    .btn--icon.btn--sm { width: 36px; height: 36px; }
+    .btn--icon.btn--lg { width: 56px; height: 56px; font-size: 1.1rem; }
+
+    /* Full width */
+    .btn--full { width: 100%; }
 
     /* Disabled */
-    .btn:disabled, .btn[disabled] {
-      opacity: 0.5;
+    .btn:disabled,
+    .btn[disabled] {
+      opacity: 0.45;
       cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
+      transform: none !important;
+      box-shadow: none !important;
     }
   </style>
 </head>
 <body>
 
-  <h3>Primary — Call to action principal</h3>
+  <p class="demo-label">Primary — CTA principal (rouge #e60000)</p>
   <div class="group">
-    <button class="btn btn-primary">Découvrir le catalogue</button>
-    <button class="btn btn-primary btn-lg">Commander via WhatsApp</button>
+    <button class="btn btn--primary btn--sm">Voir le catalogue</button>
+    <button class="btn btn--primary">Découvrir nos koïs</button>
+    <button class="btn btn--primary btn--lg">Commander via WhatsApp</button>
+    <button class="btn btn--primary btn--xl">Voir ce koï</button>
   </div>
 
-  <h3>Secondary — Actions secondaires</h3>
+  <p class="demo-label">Dark — Action secondaire</p>
   <div class="group">
-    <button class="btn btn-secondary">Voir la fiche</button>
-    <button class="btn btn-secondary btn-sm">En savoir plus</button>
+    <button class="btn btn--dark btn--sm">En savoir plus</button>
+    <button class="btn btn--dark">Notre élevage</button>
+    <button class="btn btn--dark btn--lg">Nous découvrir</button>
   </div>
 
-  <h3>Outline — Style léger</h3>
+  <p class="demo-label">Outline — Style léger sur fond clair</p>
   <div class="group">
-    <button class="btn btn-outline">Filtrer</button>
-    <button class="btn btn-outline btn-sm">Réinitialiser</button>
+    <button class="btn btn--outline btn--sm">Filtrer</button>
+    <button class="btn btn--outline">Réinitialiser</button>
+    <button class="btn btn--outline btn--lg">Voir toutes les variétés</button>
   </div>
 
-  <h3>Gold — Premium / Konishi</h3>
-  <div class="group">
-    <button class="btn btn-gold">★ Lignée Konishi</button>
-    <button class="btn btn-gold btn-sm">Certifié</button>
+  <p class="demo-label">Outline Light — Sur fond sombre</p>
+  <div class="group" style="background: var(--gray-900); padding: 1rem; border-radius: 0.5rem;">
+    <button class="btn btn--outline-light btn--sm">En savoir plus</button>
+    <button class="btn btn--outline-light">Nous contacter</button>
+    <button class="btn btn--outline-light btn--lg">Voir le catalogue</button>
   </div>
 
-  <h3>WhatsApp — Contact direct</h3>
+  <p class="demo-label">WhatsApp — Contact direct</p>
   <div class="group">
-    <button class="btn btn-whatsapp btn-lg"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 20px; width: auto; margin-right: 6px; filter: brightness(0) invert(1);"> Contacter sur WhatsApp</button>
-    <button class="btn btn-whatsapp btn-xl">Commander ce koï</button>
+    <button class="btn btn--whatsapp btn--sm">💬 WhatsApp</button>
+    <button class="btn btn--whatsapp">💬 Nous contacter</button>
+    <button class="btn btn--whatsapp btn--lg">💬 Contacter sur WhatsApp</button>
+    <button class="btn btn--whatsapp btn--xl">💬 Commander ce koï</button>
   </div>
 
-  <h3>Icônes rondes</h3>
+  <p class="demo-label">Boutons icônes ronds</p>
   <div class="group">
-    <button class="btn btn-primary btn-icon">❮</button>
-    <button class="btn btn-primary btn-icon btn-lg">❯</button>
-    <button class="btn btn-outline btn-icon">♡</button>
+    <button class="btn btn--primary btn--icon btn--sm">❮</button>
+    <button class="btn btn--primary btn--icon">❯</button>
+    <button class="btn btn--primary btn--icon btn--lg">♡</button>
+    <button class="btn btn--dark btn--icon">✕</button>
+    <button class="btn btn--outline btn--icon">↑</button>
   </div>
 
-  <h3>Disabled</h3>
+  <p class="demo-label">Pleine largeur</p>
+  <div class="group" style="max-width: 320px; flex-direction: column;">
+    <button class="btn btn--primary btn--full btn--lg">💬 Demander par WhatsApp</button>
+    <button class="btn btn--outline btn--full">Voir la fiche complète</button>
+  </div>
+
+  <p class="demo-label">Disabled</p>
   <div class="group">
-    <button class="btn btn-primary" disabled>Vendu</button>
-    <button class="btn btn-outline" disabled>Indisponible</button>
+    <button class="btn btn--primary" disabled>Vendu</button>
+    <button class="btn btn--whatsapp" disabled>💬 Indisponible</button>
+    <button class="btn btn--outline" disabled>Réservé</button>
   </div>
 
 </body>
