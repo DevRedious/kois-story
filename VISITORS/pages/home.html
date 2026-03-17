@@ -15,11 +15,12 @@
       --bleu-profond: #003049;
       --or-konishi:   #E09F3E;
       --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
+      --blanc-perle:  #FAF7F2;
+      --creme-sable:  #F2EDE4;
       --font-title:   'Playfair Display', Georgia, serif;
       --font-body:    'Inter', system-ui, sans-serif;
     }
-    
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--blanc-perle); color: var(--bleu-profond); }
@@ -83,7 +84,7 @@
     .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(0,48,73,0.8) 0%, rgba(0,48,73,0.5) 50%, rgba(0,48,73,0.7) 100%);
+      background: linear-gradient(135deg, rgba(0,48,73,0.65) 0%, rgba(0,48,73,0.3) 55%, rgba(0,48,73,0.55) 100%);
     }
     .hero-content {
       position: relative; z-index: 1; text-align: center;
@@ -221,25 +222,58 @@
     }
     .featured-view-all-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,48,73,0.2); }
 
+    /* ── FEATURES STRIP ──────────────────────────────────────── */
+    .features {
+      background: var(--creme-sable);
+      padding: 56px 32px;
+      border-top: 1px solid rgba(0,48,73,0.06);
+      border-bottom: 1px solid rgba(0,48,73,0.06);
+    }
+    .features-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+    }
+    .feature-item {
+      display: flex; align-items: flex-start; gap: 18px;
+    }
+    .feature-icon {
+      flex-shrink: 0; width: 52px; height: 52px;
+      background: rgba(0,48,73,0.06); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feature-icon svg { width: 26px; height: 26px; }
+    .feature-text h3 {
+      font-family: var(--font-title); font-size: 1.05rem; font-weight: 700;
+      color: var(--bleu-profond); margin-bottom: 6px;
+    }
+    .feature-text p {
+      font-size: 0.88rem; color: var(--gris-pierre); line-height: 1.6;
+    }
+
     /* ── ABOUT SECTION ───────────────────────────────────────── */
     .about {
-      padding: 100px 32px; background: #fff;
+      padding: 100px 32px; background: var(--blanc-perle);
     }
     .about-inner {
-      max-width: 800px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
     }
     .about-image {
-      border-radius: 24px; overflow: hidden; aspect-ratio: 3/4;
-      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
+      border-radius: 24px; overflow: hidden; aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #e8ddd0 0%, #d8cfc4 100%);
+      box-shadow: 0 12px 40px rgba(0,48,73,0.12);
     }
-    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .about-label {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--or-konishi); margin-bottom: 12px;
+    }
     .about-content h2 {
       font-family: var(--font-title); font-size: 2.2rem; font-weight: 700;
-      color: var(--bleu-profond); margin-bottom: 20px;
+      color: var(--bleu-profond); margin-bottom: 20px; line-height: 1.2;
     }
     .about-content p {
-      font-size: 1.05rem; color: var(--gris-pierre); line-height: 1.8; margin-bottom: 16px;
+      font-size: 1rem; color: var(--gris-pierre); line-height: 1.85; margin-bottom: 16px;
     }
     .about-konishi-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -248,9 +282,26 @@
       font-size: 0.9rem; font-weight: 600; color: var(--bleu-profond); margin-top: 8px;
     }
 
+    /* ── WHATSAPP FLOTTANT ───────────────────────────────────── */
+    .whatsapp-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      display: flex; align-items: center; gap: 10px;
+      background: #25D366; color: #fff;
+      padding: 14px 20px; border-radius: 50px;
+      text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: all 0.25s ease;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.5);
+    }
+    .whatsapp-float-label { white-space: nowrap; }
+
     /* ── CTA SECTION ─────────────────────────────────────────── */
     .cta-section {
-      padding: 100px 32px; background: var(--bleu-profond);
+      padding: 100px 32px;
+      background: linear-gradient(160deg, var(--bleu-profond) 0%, #00405f 100%);
     }
     .cta-inner {
       max-width: 800px; margin: 0 auto; text-align: center;
@@ -341,12 +392,16 @@
       .header-mobile-btn { display: flex; align-items: center; justify-content: center; }
       .hero { min-height: 400px; height: 60vh; }
       .hero-bg img { object-fit: cover; object-position: center 20%; }
-      .hero-overlay { background: linear-gradient(to bottom, rgba(0,48,73,0.3) 0%, rgba(0,48,73,0.8) 100%); }
+      .hero-overlay { background: linear-gradient(to bottom, rgba(0,48,73,0.3) 0%, rgba(0,48,73,0.75) 100%); }
       .hero-content { padding: 60px 24px 20px; align-self: flex-end; }
       .hero-stats { display: none; }
+      .features-inner { grid-template-columns: 1fr; gap: 28px; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-image { aspect-ratio: 3/2; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .whatsapp-float-label { display: none; }
+      .whatsapp-float { padding: 14px; border-radius: 50%; }
     }
     @media (max-width: 600px) {
       .footer-grid { grid-template-columns: 1fr; }
@@ -397,6 +452,48 @@
         <div class="hero-stat"><div class="hero-stat-value">12</div><div class="hero-stat-label">Koïs disponibles</div></div>
         <div class="hero-stat"><div class="hero-stat-value">8</div><div class="hero-stat-label">Lignée Konishi</div></div>
         <div class="hero-stat"><div class="hero-stat-value">7</div><div class="hero-stat-label">Années d'expertise</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features strip -->
+  <section class="features">
+    <div class="features-inner">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--bleu-profond)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path d="M8 12c0-2 1.5-4 4-4s4 2 4 4-1.5 4-4 4-4-2-4-4z"/>
+            <path d="M12 8V6M12 18v-2M6 12H4M20 12h-2"/>
+          </svg>
+        </div>
+        <div class="feature-text">
+          <h3>Sélection Konishi</h3>
+          <p>Chaque koï est issu de la lignée Konishi Europe GmbH, référence mondiale pour la génétique et le potentiel d'évolution.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--bleu-profond)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div class="feature-text">
+          <h3>Suivi santé garanti</h3>
+          <p>Chaque poisson est sélectionné en parfaite santé, avec certificate Konishi et historique de croissance fournis.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--bleu-profond)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="feature-text">
+          <h3>Conseils personnalisés</h3>
+          <p>Mathilde et Emmanuel vous accompagnent par WhatsApp pour trouver le koï parfait pour votre bassin.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -467,20 +564,25 @@
   <!-- About -->
   <section class="about" id="about">
     <div class="about-inner">
-      <div class="about-image">
-        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Notre élevage">
-      </div>
       <div class="about-content">
-        <h2>Une passion transmise avec excellence</h2>
+        <p class="about-label">Notre élevage</p>
+        <h2>Mathilde &amp; Emmanuel,<br>éleveurs passionnés</h2>
         <p>
-          Situé au cœur de la région lyonnaise, notre élevage est dédié à la sélection 
-          et l'élevage de carpes koï d'exception depuis 2018.
+          Chez Koi's Story, situé aux Échets près de Lyon, nous vous proposons une
+          sélection de carpes koï Konishi de grande qualité, reconnues pour leur
+          beauté et leur génétique exceptionnelle.
         </p>
         <p>
-          Porté par Mathilde et Emmanuel, notre ferme se distingue par son affiliation 
-          exclusive à la prestigieuse lignée Konishi, gage de qualité reconnu mondialement.
+          Nos koïs sont importés via <strong>Konishi Europe GmbH</strong>, référence
+          européenne dans le domaine, garantissant l'authenticité et la qualité des lignées Konishi.
         </p>
-        <span class="about-konishi-badge">★ Membre officiel de la lignée Konishi</span>
+        <a href="contact.html" class="about-konishi-badge" style="text-decoration:none; cursor:pointer;">
+          Contactez-nous dès maintenant →
+        </a>
+      </div>
+      <div class="about-image">
+        <!-- Remplacer par la photo du couple une fois fournie -->
+        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Mathilde et Emmanuel — Koi's Story">
       </div>
     </div>
   </section>
@@ -538,6 +640,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- WhatsApp flottant -->
+  <a href="https://wa.me/33612345678" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Nous contacter sur WhatsApp">
+    <img src="../../docs/assets/LogosWhatsappIcon.svg" alt="" style="height:22px;width:auto;">
+    <span class="whatsapp-float-label">Nous contacter</span>
+  </a>
 
   <script>
     // Header scroll effect
