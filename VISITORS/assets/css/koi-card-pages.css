@@ -108,7 +108,7 @@
 .editorial__price sup { font-size: 0.5em; vertical-align: super; }
 
 /* ── KOI SHOWCASE — section grille home ─────────────────────────── */
-.koi-showcase { padding: var(--sp-20) var(--sp-10); background: rgba(245, 245, 242, 0.90); }
+.koi-showcase { padding: var(--sp-10) var(--sp-10) var(--sp-20); background: rgba(245, 245, 242, 0.90); }
 .koi-showcase__inner { max-width: var(--max-width); margin: 0 auto; }
 .koi-showcase__header {
   display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: var(--sp-8);
