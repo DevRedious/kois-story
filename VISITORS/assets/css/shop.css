@@ -55,9 +55,9 @@
 .shop-card__btn:hover { background: var(--c-wine); color: var(--c-white); }
 
 /* ── SHOP SECTION ────────────────────────────────────────────────────── */
-.shop-section { background: var(--c-cream); }
+.shop-section { background: rgba(245, 245, 242, 0.90); }
 
-.shop-section__wave { line-height: 0; background: var(--c-black); }
+.shop-section__wave { line-height: 0; background: transparent; }
 .shop-section__wave svg { display: block; width: 100%; }
 
 .shop-section__inner {

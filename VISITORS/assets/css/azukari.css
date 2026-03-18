@@ -29,7 +29,7 @@
 }
 .azukari-feature__text p { font-size: var(--text-sm); color: var(--n-55); line-height: var(--leading-normal); }
 
-.cta-full { padding: var(--sp-16) var(--sp-10); background: var(--c-cream); }
+.cta-full { padding: var(--sp-16) var(--sp-10); background: rgba(245, 245, 242, 0.90); }
 .cta-full__inner { max-width: var(--max-width); margin: 0 auto; }
 .cta-full__btn {
   display: flex; align-items: center; justify-content: center; gap: var(--sp-4);

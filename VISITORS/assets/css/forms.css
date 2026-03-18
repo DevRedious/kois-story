@@ -128,7 +128,7 @@
 }
 
 /* ── CONTACT RAPIDE (home) ───────────────────────────────────────── */
-.contact-quick { padding: var(--sp-20) var(--sp-10); background: var(--c-cream); }
+.contact-quick { padding: var(--sp-20) var(--sp-10); background: rgba(245, 245, 242, 0.90); }
 .contact-quick__inner {
   max-width: var(--max-width); margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: start;

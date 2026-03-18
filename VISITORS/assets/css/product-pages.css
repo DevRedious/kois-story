@@ -125,7 +125,7 @@
 .cert-title { font-family: var(--font-serif); font-size: var(--text-base); font-weight: 700; color: var(--c-wine); }
 .cert-text { font-size: var(--text-sm); color: var(--n-55); line-height: var(--leading-normal); }
 
-.related { padding: var(--sp-16) var(--sp-10); background: var(--c-white); }
+.related { padding: var(--sp-16) var(--sp-10); background: rgba(245, 245, 242, 0.90); }
 .related-inner { max-width: var(--max-width); margin: 0 auto; }
 .related h2 {
   font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700;

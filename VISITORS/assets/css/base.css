@@ -16,11 +16,28 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  background: var(--c-cream);
+  background-color: var(--c-cream); /* fallback */
   color: var(--c-black);
   line-height: var(--leading-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Fond washi sakura ───────────────────────────────────────────── */
+/* Couche 1 : image traitée (désaturation + contraste doux + sepia) */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -2;
+  background: url('../../../docs/assets/bg_sakura.png') center / cover no-repeat;
+  filter: saturate(0.28) contrast(0.82) brightness(1.15) sepia(0.10);
+}
+/* Couche 2 : voile crème chaud + grain fibres papier */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background-color: rgba(245, 235, 210, 0.50);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
 
 img, video {
@@ -59,3 +76,10 @@ input, textarea, select {
 
 /* WhatsApp link */
 .link-wa { color: var(--c-wa); font-weight: 700; }
+
+/* ── Wave SVG fill overrides ────────────────────────────────────────── */
+/* Only override cream fills (#f5f5f2) — black fills (konishi entry) stay untouched */
+.wave svg path[fill="#f5f5f2"],
+.hero__wave svg path,
+.shop-section__wave svg path,
+.konishi-band__wave-bot svg path { fill: rgba(245, 245, 242, 0.90); }
