@@ -52,7 +52,7 @@
 .spec-item { display: flex; flex-direction: column; gap: 2px; }
 .spec-item__label {
   font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
-  letter-spacing: var(--tracking-wider); color: var(--n-55);
+  letter-spacing: var(--tracking-wider); color: var(--n-75);
 }
 .spec-item__value { font-size: var(--text-base); font-weight: 600; color: var(--c-black); }
 
@@ -60,10 +60,10 @@
 
 .koi-detail__price {
   font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700; color: var(--c-red); line-height: 1;
+  font-weight: 700; color: var(--c-wine); line-height: 1;
 }
 .koi-detail__price sup { font-size: 0.5em; vertical-align: super; }
-.koi-detail__price-note { font-size: var(--text-sm); color: var(--n-55); margin-top: var(--sp-1); }
+.koi-detail__price-note { font-size: var(--text-sm); color: var(--n-75); margin-top: var(--sp-1); }
 
 .koi-detail__cert {
   background: rgba(99,15,15,0.06); border: 1px solid var(--c-wine-20);
@@ -72,12 +72,12 @@
 }
 .koi-detail__cert-icon { font-size: 1.8rem; flex-shrink: 0; }
 .koi-detail__cert-text h4 { font-size: var(--text-sm); font-weight: 700; color: var(--c-wine); margin-bottom: 2px; }
-.koi-detail__cert-text p  { font-size: var(--text-sm); color: var(--n-55); }
+.koi-detail__cert-text p  { font-size: var(--text-sm); color: var(--n-75); }
 
 .koi-detail__wa {
   display: flex; align-items: center; justify-content: center; gap: var(--sp-3);
   width: 100%; padding: var(--sp-4) var(--sp-8);
-  background: var(--c-wa); color: var(--c-white);
+  background: var(--c-wa); color: var(--c-black);
   border-radius: var(--r-full); font-family: var(--font-sans);
   font-size: var(--text-lg); font-weight: 700; text-decoration: none;
   transition: background var(--t-fast), box-shadow var(--t-fast);

@@ -32,14 +32,14 @@
   font-family: var(--font-serif); font-size: var(--text-lg);
   font-weight: 700; color: var(--c-black); margin: 0 0 2px 0; line-height: 1.2;
 }
-.koi-card-meta { font-size: var(--text-sm); color: var(--n-55); margin: 0; }
+.koi-card-meta { font-size: var(--text-sm); color: var(--n-75); margin: 0; }
 .koi-card-price-block {
   flex-shrink: 0; text-align: right;
 }
 .koi-card-price-label {
   display: block; font-size: 0.65rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.12em;
-  color: var(--n-55); margin-bottom: 2px;
+  color: var(--n-75); margin-bottom: 2px;
 }
 .koi-card-price {
   font-family: var(--font-sans); font-size: var(--text-xl); font-weight: 700; color: var(--c-red);
@@ -48,7 +48,7 @@
 .koi-card-content { padding: var(--sp-4); border-top: 1px solid var(--n-08); }
 .koi-card-cert {
   display: flex; align-items: center; gap: var(--sp-2);
-  font-size: var(--text-sm); color: var(--n-55); margin: 0 0 var(--sp-4) 0;
+  font-size: var(--text-sm); color: var(--n-75); margin: 0 0 var(--sp-4) 0;
 }
 .koi-card-cert svg { flex-shrink: 0; opacity: 0.75; }
 .koi-card-actions { display: flex; gap: var(--sp-2); }
@@ -100,13 +100,13 @@
   font-weight: 900; color: var(--c-black); line-height: var(--leading-tight); margin: 0;
 }
 .editorial__sub {
-  font-size: var(--text-sm); color: var(--n-55); margin: 0;
+  font-size: var(--text-sm); color: var(--w-70); margin: 0;
   padding-top: var(--sp-2); border-top: 1px solid var(--n-08);
 }
 .editorial__cta { display: flex; flex-direction: column; gap: var(--sp-3); }
 .editorial__price {
   font-family: var(--font-sans); font-size: var(--text-3xl);
-  font-weight: 900; color: var(--c-red); line-height: 1;
+  font-weight: 900; color: var(--c-white); line-height: 1;
 }
 .editorial__price sup { font-size: 0.45em; vertical-align: super; }
 
@@ -118,7 +118,7 @@
 }
 .koi-showcase__footer { text-align: center; }
 .koi-showcase__link {
-  font-size: var(--text-sm); font-weight: 700; color: var(--c-red);
+  font-size: var(--text-sm); font-weight: 700; color: var(--c-wine);
   text-decoration: underline; text-underline-offset: 3px;
 }
 
