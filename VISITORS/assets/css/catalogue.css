@@ -5,8 +5,7 @@
 /* ── FILTER BAR ──────────────────────────────────────────────────────── */
 .filter-bar {
   position: sticky; top: var(--header-height); z-index: 50;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  background: var(--c-cream);
   border-bottom: 1px solid var(--n-08);
   box-shadow: var(--shadow-sm);
 }

@@ -18,8 +18,6 @@
   pointer-events: none;
 }
 
-.konishi-band__wave-top { line-height: 0; }
-.konishi-band__wave-top svg { display: block; width: 100%; }
 
 .konishi-band__inner {
   max-width: var(--max-width); margin: 0 auto;
@@ -58,8 +56,6 @@
   background: radial-gradient(circle at center, rgba(99,15,15,0.25) 0%, transparent 70%);
 }
 
-.konishi-band__wave-bot { line-height: 0; }
-.konishi-band__wave-bot svg { display: block; width: 100%; }
 
 /* ── ALIAS CONVENTION PAGE ───────────────────────────────────────── */
 .konishi-band__img {

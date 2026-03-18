@@ -42,17 +42,22 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero__bg"></div>
+  <video autoplay muted loop playsinline class="hero__video">
+    <source src="../../docs/assets/Kois-story-video.mp4" type="video/mp4">
+  </video>
   <div class="hero__overlay"></div>
-  <div class="hero__content">
-    <h1 class="hero__title">Des koïs d'exception,<br>issus de la lignée Konishi</h1>
-    <p class="hero__subtitle">Mathilde &amp; Emmanuel vous proposent des carpes koïs sélectionnées avec passion. Livraison dans un rayon de 50 km. Sur rendez-vous uniquement.</p>
-    <div class="hero__ctas">
+</section>
+
+<!-- HERO INTRO -->
+<section class="hero-intro">
+  <div class="hero-intro__inner">
+    <h1 class="hero-intro__title">Des koïs d'exception,<br>issus de la lignée Konishi</h1>
+    <p class="hero-intro__sub">Mathilde &amp; Emmanuel vous proposent des carpes koïs sélectionnées avec passion. Livraison dans un rayon de 50 km. Sur rendez-vous uniquement.</p>
+    <div class="hero-intro__ctas">
       <a href="kois.html" class="btn btn--primary">Voir le catalogue</a>
-      <a href="decouvrir.html" class="btn btn--ghost-white">Notre élevage</a>
+      <a href="decouvrir.html" class="btn btn--ghost">Notre élevage</a>
     </div>
   </div>
-  <div class="hero__wave"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5f5f2"/></svg></div>
 </section>
 
 <!-- KOI SHOWCASE -->
@@ -198,7 +203,6 @@
 
 <!-- KONISHI BAND -->
 <div class="konishi-band">
-  <div class="wave"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#000000"/></svg></div>
   <div class="konishi-band__inner">
     <div data-animate="fade-right">
       <p class="section-label section-label--red">Partenaire officiel</p>
@@ -210,9 +214,7 @@
       <img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi">
     </div>
   </div>
-  <div class="wave"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5f5f2"/></svg></div>
 </div>
-
 <!-- CONTACT RAPIDE -->
 <section class="contact-quick">
   <div class="contact-quick__inner">
@@ -365,20 +367,6 @@
     }
   });
 
-  /* Mouse parallax — hero background */
-  const heroBg = document.querySelector('.hero__bg');
-  const heroSection = document.getElementById('hero');
-  if (heroBg && heroSection && window.matchMedia('(hover: hover)').matches) {
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = heroSection.getBoundingClientRect();
-      const cx = (e.clientX - rect.left) / rect.width - 0.5;
-      const cy = (e.clientY - rect.top) / rect.height - 0.5;
-      heroBg.style.transform = `scale(1.08) translate(${cx * -18}px, ${cy * -12}px)`;
-    });
-    heroSection.addEventListener('mouseleave', () => {
-      heroBg.style.transform = '';
-    });
-  }
 </script>
 </body>
 </html>

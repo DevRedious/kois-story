@@ -88,6 +88,3 @@
   padding: 6px;
 }
 
-/* ── ALIAS WAVE ─────────────────────────────────────────────────── */
-.wave { line-height: 0; }
-.wave svg { display: block; width: 100%; }

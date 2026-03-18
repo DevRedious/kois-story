@@ -57,8 +57,6 @@
 /* ── SHOP SECTION ────────────────────────────────────────────────────── */
 .shop-section { background: rgba(245, 245, 242, 0.90); }
 
-.shop-section__wave { line-height: 0; background: transparent; }
-.shop-section__wave svg { display: block; width: 100%; }
 
 .shop-section__inner {
   max-width: var(--max-width); margin: 0 auto;
