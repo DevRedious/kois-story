@@ -88,11 +88,11 @@
 .hero-intro__inner { max-width: var(--max-width); margin: 0 auto; }
 .hero-intro__title {
   font-family: var(--font-serif); font-size: var(--text-hero);
-  font-weight: 900; color: var(--c-white);
+  font-weight: 900; color: var(--c-black);
   line-height: var(--leading-tight); margin-bottom: var(--sp-5); max-width: 780px;
 }
 .hero-intro__sub {
-  font-size: var(--text-lg); color: rgba(255, 255, 255, 0.78);
+  font-size: var(--text-lg); color: var(--n-55);
   line-height: var(--leading-normal); margin-bottom: var(--sp-8); max-width: 560px;
 }
 .hero-intro__ctas { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
