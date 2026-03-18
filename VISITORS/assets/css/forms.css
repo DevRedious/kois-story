@@ -1,0 +1,153 @@
+/* ==========================================================================
+   forms.css — Atom input + Molecule contact-form Koi's Story V3
+   ========================================================================== */
+
+/* ── FIELD / INPUT ATOM ──────────────────────────────────────────────── */
+.field { display: flex; flex-direction: column; gap: var(--sp-2); }
+
+.field__label {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--c-black);
+  letter-spacing: 0.02em;
+}
+.field__label span { color: var(--c-red); margin-left: 2px; }
+
+.field__input,
+.field__textarea,
+.field__select {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--c-white);
+  border: 1px solid var(--n-17);
+  border-radius: var(--r-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--c-black);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  outline: none;
+}
+.field__input::placeholder,
+.field__textarea::placeholder { color: var(--n-36); }
+
+.field__input:focus,
+.field__textarea:focus,
+.field__select:focus {
+  border-color: var(--c-red);
+  box-shadow: 0 0 0 3px var(--c-red-10);
+}
+
+.field__textarea { resize: vertical; min-height: 120px; line-height: var(--leading-normal); }
+
+.field__select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sp-4) center;
+  padding-right: var(--sp-10);
+  cursor: pointer;
+}
+
+.field__hint      { font-size: var(--text-sm); color: var(--n-55); margin-top: var(--sp-1); }
+.field__error-msg { font-size: var(--text-sm); color: var(--c-red); margin-top: var(--sp-1); }
+.field--error .field__input,
+.field--error .field__textarea { border-color: var(--c-red); }
+
+/* ── CONTACT FORM MOLECULE ──────────────────────────────────────────── */
+.contact-form {
+  background: var(--c-white);
+  border-radius: var(--r-xl);
+  padding: var(--sp-8);
+  box-shadow: var(--shadow-sm);
+}
+.contact-form__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--c-black);
+  margin-bottom: var(--sp-6);
+  line-height: var(--leading-snug);
+}
+
+.form-fields { display: flex; flex-direction: column; gap: var(--sp-5); }
+.form-row    { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+
+.contact-form .field__input,
+.contact-form .field__textarea,
+.contact-form .field__select { background: var(--c-cream); }
+
+.contact-form__submit {
+  width: 100%;
+  padding: var(--sp-4);
+  background: var(--c-red);
+  color: var(--c-white);
+  border: none;
+  border-radius: var(--r-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--t-fast), box-shadow var(--t-fast);
+  margin-top: var(--sp-2);
+}
+.contact-form__submit:hover { background: var(--c-wine); box-shadow: var(--shadow-red); }
+.contact-form__note { font-size: var(--text-sm); color: var(--n-55); margin-top: var(--sp-3); }
+
+/* ── ALIASES CONVENTION PAGE ─────────────────────────────────────── */
+.form-submit {
+  width: 100%; padding: var(--sp-4); background: var(--c-red); color: var(--c-white);
+  border: none; border-radius: var(--r-md); font-family: var(--font-sans);
+  font-size: var(--text-base); font-weight: 700; cursor: pointer; transition: background var(--t-fast);
+}
+.form-submit:hover { background: var(--c-wine); }
+.form-note { font-size: var(--text-sm); color: var(--n-55); }
+
+/* ── PAGE CONTACT ────────────────────────────────────────────────── */
+.contact-section { padding: var(--sp-20) var(--sp-10); }
+.contact-section__inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: start;
+}
+.contact-info { display: flex; flex-direction: column; gap: var(--sp-8); }
+.contact-info h3 {
+  font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 700;
+  color: var(--c-black); margin-bottom: var(--sp-4);
+}
+.info-list { display: flex; flex-direction: column; gap: var(--sp-4); }
+.info-item { display: flex; gap: var(--sp-4); align-items: flex-start; }
+.info-item__icon { font-size: 1.5rem; flex-shrink: 0; }
+.info-item__text strong { font-size: var(--text-sm); font-weight: 700; color: var(--c-black); display: block; margin-bottom: 2px; }
+.info-item__text p { font-size: var(--text-sm); color: var(--n-55); line-height: var(--leading-normal); }
+.info-item__text a { color: var(--c-wa); font-weight: 700; }
+.map-placeholder {
+  aspect-ratio: 16/9; background: var(--n-08); border-radius: var(--r-xl);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--n-36); font-style: italic; font-size: var(--text-sm);
+  border: 2px dashed var(--n-17);
+}
+
+/* ── CONTACT RAPIDE (home) ───────────────────────────────────────── */
+.contact-quick { padding: var(--sp-20) var(--sp-10); background: var(--c-cream); }
+.contact-quick__inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: start;
+}
+.contact-quick__left h2 {
+  font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 700;
+  color: var(--c-black); margin-bottom: var(--sp-4);
+}
+.contact-quick__left p {
+  font-size: var(--text-base); color: var(--n-55);
+  line-height: var(--leading-normal); margin-bottom: var(--sp-6);
+}
+.contact-quick__info { display: flex; flex-direction: column; gap: var(--sp-5); }
+
+@media (max-width: 900px) {
+  .contact-section__inner { grid-template-columns: 1fr; }
+  .contact-quick__inner { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 769px) {
+  .form-row { grid-template-columns: 1fr 1fr; }
+}

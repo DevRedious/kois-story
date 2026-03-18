@@ -4,143 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Organism — Footer | Koi's Story</title>
-  <link rel="stylesheet" href="../../docs/design/tokens.css">
-  <link rel="stylesheet" href="../../docs/design/fonts.css">
-  <link rel="stylesheet" href="../../docs/design/reset.css">
-  <style>
-    body { margin: 0; background: var(--c-cream); }
-
-    /* ════════════════════════════════════════════════════════════════
-       VARIANTE A — FOOTER COMPLET (home.html uniquement)
-       Wordmark géant + colonnes de navigation + barre compacte
-       ════════════════════════════════════════════════════════════════ */
-
-    .site-footer {
-      background:
-        radial-gradient(ellipse 65% 120% at 0% 110%, rgba(99, 15, 15, 0.28) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 60% at 100% 40%, rgba(99, 15, 15, 0.10) 0%, transparent 55%),
-        #0c0c0c;
-      border-top: 1px solid rgba(230, 0, 0, 0.22);
-    }
-
-    /* Variante A — inner (utilisée dans home.html) */
-    .footer__inner--full {
-      max-width: var(--max-width); margin: 0 auto;
-      padding: var(--sp-16) var(--sp-10) var(--sp-8);
-    }
-
-    /* Top row — colonnes de navigation */
-    .footer__top {
-      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
-      gap: var(--sp-10); margin-bottom: var(--sp-12);
-    }
-
-    /* Brand col */
-    .footer__brand { display: flex; flex-direction: column; gap: var(--sp-5); }
-    .footer__logo img { height: 48px; width: auto; opacity: 0.9; }
-    .footer__tagline { font-size: var(--text-sm); color: var(--w-50); line-height: var(--leading-normal); }
-
-    .footer__wa {
-      display: inline-flex; align-items: center; gap: var(--sp-2);
-      padding: var(--sp-3) var(--sp-5); background: var(--c-wa); color: var(--c-white);
-      border-radius: var(--r-full); font-family: var(--font-sans);
-      font-size: var(--text-sm); font-weight: 700; text-decoration: none; width: fit-content;
-      transition: background var(--t-fast);
-    }
-    .footer__wa:hover { background: #25d366; }
-
-    /* Nav cols */
-    .footer__col h4 {
-      font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
-      letter-spacing: var(--tracking-wider); color: var(--w-50);
-      margin-bottom: var(--sp-4);
-    }
-    .footer__col ul { display: flex; flex-direction: column; gap: var(--sp-3); }
-    .footer__col a {
-      font-size: var(--text-sm); color: var(--c-white); text-decoration: none;
-      transition: color var(--t-fast);
-    }
-    .footer__col a:hover { color: var(--c-red); }
-
-    /* Bottom bar — partagée entre les deux variantes */
-    .footer__bottom {
-      border-top: 1px solid var(--w-10);
-      padding-top: var(--sp-6);
-      display: flex; align-items: center; justify-content: space-between;
-      gap: var(--sp-4); flex-wrap: wrap;
-    }
-    .footer__copy-full { font-size: var(--text-sm); color: var(--w-50); }
-    .footer__legal { display: flex; gap: var(--sp-5); }
-    .footer__legal a {
-      font-size: var(--text-sm); color: var(--w-50); text-decoration: none;
-      transition: color var(--t-fast);
-    }
-    .footer__legal a:hover { color: var(--c-white); }
-
-    /* Mentions RDV */
-    .footer__info {
-      font-size: var(--text-sm); color: var(--w-50); text-align: center;
-      border-top: 1px solid var(--w-10); padding: var(--sp-4) var(--sp-10);
-      max-width: var(--max-width); margin: 0 auto;
-    }
-
-
-    /* ════════════════════════════════════════════════════════════════
-       VARIANTE B — FOOTER COMPACT (toutes les pages secondaires)
-       Barre seule : logo + liens horizontaux + liquid indicator + copyright
-       ════════════════════════════════════════════════════════════════ */
-
-    .footer__inner { max-width: var(--max-width); margin: 0 auto; }
-
-    .footer__bar {
-      border-top: 1px solid var(--w-10);
-      margin: 0 var(--sp-10);
-      padding: var(--sp-4) 0 var(--sp-6);
-      display: flex; align-items: center; gap: var(--sp-6); flex-wrap: wrap;
-    }
-    .footer__logo img { height: 52px; width: auto; opacity: 0.85; flex-shrink: 0; }
-    .footer__links { display: flex; flex-wrap: wrap; gap: 0; flex: 1; position: relative; }
-    .footer__links a {
-      font-size: var(--text-sm); color: var(--w-50); transition: color var(--t-fast);
-      white-space: nowrap; padding: var(--sp-1) var(--sp-3); position: relative; z-index: 1;
-    }
-    .footer__links a:hover { color: var(--c-white); }
-
-    /* Liquid indicator */
-    .footer__indicator {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      height: 28px; border-radius: var(--r-full);
-      background: rgba(255, 255, 255, 0.08);
-      transition: left 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
-                  width 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
-                  opacity var(--t-fast);
-      pointer-events: none; opacity: 0; z-index: 0;
-    }
-
-    .footer__copy { font-size: var(--text-sm); color: var(--w-30); white-space: nowrap; margin-left: auto; }
-
-
-    /* ════ RESPONSIVE ════════════════════════════════════════════════ */
-    @media (max-width: 900px) {
-      .footer__top { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .footer__bar { flex-direction: column; align-items: flex-start; gap: var(--sp-4); margin: 0 var(--sp-4); padding-bottom: var(--sp-6); }
-      .footer__copy { margin-left: 0; }
-    }
-    @media (max-width: 480px) {
-      .footer__top { grid-template-columns: 1fr; }
-      .footer__bottom { flex-direction: column; text-align: center; }
-    }
-
-    /* ════ DEMO PAGE STYLES ═══════════════════════════════════════════ */
-    .demo-label {
-      background: var(--c-cream); padding: var(--sp-6) var(--sp-10);
-      font-family: var(--font-sans); font-size: var(--text-sm); color: var(--n-55);
-      border-bottom: 1px solid var(--n-08);
-    }
-    .demo-label strong { color: var(--c-black); }
-  </style>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
 
@@ -223,7 +88,7 @@
        VARIANTE B — Footer compact (pages secondaires)
        Barre seule : logo + liens horizontaux + liquid indicator + copyright
        ════════════════════════════════════════════════════════════════ -->
-  <div class="demo-label" style="margin-top: var(--sp-12);"><strong>Variante B — Footer compact</strong> · Utilisé sur toutes les pages secondaires · Logo + liens + liquid indicator</div>
+  <div class="demo-label"><strong>Variante B — Footer compact</strong> · Utilisé sur toutes les pages secondaires · Logo + liens + liquid indicator</div>
 
   <footer class="site-footer">
     <div class="footer__inner">
