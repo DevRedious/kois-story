@@ -97,6 +97,23 @@
 }
 .hero-intro__ctas { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
 
+/* ── HERO COMPACT WAVY BOTTOM ────────────────────────────────────── */
+/* hero-compact est ~250 px → 12% ≈ 30 px → overlap de 40 px */
+.hero-compact--wavy-bottom {
+  clip-path: url(#wave-clip);
+}
+
+/* main transparent : on remonte juste pour combler les creux */
+.hero-compact--wavy-bottom + main {
+  margin-top: -40px;
+}
+
+/* konishi-info (nourriture) a un fond propre : compenser le padding */
+.hero-compact--wavy-bottom + .konishi-info {
+  margin-top: -40px;
+  padding-top: calc(40px + var(--sp-12));
+}
+
 /* ── HERO COMPACT — pages intérieures ───────────────────────────── */
 .hero-compact {
   background: var(--c-black);
