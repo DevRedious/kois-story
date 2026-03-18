@@ -68,7 +68,7 @@
   position: relative; z-index: 1; white-space: nowrap;
 }
 .header__nav a.active {
-  background: linear-gradient(135deg, #e60000 0%, #630f0f 50%, #e60000 100%);
+  background: linear-gradient(135deg, #980000 0%, #630f0f 50%, #980000 100%);
   background-size: 200% 200%; background-position: 0% 0%;
   color: var(--c-white); border-radius: var(--r-xl);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -109,6 +109,11 @@
   transition: background var(--t-fast), color var(--t-fast);
 }
 .dropdown li a:hover { background: var(--w-06); color: var(--c-red); }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-logo, .header__pill, .header__nav a,
+  .nav__indicator, .dropdown, .header__burger span { transition: none; }
+}
 
 /* ── BURGER ──────────────────────────────────────────────────────────── */
 .header__burger {
@@ -164,7 +169,7 @@
   }
   .header__nav.open > ul > li > a:hover,
   .header__nav.open > ul > li > .dropdown-toggle:hover { background: var(--w-06); }
-  .header__nav.open > ul > li > a.active { background: var(--c-red); color: var(--c-white); }
+  .header__nav.open > ul > li > a.active { background: var(--c-wine); color: var(--c-white); }
   .nav__indicator { display: none; }
   .dropdown {
     display: none; position: static; transform: none; opacity: 1; pointer-events: auto;

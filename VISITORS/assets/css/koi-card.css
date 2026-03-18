@@ -36,13 +36,13 @@
 }
 .koi-card__meta { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
 .koi-card__specs {
-  font-size: var(--text-sm); color: var(--n-55);
+  font-size: var(--text-sm); color: var(--n-75);
   display: flex; gap: var(--sp-3);
 }
 
 .koi-card__price {
   font-family: var(--font-serif); font-size: var(--text-2xl);
-  font-weight: 700; color: var(--c-red); line-height: 1;
+  font-weight: 700; color: var(--c-wine); line-height: 1;
   margin-top: auto; padding-top: var(--sp-2);
 }
 .koi-card__price sup { font-size: 0.55em; vertical-align: super; }
@@ -50,12 +50,12 @@
 .koi-card__footer { padding: var(--sp-3) var(--sp-4); border-top: 1px solid var(--n-08); }
 .koi-card__btn {
   display: block; width: 100%; padding: var(--sp-2) var(--sp-4);
-  background: var(--c-red); color: var(--c-white);
+  background: var(--c-wine); color: var(--c-white);
   border-radius: var(--r-md); text-align: center;
   font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 700;
   transition: background var(--t-fast); text-decoration: none;
 }
-.koi-card__btn:hover { background: var(--c-wine); }
+.koi-card__btn:hover { background: var(--c-black); }
 
 .koi-card--sold { opacity: 0.72; }
 .koi-card--sold .koi-card__btn { background: var(--n-36); cursor: not-allowed; }
@@ -100,6 +100,6 @@
 .koi-card-editorial__cta { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-3); }
 .koi-card-editorial__price {
   font-family: var(--font-serif); font-size: var(--text-3xl);
-  font-weight: 700; color: var(--c-red); line-height: 1;
+  font-weight: 700; color: var(--c-white); line-height: 1;
 }
 .koi-card-editorial__price sup { font-size: 0.5em; vertical-align: super; }

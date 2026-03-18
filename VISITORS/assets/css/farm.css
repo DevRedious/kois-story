@@ -9,13 +9,13 @@
 .farm-gallery__header { margin-bottom: var(--sp-8); }
 .farm-gallery__label {
   font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
-  letter-spacing: var(--tracking-wider); color: var(--c-red); margin-bottom: var(--sp-2);
+  letter-spacing: var(--tracking-wider); color: var(--c-wine); margin-bottom: var(--sp-2);
 }
 .farm-gallery__title {
   font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 700;
   color: var(--c-black); line-height: var(--leading-snug); margin-bottom: var(--sp-3);
 }
-.farm-gallery__sub { font-size: var(--text-base); color: var(--n-55); max-width: 560px; }
+.farm-gallery__sub { font-size: var(--text-base); color: var(--n-75); max-width: 560px; }
 
 /* Rangée 1 : grande image gauche + 2 petites droite */
 .gallery-row-1 {
@@ -92,7 +92,7 @@
 .decouvrir-story__text { display: flex; flex-direction: column; gap: var(--sp-5); }
 .decouvrir-story__label {
   font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
-  letter-spacing: var(--tracking-wider); color: var(--c-red);
+  letter-spacing: var(--tracking-wider); color: var(--c-wine);
 }
 .decouvrir-story__title {
   font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 700;
@@ -109,7 +109,7 @@
 .story-block__img { aspect-ratio: 4/3; border-radius: var(--r-xl); overflow: hidden; background: var(--n-08); }
 .story-block__img img { width: 100%; height: 100%; object-fit: cover; }
 .story-block__text { display: flex; flex-direction: column; gap: var(--sp-4); }
-.story-block__label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--c-red); }
+.story-block__label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--c-wine); }
 .story-block__title { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700; color: var(--c-black); line-height: var(--leading-snug); }
 .story-block__body { font-size: var(--text-base); color: var(--n-75); line-height: var(--leading-normal); }
 

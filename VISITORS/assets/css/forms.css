@@ -49,7 +49,7 @@
   cursor: pointer;
 }
 
-.field__hint      { font-size: var(--text-sm); color: var(--n-55); margin-top: var(--sp-1); }
+.field__hint      { font-size: var(--text-sm); color: var(--n-75); margin-top: var(--sp-1); }
 .field__error-msg { font-size: var(--text-sm); color: var(--c-red); margin-top: var(--sp-1); }
 .field--error .field__input,
 .field--error .field__textarea { border-color: var(--c-red); }
@@ -92,16 +92,16 @@
   margin-top: var(--sp-2);
 }
 .contact-form__submit:hover { background: var(--c-wine); box-shadow: var(--shadow-red); }
-.contact-form__note { font-size: var(--text-sm); color: var(--n-55); margin-top: var(--sp-3); }
+.contact-form__note { font-size: var(--text-sm); color: var(--n-75); margin-top: var(--sp-3); }
 
 /* ── ALIASES CONVENTION PAGE ─────────────────────────────────────── */
 .form-submit {
-  width: 100%; padding: var(--sp-4); background: var(--c-red); color: var(--c-white);
+  width: 100%; padding: var(--sp-4); background: var(--c-wine); color: var(--c-white);
   border: none; border-radius: var(--r-md); font-family: var(--font-sans);
   font-size: var(--text-base); font-weight: 700; cursor: pointer; transition: background var(--t-fast);
 }
-.form-submit:hover { background: var(--c-wine); }
-.form-note { font-size: var(--text-sm); color: var(--n-55); }
+.form-submit:hover { background: var(--c-black); }
+.form-note { font-size: var(--text-sm); color: var(--n-75); }
 
 /* ── PAGE CONTACT ────────────────────────────────────────────────── */
 .contact-section { padding: var(--sp-20) var(--sp-10); }
@@ -118,7 +118,7 @@
 .info-item { display: flex; gap: var(--sp-4); align-items: flex-start; }
 .info-item__icon { font-size: 1.5rem; flex-shrink: 0; }
 .info-item__text strong { font-size: var(--text-sm); font-weight: 700; color: var(--c-black); display: block; margin-bottom: 2px; }
-.info-item__text p { font-size: var(--text-sm); color: var(--n-55); line-height: var(--leading-normal); }
+.info-item__text p { font-size: var(--text-sm); color: var(--n-75); line-height: var(--leading-normal); }
 .info-item__text a { color: var(--c-wa); font-weight: 700; }
 .map-placeholder {
   aspect-ratio: 16/9; background: var(--n-08); border-radius: var(--r-xl);
@@ -138,7 +138,7 @@
   color: var(--c-black); margin-bottom: var(--sp-4);
 }
 .contact-quick__left p {
-  font-size: var(--text-base); color: var(--n-55);
+  font-size: var(--text-base); color: var(--n-75);
   line-height: var(--leading-normal); margin-bottom: var(--sp-6);
 }
 .contact-quick__info { display: flex; flex-direction: column; gap: var(--sp-5); }

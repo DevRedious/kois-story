@@ -18,7 +18,7 @@
 }
 
 .badge--konishi { background: var(--c-wine); color: var(--c-cream); }
-.badge--new     { background: var(--c-red);  color: var(--c-white); }
+.badge--new     { background: var(--c-wine); color: var(--c-white); }
 .badge--status  { background: var(--n-08);   color: var(--c-black); }
 
 .badge--variety {
@@ -28,7 +28,7 @@
 }
 .badge--age {
   background: var(--c-red-10);
-  color: var(--c-red);
+  color: var(--c-wine);
   border: 1px solid var(--c-red-20);
 }
 .badge--category {
