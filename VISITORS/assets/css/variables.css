@@ -93,7 +93,7 @@
 
   /* ── Layout ────────────────────────────────────────────────────────── */
   --max-width:       1400px;
-  --header-height:   72px;
+  --header-height:   74px;
   --section-padding: var(--sp-20) var(--sp-10);
 }
 

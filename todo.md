@@ -284,10 +284,10 @@ Stack : HTML + CSS + JS vanilla uniquement — Atomic Design — aucun fichier >
 
 ## Violations 200 lignes — `VISITORS/` (non-exceptions)
 
-- [ ] `organisms/header.html` (320 lignes) — extraire les nav items en molecule dédiée
-- [ ] `molecules/nav-header.html` (310 lignes) — découper (trop lourd pour une molecule)
-- [ ] `organisms/koi-showcase.html` (218 lignes) — extraction partielle vers molecule ou atom
-- [ ] `organisms/koi-detail.html` (212 lignes) — extraction partielle
+- [x] `organisms/header.html` (121 lignes après refactor — commit 358e337)
+- [x] `molecules/nav-header.html` (118 lignes après refactor — commit 358e337)
+- [x] `organisms/koi-showcase.html` (87 lignes après refactor — commit 358e337)
+- [x] `organisms/koi-detail.html` (108 lignes après refactor — commit 358e337)
 
 ---
 

@@ -77,9 +77,3 @@ input, textarea, select {
 /* WhatsApp link */
 .link-wa { color: var(--c-wa); font-weight: 700; }
 
-/* ── Wave SVG fill overrides ────────────────────────────────────────── */
-/* Only override cream fills (#f5f5f2) — black fills (konishi entry) stay untouched */
-.wave svg path[fill="#f5f5f2"],
-.hero__wave svg path,
-.shop-section__wave svg path,
-.konishi-band__wave-bot svg path { fill: rgba(245, 245, 242, 0.90); }
