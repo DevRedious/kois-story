@@ -8,6 +8,21 @@
 </head>
 <body>
 
+<!-- CLIP-PATH WAVE — partagé par toutes les sections ondulées de la page -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden;" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
+      <!-- 4 demi-vagues de droite à gauche, centrées à y=0.92, amplitude ±0.04-0.05 -->
+      <path d="M 0,0 L 1,0 L 1,0.92
+               C 0.90,0.97 0.85,0.97 0.75,0.92
+               C 0.65,0.88 0.60,0.88 0.50,0.92
+               C 0.40,0.97 0.35,0.97 0.25,0.92
+               C 0.15,0.88 0.10,0.88 0,0.92
+               Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
 <!-- LOGO -->
 <a href="home.html" class="site-logo" id="site-logo">
   <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
@@ -41,7 +56,7 @@
 <div class="nav-backdrop" id="nav-backdrop"></div>
 
 <!-- HERO -->
-<section class="hero" id="hero">
+<section class="hero hero--wavy-bottom" id="hero">
   <video autoplay muted playsinline class="hero__video">
     <source src="../../docs/assets/Kois-story-video.mp4" type="video/mp4">
   </video>
@@ -92,20 +107,19 @@
       <article class="koi-card" data-animate="fade-up">
         <div class="koi-card-image">
           <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Sakura">
-          <div class="koi-card-image-overlay"></div>
           <div class="koi-card-badges">
             <span class="koi-card-badge koi-card-badge--konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi"></span>
             <span class="koi-card-badge koi-card-badge--status">Disponible</span>
           </div>
-          <div class="koi-card-image-caption">
-            <div class="koi-card-caption-left">
-              <h4 class="koi-card-name">Sakura</h4>
-              <p class="koi-card-meta">Grand Voile Suda · 55 cm · Nisaï</p>
-            </div>
-            <div class="koi-card-price-block">
-              <span class="koi-card-price-label">Prix</span>
-              <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 800</span>
-            </div>
+        </div>
+        <div class="koi-card-image-caption">
+          <div class="koi-card-caption-left">
+            <h4 class="koi-card-name">Sakura</h4>
+            <p class="koi-card-meta">Grand Voile Suda · 55 cm · Nisaï</p>
+          </div>
+          <div class="koi-card-price-block">
+            <span class="koi-card-price-label">Prix</span>
+            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 800</span>
           </div>
         </div>
         <div class="koi-card-content">
@@ -119,20 +133,19 @@
       <article class="koi-card" data-animate="fade-up" data-delay="1">
         <div class="koi-card-image">
           <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Butterfly Tancho">
-          <div class="koi-card-image-overlay"></div>
           <div class="koi-card-badges">
             <span class="koi-card-badge koi-card-badge--konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi"></span>
             <span class="koi-card-badge koi-card-badge--status">Disponible</span>
           </div>
-          <div class="koi-card-image-caption">
-            <div class="koi-card-caption-left">
-              <h4 class="koi-card-name">Butterfly Tancho</h4>
-              <p class="koi-card-meta">Kujaku · 48 cm · Tosaï</p>
-            </div>
-            <div class="koi-card-price-block">
-              <span class="koi-card-price-label">Prix</span>
-              <span class="koi-card-price"><span class="koi-card-price-currency">€</span>950</span>
-            </div>
+        </div>
+        <div class="koi-card-image-caption">
+          <div class="koi-card-caption-left">
+            <h4 class="koi-card-name">Butterfly Tancho</h4>
+            <p class="koi-card-meta">Kujaku · 48 cm · Tosaï</p>
+          </div>
+          <div class="koi-card-price-block">
+            <span class="koi-card-price-label">Prix</span>
+            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>950</span>
           </div>
         </div>
         <div class="koi-card-content">
@@ -146,19 +159,18 @@
       <article class="koi-card" data-animate="fade-up" data-delay="2">
         <div class="koi-card-image">
           <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Asahi">
-          <div class="koi-card-image-overlay"></div>
           <div class="koi-card-badges">
             <span class="koi-card-badge koi-card-badge--status">Disponible</span>
           </div>
-          <div class="koi-card-image-caption">
-            <div class="koi-card-caption-left">
-              <h4 class="koi-card-name">Asahi</h4>
-              <p class="koi-card-meta">Showa · 62 cm · Sansaï</p>
-            </div>
-            <div class="koi-card-price-block">
-              <span class="koi-card-price-label">Prix</span>
-              <span class="koi-card-price"><span class="koi-card-price-currency">€</span>2 400</span>
-            </div>
+        </div>
+        <div class="koi-card-image-caption">
+          <div class="koi-card-caption-left">
+            <h4 class="koi-card-name">Asahi</h4>
+            <p class="koi-card-meta">Showa · 62 cm · Sansaï</p>
+          </div>
+          <div class="koi-card-price-block">
+            <span class="koi-card-price-label">Prix</span>
+            <span class="koi-card-price"><span class="koi-card-price-currency">€</span>2 400</span>
           </div>
         </div>
         <div class="koi-card-content">
@@ -205,7 +217,7 @@
 </section>
 
 <!-- KONISHI BAND -->
-<div class="konishi-band">
+<div class="konishi-band konishi-band--wavy-bottom">
   <div class="konishi-band__inner">
     <div data-animate="fade-right">
       <p class="section-label section-label--red">Partenaire officiel</p>

@@ -9,10 +9,7 @@
 }
 .koi-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease; }
 .koi-card:hover .koi-card-image img { transform: scale(1.05); }
-.koi-card-image-overlay {
-  position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to top, rgba(8,8,8,0.75) 0%, rgba(8,8,8,0.2) 40%, transparent 70%);
-}
+.koi-card-image-overlay { display: none; }
 .koi-card-badges {
   position: absolute; top: var(--sp-3); left: var(--sp-3);
   display: flex; flex-wrap: wrap; gap: var(--sp-2); z-index: 2;
@@ -26,29 +23,29 @@
 .koi-card-badge--konishi img { height: 14px; width: auto; filter: brightness(0) invert(1); }
 .koi-card-badge--status { background: rgba(255,255,255,0.90); color: var(--c-black); }
 .koi-card-image-caption {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: var(--sp-4); display: flex; align-items: flex-end;
-  justify-content: space-between; gap: var(--sp-4); z-index: 2;
+  padding: var(--sp-4) var(--sp-4) var(--sp-2);
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: var(--sp-4);
+  background: var(--c-white);
 }
 .koi-card-name {
   font-family: var(--font-serif); font-size: var(--text-lg);
-  font-weight: 700; color: var(--c-white); margin: 0 0 2px 0; line-height: 1.2;
+  font-weight: 700; color: var(--c-black); margin: 0 0 2px 0; line-height: 1.2;
 }
-.koi-card-meta { font-size: var(--text-sm); color: rgba(255,255,255,0.80); margin: 0; }
+.koi-card-meta { font-size: var(--text-sm); color: var(--n-55); margin: 0; }
 .koi-card-price-block {
-  flex-shrink: 0; padding: var(--sp-2) var(--sp-3) 10px; border-radius: var(--r-lg);
-  background: rgba(255,255,255,0.14); backdrop-filter: blur(8px); text-align: right;
+  flex-shrink: 0; text-align: right;
 }
 .koi-card-price-label {
   display: block; font-size: 0.65rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.70); margin-bottom: 2px;
+  color: var(--n-55); margin-bottom: 2px;
 }
 .koi-card-price {
-  font-family: var(--font-serif); font-size: var(--text-lg); font-weight: 700; color: var(--c-white);
+  font-family: var(--font-sans); font-size: var(--text-xl); font-weight: 700; color: var(--c-red);
 }
 .koi-card-price-currency { font-size: 0.6em; vertical-align: super; margin-right: 2px; }
-.koi-card-content { padding: var(--sp-4); }
+.koi-card-content { padding: var(--sp-4); border-top: 1px solid var(--n-08); }
 .koi-card-cert {
   display: flex; align-items: center; gap: var(--sp-2);
   font-size: var(--text-sm); color: var(--n-55); margin: 0 0 var(--sp-4) 0;
@@ -104,7 +101,7 @@
 }
 .editorial__sub { font-size: var(--text-sm); color: var(--w-70); margin-bottom: var(--sp-6); }
 .editorial__cta { display: flex; align-items: center; gap: var(--sp-4); flex-wrap: wrap; }
-.editorial__price { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700; color: var(--c-red); }
+.editorial__price { font-family: var(--font-sans); font-size: var(--text-2xl); font-weight: 700; color: var(--c-red); }
 .editorial__price sup { font-size: 0.5em; vertical-align: super; }
 
 /* ── KOI SHOWCASE — section grille home ─────────────────────────── */
