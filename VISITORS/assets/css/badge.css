@@ -7,7 +7,7 @@
   align-items: center;
   gap: 4px;
   padding: 4px 10px;
-  border-radius: var(--r-full);
+  border-radius: var(--r-xl);
   font-family: var(--font-sans);
   font-size: var(--text-xs);
   font-weight: 700;

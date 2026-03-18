@@ -76,9 +76,9 @@
 
 .koi-detail__wa {
   display: flex; align-items: center; justify-content: center; gap: var(--sp-3);
-  width: 100%; padding: var(--sp-4);
+  width: 100%; padding: var(--sp-4) var(--sp-8);
   background: var(--c-wa); color: var(--c-white);
-  border-radius: var(--r-md); font-family: var(--font-sans);
+  border-radius: var(--r-full); font-family: var(--font-sans);
   font-size: var(--text-lg); font-weight: 700; text-decoration: none;
   transition: background var(--t-fast), box-shadow var(--t-fast);
 }

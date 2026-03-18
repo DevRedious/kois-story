@@ -15,13 +15,40 @@
                document.querySelector('.hero') ||
                document.querySelector('[data-scroll-trigger]');
 
+    var filterBar = document.querySelector('.filter-bar');
+    var filterInner = document.querySelector('.filter-bar__inner');
+    var logo      = document.getElementById('site-logo');
+    var pill      = header.querySelector('.header__pill');
+
+    function applyNavOffset() {
+      if (!filterInner || !pill) return;
+      var pillW = pill.offsetWidth;
+      var sp8   = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sp-8')) || 32;
+      filterInner.style.paddingRight = (pillW + sp8 * 2) + 'px';
+    }
+
+    function removeNavOffset() {
+      if (!filterInner) return;
+      filterInner.style.paddingRight = '';
+    }
+
     if (hero) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             header.classList.remove('site-header--scrolled');
+            if (filterBar) {
+              header.classList.remove('site-header--on-filter');
+              removeNavOffset();
+              if (logo) logo.classList.remove('site-logo--hidden');
+            }
           } else {
             header.classList.add('site-header--scrolled');
+            if (filterBar) {
+              header.classList.add('site-header--on-filter');
+              applyNavOffset();
+              if (logo) logo.classList.add('site-logo--hidden');
+            }
           }
         });
       }, { threshold: 0.1 });

@@ -46,7 +46,7 @@
 .shop-card__btn {
   display: block; width: 100%; padding: var(--sp-2) var(--sp-4);
   background: transparent; color: var(--c-wine);
-  border: 2px solid var(--c-wine); border-radius: var(--r-md);
+  border: 2px solid var(--c-wine); border-radius: var(--r-full);
   text-align: center; font-family: var(--font-sans);
   font-size: var(--text-sm); font-weight: 700;
   transition: background var(--t-fast), color var(--t-fast);

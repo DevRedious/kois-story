@@ -4,7 +4,7 @@
 
 /* ── FILTER BAR ──────────────────────────────────────────────────────── */
 .filter-bar {
-  position: sticky; top: var(--header-height); z-index: 50;
+  position: sticky; top: 0; z-index: 50;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--n-08);
@@ -99,7 +99,7 @@
 /* ── ALIASES CONVENTION PAGE ─────────────────────────────────────── */
 .catalogue { padding: var(--sp-10) var(--sp-10) var(--sp-20); max-width: var(--max-width); margin: 0 auto; }
 .catalogue__inner { max-width: var(--max-width); margin: 0 auto; }
-.filter-count { margin-left: auto; font-size: var(--text-sm); color: var(--n-55); font-weight: 500; }
+.filter-count { font-size: var(--text-sm); color: var(--n-55); font-weight: 500; }
 
 @media (max-width: 900px) {
   .koi-grid { grid-template-columns: repeat(2, 1fr); }

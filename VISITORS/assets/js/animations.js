@@ -20,3 +20,22 @@ const initAnimations = () => {
 
 document.addEventListener('DOMContentLoaded', initAnimations);
 document.addEventListener('turbo:load', initAnimations);
+
+/* ── Floating CTA — hide when footer enters viewport ────────────────── */
+const initFloatCta = () => {
+  const cta    = document.querySelector('.cta-wa-float');
+  const footer = document.querySelector('.site-footer');
+  if (!cta || !footer) return;
+
+  const check = () => {
+    cta.classList.toggle('cta-wa-float--hidden',
+      footer.getBoundingClientRect().top < window.innerHeight);
+  };
+
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+};
+
+document.addEventListener('DOMContentLoaded', initFloatCta);
+document.addEventListener('turbo:load', initFloatCta);
+

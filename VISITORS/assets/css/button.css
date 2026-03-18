@@ -9,7 +9,7 @@
   justify-content: center;
   gap: var(--sp-2);
   padding: var(--sp-3) var(--sp-6);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   font-family: var(--font-sans);
   font-size: var(--text-base);
   font-weight: 700;

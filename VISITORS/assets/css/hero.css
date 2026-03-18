@@ -37,7 +37,7 @@
 .hero__badge {
   display: inline-flex; align-items: center; gap: var(--sp-2);
   padding: var(--sp-2) var(--sp-4); background: var(--c-wine);
-  color: var(--c-cream); border-radius: var(--r-full);
+  color: var(--c-cream); border-radius: var(--r-xl);
   font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 700;
   text-transform: uppercase; letter-spacing: var(--tracking-wide);
   margin-bottom: var(--sp-5);
