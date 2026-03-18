@@ -3,305 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organism — Hero</title>
+  <title>Organism — Hero | Koi's Story</title>
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); }
+    body { margin: 0; background: var(--c-black); }
 
-    /* ── HERO ORGANISM ───────────────────────────────────────── */
+    /* ── HERO ORGANISM ──────────────────────────────────────────────────── */
     .hero {
-      position: relative;
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: relative; min-height: 100vh;
+      display: flex; align-items: flex-end;
       overflow: hidden;
     }
 
-    /* Background image */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+    /* Photo de fond */
+    .hero__bg {
+      position: absolute; inset: 0;
+      background-image: url('../../docs/assets/carpe-koi-showa-scaled-hero.jpg');
+      background-size: cover; background-position: center 30%;
+      transform: scale(1.04);
+      transition: transform 8s ease;
     }
-    
-    .hero-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
+    .hero.loaded .hero__bg { transform: scale(1); }
+
+    /* Overlay gradient */
+    .hero__overlay {
+      position: absolute; inset: 0;
       background: linear-gradient(
-        135deg,
-        rgba(0,48,73,0.85) 0%,
-        rgba(0,48,73,0.6) 50%,
-        rgba(0,48,73,0.4) 100%
+        to top,
+        rgba(0,0,0,0.75) 0%,
+        rgba(0,0,0,0.40) 40%,
+        rgba(0,0,0,0.15) 70%,
+        transparent 100%
       );
     }
 
-    /* Content */
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 120px 32px 80px;
-      max-width: 900px;
+    /* Contenu */
+    .hero__content {
+      position: relative; z-index: 2;
+      max-width: var(--max-width); margin: 0 auto;
+      padding: var(--sp-24) var(--sp-10);
+      width: 100%;
     }
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-2) var(--sp-4); background: var(--c-wine);
+      color: var(--c-cream); border-radius: var(--r-full);
+      font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 700;
+      text-transform: uppercase; letter-spacing: var(--tracking-wide);
+      margin-bottom: var(--sp-5);
+    }
+    .hero__title {
+      font-family: var(--font-serif);
+      font-size: var(--text-hero);
+      font-weight: 900;
+      color: var(--c-white);
+      line-height: var(--leading-tight);
+      margin-bottom: var(--sp-5);
+      max-width: 780px;
+    }
+    .hero__subtitle {
+      font-family: var(--font-sans);
+      font-size: var(--text-lg);
+      color: var(--w-70);
+      line-height: var(--leading-normal);
+      margin-bottom: var(--sp-8);
+      max-width: 560px;
+    }
+    .hero__ctas { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
 
-    /* Badge */
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      background: rgba(224,159,62,0.2);
-      border: 1px solid rgba(224,159,62,0.4);
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--or-konishi);
-      margin-bottom: 28px;
-      backdrop-filter: blur(4px);
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-4) var(--sp-8); border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700;
+      transition: background var(--t-fast), color var(--t-fast),
+                  border-color var(--t-fast), transform var(--t-fast);
+      border: 2px solid transparent; text-decoration: none;
     }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--primary { background: var(--c-red); color: var(--c-white); border-color: var(--c-red); }
+    .btn--primary:hover { background: var(--c-wine); box-shadow: var(--shadow-red); }
+    .btn--ghost-white { background: transparent; color: var(--c-white); border-color: var(--c-white); }
+    .btn--ghost-white:hover { background: var(--c-white); color: var(--c-black); }
 
-    /* Title */
-    .hero-title {
-      font-family: var(--font-title);
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-    }
-    
-    .hero-title-accent {
-      color: var(--or-konishi);
-    }
+    /* Wave divider en bas */
+    .hero__wave { position: absolute; bottom: -1px; left: 0; right: 0; z-index: 3; line-height: 0; }
+    .hero__wave svg { display: block; width: 100%; height: auto; }
 
-    /* Subtitle */
-    .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: rgba(255,255,255,0.85);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* CTA Group */
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-    }
-    
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 32px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .hero-cta-primary {
-      background: var(--rouge-koi);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(214,40,40,0.3);
-    }
-    
-    .hero-cta-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(214,40,40,0.4);
-    }
-    
-    .hero-cta-secondary {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.3);
-      backdrop-filter: blur(4px);
-    }
-    
-    .hero-cta-secondary:hover {
-      background: rgba(255,255,255,0.2);
-      border-color: rgba(255,255,255,0.5);
-    }
-
-    /* Stats */
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      margin-top: 60px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.15);
-    }
-    
-    .hero-stat {
+    /* Section suivante (démo) */
+    .section-after {
+      background: var(--c-cream); padding: var(--sp-20) var(--sp-10);
       text-align: center;
     }
-    
-    .hero-stat-value {
-      font-family: var(--font-title);
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1;
-    }
-    
-    .hero-stat-label {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.7);
-      margin-top: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* Scroll indicator */
-    .hero-scroll {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.6);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      animation: bounce 2s infinite;
-    }
-    
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* Compact variant */
-    .hero--compact {
-      min-height: 50vh;
-    }
-    
-    .hero--compact .hero-content {
-      padding: 80px 32px 60px;
-    }
-    
-    .hero--compact .hero-stats {
-      display: none;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-content {
-        padding: 100px 24px 60px;
-      }
-      
-      .hero-stats {
-        gap: 24px;
-        margin-top: 40px;
-      }
-      
-      .hero-stat-value {
-        font-size: 2rem;
-      }
-    }
+    .section-after p { font-size: var(--text-lg); color: var(--n-55); }
   </style>
 </head>
 <body>
 
-  <!-- Hero complet -->
-  <section class="hero">
-    <div class="hero-bg">
-      <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Bassin de koïs">
-      <div class="hero-overlay"></div>
-    </div>
-    
-    <div class="hero-content">
-      <span class="hero-badge">★ Affilié à la lignée Konishi</span>
-      
-      <h1 class="hero-title">
-        L'excellence des<br>
-        <span class="hero-title-accent">carpes koï</span> d'exception
-      </h1>
-      
-      <p class="hero-subtitle">
-        Découvrez notre sélection de spécimens uniques, élevés avec passion 
-        et issue de la prestigieuse lignée Konishi. Qualité certifiée, conseil personnalisé.
-      </p>
-      
-      <div class="hero-cta-group">
-        <a href="#" class="hero-cta hero-cta-primary">Explorer le catalogue →</a>
-        <a href="#" class="hero-cta hero-cta-secondary">Découvrir notre élevage</a>
-      </div>
-      
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-value">12</div>
-          <div class="hero-stat-label">Koïs disponibles</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-value">8</div>
-          <div class="hero-stat-label">Lignée Konishi</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-value">7</div>
-          <div class="hero-stat-label">Années d'expertise</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <span>↓</span>
-    </div>
-  </section>
+  <div class="hero" id="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__overlay"></div>
 
-  <div style="padding: 40px;">
-    <h3 style="color: var(--gris-pierre); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Variante compacte</h3>
+    <div class="hero__content">
+      <span class="hero__badge">★ Seul élevage Konishi en France</span>
+      <h1 class="hero__title">Des koïs d'exception,<br>issus de la lignée Konishi</h1>
+      <p class="hero__subtitle">
+        Mathilde &amp; Emmanuel vous proposent des carpes koïs sélectionnées avec passion,
+        héritières du savoir-faire japonais Konishi. Livraison dans un rayon de 50 km.
+      </p>
+      <div class="hero__ctas">
+        <a href="../pages/kois.html" class="btn btn--primary">Voir le catalogue</a>
+        <a href="../pages/decouvrir.html" class="btn btn--ghost-white">Notre élevage</a>
+      </div>
+    </div>
+
+    <div class="hero__wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5f5f2"/>
+      </svg>
+    </div>
   </div>
 
-  <!-- Hero compact (pour pages internes) -->
-  <section class="hero hero--compact">
-    <div class="hero-bg">
-      <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koï">
-      <div class="hero-overlay" style="background: rgba(0,48,73,0.75);"></div>
-    </div>
-    
-    <div class="hero-content">
-      <h1 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem);">
-        Notre catalogue
-      </h1>
-      <p class="hero-subtitle" style="font-size: 1rem;">
-        Retrouvez tous nos spécimens disponibles, filtrables par variété, taille et prix.
-      </p>
-    </div>
-  </section>
+  <div class="section-after">
+    <p>Section suivante (fond crème)</p>
+  </div>
 
+  <script>
+    window.addEventListener('load', () => {
+      document.getElementById('hero').classList.add('loaded');
+    });
+  </script>
 </body>
 </html>

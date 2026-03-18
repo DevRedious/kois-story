@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Konishi Band | Koi's Story</title>
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
+  <style>
+    body { margin: 0; background: var(--c-cream); }
+
+    /* ── KONISHI BAND ORGANISM ──────────────────────────────────────────── */
+    .konishi-band {
+      background: var(--c-black);
+      position: relative; overflow: hidden;
+    }
+
+    /* Lignes décoratives fines */
+    .konishi-band::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--w-10) 1px, transparent 1px),
+        linear-gradient(90deg, var(--w-10) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+
+    .konishi-band__wave-top { line-height: 0; }
+    .konishi-band__wave-top svg { display: block; width: 100%; }
+
+    .konishi-band__inner {
+      max-width: var(--max-width); margin: 0 auto;
+      padding: var(--sp-20) var(--sp-10);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--sp-12); align-items: center;
+      position: relative; z-index: 1;
+    }
+
+    /* Texte gauche */
+    .konishi-band__label {
+      font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+      letter-spacing: var(--tracking-wider); color: var(--c-red);
+      margin-bottom: var(--sp-3);
+    }
+    .konishi-band__title {
+      font-family: var(--font-serif); font-size: var(--text-3xl);
+      font-weight: 900; color: var(--c-white);
+      line-height: var(--leading-snug); margin-bottom: var(--sp-5);
+    }
+    .konishi-band__text {
+      font-size: var(--text-base); color: var(--w-70);
+      line-height: var(--leading-normal); margin-bottom: var(--sp-6);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-3) var(--sp-6); border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700;
+      border: 2px solid transparent; transition: background var(--t-fast), color var(--t-fast);
+      text-decoration: none;
+    }
+    .btn--ghost-white { background: transparent; color: var(--c-white); border-color: rgba(255,255,255,0.4); }
+    .btn--ghost-white:hover { background: var(--c-white); color: var(--c-black); }
+
+    /* Image droite */
+    .konishi-band__img-wrap {
+      position: relative; border-radius: var(--r-xl); overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .konishi-band__img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: var(--sp-10); }
+    .konishi-band__img-wrap::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at center, rgba(99,15,15,0.25) 0%, transparent 70%);
+    }
+
+    .konishi-band__wave-bot { line-height: 0; }
+    .konishi-band__wave-bot svg { display: block; width: 100%; }
+
+    @media (max-width: 768px) {
+      .konishi-band__inner { grid-template-columns: 1fr; }
+    }
+
+    /* Sections de démo */
+    .section-before { background: var(--c-cream); padding: var(--sp-8); text-align: center; color: var(--n-55); }
+    .section-after  { background: var(--c-cream); padding: var(--sp-8); text-align: center; color: var(--n-55); }
+  </style>
+</head>
+<body>
+
+  <div class="section-before">Section précédente (fond crème)</div>
+
+  <div class="konishi-band">
+    <!-- Vague d'entrée (crème → noir) -->
+    <div class="konishi-band__wave-top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#000000"/>
+      </svg>
+    </div>
+
+    <div class="konishi-band__inner">
+      <div class="konishi-band__text-col">
+        <p class="konishi-band__label">Partenaire officiel</p>
+        <h2 class="konishi-band__title">La lignée Konishi :<br>l'excellence japonaise</h2>
+        <p class="konishi-band__text">
+          Fondé au Japon, l'élevage Konishi est reconnu mondialement pour ses
+          carpes koïs aux motifs exceptionnels et à la génétique incomparable.
+          Mathilde et Emmanuel sont fiers d'être les seuls importateurs français
+          officiellement certifiés par la maison Konishi.
+          Chaque koï est livré avec son certificat d'authenticité.
+        </p>
+        <a href="../pages/decouvrir.html" class="btn btn--ghost-white">Découvrir notre partenariat →</a>
+      </div>
+
+      <div class="konishi-band__img-wrap">
+        <img src="../../docs/assets/Logos_konishi-black_1.png" alt="Logo Konishi — Partenaire officiel">
+      </div>
+    </div>
+
+    <!-- Vague de sortie (noir → crème) -->
+    <div class="konishi-band__wave-bot">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5f5f2"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="section-after">Section suivante (fond crème)</div>
+
+</body>
+</html>

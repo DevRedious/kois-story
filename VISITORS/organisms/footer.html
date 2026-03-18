@@ -3,319 +3,267 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organism — Footer</title>
+  <title>Organism — Footer | Koi's Story</title>
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); }
+    body { margin: 0; background: var(--c-cream); }
 
-    /* ── FOOTER ORGANISM ─────────────────────────────────────── */
-    .footer {
-      background: var(--bleu-profond);
-      color: #fff;
-      padding: 60px 32px 32px;
-    }
-    
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
+    /* ════════════════════════════════════════════════════════════════
+       VARIANTE A — FOOTER COMPLET (home.html uniquement)
+       Wordmark géant + colonnes de navigation + barre compacte
+       ════════════════════════════════════════════════════════════════ */
+
+    .site-footer {
+      background:
+        radial-gradient(ellipse 65% 120% at 0% 110%, rgba(99, 15, 15, 0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 100% 40%, rgba(99, 15, 15, 0.10) 0%, transparent 55%),
+        #0c0c0c;
+      border-top: 1px solid rgba(230, 0, 0, 0.22);
     }
 
-    /* Main grid */
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 48px;
+    /* Variante A — inner (utilisée dans home.html) */
+    .footer__inner--full {
+      max-width: var(--max-width); margin: 0 auto;
+      padding: var(--sp-16) var(--sp-10) var(--sp-8);
     }
 
-    /* Brand column */
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    
-    .footer-logo {
-      font-family: var(--font-title);
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-    }
-    
-    .footer-logo span {
-      color: var(--or-konishi);
-    }
-    
-    .footer-tagline {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-      max-width: 280px;
-    }
-    
-    .footer-konishi-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      background: rgba(224,159,62,0.15);
-      border: 1px solid rgba(224,159,62,0.3);
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--or-konishi);
-      margin-top: 8px;
+    /* Top row — colonnes de navigation */
+    .footer__top {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: var(--sp-10); margin-bottom: var(--sp-12);
     }
 
-    /* Links columns */
-    .footer-column h4 {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--or-konishi);
-      margin-bottom: 16px;
+    /* Brand col */
+    .footer__brand { display: flex; flex-direction: column; gap: var(--sp-5); }
+    .footer__logo img { height: 48px; width: auto; opacity: 0.9; }
+    .footer__tagline { font-size: var(--text-sm); color: var(--w-50); line-height: var(--leading-normal); }
+
+    .footer__wa {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-3) var(--sp-5); background: var(--c-wa); color: var(--c-white);
+      border-radius: var(--r-full); font-family: var(--font-sans);
+      font-size: var(--text-sm); font-weight: 700; text-decoration: none; width: fit-content;
+      transition: background var(--t-fast);
     }
-    
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .footer__wa:hover { background: #25d366; }
+
+    /* Nav cols */
+    .footer__col h4 {
+      font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+      letter-spacing: var(--tracking-wider); color: var(--w-50);
+      margin-bottom: var(--sp-4);
     }
-    
-    .footer-links a {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      transition: color 0.2s;
+    .footer__col ul { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .footer__col a {
+      font-size: var(--text-sm); color: var(--c-white); text-decoration: none;
+      transition: color var(--t-fast);
     }
-    
-    .footer-links a:hover {
-      color: #fff;
+    .footer__col a:hover { color: var(--c-red); }
+
+    /* Bottom bar — partagée entre les deux variantes */
+    .footer__bottom {
+      border-top: 1px solid var(--w-10);
+      padding-top: var(--sp-6);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--sp-4); flex-wrap: wrap;
+    }
+    .footer__copy-full { font-size: var(--text-sm); color: var(--w-50); }
+    .footer__legal { display: flex; gap: var(--sp-5); }
+    .footer__legal a {
+      font-size: var(--text-sm); color: var(--w-50); text-decoration: none;
+      transition: color var(--t-fast);
+    }
+    .footer__legal a:hover { color: var(--c-white); }
+
+    /* Mentions RDV */
+    .footer__info {
+      font-size: var(--text-sm); color: var(--w-50); text-align: center;
+      border-top: 1px solid var(--w-10); padding: var(--sp-4) var(--sp-10);
+      max-width: var(--max-width); margin: 0 auto;
     }
 
-    /* Contact column */
-    .footer-contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 12px;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
+
+    /* ════════════════════════════════════════════════════════════════
+       VARIANTE B — FOOTER COMPACT (toutes les pages secondaires)
+       Barre seule : logo + liens horizontaux + liquid indicator + copyright
+       ════════════════════════════════════════════════════════════════ */
+
+    .footer__inner { max-width: var(--max-width); margin: 0 auto; }
+
+    .footer__bar {
+      border-top: 1px solid var(--w-10);
+      margin: 0 var(--sp-10);
+      padding: var(--sp-4) 0 var(--sp-6);
+      display: flex; align-items: center; gap: var(--sp-6); flex-wrap: wrap;
     }
-    
-    .footer-contact-item strong {
-      color: #fff;
-      display: block;
-      margin-bottom: 2px;
+    .footer__logo img { height: 52px; width: auto; opacity: 0.85; flex-shrink: 0; }
+    .footer__links { display: flex; flex-wrap: wrap; gap: 0; flex: 1; position: relative; }
+    .footer__links a {
+      font-size: var(--text-sm); color: var(--w-50); transition: color var(--t-fast);
+      white-space: nowrap; padding: var(--sp-1) var(--sp-3); position: relative; z-index: 1;
+    }
+    .footer__links a:hover { color: var(--c-white); }
+
+    /* Liquid indicator */
+    .footer__indicator {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      height: 28px; border-radius: var(--r-full);
+      background: rgba(255, 255, 255, 0.08);
+      transition: left 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+                  width 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity var(--t-fast);
+      pointer-events: none; opacity: 0; z-index: 0;
     }
 
-    /* WhatsApp CTA */
-    .footer-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      background: #25D366;
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-top: 8px;
-      transition: all 0.2s;
-    }
-    
-    .footer-whatsapp:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(37,211,102,0.3);
-    }
+    .footer__copy { font-size: var(--text-sm); color: var(--w-30); white-space: nowrap; margin-left: auto; }
 
-    /* Bottom bar */
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .footer-copyright {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-    }
-    
-    .footer-social {
-      display: flex;
-      gap: 12px;
-    }
-    
-    .footer-social-link {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: all 0.2s;
-    }
-    
-    .footer-social-link:hover {
-      background: var(--or-konishi);
-      color: var(--bleu-profond);
-      transform: translateY(-2px);
-    }
 
-    /* Legal links */
-    .footer-legal {
-      display: flex;
-      gap: 24px;
-    }
-    
-    .footer-legal a {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    
-    .footer-legal a:hover {
-      color: #fff;
-    }
-
-    /* Responsive */
+    /* ════ RESPONSIVE ════════════════════════════════════════════════ */
     @media (max-width: 900px) {
-      .footer {
-        padding: 48px 24px 24px;
-      }
-      
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px 32px;
-      }
-      
-      .footer-brand {
-        grid-column: 1 / -1;
-      }
+      .footer__top { grid-template-columns: 1fr 1fr; }
     }
-    
-    @media (max-width: 600px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      
-      .footer-bottom {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-      }
-      
-      .footer-legal {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+    @media (max-width: 768px) {
+      .footer__bar { flex-direction: column; align-items: flex-start; gap: var(--sp-4); margin: 0 var(--sp-4); padding-bottom: var(--sp-6); }
+      .footer__copy { margin-left: 0; }
     }
+    @media (max-width: 480px) {
+      .footer__top { grid-template-columns: 1fr; }
+      .footer__bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* ════ DEMO PAGE STYLES ═══════════════════════════════════════════ */
+    .demo-label {
+      background: var(--c-cream); padding: var(--sp-6) var(--sp-10);
+      font-family: var(--font-sans); font-size: var(--text-sm); color: var(--n-55);
+      border-bottom: 1px solid var(--n-08);
+    }
+    .demo-label strong { color: var(--c-black); }
   </style>
 </head>
 <body>
 
-  <div style="height: 100px;"></div>
+  <!-- ════════════════════════════════════════════════════════════════
+       VARIANTE A — Footer complet (home.html)
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="demo-label"><strong>Variante A — Footer complet</strong> · Utilisé sur <code>home.html</code> uniquement · Wordmark géant + colonnes de navigation</div>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-grid">
+  <footer class="site-footer">
+    <div class="footer__inner--full">
+      <div class="footer__top">
+
         <!-- Brand -->
-        <div class="footer-brand">
-          <a href="#" class="footer-logo">Koi's <span>Story</span></a>
-          <p class="footer-tagline">
-            Élevage de carpes koï d'exception, affilié à la prestigieuse lignée Konishi. 
-            Passion, expertise et excellence depuis 2018.
+        <div class="footer__brand">
+          <a href="../pages/home.html" class="footer__logo">
+            <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
+          </a>
+          <p class="footer__tagline">
+            Élevage de carpes koïs de la lignée Konishi.<br>
+            Mathilde &amp; Emmanuel — Sur rendez-vous.<br>
+            Livraison dans un rayon de 50 km.
           </p>
-          <span class="footer-konishi-badge">★ Membre officiel de la lignée Konishi</span>
+          <a href="https://wa.me/33600000000" class="footer__wa" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Nous contacter
+          </a>
         </div>
 
-        <!-- Navigation -->
-        <div class="footer-column">
-          <h4>Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Catalogue</a></li>
-            <li><a href="#">Notre élevage</a></li>
-            <li><a href="#">Contact</a></li>
+        <!-- Nav Koïs -->
+        <div class="footer__col">
+          <h4>Nos Koïs</h4>
+          <ul>
+            <li><a href="../pages/kois.html">Catalogue</a></li>
+            <li><a href="../pages/kois.html">Kohaku</a></li>
+            <li><a href="../pages/kois.html">Showa</a></li>
+            <li><a href="../pages/kois.html">Butterfly</a></li>
+            <li><a href="../pages/kois.html">Lignée Konishi</a></li>
           </ul>
         </div>
 
-        <!-- Info -->
-        <div class="footer-column">
-          <h4>Informations</h4>
-          <ul class="footer-links">
-            <li><a href="#">Livraison</a></li>
-            <li><a href="#">Garantie santé</a></li>
-            <li><a href="#">Conseils d'entretien</a></li>
-            <li><a href="#">FAQ</a></li>
+        <!-- Nav produits -->
+        <div class="footer__col">
+          <h4>Produits</h4>
+          <ul>
+            <li><a href="../pages/materiel.html">Matériel</a></li>
+            <li><a href="../pages/nourriture.html">Nourriture</a></li>
+            <li><a href="../pages/soins.html">Soins &amp; Santé</a></li>
+            <li><a href="../pages/azukari.html">Azukari</a></li>
           </ul>
         </div>
 
-        <!-- Contact -->
-        <div class="footer-column">
-          <h4>Contact</h4>
-          <div class="footer-contact-item">
-            <span>📍</span>
-            <div>
-              <strong>Adresse</strong>
-              123 Route des Étangs<br>
-              69000 Lyon, France
-            </div>
-          </div>
-          <div class="footer-contact-item">
-            <span>📧</span>
-            <div>
-              <strong>Email</strong>
-              contact@koisstory.fr
-            </div>
-          </div>
-          <a href="#" class="footer-whatsapp"><img src="../../docs/assets/LogosWhatsappIcon.svg" alt="WhatsApp" style="height: 20px; width: auto; margin-right: 6px;"> WhatsApp</a>
+        <!-- Nav élevage -->
+        <div class="footer__col">
+          <h4>L'élevage</h4>
+          <ul>
+            <li><a href="../pages/decouvrir.html">Nous découvrir</a></li>
+            <li><a href="../pages/contact.html">Contact</a></li>
+          </ul>
         </div>
+
       </div>
 
-      <div class="footer-bottom">
-        <p class="footer-copyright">© 2026 Koi's Story. Tous droits réservés.</p>
-        
-        <div class="footer-legal">
+      <div class="footer__bottom">
+        <p class="footer__copy-full">&copy; 2026 Koi's Story — Mathilde &amp; Emmanuel. Tous droits réservés.</p>
+        <div class="footer__legal">
           <a href="#">Mentions légales</a>
           <a href="#">Politique de confidentialité</a>
-          <a href="#">CGV</a>
-        </div>
-        
-        <div class="footer-social">
-          <a href="#" class="footer-social-link">📘</a>
-          <a href="#" class="footer-social-link">📸</a>
-          <a href="#" class="footer-social-link">▶️</a>
+          <a href="../pages/contact.html">Contact</a>
         </div>
       </div>
     </div>
+
+    <p class="footer__info">Sur rendez-vous uniquement · Livraison dans un rayon de 50 km</p>
   </footer>
+
+
+  <!-- ════════════════════════════════════════════════════════════════
+       VARIANTE B — Footer compact (pages secondaires)
+       Barre seule : logo + liens horizontaux + liquid indicator + copyright
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="demo-label" style="margin-top: var(--sp-12);"><strong>Variante B — Footer compact</strong> · Utilisé sur toutes les pages secondaires · Logo + liens + liquid indicator</div>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div class="footer__bar">
+        <a href="../pages/home.html" class="footer__logo"><img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story"></a>
+        <nav class="footer__links" id="footer-links">
+          <span class="footer__indicator" id="footer-indicator"></span>
+          <a href="../pages/kois.html">Nos Koïs</a>
+          <a href="../pages/materiel.html">Matériel</a>
+          <a href="../pages/nourriture.html">Nourriture</a>
+          <a href="../pages/soins.html">Soins</a>
+          <a href="../pages/azukari.html">Azukari</a>
+          <a href="../pages/decouvrir.html">Nous découvrir</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Mentions légales</a>
+        </nav>
+        <p class="footer__copy">&copy; 2026 Koi's Story</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Footer liquid indicator ──────────────────────────────────────
+    const footerLinksEl   = document.getElementById('footer-links');
+    const footerIndicator = document.getElementById('footer-indicator');
+    if (footerLinksEl && footerIndicator) {
+      footerLinksEl.querySelectorAll('a').forEach(a => {
+        a.addEventListener('mouseenter', () => {
+          const navRect = footerLinksEl.getBoundingClientRect();
+          const aRect   = a.getBoundingClientRect();
+          footerIndicator.style.left    = (aRect.left - navRect.left) + 'px';
+          footerIndicator.style.width   = aRect.width + 'px';
+          footerIndicator.style.opacity = '1';
+        });
+      });
+      footerLinksEl.addEventListener('mouseleave', () => {
+        footerIndicator.style.opacity = '0';
+      });
+    }
+  </script>
 
 </body>
 </html>

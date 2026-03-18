@@ -3,227 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Molecule — Contact Form</title>
+  <title>Molecule — Contact Form | Koi's Story</title>
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 32px; }
-    .group { max-width: 500px; }
+    body { background: var(--c-cream); padding: var(--sp-8); }
+    .demo-wrap { max-width: 560px; }
 
-    /* ── CONTACT FORM MOLECULE ───────────────────────────────── */
+    /* ── CONTACT FORM MOLECULE ──────────────────────────────────────────── */
     .contact-form {
-      background: #fff;
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(0,48,73,0.06);
+      background: var(--c-white);
+      border-radius: var(--r-xl);
+      padding: var(--sp-8);
+      box-shadow: var(--shadow-sm);
     }
-    
-    .contact-form-header {
-      margin-bottom: 24px;
-    }
-    
-    .contact-form-title {
-      font-family: var(--font-title);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      margin-bottom: 8px;
-    }
-    
-    .contact-form-subtitle {
-      font-size: 0.95rem;
-      color: var(--gris-pierre);
+    .contact-form__title {
+      font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700;
+      color: var(--c-black); margin-bottom: var(--sp-6); line-height: var(--leading-snug);
     }
 
-    /* Form fields */
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    
-    .form-label {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--bleu-profond);
-    }
-    
-    .form-label .required {
-      color: var(--rouge-koi);
-      margin-left: 2px;
-    }
-    
-    .form-input {
-      padding: 14px 16px;
-      border: 2px solid #e8ecf0;
-      border-radius: 10px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--bleu-profond);
-      background: #fff;
-      transition: all 0.2s ease;
-      width: 100%;
-    }
-    
-    .form-input:hover {
-      border-color: #d0d7de;
-    }
-    
-    .form-input:focus {
-      outline: none;
-      border-color: var(--bleu-profond);
-      box-shadow: 0 0 0 3px rgba(0,48,73,0.08);
-    }
-    
-    .form-input::placeholder {
-      color: #aab4bd;
-    }
-    
-    textarea.form-input {
-      min-height: 140px;
-      resize: vertical;
-    }
-    
-    select.form-input {
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23003049' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 40px;
-    }
+    .form-fields { display: flex; flex-direction: column; gap: var(--sp-5); }
 
-    /* Submit button */
-    .form-submit {
-      width: 100%;
-      padding: 16px;
-      background: var(--bleu-profond);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      margin-top: 8px;
+    .field { display: flex; flex-direction: column; gap: var(--sp-2); }
+    .field__label {
+      font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600;
+      color: var(--c-black);
     }
-    
-    .form-submit:hover {
-      background: #002538;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,48,73,0.2);
-    }
+    .field__label span { color: var(--c-red); margin-left: 2px; }
 
-    /* Alternative layout - compact */
-    .contact-form--compact {
-      padding: 24px;
+    .field__input,
+    .field__textarea,
+    .field__select {
+      width: 100%; padding: var(--sp-3) var(--sp-4);
+      background: var(--c-cream); border: 1px solid var(--n-17);
+      border-radius: var(--r-md); font-family: var(--font-sans);
+      font-size: var(--text-base); color: var(--c-black);
+      transition: border-color var(--t-fast), box-shadow var(--t-fast); outline: none;
     }
-    
-    .contact-form--compact .contact-form-title {
-      font-size: 1.2rem;
+    .field__input::placeholder, .field__textarea::placeholder { color: var(--n-36); }
+    .field__input:focus, .field__textarea:focus, .field__select:focus {
+      border-color: var(--c-red); box-shadow: 0 0 0 3px var(--c-red-10);
     }
-    
-    .contact-form--compact .form-row {
-      grid-template-columns: 1fr;
+    .field__textarea { resize: vertical; min-height: 130px; line-height: var(--leading-normal); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+
+    .contact-form__submit {
+      width: 100%; padding: var(--sp-4);
+      background: var(--c-red); color: var(--c-white);
+      border: none; border-radius: var(--r-md);
+      font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700;
+      cursor: pointer; transition: background var(--t-fast), box-shadow var(--t-fast);
+      margin-top: var(--sp-2);
     }
+    .contact-form__submit:hover { background: var(--c-wine); box-shadow: var(--shadow-red); }
+
+    .contact-form__note { font-size: var(--text-sm); color: var(--n-55); margin-top: var(--sp-3); }
+
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-
-  <h3>Formulaire de contact complet</h3>
-  <div class="group">
-    <form class="contact-form">
-      <div class="contact-form-header">
-        <h3 class="contact-form-title">Envoyez-nous un message</h3>
-        <p class="contact-form-subtitle">Nous vous répondrons dans les plus brefs délais.</p>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Prénom <span class="required">*</span></label>
-          <input type="text" class="form-input" placeholder="Jean" required>
+  <div class="demo-wrap">
+    <div class="contact-form">
+      <h2 class="contact-form__title">Nous contacter</h2>
+      <form class="form-fields" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label class="field__label" for="cf-firstname">Prénom <span>*</span></label>
+            <input class="field__input" id="cf-firstname" type="text"
+                   placeholder="Votre prénom" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label class="field__label" for="cf-lastname">Nom <span>*</span></label>
+            <input class="field__input" id="cf-lastname" type="text"
+                   placeholder="Votre nom" required autocomplete="family-name">
+          </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Nom <span class="required">*</span></label>
-          <input type="text" class="form-input" placeholder="Dupont" required>
+        <div class="field">
+          <label class="field__label" for="cf-email">Email <span>*</span></label>
+          <input class="field__input" id="cf-email" type="email"
+                 placeholder="vous@exemple.fr" required autocomplete="email">
         </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Adresse email <span class="required">*</span></label>
-        <input type="email" class="form-input" placeholder="jean@exemple.fr" required>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Téléphone</label>
-        <input type="tel" class="form-input" placeholder="06 12 34 56 78">
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Sujet</label>
-        <select class="form-input">
-          <option value="">Choisissez un sujet...</option>
-          <option value="info">Renseignement sur un koï</option>
-          <option value="visit">Visite de l'élevage</option>
-          <option value="purchase">Achat / Commande</option>
-          <option value="other">Autre</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Votre message <span class="required">*</span></label>
-        <textarea class="form-input" placeholder="Bonjour, je suis intéressé par..." required></textarea>
-      </div>
-
-      <button type="submit" class="form-submit">Envoyer le message</button>
-    </form>
+        <div class="field">
+          <label class="field__label" for="cf-subject">Sujet</label>
+          <select class="field__select" id="cf-subject">
+            <option value="">Choisir un sujet</option>
+            <option>Question sur un koï</option>
+            <option>Service Azukari</option>
+            <option>Commande de nourriture</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="cf-message">Message <span>*</span></label>
+          <textarea class="field__textarea" id="cf-message"
+                    placeholder="Votre message..." required></textarea>
+        </div>
+        <button type="submit" class="contact-form__submit">Envoyer le message</button>
+        <p class="contact-form__note">* Champs obligatoires. Réponse sous 24 h.</p>
+      </form>
+    </div>
   </div>
-
-  <h3>Version compacte</h3>
-  <div class="group">
-    <form class="contact-form contact-form--compact">
-      <div class="contact-form-header">
-        <h3 class="contact-form-title">Contact rapide</h3>
-      </div>
-
-      <div class="form-group">
-        <input type="text" class="form-input" placeholder="Votre nom">
-      </div>
-
-      <div class="form-group">
-        <input type="email" class="form-input" placeholder="Votre email">
-      </div>
-
-      <div class="form-group">
-        <textarea class="form-input" placeholder="Votre message..."></textarea>
-      </div>
-
-      <button type="submit" class="form-submit">Envoyer</button>
-    </form>
-  </div>
-
 </body>
 </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atom — Wave Divider | Koi's Story</title>
+  <link rel="stylesheet" href="../../docs/design/tokens.css">
+  <link rel="stylesheet" href="../../docs/design/fonts.css">
+  <link rel="stylesheet" href="../../docs/design/reset.css">
+  <style>
+    body { margin: 0; background: var(--c-cream); }
+    .demo-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+      letter-spacing: var(--tracking-wider); color: var(--n-55);
+      padding: var(--sp-6) var(--sp-8) var(--sp-3); }
+
+    /* ── WAVE DIVIDER ATOM ──────────────────────────────────────────────── */
+    .wave-divider {
+      display: block;
+      width: 100%;
+      line-height: 0;
+      overflow: hidden;
+    }
+    .wave-divider svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Couleur contrôlée via color/currentColor */
+    .wave-divider--cream { color: var(--c-cream); }
+    .wave-divider--black { color: var(--c-black); }
+    .wave-divider--white { color: var(--c-white); }
+
+    /* Retournée (pour transition inverse) */
+    .wave-divider--flip svg { transform: rotate(180deg); }
+
+    /* Sections démo */
+    .section-dark  { background: var(--c-black); padding: var(--sp-12) var(--sp-8); }
+    .section-light { background: var(--c-cream); padding: var(--sp-12) var(--sp-8); }
+    .section-white { background: var(--c-white); padding: var(--sp-12) var(--sp-8); }
+    .demo-text { font-size: var(--text-lg); text-align: center; }
+    .demo-text--white { color: var(--c-white); }
+  </style>
+</head>
+<body>
+
+  <!-- Démo 1 : Section sombre → section crème (vague crème en bas de section noire) -->
+  <p class="demo-label">Transition : fond noir → fond crème (vague crème)</p>
+  <div class="section-dark">
+    <p class="demo-text demo-text--white">Section sombre (fond #000)</p>
+  </div>
+  <div class="wave-divider wave-divider--cream">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="section-light">
+    <p class="demo-text">Section claire (fond #f5f5f2)</p>
+  </div>
+
+  <!-- Démo 2 : Section crème → section noire (vague noire en bas de section crème) -->
+  <p class="demo-label">Transition : fond crème → fond noir (vague noire)</p>
+  <div class="section-light">
+    <p class="demo-text">Section claire (fond #f5f5f2)</p>
+  </div>
+  <div class="wave-divider wave-divider--black">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="section-dark">
+    <p class="demo-text demo-text--white">Section sombre (fond #000)</p>
+  </div>
+
+  <!-- Démo 3 : Vague retournée (entrée en section sombre) -->
+  <p class="demo-label">Vague retournée — entrée en section noire</p>
+  <div class="section-light">
+    <p class="demo-text">Section claire</p>
+  </div>
+  <div class="wave-divider wave-divider--black wave-divider--flip">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="section-dark">
+    <p class="demo-text demo-text--white">Section sombre</p>
+  </div>
+
+</body>
+</html>
