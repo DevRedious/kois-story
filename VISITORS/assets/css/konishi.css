@@ -57,6 +57,17 @@
 }
 
 
+/* ── WAVY BOTTOM ─────────────────────────────────────────────────── */
+.konishi-band--wavy-bottom {
+  clip-path: url(#wave-clip);
+}
+
+/* Remonte contact-quick pour combler les creux (~12% de ~400px ≈ 48px) */
+.konishi-band--wavy-bottom + .contact-quick {
+  margin-top: -60px;
+  padding-top: calc(60px + var(--sp-20));
+}
+
 /* ── ALIAS CONVENTION PAGE ───────────────────────────────────────── */
 .konishi-band__img {
   display: flex; align-items: center; justify-content: center; padding: var(--sp-10);

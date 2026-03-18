@@ -72,8 +72,19 @@
   object-fit: cover; z-index: 0;
 }
 
+/* ── HERO WAVY BOTTOM ────────────────────────────────────────────── */
+.hero--wavy-bottom {
+  clip-path: url(#wave-clip);
+}
+
 /* ── HERO INTRO — texte sous la vidéo ───────────────────────────── */
 .hero-intro { padding: var(--sp-16) var(--sp-10) var(--sp-12); }
+
+/* Remonte hero-intro pour combler les creux de la vague (12% de 100vh max) */
+.hero--wavy-bottom + .hero-intro {
+  margin-top: -12vh;
+  padding-top: calc(12vh + var(--sp-16));
+}
 .hero-intro__inner { max-width: var(--max-width); margin: 0 auto; }
 .hero-intro__title {
   font-family: var(--font-serif); font-size: var(--text-hero);
