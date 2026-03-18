@@ -207,27 +207,6 @@
     .azukari-feature__icon { font-size: 1.8rem; flex-shrink: 0; }
     .azukari-feature__text h4 { font-family: var(--font-serif); font-size: var(--text-lg); font-weight: 700; color: var(--c-black); margin-bottom: var(--sp-2); }
     .azukari-feature__text p { font-size: var(--text-sm); color: var(--n-55); line-height: var(--leading-normal); }
-    /* TARIFS */
-    .tarifs { padding: var(--sp-16) var(--sp-10); background: var(--c-black); }
-    .tarifs__inner { max-width: var(--max-width); margin: 0 auto; }
-    .tarifs__header { text-align: center; margin-bottom: var(--sp-10); }
-    .tarifs__label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--c-red); margin-bottom: var(--sp-3); }
-    .tarifs__title { font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 700; color: var(--c-white); }
-    .tarifs__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-6); }
-    .tarif-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--r-xl); padding: var(--sp-8); display: flex; flex-direction: column; gap: var(--sp-4); transition: background var(--t-fast); }
-    .tarif-card:hover { background: rgba(255,255,255,0.10); }
-    .tarif-card--featured { background: var(--c-wine); border-color: var(--c-wine); }
-    .tarif-card__label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--w-50); }
-    .tarif-card--featured .tarif-card__label { color: rgba(245,245,242,0.75); }
-    .tarif-card__name { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 700; color: var(--c-white); }
-    .tarif-card__price { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700; color: var(--c-red); }
-    .tarif-card--featured .tarif-card__price { color: var(--c-cream); }
-    .tarif-card__price sub { font-size: 0.6em; vertical-align: baseline; }
-    .tarif-card__features { list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); flex: 1; }
-    .tarif-card__features li { font-size: var(--text-sm); color: var(--w-70); display: flex; gap: var(--sp-2); }
-    .tarif-card__features li::before { content: '✓'; color: var(--c-red); font-weight: 700; flex-shrink: 0; }
-    .tarif-card--featured .tarif-card__features li { color: rgba(245,245,242,0.85); }
-    .tarif-card--featured .tarif-card__features li::before { color: var(--c-cream); }
     /* CTA WhatsApp pleine largeur */
     .cta-full { padding: var(--sp-16) var(--sp-10); background: var(--c-cream); }
     .cta-full__inner { max-width: var(--max-width); margin: 0 auto; }
@@ -268,7 +247,7 @@
     .footer__copy { font-size: var(--text-sm); color: var(--w-30); white-space: nowrap; margin-left: auto; }
     .cta-wa-float { position: fixed; bottom: var(--sp-6); right: var(--sp-6); z-index: 200; display: inline-flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-6); background: var(--c-wa); color: var(--c-white); border-radius: var(--r-full); font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700; text-decoration: none; box-shadow: var(--shadow-wa); transition: transform var(--t-fast); }
     .cta-wa-float:hover { transform: scale(1.04); }
-    @media (max-width: 768px) { .azukari-desc__inner { grid-template-columns: 1fr; } .tarifs__grid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) { .azukari-desc__inner { grid-template-columns: 1fr; }
       .footer__bar { flex-direction: column; align-items: flex-start; gap: var(--sp-4); margin: 0 var(--sp-4); padding-bottom: var(--sp-6); }
       .footer__copy { margin-left: 0; }
     }
@@ -311,7 +290,7 @@
   <div class="hero-compact__inner">
     <p class="hero-compact__label">Pensionnat koïs</p>
     <h1 class="hero-compact__title">Service Azukari</h1>
-    <p class="hero-compact__sub">Confiez vos précieux koïs à nos soins pendant vos absences. Surveillance caméra privée, soins professionnels, alimentation Konishi.</p>
+    <p class="hero-compact__sub">Un service permettant la garde et la croissance de vos carpes koï dans nos installations — avec un suivi attentif et des conditions optimales pour leur développement.</p>
   </div>
 </div>
 
@@ -319,85 +298,39 @@
   <section class="azukari-desc">
     <div class="azukari-desc__inner">
       <div class="azukari-desc__text" data-animate="fade-right">
-        <h2>Qu'est-ce que l'Azukari ?</h2>
-        <p>L'Azukari est une pratique traditionnelle japonaise consistant à confier ses koïs à un éleveur expert pour une période déterminée. Pendant votre absence, vos poissons bénéficient de soins professionnels dans un environnement optimal.</p>
-        <p>Chez Koi's Story, nous proposons ce service dans nos bassins sécurisés, avec une surveillance continue et un accès caméra privé pour les propriétaires. Vous pouvez observer vos koïs à tout moment depuis votre smartphone.</p>
-        <p>C'est aussi l'occasion idéale de faire grossir vos koïs en période de croissance, profitant de notre eau de qualité et de notre alimentation Konishi premium.</p>
+        <h2>Notre service Azukari</h2>
+        <p>Nos installations sont pensées pour offrir aux koï un environnement stable et de grande qualité. Nos bassins sont tous équipés de systèmes de filtration performants, de stérilisateurs UV et d'équipements assurant une excellente qualité de l'eau, afin de maintenir des conditions optimales pour leur bien-être.</p>
+        <p>Afin de favoriser leur croissance et l'intensité de leurs couleurs, vos koïs sont nourris avec une alimentation premium, favorisant leur développement et leur vitalité. Vos poissons bénéficient d'un suivi attentif avec une température d'eau maintenue à un niveau idéal.</p>
+        <p>Nous avons également mis en place un système de caméras accessible via un lien privé, vous permettant de suivre l'évolution de vos carpes koï quand vous le souhaitez.</p>
       </div>
       <div class="azukari-features">
         <div class="azukari-feature" data-animate="fade-up">
-          <span class="azukari-feature__icon">📹</span>
+          <span class="azukari-feature__icon">🔬</span>
           <div class="azukari-feature__text">
-            <h4>Caméra privée</h4>
-            <p>Accès sécurisé à votre lien caméra personnel pour surveiller vos koïs en temps réel depuis n'importe où.</p>
+            <h4>Filtration &amp; qualité de l'eau</h4>
+            <p>Bassins équipés de systèmes de filtration performants et de stérilisateurs UV, pour une eau de qualité optimale.</p>
           </div>
         </div>
         <div class="azukari-feature" data-animate="fade-up" data-delay="1">
           <span class="azukari-feature__icon">🍱</span>
           <div class="azukari-feature__text">
-            <h4>Alimentation Konishi</h4>
-            <p>Vos koïs sont nourris avec la gamme Konishi premium, adaptée à leur stade de développement.</p>
+            <h4>Alimentation premium</h4>
+            <p>Une alimentation sélectionnée pour favoriser la croissance et l'intensité des couleurs de vos koïs.</p>
           </div>
         </div>
         <div class="azukari-feature" data-animate="fade-up" data-delay="2">
-          <span class="azukari-feature__icon">🩺</span>
+          <span class="azukari-feature__icon">🌡️</span>
           <div class="azukari-feature__text">
-            <h4>Suivi sanitaire</h4>
-            <p>Observation quotidienne, tests d'eau réguliers, traitement immédiat en cas de besoin.</p>
+            <h4>Température maîtrisée</h4>
+            <p>La température de l'eau est maintenue à un niveau idéal en permanence pour favoriser le développement de vos poissons.</p>
           </div>
         </div>
         <div class="azukari-feature" data-animate="fade-up" data-delay="3">
-          <span class="azukari-feature__icon">📋</span>
+          <span class="azukari-feature__icon">📹</span>
           <div class="azukari-feature__text">
-            <h4>Rapport de séjour</h4>
-            <p>Un compte-rendu complet vous est fourni à la récupération : poids, état sanitaire, observations.</p>
+            <h4>Caméra privée</h4>
+            <p>Un système de caméras accessible via un lien privé pour suivre l'évolution de vos koïs quand vous le souhaitez.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="tarifs">
-    <div class="tarifs__inner">
-      <div class="tarifs__header" data-animate="fade-up">
-        <p class="tarifs__label">Tarification</p>
-        <h2 class="tarifs__title">Nos formules Azukari</h2>
-      </div>
-      <div class="tarifs__grid">
-        <div class="tarif-card" data-animate="fade-up">
-          <span class="tarif-card__label">Court séjour</span>
-          <h3 class="tarif-card__name">1 à 4 semaines</h3>
-          <div class="tarif-card__price">Sur devis <sub></sub></div>
-          <ul class="tarif-card__features">
-            <li>Bassin dédié sécurisé</li>
-            <li>Alimentation Konishi</li>
-            <li>Accès caméra privée</li>
-            <li>Compte-rendu à la restitution</li>
-          </ul>
-        </div>
-        <div class="tarif-card tarif-card--featured" data-animate="fade-up" data-delay="1">
-          <span class="tarif-card__label">Saison croissance</span>
-          <h3 class="tarif-card__name">3 à 6 mois</h3>
-          <div class="tarif-card__price">Sur devis <sub></sub></div>
-          <ul class="tarif-card__features">
-            <li>Optimisation de croissance</li>
-            <li>Alimentation intensive Konishi</li>
-            <li>Accès caméra privée H24</li>
-            <li>Rapports mensuels</li>
-            <li>Suivi vétérinaire inclus</li>
-          </ul>
-        </div>
-        <div class="tarif-card" data-animate="fade-up" data-delay="2">
-          <span class="tarif-card__label">Long séjour</span>
-          <h3 class="tarif-card__name">6 mois à 1 an</h3>
-          <div class="tarif-card__price">Sur devis <sub></sub></div>
-          <ul class="tarif-card__features">
-            <li>Suivi annuel complet</li>
-            <li>Programme alimentation personnalisé</li>
-            <li>Accès caméra privée</li>
-            <li>Rapports bi-mensuels</li>
-            <li>Photos mensuelles</li>
-          </ul>
         </div>
       </div>
     </div>
