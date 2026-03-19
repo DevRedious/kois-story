@@ -38,7 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (titleEl) titleEl.textContent = `Message de ${sender}`;
 		if (senderEl) senderEl.textContent = sender;
-		if (emailEl) { emailEl.textContent = email; emailEl.href = `mailto:${email}`; }
+		if (emailEl) {
+			emailEl.textContent = email;
+			emailEl.href = `mailto:${email}`;
+		}
 		if (dateEl) dateEl.textContent = date;
 		if (bodyEl) bodyEl.textContent = body;
 		if (replyEl) replyEl.href = `mailto:${email}`;
@@ -57,7 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				return;
 			}
 			unread.forEach(markRowRead);
-			showNotification(`${unread.length} message(s) marqué(s) comme lu(s)`, "success");
+			showNotification(
+				`${unread.length} message(s) marqué(s) comme lu(s)`,
+				"success",
+			);
 		});
 	}
 
@@ -67,7 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		row.dataset.read = "read";
 
 		const badge = row.querySelector(".badge-nonlu");
-		if (badge) { badge.className = "badge badge-lu"; badge.textContent = "Lu"; }
+		if (badge) {
+			badge.className = "badge badge-lu";
+			badge.textContent = "Lu";
+		}
 
 		const btn = row.querySelector("[data-open-msg]");
 		if (btn) btn.className = "btn btn--outline btn--sm";

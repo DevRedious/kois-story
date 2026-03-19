@@ -47,13 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		const row = btn.closest("tr");
 		if (!row) return;
 
-		document.getElementById("modal-pay-client")?.textContent = row.dataset.client || "";
-		document.getElementById("modal-pay-order")?.textContent = row.dataset.order || "";
-		const amountEl = document.getElementById("modal-pay-amount");
-		if (amountEl) amountEl.textContent = row.dataset.amount || "";
-		document.getElementById("modal-pay-type")?.textContent = row.dataset.type || "";
-		document.getElementById("modal-pay-status")?.textContent = row.dataset.statusLabel || "";
-		document.getElementById("modal-pay-due")?.textContent = row.dataset.due || "—";
+		const setText = (id, val) => {
+			const el = document.getElementById(id);
+			if (el) el.textContent = val;
+		};
+		setText("modal-pay-client", row.dataset.client || "");
+		setText("modal-pay-order", row.dataset.order || "");
+		setText("modal-pay-amount", row.dataset.amount || "");
+		setText("modal-pay-type", row.dataset.type || "");
+		setText("modal-pay-status", row.dataset.statusLabel || "");
+		setText("modal-pay-due", row.dataset.due || "—");
 
 		window.AdminModal?.open("modal-payment-detail");
 	});
@@ -68,10 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const action = btn.dataset.openPaymentAction || "encaisser";
 		const titleEl = document.getElementById("modal-payment-action-title");
-		if (titleEl) titleEl.textContent = action === "solder" ? "Solder le paiement" : "Encaisser un acompte";
+		if (titleEl)
+			titleEl.textContent =
+				action === "solder" ? "Solder le paiement" : "Encaisser un acompte";
 
-		document.getElementById("modal-pay-action-client")?.textContent = row.dataset.client || "";
-		document.getElementById("modal-pay-action-order")?.textContent = row.dataset.order || "";
+		const actionClientEl = document.getElementById("modal-pay-action-client");
+		if (actionClientEl) actionClientEl.textContent = row.dataset.client || "";
+		const actionOrderEl = document.getElementById("modal-pay-action-order");
+		if (actionOrderEl) actionOrderEl.textContent = row.dataset.order || "";
 		const hiddenType = document.getElementById("pay-action-type");
 		if (hiddenType) hiddenType.value = action;
 

@@ -78,7 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (pendingDeleteRow) {
 			pendingDeleteRow.style.transition = "opacity 0.3s ease";
 			pendingDeleteRow.style.opacity = "0";
-			setTimeout(() => { pendingDeleteRow?.remove(); pendingDeleteRow = null; }, 300);
+			setTimeout(() => {
+				pendingDeleteRow?.remove();
+				pendingDeleteRow = null;
+			}, 300);
 		}
 		showNotification("Élément supprimé", "success");
 	});
