@@ -1,0 +1,114 @@
+/* ==========================================================================
+   konishi.css — Organism konishi-band Koi's Story V3
+   ========================================================================== */
+
+/* ── KONISHI BAND ────────────────────────────────────────────────────── */
+.konishi-band {
+	background: var(--c-black);
+	position: relative;
+	overflow: hidden;
+}
+
+/* Lignes décoratives fines */
+.konishi-band::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(var(--w-10) 1px, transparent 1px),
+		linear-gradient(90deg, var(--w-10) 1px, transparent 1px);
+	background-size: 80px 80px;
+	pointer-events: none;
+}
+
+.konishi-band__inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: var(--sp-20) var(--sp-10);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-12);
+	align-items: center;
+	position: relative;
+	z-index: 1;
+}
+
+/* Texte gauche */
+.konishi-band__label,
+.konishi-band .section-label--red {
+	font-size: var(--text-xs);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wider);
+	color: var(--c-cream);
+	margin-bottom: var(--sp-3);
+}
+.konishi-band__title {
+	font-family: var(--font-serif);
+	font-size: var(--text-3xl);
+	font-weight: 900;
+	color: var(--c-white);
+	line-height: var(--leading-snug);
+	margin-bottom: var(--sp-5);
+}
+.konishi-band__text {
+	font-size: var(--text-base);
+	color: var(--w-70);
+	line-height: var(--leading-normal);
+	margin-bottom: var(--sp-6);
+}
+
+/* Image droite */
+.konishi-band__img-wrap {
+	position: relative;
+	border-radius: var(--r-xl);
+	overflow: hidden;
+	aspect-ratio: 4 / 3;
+}
+.konishi-band__img-wrap img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	padding: var(--sp-10);
+}
+.konishi-band__img-wrap::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(
+		circle at center,
+		rgba(99, 15, 15, 0.25) 0%,
+		transparent 70%
+	);
+}
+
+/* ── WAVY BOTTOM ─────────────────────────────────────────────────── */
+.konishi-band--wavy-bottom {
+	clip-path: url(#wave-clip);
+}
+
+/* Remonte contact-quick pour combler les creux (~12% de ~400px ≈ 48px) */
+.konishi-band--wavy-bottom + .contact-quick {
+	margin-top: -60px;
+	padding-top: calc(60px + var(--sp-20));
+}
+
+/* ── ALIAS CONVENTION PAGE ───────────────────────────────────────── */
+.konishi-band__img {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--sp-10);
+}
+.konishi-band__img img {
+	max-height: 200px;
+	width: auto;
+	opacity: 0.85;
+	filter: brightness(0) invert(1);
+}
+
+@media (max-width: 768px) {
+	.konishi-band__inner {
+		grid-template-columns: 1fr;
+	}
+}

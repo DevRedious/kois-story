@@ -1,0 +1,15 @@
+---
+description: Limite stricte 200 lignes par fichier — non négociable
+alwaysApply: true
+---
+
+# Limite de longueur des fichiers
+
+**Aucun fichier ne doit dépasser 200 lignes.** Contrainte de maintenabilité.
+
+- Fichier qui approche 200 lignes : le découper avant d’ajouter du contenu.
+- Fichier déjà au-dessus : le signaler et proposer un découpage dans la tâche.
+- **Exceptions** (uniquement) : fichiers générés, `admin-layout.html`, fichiers de `pages/` (vues assemblées).
+- Les pages dans `pages/` sont les seuls HTML autorisés à être plus longs ; la logique et la structure doivent rester dans atoms/molecules/organisms.
+
+En cas de dépassement : **extraire vers un composant plus petit au bon niveau Atomic Design**, jamais compresser ou minifier.

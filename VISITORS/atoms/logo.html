@@ -4,35 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Logo | Koi's Story</title>
-  <link rel="stylesheet" href="../../docs/design/tokens.css">
-  <link rel="stylesheet" href="../../docs/design/fonts.css">
-  <link rel="stylesheet" href="../../docs/design/reset.css">
-  <style>
-    body { padding: var(--sp-8); }
-
-    .demo-section { margin-bottom: var(--sp-8); padding: var(--sp-6); border-radius: var(--r-xl); }
-    .demo-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
-      letter-spacing: var(--tracking-wider); color: var(--n-55); margin-bottom: var(--sp-4); }
-
-    /* ── LOGO ATOM ──────────────────────────────────────────────────────── */
-    .logo { display: inline-flex; align-items: center; text-decoration: none; }
-    .logo img { display: block; height: 48px; width: auto; }
-    .logo--header { padding: var(--sp-2) 0; }
-    .logo--footer { opacity: 0.92; }
-    .logo--footer:hover { opacity: 1; }
-
-    /* ── SITE-LOGO — version indépendante fixe (nouvelle navbar) ──── */
-    .site-logo {
-      display: inline-block;
-      pointer-events: all;
-      transition: opacity var(--t-base), transform var(--t-base);
-    }
-    .site-logo img { height: 72px; width: auto; display: block; }
-    .site-logo--hidden { opacity: 0; pointer-events: none; transform: translateY(-6px); }
-
-    .demo-dark  { background: var(--c-black); }
-    .demo-light { background: var(--c-cream); }
-  </style>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
   <p class="demo-label">Variante header — fond sombre</p>
@@ -42,33 +15,33 @@
     </a>
   </div>
 
-  <p class="demo-label" style="margin-top:var(--sp-8)">Variante footer — fond noir</p>
+  <p class="demo-label">Variante footer — fond noir</p>
   <div class="demo-section demo-dark">
     <a href="home.html" class="logo logo--footer">
-      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
+      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story — élevage de carpes koïs Konishi">
     </a>
   </div>
 
-  <p class="demo-label" style="margin-top:var(--sp-8)">Variante fond crème</p>
+  <p class="demo-label">Variante fond crème</p>
   <div class="demo-section demo-light">
     <a href="home.html" class="logo logo--header">
-      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
+      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story — élevage de carpes koïs Konishi">
     </a>
   </div>
 
-  <p class="demo-label" style="margin-top:var(--sp-8)">Variante site-logo — logo indépendant (nouvelle navbar pill)</p>
-  <div class="demo-section demo-dark" style="position:relative; min-height:100px;">
-    <a href="home.html" class="site-logo" style="position:absolute; top:var(--sp-5); left:var(--sp-8);">
-      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
+  <p class="demo-label">Variante site-logo — logo indépendant (nouvelle navbar pill)</p>
+  <div class="demo-section demo-dark">
+    <a href="home.html" class="site-logo">
+      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story — élevage de carpes koïs Konishi">
     </a>
   </div>
 
-  <p class="demo-label" style="margin-top:var(--sp-8)">Variante site-logo--hidden (état masqué)</p>
-  <div class="demo-section demo-dark" style="position:relative; min-height:100px;">
-    <a href="home.html" class="site-logo site-logo--hidden" style="position:absolute; top:var(--sp-5); left:var(--sp-8);">
-      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
+  <p class="demo-label">Variante site-logo--hidden (état masqué)</p>
+  <div class="demo-section demo-dark">
+    <a href="home.html" class="site-logo site-logo--hidden">
+      <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story — élevage de carpes koïs Konishi">
     </a>
-    <p style="color:var(--w-50); font-size:var(--text-sm); padding:var(--sp-5) var(--sp-8); padding-top:calc(var(--sp-5) + 72px + var(--sp-3))">Logo masqué (opacity:0) — utilisé sur la home quand le hero est visible</p>
+    <p class="demo-text demo-text--white">Logo masqué (opacity:0) — utilisé sur la home quand le hero est visible</p>
   </div>
 </body>
 </html>

@@ -1,0 +1,19 @@
+# Format : <type>: <description courte en français>
+#
+# Types disponibles :
+#   feat     → nouvelle fonctionnalité
+#   fix      → correction de bug
+#   docs     → documentation, README
+#   style    → CSS, mise en forme (pas de logique)
+#   refactor → réorganisation du code sans changement de comportement
+#   chore    → maintenance, config, dépendances
+#   test     → ajout ou correction de tests
+#   perf     → amélioration des performances
+#
+# Exemples :
+#   feat: ajouter le bouton WhatsApp sur la fiche produit
+#   fix: corriger l'affichage du prix sur mobile
+#   style: harmoniser les couleurs du footer
+#   chore: mettre à jour biome.json
+#
+# Les lignes commençant par # sont ignorées.

@@ -4,63 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Koi Thumb | Koi's Story</title>
-  <link rel="stylesheet" href="../../docs/design/tokens.css">
-  <link rel="stylesheet" href="../../docs/design/fonts.css">
-  <link rel="stylesheet" href="../../docs/design/reset.css">
-  <style>
-    body { padding: var(--sp-8); background: var(--c-cream); }
-    .demo-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
-      letter-spacing: var(--tracking-wider); color: var(--n-55); margin-bottom: var(--sp-4);
-      margin-top: var(--sp-8); }
-    .demo-row { display: flex; flex-wrap: wrap; gap: var(--sp-6); align-items: flex-start; }
-
-    /* ── KOI THUMB ATOM ─────────────────────────────────────────────────── */
-    .koi-thumb {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--r-xl);
-      background: var(--n-08);
-    }
-
-    /* Ratio 3/4 — portrait (défaut pour les cards produit) */
-    .koi-thumb--3-4 { aspect-ratio: 3 / 4; }
-
-    /* Ratio 4/3 — paysage (éditorial) */
-    .koi-thumb--4-3 { aspect-ratio: 4 / 3; }
-
-    /* Ratio 1/1 — carré (shop) */
-    .koi-thumb--1-1 { aspect-ratio: 1 / 1; }
-
-    .koi-thumb img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform var(--t-slow);
-    }
-    .koi-thumb:hover img { transform: scale(1.06); }
-
-    /* Overlay gradient (optionnel, pour texte superposé) */
-    .koi-thumb--overlay::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
-      pointer-events: none;
-    }
-
-    /* Placeholder quand pas d'image */
-    .koi-thumb__placeholder {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--n-36);
-      font-size: var(--text-sm);
-      font-style: italic;
-    }
-
-    /* Tailles fixes pour la démo */
-    .w-180 { width: 180px; }
-    .w-240 { width: 240px; }
-    .w-320 { width: 320px; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
   <p class="demo-label">Ratio 3/4 — portrait (card produit)</p>

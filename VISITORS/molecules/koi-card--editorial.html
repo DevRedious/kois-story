@@ -4,94 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Molecule — Koi Card Editorial | Koi's Story</title>
-  <link rel="stylesheet" href="../../docs/design/tokens.css">
-  <link rel="stylesheet" href="../../docs/design/fonts.css">
-  <link rel="stylesheet" href="../../docs/design/reset.css">
-  <style>
-    body { padding: var(--sp-8); background: var(--c-cream); }
-    .demo-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
-      letter-spacing: var(--tracking-wider); color: var(--n-55);
-      margin-bottom: var(--sp-4); margin-top: var(--sp-8); }
-
-    /* ── KOI CARD EDITORIAL ─────────────────────────────────────────────── */
-    .koi-card-editorial {
-      position: relative;
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      background: var(--c-black);
-      box-shadow: var(--shadow-lg);
-      transition: box-shadow var(--t-base);
-    }
-    .koi-card-editorial:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.28); }
-
-    /* Image */
-    .koi-card-editorial__img {
-      display: block; width: 100%; height: 100%;
-      object-fit: cover; transition: transform var(--t-slow);
-    }
-    .koi-card-editorial:hover .koi-card-editorial__img { transform: scale(1.04); }
-
-    /* Ratio 16/9 */
-    .koi-card-editorial--16-9 { aspect-ratio: 16 / 9; }
-    /* Ratio 4/3 */
-    .koi-card-editorial--4-3  { aspect-ratio: 4 / 3; }
-
-    /* Overlay gradient bas */
-    .koi-card-editorial__overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.30) 45%, transparent 70%);
-      pointer-events: none;
-    }
-
-    /* Contenu superposé */
-    .koi-card-editorial__content {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: var(--sp-8);
-      display: flex; align-items: flex-end; justify-content: space-between;
-      gap: var(--sp-6);
-    }
-    .koi-card-editorial__info { flex: 1; }
-
-    /* Badge */
-    .badge {
-      display: inline-flex; align-items: center; gap: 3px;
-      padding: 3px 8px; border-radius: var(--r-full);
-      font-family: var(--font-sans); font-size: var(--text-xs);
-      font-weight: 700; text-transform: uppercase;
-      letter-spacing: var(--tracking-wide); line-height: 1; white-space: nowrap;
-    }
-    .badge--konishi { background: var(--c-wine); color: var(--c-cream); }
-    .badge--variety { background: rgba(255,255,255,0.15); color: var(--c-white); }
-
-    .koi-card-editorial__badges { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-3); }
-
-    .koi-card-editorial__name {
-      font-family: var(--font-serif);
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 700; color: var(--c-white);
-      line-height: var(--leading-snug);
-      margin-bottom: var(--sp-1);
-    }
-    .koi-card-editorial__sub {
-      font-size: var(--text-base); color: var(--w-70);
-    }
-
-    .koi-card-editorial__cta { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-3); }
-    .koi-card-editorial__price {
-      font-family: var(--font-serif); font-size: var(--text-3xl);
-      font-weight: 700; color: var(--c-red); line-height: 1;
-    }
-    .koi-card-editorial__price sup { font-size: 0.5em; vertical-align: super; }
-
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: var(--sp-2);
-      padding: var(--sp-3) var(--sp-6); background: var(--c-red); color: var(--c-white);
-      border-radius: var(--r-md); font-family: var(--font-sans);
-      font-size: var(--text-base); font-weight: 700;
-      transition: background var(--t-fast); text-decoration: none;
-    }
-    .btn-primary:hover { background: var(--c-wine); }
-  </style>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
 
@@ -104,21 +18,21 @@
     <div class="koi-card-editorial__content">
       <div class="koi-card-editorial__info">
         <div class="koi-card-editorial__badges">
-          <span class="badge badge--konishi">★ Konishi</span>
+          <span class="badge badge--konishi"><span aria-hidden="true">★</span> Konishi</span>
           <span class="badge badge--variety">Showa</span>
         </div>
         <h3 class="koi-card-editorial__name">Hanabi</h3>
         <p class="koi-card-editorial__sub">70 cm · Sansaï · Femelle</p>
       </div>
       <div class="koi-card-editorial__cta">
-        <span class="koi-card-editorial__price"><sup>€</sup>3 500</span>
-        <span class="btn-primary">Voir la fiche →</span>
+        <span class="koi-card-editorial__price" aria-label="3 500 euros">3 500 <sup aria-hidden="true">€</sup></span>
+        <span class="btn-primary">Voir la fiche <span aria-hidden="true">→</span></span>
       </div>
     </div>
   </a>
 
   <p class="demo-label">Card éditoriale 4/3 — variante compacte</p>
-  <a href="../pages/product.html" class="koi-card-editorial koi-card-editorial--4-3" style="max-width:640px">
+  <a href="../pages/product.html" class="koi-card-editorial koi-card-editorial--4-3">
     <img class="koi-card-editorial__img"
          src="../../docs/assets/carpe-koi-showa-scaled.jpg"
          alt="Yuki — Kohaku Nisaï">
@@ -126,15 +40,15 @@
     <div class="koi-card-editorial__content">
       <div class="koi-card-editorial__info">
         <div class="koi-card-editorial__badges">
-          <span class="badge badge--konishi">★ Konishi</span>
+          <span class="badge badge--konishi"><span aria-hidden="true">★</span> Konishi</span>
           <span class="badge badge--variety">Kohaku</span>
         </div>
         <h3 class="koi-card-editorial__name">Yuki</h3>
         <p class="koi-card-editorial__sub">58 cm · Nisaï · Femelle</p>
       </div>
       <div class="koi-card-editorial__cta">
-        <span class="koi-card-editorial__price"><sup>€</sup>2 100</span>
-        <span class="btn-primary">Voir →</span>
+        <span class="koi-card-editorial__price" aria-label="2 100 euros">2 100 <sup aria-hidden="true">€</sup></span>
+        <span class="btn-primary">Voir <span aria-hidden="true">→</span></span>
       </div>
     </div>
   </a>

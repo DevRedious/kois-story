@@ -1,0 +1,24 @@
+---
+description: Architecture Atomic Design — ADMIN et VISITORS
+globs: kois-story/ADMIN/**/*.html, kois-story/VISITORS/**/*.html, kois-story/ADMIN/**/*.css, kois-story/VISITORS/**/*.css, kois-story/ADMIN/**/*.js, kois-story/VISITORS/**/*.js
+alwaysApply: false
+---
+
+# Atomic Design (ADMIN et VISITORS)
+
+Structure commune :
+
+- **atoms/** — éléments UI isolés (badge, button, input, stat-card…)
+- **molecules/** — petits assemblages (koi-row, filter-bar, nav-item…)
+- **organisms/** — blocs fonctionnels complets (sidebar, topbar, kois-table…)
+- **templates/** — squelette de page avec emplacements
+- **pages/** — vues finales (template + contenu)
+- **assets/css/** — un fichier CSS par responsabilité, max 200 lignes
+- **assets/js/** — un JS par workspace (modules si > 200 lignes)
+
+Règles :
+- Les composants restent dans leur couche. Pas de logique métier dans les atoms.
+- Ne pas dupliquer un composant existant — le réutiliser.
+- Créer un nouveau composant dès qu’un pattern apparaît deux fois.
+- CSS : un fichier par responsabilité ; ne pas ajouter de règles dans un module qui ne porte pas cette responsabilité.
+- JS : tout comportement via écouteurs `DOMContentLoaded` — pas de `onclick=""` dans le HTML, pas de fonctions globales.

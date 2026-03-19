@@ -1,0 +1,213 @@
+/* ==========================================================================
+   koi-card.css — Molecules koi-card + koi-card-editorial Koi's Story V3
+   ========================================================================== */
+
+/* ── KOI CARD ────────────────────────────────────────────────────────── */
+.koi-card {
+	background: var(--c-white);
+	border-radius: var(--r-xl);
+	overflow: hidden;
+	box-shadow: var(--shadow-sm);
+	transition:
+		transform var(--t-base),
+		box-shadow var(--t-base);
+	display: flex;
+	flex-direction: column;
+}
+.koi-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-md);
+}
+
+.koi-card__thumb {
+	position: relative;
+	overflow: hidden;
+	aspect-ratio: 3 / 4;
+	background: var(--n-08);
+}
+.koi-card__thumb img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform var(--t-slow);
+}
+.koi-card:hover .koi-card__thumb img {
+	transform: scale(1.06);
+}
+
+.koi-card__badges {
+	position: absolute;
+	top: var(--sp-3);
+	left: var(--sp-3);
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-1);
+}
+
+.koi-card__body {
+	padding: var(--sp-4);
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-2);
+}
+
+.koi-card__name {
+	font-family: var(--font-serif);
+	font-size: var(--text-xl);
+	font-weight: 700;
+	color: var(--c-black);
+	line-height: var(--leading-snug);
+}
+.koi-card__meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--sp-1);
+}
+.koi-card__specs {
+	font-size: var(--text-sm);
+	color: var(--n-75);
+	display: flex;
+	gap: var(--sp-3);
+}
+
+.koi-card__price {
+	font-family: var(--font-serif);
+	font-size: var(--text-2xl);
+	font-weight: 700;
+	color: var(--c-wine);
+	line-height: 1;
+	margin-top: auto;
+	padding-top: var(--sp-2);
+}
+.koi-card__price sup {
+	font-size: 0.55em;
+	vertical-align: super;
+}
+
+.koi-card__footer {
+	padding: var(--sp-3) var(--sp-4);
+	border-top: 1px solid var(--n-08);
+}
+.koi-card__btn {
+	display: block;
+	width: 100%;
+	padding: var(--sp-2) var(--sp-4);
+	background: var(--c-wine);
+	color: var(--c-white);
+	border-radius: var(--r-md);
+	text-align: center;
+	font-family: var(--font-sans);
+	font-size: var(--text-sm);
+	font-weight: 700;
+	transition: background var(--t-fast);
+	text-decoration: none;
+}
+.koi-card__btn:hover {
+	background: var(--c-black);
+}
+
+.koi-card--sold {
+	opacity: 0.72;
+}
+.koi-card--sold .koi-card__btn {
+	background: var(--n-36);
+	cursor: not-allowed;
+}
+
+/* ── KOI CARD EDITORIAL ──────────────────────────────────────────────── */
+.koi-card-editorial {
+	position: relative;
+	border-radius: var(--r-xl);
+	overflow: hidden;
+	background: var(--c-black);
+	box-shadow: var(--shadow-lg);
+	transition: box-shadow var(--t-base);
+}
+.koi-card-editorial:hover {
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+.koi-card-editorial__img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform var(--t-slow);
+}
+.koi-card-editorial:hover .koi-card-editorial__img {
+	transform: scale(1.04);
+}
+
+.koi-card-editorial--16-9 {
+	aspect-ratio: 16 / 9;
+}
+.koi-card-editorial--4-3 {
+	aspect-ratio: 4 / 3;
+}
+
+.koi-card-editorial__overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0.82) 0%,
+		rgba(0, 0, 0, 0.3) 45%,
+		transparent 70%
+	);
+	pointer-events: none;
+}
+
+.koi-card-editorial__content {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: var(--sp-8);
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: var(--sp-6);
+}
+.koi-card-editorial__info {
+	flex: 1;
+}
+.koi-card-editorial__badges {
+	display: flex;
+	gap: var(--sp-2);
+	margin-bottom: var(--sp-3);
+}
+
+.koi-card-editorial__name {
+	font-family: var(--font-serif);
+	font-size: clamp(1.6rem, 3vw, 2.4rem);
+	font-weight: 700;
+	color: var(--c-white);
+	line-height: var(--leading-snug);
+	margin-bottom: var(--sp-1);
+}
+.koi-card-editorial__sub {
+	font-size: var(--text-base);
+	color: var(--w-70);
+}
+
+.koi-card-editorial__cta {
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: var(--sp-3);
+}
+.koi-card-editorial__price {
+	font-family: var(--font-serif);
+	font-size: var(--text-3xl);
+	font-weight: 700;
+	color: var(--c-white);
+	line-height: 1;
+}
+.koi-card-editorial__price sup {
+	font-size: 0.5em;
+	vertical-align: super;
+}

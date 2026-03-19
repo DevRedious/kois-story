@@ -1,0 +1,9 @@
+# Force LF line endings for shell scripts and hooks (required for bash on Windows)
+*.sh        text eol=lf
+.githooks/* text eol=lf
+
+# Windows-only scripts keep CRLF
+*.ps1       text eol=crlf
+
+# Default behavior for other files
+*           text=auto

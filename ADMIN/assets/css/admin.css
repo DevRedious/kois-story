@@ -1,0 +1,27 @@
+/* 
+  ADMIN MANIFEST 
+  Fichier principal regroupant les modules CSS éclatés.
+  Cette structure permet une maintenance facilitée et évite les fichiers géants.
+*/
+
+@import "variables.css";
+@import "layout.css";
+@import "components.css";
+@import "forms.css";
+@import "tables.css";
+@import "utilities.css";
+
+/* ─── GENERIC RESET ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: var(--font-body);
+	background: var(--blanc-casse);
+	min-height: 100vh;
+	display: flex;
+}

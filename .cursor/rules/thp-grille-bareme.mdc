@@ -1,0 +1,48 @@
+---
+description: Conformité THP — Grille projets finaux et Barème Fullstack (jurys Produit, Technique, Cursus). Un critère éliminatoire non respecté = projet refusé.
+alwaysApply: true
+---
+
+# Conformité THP — Grille & Barème
+
+Référence détaillée : `docs/sources/ANALYSE_BAREME_GRILLE.md` (synthèse PDF Grille projets finaux + xlsx Barème Fullstack élève).
+
+## Règle globale
+
+- **Projet valide** = aucun critère éliminatoire franchi.
+- En cas de doute, privilégier le respect strict des éliminatoires.
+
+---
+
+## Jury Produit (site public)
+
+- **Page d'accueil** : proposition de valeur claire, logo + slogan, pas de texte vague ou excessif.
+- **Signup** : uniquement email + mot de passe (prénom/nom tolérés si justifiés). Aucun champ photo, bio, date de naissance, etc., même optionnel → éliminatoire.
+- **Navigation** : navbar utilisable, liens visibles, pas de retour obligatoire pour naviguer.
+- **Fonctionnalité principale** (catalogue / contact) utilisable sans erreur.
+
+---
+
+## Jury Technique (Rails — éliminatoires)
+
+- **Langue** : code et README en anglais. Aucun nom de classe, model ou variable en français → toute l'équipe pirate.
+- **REST** : routes REST uniquement. Aucun POST hors CRUD standard ; GET autorisés pour pages statiques. Une route POST hors CRUD → toute l'équipe pirate.
+- **Helpers** : liens et images via helpers Rails uniquement (`link_to`, `image_tag`). Pas de `<a href="...">` ni `<img src="...">` en dur.
+- **Clefs API** : en variables d'environnement, jamais en clair dans le code.
+- **Models** : tous les models ont au moins une relation ; pas de models isolés. N-N uniquement en `has_many :through` (pas `has_and_belongs_to_many`).
+- **Architecture** : Fat Model Skinny Controllers ; pas de HTML dans les controllers ; pas de messages de conflit git visibles.
+
+Obligations non éliminatoires mais attendues : validations dans les models, mailer présent et fonctionnel en production, au moins une API externe (hors mailer et Google Maps), migrations reproductibles, seed.
+
+---
+
+## Jury Cursus (organisation & livrable)
+
+- App déployée et fonctionnelle en production.
+- **Devise** : 5 vues avec CSS (inscription, connexion, édition profil, mot de passe oublié, réinitialisation).
+- **Front** : orienté composants ; dashboard admin présent ; Hotwire/Stimulus utilisés.
+- **Travail en équipe** : Trello (ou Asana / Atlassian) ; dépôt GitHub/GitLab ; branches utilisées ; pas de commit sur Master ; commits fréquents, explicites et en anglais ; répartition vérifiable (commits).
+
+---
+
+Lors de toute modification (Rails, vues, config, README), vérifier qu’aucun des points ci-dessus n’est enfreint.

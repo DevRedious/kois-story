@@ -4,65 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Molecule — Contact Form | Koi's Story</title>
-  <link rel="stylesheet" href="../../docs/design/tokens.css">
-  <link rel="stylesheet" href="../../docs/design/fonts.css">
-  <link rel="stylesheet" href="../../docs/design/reset.css">
-  <style>
-    body { background: var(--c-cream); padding: var(--sp-8); }
-    .demo-wrap { max-width: 560px; }
-
-    /* ── CONTACT FORM MOLECULE ──────────────────────────────────────────── */
-    .contact-form {
-      background: var(--c-white);
-      border-radius: var(--r-xl);
-      padding: var(--sp-8);
-      box-shadow: var(--shadow-sm);
-    }
-    .contact-form__title {
-      font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700;
-      color: var(--c-black); margin-bottom: var(--sp-6); line-height: var(--leading-snug);
-    }
-
-    .form-fields { display: flex; flex-direction: column; gap: var(--sp-5); }
-
-    .field { display: flex; flex-direction: column; gap: var(--sp-2); }
-    .field__label {
-      font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600;
-      color: var(--c-black);
-    }
-    .field__label span { color: var(--c-red); margin-left: 2px; }
-
-    .field__input,
-    .field__textarea,
-    .field__select {
-      width: 100%; padding: var(--sp-3) var(--sp-4);
-      background: var(--c-cream); border: 1px solid var(--n-17);
-      border-radius: var(--r-md); font-family: var(--font-sans);
-      font-size: var(--text-base); color: var(--c-black);
-      transition: border-color var(--t-fast), box-shadow var(--t-fast); outline: none;
-    }
-    .field__input::placeholder, .field__textarea::placeholder { color: var(--n-36); }
-    .field__input:focus, .field__textarea:focus, .field__select:focus {
-      border-color: var(--c-red); box-shadow: 0 0 0 3px var(--c-red-10);
-    }
-    .field__textarea { resize: vertical; min-height: 130px; line-height: var(--leading-normal); }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
-
-    .contact-form__submit {
-      width: 100%; padding: var(--sp-4);
-      background: var(--c-red); color: var(--c-white);
-      border: none; border-radius: var(--r-md);
-      font-family: var(--font-sans); font-size: var(--text-base); font-weight: 700;
-      cursor: pointer; transition: background var(--t-fast), box-shadow var(--t-fast);
-      margin-top: var(--sp-2);
-    }
-    .contact-form__submit:hover { background: var(--c-wine); box-shadow: var(--shadow-red); }
-
-    .contact-form__note { font-size: var(--text-sm); color: var(--n-55); margin-top: var(--sp-3); }
-
-    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
-  </style>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
   <div class="demo-wrap">

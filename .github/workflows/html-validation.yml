@@ -1,0 +1,30 @@
+name: HTML Validation
+
+on:
+  pull_request:
+    branches:
+      - DEV
+      - main
+
+jobs:
+  validate:
+    name: Validate HTML files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install html-validate
+        run: npm install --global html-validate
+
+      - name: Validate ADMIN HTML
+        run: html-validate "ADMIN/**/*.html"
+
+      - name: Validate VISITORS HTML
+        run: html-validate "VISITORS/**/*.html"

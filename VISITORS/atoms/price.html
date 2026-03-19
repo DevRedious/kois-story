@@ -4,96 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Price | Koi's Story</title>
-  <link rel="stylesheet" href="../../docs/design/tokens.css">
-  <link rel="stylesheet" href="../../docs/design/fonts.css">
-  <link rel="stylesheet" href="../../docs/design/reset.css">
-  <style>
-    body { padding: var(--sp-8); background: var(--c-cream); }
-    .demo-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
-      letter-spacing: var(--tracking-wider); color: var(--n-55); margin-bottom: var(--sp-4);
-      margin-top: var(--sp-8); }
-    .group { display: flex; flex-wrap: wrap; gap: var(--sp-6); align-items: baseline; }
-    .demo-dark { background: var(--c-black); padding: var(--sp-6); border-radius: var(--r-xl);
-      margin-top: var(--sp-4); display: flex; flex-wrap: wrap; gap: var(--sp-6); align-items: baseline; }
-
-    /* ── PRICE ATOM ─────────────────────────────────────────────────────── */
-    .price {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 2px;
-      font-family: var(--font-serif);
-      color: var(--c-red);
-      line-height: 1;
-    }
-    .price__currency {
-      font-size: 0.55em;
-      font-weight: 700;
-      vertical-align: super;
-      margin-right: 1px;
-    }
-    .price__amount {
-      font-weight: 700;
-    }
-    .price__cents {
-      font-size: 0.50em;
-      font-weight: 400;
-      vertical-align: super;
-    }
-
-    /* Tailles */
-    .price--sm  { font-size: var(--text-xl); }
-    .price--md  { font-size: var(--text-2xl); }
-    .price--lg  { font-size: var(--text-3xl); }
-    .price--hero { font-size: clamp(2.2rem, 5vw, 3.5rem); }
-
-    /* Sur fond sombre */
-    .price--white { color: var(--c-white); }
-
-    /* Prix barré (vendu/réservé) */
-    .price--struck { text-decoration: line-through; opacity: 0.45; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
   <p class="demo-label">Taille small (cards liste)</p>
   <div class="group">
-    <span class="price price--sm">
-      <span class="price__currency">€</span>
+    <span class="price price--sm" aria-label="450 euros">
+      <span class="price__currency" aria-hidden="true">€</span>
       <span class="price__amount">450</span>
     </span>
-    <span class="price price--sm">
-      <span class="price__currency">€</span>
+    <span class="price price--sm" aria-label="1 200 euros">
+      <span class="price__currency" aria-hidden="true">€</span>
       <span class="price__amount">1 200</span>
     </span>
   </div>
 
   <p class="demo-label">Taille medium (cards catalogue)</p>
   <div class="group">
-    <span class="price price--md">
-      <span class="price__currency">€</span>
+    <span class="price price--md" aria-label="850 euros">
+      <span class="price__currency" aria-hidden="true">€</span>
       <span class="price__amount">850</span>
     </span>
-    <span class="price price--md">
-      <span class="price__currency">€</span>
+    <span class="price price--md" aria-label="2 400 euros">
+      <span class="price__currency" aria-hidden="true">€</span>
       <span class="price__amount">2 400</span>
     </span>
   </div>
 
   <p class="demo-label">Taille large (fiche produit)</p>
   <div class="group">
-    <span class="price price--lg">
-      <span class="price__currency">€</span>
+    <span class="price price--lg" aria-label="1 800 euros">
+      <span class="price__currency" aria-hidden="true">€</span>
       <span class="price__amount">1 800</span>
     </span>
-    <span class="price price--lg price--struck">
-      <span class="price__currency">€</span>
+    <span class="price price--lg price--struck" aria-label="Ancien prix : 2 200 euros">
+      <span class="price__currency" aria-hidden="true">€</span>
       <span class="price__amount">2 200</span>
     </span>
   </div>
 
   <p class="demo-label">Sur fond sombre</p>
   <div class="demo-dark">
-    <span class="price price--hero price--white">
-      <span class="price__currency">€</span>
+    <span class="price price--hero price--white" aria-label="3 500 euros">
+      <span class="price__currency" aria-hidden="true">€</span>
       <span class="price__amount">3 500</span>
     </span>
   </div>
