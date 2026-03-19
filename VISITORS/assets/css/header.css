@@ -1,5 +1,5 @@
 /* ==========================================================================
-   header.css — Organism site-header Koi's Story V3
+   header.css  Organism site-header Koi's Story V3
    ========================================================================== */
 
 /* ── LOGO FIXE ───────────────────────────────────────────────────────── */
@@ -21,7 +21,7 @@
 }
 .site-header--scrolled { padding: var(--sp-3) var(--sp-8); }
 
-/* ── PAGE AVEC FILTER BAR — pill s'aligne avec la barre sticky ──────── */
+/* ── PAGE AVEC FILTER BAR  pill s'aligne avec la barre sticky ──────── */
 .site-header--on-filter { top: 0; padding: var(--sp-1) var(--sp-8); }
 @media (max-width: 900px) {
   .site-header--on-filter { top: 0; padding: var(--sp-2) var(--sp-4); }

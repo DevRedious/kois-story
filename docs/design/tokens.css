@@ -1,5 +1,5 @@
 /* ==========================================================================
-   tokens.css — Design tokens Koi's Story V3
+   tokens.css  Design tokens Koi's Story V3
    Palette : #e60000 · #630f0f · #000000 · #f5f5f2 · #ffffff · #25d366
    ========================================================================== */
 
@@ -40,11 +40,11 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans:  'Inter', system-ui, sans-serif;
 
-  --text-xs:   0.68rem;   /* 10.9px — labels, badges */
-  --text-sm:   0.80rem;   /* 12.8px — captions, meta */
-  --text-base: 0.95rem;   /* 15.2px — corps de texte */
-  --text-lg:   1.10rem;   /* 17.6px — intro, sous-titres */
-  --text-xl:   1.40rem;   /* 22.4px — titres secondaires */
+  --text-xs:   0.68rem;   /* 10.9px  labels, badges */
+  --text-sm:   0.80rem;   /* 12.8px  captions, meta */
+  --text-base: 0.95rem;   /* 15.2px  corps de texte */
+  --text-lg:   1.10rem;   /* 17.6px  intro, sous-titres */
+  --text-xl:   1.40rem;   /* 22.4px  titres secondaires */
   --text-2xl:  1.80rem;   /* 28.8px */
   --text-3xl:  2.40rem;   /* 38.4px */
   --text-hero: clamp(3rem, 7vw, 5.5rem);
@@ -97,7 +97,7 @@
   --section-padding: var(--sp-20) var(--sp-10);
 }
 
-/* Surcharge pour sections sombres — portée sur .dark ou section[data-theme="dark"] */
+/* Surcharge pour sections sombres  portée sur .dark ou section[data-theme="dark"] */
 [data-theme="dark"] {
   --c-text:        var(--c-white);
   --c-text-muted:  var(--w-70);
@@ -144,7 +144,7 @@
 
 /* ── Motions globaux ───────────────────────────────────────────────────── */
 
-/* WhatsApp floating button — gentle bob */
+/* WhatsApp floating button  gentle bob */
 .cta-wa-float {
   animation: wa-float 3s ease-in-out infinite;
 }
@@ -157,7 +157,7 @@
   50%       { transform: translateY(-7px); }
 }
 
-/* Koi-card — richer hover */
+/* Koi-card  richer hover */
 .koi-card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: var(--shadow-lg);
@@ -169,7 +169,7 @@
   transform: scale(1.09);
 }
 
-/* Section title — staggered line reveal (triggered by parent .is-visible) */
+/* Section title  staggered line reveal (triggered by parent .is-visible) */
 .section-title .title-line {
   display: block;
   transform: translateY(22px);

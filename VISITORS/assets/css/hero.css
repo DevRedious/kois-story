@@ -1,5 +1,5 @@
 /* ==========================================================================
-   hero.css — Organism hero Koi's Story V3
+   hero.css  Organism hero Koi's Story V3
    ========================================================================== */
 
 .hero {
@@ -23,10 +23,9 @@
   position: absolute; inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.75) 0%,
-    rgba(0,0,0,0.40) 40%,
-    rgba(0,0,0,0.15) 70%,
-    transparent 100%
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.10) 35%,
+    transparent 60%
   );
 }
 
@@ -80,7 +79,7 @@
   clip-path: url(#wave-clip);
 }
 
-/* ── HERO INTRO — texte sous la vidéo ───────────────────────────── */
+/* ── HERO INTRO  texte sous la vidéo ───────────────────────────── */
 .hero-intro { padding: var(--sp-16) var(--sp-10) var(--sp-12); }
 
 /* Remonte hero-intro pour combler les creux de la vague (12% de 100vh max) */
@@ -88,7 +87,10 @@
   margin-top: -12vh;
   padding-top: calc(12vh + var(--sp-16));
 }
-.hero-intro__inner { max-width: var(--max-width); margin: 0 auto; }
+.hero-intro__inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
 .hero-intro__title {
   font-family: var(--font-serif); font-size: var(--text-hero);
   font-weight: 900; color: var(--c-black);
@@ -98,7 +100,7 @@
   font-size: var(--text-lg); color: var(--n-75);
   line-height: var(--leading-normal); margin-bottom: var(--sp-8); max-width: 560px;
 }
-.hero-intro__ctas { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+.hero-intro__ctas { display: flex; gap: var(--sp-4); flex-wrap: wrap; justify-content: center; }
 
 /* ── HERO COMPACT WAVY BOTTOM ────────────────────────────────────── */
 /* hero-compact est ~250 px → 12% ≈ 30 px → overlap de 40 px */
@@ -117,10 +119,10 @@
   padding-top: calc(40px + var(--sp-12));
 }
 
-/* ── HERO COMPACT — pages intérieures ───────────────────────────── */
+/* ── HERO COMPACT  pages intérieures ───────────────────────────── */
 .hero-compact {
   background: var(--c-black);
-  padding: calc(var(--header-height) + var(--sp-16)) var(--sp-10) var(--sp-12);
+  padding: calc(var(--header-height) + var(--sp-16)) var(--sp-10) var(--sp-24);
   position: relative; overflow: hidden;
 }
 .hero-compact::after {
@@ -141,4 +143,4 @@
   font-family: var(--font-serif); font-size: var(--text-3xl);
   font-weight: 900; color: var(--c-white); margin-bottom: var(--sp-3);
 }
-.hero-compact__sub { font-size: var(--text-lg); color: var(--w-70); max-width: 560px; }
+.hero-compact__sub { font-size: var(--text-lg); color: var(--c-white); max-width: 560px; }

@@ -1,5 +1,5 @@
 /**
- * filter.js — Koi's Story V3
+ * filter.js  Koi's Story V3
  * Filtrage des .koi-card sur la page kois.html.
  * Écoute les selects (variété, âge, prix) et le toggle Konishi.
  * Cache les cards ne correspondant pas. Met à jour le compteur.

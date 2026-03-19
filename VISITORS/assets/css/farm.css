@@ -1,5 +1,5 @@
 /* ==========================================================================
-   farm.css — Organism farm-gallery + page decouvrir Koi's Story V3
+   farm.css  Organism farm-gallery + page decouvrir Koi's Story V3
    ========================================================================== */
 
 /* ── FARM GALLERY ────────────────────────────────────────────────────── */
@@ -60,7 +60,7 @@
 
 .farm-gallery__footer { text-align: center; }
 
-/* ── PAGE DÉCOUVRIR — storytelling ───────────────────────────────────── */
+/* ── PAGE DÉCOUVRIR  storytelling ───────────────────────────────────── */
 .decouvrir-hero {
   position: relative; min-height: 60vh;
   display: flex; align-items: flex-end; overflow: hidden;
@@ -100,7 +100,7 @@
 }
 .decouvrir-story__body { font-size: var(--text-base); color: var(--n-75); line-height: var(--leading-normal); }
 
-/* ── STORYTELLING — page decouvrir ──────────────────────────────── */
+/* ── STORYTELLING  page decouvrir ──────────────────────────────── */
 .story { padding: var(--sp-20) var(--sp-10); }
 .story__inner { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: var(--sp-16); }
 .story-block { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: center; }
@@ -113,7 +113,7 @@
 .story-block__title { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700; color: var(--c-black); line-height: var(--leading-snug); }
 .story-block__body { font-size: var(--text-base); color: var(--n-75); line-height: var(--leading-normal); }
 
-/* ── GALERIE — aliases convention page ──────────────────────────── */
+/* ── GALERIE  aliases convention page ──────────────────────────── */
 .gallery { padding: var(--sp-12) var(--sp-10); }
 .gallery__inner { max-width: var(--max-width); margin: 0 auto; }
 .gallery__title { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700; color: var(--c-black); margin-bottom: var(--sp-6); }

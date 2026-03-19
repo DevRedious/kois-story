@@ -4,8 +4,8 @@
 
 This project follows a two-branch policy:
 
-- `dev` — integration and testing
-- `main` — production
+- `dev`  integration and testing
+- `main`  production
 
 Do not commit directly to `main`.
 

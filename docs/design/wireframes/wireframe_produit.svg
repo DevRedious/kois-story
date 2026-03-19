@@ -68,7 +68,7 @@
   <text x="24" y="612" fill="#555555" font-size="13">Descriptif complet pour rassurer le collectionneur exigeant.</text>
 
   <!-- ── VOUS AIMEREZ AUSSI ── -->
-  <text x="400" y="662" fill="#1a1a2e" font-size="15" text-anchor="middle" font-weight="bold">— Vous aimerez aussi —</text>
+  <text x="400" y="662" fill="#1a1a2e" font-size="15" text-anchor="middle" font-weight="bold"> Vous aimerez aussi </text>
 
   <!-- Card 1 -->
   <rect x="24" y="674" width="232" height="260" rx="8" fill="#ffffff" stroke="#dddddd" stroke-width="1.5"/>

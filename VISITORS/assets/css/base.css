@@ -1,5 +1,5 @@
 /* ==========================================================================
-   base.css — Reset minimal + body Koi's Story V3
+   base.css  Reset minimal + body Koi's Story V3
    ========================================================================== */
 
 *, *::before, *::after {
@@ -67,7 +67,7 @@ input, textarea, select {
   font-size: inherit;
 }
 
-/* ── Accessibilité — focus visible ──────────────────────────────────── */
+/* ── Accessibilité  focus visible ──────────────────────────────────── */
 :focus-visible {
   outline: 3px solid var(--c-wine);
   outline-offset: 3px;

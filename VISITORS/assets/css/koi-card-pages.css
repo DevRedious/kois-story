@@ -1,8 +1,8 @@
 /* ==========================================================================
-   koi-card-pages.css — Convention page koi-card-* + editorial + koi-showcase
+   koi-card-pages.css  Convention page koi-card-* + editorial + koi-showcase
    ========================================================================== */
 
-/* ── KOI CARD — convention page (koi-card-*) ────────────────────── */
+/* ── KOI CARD  convention page (koi-card-*) ────────────────────── */
 .koi-card-image {
   position: relative; width: 100%; aspect-ratio: 3/4;
   overflow: hidden; background: var(--n-08);
@@ -65,7 +65,7 @@
 .koi-card-cta--secondary { background: var(--c-white); color: var(--c-black); border-color: var(--n-36); }
 .koi-card-cta--secondary:hover { background: var(--c-cream); border-color: var(--c-black); }
 
-/* ── EDITORIAL — grande card vedette (home) ─────────────────────── */
+/* ── EDITORIAL  grande card vedette (home) ─────────────────────── */
 .editorial {
   display: flex; height: 440px;
   border-radius: var(--r-2xl); overflow: hidden;
@@ -110,7 +110,7 @@
 }
 .editorial__price sup { font-size: 0.45em; vertical-align: super; }
 
-/* ── KOI SHOWCASE — section grille home ─────────────────────────── */
+/* ── KOI SHOWCASE  section grille home ─────────────────────────── */
 .koi-showcase { padding: var(--sp-10) var(--sp-10) var(--sp-20); background: rgba(245, 245, 242, 0.90); }
 .koi-showcase__inner { max-width: var(--max-width); margin: 0 auto; }
 .koi-showcase__header {

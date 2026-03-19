@@ -1,13 +1,13 @@
 # Roadmap
 
-## Phase 1 — Cadrage
+## Phase 1  Cadrage
 
 - Documentation projet structurée
 - Parcours utilisateur définis
 - Charte graphique validée
 - Wireframes disponibles
 
-## Phase 2 — Foundation Rails
+## Phase 2  Foundation Rails
 
 - Scaffold de l'application
 - Configuration SQLite
@@ -16,7 +16,7 @@
 - Mise en place de la base UI en Atomic Design
 - Premiers seeds
 
-## Phase 3 — MVP
+## Phase 3  MVP
 
 - Home page
 - Catalogue simple
@@ -25,7 +25,7 @@
 - Back-office minimal
 - Premiers composants `atoms` et `molecules`
 
-## Phase 4 — Beta
+## Phase 4  Beta
 
 - Filtres dynamiques Hotwire
 - Gestion complète des images
@@ -34,7 +34,7 @@
 - Gestion des messages admin
 - Consolidation des `organisms` et `templates`
 
-## Phase 5 — Finalisation
+## Phase 5  Finalisation
 
 - Galerie
 - Polissage UI mobile-first

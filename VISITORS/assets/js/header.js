@@ -1,5 +1,5 @@
 /**
- * header.js — Koi's Story V3
+ * header.js  Koi's Story V3
  * Transition header transparent → sombre au scroll via IntersectionObserver.
  * Ajoute/enlève `.site-header--scrolled` sur #site-header.
  */
