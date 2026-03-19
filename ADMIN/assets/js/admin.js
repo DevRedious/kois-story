@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.addEventListener("change", (e) => {
 		const select = e.target.closest(".filter-select");
 		if (!select) return;
-		showNotification("Filtre appliqué : " + select.value, "info");
+		showNotification(`Filtre appliqué : ${select.value}`, "info");
 	});
 
 	// ── MESSAGES — MARQUER COMME LU ───────────────────────────────
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		row.classList.remove("unread");
 		const badge = document.querySelector(".nav-badge");
 		if (badge) {
-			const count = parseInt(badge.textContent) - 1;
+			const count = parseInt(badge.textContent, 10) - 1;
 			badge.textContent = count > 0 ? count : "";
 			if (count <= 0) badge.style.display = "none";
 		}

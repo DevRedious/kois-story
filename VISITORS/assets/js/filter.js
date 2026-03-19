@@ -1,5 +1,5 @@
 /**
- * filter.js — Koi's Story V3
+ * filter.js  Koi's Story V3
  * Filtrage des .koi-card sur la page kois.html.
  * Écoute les selects (variété, âge, prix) et le toggle Konishi.
  * Cache les cards ne correspondant pas. Met à jour le compteur.
@@ -25,7 +25,7 @@
 		function applyFilters() {
 			var variety = selectVariety ? selectVariety.value.toLowerCase() : "";
 			var age = selectAge ? selectAge.value.toLowerCase() : "";
-			var priceMax = selectPrice ? parseInt(selectPrice.value) || 0 : 0;
+			var priceMax = selectPrice ? parseInt(selectPrice.value, 10) || 0 : 0;
 			var konishiOnly = konishiToggle ? konishiToggle.checked : false;
 
 			var cards = getCards();
@@ -34,7 +34,7 @@
 			cards.forEach((card) => {
 				var cardVariety = (card.dataset.variety || "").toLowerCase();
 				var cardAge = (card.dataset.age || "").toLowerCase();
-				var cardPrice = parseInt(card.dataset.price) || 0;
+				var cardPrice = parseInt(card.dataset.price, 10) || 0;
 				var cardKonishi =
 					card.dataset.konishi === "true" ||
 					card.querySelector(".badge--konishi") !== null;

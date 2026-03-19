@@ -1,4 +1,4 @@
-# Wave Clip-Path — Technique de transition en vague
+# Wave Clip-Path  Technique de transition en vague
 
 ## Principe
 
@@ -62,7 +62,7 @@ Placer ce bloc juste après `<body>`, avant tout contenu visible :
 ```
 
 > La section doit avoir une **hauteur fixe ou min-height** pour que la vague soit proportionnelle.
-> `overflow: hidden` existant sur la section est compatible — clip-path prend le dessus.
+> `overflow: hidden` existant sur la section est compatible  clip-path prend le dessus.
 
 ---
 

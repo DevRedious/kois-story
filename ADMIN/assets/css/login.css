@@ -47,13 +47,9 @@ body.login-page > .login-theme-switcher {
 	border-color: var(--rouge-vif);
 }
 
-body.login-page > #form-ui {
-	position: relative;
-	z-index: 1;
-}
-
 #form-ui {
 	position: relative;
+	z-index: 1;
 	width: 300px;
 	padding: 28px 25px;
 	background-color: var(--blanc-pur);

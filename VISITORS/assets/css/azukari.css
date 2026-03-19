@@ -1,9 +1,11 @@
 /* ==========================================================================
-   azukari.css — Page azukari (service pension) Koi's Story V3
+   azukari.css  Page azukari (service pension) Koi's Story V3
    ========================================================================== */
 
 .azukari-desc {
-	padding: var(--sp-20) var(--sp-10);
+	padding: calc(60px + var(--sp-20)) var(--sp-10) var(--sp-20);
+	margin-top: -60px;
+	background: rgba(245, 245, 242, 0.9);
 }
 .azukari-desc__inner {
 	max-width: var(--max-width);
@@ -12,6 +14,9 @@
 	grid-template-columns: 1fr 1fr;
 	gap: var(--sp-12);
 	align-items: start;
+}
+.azukari-desc__text .btn--wa {
+	color: var(--c-black);
 }
 .azukari-desc__text h2 {
 	font-family: var(--font-serif);
@@ -22,81 +27,47 @@
 }
 .azukari-desc__text p {
 	font-size: var(--text-base);
-	color: var(--n-75);
+	color: var(--c-black);
 	line-height: var(--leading-normal);
 	margin-bottom: var(--sp-4);
 }
 
 .azukari-features {
-	display: flex;
-	flex-direction: column;
-	gap: var(--sp-4);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-8) var(--sp-6);
 }
 .azukari-feature {
 	display: flex;
-	gap: var(--sp-4);
-	align-items: flex-start;
-	background: var(--c-white);
-	border-radius: var(--r-xl);
-	padding: var(--sp-5);
-	box-shadow: var(--shadow-sm);
-}
-.azukari-feature__icon {
-	font-size: 1.8rem;
-	flex-shrink: 0;
+	flex-direction: column;
+	gap: var(--sp-3);
+	padding-top: var(--sp-4);
+	border-top: 2px solid var(--c-red);
 }
 .azukari-feature__text h4 {
 	font-family: var(--font-serif);
 	font-size: var(--text-lg);
 	font-weight: 700;
 	color: var(--c-black);
-	margin-bottom: var(--sp-2);
+	margin-bottom: var(--sp-1);
 }
 .azukari-feature__text p {
-	font-size: var(--text-sm);
-	color: var(--n-55);
+	font-size: var(--text-base);
+	color: var(--n-90);
 	line-height: var(--leading-normal);
 }
 
-.cta-full {
-	padding: var(--sp-16) var(--sp-10);
-	background: rgba(245, 245, 242, 0.9);
-}
-.cta-full__inner {
-	max-width: var(--max-width);
-	margin: 0 auto;
-}
-.cta-full__btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: var(--sp-4);
-	width: 100%;
-	padding: var(--sp-6) var(--sp-8);
-	background: var(--c-wa);
-	color: var(--c-white);
-	border-radius: var(--r-xl);
-	font-family: var(--font-sans);
-	font-size: var(--text-xl);
-	font-weight: 700;
-	text-decoration: none;
-	transition:
-		background var(--t-fast),
-		box-shadow var(--t-fast);
-}
-.cta-full__btn:hover {
-	background: #25d366;
-	box-shadow: var(--shadow-wa);
-}
-.cta-full__note {
-	text-align: center;
+.azukari-desc__note {
 	font-size: var(--text-sm);
-	color: var(--n-55);
-	margin-top: var(--sp-4);
+	color: var(--n-75);
+	margin-top: var(--sp-2);
 }
 
 @media (max-width: 768px) {
 	.azukari-desc__inner {
+		grid-template-columns: 1fr;
+	}
+	.azukari-features {
 		grid-template-columns: 1fr;
 	}
 }

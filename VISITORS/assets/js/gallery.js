@@ -1,5 +1,5 @@
 /**
- * gallery.js — Koi's Story V3
+ * gallery.js  Koi's Story V3
  * Lightbox simple pour la galerie de la fiche produit.
  * Clic sur .koi-detail__thumb → affiche en grand dans un overlay.
  * Touche Escape ou clic overlay pour fermer.

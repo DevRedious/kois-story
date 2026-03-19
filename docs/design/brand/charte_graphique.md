@@ -1,4 +1,4 @@
-# Charte graphique — Koi's Story
+# Charte graphique  Koi's Story
 
 ## 1. Positionnement visuel
 
@@ -113,7 +113,7 @@ Contenu affiché (dans l'ordre) :
 - Couleurs vives
 - Interface **mobile-first**
 
-Direction artistique : **"Dynamique & commerçante"** — validée par le client.
+Direction artistique : **"Dynamique & commerçante"**  validée par le client.
 
 ---
 

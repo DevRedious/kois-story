@@ -27,12 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
     <option value="mat_pompe"      data-price="210">Pompe bassin Pro</option>`;
 
 	function fmt(n) {
-		return (
-			n
-				.toFixed(2)
-				.replace(".", ",")
-				.replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " €"
-		);
+		return `${n
+			.toFixed(2)
+			.replace(".", ",")
+			.replace(/\B(?=(\d{3})+(?!\d))/g, " ")} €`;
 	}
 
 	function updateRow(row) {
@@ -60,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (orderHT) orderHT.textContent = fmt(ht);
 		if (orderTVA) orderTVA.textContent = fmt(tva);
 		if (orderTTC) orderTTC.textContent = fmt(ttc);
-		if (tvaLabel) tvaLabel.textContent = rate + "%";
+		if (tvaLabel) tvaLabel.textContent = `${rate}%`;
 	}
 
 	function addLine() {

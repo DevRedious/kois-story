@@ -55,7 +55,7 @@
 
 ---
 
-## Retour client — Maquettes ChatGPT (reçues le 17/03/2026)
+## Retour client  Maquettes ChatGPT (reçues le 17/03/2026)
 
 Le client a fourni 3 captures d'écran de maquettes générées par ChatGPT comme référence de direction souhaitée.
 
@@ -64,19 +64,19 @@ Le client a fourni 3 captures d'écran de maquettes générées par ChatGPT comm
 - [ ] Ajouter un bouton WhatsApp flottant (bas droit, toutes les pages visiteurs)
 - [ ] Afficher le numéro de téléphone dans la navbar
 - [ ] Retravailler la section About : disposition texte à gauche / photo couple à droite (en attente de la photo fournie par le client)
-- [ ] Ajouter une section "Parcourir par variété" (Kohaku, Showa, Tancho…) sur la home — galerie visuelle cliquable vers le catalogue filtré
-- [ ] Ajouter une section avis clients (Google ★★★★★) sur la home — contenu statique acceptable pour la beta
+- [ ] Ajouter une section "Parcourir par variété" (Kohaku, Showa, Tancho…) sur la home  galerie visuelle cliquable vers le catalogue filtré
+- [ ] Ajouter une section avis clients (Google ★★★★★) sur la home  contenu statique acceptable pour la beta
 - [ ] Ajouter les logos partenaires en bas de page (iKonShî, Konishi Europe GmbH…)
 - [ ] Ajouter une card "Nous contacter pour ce koï" sur la fiche produit catalogue (UX flottante ou sticky)
 - [ ] Revoir l'esthétique générale : moins corporate/sombre, plus chaud et organique (voir analyse ci-dessous)
 
 ### À reporter en V2 post-beta (scope trop large)
 
-- [ ] Sections "Matériel", "Soins", "Nourriture", "Azukari", "Conseils" — nouveaux domaines métier non prévus dans le brief initial, impliquent de nouveaux modèles Rails et du contenu non fourni
+- [ ] Sections "Matériel", "Soins", "Nourriture", "Azukari", "Conseils"  nouveaux domaines métier non prévus dans le brief initial, impliquent de nouveaux modèles Rails et du contenu non fourni
 - [ ] Page "Installations intérieures / extérieures"
 - [ ] Navigation étendue à 7-8 entrées
 
 ### Notes
 
-- Le client semble avoir utilisé ChatGPT pour générer ces maquettes — la direction est indicative, pas contractuelle
+- Le client semble avoir utilisé ChatGPT pour générer ces maquettes  la direction est indicative, pas contractuelle
 - Demander au client : photo HD du couple (Emmanuel & Mathilde), confirmation du numéro de téléphone à afficher, logos partenaires en HD

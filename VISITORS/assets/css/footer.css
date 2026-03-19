@@ -1,5 +1,5 @@
 /* ==========================================================================
-   footer.css — Organism site-footer (variantes A + B) Koi's Story V3
+   footer.css  Organism site-footer (variantes A + B) Koi's Story V3
    ========================================================================== */
 
 .site-footer {
@@ -18,7 +18,7 @@
 	border-top: 1px solid rgba(230, 0, 0, 0.22);
 }
 
-/* ── VARIANTE A — footer complet (home.html) ─────────────────────────── */
+/* ── VARIANTE A  footer complet (home.html) ─────────────────────────── */
 .footer__inner--full {
 	max-width: var(--max-width);
 	margin: 0 auto;
@@ -65,26 +65,6 @@
 }
 .footer__wa:hover {
 	background: #25d366;
-}
-
-.footer__social {
-	display: flex;
-	align-items: center;
-	gap: var(--sp-4);
-}
-.footer__social-link {
-	display: flex;
-	align-items: center;
-	gap: var(--sp-2);
-	font-family: var(--font-sans);
-	font-size: var(--text-sm);
-	font-weight: 600;
-	color: var(--w-70);
-	text-decoration: none;
-	transition: color var(--t-fast);
-}
-.footer__social-link:hover {
-	color: var(--c-white);
 }
 
 .footer__col h4 {
@@ -147,7 +127,7 @@
 	margin: 0 auto;
 }
 
-/* ── VARIANTE B — footer compact (pages secondaires) ────────────────── */
+/* ── VARIANTE B  footer compact (pages secondaires) ────────────────── */
 .footer__inner {
 	max-width: var(--max-width);
 	margin: 0 auto;
@@ -228,7 +208,7 @@
 	user-select: none;
 }
 
-/* ── CTA WHATSAPP FLOTTANT — toutes pages ────────────────────────── */
+/* ── CTA WHATSAPP FLOTTANT  toutes pages ────────────────────────── */
 .cta-wa-float {
 	position: fixed;
 	bottom: var(--sp-6);

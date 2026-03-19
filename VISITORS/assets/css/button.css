@@ -1,5 +1,5 @@
 /* ==========================================================================
-   button.css — Atom btn + Molecule cta-whatsapp Koi's Story V3
+   button.css  Atom btn + Molecule cta-whatsapp Koi's Story V3
    ========================================================================== */
 
 /* ── BTN ATOM ────────────────────────────────────────────────────────── */
@@ -89,7 +89,7 @@
 
 .btn--wa {
 	background: var(--c-wa);
-	color: var(--c-black);
+	color: var(--c-white);
 	border-color: var(--c-wa);
 }
 .btn--wa:hover {

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   shop.css — Molecule shop-card + Organism shop-section Koi's Story V3
+   shop.css  Molecule shop-card + Organism shop-section Koi's Story V3
    ========================================================================== */
 
 /* ── SHOP CARD ───────────────────────────────────────────────────────── */
@@ -174,7 +174,7 @@
 	border-bottom: 2px solid var(--n-08);
 }
 
-/* ── KONISHI INFO — page nourriture ─────────────────────────────── */
+/* ── KONISHI INFO  page nourriture ─────────────────────────────── */
 .konishi-info {
 	background: var(--c-black);
 	padding: var(--sp-12) var(--sp-10);

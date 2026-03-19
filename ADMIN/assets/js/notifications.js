@@ -34,7 +34,7 @@ if (!document.getElementById("admin-notification-styles")) {
 	document.head.appendChild(style);
 }
 
-function showNotification(message, type = "success") {
+function _showNotification(message, type = "success") {
 	document.querySelectorAll(".admin-notification").forEach((n) => {
 		n.remove();
 	});

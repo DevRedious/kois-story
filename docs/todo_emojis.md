@@ -1,7 +1,7 @@
-# Inventaire emojis — VISITORS/
+# Inventaire emojis  VISITORS/
 
 > Tâche : remplacer tous les emojis par des SVG inline ou depuis `docs/assets/`.
-> Règle : aucun emoji dans le HTML final — SVG uniquement.
+> Règle : aucun emoji dans le HTML final  SVG uniquement.
 
 ---
 
@@ -18,7 +18,7 @@
 | 📷 | Placeholder photo | `organisms/farm-gallery.html:113`, `organisms/farm-gallery.html:119` |
 | 📜 | Certificat Konishi | `organisms/koi-detail.html:186` |
 
-### Icônes shop-card — Matériel
+### Icônes shop-card  Matériel
 
 | Emoji | Produit | Fichiers |
 |---|---|---|
@@ -29,7 +29,7 @@
 | ☀️ | Stérilisateur UV | `pages/materiel.html:314`, `organisms/shop-section.html:138` |
 | 🌡️ | Chauffage bassin | `pages/materiel.html:315`, `pages/azukari.html:322` |
 
-### Icônes shop-card — Nourriture
+### Icônes shop-card  Nourriture
 
 | Emoji | Produit | Fichiers |
 |---|---|---|
@@ -40,7 +40,7 @@
 | 🍂 | Aliment hiver | `pages/nourriture.html:331` |
 | 🎯 | Distributeur automatique | `pages/nourriture.html:332` |
 
-### Icônes shop-card — Soins
+### Icônes shop-card  Soins
 
 | Emoji | Produit | Fichiers |
 |---|---|---|

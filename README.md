@@ -21,8 +21,8 @@
 
   <p align="center">
     <i>Digital showcase platform for a koi carp breeding farm affiliated with the Konishi lineage.</i><br>
-    Final project — <a href="https://www.thehackingproject.org">The Hacking Project</a><br>
-   Trello Board — <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>
+    Final project  <a href="https://www.thehackingproject.org">The Hacking Project</a><br>
+   Trello Board  <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>
   </p>
 </div>
 
@@ -172,7 +172,7 @@ Project history is tracked in `CHANGELOG.md`.
 | Layer          | Technology                         |
 | -------------- | ---------------------------------- |
 | Back-end       | Ruby on Rails (RESTful, MVC)       |
-| Front-end      | Hotwire — Turbo + Stimulus         |
+| Front-end      | Hotwire  Turbo + Stimulus         |
 | CSS            | Bootstrap / Tailwind CSS           |
 | Database       | SQLite                             |
 | Authentication | Devise (roles:`visitor` / `admin`) |
@@ -183,4 +183,4 @@ Project history is tracked in `CHANGELOG.md`.
 
 ## Team
 
-Morgan VERHAEGHE · Romain ROYER · Valentin CHÉRON — THP Fullstack cohort
+Morgan VERHAEGHE · Romain ROYER · Valentin CHÉRON  THP Fullstack cohort

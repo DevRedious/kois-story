@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (match) visible++;
 		});
 
-		if (count) count.textContent = visible + " koï" + (visible > 1 ? "s" : "");
+		if (count) count.textContent = `${visible} koï${visible > 1 ? "s" : ""}`;
 	}
 
 	search?.addEventListener("input", applyFilters);

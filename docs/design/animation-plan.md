@@ -1,4 +1,4 @@
-# Plan d'intégration des animations — Koi's Story Maquette
+# Plan d'intégration des animations  Koi's Story Maquette
 
 > Basé sur les techniques de motion.zajno.com (sans Lottie).
 > Approche : CSS pur + IntersectionObserver. Zéro librairie externe.
@@ -6,7 +6,7 @@
 
 ---
 
-## Étape 1 — Fondations CSS (`docs/design/tokens.css`)
+## Étape 1  Fondations CSS (`docs/design/tokens.css`)
 
 Ajouter en fin de fichier :
 
@@ -42,12 +42,12 @@ Ajouter en fin de fichier :
 
 ---
 
-## Étape 2 — Fichier JS (`VISITORS/assets/js/animations.js`)
+## Étape 2  Fichier JS (`VISITORS/assets/js/animations.js`)
 
 Créer ce fichier :
 
 ```js
-// animations.js — Koi's Story
+// animations.js  Koi's Story
 // Déclenche .is-visible sur [data-animate] au passage dans le viewport.
 // Compatible Turbo (Rails Hotwire) via l'event turbo:load.
 (function () {
@@ -77,7 +77,7 @@ Créer ce fichier :
 
 ---
 
-## Étape 3 — Inclusion dans le layout (`VISITORS/templates/visitor-layout.html`)
+## Étape 3  Inclusion dans le layout (`VISITORS/templates/visitor-layout.html`)
 
 Ajouter avant la balise `</body>` :
 
@@ -85,20 +85,20 @@ Ajouter avant la balise `</body>` :
 <script src="../assets/js/animations.js"></script>
 ```
 
-> `header.js` reste chargé séparément — les deux fichiers sont indépendants.
+> `header.js` reste chargé séparément  les deux fichiers sont indépendants.
 
 **Statut :** [ ] À faire
 
 ---
 
-## Étape 4 — Application par page/composant
+## Étape 4  Application par page/composant
 
-### `home.html` — Page d'accueil
+### `home.html`  Page d'accueil
 
 | Élément | Attributs | Raison |
 |---|---|---|
 | `.features__header` | `data-animate="fade-up"` | Titre de section éditorial |
-| `.feature-main` | `data-animate="fade-up"` | Bloc Konishi — storytelling |
+| `.feature-main` | `data-animate="fade-up"` | Bloc Konishi  storytelling |
 | `.feature-small` (×2) | `data-animate="fade-up" data-delay="1/2"` | Stagger léger |
 | `.koi-showcase__header` | `data-animate="fade-up"` | Titre section |
 | `.editorial` | `data-animate="fade-scale"` | Carte koï vedette |
@@ -117,14 +117,14 @@ Ajouter avant la balise `</body>` :
 
 ---
 
-### `kois.html` — Catalogue
+### `kois.html`  Catalogue
 
 Règle stricte : **pas de stagger sur les cards**, l'utilisateur est en mode recherche.
 
 | Élément | Attributs | Raison |
 |---|---|---|
 | `.filter-bar` en-tête | `data-animate="fade-up"` | Titre section uniquement |
-| `.koi-card` | `data-animate="fade-up"` | Délai 0 — reveal immédiat |
+| `.koi-card` | `data-animate="fade-up"` | Délai 0  reveal immédiat |
 
 **Ne PAS animer :**
 - Les filtres (`.filter-bar` les inputs/boutons)
@@ -135,7 +135,7 @@ Règle stricte : **pas de stagger sur les cards**, l'utilisateur est en mode rec
 
 ---
 
-### `product.html` — Fiche koï
+### `product.html`  Fiche koï
 
 | Élément | Attributs | Raison |
 |---|---|---|
@@ -153,7 +153,7 @@ Règle stricte : **pas de stagger sur les cards**, l'utilisateur est en mode rec
 
 ---
 
-### `decouvrir.html` — Notre élevage
+### `decouvrir.html`  Notre élevage
 
 Page 100% éditoriale → animations libres.
 
@@ -167,9 +167,9 @@ Page 100% éditoriale → animations libres.
 
 ---
 
-### `azukari.html` — Service Azukari
+### `azukari.html`  Service Azukari
 
-Même logique que `decouvrir.html` — contenu éditorial pur.
+Même logique que `decouvrir.html`  contenu éditorial pur.
 
 | Élément | Attributs |
 |---|---|
@@ -181,7 +181,7 @@ Même logique que `decouvrir.html` — contenu éditorial pur.
 
 ---
 
-### `materiel.html`, `soins.html`, `nourriture.html` — Pages produits
+### `materiel.html`, `soins.html`, `nourriture.html`  Pages produits
 
 | Élément | Attributs |
 |---|---|
@@ -194,12 +194,12 @@ Même logique que `decouvrir.html` — contenu éditorial pur.
 
 ---
 
-## Étape 5 — Micro-interactions hover (CSS uniquement)
+## Étape 5  Micro-interactions hover (CSS uniquement)
 
 Déjà partiellement en place. Vérifier la cohérence sur tous les composants :
 
 ```css
-/* Déjà présent — vérifier uniformité */
+/* Déjà présent  vérifier uniformité */
 .koi-card:hover         { transform: translateY(-4px); }
 .koi-card:hover img     { transform: scale(1.06); }
 .editorial:hover img    { transform: scale(1.03); }
@@ -216,7 +216,7 @@ Ajouter si manquant :
 
 ---
 
-## Étape 6 — Hero Ken Burns (déjà en place)
+## Étape 6  Hero Ken Burns (déjà en place)
 
 `organisms/hero.html` contient déjà l'effet zoom au chargement via `.hero.loaded .hero__bg`.
 Vérifier que le script de trigger est bien inclus dans toutes les pages avec un hero :
@@ -234,7 +234,7 @@ Vérifier que le script de trigger est bien inclus dans toutes les pages avec un
 
 ---
 
-## Étape 7 — Parallax léger sur le hero (optionnel, desktop only)
+## Étape 7  Parallax léger sur le hero (optionnel, desktop only)
 
 CSS pur, désactivé sur mobile et iOS :
 
@@ -249,7 +249,7 @@ CSS pur, désactivé sur mobile et iOS :
 > ⚠️ `background-attachment: fixed` peut être saccadé sur certains navigateurs mobiles.
 > À tester avant validation client.
 
-**Statut :** [ ] Optionnel — tester d'abord
+**Statut :** [ ] Optionnel  tester d'abord
 
 ---
 
@@ -289,6 +289,6 @@ CSS pur, désactivé sur mobile et iOS :
 - Prix → toujours visible immédiatement, jamais animé
 - Bouton WhatsApp → toujours visible immédiatement
 - Filtres de catalogue → aucune animation
-- `data-delay` max = `3` (240ms) sur les grilles — au-delà, c'est irritant
+- `data-delay` max = `3` (240ms) sur les grilles  au-delà, c'est irritant
 - Sur mobile : supprimer les `data-delay` > `1` via media query si le stagger devient agaçant
 - `prefers-reduced-motion` → respecté dans les tokens, aucune exception

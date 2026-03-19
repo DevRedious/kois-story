@@ -1,8 +1,8 @@
 /* ==========================================================================
-   koi-card-pages.css — Convention page koi-card-* + editorial + koi-showcase
+   koi-card-pages.css  Convention page koi-card-* + editorial + koi-showcase
    ========================================================================== */
 
-/* ── KOI CARD — convention page (koi-card-*) ────────────────────── */
+/* ── KOI CARD  convention page (koi-card-*) ────────────────────── */
 .koi-card-image {
 	position: relative;
 	width: 100%;
@@ -157,7 +157,7 @@
 	border-color: var(--c-black);
 }
 
-/* ── EDITORIAL — grande card vedette (home) ─────────────────────── */
+/* ── EDITORIAL  grande card vedette (home) ─────────────────────── */
 .editorial {
 	display: flex;
 	height: 440px;
@@ -248,7 +248,7 @@
 	vertical-align: super;
 }
 
-/* ── KOI SHOWCASE — section grille home ─────────────────────────── */
+/* ── KOI SHOWCASE  section grille home ─────────────────────────── */
 .koi-showcase {
 	padding: var(--sp-10) var(--sp-10) var(--sp-20);
 	background: rgba(245, 245, 242, 0.9);

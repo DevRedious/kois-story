@@ -1,5 +1,5 @@
 /**
- * animations.js — Koi's Story
+ * animations.js  Koi's Story
  * Triggers .is-visible on [data-animate] elements when they enter the viewport.
  * Compatible with Turbo (Rails Hotwire) via the turbo:load event.
  */
@@ -24,7 +24,7 @@ const initAnimations = () => {
 document.addEventListener("DOMContentLoaded", initAnimations);
 document.addEventListener("turbo:load", initAnimations);
 
-/* ── Floating CTA — hide when footer enters viewport ────────────────── */
+/* ── Floating CTA  hide when footer enters viewport ────────────────── */
 const initFloatCta = () => {
 	const cta = document.querySelector(".cta-wa-float");
 	const footer = document.querySelector(".site-footer");
