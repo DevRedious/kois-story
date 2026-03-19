@@ -6,7 +6,7 @@ commit_msg=$(cat "$1")
 echo "$commit_msg" | grep -qE "^Merge |^\[skip ci\]" && exit 0
 
 # Valider le format conventionnel
-pattern="^(feat|fix|docs|style|refactor|chore|test|perf)(\(.+\))?: .{1,100}"
+pattern="^(feat|fix|docs|style|refactor|chore|test|perf|build|ci|revert)(\(.+\))?: .{1,100}"
 
 if ! echo "$commit_msg" | grep -qE "$pattern"; then
   echo ""
@@ -24,6 +24,9 @@ if ! echo "$commit_msg" | grep -qE "$pattern"; then
   echo "    chore    → maintenance, config, dépendances"
   echo "    test     → ajout ou correction de tests"
   echo "    perf     → amélioration des performances"
+  echo "    build    → système de build, dépendances externes"
+  echo "    ci       → configuration CI/CD (GitHub Actions, etc.)"
+  echo "    revert   → annulation d'un commit précédent"
   echo ""
   echo "  Exemples valides :"
   echo "    feat: ajouter le bouton WhatsApp sur la fiche produit"
