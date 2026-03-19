@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Molecule — Koi Row</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+</head>
+<body>
+
+  <h3>Koi Rows — Dans leur contexte tableau</h3>
+
+  <div class="panel">
+    <table>
+      <thead>
+        <tr>
+          <th>Photo</th><th>Nom / Variété</th><th>Taille</th>
+          <th>Prix</th><th>Lignée</th><th>Statut</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td><div class="koi-thumb"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
+          <td><div class="koi-name">Sakura</div><div class="koi-variety">Kohaku</div></td>
+          <td>72 cm</td>
+          <td class="koi-price">1 800 €</td>
+          <td><span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span></td>
+          <td><span class="badge badge-dispo">Disponible</span></td>
+          <td><div class="row-actions"><button type="button" class="btn btn--outline btn--sm">Éditer</button><button type="button" class="btn btn--danger btn--sm">Supprimer</button></div></td>
+        </tr>
+
+        <tr>
+          <td><div class="koi-thumb"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
+          <td><div class="koi-name">Midori</div><div class="koi-variety">Soragoi</div></td>
+          <td>55 cm</td>
+          <td class="koi-price">720 €</td>
+          <td>—</td>
+          <td><span class="badge badge-dispo">Disponible</span></td>
+          <td><div class="row-actions"><button type="button" class="btn btn--outline btn--sm">Éditer</button><button type="button" class="btn btn--danger btn--sm">Supprimer</button></div></td>
+        </tr>
+
+        <tr class="vendu">
+          <td><div class="koi-thumb"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
+          <td><div class="koi-name">Taro</div><div class="koi-variety">Tancho</div></td>
+          <td>80 cm</td>
+          <td class="koi-price">3 200 €</td>
+          <td><span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span></td>
+          <td><span class="badge badge-vendu">Vendu</span></td>
+          <td><div class="row-actions"><button type="button" class="btn btn--ghost btn--sm">Voir</button></div></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

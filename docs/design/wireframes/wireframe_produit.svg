@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1050" viewBox="0 0 800 1050" font-family="Arial, sans-serif">
+
+  <rect width="800" height="1050" fill="#ffffff"/>
+
+  <!-- ── NAV ── -->
+  <rect x="0" y="0" width="800" height="60" fill="#1a1a2e"/>
+  <text x="24" y="37" fill="#ffffff" font-size="17" font-weight="bold">Koi's Story</text>
+  <text x="530" y="37" fill="#cccccc" font-size="13">Catalogue</text>
+  <text x="625" y="37" fill="#cccccc" font-size="13">Elevage</text>
+  <text x="712" y="37" fill="#cccccc" font-size="13">Contact</text>
+
+  <!-- ── BREADCRUMB ── -->
+  <rect x="0" y="60" width="800" height="36" fill="#f5f5f5" stroke="#eeeeee" stroke-width="1"/>
+  <text x="24" y="83" fill="#888888" font-size="12">Accueil  &gt;  Catalogue  &gt;  Hanami</text>
+
+  <!-- ── GALERIE PRINCIPALE ── -->
+  <rect x="20" y="106" width="420" height="300" rx="6" fill="#c8d4e0" stroke="#a8bccb" stroke-width="1"/>
+  <line x1="20" y1="106" x2="440" y2="406" stroke="#a8bccb" stroke-width="1"/>
+  <line x1="440" y1="106" x2="20" y2="406" stroke="#a8bccb" stroke-width="1"/>
+  <text x="230" y="260" fill="#7090a8" font-size="12" text-anchor="middle">[ Photo HD Principale ]</text>
+
+  <!-- ── THUMBNAILS ── -->
+  <rect x="20"  y="416" width="94" height="64" rx="4" fill="#c8d4e0" stroke="#a8bccb" stroke-width="1"/>
+  <line x1="20"  y1="416" x2="114" y2="480" stroke="#a8bccb" stroke-width="0.5"/>
+  <line x1="114" y1="416" x2="20"  y2="480" stroke="#a8bccb" stroke-width="0.5"/>
+  <text x="67"  y="452" fill="#7090a8" font-size="9" text-anchor="middle">Th.1</text>
+
+  <rect x="122" y="416" width="94" height="64" rx="4" fill="#c8d4e0" stroke="#a8bccb" stroke-width="1"/>
+  <line x1="122" y1="416" x2="216" y2="480" stroke="#a8bccb" stroke-width="0.5"/>
+  <line x1="216" y1="416" x2="122" y2="480" stroke="#a8bccb" stroke-width="0.5"/>
+  <text x="169" y="452" fill="#7090a8" font-size="9" text-anchor="middle">Th.2</text>
+
+  <rect x="224" y="416" width="94" height="64" rx="4" fill="#c8d4e0" stroke="#a8bccb" stroke-width="1"/>
+  <line x1="224" y1="416" x2="318" y2="480" stroke="#a8bccb" stroke-width="0.5"/>
+  <line x1="318" y1="416" x2="224" y2="480" stroke="#a8bccb" stroke-width="0.5"/>
+  <text x="271" y="452" fill="#7090a8" font-size="9" text-anchor="middle">Th.3</text>
+
+  <rect x="326" y="416" width="94" height="64" rx="4" fill="#c8d4e0" stroke="#a8bccb" stroke-width="1"/>
+  <line x1="326" y1="416" x2="420" y2="480" stroke="#a8bccb" stroke-width="0.5"/>
+  <line x1="420" y1="416" x2="326" y2="480" stroke="#a8bccb" stroke-width="0.5"/>
+  <text x="373" y="452" fill="#7090a8" font-size="9" text-anchor="middle">Th.4</text>
+
+  <!-- ── INFOS PRODUIT ── -->
+  <rect x="460" y="106" width="320" height="380" rx="6" fill="#fffdf5" stroke="#e8dcc8" stroke-width="1"/>
+  <text x="480" y="144" fill="#1a1a2e" font-size="22" font-weight="bold">Hanami</text>
+  <rect x="480" y="154" width="140" height="24" rx="12" fill="#f5f0e8" stroke="#c8b89a" stroke-width="1"/>
+  <text x="550" y="171" fill="#8b7355" font-size="11" text-anchor="middle">Lignee Konishi</text>
+  <line x1="480" y1="192" x2="760" y2="192" stroke="#e8dcc8" stroke-width="1"/>
+  <text x="480" y="218" fill="#666666" font-size="13">Variete :</text>
+  <text x="590" y="218" fill="#1a1a2e" font-size="13" font-weight="bold">Kohaku</text>
+  <text x="480" y="242" fill="#666666" font-size="13">Taille :</text>
+  <text x="590" y="242" fill="#1a1a2e" font-size="13" font-weight="bold">48 cm</text>
+  <text x="480" y="266" fill="#666666" font-size="13">Age :</text>
+  <text x="590" y="266" fill="#1a1a2e" font-size="13" font-weight="bold">~3 ans</text>
+  <line x1="480" y1="284" x2="760" y2="284" stroke="#e8dcc8" stroke-width="1"/>
+  <text x="480" y="316" fill="#1a1a2e" font-size="24" font-weight="bold">3 200 EUR</text>
+  <circle cx="488" cy="340" r="5" fill="#2d6a4f"/>
+  <text x="502" y="345" fill="#2d6a4f" font-size="13">Disponible</text>
+  <line x1="480" y1="360" x2="760" y2="360" stroke="#e8dcc8" stroke-width="1"/>
+  <rect x="480" y="374" width="280" height="46" rx="23" fill="#25D366"/>
+  <text x="620" y="402" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">Commander via WhatsApp</text>
+
+  <!-- ── DESCRIPTION ── -->
+  <rect x="0" y="510" width="800" height="130" fill="#fafaf5" stroke="#eeeeee" stroke-width="1"/>
+  <text x="24" y="542" fill="#1a1a2e" font-size="15" font-weight="bold">Description du specimen</text>
+  <text x="24" y="568" fill="#555555" font-size="13">Hanami est une Kohaku d'exception issue directement de la lignee Konishi.</text>
+  <text x="24" y="590" fill="#555555" font-size="13">Caracteristiques, provenance et conseils d'entretien du specimen.</text>
+  <text x="24" y="612" fill="#555555" font-size="13">Descriptif complet pour rassurer le collectionneur exigeant.</text>
+
+  <!-- ── VOUS AIMEREZ AUSSI ── -->
+  <text x="400" y="662" fill="#1a1a2e" font-size="15" text-anchor="middle" font-weight="bold"> Vous aimerez aussi </text>
+
+  <!-- Card 1 -->
+  <rect x="24" y="674" width="232" height="260" rx="8" fill="#ffffff" stroke="#dddddd" stroke-width="1.5"/>
+  <rect x="24" y="674" width="232" height="150" rx="8" fill="#c8d4e0"/>
+  <line x1="24"  y1="674" x2="256" y2="824" stroke="#b0bfcb" stroke-width="1"/>
+  <line x1="256" y1="674" x2="24"  y2="824" stroke="#b0bfcb" stroke-width="1"/>
+  <text x="140" y="844" fill="#333333" font-size="14" text-anchor="middle" font-weight="bold">Kohaku</text>
+  <text x="140" y="864" fill="#666666" font-size="12" text-anchor="middle">42 cm</text>
+  <text x="140" y="886" fill="#2d6a4f" font-size="15" text-anchor="middle" font-weight="bold">2 400 EUR</text>
+
+  <!-- Card 2 -->
+  <rect x="284" y="674" width="232" height="260" rx="8" fill="#ffffff" stroke="#dddddd" stroke-width="1.5"/>
+  <rect x="284" y="674" width="232" height="150" rx="8" fill="#c8d4e0"/>
+  <line x1="284" y1="674" x2="516" y2="824" stroke="#b0bfcb" stroke-width="1"/>
+  <line x1="516" y1="674" x2="284" y2="824" stroke="#b0bfcb" stroke-width="1"/>
+  <text x="400" y="844" fill="#333333" font-size="14" text-anchor="middle" font-weight="bold">Sanke</text>
+  <text x="400" y="864" fill="#666666" font-size="12" text-anchor="middle">55 cm</text>
+  <text x="400" y="886" fill="#2d6a4f" font-size="15" text-anchor="middle" font-weight="bold">4 100 EUR</text>
+
+  <!-- Card 3 -->
+  <rect x="544" y="674" width="232" height="260" rx="8" fill="#ffffff" stroke="#dddddd" stroke-width="1.5"/>
+  <rect x="544" y="674" width="232" height="150" rx="8" fill="#c8d4e0"/>
+  <line x1="544" y1="674" x2="776" y2="824" stroke="#b0bfcb" stroke-width="1"/>
+  <line x1="776" y1="674" x2="544" y2="824" stroke="#b0bfcb" stroke-width="1"/>
+  <text x="660" y="844" fill="#333333" font-size="14" text-anchor="middle" font-weight="bold">Shiro Utsuri</text>
+  <text x="660" y="864" fill="#666666" font-size="12" text-anchor="middle">40 cm</text>
+  <text x="660" y="886" fill="#2d6a4f" font-size="15" text-anchor="middle" font-weight="bold">2 100 EUR</text>
+
+  <!-- ── FOOTER ── -->
+  <rect x="0" y="985" width="800" height="65" fill="#1a1a2e"/>
+  <text x="400" y="1011" fill="#aaaaaa" font-size="12" text-anchor="middle">© Koi's Story 2026</text>
+  <text x="400" y="1031" fill="#666666" font-size="11" text-anchor="middle">Contact  ·  Mentions legales</text>
+
+</svg>

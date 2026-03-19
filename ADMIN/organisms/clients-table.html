@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Clients Table</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+</head>
+<body>
+
+<!-- ── CLIENTS TABLE ORGANISM ────────────────────────────── -->
+<div class="panel">
+  <div class="panel-header">
+    <span class="panel-title">Clients</span>
+    <div class="panel-toolbar panel-toolbar--nowrap">
+      <input type="text" placeholder="Rechercher…" id="client-search" class="u-toolbar-control u-toolbar-search-wide">
+      <a href="client-form.html" class="btn btn--primary btn--sm">＋ Nouveau client</a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table id="clients-table">
+      <thead>
+        <tr>
+          <th>Client</th><th>Email</th><th>Téléphone</th>
+          <th>Commandes</th><th>Total</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="client-cell">
+            <div class="client-avatar">TL</div>
+            <div><div class="client-name-strong">Thomas Lefèvre</div><div class="client-location-muted">Lyon, 69</div></div>
+          </div></td>
+          <td class="td-client-contact">thomas.lefevre@mail.fr</td>
+          <td class="td-client-contact">06 12 34 56 78</td>
+          <td class="td-count-center">3</td>
+          <td><strong>2 450,00 €</strong></td>
+          <td><div class="td-actions">
+            <a href="client-form.html" class="btn btn--outline btn--sm">Fiche</a>
+            <a href="orders.html" class="btn btn--ghost btn--sm">Commandes</a>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="client-cell">
+            <div class="client-avatar client-avatar--brand">GD</div>
+            <div><div class="client-name-strong">Gérard Dupont</div><div class="client-location-muted">Villeurbanne, 69</div></div>
+          </div></td>
+          <td class="td-client-contact">g.dupont@mail.fr</td>
+          <td class="td-client-contact">07 98 76 54 32</td>
+          <td class="td-count-center">1</td>
+          <td><strong>1 120,00 €</strong></td>
+          <td><div class="td-actions">
+            <a href="client-form.html" class="btn btn--outline btn--sm">Fiche</a>
+            <a href="orders.html" class="btn btn--ghost btn--sm">Commandes</a>
+          </div></td>
+        </tr>
+        <tr>
+          <td><div class="client-cell">
+            <div class="client-avatar client-avatar--lavender">LM</div>
+            <div><div class="client-name-strong">Léa Martin</div><div class="client-location-muted">Bourg-en-Bresse, 01</div></div>
+          </div></td>
+          <td class="td-client-contact">lea.martin@mail.fr</td>
+          <td class="td-client-contact">06 55 44 33 22</td>
+          <td class="td-count-center">1</td>
+          <td><strong>320,00 €</strong></td>
+          <td><div class="td-actions">
+            <a href="client-form.html" class="btn btn--outline btn--sm">Fiche</a>
+            <a href="orders.html" class="btn btn--ghost btn--sm">Commandes</a>
+          </div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.getElementById('client-search').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('#clients-table tbody tr').forEach(row => {
+      row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+</script>
+
+</body>
+</html>

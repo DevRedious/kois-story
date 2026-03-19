@@ -1,0 +1,59 @@
+/* Page — accounting */
+.stat-value--success {
+	color: #27ae60;
+}
+
+.stat-value--warning {
+	color: #e67e22;
+}
+
+.accounting-panels-row {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.accounting-panel {
+	flex: 1;
+	min-width: 280px;
+}
+
+.accounting-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.accounting-table thead tr {
+	background: #f8f9fa;
+	font-size: 0.78rem;
+	color: #6c757d;
+	text-transform: uppercase;
+}
+
+.accounting-table th {
+	padding: 8px 14px;
+	text-align: left;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.accounting-table th.td-right,
+.accounting-table td.td-right {
+	text-align: right;
+}
+
+.accounting-table td {
+	padding: 8px 14px;
+	border-bottom: 1px solid #f5f5f5;
+}
+
+.accounting-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.accounting-table .td-ref-strong {
+	font-weight: 600;
+}
+
+.accounting-table .td-date-soft {
+	font-size: 0.82rem;
+}

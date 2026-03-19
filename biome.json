@@ -1,5 +1,22 @@
 {
-  "files": {
-    "ignore": ["docs/charte_graphique.html"]
-  }
+	"files": {
+		"includes": [
+			"**",
+			"!**/*.html",
+			"!**/.vscode",
+			"!**/.edge",
+			"!**/edge-tools",
+			"!koi_story_ui_mockup.jsx"
+		]
+	},
+	"linter": {
+		"rules": {
+			"complexity": {
+				"noImportantStyles": "warn"
+			},
+			"style": {
+				"noDescendingSpecificity": "warn"
+			}
+		}
+	}
 }

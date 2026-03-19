@@ -10,9 +10,19 @@
   </p>
 
   <p align="center">
+    <img src="https://img.shields.io/badge/Palette_V3-%E2%80%94-lightgrey" alt="Palette V3">
+    <img src="https://img.shields.io/badge/Rouge_Vif-%23e60000-e60000" alt="#e60000">
+    <img src="https://img.shields.io/badge/Rouge_Sombre-%23630f0f-630f0f" alt="#630f0f">
+    <img src="https://img.shields.io/badge/Noir-%23000000-000000" alt="#000000">
+    <img src="https://img.shields.io/badge/Blanc_Cass%C3%A9-%23f5f5f2-f5f5f2?labelColor=999999" alt="#f5f5f2">
+    <img src="https://img.shields.io/badge/Blanc_Pur-%23ffffff-ffffff?labelColor=999999" alt="#ffffff">
+    <img src="https://img.shields.io/badge/WhatsApp-%2325d366-25d366?logo=whatsapp&logoColor=white" alt="#25d366">
+  </p>
+
+  <p align="center">
     <i>Digital showcase platform for a koi carp breeding farm affiliated with the Konishi lineage.</i><br>
-    Final project — <a href="https://www.thehackingproject.org">The Hacking Project</a><br>
-   Trello Board — <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>
+    Final project  <a href="https://www.thehackingproject.org">The Hacking Project</a><br>
+   Trello Board  <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>
   </p>
 </div>
 
@@ -30,6 +40,54 @@
 - Photo & video gallery of the breeding farm
 - Contact form with email notification
 - Admin back-office (koi CRUD, message management)
+
+## Repository Status
+
+This repository is currently in the planning and documentation phase.
+
+The Rails application has not been scaffolded yet. At this stage, the repository contains:
+
+- product framing
+- UX documentation
+- design references
+- delivery planning
+- collaboration standards
+
+## Planned Setup
+
+Once implementation starts, the project is expected to use:
+
+- Ruby on Rails
+- SQLite
+- Hotwire
+- Devise
+- Cloudinary
+- ActionMailer
+- Atomic Design for UI composition
+
+## Environment
+
+An example configuration file is available at `.env.example`.
+
+## Working Standards
+
+- `Main` is the production branch
+- `DEV` is the integration branch
+- contributor branches are `Morgan`, `Romain`, and `Valentin`
+- all code and `README.md` content must stay in English
+- routes must remain RESTful
+- business logic belongs in models
+- UI components should follow Atomic Design
+
+## Repository Documents
+
+- `docs/README.md` for the documentation index
+- `docs/todo.md` for execution tracking
+- `docs/roadmap.md` for milestones
+- `docs/stack.md` for the planned stack
+- `CONTRIBUTING.md` for collaboration rules
+- `CONTRIBUTORS.md` for the contribution log
+- `SECURITY.md` for vulnerability reporting
 
 ## Executive Summary
 
@@ -93,10 +151,18 @@ graph LR
 ## Wireframes
 
 ### Home Page
-![Home Page Wireframe](docs/wireframe_accueil.svg)
+![Home Page Wireframe](docs/design/wireframes/wireframe_accueil.svg)
 
 ### Product Page
-![Product Page Wireframe](docs/wireframe_produit.svg)
+![Product Page Wireframe](docs/design/wireframes/wireframe_produit.svg)
+
+## Documentation
+
+The project documentation index is available in `docs/README.md`.
+
+## Changelog
+
+Project history is tracked in `CHANGELOG.md`.
 
 
 
@@ -106,7 +172,7 @@ graph LR
 | Layer          | Technology                         |
 | -------------- | ---------------------------------- |
 | Back-end       | Ruby on Rails (RESTful, MVC)       |
-| Front-end      | Hotwire — Turbo + Stimulus         |
+| Front-end      | Hotwire  Turbo + Stimulus         |
 | CSS            | Bootstrap / Tailwind CSS           |
 | Database       | SQLite                             |
 | Authentication | Devise (roles:`visitor` / `admin`) |
@@ -117,4 +183,4 @@ graph LR
 
 ## Team
 
-Morgan VERHAEGHE · Romain ROYER · Valentin CHÉRON — THP Fullstack cohort
+Morgan VERHAEGHE · Romain ROYER · Valentin CHÉRON  THP Fullstack cohort

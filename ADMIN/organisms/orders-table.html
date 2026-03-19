@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Orders Table</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+</head>
+<body>
+
+<!-- ── ORDERS TABLE ORGANISM ─────────────────────────────── -->
+<div class="panel">
+  <div class="panel-header">
+    <span class="panel-title">Commandes</span>
+    <div class="panel-toolbar">
+      <select class="u-toolbar-control" id="orders-filter-status" aria-label="Filtrer par statut">
+        <option value="">Tous statuts</option>
+        <option value="pending">En attente</option>
+        <option value="confirmed">Confirmée</option>
+        <option value="in_progress">En cours</option>
+        <option value="completed">Terminée</option>
+        <option value="cancelled">Annulée</option>
+      </select>
+      <a href="order-form.html" class="btn btn--primary btn--sm">＋ Nouvelle commande</a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table id="orders-table">
+      <thead>
+        <tr>
+          <th>#</th><th>Client</th><th>Contenu</th>
+          <th>Montant</th><th>Paiement</th><th>Statut</th><th>Date</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-status="pending">
+          <td><strong>#042</strong></td>
+          <td>Thomas Lefèvre</td>
+          <td>Kohaku #001</td>
+          <td>850,00 €</td>
+          <td><span class="badge badge-partial">Partiel</span></td>
+          <td><span class="badge badge-pending">En attente</span></td>
+          <td class="td-date-muted">12/03/2026</td>
+          <td><div class="td-actions">
+            <a href="order-form.html" class="btn btn--outline btn--sm">Éditer</a>
+            <a href="payments.html" class="btn btn--dark btn--sm">Paiement</a>
+          </div></td>
+        </tr>
+        <tr data-status="confirmed">
+          <td><strong>#041</strong></td>
+          <td>Gérard Dupont</td>
+          <td>Showa #005 + Nourriture ×2</td>
+          <td>1 120,00 €</td>
+          <td><span class="badge badge-paid">Payé</span></td>
+          <td><span class="badge badge-confirmed">Confirmée</span></td>
+          <td class="td-date-muted">10/03/2026</td>
+          <td><div class="td-actions">
+            <a href="order-form.html" class="btn btn--outline btn--sm">Éditer</a>
+          </div></td>
+        </tr>
+        <tr data-status="completed">
+          <td><strong>#040</strong></td>
+          <td>Léa Martin</td>
+          <td>Pompe bassin Pro</td>
+          <td>320,00 €</td>
+          <td><span class="badge badge-paid">Payé</span></td>
+          <td><span class="badge badge-completed">Terminée</span></td>
+          <td class="td-date-muted">05/03/2026</td>
+          <td><a href="order-form.html" class="btn btn--ghost btn--sm">Voir</a></td>
+        </tr>
+        <tr data-status="cancelled">
+          <td><strong>#039</strong></td>
+          <td>Pierre Moreau</td>
+          <td>Filtre Biotec 36</td>
+          <td>480,00 €</td>
+          <td><span class="badge badge-pending">En attente</span></td>
+          <td><span class="badge badge-cancelled">Annulée</span></td>
+          <td class="td-date-muted">02/03/2026</td>
+          <td><a href="order-form.html" class="btn btn--ghost btn--sm">Voir</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.getElementById('orders-filter-status').addEventListener('change', function() {
+    const val = this.value;
+    document.querySelectorAll('#orders-table tbody tr').forEach(row => {
+      row.style.display = (!val || row.dataset.status === val) ? '' : 'none';
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koi's Story  Wireframes</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --wf-bg: #1e1e1e;
+      --wf-surface: #2a2a2a;
+      --wf-border: #444;
+      --wf-text: #e0e0e0;
+      --wf-muted: #888;
+      --wf-accent: #4A90D9;
+      --wf-placeholder: #3a3a3a;
+      --wf-placeholder-line: #555;
+      --wf-annotation: #FF6B35;
+      --wf-sidebar: #252525;
+      --wf-active: #333;
+    }
+
+    [data-theme="light"] {
+      --wf-bg: #f5f5f5;
+      --wf-surface: #fff;
+      --wf-border: #ddd;
+      --wf-text: #333;
+      --wf-muted: #999;
+      --wf-accent: #4A90D9;
+      --wf-placeholder: #e8e8e8;
+      --wf-placeholder-line: #ccc;
+      --wf-annotation: #FF6B35;
+      --wf-sidebar: #fafafa;
+      --wf-active: #eee;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--wf-bg);
+      color: var(--wf-text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 240px;
+      min-width: 240px;
+      background: var(--wf-sidebar);
+      border-right: 1px solid var(--wf-border);
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .sidebar-logo {
+      text-align: center;
+      padding: 0 20px 20px;
+      border-bottom: 1px solid var(--wf-border);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-logo h1 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--wf-accent);
+    }
+
+    .sidebar-logo small {
+      font-size: 11px;
+      color: var(--wf-muted);
+      display: block;
+      margin-top: 4px;
+    }
+
+    .sidebar-section {
+      padding: 10px 16px 4px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--wf-muted);
+      font-weight: 600;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 20px;
+      color: var(--wf-text);
+      text-decoration: none;
+      font-size: 13px;
+      transition: background .15s;
+      cursor: pointer;
+    }
+
+    .sidebar a:hover { background: var(--wf-active); }
+    .sidebar a.active { background: var(--wf-active); color: var(--wf-accent); font-weight: 600; }
+    .sidebar a .icon { width: 18px; text-align: center; font-size: 14px; }
+
+    /* ── Main ── */
+    .main {
+      margin-left: 240px;
+      flex: 1;
+      padding: 30px 40px;
+    }
+
+    .main-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .main-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .main-header .route {
+      font-size: 13px;
+      color: var(--wf-muted);
+      background: var(--wf-surface);
+      border: 1px solid var(--wf-border);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .viewport-toggle {
+      display: flex;
+      gap: 6px;
+    }
+
+    .viewport-toggle button {
+      padding: 6px 14px;
+      font-size: 12px;
+      border: 1px solid var(--wf-border);
+      background: var(--wf-surface);
+      color: var(--wf-text);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .viewport-toggle button.active {
+      background: var(--wf-accent);
+      color: #fff;
+      border-color: var(--wf-accent);
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--wf-border);
+      background: var(--wf-surface);
+      color: var(--wf-text);
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Page Sections ── */
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    /* ── Wireframe Frame ── */
+    .wf-frame {
+      background: var(--wf-surface);
+      border: 2px solid var(--wf-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 0 auto;
+      transition: max-width .3s;
+    }
+
+    .wf-frame.mobile { max-width: 375px; }
+    .wf-frame.desktop { max-width: 1000px; }
+
+    .wf-frame-bar {
+      background: var(--wf-placeholder);
+      border-bottom: 1px solid var(--wf-border);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .wf-frame-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--wf-border);
+    }
+
+    .wf-frame-url {
+      flex: 1;
+      text-align: center;
+      font-size: 11px;
+      color: var(--wf-muted);
+      font-family: monospace;
+    }
+
+    /* ── Wireframe Components ── */
+    .wf { padding: 0; }
+
+    .wf-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 2px solid var(--wf-border);
+    }
+
+    .wf-nav-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--wf-placeholder);
+      border: 2px dashed var(--wf-placeholder-line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      color: var(--wf-muted);
+    }
+
+    .wf-nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 11px;
+      color: var(--wf-muted);
+    }
+
+    .wf-nav-links span {
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .wf-nav-links span.current {
+      color: var(--wf-accent);
+      border-bottom-color: var(--wf-accent);
+    }
+
+    .wf-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .wf-hamburger span {
+      width: 18px;
+      height: 2px;
+      background: var(--wf-muted);
+      border-radius: 1px;
+    }
+
+    .wf-hero {
+      background: var(--wf-placeholder);
+      padding: 50px 24px;
+      text-align: center;
+      border-bottom: 2px solid var(--wf-border);
+      position: relative;
+    }
+
+    .wf-hero-label {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 9px;
+      color: var(--wf-annotation);
+      background: rgba(255,107,53,.1);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .wf-hero h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: var(--wf-text);
+    }
+
+    .wf-hero p {
+      font-size: 12px;
+      color: var(--wf-muted);
+      margin-bottom: 16px;
+    }
+
+    .wf-btn {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 2px solid var(--wf-border);
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--wf-muted);
+      margin: 4px;
+      background: transparent;
+    }
+
+    .wf-btn.primary {
+      background: var(--wf-placeholder-line);
+      color: var(--wf-text);
+      border-color: var(--wf-placeholder-line);
+    }
+
+    .wf-section {
+      padding: 30px 20px;
+      border-bottom: 1px solid var(--wf-border);
+    }
+
+    .wf-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--wf-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wf-annotation {
+      font-size: 9px;
+      color: var(--wf-annotation);
+      background: rgba(255,107,53,.1);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .wf-img-placeholder {
+      background: var(--wf-placeholder);
+      border: 2px dashed var(--wf-placeholder-line);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wf-muted);
+      font-size: 11px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wf-img-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        var(--wf-placeholder-line) 10px,
+        var(--wf-placeholder-line) 11px
+      );
+      opacity: .15;
+    }
+
+    .wf-card-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .wf-card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .wf-card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .wf-card-grid.cols-1 { grid-template-columns: 1fr; }
+
+    .wf-card {
+      border: 2px solid var(--wf-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .wf-card-img {
+      height: 100px;
+      background: var(--wf-placeholder);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .wf-card-img::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 8px, var(--wf-placeholder-line) 8px, var(--wf-placeholder-line) 9px);
+      opacity: .12;
+    }
+
+    .wf-card-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      font-size: 8px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: var(--wf-annotation);
+      color: #fff;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    .wf-card-body {
+      padding: 10px;
+    }
+
+    .wf-card-body .variety {
+      font-size: 9px;
+      color: var(--wf-muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .wf-card-body .name {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 2px 0 6px;
+    }
+
+    .wf-card-body .price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--wf-accent);
+    }
+
+    .wf-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-top: 1px solid var(--wf-border);
+    }
+
+    .wf-text-line {
+      height: 8px;
+      background: var(--wf-placeholder);
+      border-radius: 4px;
+      margin: 6px 0;
+    }
+
+    .wf-text-line.short { width: 60%; }
+    .wf-text-line.medium { width: 80%; }
+    .wf-text-line.long { width: 95%; }
+
+    .wf-input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 2px solid var(--wf-border);
+      border-radius: 4px;
+      background: transparent;
+      font-size: 11px;
+      color: var(--wf-muted);
+      margin: 4px 0;
+    }
+
+    .wf-textarea {
+      width: 100%;
+      height: 80px;
+      padding: 8px 10px;
+      border: 2px solid var(--wf-border);
+      border-radius: 4px;
+      background: transparent;
+      font-size: 11px;
+      color: var(--wf-muted);
+      margin: 4px 0;
+      resize: none;
+    }
+
+    .wf-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .wf-col { flex: 1; }
+
+    .wf-footer {
+      padding: 20px;
+      border-top: 2px solid var(--wf-border);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .wf-footer-col {
+      flex: 1;
+    }
+
+    .wf-footer-col .title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--wf-muted);
+      margin-bottom: 8px;
+    }
+
+    .wf-filter-bar {
+      display: flex;
+      gap: 8px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--wf-border);
+      flex-wrap: wrap;
+    }
+
+    .wf-filter {
+      padding: 6px 12px;
+      border: 2px solid var(--wf-border);
+      border-radius: 4px;
+      font-size: 10px;
+      color: var(--wf-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .wf-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 16px;
+    }
+
+    .wf-pagination span {
+      padding: 4px 10px;
+      border: 1px solid var(--wf-border);
+      border-radius: 4px;
+      font-size: 11px;
+      color: var(--wf-muted);
+    }
+
+    .wf-pagination span.current {
+      background: var(--wf-accent);
+      color: #fff;
+      border-color: var(--wf-accent);
+    }
+
+    .wf-specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .wf-spec {
+      text-align: center;
+      padding: 8px;
+      border: 1px solid var(--wf-border);
+      border-radius: 4px;
+    }
+
+    .wf-spec .label {
+      font-size: 9px;
+      color: var(--wf-muted);
+      text-transform: uppercase;
+    }
+
+    .wf-spec .value {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .wf-masonry {
+      column-count: 2;
+      column-gap: 10px;
+    }
+
+    .wf-masonry .wf-img-placeholder {
+      margin-bottom: 10px;
+      break-inside: avoid;
+    }
+
+    .wf-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--wf-border);
+    }
+
+    .wf-tab {
+      padding: 10px 16px;
+      font-size: 11px;
+      color: var(--wf-muted);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+
+    .wf-tab.active {
+      color: var(--wf-accent);
+      border-bottom-color: var(--wf-accent);
+    }
+
+    .wf-map-placeholder {
+      background: var(--wf-placeholder);
+      border: 2px dashed var(--wf-placeholder-line);
+      border-radius: 6px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wf-muted);
+      font-size: 12px;
+    }
+
+    /* Admin sidebar */
+    .wf-admin-layout {
+      display: flex;
+    }
+
+    .wf-admin-sidebar {
+      width: 60px;
+      background: var(--wf-placeholder);
+      border-right: 2px solid var(--wf-border);
+      padding: 12px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      min-height: 400px;
+    }
+
+    .wf-admin-sidebar .item {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--wf-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--wf-muted);
+    }
+
+    .wf-admin-sidebar .item.active {
+      background: var(--wf-accent);
+      color: #fff;
+      border-color: var(--wf-accent);
+    }
+
+    .wf-admin-main {
+      flex: 1;
+      padding: 16px;
+    }
+
+    .wf-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .wf-stat {
+      padding: 14px;
+      border: 2px solid var(--wf-border);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .wf-stat .number {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--wf-accent);
+    }
+
+    .wf-stat .label {
+      font-size: 10px;
+      color: var(--wf-muted);
+      margin-top: 2px;
+    }
+
+    .wf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .wf-table th, .wf-table td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--wf-border);
+    }
+
+    .wf-table th {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--wf-muted);
+      font-weight: 600;
+    }
+
+    .wf-msg-list .msg-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 1px solid var(--wf-border);
+    }
+
+    .wf-msg-list .msg-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .wf-msg-list .msg-dot.unread { background: var(--wf-accent); }
+    .wf-msg-list .msg-dot.read { background: var(--wf-border); }
+
+    .wf-msg-list .msg-sender {
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .wf-msg-list .msg-date {
+      font-size: 10px;
+      color: var(--wf-muted);
+    }
+
+    .wf-msg-list .msg-preview {
+      font-size: 11px;
+      color: var(--wf-muted);
+    }
+
+    /* Responsive for mobile wireframes */
+    .wf-frame.mobile .wf-nav-links { display: none; }
+    .wf-frame.mobile .wf-hamburger { display: flex; }
+    .wf-frame.desktop .wf-hamburger { display: none; }
+    .wf-frame.mobile .wf-card-grid.cols-3 { grid-template-columns: 1fr; }
+    .wf-frame.mobile .wf-row { flex-direction: column; }
+    .wf-frame.mobile .wf-footer { flex-direction: column; }
+    .wf-frame.mobile .wf-stat-grid { grid-template-columns: 1fr; }
+    .wf-frame.mobile .wf-masonry { column-count: 1; }
+    .wf-frame.mobile .wf-specs { grid-template-columns: repeat(3, 1fr); }
+
+    /* Notes panel */
+    .notes {
+      margin-top: 24px;
+      padding: 16px 20px;
+      background: var(--wf-surface);
+      border: 1px solid var(--wf-border);
+      border-left: 3px solid var(--wf-annotation);
+      border-radius: 6px;
+    }
+
+    .notes h4 {
+      font-size: 12px;
+      color: var(--wf-annotation);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .notes ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .notes li {
+      font-size: 12px;
+      color: var(--wf-muted);
+      padding: 3px 0;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .notes li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--wf-annotation);
+      font-weight: 700;
+    }
+
+    /* Persona tag */
+    .persona-tag {
+      display: inline-block;
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: rgba(74,144,217,.15);
+      color: var(--wf-accent);
+      margin: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Sidebar ── -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <h1>Koi's Story</h1>
+      <small>Wireframes v1.0</small>
+    </div>
+    <div class="sidebar-section">Pages publiques</div>
+    <a class="active" data-page="home"><span class="icon">&#9750;</span> Accueil</a>
+    <a data-page="catalogue"><span class="icon">&#9638;</span> Catalogue</a>
+    <a data-page="fiche"><span class="icon">&#9830;</span> Fiche Koi</a>
+    <a data-page="elevage"><span class="icon">&#9752;</span> Elevage</a>
+    <a data-page="galerie"><span class="icon">&#9635;</span> Galerie</a>
+    <a data-page="contact"><span class="icon">&#9993;</span> Contact</a>
+    <div class="sidebar-section">Admin</div>
+    <a data-page="admin-dash"><span class="icon">&#9632;</span> Dashboard</a>
+    <a data-page="admin-kois"><span class="icon">&#9830;</span> Gestion Kois</a>
+    <a data-page="admin-msgs"><span class="icon">&#9993;</span> Messages</a>
+  </nav>
+
+  <!-- ── Main ── -->
+  <div class="main">
+
+    <!-- =============== HOME =============== -->
+    <section class="page-section active" id="page-home">
+      <div class="main-header">
+        <div>
+          <h2>Accueil</h2>
+          <span class="route">/</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div>
+          <div class="wf-frame-dot"></div>
+          <div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/</div>
+        </div>
+        <div class="wf">
+          <!-- Nav -->
+          <div class="wf-nav">
+            <div class="wf-nav-logo">LOGO</div>
+            <div class="wf-nav-links">
+              <span class="current">Accueil</span>
+              <span>Catalogue</span>
+              <span>Elevage</span>
+              <span>Galerie</span>
+              <span>Contact</span>
+            </div>
+            <div class="wf-hamburger"><span></span><span></span><span></span></div>
+            <div class="wf-btn" style="padding:4px 12px; font-size:10px;">Connexion</div>
+          </div>
+
+          <!-- Hero -->
+          <div class="wf-hero" style="padding:60px 24px;">
+            <div class="wf-hero-label">Hero  full-width image BG</div>
+            <h3>L'excellence Konishi,<br>elevee en France.</h3>
+            <p>Decouvrez nos carpes koi d'exception, issues de la prestigieuse lignee Konishi.</p>
+            <div>
+              <span class="wf-btn primary">Voir le catalogue</span>
+              <span class="wf-btn">Nous contacter</span>
+            </div>
+          </div>
+
+          <!-- Featured Kois -->
+          <div class="wf-section">
+            <div class="wf-section-title">
+              Nos Kois d'exception
+              <span class="wf-annotation">3 kois featured</span>
+            </div>
+            <div class="wf-card-grid cols-3">
+              <div class="wf-card">
+                <div class="wf-card-img"><div class="wf-card-badge">Konishi</div></div>
+                <div class="wf-card-body">
+                  <div class="variety">Kohaku</div>
+                  <div class="name">Sakura Konishi</div>
+                  <div class="wf-card-footer"><span class="price">2 400 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-img"></div>
+                <div class="wf-card-body">
+                  <div class="variety">Showa Sanshoku</div>
+                  <div class="name">Kuroyama</div>
+                  <div class="wf-card-footer"><span class="price">950 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-img"><div class="wf-card-badge">Konishi</div></div>
+                <div class="wf-card-body">
+                  <div class="variety">Tancho</div>
+                  <div class="name">Fuji</div>
+                  <div class="wf-card-footer"><span class="price">1 800 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align:center; margin-top:16px;">
+              <span class="wf-btn primary">Voir tout le catalogue</span>
+            </div>
+          </div>
+
+          <!-- Konishi Section -->
+          <div class="wf-section" style="text-align:center;">
+            <div class="wf-img-placeholder" style="width:80px; height:80px; border-radius:50%; margin:0 auto 12px;">Logo K.</div>
+            <div class="wf-section-title" style="justify-content:center;">
+              Partenariat Konishi
+              <span class="wf-annotation">USP principal</span>
+            </div>
+            <div class="wf-text-line medium" style="margin:0 auto;"></div>
+            <div class="wf-text-line short" style="margin:4px auto;"></div>
+            <div style="margin-top:12px;"><span class="wf-btn">En savoir plus</span></div>
+          </div>
+
+          <!-- About Breeders -->
+          <div class="wf-section">
+            <div class="wf-row">
+              <div class="wf-col">
+                <div class="wf-img-placeholder" style="height:180px;">Photo elevage</div>
+              </div>
+              <div class="wf-col" style="padding-top:10px;">
+                <div class="wf-section-title">Notre elevage</div>
+                <div class="wf-text-line long"></div>
+                <div class="wf-text-line long"></div>
+                <div class="wf-text-line medium"></div>
+                <div class="wf-text-line short"></div>
+                <div style="margin-top:12px;"><span class="wf-btn">Decouvrir</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="wf-footer">
+            <div class="wf-footer-col">
+              <div class="title">Koi's Story</div>
+              <div class="wf-text-line short"></div>
+              <div class="wf-text-line short"></div>
+            </div>
+            <div class="wf-footer-col">
+              <div class="title">Navigation</div>
+              <div class="wf-text-line short"></div>
+              <div class="wf-text-line short"></div>
+              <div class="wf-text-line short"></div>
+            </div>
+            <div class="wf-footer-col">
+              <div class="title">Contact</div>
+              <div class="wf-text-line medium"></div>
+              <div class="wf-text-line short"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>Hero : proposition de valeur visible en &lt; 5 secondes <span class="persona-tag">Camille</span></li>
+          <li>CTA "Voir le catalogue" = Rouge Koi (#D62828), "Nous contacter" = Bleu profond (#003049)</li>
+          <li>Bouton WhatsApp direct sur chaque card <span class="persona-tag">Thomas</span></li>
+          <li>Section Konishi met en avant l'USP unique (seul vendeur France) <span class="persona-tag">Gerard</span></li>
+          <li>Ton accueillant, zero jargon dans le hero <span class="persona-tag">Lea</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =============== CATALOGUE =============== -->
+    <section class="page-section" id="page-catalogue">
+      <div class="main-header">
+        <div>
+          <h2>Catalogue</h2>
+          <span class="route">/catalogue</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div><div class="wf-frame-dot"></div><div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/catalogue</div>
+        </div>
+        <div class="wf">
+          <div class="wf-nav">
+            <div class="wf-nav-logo">LOGO</div>
+            <div class="wf-nav-links"><span>Accueil</span><span class="current">Catalogue</span><span>Elevage</span><span>Galerie</span><span>Contact</span></div>
+            <div class="wf-hamburger"><span></span><span></span><span></span></div>
+            <div class="wf-btn" style="padding:4px 12px; font-size:10px;">Connexion</div>
+          </div>
+
+          <div class="wf-section" style="padding-bottom:12px;">
+            <div class="wf-section-title">Notre Catalogue <span class="wf-annotation">Filtres visibles</span></div>
+          </div>
+
+          <div class="wf-filter-bar">
+            <div class="wf-filter">Variete &#9662;</div>
+            <div class="wf-filter">Taille &#9662;</div>
+            <div class="wf-filter">Prix &#9662;</div>
+            <div class="wf-filter" style="border-color:var(--wf-accent); color:var(--wf-accent);">&#9745; Konishi</div>
+            <div class="wf-filter">Disponible &#9662;</div>
+          </div>
+
+          <div class="wf-section">
+            <div class="wf-card-grid cols-3">
+              <div class="wf-card">
+                <div class="wf-card-img"><div class="wf-card-badge">Konishi</div></div>
+                <div class="wf-card-body">
+                  <div class="variety">Kohaku</div><div class="name">Sakura Konishi</div>
+                  <div class="wf-card-footer"><span class="price">2 400 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-img"><div class="wf-card-badge" style="background:var(--wf-accent);">Nouveau</div></div>
+                <div class="wf-card-body">
+                  <div class="variety">Showa Sanshoku</div><div class="name">Kuroyama</div>
+                  <div class="wf-card-footer"><span class="price">950 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-img"><div class="wf-card-badge">Konishi</div><div class="wf-card-badge" style="left:auto; right:6px; background:var(--wf-muted);">Reserve</div></div>
+                <div class="wf-card-body">
+                  <div class="variety">Tancho</div><div class="name">Fuji</div>
+                  <div class="wf-card-footer"><span class="price">1 800 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-img"></div>
+                <div class="wf-card-body">
+                  <div class="variety">Sanke</div><div class="name">Hikari</div>
+                  <div class="wf-card-footer"><span class="price">1 200 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-img"><div class="wf-card-badge">Konishi</div></div>
+                <div class="wf-card-body">
+                  <div class="variety">Asagi</div><div class="name">Mizuki</div>
+                  <div class="wf-card-footer"><span class="price">3 100 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+              <div class="wf-card">
+                <div class="wf-card-img"></div>
+                <div class="wf-card-body">
+                  <div class="variety">Ogon</div><div class="name">Kintaro</div>
+                  <div class="wf-card-footer"><span class="price">780 EUR</span><span class="wf-btn" style="padding:3px 8px; font-size:9px;">WhatsApp</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wf-pagination">
+              <span class="current">1</span><span>2</span><span>3</span><span>&#8250;</span>
+            </div>
+          </div>
+
+          <div class="wf-footer">
+            <div class="wf-footer-col"><div class="title">Koi's Story</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Navigation</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Contact</div><div class="wf-text-line short"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>Filtres toujours visibles sans clic supplementaire <span class="persona-tag">Thomas</span></li>
+          <li>Filtre "Konishi" = toggle mis en avant (couleur Or Konishi) <span class="persona-tag">Gerard</span></li>
+          <li>Labels de filtres accessibles (pas de jargon) <span class="persona-tag">Lea</span></li>
+          <li>Badge Konishi sur chaque card eligible</li>
+          <li>WhatsApp direct sur chaque card  contact en &lt; 3 clics</li>
+          <li>Mobile : grille 1 colonne, filtres en barre scrollable horizontale</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =============== FICHE KOI =============== -->
+    <section class="page-section" id="page-fiche">
+      <div class="main-header">
+        <div>
+          <h2>Fiche Koi</h2>
+          <span class="route">/catalogue/:id</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div><div class="wf-frame-dot"></div><div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/catalogue/1-sakura-konishi</div>
+        </div>
+        <div class="wf">
+          <div class="wf-nav">
+            <div class="wf-nav-logo">LOGO</div>
+            <div class="wf-nav-links"><span>Accueil</span><span class="current">Catalogue</span><span>Elevage</span><span>Galerie</span><span>Contact</span></div>
+            <div class="wf-hamburger"><span></span><span></span><span></span></div>
+            <div class="wf-btn" style="padding:4px 12px; font-size:10px;">Connexion</div>
+          </div>
+
+          <div class="wf-section">
+            <div style="font-size:11px; color:var(--wf-muted); margin-bottom:12px;">Catalogue &gt; Kohaku &gt; Sakura Konishi</div>
+            <div class="wf-row">
+              <!-- Left: Images -->
+              <div class="wf-col">
+                <div class="wf-img-placeholder" style="height:280px; margin-bottom:8px;">Photo principale</div>
+                <div style="display:flex; gap:6px;">
+                  <div class="wf-img-placeholder" style="height:60px; flex:1;">Thumb 1</div>
+                  <div class="wf-img-placeholder" style="height:60px; flex:1;">Thumb 2</div>
+                  <div class="wf-img-placeholder" style="height:60px; flex:1;">Thumb 3</div>
+                  <div class="wf-img-placeholder" style="height:60px; flex:1;">Thumb 4</div>
+                </div>
+              </div>
+              <!-- Right: Details -->
+              <div class="wf-col" style="padding-left:8px;">
+                <div style="font-size:10px; color:var(--wf-muted); text-transform:uppercase; letter-spacing:.5px;">Kohaku</div>
+                <div style="font-size:20px; font-weight:700; margin:4px 0;">Sakura Konishi</div>
+                <div style="display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:4px; background:rgba(255,107,53,.12); color:var(--wf-annotation); font-size:10px; font-weight:600; margin:6px 0;">&#9733; Lignee Konishi</div>
+
+                <div class="wf-specs">
+                  <div class="wf-spec"><div class="label">Taille</div><div class="value">70 cm</div></div>
+                  <div class="wf-spec"><div class="label">Age</div><div class="value">3 ans</div></div>
+                  <div class="wf-spec"><div class="label">Genre</div><div class="value">Femelle</div></div>
+                </div>
+
+                <div style="font-size:24px; font-weight:700; color:var(--wf-accent); margin:12px 0;">2 400 EUR <small style="font-size:11px; color:var(--wf-muted); font-weight:400;">TTC</small></div>
+
+                <div style="display:flex; gap:8px; margin:8px 0;">
+                  <span class="wf-btn primary" style="flex:1; text-align:center;">WhatsApp  Contacter</span>
+                </div>
+
+                <div style="margin-top:12px; padding:10px; border:2px dashed var(--wf-border); border-radius:6px; text-align:center;">
+                  <div style="font-size:10px; color:var(--wf-muted);">Certificat Konishi</div>
+                  <div class="wf-img-placeholder" style="height:40px; margin-top:6px;">Apercu certificat</div>
+                  <div style="margin-top:6px;"><span class="wf-btn" style="font-size:9px;">Voir le certificat</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="wf-section">
+            <div class="wf-section-title">Description</div>
+            <div class="wf-text-line long"></div>
+            <div class="wf-text-line long"></div>
+            <div class="wf-text-line medium"></div>
+            <div class="wf-text-line short"></div>
+          </div>
+
+          <!-- Related -->
+          <div class="wf-section">
+            <div class="wf-section-title">Kois similaires <span class="wf-annotation">3 related</span></div>
+            <div class="wf-card-grid cols-3">
+              <div class="wf-card"><div class="wf-card-img"></div><div class="wf-card-body"><div class="variety">Kohaku</div><div class="name">Haruki</div><div class="wf-card-footer"><span class="price">1 900 EUR</span></div></div></div>
+              <div class="wf-card"><div class="wf-card-img"></div><div class="wf-card-body"><div class="variety">Sanke</div><div class="name">Hikari</div><div class="wf-card-footer"><span class="price">1 200 EUR</span></div></div></div>
+              <div class="wf-card"><div class="wf-card-img"></div><div class="wf-card-body"><div class="variety">Kohaku</div><div class="name">Yuki</div><div class="wf-card-footer"><span class="price">2 100 EUR</span></div></div></div>
+            </div>
+          </div>
+
+          <div class="wf-footer">
+            <div class="wf-footer-col"><div class="title">Koi's Story</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Navigation</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Contact</div><div class="wf-text-line short"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>WhatsApp pre-rempli : wa.me/XXXXXXXXXX?text=Sakura+Konishi+Kohaku+70cm <span class="persona-tag">Thomas</span></li>
+          <li>Badge Konishi + certificat = preuve de legitimite <span class="persona-tag">Gerard</span></li>
+          <li>Specs detaillees (taille, age, genre) en grille lisible</li>
+          <li>Galerie d'images avec thumbnails cliquables</li>
+          <li>Breadcrumb pour navigation catalogue</li>
+          <li>Mobile : layout empile (images au-dessus, details en dessous)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =============== ELEVAGE =============== -->
+    <section class="page-section" id="page-elevage">
+      <div class="main-header">
+        <div>
+          <h2>Elevage</h2>
+          <span class="route">/elevage</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div><div class="wf-frame-dot"></div><div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/elevage</div>
+        </div>
+        <div class="wf">
+          <div class="wf-nav">
+            <div class="wf-nav-logo">LOGO</div>
+            <div class="wf-nav-links"><span>Accueil</span><span>Catalogue</span><span class="current">Elevage</span><span>Galerie</span><span>Contact</span></div>
+            <div class="wf-hamburger"><span></span><span></span><span></span></div>
+            <div class="wf-btn" style="padding:4px 12px; font-size:10px;">Connexion</div>
+          </div>
+
+          <div class="wf-hero">
+            <div class="wf-hero-label">Hero  photo bassin en BG</div>
+            <h3>Notre Elevage</h3>
+            <p>L'histoire de Mathilde & Emmanuel, eleveurs passionnes.</p>
+          </div>
+
+          <div class="wf-section">
+            <div class="wf-row">
+              <div class="wf-col">
+                <div class="wf-img-placeholder" style="height:200px;">Photo Mathilde & Emmanuel</div>
+              </div>
+              <div class="wf-col" style="padding-top:8px;">
+                <div class="wf-section-title">Les Eleveurs</div>
+                <div class="wf-text-line long"></div>
+                <div class="wf-text-line long"></div>
+                <div class="wf-text-line medium"></div>
+                <div class="wf-text-line long"></div>
+                <div class="wf-text-line short"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wf-section" style="text-align:center;">
+            <div class="wf-img-placeholder" style="width:80px; height:80px; border-radius:50%; margin:0 auto 12px;">Logo Konishi</div>
+            <div class="wf-section-title" style="justify-content:center;">Un partenariat d'exception <span class="wf-annotation">Preuves Konishi</span></div>
+            <div class="wf-text-line medium" style="margin:0 auto;"></div>
+            <div class="wf-text-line medium" style="margin:4px auto;"></div>
+            <div style="display:flex; gap:10px; margin-top:16px;">
+              <div class="wf-img-placeholder" style="height:140px; flex:1;">Photo certificat</div>
+              <div class="wf-img-placeholder" style="height:140px; flex:1;">Photo bassin Konishi</div>
+              <div class="wf-img-placeholder" style="height:140px; flex:1;">Photo visite Japon</div>
+            </div>
+          </div>
+
+          <div class="wf-section">
+            <div class="wf-section-title">Nos Installations</div>
+            <div style="display:flex; gap:10px;">
+              <div class="wf-img-placeholder" style="height:140px; flex:1;">Bassin 1</div>
+              <div class="wf-img-placeholder" style="height:140px; flex:1;">Bassin 2</div>
+              <div class="wf-img-placeholder" style="height:140px; flex:1;">Bassin 3</div>
+            </div>
+          </div>
+
+          <div class="wf-footer">
+            <div class="wf-footer-col"><div class="title">Koi's Story</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Navigation</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Contact</div><div class="wf-text-line short"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>Section Konishi avec preuves concretes : certificats, photos Japon <span class="persona-tag">Gerard</span></li>
+          <li>Storytelling accueillant pour les debutants <span class="persona-tag">Lea</span></li>
+          <li>Photos des bassins = credibilite eleveur</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =============== GALERIE =============== -->
+    <section class="page-section" id="page-galerie">
+      <div class="main-header">
+        <div>
+          <h2>Galerie</h2>
+          <span class="route">/galerie</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div><div class="wf-frame-dot"></div><div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/galerie</div>
+        </div>
+        <div class="wf">
+          <div class="wf-nav">
+            <div class="wf-nav-logo">LOGO</div>
+            <div class="wf-nav-links"><span>Accueil</span><span>Catalogue</span><span>Elevage</span><span class="current">Galerie</span><span>Contact</span></div>
+            <div class="wf-hamburger"><span></span><span></span><span></span></div>
+            <div class="wf-btn" style="padding:4px 12px; font-size:10px;">Connexion</div>
+          </div>
+
+          <div class="wf-section" style="padding-bottom:0;">
+            <div class="wf-section-title">Galerie</div>
+          </div>
+
+          <div class="wf-tabs">
+            <div class="wf-tab active">Tous</div>
+            <div class="wf-tab">Kois</div>
+            <div class="wf-tab">Bassins</div>
+            <div class="wf-tab">Videos</div>
+          </div>
+
+          <div class="wf-section">
+            <div class="wf-masonry">
+              <div class="wf-img-placeholder" style="height:180px;">Photo</div>
+              <div class="wf-img-placeholder" style="height:120px;">Photo</div>
+              <div class="wf-img-placeholder" style="height:160px;">Photo</div>
+              <div class="wf-img-placeholder" style="height:140px;">Photo</div>
+              <div class="wf-img-placeholder" style="height:200px;">Video &#9654;</div>
+              <div class="wf-img-placeholder" style="height:130px;">Photo</div>
+              <div class="wf-img-placeholder" style="height:150px;">Photo</div>
+              <div class="wf-img-placeholder" style="height:170px;">Photo</div>
+            </div>
+          </div>
+
+          <div class="wf-footer">
+            <div class="wf-footer-col"><div class="title">Koi's Story</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Navigation</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Contact</div><div class="wf-text-line short"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>Masonry grid pour varier les tailles de photos</li>
+          <li>Lightbox au clic sur une photo (zoom plein ecran)</li>
+          <li>Filtres par tabs : Tous / Kois / Bassins / Videos</li>
+          <li>Mobile : 1 colonne, images pleine largeur</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =============== CONTACT =============== -->
+    <section class="page-section" id="page-contact">
+      <div class="main-header">
+        <div>
+          <h2>Contact</h2>
+          <span class="route">/contact</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div><div class="wf-frame-dot"></div><div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/contact</div>
+        </div>
+        <div class="wf">
+          <div class="wf-nav">
+            <div class="wf-nav-logo">LOGO</div>
+            <div class="wf-nav-links"><span>Accueil</span><span>Catalogue</span><span>Elevage</span><span>Galerie</span><span class="current">Contact</span></div>
+            <div class="wf-hamburger"><span></span><span></span><span></span></div>
+            <div class="wf-btn" style="padding:4px 12px; font-size:10px;">Connexion</div>
+          </div>
+
+          <div class="wf-section">
+            <div class="wf-section-title">Contactez-nous</div>
+            <div class="wf-row">
+              <div class="wf-col">
+                <div style="font-size:11px; color:var(--wf-muted); margin-bottom:10px;">
+                  <label style="font-size:10px; font-weight:600; display:block; margin-bottom:4px;">Nom *</label>
+                  <div class="wf-input">Votre nom</div>
+                  <label style="font-size:10px; font-weight:600; display:block; margin:8px 0 4px;">Email *</label>
+                  <div class="wf-input">votre@email.com</div>
+                  <label style="font-size:10px; font-weight:600; display:block; margin:8px 0 4px;">Message *</label>
+                  <div class="wf-textarea">Votre message...</div>
+                  <div style="margin-top:10px;"><span class="wf-btn primary" style="width:100%; text-align:center; display:block;">Envoyer</span></div>
+                </div>
+              </div>
+              <div class="wf-col" style="padding-left:12px;">
+                <div style="padding:14px; border:2px solid var(--wf-border); border-radius:8px; margin-bottom:12px;">
+                  <div style="font-size:12px; font-weight:700; margin-bottom:8px;">Informations</div>
+                  <div style="font-size:11px; color:var(--wf-muted); line-height:1.8;">
+                    &#128205; Adresse de l'elevage<br>
+                    &#128222; 06 XX XX XX XX<br>
+                    &#128231; contact@kois-story.fr
+                  </div>
+                  <div style="margin-top:10px;"><span class="wf-btn primary" style="width:100%; text-align:center; display:block;">WhatsApp direct</span></div>
+                </div>
+                <div class="wf-map-placeholder">Google Maps</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wf-footer">
+            <div class="wf-footer-col"><div class="title">Koi's Story</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Navigation</div><div class="wf-text-line short"></div></div>
+            <div class="wf-footer-col"><div class="title">Contact</div><div class="wf-text-line short"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>Formulaire envoie un email a l'admin via ActionMailer</li>
+          <li>WhatsApp direct en alternative au formulaire <span class="persona-tag">Thomas</span></li>
+          <li>Google Maps embed  compte Google Business a creer</li>
+          <li>Mobile : formulaire au-dessus, infos en dessous</li>
+          <li>Messages stockes en BDD avec flag "read" pour l'admin <span class="persona-tag">Mathilde</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =============== ADMIN DASHBOARD =============== -->
+    <section class="page-section" id="page-admin-dash">
+      <div class="main-header">
+        <div>
+          <h2>Admin  Dashboard</h2>
+          <span class="route">/admin</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div><div class="wf-frame-dot"></div><div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/admin</div>
+        </div>
+        <div class="wf">
+          <div class="wf-admin-layout">
+            <div class="wf-admin-sidebar">
+              <div class="wf-nav-logo" style="width:28px; height:28px; font-size:6px;">LOGO</div>
+              <div class="item active">&#9632;</div>
+              <div class="item">&#9830;</div>
+              <div class="item">&#9993;</div>
+              <div class="item">&#9881;</div>
+            </div>
+            <div class="wf-admin-main">
+              <div style="font-size:16px; font-weight:700; margin-bottom:16px;">Tableau de bord <span class="wf-annotation">Admin Mathilde</span></div>
+
+              <div class="wf-stat-grid">
+                <div class="wf-stat"><div class="number">12</div><div class="label">Kois au catalogue</div></div>
+                <div class="wf-stat"><div class="number" style="color:var(--wf-annotation);">3</div><div class="label">Messages non lus</div></div>
+                <div class="wf-stat"><div class="number">5</div><div class="label">Kois reserves</div></div>
+              </div>
+
+              <div style="font-size:13px; font-weight:700; margin:16px 0 8px;">Messages recents</div>
+              <div class="wf-msg-list">
+                <div class="msg-item">
+                  <div class="msg-dot unread"></div>
+                  <div>
+                    <div class="msg-sender">Thomas D. <span class="msg-date"> 09/03/2026</span></div>
+                    <div class="msg-preview">Interesse par Sakura Konishi, est-elle toujours...</div>
+                  </div>
+                </div>
+                <div class="msg-item">
+                  <div class="msg-dot unread"></div>
+                  <div>
+                    <div class="msg-sender">Lea M. <span class="msg-date"> 08/03/2026</span></div>
+                    <div class="msg-preview">Question sur les conditions de livraison...</div>
+                  </div>
+                </div>
+                <div class="msg-item">
+                  <div class="msg-dot read"></div>
+                  <div>
+                    <div class="msg-sender">Gerard P. <span class="msg-date"> 07/03/2026</span></div>
+                    <div class="msg-preview">Demande de certificat Konishi pour Fuji...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>Interface simple, sans jargon technique <span class="persona-tag">Mathilde</span></li>
+          <li>Stats en gros chiffres  vue d'ensemble rapide</li>
+          <li>Messages non lus mis en avant (point bleu)</li>
+          <li>Sidebar icones avec tooltips</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =============== ADMIN KOIS =============== -->
+    <section class="page-section" id="page-admin-kois">
+      <div class="main-header">
+        <div>
+          <h2>Admin  Gestion Kois</h2>
+          <span class="route">/admin/kois</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div><div class="wf-frame-dot"></div><div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/admin/kois</div>
+        </div>
+        <div class="wf">
+          <div class="wf-admin-layout">
+            <div class="wf-admin-sidebar">
+              <div class="wf-nav-logo" style="width:28px; height:28px; font-size:6px;">LOGO</div>
+              <div class="item">&#9632;</div>
+              <div class="item active">&#9830;</div>
+              <div class="item">&#9993;</div>
+              <div class="item">&#9881;</div>
+            </div>
+            <div class="wf-admin-main">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <div style="font-size:16px; font-weight:700;">Gestion des Kois</div>
+                <span class="wf-btn primary">+ Ajouter un koi</span>
+              </div>
+
+              <table class="wf-table">
+                <thead>
+                  <tr><th></th><th>Nom</th><th>Variete</th><th>Taille</th><th>Prix</th><th>Konishi</th><th>Statut</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><div class="wf-img-placeholder" style="width:32px; height:32px; border-radius:4px;"></div></td>
+                    <td style="font-weight:600;">Sakura Konishi</td>
+                    <td>Kohaku</td>
+                    <td>70 cm</td>
+                    <td>2 400 EUR</td>
+                    <td>&#9733;</td>
+                    <td><span style="color:green; font-size:10px;">Disponible</span></td>
+                    <td><span class="wf-btn" style="padding:2px 6px; font-size:9px;">&#9998;</span> <span class="wf-btn" style="padding:2px 6px; font-size:9px;">&#128465;</span></td>
+                  </tr>
+                  <tr>
+                    <td><div class="wf-img-placeholder" style="width:32px; height:32px; border-radius:4px;"></div></td>
+                    <td style="font-weight:600;">Kuroyama</td>
+                    <td>Showa</td>
+                    <td>55 cm</td>
+                    <td>950 EUR</td>
+                    <td></td>
+                    <td><span style="color:green; font-size:10px;">Disponible</span></td>
+                    <td><span class="wf-btn" style="padding:2px 6px; font-size:9px;">&#9998;</span> <span class="wf-btn" style="padding:2px 6px; font-size:9px;">&#128465;</span></td>
+                  </tr>
+                  <tr>
+                    <td><div class="wf-img-placeholder" style="width:32px; height:32px; border-radius:4px;"></div></td>
+                    <td style="font-weight:600;">Fuji</td>
+                    <td>Tancho</td>
+                    <td>65 cm</td>
+                    <td>1 800 EUR</td>
+                    <td>&#9733;</td>
+                    <td><span style="color:orange; font-size:10px;">Reserve</span></td>
+                    <td><span class="wf-btn" style="padding:2px 6px; font-size:9px;">&#9998;</span> <span class="wf-btn" style="padding:2px 6px; font-size:9px;">&#128465;</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>CRUD complet : ajouter, modifier, supprimer <span class="persona-tag">Mathilde</span></li>
+          <li>Thumbnail dans le tableau pour identifier rapidement</li>
+          <li>Statuts colores : vert (dispo), orange (reserve)</li>
+          <li>Bouton "+ Ajouter" toujours visible</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =============== ADMIN MESSAGES =============== -->
+    <section class="page-section" id="page-admin-msgs">
+      <div class="main-header">
+        <div>
+          <h2>Admin  Messages</h2>
+          <span class="route">/admin/messages</span>
+        </div>
+        <div class="viewport-toggle">
+          <button class="active" data-viewport="desktop">Desktop</button>
+          <button data-viewport="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="wf-frame desktop">
+        <div class="wf-frame-bar">
+          <div class="wf-frame-dot"></div><div class="wf-frame-dot"></div><div class="wf-frame-dot"></div>
+          <div class="wf-frame-url">kois-story.fr/admin/messages</div>
+        </div>
+        <div class="wf">
+          <div class="wf-admin-layout">
+            <div class="wf-admin-sidebar">
+              <div class="wf-nav-logo" style="width:28px; height:28px; font-size:6px;">LOGO</div>
+              <div class="item">&#9632;</div>
+              <div class="item">&#9830;</div>
+              <div class="item active">&#9993;</div>
+              <div class="item">&#9881;</div>
+            </div>
+            <div class="wf-admin-main">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <div style="font-size:16px; font-weight:700;">Messages <span style="background:var(--wf-accent); color:#fff; font-size:10px; padding:2px 8px; border-radius:10px; margin-left:6px;">3 non lus</span></div>
+                <div>
+                  <span class="wf-btn" style="padding:4px 10px; font-size:10px;">Tous</span>
+                  <span class="wf-btn primary" style="padding:4px 10px; font-size:10px;">Non lus</span>
+                </div>
+              </div>
+
+              <div class="wf-msg-list">
+                <div class="msg-item" style="background:rgba(74,144,217,.05); border-radius:6px;">
+                  <div class="msg-dot unread"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="msg-sender">Thomas Dupont</div>
+                      <div class="msg-date">09/03/2026  14:32</div>
+                    </div>
+                    <div class="msg-preview">thomas.dupont@email.com</div>
+                    <div class="msg-preview" style="margin-top:4px;">Bonjour, je suis interesse par la Sakura Konishi. Est-elle toujours disponible ? Je souhaiterais avoir plus d'informations sur la livraison...</div>
+                    <div style="margin-top:6px;">
+                      <span class="wf-btn" style="padding:2px 8px; font-size:9px;">Marquer comme lu</span>
+                      <span class="wf-btn" style="padding:2px 8px; font-size:9px;">Supprimer</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="msg-item">
+                  <div class="msg-dot unread"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="msg-sender">Lea Martin</div>
+                      <div class="msg-date">08/03/2026  09:15</div>
+                    </div>
+                    <div class="msg-preview">lea.martin@email.com</div>
+                    <div class="msg-preview" style="margin-top:4px;">Bonjour, quelles sont les conditions de livraison pour une carpe koi ?...</div>
+                  </div>
+                </div>
+                <div class="msg-item">
+                  <div class="msg-dot read"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="msg-sender">Gerard Petit</div>
+                      <div class="msg-date">07/03/2026  18:45</div>
+                    </div>
+                    <div class="msg-preview">gerard.petit@email.com</div>
+                    <div class="msg-preview" style="margin-top:4px;">Pourriez-vous me fournir le certificat Konishi pour le koi Fuji ?...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h4>Notes UX</h4>
+        <ul>
+          <li>Messages non lus surlignes avec fond bleu clair <span class="persona-tag">Mathilde</span></li>
+          <li>Filtre rapide Tous / Non lus</li>
+          <li>Actions : marquer comme lu, supprimer</li>
+          <li>Email de l'expediteur affiche pour repondre par email/WhatsApp</li>
+          <li>ActionMailer notifie Mathilde a chaque nouveau message</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="themeToggle" title="Toggle theme">&#9790;</button>
+
+  <script>
+    // Page navigation
+    document.querySelectorAll('.sidebar a[data-page]').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+        document.getElementById('page-' + link.dataset.page).classList.add('active');
+      });
+    });
+
+    // Viewport toggle
+    document.addEventListener('click', e => {
+      if (e.target.matches('.viewport-toggle button')) {
+        const section = e.target.closest('.page-section');
+        section.querySelectorAll('.viewport-toggle button').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        const frame = section.querySelector('.wf-frame');
+        frame.classList.remove('mobile', 'desktop');
+        frame.classList.add(e.target.dataset.viewport);
+      }
+    });
+
+    // Theme toggle
+    const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('wf-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    toggle.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('wf-theme', next);
+      toggle.textContent = next === 'dark' ? '\u263E' : '\u2600';
+    });
+    toggle.textContent = html.getAttribute('data-theme') === 'dark' ? '\u263E' : '\u2600';
+  </script>
+</body>
+</html>

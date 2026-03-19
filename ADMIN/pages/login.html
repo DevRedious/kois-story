@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion — Admin | Koi's Story</title>
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="stylesheet" href="../assets/css/login.css" />
+    <script src="https://accounts.google.com/gsi/client?hl=fr" async></script>
+    <script src="../assets/js/theme.js"></script>
+  </head>
+  <body class="login-page">
+    <div class="login-theme-switcher">
+      <label for="theme-select" class="sr-only">Thème</label>
+      <select id="theme-select" aria-label="Choisir le thème d'affichage">
+        <option value="system">Système</option>
+        <option value="light">Clair</option>
+        <option value="dark">Sombre</option>
+      </select>
+    </div>
+    <div id="form-ui">
+      <form action="" method="post" id="form">
+        <div id="form-body">
+          <div id="welcome-lines">
+            <img
+              src="../../docs/assets/LOGO MANU FINI 2.png"
+              alt="Koi's Story"
+              class="login-logo-img"
+            />
+            <div id="welcome-line-1">Koi's Story</div>
+            <div id="welcome-line-2">Administration</div>
+          </div>
+          <div id="input-area">
+            <div class="form-inp">
+              <input
+                placeholder="Adresse email"
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <div class="form-inp">
+              <input
+                placeholder="Mot de passe"
+                type="password"
+                id="password"
+                name="password"
+                required
+                autocomplete="current-password"
+              />
+            </div>
+          </div>
+          <div id="submit-button-cvr">
+            <button id="submit-button" type="submit">Se connecter</button>
+          </div>
+          <div id="dev-access-wrap" class="dev-access-wrap" hidden>
+            <button type="button" id="dev-access-btn" class="dev-access-btn">
+              Accès dev
+            </button>
+          </div>
+          <div id="login-divider" aria-hidden="true">ou</div>
+          <div id="google-signin-container"></div>
+          <div id="forgot-pass">
+            <a href="#">Mot de passe oublié ?</a>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // OAuth 2.0 — Remplacer par votre Client ID (Google Cloud Console > APIs & Services > Credentials)
+      var GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
+
+      (function initThemeSwitcher() {
+        var themeSelect = document.getElementById("theme-select");
+        if (!themeSelect) return;
+        var current = localStorage.getItem("admin-theme") || "system";
+        themeSelect.value = current;
+        themeSelect.addEventListener("change", function () {
+          var v = this.value;
+          localStorage.setItem("admin-theme", v);
+          if (v === "system") {
+            document.documentElement.removeAttribute("data-theme");
+          } else {
+            document.documentElement.setAttribute("data-theme", v);
+          }
+        });
+      })();
+
+      (function initDevAccess() {
+        var wrap = document.getElementById("dev-access-wrap");
+        var btn = document.getElementById("dev-access-btn");
+        if (!wrap || !btn) return;
+        var h = location.hostname;
+        var isDev =
+          h === "localhost" ||
+          h === "127.0.0.1" ||
+          h === "[::1]" ||
+          h === "" ||
+          location.protocol === "file:";
+        if (!isDev) return;
+        wrap.hidden = false;
+        btn.addEventListener("click", () => {
+          window.location.href = "dashboard.html";
+        });
+      })();
+
+      document.getElementById("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        window.location.href = "dashboard.html";
+      });
+      document
+        .querySelector("#forgot-pass a")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          alert(
+            "Fonctionnalité à prévoir (Devise : réinitialisation mot de passe).",
+          );
+        });
+
+      function handleGoogleCredential(response) {
+        // En production : envoyer response.credential (JWT) au backend Rails pour vérification et création de session
+        if (response.credential) {
+          window.location.href = "dashboard.html";
+        }
+      }
+
+      function initGoogleSignIn() {
+        if (
+          typeof google === "undefined" ||
+          !google.accounts ||
+          !google.accounts.id
+        )
+          return;
+        if (!GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID.indexOf("YOUR_GOOGLE") === 0)
+          return;
+
+        google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: handleGoogleCredential,
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("google-signin-container"),
+          {
+            theme: "outline",
+            size: "large",
+            type: "standard",
+            text: "sign_in_with",
+            shape: "rectangular",
+            logo_alignment: "left",
+            width: 250,
+            locale: "fr",
+          },
+        );
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initGoogleSignIn);
+      } else {
+        initGoogleSignIn();
+      }
+    </script>
+  </body>
+</html>

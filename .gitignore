@@ -1,0 +1,36 @@
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+
+# Ruby / Rails
+/.bundle/
+/coverage/
+/log/*
+/tmp/*
+/storage/*
+/public/assets
+/public/packs
+/node_modules
+/vendor/bundle
+/db/*.sqlite3
+/db/*.sqlite3-*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Tests and reports
+/test/reports
+/spec/reports
+
+# Misc
+*.swp
+*.swo
+
+
+/valentin 

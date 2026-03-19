@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Molecule — Order Row</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+</head>
+<body>
+
+  <h3>Lignes de commande</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Client</th><th>Contenu</th>
+        <th>Montant</th><th>Statut</th><th>Date</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- ── ORDER ROW (pending) ───────────────────────────── -->
+      <tr>
+        <td><strong>#042</strong></td>
+        <td>Thomas Lefèvre</td>
+        <td>Kohaku #001 <span class="order-line-qty">× 1</span></td>
+        <td><strong>850,00 €</strong></td>
+        <td><span class="badge badge-pending">En attente</span></td>
+        <td class="td-date-muted">12/03/2026</td>
+        <td>
+          <div class="td-actions">
+            <a href="order-form.html" class="btn btn--outline btn--sm">Éditer</a>
+            <a href="payments.html" class="btn btn--dark btn--sm">Paiement</a>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ── ORDER ROW (confirmed) ─────────────────────────── -->
+      <tr>
+        <td><strong>#041</strong></td>
+        <td>Gérard Dupont</td>
+        <td>Showa #005 <span class="order-line-qty">× 1</span> + Nourriture Konishi <span class="order-line-qty">× 2</span></td>
+        <td><strong>1 120,00 €</strong></td>
+        <td><span class="badge badge-confirmed">Confirmée</span></td>
+        <td class="td-date-muted">10/03/2026</td>
+        <td>
+          <div class="td-actions">
+            <a href="order-form.html" class="btn btn--outline btn--sm">Éditer</a>
+            <a href="payments.html" class="btn btn--dark btn--sm">Paiement</a>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ── ORDER ROW (completed) ─────────────────────────── -->
+      <tr>
+        <td><strong>#040</strong></td>
+        <td>Léa Martin</td>
+        <td>Pompe bassin Pro <span class="order-line-qty">× 1</span></td>
+        <td><strong>320,00 €</strong></td>
+        <td><span class="badge badge-completed">Terminée</span></td>
+        <td class="td-date-muted">05/03/2026</td>
+        <td>
+          <div class="td-actions">
+            <a href="order-form.html" class="btn btn--ghost btn--sm">Voir</a>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</body>
+</html>

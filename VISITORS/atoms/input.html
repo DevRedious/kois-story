@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atom  Input | Koi's Story</title>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+  <p class="demo-label">Champs de formulaire</p>
+  <div class="demo-col">
+
+    <div class="field">
+      <label class="field__label" for="name">Votre nom <span>*</span></label>
+      <input class="field__input" id="name" type="text" placeholder="ex. Thomas Durand">
+      <span class="field__hint">Prénom et nom de famille.</span>
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="email">Adresse email <span>*</span></label>
+      <input class="field__input" id="email" type="email" placeholder="vous@exemple.fr">
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="variety">Variété recherchée</label>
+      <select class="field__select" id="variety">
+        <option value="">Toutes les variétés</option>
+        <option>Kohaku</option>
+        <option>Showa</option>
+        <option>Sanke</option>
+        <option>Butterfly Tancho</option>
+        <option>Goshiki</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="message">Votre message <span>*</span></label>
+      <textarea class="field__textarea" id="message" placeholder="Décrivez votre recherche..."></textarea>
+    </div>
+
+    <div class="field field--error">
+      <label class="field__label" for="phone">Téléphone <span>*</span></label>
+      <input class="field__input" id="phone" type="tel" value="06 12">
+      <span class="field__error-msg">Numéro de téléphone invalide.</span>
+    </div>
+
+  </div>
+</body>
+</html>

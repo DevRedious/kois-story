@@ -1,0 +1,15 @@
+---
+description: ADMIN — JS, sidebar, topbar, breadcrumbs, tables
+globs: kois-story/ADMIN/**/*
+alwaysApply: false
+---
+
+# ADMIN — JS, sidebar, topbar, tables
+
+**JavaScript** (`assets/js/admin.js`) : un seul `DOMContentLoaded`. Gère sidebar mobile (`.menu-burger` → `.sidebar.open`), fermeture overlay, logout (`.logout-btn`), recherche dans les tables (`.filter-search`), état lu des messages (`.msg-row.unread`), garde `beforeunload` si formulaire modifié. Tout nouveau comportement doit être ajouté dans `admin.js` par délégation d’événements — pas de `onclick=""` dans le HTML.
+
+**Sidebar** : `<aside class="sidebar" id="sidebar">`. Page active = classe `active` sur le `.nav-item` correspondant (`data-page`). Le HTML de la sidebar est dupliqué dans chaque page ET dans `organisms/sidebar.html` (source de vérité) — mettre à jour les deux en cas de changement de nav.
+
+**Topbar / breadcrumbs** : listes → titre + breadcrumb `Admin › Page` ; formulaires → `Admin › Parent › Action`. Logout : `<button class="btn btn-outline btn-sm logout-btn">Déconnexion</button>`.
+
+**Tables** : chaque tableau doit être dans `<div class="table-responsive">`.

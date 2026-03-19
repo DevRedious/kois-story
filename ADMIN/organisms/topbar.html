@@ -1,0 +1,82 @@
+<!-- 
+  TOPBAR ORGANISM — Patterns de référence 
+  Note: Ce fichier sert de documentation pour les 3 variantes de topbar.
+-->
+
+<!-- Variante 1 : Dashboard (racine — breadcrumb minimal) -->
+<header class="topbar">
+  <div class="topbar-left">
+    <button type="button" class="menu-burger" aria-label="Menu">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="burger-icon">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <div>
+      <div class="topbar-title">Tableau de bord</div>
+      <div class="breadcrumb"><span class="current">Admin</span></div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-user">
+      <div class="topbar-avatar">MG</div>
+      Mathilde G.
+    </div>
+    <div class="topbar-divider"></div>
+    <button type="button" class="btn-icon logout-btn" aria-label="Déconnexion" title="Déconnexion">
+      <img src="../assets/icons/icon-logout.svg" alt="" width="20" height="20">
+    </button>
+  </div>
+</header>
+
+<!-- Variante 2 : Avec Breadcrumb et Action (ex: Catalogue, Formulaires) -->
+<header class="topbar">
+  <div class="topbar-left">
+    <button type="button" class="menu-burger" aria-label="Menu">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="burger-icon">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <div>
+      <div class="topbar-title">Gestion des Koïs</div>
+      <div class="breadcrumb">
+        <a href="dashboard.html">Admin</a>
+        <span class="sep">›</span>
+        <span class="current">Koïs</span>
+      </div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <a href="koi-form.html" class="btn btn--primary">＋ Nouveau koï</a>
+    <div class="topbar-divider"></div>
+    <div class="topbar-user">
+      <div class="topbar-avatar">MG</div>
+    </div>
+    <div class="topbar-divider"></div>
+    <button type="button" class="btn-icon logout-btn" aria-label="Déconnexion" title="Déconnexion">
+      <img src="../assets/icons/icon-logout.svg" alt="" width="20" height="20">
+    </button>
+  </div>
+</header>
+
+<!-- Variante 3 : Messages avec compteur -->
+<header class="topbar">
+  <div class="topbar-left">
+    <button type="button" class="menu-burger" aria-label="Menu">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="burger-icon">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <div class="topbar-title">Messages <span class="topbar-count">3 non lus</span></div>
+  </div>
+  <div class="topbar-right">
+    <button type="button" class="btn btn--outline btn--sm">Tout marquer lu</button>
+    <div class="topbar-divider"></div>
+    <div class="topbar-user">
+      <div class="topbar-avatar">MG</div>
+    </div>
+    <div class="topbar-divider"></div>
+    <button type="button" class="btn-icon logout-btn" aria-label="Déconnexion" title="Déconnexion">
+      <img src="../assets/icons/icon-logout.svg" alt="" width="20" height="20">
+    </button>
+  </div>
+</header>

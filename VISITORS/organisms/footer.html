@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism  Footer | Koi's Story</title>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       VARIANTE A  Footer home.html
+       Wordmark géant + barre compacte (logo · liens · copyright)
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="demo-label"><strong>Variante A  Footer home</strong> · Utilisé sur <code>home.html</code> uniquement · Wordmark géant + barre</div>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div class="footer__statement">
+        <span class="footer__wordmark" aria-hidden="true">Koi's Story</span>
+      </div>
+      <div class="footer__bar">
+        <a href="../pages/home.html" class="footer__logo"><img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story  Retour à l'accueil"></a>
+        <nav class="footer__links" id="footer-links-a" aria-label="Navigation du site">
+          <span class="footer__indicator" id="footer-indicator-a" aria-hidden="true"></span>
+          <ul role="list">
+            <li><a href="../pages/kois.html">Nos Koïs</a></li>
+            <li><a href="../pages/materiel.html">Matériel</a></li>
+            <li><a href="../pages/nourriture.html">Nourriture</a></li>
+            <li><a href="../pages/soins.html">Soins</a></li>
+            <li><a href="../pages/azukari.html">Azukari</a></li>
+            <li><a href="../pages/decouvrir.html">Nous découvrir</a></li>
+            <li><a href="../pages/contact.html">Contact</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </nav>
+        <p class="footer__copy"><small><span aria-label="Copyright">©</span> 2026 Koi's Story</small></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════════════════════════════════════════
+       VARIANTE B  Footer pages secondaires
+       Barre seule : logo · liens · copyright (sans wordmark)
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="demo-label"><strong>Variante B  Footer pages secondaires</strong> · Utilisé sur toutes les pages sauf <code>home.html</code> · Barre seule</div>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div class="footer__bar">
+        <a href="../pages/home.html" class="footer__logo"><img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story  Retour à l'accueil"></a>
+        <nav class="footer__links" id="footer-links-b" aria-label="Navigation du site">
+          <span class="footer__indicator" id="footer-indicator-b" aria-hidden="true"></span>
+          <ul role="list">
+            <li><a href="../pages/kois.html">Nos Koïs</a></li>
+            <li><a href="../pages/materiel.html">Matériel</a></li>
+            <li><a href="../pages/nourriture.html">Nourriture</a></li>
+            <li><a href="../pages/soins.html">Soins</a></li>
+            <li><a href="../pages/azukari.html">Azukari</a></li>
+            <li><a href="../pages/decouvrir.html">Nous découvrir</a></li>
+            <li><a href="../pages/contact.html">Contact</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </nav>
+        <p class="footer__copy"><small><span aria-label="Copyright">©</span> 2026 Koi's Story</small></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    ['a', 'b'].forEach(id => {
+      const nav = document.getElementById('footer-links-' + id);
+      const ind = document.getElementById('footer-indicator-' + id);
+      if (!nav || !ind) return;
+      nav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('mouseenter', () => {
+          const navRect = nav.getBoundingClientRect();
+          const aRect   = a.getBoundingClientRect();
+          ind.style.left    = (aRect.left - navRect.left) + 'px';
+          ind.style.width   = aRect.width + 'px';
+          ind.style.opacity = '1';
+        });
+      });
+      nav.addEventListener('mouseleave', () => { ind.style.opacity = '0'; });
+    });
+  </script>
+
+</body>
+</html>

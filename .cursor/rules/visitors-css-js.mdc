@@ -1,0 +1,15 @@
+---
+description: VISITORS — CSS, JS modulaire, liste des composants
+globs: kois-story/VISITORS/**/*
+alwaysApply: false
+---
+
+# VISITORS — CSS et JS
+
+**CSS** : tout dans `VISITORS/assets/css/`. Aucun `<style>` inline ni `style=""` dans le HTML. Un fichier par composant/section, max 200 lignes. Structure cible : `variables.css`, `base.css`, `header.css`, `hero.css`, `catalogue.css`, `product.css`, `koi-card.css`, `farm.css`, `footer.css`, etc. Chaque page ne charge que les CSS nécessaires.
+
+**JS** (4 modules) : `header.js` (nav mobile), `filter.js` (filtres catalogue), `gallery.js` (galerie), `animations.js` (scroll). Tous sous 200 lignes.
+
+**Atoms** : badge, button, input, price, koi-thumb, icon-wa, wave-divider, logo. **Molecules** : koi-card, koi-card--editorial, cta-whatsapp, filter-bar, nav-header, contact-form, shop-card. **Organisms** : header, footer, hero, koi-detail, koi-showcase, farm-gallery, features, konishi-band, shop-section. **Pages** : home, product, kois, contact, decouvrir, azukari, nourriture, materiel, soins.
+
+Violations 200 lignes à traiter : `organisms/header.html`, `molecules/nav-header.html`, `organisms/koi-showcase.html`, `organisms/koi-detail.html` — extraire vers composants plus petits.
