@@ -4,213 +4,190 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin — Messages | Koi's Story</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <script src="../assets/js/theme.js"></script>
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Bold.otf'); font-weight: 700; }
-
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --sidebar-w:    240px;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); min-height: 100vh; display: flex; }
-
-    /* Sidebar */
-    .sidebar { position:fixed; top:0; left:0; bottom:0; width:var(--sidebar-w); background:var(--bleu-profond); display:flex; flex-direction:column; z-index:200; transition:transform 0.25s; }
-    .sidebar-brand { padding:26px 22px 20px; border-bottom:1px solid rgba(255,255,255,0.08); }
-    .brand-title { font-family:var(--font-title); font-size:1.25rem; font-weight:700; color:#fff; }
-    .brand-sub   { font-size:0.63rem; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; color:var(--or-konishi); margin-top:3px; }
-    .sidebar-nav { flex:1; padding:14px 0; }
-    .nav-section { font-size:0.62rem; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.3); padding:12px 22px 4px; }
-    .nav-item { display:flex; align-items:center; gap:10px; padding:11px 22px; color:rgba(255,255,255,0.6); font-size:0.875rem; font-weight:500; cursor:pointer; border-left:3px solid transparent; transition:all 0.15s; text-decoration:none; }
-    .nav-item:hover { color:#fff; background:rgba(255,255,255,0.07); }
-    .nav-item.active { color:var(--or-konishi); border-left-color:var(--or-konishi); background:rgba(224,159,62,0.1); font-weight:600; }
-    .nav-icon { font-size:1rem; width:20px; text-align:center; flex-shrink:0; }
-    .nav-label { flex:1; }
-    .nav-badge { background:var(--rouge-koi); color:#fff; font-size:0.62rem; font-weight:700; border-radius:10px; padding:2px 7px; }
-    .sidebar-footer { padding:16px 22px; border-top:1px solid rgba(255,255,255,0.08); }
-    .admin-user { display:flex; align-items:center; gap:10px; }
-    .admin-avatar { width:32px; height:32px; border-radius:50%; background:var(--or-konishi); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:var(--bleu-profond); }
-    .admin-name { font-size:0.8rem; font-weight:600; color:#fff; }
-    .admin-role { font-size:0.62rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-top:1px; }
-
-    /* Main */
-    .main { margin-left:var(--sidebar-w); flex:1; display:flex; flex-direction:column; }
-    .topbar { position:sticky; top:0; height:60px; background:#fff; border-bottom:1px solid #e5e9ee; display:flex; align-items:center; justify-content:space-between; padding:0 28px; z-index:100; }
-    .topbar-left { display:flex; align-items:center; gap:12px; }
-    .topbar-right { display:flex; align-items:center; gap:10px; }
-    .topbar-title { font-family:var(--font-title); font-size:1.1rem; font-weight:700; color:var(--bleu-profond); }
-    .menu-burger { display:none; align-items:center; justify-content:center; background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--bleu-profond); padding:4px; }
-    .topbar-user { font-size:0.8rem; color:var(--gris-pierre); display:flex; align-items:center; gap:6px; }
-    .topbar-avatar { width:28px; height:28px; border-radius:50%; background:var(--or-konishi); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:var(--bleu-profond); }
-    .topbar-divider { width:1px; height:20px; background:#e5e9ee; }
-    .content { flex:1; padding:32px; }
-
-    /* Buttons */
-    .btn { display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:6px; font-family:var(--font-body); font-size:0.82rem; font-weight:600; cursor:pointer; border:none; transition:opacity 0.15s; text-decoration:none; white-space:nowrap; }
-    .btn:hover { opacity:0.86; }
-    .btn-primary { background:var(--rouge-koi); color:#fff; }
-    .btn-outline { background:transparent; border:1.5px solid #d0d7de; color:var(--gris-pierre); }
-    .btn-sm { padding:5px 10px; font-size:0.75rem; }
-
-    /* Panel */
-    .panel { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,48,73,0.07); overflow:hidden; }
-    .panel-header { padding:14px 20px; border-bottom:1px solid #e8ecf0; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-    .panel-title { font-family:var(--font-title); font-size:1rem; font-weight:700; color:var(--bleu-profond); flex:1; }
-    .unread-count { font-size:0.72rem; font-weight:700; background:#fde8e8; color:var(--rouge-koi); padding:3px 10px; border-radius:10px; white-space:nowrap; }
-
-    /* Filter */
-    select { font-family:var(--font-body); font-size:0.8rem; color:var(--bleu-profond); background:#fff; border:1.5px solid #d8dde3; border-radius:6px; padding:6px 28px 6px 10px; outline:none; height:34px; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; }
-
-    /* Table */
-    table { width:100%; border-collapse:collapse; font-size:0.84rem; }
-    thead th { padding:11px 18px; text-align:left; font-size:0.67rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--gris-pierre); background:#f5f7f9; border-bottom:1px solid #e8ecf0; }
-    .msg-row td { padding:13px 18px; border-bottom:1px solid #f0f2f5; color:var(--bleu-profond); vertical-align:middle; }
-    .msg-row:last-child td { border-bottom:none; }
-    .msg-row:hover td { background:#fafbfc; }
-    .msg-row.unread td { background:rgba(0,48,73,0.025); font-weight:500; }
-    .msg-row.unread td:first-child { border-left:3px solid var(--rouge-koi); padding-left:15px; }
-    .msg-date { white-space:nowrap; font-size:0.82rem; }
-    .msg-time { font-size:0.7rem; color:var(--gris-pierre); margin-top:1px; }
-    .msg-sender strong { font-weight:600; }
-    .msg-email { font-size:0.74rem; color:var(--gris-pierre); margin-top:1px; }
-    .msg-preview { max-width:280px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:0.82rem; color:var(--gris-pierre); }
-    .msg-row.unread .msg-preview { color:var(--bleu-profond); }
-    .badge { display:inline-flex; align-items:center; padding:3px 9px; border-radius:20px; font-size:0.67rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; white-space:nowrap; }
-    .badge-nonlu { background:#fde8e8; color:var(--rouge-koi); }
-    .badge-lu    { background:#e8ecf0; color:var(--gris-pierre); }
-
-    /* Overlay */
-    .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:199; }
-    .overlay.active { display:block; }
-    @media (max-width:768px) {
-      .sidebar { transform:translateX(calc(-1 * var(--sidebar-w))); }
-      .sidebar.open { transform:translateX(0); }
-      .main { margin-left:0; }
-      .topbar, .content { padding-left:16px; padding-right:16px; }
-      .menu-burger { display:flex !important; }
-      table { font-size:0.76rem; }
-      thead th, .msg-row td { padding:9px 10px; }
-      .msg-preview { max-width:160px; }
-    }
+    .unread-count { font-size:0.72rem; font-weight:700; background:#fde8e8; color:var(--rouge-vif); padding:3px 10px; border-radius:10px; }
+    .msg-row.unread td { background:rgba(0,0,0,0.025); font-weight:500; }
+    .msg-row.unread td:first-child { border-left:3px solid var(--rouge-vif); padding-left:15px; }
+    .msg-date  { white-space:nowrap; font-size:0.82rem; }
+    .msg-time  { font-size:0.7rem; color:var(--gris); margin-top:1px; }
+    .msg-email { font-size:0.74rem; color:var(--gris); margin-top:1px; }
+    .msg-preview { max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:0.82rem; color:var(--gris); }
+    .msg-row.unread .msg-preview { color:var(--noir); }
+    @media(min-width:769px){ .msg-preview{ max-width:280px; } }
   </style>
 </head>
-<body>
-
-<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
-
-<!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-brand">
-    <div class="brand-title" style="display: flex; align-items: center; gap: 10px;"><img src="../../docs/assets/LOGO MANU FINI 2.png" alt="" style="height: 28px; width: auto; border-radius: 50%;"> Koi's Story</div>
+    <div class="brand-title">
+      <img src="../../docs/assets/LOGO MANU FINI 2.png" alt="" style="height:26px;border-radius:50%;">
+      <span class="brand-title-text">Koi's Story</span>
+    </div>
     <div class="brand-sub">Administration</div>
   </div>
   <nav class="sidebar-nav">
-    <div class="nav-section">Navigation</div>
-    <a href="dashboard.html" class="nav-item"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span><span class="nav-label">Dashboard</span></a>
-    <a href="kois.html" class="nav-item"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></span><span class="nav-label">Gestion des Koïs</span></a>
-    <a href="messages.html" class="nav-item active"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span><span class="nav-label">Messages</span><span class="nav-badge">3</span></a>
+    <div class="nav-section">Tableau de bord</div>
+    <a href="dashboard.html" class="nav-item" data-page="dashboard">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+
+    <div class="nav-section" style="margin-top:6px;">Catalogue</div>
+    <a href="kois.html" class="nav-item" data-page="kois">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M168 76a12 12 0 1 1-12-12a12 12 0 0 1 12 12m48.72 67.64c-19.37 34.9-55.44 53.76-107.24 56.1l-22 51.41A8 8 0 0 1 80.1 256h-.51a8 8 0 0 1-7.19-5.78l-14.8-51.83l-51.8-14.83a8 8 0 0 1-1-15.05l51.41-22c2.35-51.78 21.21-87.84 56.09-107.22c24.75-13.74 52.74-15.84 71.88-15.18c18.64.64 36 4.27 38.86 6a8 8 0 0 1 2.83 2.83c1.69 2.85 5.33 20.21 6 38.85c.68 19.1-1.41 47.1-15.15 71.85m-55.18 29a52.11 52.11 0 0 1-33.4-44.78a52.09 52.09 0 0 1-44.77-33.39q-10.45 23.79-11.3 57.59a8 8 0 0 1-4.85 7.17l-35.39 15.14l34.45 9.86a8 8 0 0 1 5.49 5.5l9.84 34.44l15.16-35.4a8 8 0 0 1 7.17-4.84q33.77-.81 57.6-11.29m50.88-129.07c-14.15-3-64.1-11-100.3 14.75a81.2 81.2 0 0 0-16 15.07a36 36 0 0 0 39.35 38.44a8 8 0 0 1 8.73 8.73a36 36 0 0 0 38.47 39.34a80.8 80.8 0 0 0 15-16c25.75-36.17 17.75-86.16 14.75-100.33"/></svg></span>
+      <span class="nav-label">Gestion des Koïs</span>
+    </a>
+    <a href="products.html" class="nav-item" data-page="products">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 22q-.825 0-1.412-.587T5 20t.588-1.412T7 18t1.413.588T9 20t-.587 1.413T7 22m10 0q-.825 0-1.412-.587T15 20t.588-1.412T17 18t1.413.588T19 20t-.587 1.413T17 22M6.15 6l2.4 5h7l2.75-5zM5.2 4h14.75q.575 0 .875.513t.025 1.037l-3.55 6.4q-.275.5-.737.775T15.55 13H8.1L7 15h12v2H7q-1.125 0-1.7-.987t-.05-1.963L6.6 11.6L3 4H1V2h3.25zm3.35 7h7z"/></svg></span>
+      <span class="nav-label">Matériel & Nourriture</span>
+    </a>
+
+    <div class="nav-section" style="margin-top:6px;">Commerce</div>
+    <a href="orders.html" class="nav-item" data-page="orders">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 28 28" fill="currentColor"><path d="M8 5.5a3.5 3.5 0 0 1 6-2.45a3.5 3.5 0 0 1 6 2.45V8h2.5A1.5 1.5 0 0 1 24 9.5v4.365a7.5 7.5 0 0 0-1.5-.595V9.5h-5v4.124a7.5 7.5 0 0 0-1.5.875V9.5H5.5V22A2.5 2.5 0 0 0 8 24.5h6.154c.35.553.77 1.057 1.247 1.5H8a4 4 0 0 1-4-4V9.5A1.5 1.5 0 0 1 5.5 8H8zM18.5 8V5.5a2 2 0 0 0-3.674-1.094A3.5 3.5 0 0 1 15 5.5V8zm-5-2.5a2 2 0 1 0-4 0V8h4zm13.5 15a6.5 6.5 0 1 1-13 0a6.5 6.5 0 0 1 13 0m-2.646-2.854a.5.5 0 0 0-.708 0L19 22.293l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l5-5a.5.5 0 0 0 0-.708"/></svg></span>
+      <span class="nav-label">Commandes</span>
+    </a>
+    <a href="clients.html" class="nav-item" data-page="clients">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+      <span class="nav-label">Clients</span>
+    </a>
+    <a href="payments.html" class="nav-item" data-page="payments">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M2 9.5A4.5 4.5 0 0 1 6.5 5h19A4.5 4.5 0 0 1 30 9.5v13a4.5 4.5 0 0 1-4.5 4.5h-19A4.5 4.5 0 0 1 2 22.5zM6.5 7A2.5 2.5 0 0 0 4 9.5V11h24V9.5A2.5 2.5 0 0 0 25.5 7zM4 22.5A2.5 2.5 0 0 0 6.5 25h19a2.5 2.5 0 0 0 2.5-2.5V13H4zM21 19h3a1 1 0 1 1 0 2h-3a1 1 0 1 1 0-2"/></svg></span>
+      <span class="nav-label">Suivi Paiements</span>
+    </a>
+
+    <div class="nav-section" style="margin-top:6px;">Messagerie</div>
+    <a href="messages.html" class="nav-item active" data-page="messages">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg></span>
+      <span class="nav-label">Messages</span>
+      <span class="nav-badge" id="msg-count">3</span>
+    </a>
+
+    <div class="nav-section" style="margin-top:6px;">Gestion</div>
+    <a href="accounting.html" class="nav-item" data-page="accounting">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.25 13h3.68a2 2 0 0 1 1.664.89l.812 1.22a2 2 0 0 0 1.664.89h1.86a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 17.07 13h3.68"/><path d="m5.45 4.11l-2.162 7.847A8 8 0 0 0 3 14.082V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4.918a8 8 0 0 0-.288-2.125L18.55 4.11A2 2 0 0 0 16.76 3H7.24a2 2 0 0 0-1.79 1.11M9 9.5h6m-4.5-3h3"/></svg></span>
+      <span class="nav-label">Comptabilité</span>
+    </a>
+    <a href="newsletter.html" class="nav-item dormant" data-page="newsletter">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .64L8.23 3H5v2L2.97 6.29C2.39 6.64 2 7.27 2 8v10a2 2 0 0 0 2 2h16c1.11 0 2-.89 2-2V8c0-.73-.39-1.36-.97-1.71L19 5V3h-3.23M7 5h10v4.88L12 13L7 9.88M8 6v1.5h8V6M5 7.38v1.25L4 8m15-.62L20 8l-1 .63M8 8.5V10h8V8.5Z"/></svg></span>
+      <span class="nav-label">Newsletter</span>
+      <span class="nav-badge-dormant">V2</span>
+    </a>
+
     <div class="nav-section" style="margin-top:6px;">Site</div>
-    <a href="#" class="nav-item" style="opacity:0.5;"><span class="nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="nav-label">Voir le site</span></a>
+    <a href="#" class="nav-item" style="opacity:0.5;pointer-events:none;">
+      <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 256 367" fill="currentColor"><path d="M70.585 271.865a371 371 0 0 1 28.911 42.642c7.374 13.982 10.448 23.463 15.837 40.31c3.305 9.308 6.292 12.086 12.714 12.086c6.998 0 10.173-4.726 12.626-12.035c5.094-15.91 9.091-28.052 15.397-39.525c12.374-22.15 27.75-41.833 42.858-60.75c4.09-5.354 30.534-36.545 42.439-61.156c0 0 14.632-27.035 14.632-64.792c0-35.318-14.43-59.813-14.43-59.813l-41.545 11.126l-25.23 66.451l-6.242 9.163l-1.248 1.66l-1.66 2.078l-2.914 3.319l-4.164 4.163l-22.467 18.304l-56.17 32.432z"/><path d="M12.612 188.892c13.709 31.313 40.145 58.839 58.031 82.995l95.001-112.534s-13.384 17.504-37.662 17.504c-27.043 0-48.89-21.595-48.89-48.825c0-18.673 11.234-31.501 11.234-31.501l-64.489 17.28z"/><path d="M166.705 5.787c31.552 10.173 58.558 31.53 74.893 63.023l-75.925 90.478s11.234-13.06 11.234-31.617c0-27.864-23.463-48.68-48.81-48.68c-23.969 0-37.735 17.475-37.735 17.475v-57z"/><path d="M30.015 45.765C48.86 23.218 82.02 0 127.736 0c22.18 0 38.89 5.823 38.89 5.823L90.29 96.516H36.205z"/><path d="M12.612 188.892S0 164.194 0 128.414c0-33.817 13.146-63.377 30.015-82.649l60.318 50.759z"/></svg></span>
+      <span class="nav-label">Voir le site public</span>
+    </a>
   </nav>
   <div class="sidebar-footer">
     <div class="admin-user">
       <div class="admin-avatar">MG</div>
-      <div><div class="admin-name">Mathilde G.</div><div class="admin-role">Administratrice</div></div>
+      <div class="admin-info">
+        <div class="admin-name">Mathilde G.</div>
+        <div class="admin-role">Administratrice</div>
+      </div>
     </div>
   </div>
 </aside>
-
-<!-- MAIN -->
 <div class="main">
   <header class="topbar">
     <div class="topbar-left">
-      <button class="menu-burger" onclick="toggleSidebar()" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-      <span class="topbar-title">Messages</span>
+      <button class="menu-burger" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="burger-icon">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div>
+        <div class="topbar-title">Messages <span class="topbar-count">3 non lus</span></div>
+        <div class="breadcrumb">
+          <a href="dashboard.html">Admin</a>
+          <span class="sep">›</span>
+          <span class="current">Messages</span>
+        </div>
+      </div>
     </div>
     <div class="topbar-right">
-      <div class="topbar-user"><div class="topbar-avatar">MG</div><span>Mathilde G.</span></div>
+      <div class="theme-switcher">
+        <label for="theme-select" class="sr-only">Thème</label>
+        <select id="theme-select" aria-label="Choisir le thème d'affichage">
+          <option value="system">Système</option>
+          <option value="light">Clair</option>
+          <option value="dark">Sombre</option>
+        </select>
+      </div>
       <div class="topbar-divider"></div>
-      <button class="btn btn-outline" style="padding:6px 12px; font-size:0.78rem;">Déconnexion</button>
+      <button class="btn btn-outline btn-sm">Tout marquer lu</button>
+      <div class="topbar-divider"></div>
+      <div class="topbar-user">
+        <div class="topbar-avatar">MG</div>
+      </div>
+      <div class="topbar-divider"></div>
+      <button class="btn-icon logout-btn" aria-label="Déconnexion" title="Déconnexion"><img src="../assets/icons/icon-logout.svg" alt="" width="20" height="20"></button>
     </div>
   </header>
 
   <div class="content">
-
-    <!-- MESSAGES-TABLE (organism) -->
     <div class="panel">
       <div class="panel-header">
         <div class="panel-title">Messages reçus</div>
-        <span class="unread-count">3 non lus</span>
-        <select>
-          <option>Tous messages</option>
-          <option>Non lus</option>
-          <option>Lus</option>
+        <select id="msg-filter" style="padding:6px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.8rem;">
+          <option value="">Tous messages</option>
+          <option value="unread">Non lus</option>
+          <option value="read">Lus</option>
         </select>
-        <button class="btn btn-outline">Tout marquer comme lu</button>
       </div>
-
-      <table>
-        <thead>
-          <tr><th>Date</th><th>Expéditeur</th><th>Message</th><th>Statut</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-          <tr class="msg-row unread">
-            <td class="msg-date">12/03/2026<div class="msg-time">14:32</div></td>
-            <td class="msg-sender"><strong>Thomas Lefèvre</strong><div class="msg-email">thomas.l@mail.fr</div></td>
-            <td class="msg-preview">Bonjour, je suis intéressé par le Kohaku Konishi ref #001, pourriez-vous me donner plus d'infos ?</td>
-            <td><span class="badge badge-nonlu">Non lu</span></td>
-            <td><button class="btn btn-primary btn-sm">Lire</button></td>
-          </tr>
-          <tr class="msg-row unread">
-            <td class="msg-date">12/03/2026<div class="msg-time">11:05</div></td>
-            <td class="msg-sender"><strong>Gérard Dupont</strong><div class="msg-email">gerard.dupont@koi.net</div></td>
-            <td class="msg-preview">Pourriez-vous me communiquer le certificat Konishi du Showa 65cm ?</td>
-            <td><span class="badge badge-nonlu">Non lu</span></td>
-            <td><button class="btn btn-primary btn-sm">Lire</button></td>
-          </tr>
-          <tr class="msg-row unread">
-            <td class="msg-date">11/03/2026<div class="msg-time">09:17</div></td>
-            <td class="msg-sender"><strong>Léa Martin</strong><div class="msg-email">lea.martin@gmail.com</div></td>
-            <td class="msg-preview">Je débute dans l'élevage de koï, est-ce que vous proposez des conseils ?</td>
-            <td><span class="badge badge-nonlu">Non lu</span></td>
-            <td><button class="btn btn-primary btn-sm">Lire</button></td>
-          </tr>
-          <tr class="msg-row">
-            <td class="msg-date">10/03/2026<div class="msg-time">16:44</div></td>
-            <td class="msg-sender">Camille Rousseau<div class="msg-email">c.rousseau@hotmail.fr</div></td>
-            <td class="msg-preview">Merci pour votre réponse rapide, à bientôt !</td>
-            <td><span class="badge badge-lu">Lu</span></td>
-            <td><button class="btn btn-outline btn-sm">Voir</button></td>
-          </tr>
-          <tr class="msg-row">
-            <td class="msg-date">08/03/2026<div class="msg-time">10:02</div></td>
-            <td class="msg-sender">Pierre Moreau<div class="msg-email">p.moreau@pro.com</div></td>
-            <td class="msg-preview">Je souhaite réserver le Showa 65cm avec un acompte, comment procéder ?</td>
-            <td><span class="badge badge-lu">Lu</span></td>
-            <td><button class="btn btn-outline btn-sm">Voir</button></td>
-          </tr>
-        </tbody>
-      </table>
-
+      <div class="table-responsive">
+        <table>
+          <thead><tr><th>Date</th><th>Expéditeur</th><th>Message</th><th>Statut</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr class="msg-row unread" data-read="unread">
+              <td class="msg-date">12/03/2026<div class="msg-time">14:32</div></td>
+              <td><strong>Thomas Lefèvre</strong><div class="msg-email">thomas.l@mail.fr</div></td>
+              <td class="msg-preview">Bonjour, je suis intéressé par le Kohaku Konishi ref #001, pourriez-vous me donner plus d'infos ?</td>
+              <td><span class="badge badge-nonlu">Non lu</span></td>
+              <td><button class="btn btn-primary btn-sm">Lire</button></td>
+            </tr>
+            <tr class="msg-row unread" data-read="unread">
+              <td class="msg-date">12/03/2026<div class="msg-time">11:05</div></td>
+              <td><strong>Gérard Dupont</strong><div class="msg-email">gerard.dupont@koi.net</div></td>
+              <td class="msg-preview">Pourriez-vous me communiquer le certificat Konishi du Showa 65cm ?</td>
+              <td><span class="badge badge-nonlu">Non lu</span></td>
+              <td><button class="btn btn-primary btn-sm">Lire</button></td>
+            </tr>
+            <tr class="msg-row unread" data-read="unread">
+              <td class="msg-date">11/03/2026<div class="msg-time">09:17</div></td>
+              <td><strong>Léa Martin</strong><div class="msg-email">lea.martin@gmail.com</div></td>
+              <td class="msg-preview">Je débute dans l'élevage de koï, est-ce que vous proposez des conseils ?</td>
+              <td><span class="badge badge-nonlu">Non lu</span></td>
+              <td><button class="btn btn-primary btn-sm">Lire</button></td>
+            </tr>
+            <tr class="msg-row" data-read="read">
+              <td class="msg-date">10/03/2026<div class="msg-time">16:44</div></td>
+              <td>Camille Rousseau<div class="msg-email">c.rousseau@hotmail.fr</div></td>
+              <td class="msg-preview">Merci pour votre réponse rapide, à bientôt !</td>
+              <td><span class="badge badge-lu">Lu</span></td>
+              <td><button class="btn btn-outline btn-sm" aria-label="Voir le message">Voir</button></td>
+            </tr>
+            <tr class="msg-row" data-read="read">
+              <td class="msg-date">08/03/2026<div class="msg-time">10:02</div></td>
+              <td>Pierre Moreau<div class="msg-email">p.moreau@pro.com</div></td>
+              <td class="msg-preview">Je souhaite réserver le Showa 65cm avec un acompte, comment procéder ?</td>
+              <td><span class="badge badge-lu">Lu</span></td>
+              <td><button class="btn btn-outline btn-sm" aria-label="Voir le message">Voir</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     </div>
   </div>
 </div>
 
-<script>
-  function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('overlay').classList.toggle('active'); }
-  function closeSidebar()  { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('active'); }
-</script>
+<script src="../assets/js/notifications.js"></script>
 <script src="../assets/js/admin.js"></script>
+<script src="../assets/js/messages.js"></script>
 </body>
 </html>
+

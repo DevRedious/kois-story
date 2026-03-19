@@ -1,10 +1,11 @@
 {
   "files": {
-    "ignore": [
-      "**/*.html",
-      "**/.vscode/**",
-      "**/.edge/**",
-      "**/edge-tools/**"
+    "includes": [
+      "**",
+      "!**/*.html",
+      "!**/.vscode",
+      "!**/.edge",
+      "!**/edge-tools"
     ]
   }
 }

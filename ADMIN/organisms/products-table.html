@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Organism — Products Table</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    body { padding: 24px; background: var(--blanc-casse); }
+    .badge-materiel  { background: #e8f0fe; color: #1a56b0; }
+    .badge-soins     { background: #e2d9f3; color: #4a235a; }
+    .badge-nourriture{ background: #fff3cd; color: #856404; }
+    .stock-low { color: var(--rouge-vif); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<!-- ── PRODUCTS TABLE ORGANISM ───────────────────────────── -->
+<div class="panel">
+  <div class="panel-header">
+    <span class="panel-title">Catalogue produits</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <select id="cat-filter" style="padding:6px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.8rem;">
+        <option value="">Toutes catégories</option>
+        <option value="materiel">Matériel</option>
+        <option value="soins">Soins</option>
+        <option value="nourriture">Nourriture</option>
+      </select>
+      <a href="product-form.html" class="btn btn-primary btn-sm">＋ Nouveau produit</a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table id="products-table">
+      <thead>
+        <tr>
+          <th>Produit</th><th>Référence</th><th>Catégorie</th>
+          <th>Prix</th><th>Stock</th><th>Statut</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-cat="materiel">
+          <td><strong>Filtre Biotec 36</strong></td>
+          <td style="font-size:0.78rem;color:var(--gris);">—</td>
+          <td><span class="badge badge-materiel">Matériel</span></td>
+          <td>480,00 €</td><td>4</td>
+          <td><span class="badge badge-dispo">Actif</span></td>
+          <td><div class="td-actions">
+            <a href="product-form.html" class="btn btn-outline btn-sm">Éditer</a>
+            <button class="btn btn-ghost btn-sm">Stock</button>
+          </div></td>
+        </tr>
+        <tr data-cat="nourriture">
+          <td><strong>Nourriture Konishi Flottant 5kg</strong></td>
+          <td style="font-size:0.78rem;color:var(--gris);">—</td>
+          <td><span class="badge badge-nourriture">Nourriture</span></td>
+          <td>68,00 €</td>
+          <td class="stock-low">1 ⚠</td>
+          <td><span class="badge badge-dispo">Actif</span></td>
+          <td><div class="td-actions">
+            <a href="product-form.html" class="btn btn-outline btn-sm">Éditer</a>
+            <button class="btn btn-primary btn-sm">Réappro</button>
+          </div></td>
+        </tr>
+        <tr data-cat="soins">
+          <td><strong>Microscope 40× Koï</strong></td>
+          <td style="font-size:0.78rem;color:var(--gris);">—</td>
+          <td><span class="badge badge-soins">Soins</span></td>
+          <td>220,00 €</td>
+          <td style="color:var(--gris);">0</td>
+          <td><span class="badge badge-vendu">Inactif</span></td>
+          <td><a href="product-form.html" class="btn btn-outline btn-sm">Éditer</a></td>
+        </tr>
+        <tr data-cat="nourriture">
+          <td><strong>Vitamines Mucus+</strong></td>
+          <td style="font-size:0.78rem;color:var(--gris);">—</td>
+          <td><span class="badge badge-nourriture">Nourriture</span></td>
+          <td>24,00 €</td><td>12</td>
+          <td><span class="badge badge-dispo">Actif</span></td>
+          <td><div class="td-actions">
+            <a href="product-form.html" class="btn btn-outline btn-sm">Éditer</a>
+            <button class="btn btn-ghost btn-sm">Stock</button>
+          </div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.getElementById('cat-filter').addEventListener('change', function() {
+    const val = this.value;
+    document.querySelectorAll('#products-table tbody tr').forEach(row => {
+      row.style.display = (!val || row.dataset.cat === val) ? '' : 'none';
+    });
+  });
+</script>
+
+</body>
+</html>

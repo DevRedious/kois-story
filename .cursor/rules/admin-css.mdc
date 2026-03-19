@@ -1,0 +1,21 @@
+---
+description: Architecture CSS admin — manifest, modules, palette V3, media queries
+globs: kois-story/ADMIN/assets/css/**/*
+alwaysApply: false
+---
+
+# ADMIN — CSS
+
+`admin.css` est un **manifest pur** : il n’importe que les 5 modules.
+
+- **variables.css** — propriétés personnalisées (couleurs, fonts, tailles)
+- **layout.css** — sidebar, topbar, main, overlay, toggle mobile
+- **components.css** — boutons, badges, stat-cards, panels
+- **forms.css** — input, select, textarea, form-group
+- **tables.css** — base table + `.table-responsive`
+
+Ne jamais écrire de styles directement dans `admin.css` ; ajouter dans le module adapté.
+
+**Palette V3** (voir `docs/assets/palette_V3.svg`) : `--rouge-vif`, `--rouge-sombre`, `--noir`, `--blanc-casse`, `--blanc-pur`. Remplacer toute référence à `#D62828`, `#003049`, `#E09F3E`, `#6C757D`, `#F8F9FA`. Exception : `#25d366` (WhatsApp) obligatoire sur les éléments WhatsApp ; couleurs de marque pour les icônes réseaux sociaux.
+
+**Media queries** : uniquement `min-width` (mobile-first). Base = mobile ; `@media (min-width: 769px)` et `@media (min-width: 1025px)`. Pas de `max-width`.

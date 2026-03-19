@@ -3,325 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Molecule — Filter Bar</title>
-  <style>
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 32px; }
-
-    /* ── FILTER BAR MOLECULE ─────────────────────────────────── */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-      padding: 20px 24px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,48,73,0.06);
-    }
-
-    /* Filter group */
-    .filter-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      min-width: 160px;
-      flex: 1;
-    }
-    
-    .filter-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--gris-pierre);
-    }
-    
-    .filter-select {
-      padding: 12px 16px;
-      padding-right: 40px;
-      border: 2px solid #e8ecf0;
-      border-radius: 8px;
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      color: var(--bleu-profond);
-      background: #fff;
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23003049' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      transition: all 0.2s ease;
-    }
-    
-    .filter-select:hover {
-      border-color: #d0d7de;
-    }
-    
-    .filter-select:focus {
-      outline: none;
-      border-color: var(--bleu-profond);
-    }
-
-    /* Price range */
-    .filter-price {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .filter-price-input {
-      width: 100px;
-      padding: 10px 12px;
-      border: 2px solid #e8ecf0;
-      border-radius: 8px;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: var(--bleu-profond);
-      text-align: right;
-    }
-    
-    .filter-price-input:focus {
-      outline: none;
-      border-color: var(--bleu-profond);
-    }
-    
-    .filter-price-separator {
-      color: var(--gris-pierre);
-      font-size: 0.9rem;
-    }
-
-    /* Toggle switches */
-    .filter-toggle {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 0;
-    }
-    
-    .filter-toggle-label {
-      font-size: 0.9rem;
-      color: var(--bleu-profond);
-      font-weight: 500;
-    }
-    
-    .toggle-switch {
-      position: relative;
-      width: 48px;
-      height: 26px;
-    }
-    
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    
-    .toggle-slider {
-      position: absolute;
-      cursor: pointer;
-      inset: 0;
-      background: #e0e5ea;
-      border-radius: 26px;
-      transition: 0.3s;
-    }
-    
-    .toggle-slider::before {
-      content: '';
-      position: absolute;
-      height: 20px;
-      width: 20px;
-      left: 3px;
-      bottom: 3px;
-      background: #fff;
-      border-radius: 50%;
-      transition: 0.3s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    .toggle-switch input:checked + .toggle-slider {
-      background: var(--or-konishi);
-    }
-    
-    .toggle-switch input:checked + .toggle-slider::before {
-      transform: translateX(22px);
-    }
-
-    /* Actions */
-    .filter-actions {
-      display: flex;
-      gap: 10px;
-      margin-left: auto;
-    }
-    
-    .filter-btn {
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s ease;
-    }
-    
-    .filter-btn-reset {
-      background: transparent;
-      color: var(--gris-pierre);
-      border: 2px solid #e8ecf0;
-    }
-    
-    .filter-btn-reset:hover {
-      border-color: var(--gris-pierre);
-      color: var(--bleu-profond);
-    }
-    
-    .filter-btn-apply {
-      background: var(--bleu-profond);
-      color: #fff;
-    }
-    
-    .filter-btn-apply:hover {
-      background: #002538;
-      transform: translateY(-1px);
-    }
-
-    /* Results count */
-    .filter-results {
-      width: 100%;
-      padding-top: 16px;
-      margin-top: 4px;
-      border-top: 1px solid #f0f2f5;
-      font-size: 0.9rem;
-      color: var(--gris-pierre);
-    }
-    
-    .filter-results strong {
-      color: var(--bleu-profond);
-      font-weight: 600;
-    }
-
-    /* Compact version */
-    .filter-bar--compact {
-      padding: 14px 18px;
-      gap: 12px;
-    }
-    
-    .filter-bar--compact .filter-group {
-      min-width: 140px;
-    }
-    
-    .filter-bar--compact .filter-select {
-      padding: 10px 14px;
-      font-size: 0.9rem;
-    }
-  </style>
+  <title>Molecule — Filter Bar | Koi's Story</title>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
 
-  <h3>Barre de filtres complète</h3>
-  <div class="filter-bar">
-    <div class="filter-group">
-      <label class="filter-label">Variété</label>
-      <select class="filter-select">
-        <option value="">Toutes les variétés</option>
+  <div class="filter-bar" id="filter-bar">
+    <div class="filter-bar__inner">
+      <span class="filter-bar__label">Filtrer :</span>
+
+      <select class="filter-select" id="filter-variety" aria-label="Variété">
+        <option value="">Toutes variétés</option>
         <option value="kohaku">Kohaku</option>
-        <option value="sanke">Sanke</option>
         <option value="showa">Showa</option>
+        <option value="sanke">Sanke</option>
         <option value="butterfly">Butterfly</option>
         <option value="tancho">Tancho</option>
+        <option value="goshiki">Goshiki</option>
+        <option value="asagi">Asagi</option>
         <option value="kujaku">Kujaku</option>
       </select>
-    </div>
 
-    <div class="filter-group">
-      <label class="filter-label">Taille</label>
-      <select class="filter-select">
-        <option value="">Toutes les tailles</option>
-        <option value="small">&lt; 50 cm</option>
-        <option value="medium">50 - 70 cm</option>
-        <option value="large">70 - 90 cm</option>
-        <option value="xlarge">&gt; 90 cm</option>
+      <select class="filter-select" id="filter-age" aria-label="Classe d'âge">
+        <option value="">Tout âge</option>
+        <option value="tosai">Tosaï</option>
+        <option value="jumbo-tosai">Jumbo Tosaï</option>
+        <option value="nisai">Nisaï</option>
+        <option value="sansai">Sansaï</option>
+        <option value="yonsai">Yonsaï</option>
+        <option value="gosai">Gosai</option>
       </select>
-    </div>
 
-    <div class="filter-group">
-      <label class="filter-label">Prix maximum</label>
-      <div class="filter-price">
-        <span style="color: var(--gris-pierre);">€</span>
-        <input type="number" class="filter-price-input" placeholder="5000">
-      </div>
-    </div>
+      <select class="filter-select" id="filter-price" aria-label="Prix maximum">
+        <option value="">Prix max</option>
+        <option value="500">≤ 500 €</option>
+        <option value="1000">≤ 1 000 €</option>
+        <option value="2000">≤ 2 000 €</option>
+        <option value="5000">≤ 5 000 €</option>
+      </select>
 
-    <div class="filter-group" style="min-width: auto;">
-      <label class="filter-label">Filtres</label>
-      <div class="filter-toggle">
-        <label class="toggle-switch">
-          <input type="checkbox">
-          <span class="toggle-slider"></span>
-        </label>
-        <span class="filter-toggle-label">Lignée Konishi uniquement</span>
-      </div>
-    </div>
+      <div class="filter-bar__sep"></div>
 
-    <div class="filter-actions">
-      <button class="filter-btn filter-btn-reset">Réinitialiser</button>
-      <button class="filter-btn filter-btn-apply">Appliquer</button>
-    </div>
+      <label class="filter-toggle">
+        <input type="checkbox" id="filter-konishi">
+        <span class="filter-toggle__text">★ Konishi uniquement</span>
+      </label>
 
-    <div class="filter-results">
-      <strong>12</strong> koïs correspondent à vos critères
+      <button class="filter-reset" id="filter-reset">Réinitialiser</button>
+
+      <span class="filter-bar__count" id="filter-count">24 koïs</span>
     </div>
   </div>
 
-  <h3>Version compacte</h3>
-  <div class="filter-bar filter-bar--compact">
-    <div class="filter-group">
-      <select class="filter-select">
-        <option value="">Variété ▼</option>
-        <option value="kohaku">Kohaku</option>
-        <option value="sanke">Sanke</option>
-        <option value="showa">Showa</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <select class="filter-select">
-        <option value="">Taille ▼</option>
-        <option value="small">&lt; 50 cm</option>
-        <option value="medium">50 - 70 cm</option>
-        <option value="large">&gt; 70 cm</option>
-      </select>
-    </div>
-
-    <div class="filter-group" style="min-width: auto;">
-      <div class="filter-toggle">
-        <label class="toggle-switch">
-          <input type="checkbox">
-          <span class="toggle-slider"></span>
-        </label>
-        <span class="filter-toggle-label" style="font-size: 0.85rem;">Konishi</span>
-      </div>
-    </div>
-
-    <div class="filter-actions" style="margin-left: auto;">
-      <button class="filter-btn filter-btn-reset" style="padding: 10px 16px; font-size: 0.85rem;">✕</button>
-    </div>
+  <div class="demo-content">
+    <p>Zone catalogue — les cards apparaissent ici</p>
   </div>
 
+  <script>
+    document.getElementById('filter-reset').addEventListener('click', () => {
+      document.getElementById('filter-variety').value = '';
+      document.getElementById('filter-age').value = '';
+      document.getElementById('filter-price').value = '';
+      document.getElementById('filter-konishi').checked = false;
+    });
+  </script>
 </body>
 </html>

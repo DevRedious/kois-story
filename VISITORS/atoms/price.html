@@ -3,99 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atom — Price</title>
-  <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 24px; }
-    .group { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; }
-
-    /* ── PRICE ATOM ──────────────────────────────────────────── */
-    .price {
-      font-family: var(--font-title);
-      font-weight: 700;
-      color: var(--bleu-profond);
-      line-height: 1;
-    }
-    
-    .price-currency {
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.6em;
-      vertical-align: super;
-      margin-right: 2px;
-    }
-
-    /* Sizes */
-    .price-sm { font-size: 1.1rem; }
-    .price-md { font-size: 1.5rem; }
-    .price-lg { font-size: 2rem; }
-    .price-xl { font-size: 2.8rem; }
-
-    /* Variants */
-    .price-gold { color: var(--or-konishi); }
-    .price-red { color: var(--rouge-koi); }
-    .price-muted { color: var(--gris-pierre); }
-    .price-strikethrough {
-      text-decoration: line-through;
-      opacity: 0.6;
-    }
-
-    /* With label */
-    .price-wrapper { display: flex; flex-direction: column; gap: 4px; }
-    .price-label {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gris-pierre);
-    }
-  </style>
+  <title>Atom — Price | Koi's Story</title>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
-
-  <h3>Tailles de prix</h3>
+  <p class="demo-label">Taille small (cards liste)</p>
   <div class="group">
-    <span class="price price-sm"><span class="price-currency">€</span>1 200</span>
-    <span class="price price-md"><span class="price-currency">€</span>1 800</span>
-    <span class="price price-lg"><span class="price-currency">€</span>2 500</span>
-    <span class="price price-xl"><span class="price-currency">€</span>3 200</span>
+    <span class="price price--sm">
+      <span class="price__currency">€</span>
+      <span class="price__amount">450</span>
+    </span>
+    <span class="price price--sm">
+      <span class="price__currency">€</span>
+      <span class="price__amount">1 200</span>
+    </span>
   </div>
 
-  <h3>Variantes de couleur</h3>
+  <p class="demo-label">Taille medium (cards catalogue)</p>
   <div class="group">
-    <span class="price price-lg"><span class="price-currency">€</span>1 800</span>
-    <span class="price price-lg price-gold"><span class="price-currency">€</span>2 400</span>
-    <span class="price price-lg price-red"><span class="price-currency">€</span>1 500</span>
-    <span class="price price-lg price-muted price-strikethrough"><span class="price-currency">€</span>2 000</span>
+    <span class="price price--md">
+      <span class="price__currency">€</span>
+      <span class="price__amount">850</span>
+    </span>
+    <span class="price price--md">
+      <span class="price__currency">€</span>
+      <span class="price__amount">2 400</span>
+    </span>
   </div>
 
-  <h3>Avec label</h3>
+  <p class="demo-label">Taille large (fiche produit)</p>
   <div class="group">
-    <div class="price-wrapper">
-      <span class="price-label">Prix</span>
-      <span class="price price-lg"><span class="price-currency">€</span>1 800</span>
-    </div>
-    <div class="price-wrapper">
-      <span class="price-label">À partir de</span>
-      <span class="price price-xl"><span class="price-currency">€</span>720</span>
-    </div>
+    <span class="price price--lg">
+      <span class="price__currency">€</span>
+      <span class="price__amount">1 800</span>
+    </span>
+    <span class="price price--lg price--struck">
+      <span class="price__currency">€</span>
+      <span class="price__amount">2 200</span>
+    </span>
   </div>
 
+  <p class="demo-label">Sur fond sombre</p>
+  <div class="demo-dark">
+    <span class="price price--hero price--white">
+      <span class="price__currency">€</span>
+      <span class="price__amount">3 500</span>
+    </span>
+  </div>
 </body>
 </html>

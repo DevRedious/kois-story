@@ -1,0 +1,11 @@
+---
+description: Référence vers CLAUDE.md — spec complet prototypes et détail
+alwaysApply: true
+---
+
+# Référence CLAUDE.md
+
+Les règles Cursor dans ce dossier reprennent et détaillent le contenu de **`kois-story/CLAUDE.md`**.
+
+- Pour le détail exhaustif (exceptions 200 lignes, gaps JS admin, violations VISITORS, structure CSS cible) : lire **`CLAUDE.md`** à la racine de `kois-story`.
+- Pour le spec projet global (Rails, modèle de données, routes, contraintes THP, design) : lire **`../CLAUDE.md`** (racine THP-Final).

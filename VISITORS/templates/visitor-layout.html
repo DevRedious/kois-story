@@ -3,291 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Template — Visitor Layout</title>
-  <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      font-family: var(--font-body);
-      background: var(--blanc-perle);
-      color: var(--bleu-profond);
-      line-height: 1.6;
-    }
+  <title>Template — Visitor Layout | Koi's Story</title>
 
-    /* ── LAYOUT STRUCTURE ────────────────────────────────────── */
-    .layout {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* Header (fixed) */
-    .layout-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: #fff;
-      box-shadow: 0 2px 20px rgba(0,48,73,0.08);
-    }
-    
-    .layout-header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 16px 32px;
-    }
-
-    /* Logo */
-    .layout-logo {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-    }
-    
-    .layout-logo-name {
-      font-family: var(--font-title);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      line-height: 1;
-    }
-    
-    .layout-logo-tagline {
-      font-size: 0.65rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--or-konishi);
-      margin-top: 3px;
-    }
-
-    /* Navigation */
-    .layout-nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .layout-nav-list {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      list-style: none;
-    }
-    
-    .layout-nav-link {
-      padding: 10px 16px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--bleu-profond);
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-    
-    .layout-nav-link:hover {
-      background: rgba(0,48,73,0.04);
-      color: var(--rouge-koi);
-    }
-    
-    .layout-nav-link.active {
-      color: var(--rouge-koi);
-      font-weight: 600;
-    }
-
-    /* CTA */
-    .layout-cta {
-      padding: 12px 22px;
-      background: var(--rouge-koi);
-      color: #fff;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin-left: 16px;
-    }
-    
-    .layout-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(214,40,40,0.3);
-    }
-
-    /* Mobile menu button */
-    .layout-mobile-btn {
-      display: none;
-      width: 44px;
-      height: 44px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--bleu-profond);
-      cursor: pointer;
-    }
-
-    /* Main content area */
-    .layout-main {
-      flex: 1;
-      padding-top: 80px; /* Space for fixed header */
-    }
-
-    /* Footer */
-    .layout-footer {
-      background: var(--bleu-profond);
-      color: #fff;
-      padding: 60px 32px 32px;
-    }
-    
-    .layout-footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .layout-header-inner {
-        padding: 12px 20px;
-      }
-      
-      .layout-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        background: #fff;
-        padding: 16px;
-        gap: 8px;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0,48,73,0.1);
-      }
-      
-      .layout-nav.is-open {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      .layout-nav-list {
-        flex-direction: column;
-        width: 100%;
-        gap: 4px;
-      }
-      
-      .layout-nav-link {
-        width: 100%;
-        padding: 14px 16px;
-        text-align: center;
-      }
-      
-      .layout-cta {
-        width: 100%;
-        margin-left: 0;
-        text-align: center;
-        margin-top: 8px;
-      }
-      
-      .layout-mobile-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .layout-main {
-        padding-top: 70px;
-      }
-    }
-
-    /* Demo content styling */
-    .demo-section {
-      padding: 60px 32px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .demo-section h1 {
-      font-family: var(--font-title);
-      font-size: 2rem;
-      color: var(--bleu-profond);
-      margin-bottom: 16px;
-    }
-    
-    .demo-section p {
-      color: var(--gris-pierre);
-      line-height: 1.8;
-    }
-  </style>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
 
-  <div class="layout">
-    <!-- Header -->
-    <header class="layout-header">
-      <div class="layout-header-inner">
-        <a href="#" class="layout-logo">
-          <span class="layout-logo-name">Koi's Story</span>
-          <span class="layout-logo-tagline">Lignée Konishi</span>
-        </a>
-        
-        <nav class="layout-nav" id="layoutNav">
-          <ul class="layout-nav-list">
-            <li><a href="#" class="layout-nav-link active">Accueil</a></li>
-            <li><a href="#" class="layout-nav-link">Catalogue</a></li>
-            <li><a href="#" class="layout-nav-link">Notre élevage</a></li>
-            <li><a href="#" class="layout-nav-link">Contact</a></li>
-          </ul>
-          <a href="#" class="layout-cta">Voir le catalogue</a>
+  <!-- ═══════════════════════════════════ HEADER ═══════════════════════════ -->
+  <!-- LOGO -->
+  <a href="../pages/home.html" class="site-logo" id="site-logo">
+    <img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story">
+  </a>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="header__pill">
+      <nav class="header__nav" id="header-nav" aria-label="Navigation principale">
+        <span class="nav__indicator" id="nav-indicator"></span>
+        <ul>
+          <li><a href="../pages/home.html">Accueil</a></li>
+          <li><a href="../pages/kois.html">Nos Koïs</a></li>
+          <li class="has-dropdown">
+            <a href="#" class="dropdown-toggle">
+              Produits
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg>
+            </a>
+            <ul class="dropdown">
+              <li><a href="../pages/materiel.html">Matériel</a></li>
+              <li><a href="../pages/nourriture.html">Nourriture</a></li>
+              <li><a href="../pages/soins.html">Soins</a></li>
+            </ul>
+          </li>
+          <li><a href="../pages/azukari.html">Azukari</a></li>
+        </ul>
+      </nav>
+      <button class="header__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <!-- ═══════════════ SLOT PRINCIPAL — Insérer le contenu de la page ══════ -->
+  <main>
+    <!-- CONTENU DE LA PAGE ICI -->
+    <div class="template-slot">
+      <h1 class="template-slot__title">Template Visitor Layout</h1>
+      <p class="template-slot__desc">Ce fichier est le layout de base à utiliser pour toutes les pages visiteurs. Remplacer ce contenu par le contenu de chaque page.</p>
+    </div>
+  </main>
+  <!-- ════════════════════════════════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════ FOOTER ══════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div class="footer__bar">
+        <a href="../pages/home.html" class="footer__logo"><img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story"></a>
+        <nav class="footer__links" id="footer-links">
+          <span class="footer__indicator" id="footer-indicator"></span>
+          <a href="../pages/kois.html">Nos Koïs</a>
+          <a href="../pages/materiel.html">Matériel</a>
+          <a href="../pages/nourriture.html">Nourriture</a>
+          <a href="../pages/soins.html">Soins</a>
+          <a href="../pages/azukari.html">Azukari</a>
+          <a href="../pages/decouvrir.html">Nous découvrir</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Mentions légales</a>
         </nav>
-        
-        <button class="layout-mobile-btn" onclick="document.getElementById('layoutNav').classList.toggle('is-open')">☰</button>
+        <p class="footer__copy">&copy; 2026 Koi's Story</p>
       </div>
-    </header>
+    </div>
+  </footer>
+  <!-- ════════════════════════════════════════════════════════════════════ -->
 
-    <!-- Main Content -->
-    <main class="layout-main">
-      <div class="demo-section">
-        <h1>Template de layout visiteur</h1>
-        <p>
-          Ce template sert de base pour toutes les pages de l'espace visiteur. 
-          Il inclut le header fixe avec navigation, une zone de contenu principale 
-          extensible, et le footer. Le header devient un menu hamburger sur mobile.
-        </p>
-      </div>
-    </main>
+  <!-- CTA WhatsApp flottant -->
+  <a href="https://wa.me/33600000000" class="cta-wa-float" target="_blank" rel="noopener"
+     aria-label="Contacter par WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Contacter l'élevage
+  </a>
 
-    <!-- Footer -->
-    <footer class="layout-footer">
-      <div class="layout-footer-inner" style="text-align: center; color: rgba(255,255,255,0.5);">
-        <p>© 2026 Koi's Story — Footer à compléter avec le composant footer.html</p>
-      </div>
-    </footer>
-  </div>
+  <!-- ═════════════════════════════════════ JS ════════════════════════════ -->
+  <script src="../assets/js/header.js"></script>
+  <script src="../assets/js/animations.js"></script>
+  <script>
+    // ── Active page detection ────────────────────────────────────────
+    const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+    const subPages = { 'materiel.html': true, 'nourriture.html': true, 'soins.html': true };
+    document.querySelectorAll('.header__nav a[href]').forEach(link => {
+      if (link.getAttribute('href') !== '#' && link.getAttribute('href').split('/').pop() === currentPage) {
+        link.classList.add('active');
+      }
+    });
+    if (subPages[currentPage]) {
+      document.querySelector('.dropdown-toggle')?.classList.add('active');
+    }
 
+    // ── Liquid indicator ─────────────────────────────────────────────
+    const navEl     = document.getElementById('header-nav');
+    const navList   = navEl.querySelector('ul');
+    const indicator = document.getElementById('nav-indicator');
+
+    function moveIndicator(li) {
+      const navRect = navEl.getBoundingClientRect();
+      const liRect  = li.getBoundingClientRect();
+      indicator.style.left    = (liRect.left - navRect.left) + 'px';
+      indicator.style.width   = liRect.width + 'px';
+      indicator.style.opacity = '1';
+    }
+    function resetIndicator() {
+      const activeLi = navList.querySelector('li:has(a.active)');
+      if (activeLi) { moveIndicator(activeLi); }
+      else { indicator.style.opacity = '0'; }
+    }
+    navList.querySelectorAll(':scope > li').forEach(li => {
+      li.addEventListener('mouseenter', () => moveIndicator(li));
+    });
+    navList.addEventListener('mouseleave', resetIndicator);
+    window.addEventListener('load', resetIndicator);
+
+    // ── Burger / menu mobile ─────────────────────────────────────────
+    const burger   = document.getElementById('burger');
+    const nav      = document.getElementById('header-nav');
+    const backdrop = document.getElementById('nav-backdrop');
+
+    function openMenu() {
+      nav.classList.add('open');
+      burger.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      backdrop.style.display = 'block';
+      requestAnimationFrame(() => backdrop.classList.add('visible'));
+    }
+    function closeMenu() {
+      nav.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      backdrop.classList.remove('visible');
+      backdrop.addEventListener('transitionend', () => { backdrop.style.display = 'none'; }, { once: true });
+    }
+    burger.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
+    backdrop.addEventListener('click', closeMenu);
+
+    // ── Dropdown toggle mobile ───────────────────────────────────────
+    document.querySelector('.dropdown-toggle').addEventListener('click', (e) => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault();
+        const dropdown = e.currentTarget.closest('.has-dropdown').querySelector('.dropdown');
+        dropdown.classList.toggle('dropdown--open');
+        e.currentTarget.classList.toggle('open');
+      }
+    });
+
+    // ── Footer liquid indicator ──────────────────────────────────────
+    const footerLinksEl   = document.getElementById('footer-links');
+    const footerIndicator = document.getElementById('footer-indicator');
+    if (footerLinksEl && footerIndicator) {
+      footerLinksEl.querySelectorAll('a').forEach(a => {
+        a.addEventListener('mouseenter', () => {
+          const navRect = footerLinksEl.getBoundingClientRect();
+          const aRect   = a.getBoundingClientRect();
+          footerIndicator.style.left    = (aRect.left - navRect.left) + 'px';
+          footerIndicator.style.width   = aRect.width + 'px';
+          footerIndicator.style.opacity = '1';
+        });
+      });
+      footerLinksEl.addEventListener('mouseleave', () => {
+        footerIndicator.style.opacity = '0';
+      });
+    }
+  </script>
 </body>
 </html>

@@ -3,349 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Molecule — Koi Card</title>
-  <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --vert-dispo:   #2D9E5A;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 32px; }
-    .group { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
-
-    /* ── KOI CARD MOLECULE ───────────────────────────────────── */
-    .koi-card {
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,48,73,0.08);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      width: 280px;
-    }
-    
-    .koi-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,48,73,0.12);
-    }
-    
-    .koi-card:hover .koi-card-image img {
-      transform: scale(1.05);
-    }
-
-    /* Image container */
-    .koi-card-image {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
-    }
-    
-    .koi-card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    /* Badges */
-    .koi-card-badges {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    
-    .koi-card-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    
-    .koi-card-badge--konishi {
-      background: var(--or-konishi);
-      color: var(--bleu-profond);
-    }
-    
-    .koi-card-badge--new {
-      background: var(--rouge-koi);
-      color: #fff;
-    }
-    
-    .koi-card-badge--sold {
-      background: var(--gris-pierre);
-      color: #fff;
-    }
-
-    /* Content */
-    .koi-card-content {
-      padding: 18px;
-    }
-    
-    .koi-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 8px;
-    }
-    
-    .koi-card-name {
-      font-family: var(--font-title);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-    }
-    
-    .koi-card-variety {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 10px;
-      background: rgba(0,48,73,0.06);
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--bleu-profond);
-      margin-top: 4px;
-    }
-    
-    .koi-card-size {
-      font-size: 0.85rem;
-      color: var(--gris-pierre);
-      font-weight: 500;
-    }
-
-    /* Footer */
-    .koi-card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #f0f2f5;
-    }
-    
-    .koi-card-price {
-      font-family: var(--font-title);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-    }
-    
-    .koi-card-price-currency {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      vertical-align: super;
-      margin-right: 1px;
-    }
-    
-    .koi-card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 16px;
-      background: var(--rouge-koi);
-      color: #fff;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    
-    .koi-card-cta:hover {
-      background: #b82020;
-      transform: translateY(-1px);
-    }
-
-    /* Sold state */
-    .koi-card--sold {
-      opacity: 0.75;
-    }
-    
-    .koi-card--sold .koi-card-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.4);
-    }
-    
-    .koi-card--sold .koi-card-price {
-      color: var(--gris-pierre);
-      text-decoration: line-through;
-    }
-    
-    .koi-card--sold .koi-card-cta {
-      background: var(--gris-pierre);
-      pointer-events: none;
-    }
-  </style>
+  <title>Molecule — Koi Card | Koi's Story</title>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
+  <div class="demo-grid">
 
-  <h3>Carte standard — Disponible</h3>
-  <div class="group">
+    <!-- Card disponible + Konishi -->
     <article class="koi-card">
-      <div class="koi-card-image">
+      <div class="koi-card__thumb">
         <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Sakura">
-        <div class="koi-card-badges">
-          <span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span>
+        <div class="koi-card__badges">
+          <span class="badge badge--konishi">★ Konishi</span>
+          <span class="badge badge--new">Nouveau</span>
         </div>
       </div>
-      <div class="koi-card-content">
-        <div class="koi-card-header">
-          <div>
-            <h4 class="koi-card-name">Sakura</h4>
-            <span class="koi-card-variety">Kohaku</span>
-          </div>
-          <span class="koi-card-size">72 cm</span>
+      <div class="koi-card__body">
+        <h3 class="koi-card__name">Sakura</h3>
+        <div class="koi-card__meta">
+          <span class="badge badge--variety">Grand Voile Suda</span>
         </div>
-        <div class="koi-card-footer">
-          <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 800</span>
-          <a href="#" class="koi-card-cta">Voir →</a>
+        <div class="koi-card__specs">
+          <span>♀ Femelle</span>
+          <span>55 cm</span>
+          <span>Nisaï</span>
         </div>
+        <div class="koi-card__price"><sup>€</sup>1 800</div>
+      </div>
+      <div class="koi-card__footer">
+        <a href="../pages/product.html" class="koi-card__btn">Voir →</a>
       </div>
     </article>
-  </div>
 
-  <h3>Carte — Nouveauté + Konishi</h3>
-  <div class="group">
+    <!-- Card standard -->
     <article class="koi-card">
-      <div class="koi-card-image">
-        <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Midori">
-        <div class="koi-card-badges">
-          <span class="koi-card-badge koi-card-badge--new">Nouveau</span>
-          <span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span>
+      <div class="koi-card__thumb">
+        <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Butterfly Tancho">
+        <div class="koi-card__badges">
+          <span class="badge badge--konishi">★ Konishi</span>
         </div>
       </div>
-      <div class="koi-card-content">
-        <div class="koi-card-header">
-          <div>
-            <h4 class="koi-card-name">Midori</h4>
-            <span class="koi-card-variety">Butterfly</span>
-          </div>
-          <span class="koi-card-size">55 cm</span>
+      <div class="koi-card__body">
+        <h3 class="koi-card__name">Butterfly Tancho</h3>
+        <div class="koi-card__meta">
+          <span class="badge badge--variety">Kujaku</span>
         </div>
-        <div class="koi-card-footer">
-          <span class="koi-card-price"><span class="koi-card-price-currency">€</span>2 400</span>
-          <a href="#" class="koi-card-cta">Voir →</a>
+        <div class="koi-card__specs">
+          <span>♂ Mâle</span>
+          <span>48 cm</span>
+          <span>Tosaï</span>
         </div>
+        <div class="koi-card__price"><sup>€</sup>950</div>
+      </div>
+      <div class="koi-card__footer">
+        <a href="../pages/product.html" class="koi-card__btn">Voir →</a>
       </div>
     </article>
-  </div>
 
-  <h3>Carte — Vendue</h3>
-  <div class="group">
+    <!-- Card vendue -->
     <article class="koi-card koi-card--sold">
-      <div class="koi-card-image">
-        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Taro">
-        <div class="koi-card-badges">
-          <span class="koi-card-badge koi-card-badge--sold">Vendu</span>
-        </div>
+      <div class="koi-card__thumb">
+        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Showa">
       </div>
-      <div class="koi-card-content">
-        <div class="koi-card-header">
-          <div>
-            <h4 class="koi-card-name">Taro</h4>
-            <span class="koi-card-variety">Showa</span>
-          </div>
-          <span class="koi-card-size">80 cm</span>
+      <div class="koi-card__body">
+        <h3 class="koi-card__name">Asahi</h3>
+        <div class="koi-card__meta">
+          <span class="badge badge--variety">Showa</span>
         </div>
-        <div class="koi-card-footer">
-          <span class="koi-card-price"><span class="koi-card-price-currency">€</span>3 200</span>
-          <span class="koi-card-cta">Indisponible</span>
+        <div class="koi-card__specs">
+          <span>♀ Femelle</span>
+          <span>62 cm</span>
+          <span>Sansaï</span>
         </div>
+        <div class="koi-card__price"><sup>€</sup>2 400</div>
+      </div>
+      <div class="koi-card__footer">
+        <span class="koi-card__btn">Vendu</span>
       </div>
     </article>
+
   </div>
-
-  <h3>Grille de cartes (aperçu catalogue)</h3>
-  <div class="group">
-    <article class="koi-card">
-      <div class="koi-card-image">
-        <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Koi 1">
-        <div class="koi-card-badges">
-          <span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span>
-        </div>
-      </div>
-      <div class="koi-card-content">
-        <div class="koi-card-header">
-          <div>
-            <h4 class="koi-card-name">Sakura</h4>
-            <span class="koi-card-variety">Kohaku</span>
-          </div>
-          <span class="koi-card-size">72 cm</span>
-        </div>
-        <div class="koi-card-footer">
-          <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 800</span>
-          <a href="#" class="koi-card-cta">Voir →</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="koi-card">
-      <div class="koi-card-image">
-        <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koi 2">
-      </div>
-      <div class="koi-card-content">
-        <div class="koi-card-header">
-          <div>
-            <h4 class="koi-card-name">Hana</h4>
-            <span class="koi-card-variety">Sanke</span>
-          </div>
-          <span class="koi-card-size">68 cm</span>
-        </div>
-        <div class="koi-card-footer">
-          <span class="koi-card-price"><span class="koi-card-price-currency">€</span>1 450</span>
-          <a href="#" class="koi-card-cta">Voir →</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="koi-card">
-      <div class="koi-card-image">
-        <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Koi 3">
-        <div class="koi-card-badges">
-          <span class="koi-card-badge koi-card-badge--konishi">★ Konishi</span>
-          <span class="koi-card-badge koi-card-badge--new">Nouveau</span>
-        </div>
-      </div>
-      <div class="koi-card-content">
-        <div class="koi-card-header">
-          <div>
-            <h4 class="koi-card-name">Kenzan</h4>
-            <span class="koi-card-variety">Showa</span>
-          </div>
-          <span class="koi-card-size">85 cm</span>
-        </div>
-        <div class="koi-card-footer">
-          <span class="koi-card-price"><span class="koi-card-price-currency">€</span>3 800</span>
-          <a href="#" class="koi-card-cta">Voir →</a>
-        </div>
-      </div>
-    </article>
-  </div>
-
 </body>
 </html>

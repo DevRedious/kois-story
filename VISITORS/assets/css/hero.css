@@ -1,0 +1,125 @@
+/* ==========================================================================
+   hero.css — Organism hero Koi's Story V3
+   ========================================================================== */
+
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+
+/* SVG defs pour clip-path (invisible, pas de layout) */
+.clip-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* Méthode 2 clip-path : bas du hero découpé en vague (fond visible dans les creux) */
+.hero--wavy-bottom {
+  clip-path: url(#hero-wave);
+  -webkit-clip-path: url(#hero-wave);
+}
+
+.hero__bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 30%;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+.hero.loaded .hero__bg { transform: scale(1); }
+
+.hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.40) 40%,
+    rgba(0,0,0,0.15) 70%,
+    transparent 100%
+  );
+}
+
+.hero__content {
+  position: relative; z-index: 2;
+  max-width: var(--max-width); margin: 0 auto;
+  padding: var(--sp-24) var(--sp-10);
+  width: 100%;
+}
+
+.hero__badge {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4); background: var(--c-wine);
+  color: var(--c-cream); border-radius: var(--r-full);
+  font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 700;
+  text-transform: uppercase; letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--sp-5);
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
+  font-weight: 900;
+  color: var(--c-white);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--sp-5);
+  max-width: 780px;
+}
+
+.hero__subtitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  color: var(--w-70);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--sp-8);
+  max-width: 560px;
+}
+
+.hero__ctas { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+
+.hero__wave {
+  position: absolute; bottom: -2px; left: 0; right: 0; z-index: 3; line-height: 0;
+}
+.hero__wave svg { display: block; width: 100%; height: auto; }
+
+/* ── VIDEO HERO ──────────────────────────────────────────────────── */
+.hero__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+
+/* ── HERO INTRO — texte sous la vidéo ───────────────────────────── */
+.hero-intro { padding: var(--sp-16) var(--sp-10) var(--sp-12); }
+.hero-intro__inner { max-width: var(--max-width); margin: 0 auto; }
+.hero-intro__title {
+  font-family: var(--font-serif); font-size: var(--text-hero);
+  font-weight: 900; color: var(--c-black);
+  line-height: var(--leading-tight); margin-bottom: var(--sp-5); max-width: 780px;
+}
+.hero-intro__sub {
+  font-size: var(--text-lg); color: var(--n-55);
+  line-height: var(--leading-normal); margin-bottom: var(--sp-8); max-width: 560px;
+}
+.hero-intro__ctas { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+
+/* ── HERO COMPACT — pages intérieures ───────────────────────────── */
+.hero-compact {
+  background: var(--c-black);
+  padding: calc(var(--header-height) + var(--sp-16)) var(--sp-10) var(--sp-12);
+  position: relative; overflow: hidden;
+}
+.hero-compact::after {
+  content: ''; position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0.18; pointer-events: none;
+}
+.hero-compact__inner {
+  max-width: var(--max-width); margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.hero-compact__label {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: var(--tracking-wider); color: var(--c-red); margin-bottom: var(--sp-3);
+}
+.hero-compact__title {
+  font-family: var(--font-serif); font-size: var(--text-3xl);
+  font-weight: 900; color: var(--c-white); margin-bottom: var(--sp-3);
+}
+.hero-compact__sub { font-size: var(--text-lg); color: var(--w-70); max-width: 560px; }

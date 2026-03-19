@@ -3,170 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atom — Koi Thumbnail</title>
-  <style>
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 24px; }
-    .group { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
-
-    /* ── KOI THUMB ATOM ──────────────────────────────────────── */
-    .koi-thumb {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #e8ecf0 0%, #dde3e8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .koi-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-    
-    .koi-thumb:hover img {
-      transform: scale(1.05);
-    }
-
-    /* Sizes */
-    .koi-thumb-sm { width: 80px; height: 80px; }
-    .koi-thumb-md { width: 120px; height: 120px; }
-    .koi-thumb-lg { width: 180px; height: 180px; }
-    .koi-thumb-xl { width: 280px; height: 280px; }
-
-    /* Aspect ratios */
-    .koi-thumb-card { width: 100%; aspect-ratio: 4/3; }
-    .koi-thumb-hero { width: 100%; aspect-ratio: 16/10; }
-    .koi-thumb-square { width: 100%; aspect-ratio: 1/1; }
-
-    /* Overlays */
-    .koi-thumb-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,48,73,0.6) 0%, transparent 50%);
-      display: flex;
-      align-items: flex-end;
-      padding: 12px;
-    }
-    
-    .koi-thumb-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-    }
-    
-    .koi-thumb-sold {
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gris-pierre);
-    }
-
-    /* Gallery nav */
-    .koi-thumb-nav {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 12px;
-      pointer-events: none;
-    }
-    
-    .koi-thumb-nav-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.9);
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      pointer-events: auto;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-    }
-    
-    .koi-thumb-nav-btn:hover {
-      background: #fff;
-      transform: scale(1.1);
-    }
-  </style>
+  <title>Atom — Koi Thumb | Koi's Story</title>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
-
-  <h3>Tailles fixes</h3>
-  <div class="group">
-    <div class="koi-thumb koi-thumb-sm">🐟</div>
-    <div class="koi-thumb koi-thumb-md">🐟</div>
-    <div class="koi-thumb koi-thumb-lg">🐟</div>
-    <div class="koi-thumb koi-thumb-xl">🐟</div>
-  </div>
-
-  <h3>Ratios (avec images placeholder)</h3>
-  <div class="group" style="width: 300px;">
-    <div class="koi-thumb koi-thumb-card">
-      <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koi">
+  <p class="demo-label">Ratio 3/4 — portrait (card produit)</p>
+  <div class="demo-row">
+    <div class="koi-thumb koi-thumb--3-4 w-180">
+      <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Butterfly Tancho Kujaku">
     </div>
-  </div>
-  <div class="group" style="width: 300px;">
-    <div class="koi-thumb koi-thumb-hero">
-      <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Koi">
-      <div class="koi-thumb-overlay">
-        <span style="color: #fff; font-size: 0.85rem; font-weight: 600;">Vue de la ferme</span>
-      </div>
+    <div class="koi-thumb koi-thumb--3-4 w-240">
+      <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Sakura Grand Voile Suda">
+    </div>
+    <div class="koi-thumb koi-thumb--3-4 w-180">
+      <div class="koi-thumb__placeholder">Photo à venir</div>
     </div>
   </div>
 
-  <h3>Avec badge Konishi</h3>
-  <div class="group">
-    <div class="koi-thumb koi-thumb-lg">
-      <img src="../../docs/assets/24148-Sakura-Grand-Voile-Suda-600x800.jpg" alt="Koi">
-      <span class="koi-thumb-badge" style="background: var(--or-konishi); color: var(--bleu-profond); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600;">★ Konishi</span>
+  <p class="demo-label">Ratio 4/3 — paysage (éditorial / hero compact)</p>
+  <div class="demo-row">
+    <div class="koi-thumb koi-thumb--4-3 w-320">
+      <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Carpe Koï Showa">
     </div>
   </div>
 
-  <h3>Vendu (overlay)</h3>
-  <div class="group">
-    <div class="koi-thumb koi-thumb-lg">
-      <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Koi">
-      <div class="koi-thumb-sold">Vendu</div>
+  <p class="demo-label">Ratio 4/3 avec overlay gradient — texte superposé</p>
+  <div class="demo-row">
+    <div class="koi-thumb koi-thumb--4-3 koi-thumb--overlay w-320">
+      <img src="../../docs/assets/carpe-koi-showa-scaled-hero.jpg" alt="Hero Showa">
     </div>
   </div>
 
-  <h3>Galerie avec navigation</h3>
-  <div class="group" style="width: 400px;">
-    <div class="koi-thumb koi-thumb-hero">
-      <img src="../../docs/assets/carpe-koi-showa-scaled.jpg" alt="Koi">
-      <div class="koi-thumb-nav">
-        <button class="koi-thumb-nav-btn">❮</button>
-        <button class="koi-thumb-nav-btn">❯</button>
-      </div>
+  <p class="demo-label">Ratio 1/1 — carré (shop card)</p>
+  <div class="demo-row">
+    <div class="koi-thumb koi-thumb--1-1 w-180">
+      <img src="../../docs/assets/butterfly-tancho-kujaku.jpg" alt="Butterfly Tancho">
     </div>
   </div>
-
 </body>
 </html>
