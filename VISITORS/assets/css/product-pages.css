@@ -1,0 +1,145 @@
+/* ==========================================================================
+   product-pages.css — Convention page produit Koi's Story V3
+   ========================================================================== */
+
+/* ── CONVENTION PAGE PRODUIT ─────────────────────────────────────── */
+.breadcrumb { max-width: var(--max-width); margin: 0 auto; padding: var(--sp-4) var(--sp-10) 0; }
+.breadcrumb-inner {
+  display: flex; align-items: center; gap: var(--sp-2); font-size: var(--text-sm);
+}
+.breadcrumb-inner a { color: var(--n-55); text-decoration: none; transition: color var(--t-fast); }
+.breadcrumb-inner a:hover { color: var(--c-black); }
+.breadcrumb-inner span { color: var(--n-55); }
+.breadcrumb-inner span:last-child { color: var(--c-black); font-weight: 600; }
+
+.product { max-width: var(--max-width); margin: 0 auto; padding: var(--sp-6) var(--sp-10) var(--sp-20); }
+.product-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--sp-12); align-items: start; }
+
+.gallery-main {
+  position: relative; aspect-ratio: 3/4;
+  border-radius: var(--r-xl); overflow: hidden; background: var(--n-08); cursor: zoom-in;
+}
+.gallery-track {
+  display: flex; width: 100%; height: 100%;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1); will-change: transform;
+}
+.gallery-track.is-dragging { transition: none; }
+.gallery-track img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; }
+.gallery-thumbs { display: flex; gap: var(--sp-3); margin-top: var(--sp-3); }
+.gallery-thumb {
+  width: 80px; height: 80px; flex-shrink: 0;
+  border-radius: var(--r-lg); overflow: hidden; cursor: pointer;
+  border: 3px solid transparent; transition: border-color var(--t-fast), transform var(--t-fast);
+}
+.gallery-thumb.active { border-color: var(--c-red); }
+.gallery-thumb:hover { transform: translateY(-2px); }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.info { display: flex; flex-direction: column; gap: var(--sp-5); }
+.info-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.info-meta-badge {
+  display: inline-flex; align-items: center; gap: 4px; padding: 5px 14px;
+  border-radius: var(--r-full); font-family: var(--font-sans);
+  font-size: var(--text-xs); font-weight: 700; background: var(--n-08); color: var(--c-black);
+  text-transform: uppercase; letter-spacing: var(--tracking-wide);
+}
+.info-meta-badge.konishi { background: var(--c-wine); padding: 5px 10px; }
+.info-meta-badge.konishi img { height: 18px; width: auto; filter: brightness(0) invert(1); }
+
+.price-block {
+  background: var(--c-white); border-radius: var(--r-xl);
+  padding: var(--sp-6); box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column; gap: var(--sp-4);
+}
+.price-label {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: var(--tracking-wider); color: var(--n-55);
+}
+.price-availability {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: 5px 12px; border-radius: var(--r-xl);
+  background: rgba(45,158,90,0.10);
+  font-size: var(--text-xs); font-weight: 700; color: #2d9e5a;
+}
+.price {
+  font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700; color: var(--c-red); line-height: 1;
+}
+.price-currency { font-size: 0.5em; vertical-align: super; margin-right: 3px; }
+.cta-whatsapp {
+  display: flex; align-items: center; justify-content: center; gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-8); background: var(--c-wa); color: var(--c-white);
+  border-radius: var(--r-full); font-family: var(--font-sans);
+  font-size: var(--text-base); font-weight: 700; text-decoration: none;
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+  box-shadow: var(--shadow-wa);
+}
+.cta-whatsapp:hover { background: #25d366; transform: translateY(-2px); }
+.cta-note { font-size: var(--text-sm); color: var(--n-55); text-align: center; }
+
+.specs {
+  background: var(--c-white); border-radius: var(--r-xl);
+  padding: var(--sp-6); box-shadow: var(--shadow-sm);
+}
+.specs h3 {
+  font-family: var(--font-serif); font-size: var(--text-lg); font-weight: 700;
+  color: var(--c-black); margin-bottom: var(--sp-5);
+  padding-bottom: var(--sp-2); border-bottom: 2px solid var(--c-wine-20);
+}
+.specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.spec {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: var(--sp-3); background: var(--n-04); border-radius: var(--r-md);
+}
+.spec-label {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: var(--tracking-wider); color: var(--n-55);
+}
+.spec-value { font-size: var(--text-base); font-weight: 600; color: var(--c-black); }
+
+.description {
+  background: var(--c-white); border-radius: var(--r-xl);
+  padding: var(--sp-6); box-shadow: var(--shadow-sm);
+}
+.description h3 {
+  font-family: var(--font-serif); font-size: var(--text-lg); font-weight: 700;
+  color: var(--c-black); margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-2); border-bottom: 2px solid var(--c-wine-20);
+}
+.description p {
+  font-size: var(--text-base); color: var(--n-75);
+  line-height: var(--leading-normal); margin-bottom: var(--sp-3);
+}
+.description p:last-child { margin-bottom: 0; }
+
+.certifications {
+  background: rgba(99,15,15,0.05);
+  border: 2px solid var(--c-wine-20); border-radius: var(--r-xl); padding: var(--sp-6);
+}
+.cert-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  background: var(--c-wine); border-radius: var(--r-full);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; color: var(--c-cream);
+}
+.cert-title { font-family: var(--font-serif); font-size: var(--text-base); font-weight: 700; color: var(--c-wine); }
+.cert-text { font-size: var(--text-sm); color: var(--n-55); line-height: var(--leading-normal); }
+
+.related { padding: var(--sp-16) var(--sp-10); background: rgba(245, 245, 242, 0.90); }
+.related-inner { max-width: var(--max-width); margin: 0 auto; }
+.related h2 {
+  font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 700;
+  color: var(--c-black); margin-bottom: var(--sp-8); text-align: center;
+}
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-6); }
+
+@media (max-width: 900px) {
+  .product-grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+  .specs-grid { grid-template-columns: 1fr; }
+  .related-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .product { padding-left: var(--sp-4); padding-right: var(--sp-4); }
+  .breadcrumb { padding-left: var(--sp-4); padding-right: var(--sp-4); }
+  .related { padding-left: var(--sp-4); padding-right: var(--sp-4); }
+}

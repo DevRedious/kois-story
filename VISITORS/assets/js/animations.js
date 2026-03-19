@@ -1,0 +1,41 @@
+/**
+ * animations.js — Koi's Story
+ * Triggers .is-visible on [data-animate] elements when they enter the viewport.
+ * Compatible with Turbo (Rails Hotwire) via the turbo:load event.
+ */
+
+const animObserver = new IntersectionObserver((entries) => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    entry.target.classList.add('is-visible');
+    animObserver.unobserve(entry.target);
+  }
+}, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+
+const initAnimations = () => {
+  document.querySelectorAll('[data-animate]').forEach((el) => {
+    if (!el.classList.contains('is-visible')) animObserver.observe(el);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', initAnimations);
+document.addEventListener('turbo:load', initAnimations);
+
+/* ── Floating CTA — hide when footer enters viewport ────────────────── */
+const initFloatCta = () => {
+  const cta    = document.querySelector('.cta-wa-float');
+  const footer = document.querySelector('.site-footer');
+  if (!cta || !footer) return;
+
+  const check = () => {
+    cta.classList.toggle('cta-wa-float--hidden',
+      footer.getBoundingClientRect().top < window.innerHeight);
+  };
+
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+};
+
+document.addEventListener('DOMContentLoaded', initFloatCta);
+document.addEventListener('turbo:load', initFloatCta);
+

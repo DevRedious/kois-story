@@ -1,0 +1,110 @@
+/* ==========================================================================
+   catalogue.css — Molecule filter-bar + grille catalogue Koi's Story V3
+   ========================================================================== */
+
+/* ── FILTER BAR ──────────────────────────────────────────────────────── */
+.filter-bar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--n-08);
+  box-shadow: var(--shadow-sm);
+}
+.filter-bar__inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: var(--sp-3) var(--sp-8);
+  display: flex; align-items: center; gap: var(--sp-4); flex-wrap: wrap;
+}
+
+.filter-bar__label {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: var(--tracking-wider); color: var(--n-75); flex-shrink: 0;
+}
+
+.filter-select {
+  padding: var(--sp-2) var(--sp-8) var(--sp-2) var(--sp-3);
+  background: var(--c-cream);
+  border: 1px solid var(--n-17); border-radius: var(--r-md);
+  font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500;
+  color: var(--c-black); cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sp-3) center;
+  transition: border-color var(--t-fast);
+}
+.filter-select:focus { outline: none; border-color: var(--c-red); }
+.filter-select.active { border-color: var(--c-red); background-color: var(--c-red-10); }
+
+.filter-toggle { display: flex; align-items: center; gap: var(--sp-2); cursor: pointer; user-select: none; }
+.filter-toggle input[type="checkbox"] {
+  appearance: none; width: 36px; height: 20px;
+  background: var(--n-17); border-radius: var(--r-full);
+  position: relative; cursor: pointer; transition: background var(--t-fast);
+}
+.filter-toggle input[type="checkbox"]::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--c-white); transition: transform var(--t-fast);
+}
+.filter-toggle input[type="checkbox"]:checked { background: var(--c-wine); }
+.filter-toggle input[type="checkbox"]:checked::after { transform: translateX(16px); }
+.filter-toggle__text { font-size: var(--text-sm); font-weight: 600; color: var(--c-black); }
+
+.filter-bar__sep { width: 1px; height: 20px; background: var(--n-17); flex-shrink: 0; }
+
+.filter-reset {
+  font-size: var(--text-sm); font-weight: 600; color: var(--c-wine);
+  cursor: pointer; background: none; border: none; font-family: inherit;
+  text-decoration: underline; text-underline-offset: 2px;
+  transition: opacity var(--t-fast);
+}
+.filter-reset:hover { opacity: 0.7; }
+
+.filter-bar__count { margin-left: auto; font-size: var(--text-sm); color: var(--n-75); font-weight: 500; }
+
+/* ── GRILLE CATALOGUE ────────────────────────────────────────────────── */
+.catalogue-section {
+  padding: var(--sp-10) var(--sp-10) var(--sp-20);
+  max-width: var(--max-width); margin: 0 auto;
+}
+
+.catalogue__header { margin-bottom: var(--sp-6); }
+.catalogue__label {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: var(--tracking-wider); color: var(--c-wine); margin-bottom: var(--sp-2);
+}
+.catalogue__title {
+  font-family: var(--font-serif); font-size: var(--text-3xl); font-weight: 700;
+  color: var(--c-black); line-height: var(--leading-snug);
+}
+
+.catalogue__editorial { margin-bottom: var(--sp-8); }
+
+.koi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6); margin-bottom: var(--sp-12);
+}
+
+.koi-grid .koi-card[hidden] { display: none; }
+
+/* Placeholder state for koi-card-image (no photo yet) */
+.koi-card-image--placeholder {
+  display: flex; align-items: center; justify-content: center;
+}
+.koi-card-image--placeholder .koi-card-placeholder-text {
+  color: var(--n-36); font-style: italic; font-size: var(--text-sm); z-index: 1; position: relative;
+}
+.koi-card-image-overlay--dim { background: rgba(8, 8, 8, 0.3); }
+
+/* ── ALIASES CONVENTION PAGE ─────────────────────────────────────── */
+.catalogue { padding: var(--sp-10) var(--sp-10) var(--sp-20); max-width: var(--max-width); margin: 0 auto; }
+.catalogue__inner { max-width: var(--max-width); margin: 0 auto; }
+.filter-count { font-size: var(--text-sm); color: var(--n-75); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .koi-grid { grid-template-columns: repeat(2, 1fr); }
+  .filter-bar__inner { padding: var(--sp-3) var(--sp-4); }
+}
+@media (max-width: 480px) {
+  .koi-grid { grid-template-columns: 1fr; }
+}

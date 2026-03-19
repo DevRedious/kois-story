@@ -1,0 +1,31 @@
+/* ==========================================================================
+   price.css — Atom price Koi's Story V3
+   ========================================================================== */
+
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: var(--font-serif);
+  color: var(--c-red);
+  line-height: 1;
+}
+.price__currency {
+  font-size: 0.55em;
+  font-weight: 700;
+  vertical-align: super;
+  margin-right: 1px;
+}
+.price__amount { font-weight: 700; }
+.price__cents {
+  font-size: 0.50em;
+  font-weight: 400;
+  vertical-align: super;
+}
+
+.price--sm   { font-size: var(--text-xl); }
+.price--md   { font-size: var(--text-2xl); }
+.price--lg   { font-size: var(--text-3xl); }
+.price--hero { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+.price--white  { color: var(--c-white); }
+.price--struck { text-decoration: line-through; opacity: 0.45; }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organism — Hero | Koi's Story</title>
+  <link rel="stylesheet" href="../assets/css/visitor.css">
+  <link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+
+  <div class="hero" id="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__overlay"></div>
+
+    <div class="hero__content">
+      <span class="hero__badge"><span aria-hidden="true">★</span> Seul élevage Konishi en France</span>
+      <h1 class="hero__title">Des koïs d'exception,<br>issus de la lignée Konishi</h1>
+      <p class="hero__subtitle">
+        Mathilde &amp; Emmanuel vous proposent des carpes koïs sélectionnées avec passion,
+        héritières du savoir-faire japonais Konishi. Livraison dans un rayon de 50 km.
+      </p>
+      <div class="hero__ctas">
+        <a href="../pages/kois.html" class="btn btn--primary" aria-label="Voir le catalogue complet de carpes koïs">Voir le catalogue</a>
+        <a href="../pages/decouvrir.html" class="btn btn--ghost-white" aria-label="Découvrir notre élevage et notre histoire">Notre élevage</a>
+      </div>
+    </div>
+
+    <div class="hero__wave">
+      <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#f5f5f2"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="section-after">
+    <p>Section suivante (fond crème)</p>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.getElementById('hero').classList.add('loaded');
+    });
+  </script>
+</body>
+</html>
