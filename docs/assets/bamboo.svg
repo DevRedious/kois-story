@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 400" fill="currentColor">
+
+  <!-- ===================================================
+       Bambou — Koi's Story
+       Style : silhouette japonaise plate, 3 tiges
+       Usage : fill="currentColor" → colorable via CSS
+       =================================================== -->
+
+  <!-- ── TIGE 1 (gauche, léger lean droite) ── -->
+  <g transform="rotate(-3, 65, 200)">
+    <!-- segments -->
+    <rect x="58" y="0"   width="13" height="62" rx="2"/>
+    <rect x="58" y="70"  width="13" height="62" rx="2"/>
+    <rect x="58" y="140" width="13" height="62" rx="2"/>
+    <rect x="58" y="210" width="13" height="62" rx="2"/>
+    <rect x="58" y="280" width="13" height="120" rx="2"/>
+    <!-- nœuds -->
+    <rect x="55" y="62"  width="19" height="9" rx="3"/>
+    <rect x="55" y="132" width="19" height="9" rx="3"/>
+    <rect x="55" y="202" width="19" height="9" rx="3"/>
+    <rect x="55" y="272" width="19" height="9" rx="3"/>
+  </g>
+
+  <!-- ── TIGE 2 (centre, lean modéré) ── -->
+  <g transform="rotate(-7, 130, 200)">
+    <!-- segments -->
+    <rect x="122" y="-30" width="15" height="68" rx="2"/>
+    <rect x="122" y="46"  width="15" height="68" rx="2"/>
+    <rect x="122" y="122" width="15" height="68" rx="2"/>
+    <rect x="122" y="198" width="15" height="68" rx="2"/>
+    <rect x="122" y="274" width="15" height="126" rx="2"/>
+    <!-- nœuds -->
+    <rect x="119" y="38"  width="21" height="10" rx="3"/>
+    <rect x="119" y="114" width="21" height="10" rx="3"/>
+    <rect x="119" y="190" width="21" height="10" rx="3"/>
+    <rect x="119" y="266" width="21" height="10" rx="3"/>
+  </g>
+
+  <!-- ── TIGE 3 (droite, lean fort) ── -->
+  <g transform="rotate(-13, 195, 200)">
+    <!-- segments -->
+    <rect x="186" y="-60" width="17" height="72" rx="2"/>
+    <rect x="186" y="20"  width="17" height="72" rx="2"/>
+    <rect x="186" y="100" width="17" height="72" rx="2"/>
+    <rect x="186" y="180" width="17" height="72" rx="2"/>
+    <rect x="186" y="260" width="17" height="140" rx="2"/>
+    <!-- nœuds -->
+    <rect x="183" y="12"  width="23" height="10" rx="3"/>
+    <rect x="183" y="92"  width="23" height="10" rx="3"/>
+    <rect x="183" y="172" width="23" height="10" rx="3"/>
+    <rect x="183" y="252" width="23" height="10" rx="3"/>
+  </g>
+
+  <!-- ── FEUILLES TIGE 1 ── -->
+  <!-- nœud y≈272 -->
+  <path d="M73,268 C82,255 106,258 112,262 C106,266 82,272 73,268Z" transform="rotate(-10,90,263)"/>
+  <path d="M57,270 C48,257 24,260 18,264 C24,268 48,274 57,270Z" transform="rotate(15,38,265)"/>
+  <!-- nœud y≈202 -->
+  <path d="M73,198 C82,183 108,186 115,191 C108,196 82,203 73,198Z" transform="rotate(-20,94,191)"/>
+  <path d="M57,200 C46,185 22,188 15,193 C22,198 46,205 57,200Z" transform="rotate(8,36,193)"/>
+  <path d="M73,196 C80,182 100,188 104,194 C100,200 80,206 73,196Z" transform="rotate(-45,88,194)"/>
+  <!-- nœud y≈132 -->
+  <path d="M72,128 C81,113 105,116 112,121 C105,126 81,133 72,128Z" transform="rotate(-15,92,121)"/>
+  <path d="M58,130 C47,115 23,118 16,123 C23,128 47,135 58,130Z" transform="rotate(20,37,123)"/>
+
+  <!-- ── FEUILLES TIGE 2 ── -->
+  <!-- nœud y≈266 -->
+  <path d="M138,262 C148,246 174,250 181,255 C174,260 148,268 138,262Z" transform="rotate(-25,160,255)"/>
+  <path d="M121,264 C109,248 83,252 76,257 C83,262 109,270 121,264Z" transform="rotate(10,98,257)"/>
+  <path d="M138,260 C146,244 168,250 172,256 C168,262 146,268 138,260Z" transform="rotate(-55,155,254)"/>
+  <!-- nœud y≈190 -->
+  <path d="M139,186 C150,169 178,173 186,179 C178,185 150,193 139,186Z" transform="rotate(-30,163,178)"/>
+  <path d="M120,188 C107,171 79,175 71,181 C79,187 107,195 120,188Z" transform="rotate(15,96,181)"/>
+  <path d="M139,184 C147,168 170,174 174,180 C170,186 147,192 139,184Z" transform="rotate(-60,156,176)"/>
+  <!-- nœud y≈114 -->
+  <path d="M140,110 C152,92 180,96 189,103 C180,110 152,118 140,110Z" transform="rotate(-20,165,101)"/>
+  <path d="M121,112 C107,94 79,98 70,105 C79,112 107,120 121,112Z" transform="rotate(25,96,103)"/>
+
+  <!-- ── FEUILLES TIGE 3 ── -->
+  <!-- nœud y≈252 -->
+  <path d="M205,248 C216,231 244,235 252,241 C244,247 216,255 205,248Z" transform="rotate(-30,229,240)"/>
+  <path d="M185,250 C172,233 144,237 136,243 C144,249 172,257 185,250Z" transform="rotate(12,161,243)"/>
+  <path d="M205,246 C214,229 238,236 242,243 C238,250 214,256 205,246Z" transform="rotate(-60,223,240)"/>
+  <!-- nœud y≈172 -->
+  <path d="M206,168 C218,149 248,153 257,160 C248,167 218,175 206,168Z" transform="rotate(-35,232,158)"/>
+  <path d="M185,170 C171,151 141,155 132,162 C141,169 171,177 185,170Z" transform="rotate(18,159,162)"/>
+  <path d="M206,166 C215,148 240,155 244,162 C240,169 215,175 206,166Z" transform="rotate(-65,225,158)"/>
+  <!-- nœud y≈92 -->
+  <path d="M207,88 C220,68 252,72 261,80 C252,88 220,96 207,88Z" transform="rotate(-25,234,78)"/>
+  <path d="M184,90 C169,70 137,74 128,82 C137,90 169,98 184,90Z" transform="rotate(20,156,80)"/>
+
+</svg>
