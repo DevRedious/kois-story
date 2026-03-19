@@ -51,7 +51,7 @@
 .btn--dark { background: var(--c-black); color: var(--c-white); border-color: var(--c-black); }
 .btn--dark:hover { background: rgba(0,0,0,0.80); border-color: rgba(0,0,0,0.80); }
 
-.btn--wa { background: var(--c-wa); color: var(--c-white); border-color: var(--c-wa); }
+.btn--wa { background: var(--c-wa); color: var(--c-black); border-color: var(--c-wa); }
 .btn--wa:hover { background: #25d366; border-color: #25d366; box-shadow: var(--shadow-wa); }
 
 .btn--sm   { padding: var(--sp-2) var(--sp-4); font-size: var(--text-sm); }
