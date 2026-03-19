@@ -13,7 +13,7 @@ ADMIN/              @DevRedious
 
 # Public-facing prototype — reviewed by the VISITORS dev
 # Replace @ValVoy-github and @ff14eternitalis-github with real usernames
-VISITORS/           @ValVoy-github @ff14eternitalis-github
+VISITORS/           @ValVoy @ff14eternitalis-debug
 
 # Shared design tokens and docs
 docs/               @DevRedious
