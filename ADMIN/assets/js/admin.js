@@ -58,34 +58,29 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	// ── ACTIONS TABLEAU (Éditer / Supprimer / Voir) ───────────────
+	// ── SUPPRIMER (modal confirm) ─────────────────────────────────
+	let pendingDeleteRow = null;
+
 	document.addEventListener("click", (e) => {
-		const btn = e.target.closest(".btn");
+		const btn = e.target.closest("[data-delete-label]");
 		if (!btn) return;
-		const text = btn.textContent.trim();
+		e.preventDefault();
+		pendingDeleteRow = btn.closest("tr");
+		const label = btn.dataset.deleteLabel || "cet élément";
+		const itemEl = document.getElementById("confirm-item-label");
+		if (itemEl) itemEl.textContent = label;
+		window.AdminModal?.open("modal-confirm");
+	});
 
-		if (text === "Éditer") {
-			e.preventDefault();
-			showNotification("Ouverture du formulaire d'édition…", "info");
+	document.addEventListener("click", (e) => {
+		if (!e.target.closest("#btn-confirm-delete")) return;
+		window.AdminModal?.closeAll();
+		if (pendingDeleteRow) {
+			pendingDeleteRow.style.transition = "opacity 0.3s ease";
+			pendingDeleteRow.style.opacity = "0";
+			setTimeout(() => { pendingDeleteRow?.remove(); pendingDeleteRow = null; }, 300);
 		}
-
-		if (text === "Supprimer") {
-			e.preventDefault();
-			if (confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
-				showNotification("Élément supprimé", "success");
-				const row = btn.closest("tr");
-				if (row) {
-					row.style.transition = "opacity 0.3s ease";
-					row.style.opacity = "0";
-					setTimeout(() => row.remove(), 300);
-				}
-			}
-		}
-
-		if (text === "Voir") {
-			e.preventDefault();
-			showNotification("Ouverture de la fiche…", "info");
-		}
+		showNotification("Élément supprimé", "success");
 	});
 
 	// ── RECHERCHE ─────────────────────────────────────────────────
@@ -105,20 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		const select = e.target.closest(".filter-select");
 		if (!select) return;
 		showNotification(`Filtre appliqué : ${select.value}`, "info");
-	});
-
-	// ── MESSAGES — MARQUER COMME LU ───────────────────────────────
-	document.addEventListener("click", (e) => {
-		const row = e.target.closest(".msg-row");
-		if (!row || !row.classList.contains("unread")) return;
-		row.classList.remove("unread");
-		const badge = document.querySelector(".nav-badge");
-		if (badge) {
-			const count = parseInt(badge.textContent, 10) - 1;
-			badge.textContent = count > 0 ? count : "";
-			if (count <= 0) badge.style.display = "none";
-		}
-		showNotification("Message marqué comme lu", "success");
 	});
 
 	// ── GUARD FORMULAIRE NON SAUVEGARDÉ ──────────────────────────

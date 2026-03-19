@@ -30,12 +30,63 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	// ── SOUMISSION FORMULAIRE ─────────────────────────────────────
+	// ── SOUMISSION FORMULAIRE (saisie manuelle) ───────────────────
 	const form = document.querySelector("form");
 	if (form) {
 		form.addEventListener("submit", (e) => {
 			e.preventDefault();
 			showNotification("Paiement enregistré avec succès", "success");
+		});
+	}
+
+	// ── VOIR PAIEMENT (modal détail) ──────────────────────────────
+	document.addEventListener("click", (e) => {
+		const btn = e.target.closest("[data-open-payment]");
+		if (!btn) return;
+		e.preventDefault();
+		const row = btn.closest("tr");
+		if (!row) return;
+
+		document.getElementById("modal-pay-client")?.textContent = row.dataset.client || "";
+		document.getElementById("modal-pay-order")?.textContent = row.dataset.order || "";
+		const amountEl = document.getElementById("modal-pay-amount");
+		if (amountEl) amountEl.textContent = row.dataset.amount || "";
+		document.getElementById("modal-pay-type")?.textContent = row.dataset.type || "";
+		document.getElementById("modal-pay-status")?.textContent = row.dataset.statusLabel || "";
+		document.getElementById("modal-pay-due")?.textContent = row.dataset.due || "—";
+
+		window.AdminModal?.open("modal-payment-detail");
+	});
+
+	// ── ACTION PAIEMENT (Solder / Encaisser) ──────────────────────
+	document.addEventListener("click", (e) => {
+		const btn = e.target.closest("[data-open-payment-action]");
+		if (!btn) return;
+		e.preventDefault();
+		const row = btn.closest("tr");
+		if (!row) return;
+
+		const action = btn.dataset.openPaymentAction || "encaisser";
+		const titleEl = document.getElementById("modal-payment-action-title");
+		if (titleEl) titleEl.textContent = action === "solder" ? "Solder le paiement" : "Encaisser un acompte";
+
+		document.getElementById("modal-pay-action-client")?.textContent = row.dataset.client || "";
+		document.getElementById("modal-pay-action-order")?.textContent = row.dataset.order || "";
+		const hiddenType = document.getElementById("pay-action-type");
+		if (hiddenType) hiddenType.value = action;
+
+		window.AdminModal?.open("modal-payment-action");
+	});
+
+	// ── CONFIRMER ACTION PAIEMENT ──────────────────────────────────
+	const payActionForm = document.getElementById("form-pay-action");
+	if (payActionForm) {
+		payActionForm.addEventListener("submit", (e) => {
+			e.preventDefault();
+			const action = document.getElementById("pay-action-type")?.value;
+			const label = action === "solder" ? "soldé" : "encaissé";
+			window.AdminModal?.closeAll();
+			showNotification(`Paiement ${label} avec succès`, "success");
 		});
 	}
 });

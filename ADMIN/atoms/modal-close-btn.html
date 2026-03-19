@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Atom — Modal Close Button</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <script src="../assets/js/theme.js"></script>
+  <style>
+    body { padding: 2rem; background: var(--blanc-casse); }
+    .preview { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .preview-label { font-size: 0.75rem; color: var(--gris); margin-top: 0.5rem; }
+    .bg-dark { background: var(--noir); padding: 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body>
+<h2 style="margin-bottom: 1.5rem; font-family: var(--font-title);">Atom — Bouton fermer modal</h2>
+
+<div class="preview">
+  <!-- État par défaut -->
+  <div>
+    <button type="button" class="modal-close" aria-label="Fermer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="preview-label">Défaut</div>
+  </div>
+
+  <!-- Simulé hover via classe -->
+  <div>
+    <button type="button" class="modal-close" aria-label="Fermer"
+            style="background: var(--blanc-casse); color: var(--noir);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="preview-label">Hover</div>
+  </div>
+
+  <!-- Sur fond sombre -->
+  <div>
+    <div class="bg-dark">
+      <button type="button" class="modal-close" aria-label="Fermer"
+              style="color: var(--blanc-pur);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="preview-label">Sur fond sombre</div>
+  </div>
+</div>
+
+<!-- Specs -->
+<table style="margin-top: 2rem; border-collapse: collapse; font-size: 0.85rem;">
+  <tr><th style="text-align:left; padding: 0.4rem 1rem 0.4rem 0; color: var(--gris);">Classe</th><td>.modal-close</td></tr>
+  <tr><th style="text-align:left; padding: 0.4rem 1rem 0.4rem 0; color: var(--gris);">Taille</th><td>30×30px</td></tr>
+  <tr><th style="text-align:left; padding: 0.4rem 1rem 0.4rem 0; color: var(--gris);">Attribut</th><td>data-modal-close (pour fermer via modal.js)</td></tr>
+  <tr><th style="text-align:left; padding: 0.4rem 1rem 0.4rem 0; color: var(--gris);">Aria</th><td>aria-label="Fermer" obligatoire</td></tr>
+</table>
+</body>
+</html>
