@@ -135,6 +135,19 @@
 		min-height: 360px;
 	}
 }
+@media (max-width: 480px) {
+	.feature-card--main {
+		min-height: 280px;
+		padding: var(--sp-8) var(--sp-6);
+	}
+	.feature-main {
+		min-height: 280px;
+		padding: var(--sp-8) var(--sp-6);
+	}
+	.features {
+		padding: var(--sp-12) var(--sp-4);
+	}
+}
 
 /* ── ALIASES CONVENTION PAGE ─────────────────────────────────────── */
 .features__inner {

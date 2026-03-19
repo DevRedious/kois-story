@@ -213,4 +213,10 @@
 	.koi-grid {
 		grid-template-columns: 1fr;
 	}
+	.catalogue-section {
+		padding: var(--sp-6) var(--sp-4) var(--sp-16);
+	}
+	.catalogue {
+		padding: var(--sp-6) var(--sp-4) var(--sp-16);
+	}
 }

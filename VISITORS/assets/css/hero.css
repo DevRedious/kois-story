@@ -90,13 +90,31 @@
 }
 
 /* ── VIDEO HERO ──────────────────────────────────────────────────── */
+.hero__poster {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	background: var(--c-black);
+	z-index: 3;
+	opacity: 0;
+	transition: opacity 1.5s ease;
+}
+.hero__poster--visible {
+	opacity: 1;
+}
 .hero__video {
 	position: absolute;
 	inset: 0;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	z-index: 0;
+	z-index: 1;
+	transition: opacity 1.5s ease;
+}
+.hero__video--fading {
+	opacity: 0;
 }
 
 /* ── HERO WAVY BOTTOM ────────────────────────────────────────────── */
@@ -113,6 +131,18 @@
 .hero--wavy-bottom + .hero-intro {
 	margin-top: -12vh;
 	padding-top: calc(12vh + var(--sp-16));
+}
+@media (max-width: 768px) {
+	.hero--wavy-bottom + .hero-intro {
+		margin-top: -8vh;
+		padding-top: calc(8vh + var(--sp-16));
+	}
+}
+@media (max-width: 480px) {
+	.hero--wavy-bottom + .hero-intro {
+		margin-top: -6vh;
+		padding-top: calc(6vh + var(--sp-16));
+	}
 }
 .hero-intro__inner {
 	max-width: var(--max-width);
@@ -146,14 +176,24 @@
 }
 
 /* ── HERO COMPACT WAVY BOTTOM ────────────────────────────────────── */
-/* hero-compact est ~250 px → 12% ≈ 30 px → overlap de 40 px */
+/* hero-compact ~390px → 12% ≈ 47px → overlap 50px avec marge */
 .hero-compact--wavy-bottom {
 	clip-path: url(#wave-clip);
 }
 
-/* main transparent : on remonte juste pour combler les creux */
+/* main transparent : on remonte pour couvrir la vague au complet */
 .hero-compact--wavy-bottom + main {
-	margin-top: -40px;
+	margin-top: -50px;
+}
+@media (max-width: 768px) {
+	.hero-compact--wavy-bottom + main {
+		margin-top: -52px;
+	}
+}
+@media (max-width: 480px) {
+	.hero-compact--wavy-bottom + main {
+		margin-top: -60px;
+	}
 }
 
 /* konishi-info (nourriture) a un fond propre : compenser le padding */

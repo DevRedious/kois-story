@@ -19,6 +19,7 @@
 /* ── MOLECULES / ORGANISMS ───────────────────────────────────────────── */
 @import url("header.css");
 @import url("footer.css");
+@import url("footer-full.css");
 @import url("hero.css");
 @import url("features.css");
 @import url("konishi.css");

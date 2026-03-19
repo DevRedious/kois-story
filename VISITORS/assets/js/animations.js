@@ -43,3 +43,42 @@ const initFloatCta = () => {
 
 document.addEventListener("DOMContentLoaded", initFloatCta);
 document.addEventListener("turbo:load", initFloatCta);
+
+/* ── Video → poster fade on ended ──────────────────────────────────── */
+const initVideoFade = () => {
+	const video = document.querySelector(".hero__video");
+	const poster = document.querySelector(".hero__poster");
+	if (!video || !poster) return;
+	video.addEventListener("ended", () => {
+		video.classList.add("hero__video--fading");
+		poster.classList.add("hero__poster--visible");
+	});
+};
+
+document.addEventListener("DOMContentLoaded", initVideoFade);
+document.addEventListener("turbo:load", initVideoFade);
+
+/* ── Footer legal dropdown ──────────────────────────────────────────── */
+const initFooterDropdown = (id) => {
+	const menu = document.getElementById(id);
+	if (!menu) return;
+	const toggle = menu.querySelector(".footer__legal-toggle");
+	toggle.addEventListener("click", () => {
+		const isOpen = menu.classList.toggle("open");
+		toggle.setAttribute("aria-expanded", String(isOpen));
+	});
+	document.addEventListener("click", (e) => {
+		if (!menu.contains(e.target)) {
+			menu.classList.remove("open");
+			toggle.setAttribute("aria-expanded", "false");
+		}
+	});
+};
+
+const initFooterDropdowns = () => {
+	initFooterDropdown("footer-legal");
+	initFooterDropdown("footer-products");
+};
+
+document.addEventListener("DOMContentLoaded", initFooterDropdowns);
+document.addEventListener("turbo:load", initFooterDropdowns);

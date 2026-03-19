@@ -187,7 +187,8 @@
 
 /* ── STORYTELLING  page decouvrir ──────────────────────────────── */
 .story {
-	padding: var(--sp-20) var(--sp-10);
+	padding: calc(50px + var(--sp-20)) var(--sp-10) var(--sp-20);
+	background: rgba(245, 245, 242, 0.9);
 }
 .story__inner {
 	max-width: var(--max-width);
@@ -258,6 +259,10 @@
 	font-weight: 700;
 	color: var(--c-black);
 	margin-bottom: var(--sp-6);
+	display: inline-block;
+	background: rgba(245, 245, 242, 0.9);
+	padding: var(--sp-2) var(--sp-5);
+	border-radius: var(--r-lg);
 }
 .gallery-grid {
 	display: grid;
@@ -292,6 +297,7 @@
 	.decouvrir-story {
 		grid-template-columns: 1fr;
 		gap: var(--sp-8);
+		padding: var(--sp-10) var(--sp-6);
 	}
 	.story-block {
 		grid-template-columns: 1fr;
@@ -304,5 +310,25 @@
 	}
 	.gallery-row2 {
 		grid-template-columns: repeat(2, 1fr);
+	}
+	.story {
+		padding: calc(52px + var(--sp-16)) var(--sp-6) var(--sp-16);
+	}
+}
+@media (max-width: 480px) {
+	.gallery-row-2 {
+		grid-template-columns: 1fr;
+	}
+	.gallery-row2 {
+		grid-template-columns: 1fr;
+	}
+	.farm-gallery {
+		padding: var(--sp-12) var(--sp-4);
+	}
+	.decouvrir-story {
+		padding: var(--sp-8) var(--sp-4);
+	}
+	.story {
+		padding: calc(60px + var(--sp-12)) var(--sp-4) var(--sp-12);
 	}
 }

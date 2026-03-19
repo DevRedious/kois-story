@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -34,7 +34,8 @@
     <nav class="header__nav" id="header-nav">
       <span class="nav__indicator" id="nav-indicator"></span>
       <ul>
-        <li><a href="home.html">Accueil</a></li>
+        <li><a href="home.html" class="active">Accueil</a></li>
+        <li><a href="decouvrir.html">Nous découvrir</a></li>
         <li><a href="kois.html">Nos Koïs</a></li>
         <li class="has-dropdown">
           <a href="#" class="dropdown-toggle">
@@ -57,6 +58,7 @@
 
 <!-- HERO -->
 <section class="hero hero--wavy-bottom" id="hero">
+  <img class="hero__poster" src="../../docs/assets/LOGO MANU FINI.png" alt="" aria-hidden="true">
   <video autoplay muted playsinline class="hero__video">
     <source src="../../docs/assets/Kois-story-video.mp4" type="video/mp4">
   </video>
@@ -73,6 +75,7 @@
       <a href="decouvrir.html" class="btn btn--ghost">Notre élevage</a>
     </div>
   </div>
+  <br>
 </section>
 
 <!-- KOI SHOWCASE -->
@@ -225,8 +228,10 @@
     <div class="konishi-band__img" data-animate="fade-left">
       <img src="../../docs/assets/Logos_konishi-black_1.png" alt="Logo Konishi  partenaire officiel, sélectionneur de la lignée Konishi">
     </div>
+    <br>
   </div>
 </div>
+
 <!-- CONTACT RAPIDE -->
 <section class="contact-quick">
   <div class="contact-quick__inner">
@@ -297,23 +302,41 @@
       <a href="home.html" class="footer__logo"><img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story  Retour à l'accueil"></a>
       <nav class="footer__links" id="footer-links">
         <span class="footer__indicator" id="footer-indicator"></span>
-        <a href="kois.html">Nos Koïs</a>
-        <a href="materiel.html">Matériel</a>
-        <a href="nourriture.html">Nourriture</a>
-        <a href="soins.html">Soins</a>
-        <a href="azukari.html">Azukari</a>
         <a href="decouvrir.html">Nous découvrir</a>
+        <a href="kois.html">Nos Koïs</a>
+        <div class="footer__legal-menu" id="footer-products">
+        <a role="button" class="footer__legal-toggle" aria-expanded="false" aria-haspopup="true" tabindex="0">
+          Produits
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,8 6,4 10,8"/></svg>
+        </a>
+        <ul class="footer__legal-dropdown" role="menu">
+          <li><a href="materiel.html" role="menuitem">Matériel</a></li>
+          <li><a href="nourriture.html" role="menuitem">Nourriture</a></li>
+          <li><a href="soins.html" role="menuitem">Soins</a></li>
+        </ul>
+      </div>
+        <a href="azukari.html">Azukari</a>
         <a href="contact.html">Contact</a>
-        <a href="#">Mentions légales</a>
+      
+              <div class="footer__legal-menu" id="footer-legal">
+        <a role="button" class="footer__legal-toggle" tabindex="0" aria-expanded="false" aria-haspopup="true">
+          Légal
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,8 6,4 10,8"/></svg>
+        </a>
+        <ul class="footer__legal-dropdown" role="menu">
+          <li><a href="mentions-legales.html" role="menuitem">Mentions légales</a></li>
+          <li><a href="cgv.html" role="menuitem">CGV</a></li>
+          <li><a href="confidentialite.html" role="menuitem">Politique de confidentialité</a></li>
+        </ul>
+      </div>
       </nav>
+      
       <div class="footer__social">
         <a href="https://www.facebook.com/share/1G1wTgtsim/" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Koi's Story sur Facebook (s'ouvre dans un nouvel onglet)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-          Facebook
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
         </a>
         <a href="https://www.instagram.com/koi.story.officiel" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Koi's Story sur Instagram (s'ouvre dans un nouvel onglet)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/></svg>
-          Instagram
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/></svg>
         </a>
       </div>
       <p class="footer__copy"><small><span aria-label="Copyright">©</span> 2026 Koi's Story</small></p>
@@ -403,7 +426,7 @@
   const footerLinksEl  = document.getElementById('footer-links');
   const footerIndicator = document.getElementById('footer-indicator');
   if (footerLinksEl && footerIndicator) {
-    footerLinksEl.querySelectorAll('a').forEach(a => {
+    Array.from(footerLinksEl.querySelectorAll('a')).filter(a => !a.closest('.footer__legal-dropdown')).forEach(a => {
       a.addEventListener('mouseenter', () => {
         const navRect = footerLinksEl.getBoundingClientRect();
         const aRect   = a.getBoundingClientRect();

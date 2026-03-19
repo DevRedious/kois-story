@@ -87,10 +87,22 @@
 	clip-path: url(#wave-clip);
 }
 
-/* Remonte contact-quick pour combler les creux (~12% de ~400px ≈ 48px) */
+/* Remonte contact-quick pour combler les creux (~12% de la hauteur de la bande) */
 .konishi-band--wavy-bottom + .contact-quick {
 	margin-top: -60px;
 	padding-top: calc(60px + var(--sp-20));
+}
+@media (max-width: 768px) {
+	.konishi-band--wavy-bottom + .contact-quick {
+		margin-top: -96px;
+		padding-top: calc(96px + var(--sp-20));
+	}
+}
+@media (max-width: 480px) {
+	.konishi-band--wavy-bottom + .contact-quick {
+		margin-top: -88px;
+		padding-top: calc(88px + var(--sp-20));
+	}
 }
 
 /* ── ALIAS CONVENTION PAGE ───────────────────────────────────────── */
@@ -110,5 +122,13 @@
 @media (max-width: 768px) {
 	.konishi-band__inner {
 		grid-template-columns: 1fr;
+		padding: var(--sp-10) var(--sp-6);
+		gap: var(--sp-8);
+	}
+}
+@media (max-width: 480px) {
+	.konishi-band__inner {
+		padding: var(--sp-8) var(--sp-4);
+		gap: var(--sp-6);
 	}
 }

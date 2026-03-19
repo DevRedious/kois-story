@@ -218,11 +218,14 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 	.shop-section__inner {
-		padding: var(--sp-10) var(--sp-4) var(--sp-16);
+		padding: var(--sp-16) var(--sp-4) var(--sp-16);
 	}
 }
 @media (max-width: 480px) {
 	.shop-grid {
 		grid-template-columns: 1fr;
+	}
+	.shop-section__inner {
+		padding: var(--sp-8) var(--sp-4) var(--sp-12);
 	}
 }
