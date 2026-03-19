@@ -1,8 +1,8 @@
 {
-  "rules": {
-    "no-inline-style": "off",
-    "no-implicit-button-type": "warn",
-    "missing-doctype": "off",
-    "void-style": "off"
-  }
+	"rules": {
+		"no-inline-style": "off",
+		"no-implicit-button-type": "warn",
+		"missing-doctype": "off",
+		"void-style": "off"
+	}
 }

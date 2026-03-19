@@ -4,56 +4,56 @@
  * Requires: notifications.js
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
+	const uploadZone = document.querySelector(".upload-zone");
+	const fileInput = document.getElementById("koi-images");
+	const preview = document.getElementById("img-preview");
 
-  const uploadZone = document.querySelector('.upload-zone');
-  const fileInput  = document.getElementById('koi-images');
-  const preview    = document.getElementById('img-preview');
+	// ── ZONE DE CLIC → déclenche le file input ────────────────────
+	if (uploadZone && fileInput) {
+		uploadZone.addEventListener("click", (e) => {
+			if (!e.target.closest(".img-remove")) fileInput.click();
+		});
 
-  // ── ZONE DE CLIC → déclenche le file input ────────────────────
-  if (uploadZone && fileInput) {
-    uploadZone.addEventListener('click', e => {
-      if (!e.target.closest('.img-remove')) fileInput.click();
-    });
-
-    // ── PRÉVISUALISATION DES IMAGES ────────────────────────────
-    fileInput.addEventListener('change', function () {
-      if (!preview) return;
-      Array.from(this.files).forEach((file, i) => {
-        if (!file.type.startsWith('image/')) return;
-        const reader = new FileReader();
-        reader.onload = e => {
-          const div = document.createElement('div');
-          div.className = 'img-thumb';
-          div.innerHTML = `<img src="${e.target.result}" alt="Preview ${i + 1}">
+		// ── PRÉVISUALISATION DES IMAGES ────────────────────────────
+		fileInput.addEventListener("change", function () {
+			if (!preview) return;
+			Array.from(this.files).forEach((file, i) => {
+				if (!file.type.startsWith("image/")) return;
+				const reader = new FileReader();
+				reader.onload = (e) => {
+					const div = document.createElement("div");
+					div.className = "img-thumb";
+					div.innerHTML = `<img src="${e.target.result}" alt="Preview ${i + 1}">
             <button type="button" class="img-remove" aria-label="Supprimer cette image">✕</button>`;
-          preview.appendChild(div);
-        };
-        reader.readAsDataURL(file);
-      });
-    });
-  }
+					preview.appendChild(div);
+				};
+				reader.readAsDataURL(file);
+			});
+		});
+	}
 
-  // ── SUPPRESSION D'UNE IMAGE (délégation) ─────────────────────
-  if (preview) {
-    preview.addEventListener('click', e => {
-      const btn = e.target.closest('.img-remove');
-      if (btn) btn.closest('.img-thumb').remove();
-    });
-  }
+	// ── SUPPRESSION D'UNE IMAGE (délégation) ─────────────────────
+	if (preview) {
+		preview.addEventListener("click", (e) => {
+			const btn = e.target.closest(".img-remove");
+			if (btn) btn.closest(".img-thumb").remove();
+		});
+	}
 
-  // ── SOUMISSION DU FORMULAIRE ──────────────────────────────────
-  const form      = document.getElementById('koi-form');
-  const submitBtn = document.getElementById('submit-btn');
-  if (form) {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      if (submitBtn) {
-        submitBtn.textContent = 'Enregistrement…';
-        submitBtn.disabled = true;
-      }
-      setTimeout(() => { window.location.href = 'kois.html'; }, 1200);
-    });
-  }
-
+	// ── SOUMISSION DU FORMULAIRE ──────────────────────────────────
+	const form = document.getElementById("koi-form");
+	const submitBtn = document.getElementById("submit-btn");
+	if (form) {
+		form.addEventListener("submit", (e) => {
+			e.preventDefault();
+			if (submitBtn) {
+				submitBtn.textContent = "Enregistrement…";
+				submitBtn.disabled = true;
+			}
+			setTimeout(() => {
+				window.location.href = "kois.html";
+			}, 1200);
+		});
+	}
 });

@@ -3,10 +3,10 @@
  * Toast system — doit être chargé avant admin.js
  */
 
-if (!document.getElementById('admin-notification-styles')) {
-  const style = document.createElement('style');
-  style.id = 'admin-notification-styles';
-  style.textContent = `
+if (!document.getElementById("admin-notification-styles")) {
+	const style = document.createElement("style");
+	style.id = "admin-notification-styles";
+	style.textContent = `
     @keyframes slideInRight {
       from { transform: translateX(110%); opacity: 0; }
       to   { transform: translateX(0);    opacity: 1; }
@@ -31,26 +31,28 @@ if (!document.getElementById('admin-notification-styles')) {
       font-size: 16px; line-height: 1; padding: 0; margin-left: 4px;
     }
   `;
-  document.head.appendChild(style);
+	document.head.appendChild(style);
 }
 
-function showNotification(message, type = 'success') {
-  document.querySelectorAll('.admin-notification').forEach(n => n.remove());
+function showNotification(message, type = "success") {
+	document.querySelectorAll(".admin-notification").forEach((n) => {
+		n.remove();
+	});
 
-  const notification = document.createElement('div');
-  notification.className = `admin-notification ${type}`;
+	const notification = document.createElement("div");
+	notification.className = `admin-notification ${type}`;
 
-  const closeBtn = document.createElement('button');
-  closeBtn.className = 'admin-notification-close';
-  closeBtn.setAttribute('aria-label', 'Fermer');
-  closeBtn.textContent = '✕';
-  closeBtn.addEventListener('click', () => notification.remove());
+	const closeBtn = document.createElement("button");
+	closeBtn.className = "admin-notification-close";
+	closeBtn.setAttribute("aria-label", "Fermer");
+	closeBtn.textContent = "✕";
+	closeBtn.addEventListener("click", () => notification.remove());
 
-  notification.append(document.createTextNode(message), closeBtn);
-  document.body.appendChild(notification);
+	notification.append(document.createTextNode(message), closeBtn);
+	document.body.appendChild(notification);
 
-  setTimeout(() => {
-    notification.style.animation = 'slideOutRight 0.3s ease forwards';
-    setTimeout(() => notification.remove(), 300);
-  }, 4000);
+	setTimeout(() => {
+		notification.style.animation = "slideOutRight 0.3s ease forwards";
+		setTimeout(() => notification.remove(), 300);
+	}, 4000);
 }
