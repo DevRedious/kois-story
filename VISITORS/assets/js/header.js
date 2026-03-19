@@ -25,8 +25,9 @@
 			var sp8 =
 				parseInt(
 					getComputedStyle(document.documentElement).getPropertyValue("--sp-8"),
+					10,
 				) || 32;
-			filterInner.style.paddingRight = pillW + sp8 * 2 + "px";
+			filterInner.style.paddingRight = `${pillW + sp8 * 2}px`;
 		}
 
 		function removeNavOffset() {
