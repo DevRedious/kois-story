@@ -108,7 +108,7 @@
         </select>
       </div>
       <div class="topbar-divider"></div>
-      <button type="button" class="btn btn--outline btn--sm">Tout marquer lu</button>
+      <button type="button" class="btn btn--outline btn--sm" id="mark-all-read">Tout marquer lu</button>
       <div class="topbar-divider"></div>
       <div class="topbar-user">
         <div class="topbar-avatar">MG</div>
@@ -132,40 +132,60 @@
         <table>
           <thead><tr><th>Date</th><th>Expéditeur</th><th>Message</th><th>Statut</th><th>Action</th></tr></thead>
           <tbody>
-            <tr class="msg-row unread" data-read="unread">
+            <tr class="msg-row unread" data-read="unread"
+                data-sender="Thomas Lefèvre"
+                data-email="thomas.l@mail.fr"
+                data-date="12/03/2026 à 14h32"
+                data-body="Bonjour, je suis intéressé par le Kohaku Konishi ref #001, pourriez-vous me donner plus d'infos sur ce magnifique poisson ? Merci d'avance.">
               <td class="msg-date">12/03/2026<div class="msg-time">14:32</div></td>
               <td><strong>Thomas Lefèvre</strong><div class="msg-email">thomas.l@mail.fr</div></td>
               <td class="msg-preview">Bonjour, je suis intéressé par le Kohaku Konishi ref #001, pourriez-vous me donner plus d'infos ?</td>
               <td><span class="badge badge-nonlu">Non lu</span></td>
-              <td><button type="button" class="btn btn--primary btn--sm">Lire</button></td>
+              <td><button type="button" class="btn btn--primary btn--sm" data-open-msg>Lire</button></td>
             </tr>
-            <tr class="msg-row unread" data-read="unread">
+            <tr class="msg-row unread" data-read="unread"
+                data-sender="Gérard Dupont"
+                data-email="gerard.dupont@koi.net"
+                data-date="12/03/2026 à 11h05"
+                data-body="Pourriez-vous me communiquer le certificat Konishi du Showa 65cm ? Je suis un koïphile expérimenté et je souhaite vérifier la lignée avant de prendre une décision.">
               <td class="msg-date">12/03/2026<div class="msg-time">11:05</div></td>
               <td><strong>Gérard Dupont</strong><div class="msg-email">gerard.dupont@koi.net</div></td>
               <td class="msg-preview">Pourriez-vous me communiquer le certificat Konishi du Showa 65cm ?</td>
               <td><span class="badge badge-nonlu">Non lu</span></td>
-              <td><button type="button" class="btn btn--primary btn--sm">Lire</button></td>
+              <td><button type="button" class="btn btn--primary btn--sm" data-open-msg>Lire</button></td>
             </tr>
-            <tr class="msg-row unread" data-read="unread">
+            <tr class="msg-row unread" data-read="unread"
+                data-sender="Léa Martin"
+                data-email="lea.martin@gmail.com"
+                data-date="11/03/2026 à 09h17"
+                data-body="Je débute dans l'élevage de koï, est-ce que vous proposez des conseils pour les débutants ? J'ai un bassin de 3000L et je voudrais me lancer.">
               <td class="msg-date">11/03/2026<div class="msg-time">09:17</div></td>
               <td><strong>Léa Martin</strong><div class="msg-email">lea.martin@gmail.com</div></td>
               <td class="msg-preview">Je débute dans l'élevage de koï, est-ce que vous proposez des conseils ?</td>
               <td><span class="badge badge-nonlu">Non lu</span></td>
-              <td><button type="button" class="btn btn--primary btn--sm">Lire</button></td>
+              <td><button type="button" class="btn btn--primary btn--sm" data-open-msg>Lire</button></td>
             </tr>
-            <tr class="msg-row" data-read="read">
+            <tr class="msg-row" data-read="read"
+                data-sender="Camille Rousseau"
+                data-email="c.rousseau@hotmail.fr"
+                data-date="10/03/2026 à 16h44"
+                data-body="Merci pour votre réponse rapide, à bientôt !">
               <td class="msg-date">10/03/2026<div class="msg-time">16:44</div></td>
               <td>Camille Rousseau<div class="msg-email">c.rousseau@hotmail.fr</div></td>
               <td class="msg-preview">Merci pour votre réponse rapide, à bientôt !</td>
               <td><span class="badge badge-lu">Lu</span></td>
-              <td><button type="button" class="btn btn--outline btn--sm" aria-label="Voir le message">Voir</button></td>
+              <td><button type="button" class="btn btn--outline btn--sm" data-open-msg aria-label="Voir le message">Voir</button></td>
             </tr>
-            <tr class="msg-row" data-read="read">
+            <tr class="msg-row" data-read="read"
+                data-sender="Pierre Moreau"
+                data-email="p.moreau@pro.com"
+                data-date="08/03/2026 à 10h02"
+                data-body="Je souhaite réserver le Showa 65cm avec un acompte, comment procéder ? Quel pourcentage demandez-vous et quelles sont les modalités de livraison ?">
               <td class="msg-date">08/03/2026<div class="msg-time">10:02</div></td>
               <td>Pierre Moreau<div class="msg-email">p.moreau@pro.com</div></td>
               <td class="msg-preview">Je souhaite réserver le Showa 65cm avec un acompte, comment procéder ?</td>
               <td><span class="badge badge-lu">Lu</span></td>
-              <td><button type="button" class="btn btn--outline btn--sm" aria-label="Voir le message">Voir</button></td>
+              <td><button type="button" class="btn btn--outline btn--sm" data-open-msg aria-label="Voir le message">Voir</button></td>
             </tr>
           </tbody>
         </table>
@@ -174,7 +194,32 @@
   </div>
 </div>
 
+<!-- Modal Lecture Message -->
+<div class="modal-overlay" id="modal-message" role="dialog" aria-modal="true" aria-labelledby="modal-message-title">
+  <div class="modal modal--lg">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-message-title">Message de …</h2>
+      <button type="button" class="modal-close" aria-label="Fermer" data-modal-close>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <dl class="modal-msg-meta">
+        <dt>De</dt><dd id="modal-msg-sender"></dd>
+        <dt>Email</dt><dd><a id="modal-msg-email" href="#">—</a></dd>
+        <dt>Date</dt><dd id="modal-msg-date"></dd>
+      </dl>
+      <div class="modal-msg-body" id="modal-msg-body"></div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn--outline btn--sm" data-modal-close>Fermer</button>
+      <a id="modal-msg-reply" href="#" class="btn btn--primary btn--sm">Répondre par email</a>
+    </div>
+  </div>
+</div>
+
 <script src="../assets/js/notifications.js"></script>
+<script src="../assets/js/modal.js"></script>
 <script src="../assets/js/admin.js"></script>
 <script src="../assets/js/messages.js"></script>
 </body>

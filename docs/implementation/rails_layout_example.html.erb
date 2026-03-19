@@ -1,0 +1,152 @@
+<%# ============================================================
+    app/views/layouts/application.html.erb
+    Layout principal — Site public Koi's Story
+    Basé sur VISITORS/templates/visitor-layout.html
+    ============================================================ %>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%# SEO — titre et description dynamiques par page %>
+    <title>
+      <%= content_for?(:title) ? "#{yield(:title)} — Koi's Story" : "Koi's Story — Koïs de lignée Konishi" %>
+    </title>
+    <meta name="description" content="<%= content_for?(:description) || "Koi's Story — Élevage de koïs de lignée Konishi, Manu & Mathilde, Miribel (01). Catalogue, azukari, vente directe." %>">
+
+    <%# Open Graph (réseaux sociaux) %>
+    <meta property="og:title"       content="<%= content_for?(:og_title) ? yield(:og_title) : "Koi's Story" %>">
+    <meta property="og:description" content="<%= content_for?(:og_description) || "Élevage de koïs Konishi, France." %>">
+    <meta property="og:type"        content="website">
+
+    <%# Sécurité %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%# Fonts préchargées (Inter + Playfair Display depuis app/assets/fonts/) %>
+    <link rel="preload" href="<%= asset_path('inter/Inter-Regular.woff2') %>" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<%= asset_path('playfair-display/PlayfairDisplay-Bold.woff2') %>" as="font" type="font/woff2" crossorigin>
+
+    <%# CSS via Sprockets / Propshaft %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%# Bloc CSS additionnel par page (optionnel) %>
+    <%= yield :head_css %>
+
+    <%# JS via Importmap (Rails 8 default) %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="page--<%= controller_name %> action--<%= action_name %>">
+
+    <%# Skip link accessibilité — OBLIGATOIRE %>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <%# Header global (inclus depuis shared/_header.html.erb) %>
+    <%= render "shared/header" %>
+
+    <%# Messages flash (notice / alert) %>
+    <% if notice %>
+      <div class="flash flash--notice" role="status" aria-live="polite">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="flash flash--alert" role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <%# Contenu principal de chaque page %>
+    <main id="main-content" tabindex="-1">
+      <%= yield %>
+    </main>
+
+    <%# Footer global (inclus depuis shared/_footer.html.erb) %>
+    <%= render "shared/footer" %>
+
+    <%# CTA WhatsApp flottant (affiché sur toutes les pages) %>
+    <%= render "shared/whatsapp_cta" %>
+
+  </body>
+</html>
+
+<%#
+  ============================================================
+  USAGE DANS LES VUES :
+
+  1. Définir le titre de la page :
+     <% content_for :title, "Catalogue des koïs" %>
+
+  2. Définir la description SEO :
+     <% content_for :description, "Découvrez notre catalogue de koïs Konishi." %>
+
+  3. CSS spécifique à une page :
+     <% content_for :head_css do %>
+       <%= stylesheet_link_tag "catalogue" %>
+     <% end %>
+
+  ============================================================
+
+  LAYOUT ADMIN — app/views/layouts/admin.html.erb
+  (Différences par rapport à application.html.erb)
+
+  <!DOCTYPE html>
+  <html lang="fr">
+    <head>
+      ...
+      <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+    </head>
+    <body class="admin-layout">
+      <aside class="sidebar" ...>
+        <%= render "admin/shared/sidebar" %>
+      </aside>
+
+      <div class="admin-main" id="admin-main">
+        <%= render "admin/shared/topbar" %>
+
+        <main class="admin-content" id="main-content" tabindex="-1">
+          <% if notice %>
+            <div class="flash flash--notice">...</div>
+          <% end %>
+          <%= yield %>
+        </main>
+      </div>
+
+      <div class="overlay" id="overlay"
+           data-controller="sidebar"
+           data-action="click->sidebar#close"></div>
+    </body>
+  </html>
+
+  ============================================================
+  EXEMPLE DE VUE : app/views/kois/index.html.erb
+
+  <% content_for :title, "Catalogue des koïs" %>
+
+  <%= render "kois/filters" %>
+
+  <section class="koi-catalogue" aria-label="Résultats">
+    <p class="sr-only" aria-live="polite">
+      <%= pluralize(@kois.count, "koï", "koïs") %> disponible<%= "s" if @kois.count > 1 %>
+    </p>
+
+    <% if @kois.any? %>
+      <ul class="koi-grid" role="list">
+        <% @kois.each do |koi| %>
+          <li>
+            <%= render "kois/card", koi: koi %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="catalogue-empty">
+        Aucun koï ne correspond à vos critères.
+        <%= link_to "Réinitialiser les filtres", kois_path, class: "btn btn-ghost" %>
+      </p>
+    <% end %>
+  </section>
+
+  ============================================================
+%>

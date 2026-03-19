@@ -170,7 +170,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-payment-status="paid">
+              <tr data-payment-status="paid"
+                  data-client="Thomas Lefèvre" data-order="#CMD-001"
+                  data-amount="850 €" data-type="Complet" data-status-label="Payé" data-due="—">
                 <td class="td-strong">#CMD-001</td>
                 <td>Thomas Lefèvre</td>
                 <td><span class="badge badge-confirmed">Complet</span></td>
@@ -178,9 +180,11 @@
                 <td><span class="badge badge-paid">Payé</span></td>
                 <td>12/03/2026</td>
                 <td class="td-placeholder">—</td>
-                <td class="td-center td-actions"><button type="button" class="btn btn--outline btn--sm" aria-label="Voir le paiement">Voir</button></td>
+                <td class="td-center td-actions"><button type="button" class="btn btn--outline btn--sm" data-open-payment aria-label="Voir le paiement">Voir</button></td>
               </tr>
-              <tr data-payment-status="partial">
+              <tr data-payment-status="partial"
+                  data-client="Gérard Dupont" data-order="#CMD-002"
+                  data-amount="400 €" data-type="Acompte" data-status-label="Partiel" data-due="25/03/2026">
                 <td class="td-strong">#CMD-002</td>
                 <td>Gérard Dupont</td>
                 <td><span class="badge badge-pending">Acompte</span></td>
@@ -188,9 +192,14 @@
                 <td><span class="badge badge-partial">Partiel</span></td>
                 <td>08/03/2026</td>
                 <td class="td-due-alert">25/03/2026</td>
-                <td class="td-center td-actions"><button type="button" class="btn btn--outline btn--sm" aria-label="Voir le paiement">Voir</button><button type="button" class="btn btn--success btn--sm" aria-label="Solder le paiement">Solder</button></td>
+                <td class="td-center td-actions">
+                  <button type="button" class="btn btn--outline btn--sm" data-open-payment aria-label="Voir le paiement">Voir</button>
+                  <button type="button" class="btn btn--success btn--sm" data-open-payment-action="solder" aria-label="Solder le paiement">Solder</button>
+                </td>
               </tr>
-              <tr data-payment-status="pending">
+              <tr data-payment-status="pending"
+                  data-client="Léa Martin" data-order="#CMD-003"
+                  data-amount="1 200 €" data-type="Échelonné" data-status-label="En attente" data-due="01/04/2026">
                 <td class="td-strong">#CMD-003</td>
                 <td>Léa Martin</td>
                 <td><span class="badge badge-arrivage">Échelonné</span></td>
@@ -198,7 +207,10 @@
                 <td><span class="badge badge-pending">En attente</span></td>
                 <td class="td-placeholder">—</td>
                 <td class="td-due-warn">01/04/2026</td>
-                <td class="td-center td-actions"><button type="button" class="btn btn--outline btn--sm" aria-label="Voir le paiement">Voir</button><button type="button" class="btn btn--success btn--sm" aria-label="Encaisser">Encaisser</button></td>
+                <td class="td-center td-actions">
+                  <button type="button" class="btn btn--outline btn--sm" data-open-payment aria-label="Voir le paiement">Voir</button>
+                  <button type="button" class="btn btn--success btn--sm" data-open-payment-action="encaisser" aria-label="Encaisser">Encaisser</button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -250,7 +262,72 @@
   </div>
 </div>
 
+<!-- Modal Détail Paiement -->
+<div class="modal-overlay" id="modal-payment-detail" role="dialog" aria-modal="true" aria-labelledby="modal-payment-detail-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-payment-detail-title">Détail du paiement</h2>
+      <button type="button" class="modal-close" aria-label="Fermer" data-modal-close>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <dl class="modal-payment-grid">
+        <div class="modal-payment-field"><dt>Client</dt><dd id="modal-pay-client"></dd></div>
+        <div class="modal-payment-field"><dt>Commande</dt><dd id="modal-pay-order"></dd></div>
+        <div class="modal-payment-field"><dt>Montant</dt><dd id="modal-pay-amount" class="modal-payment-amount"></dd></div>
+        <div class="modal-payment-field"><dt>Type</dt><dd id="modal-pay-type"></dd></div>
+        <div class="modal-payment-field"><dt>Statut</dt><dd id="modal-pay-status"></dd></div>
+        <div class="modal-payment-field"><dt>Échéance</dt><dd id="modal-pay-due"></dd></div>
+      </dl>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn--outline btn--sm" data-modal-close>Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Action Paiement (Solder / Encaisser) -->
+<div class="modal-overlay" id="modal-payment-action" role="dialog" aria-modal="true" aria-labelledby="modal-payment-action-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-payment-action-title">Encaisser un acompte</h2>
+      <button type="button" class="modal-close" aria-label="Fermer" data-modal-close>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="color: var(--gris); font-size: 0.9rem; margin-bottom: 1rem;">
+        Client : <strong id="modal-pay-action-client"></strong> —
+        Commande <strong id="modal-pay-action-order"></strong>
+      </p>
+      <form id="form-pay-action" class="modal-pay-form">
+        <div class="form-group">
+          <label class="form-label" for="pay-modal-amount">Montant encaissé (€)</label>
+          <input type="number" id="pay-modal-amount" name="amount" class="form-control"
+                 placeholder="0.00" step="0.01" min="0" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pay-modal-date">Date d'encaissement</label>
+          <input type="date" id="pay-modal-date" name="paid_at" class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pay-modal-note">Note (optionnel)</label>
+          <textarea id="pay-modal-note" name="note" class="form-control"
+                    rows="2" placeholder="Virement reçu le…"></textarea>
+        </div>
+        <input type="hidden" id="pay-action-type" name="action_type" value="">
+        <div class="modal-footer" style="padding: 0; border: none; background: none; margin-top: 0.5rem;">
+          <button type="button" class="btn btn--outline btn--sm" data-modal-close>Annuler</button>
+          <button type="submit" class="btn btn--success btn--sm">Confirmer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script src="../assets/js/notifications.js"></script>
+<script src="../assets/js/modal.js"></script>
 <script src="../assets/js/admin.js"></script>
 <script src="../assets/js/payments.js"></script>
 </body>
