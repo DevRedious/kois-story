@@ -4,10 +4,8 @@
  * Écoute les selects (variété, âge, prix) et le toggle Konishi.
  * Cache les cards ne correspondant pas. Met à jour le compteur.
  */
-(function () {
-	"use strict";
-
-	document.addEventListener("DOMContentLoaded", function () {
+(() => {
+	document.addEventListener("DOMContentLoaded", () => {
 		var selectVariety = document.getElementById("filter-variety");
 		var selectAge = document.getElementById("filter-age");
 		var selectPrice = document.getElementById("filter-price");
@@ -33,7 +31,7 @@
 			var cards = getCards();
 			var visible = 0;
 
-			cards.forEach(function (card) {
+			cards.forEach((card) => {
 				var cardVariety = (card.dataset.variety || "").toLowerCase();
 				var cardAge = (card.dataset.age || "").toLowerCase();
 				var cardPrice = parseInt(card.dataset.price) || 0;
@@ -58,13 +56,13 @@
 		}
 
 		// Listeners
-		[selectVariety, selectAge, selectPrice].forEach(function (el) {
+		[selectVariety, selectAge, selectPrice].forEach((el) => {
 			if (el) el.addEventListener("change", applyFilters);
 		});
 		if (konishiToggle) konishiToggle.addEventListener("change", applyFilters);
 
 		if (resetBtn) {
-			resetBtn.addEventListener("click", function () {
+			resetBtn.addEventListener("click", () => {
 				if (selectVariety) selectVariety.value = "";
 				if (selectAge) selectAge.value = "";
 				if (selectPrice) selectPrice.value = "";

@@ -3,10 +3,8 @@
  * Transition header transparent → sombre au scroll via IntersectionObserver.
  * Ajoute/enlève `.site-header--scrolled` sur #site-header.
  */
-(function () {
-	"use strict";
-
-	document.addEventListener("DOMContentLoaded", function () {
+(() => {
+	document.addEventListener("DOMContentLoaded", () => {
 		var header = document.getElementById("site-header");
 		if (!header) return;
 
@@ -38,8 +36,8 @@
 
 		if (hero) {
 			const io = new IntersectionObserver(
-				function (entries) {
-					entries.forEach(function (entry) {
+				(entries) => {
+					entries.forEach((entry) => {
 						if (entry.isIntersecting) {
 							header.classList.remove("site-header--scrolled");
 							if (filterBar) {
@@ -65,7 +63,7 @@
 			// Fallback scroll classique si pas de hero
 			window.addEventListener(
 				"scroll",
-				function () {
+				() => {
 					if (window.scrollY > 80) {
 						header.classList.add("site-header--scrolled");
 					} else {
