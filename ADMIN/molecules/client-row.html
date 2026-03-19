@@ -4,12 +4,7 @@
   <meta charset="UTF-8">
   <title>Molecule — Client Row</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 24px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin: 20px 0 8px; }
-    .client-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--noir); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
-    .client-cell   { display: flex; align-items: center; gap: 10px; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
 </head>
 <body>
 
@@ -29,19 +24,19 @@
           <div class="client-cell">
             <div class="client-avatar">TL</div>
             <div>
-              <div style="font-weight:600;">Thomas Lefèvre</div>
-              <div style="font-size:0.75rem;color:var(--gris);">Lyon, 69</div>
+              <div class="client-name-strong">Thomas Lefèvre</div>
+              <div class="client-location-muted">Lyon, 69</div>
             </div>
           </div>
         </td>
-        <td style="font-size:0.82rem;">thomas.lefevre@mail.fr</td>
-        <td style="font-size:0.82rem;">06 12 34 56 78</td>
-        <td style="text-align:center;">3</td>
+        <td class="td-client-contact">thomas.lefevre@mail.fr</td>
+        <td class="td-client-contact">06 12 34 56 78</td>
+        <td class="u-text-center">3</td>
         <td><strong>2 450,00 €</strong></td>
         <td>
           <div class="td-actions">
-            <a href="client-form.html" class="btn btn-outline btn-sm">Voir fiche</a>
-            <a href="orders.html" class="btn btn-ghost btn-sm">Commandes</a>
+            <a href="client-form.html" class="btn btn--outline btn--sm">Voir fiche</a>
+            <a href="orders.html" class="btn btn--ghost btn--sm">Commandes</a>
           </div>
         </td>
       </tr>
@@ -49,21 +44,21 @@
       <tr>
         <td>
           <div class="client-cell">
-            <div class="client-avatar" style="background:var(--rouge-sombre);color:var(--blanc-pur);">GD</div>
+            <div class="client-avatar client-avatar--brand">GD</div>
             <div>
-              <div style="font-weight:600;">Gérard Dupont</div>
-              <div style="font-size:0.75rem;color:var(--gris);">Villeurbanne, 69</div>
+              <div class="client-name-strong">Gérard Dupont</div>
+              <div class="client-location-muted">Villeurbanne, 69</div>
             </div>
           </div>
         </td>
-        <td style="font-size:0.82rem;">g.dupont@mail.fr</td>
-        <td style="font-size:0.82rem;">07 98 76 54 32</td>
-        <td style="text-align:center;">1</td>
+        <td class="td-client-contact">g.dupont@mail.fr</td>
+        <td class="td-client-contact">07 98 76 54 32</td>
+        <td class="u-text-center">1</td>
         <td><strong>1 120,00 €</strong></td>
         <td>
           <div class="td-actions">
-            <a href="client-form.html" class="btn btn-outline btn-sm">Voir fiche</a>
-            <a href="orders.html" class="btn btn-ghost btn-sm">Commandes</a>
+            <a href="client-form.html" class="btn btn--outline btn--sm">Voir fiche</a>
+            <a href="orders.html" class="btn btn--ghost btn--sm">Commandes</a>
           </div>
         </td>
       </tr>

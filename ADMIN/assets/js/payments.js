@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (payType && dueDateGroup) {
 		payType.addEventListener("change", () => {
-			const show = this.value === "acompte" || this.value === "echelonne";
-			dueDateGroup.style.display = show ? "block" : "none";
+			const show = payType.value === "acompte" || payType.value === "echelonne";
+			dueDateGroup.classList.toggle("is-hidden", !show);
 		});
 	}
 

@@ -5,42 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Avatar</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body  { padding: 32px; }
-    h3    { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin-bottom: 16px; margin-top: 28px; }
-    .group { display: flex; align-items: center; gap: 20px; }
-
-    /* ── AVATAR ATOM ─────────────────────────────────────────── */
-    .avatar {
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; font-family: var(--font-body); font-weight: 700;
-      flex-shrink: 0; color: var(--blanc-pur); background: var(--rouge-sombre);
-      user-select: none;
-    }
-    .avatar-sm  { width: 28px; height: 28px; font-size: 0.65rem; }
-    .avatar-md  { width: 36px; height: 36px; font-size: 0.8rem; }
-    .avatar-lg  { width: 48px; height: 48px; font-size: 1rem; }
-    .avatar-xl  { width: 64px; height: 64px; font-size: 1.3rem; }
-
-    .avatar-noir  { background: var(--noir);      color: var(--blanc-pur); }
-    .avatar-rouge { background: var(--rouge-vif); color: var(--blanc-pur); }
-    .avatar-gris  { background: #e8ecf0;           color: var(--gris); }
-
-    /* Thumb koï (image produit) */
-    .koi-thumb {
-      border-radius: 6px; background: #e8ecf0;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; overflow: hidden;
-    }
-    .koi-thumb-sm { width: 36px; height: 36px; font-size: 1rem; }
-    .koi-thumb-md { width: 52px; height: 52px; font-size: 1.4rem; }
-    .koi-thumb-lg { width: 80px; height: 80px; font-size: 2rem; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+  <link rel="stylesheet" href="../assets/css/atoms/avatar.css">
 </head>
 <body>
 
   <h3>Avatar utilisateur — Tailles</h3>
-  <div class="group">
+  <div class="demo-group demo-group--gap-20">
     <div class="avatar avatar-sm">MG</div>
     <div class="avatar avatar-md">MG</div>
     <div class="avatar avatar-lg">MG</div>
@@ -48,7 +19,7 @@
   </div>
 
   <h3>Avatar utilisateur — Variantes couleur</h3>
-  <div class="group">
+  <div class="demo-group demo-group--gap-20">
     <div class="avatar avatar-md">MG</div>
     <div class="avatar avatar-md avatar-noir">EM</div>
     <div class="avatar avatar-md avatar-rouge">TR</div>
@@ -56,7 +27,7 @@
   </div>
 
   <h3>Thumbnail Koï (image produit)</h3>
-  <div class="group">
+  <div class="demo-group demo-group--gap-20">
     <div class="koi-thumb koi-thumb-sm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div>
     <div class="koi-thumb koi-thumb-md"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div>
     <div class="koi-thumb koi-thumb-lg"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div>

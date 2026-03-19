@@ -37,6 +37,9 @@
         <div id="submit-button-cvr">
           <button id="submit-button" type="submit">Se connecter</button>
         </div>
+        <div id="dev-access-wrap" class="dev-access-wrap" hidden>
+          <button type="button" id="dev-access-btn" class="dev-access-btn">Accès dev</button>
+        </div>
         <div id="login-divider" aria-hidden="true">ou</div>
         <div id="google-signin-container"></div>
         <div id="forgot-pass">
@@ -63,6 +66,24 @@
         } else {
           document.documentElement.setAttribute('data-theme', v);
         }
+      });
+    })();
+
+    (function initDevAccess() {
+      var wrap = document.getElementById('dev-access-wrap');
+      var btn = document.getElementById('dev-access-btn');
+      if (!wrap || !btn) return;
+      var h = location.hostname;
+      var isDev =
+        h === 'localhost' ||
+        h === '127.0.0.1' ||
+        h === '[::1]' ||
+        h === '' ||
+        location.protocol === 'file:';
+      if (!isDev) return;
+      wrap.hidden = false;
+      btn.addEventListener('click', function () {
+        window.location.href = 'dashboard.html';
       });
     })();
 

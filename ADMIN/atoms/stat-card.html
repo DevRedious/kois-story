@@ -5,37 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Stat Card</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 32px; }
-    h3   { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin-bottom: 16px; margin-top: 28px; }
-    .grid { display: grid; grid-template-columns: repeat(3, 240px); gap: 20px; }
-
-    /* ── STAT-CARD ATOM (Preview overrides) ──────────────────── */
-    .stat-card {
-      background: var(--blanc-pur);
-      border-radius: 10px;
-      padding: 24px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      border-top: 3px solid transparent;
-      position: relative;
-      overflow: hidden;
-    }
-    .stat-card.dispo    { border-top-color: var(--vert-dispo); }
-    .stat-card.vendu    { border-top-color: var(--gris); }
-    .stat-card.messages { border-top-color: var(--rouge-vif); }
-    .stat-card.konishi  { border-top-color: var(--rouge-sombre); }
-
-    .stat-icon { position: absolute; top: 18px; right: 18px; font-size: 2rem; opacity: 0.12; }
-    .logo-konishi { height: 1.15em; width: auto; vertical-align: middle; display: inline-block; }
-    .stat-value { font-size: 2.4rem; }
-    .stat-sub.up   { color: var(--vert-dispo); }
-    .stat-sub.down { color: var(--rouge-vif); }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+  <link rel="stylesheet" href="../assets/css/atoms/stat-card-preview.css">
 </head>
 <body>
 
   <h3>Stat Cards</h3>
-  <div class="grid">
+  <div class="admin-preview-grid">
 
     <div class="stat-card dispo">
       <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div>

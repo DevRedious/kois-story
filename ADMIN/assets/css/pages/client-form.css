@@ -1,0 +1,70 @@
+/* Page — client form */
+.history-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.history-table thead tr {
+	background: var(--blanc-casse);
+	font-size: 0.8rem;
+	color: var(--gris);
+	text-transform: uppercase;
+}
+
+.history-table th {
+	padding: 9px 16px;
+	text-align: left;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.history-table th.td-right {
+	text-align: right;
+}
+
+.history-table td {
+	padding: 9px 16px;
+	border-bottom: 1px solid #f5f5f5;
+}
+
+.history-table td.td-right {
+	text-align: right;
+}
+
+.history-table td.td-ref {
+	font-weight: 600;
+}
+
+.history-table tr:last-child td {
+	border-bottom: none;
+}
+
+.dormant-toggle {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 14px;
+	opacity: 0.5;
+}
+
+.dormant-toggle label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: not-allowed;
+}
+
+.dormant-toggle input {
+	width: 16px;
+	height: 16px;
+}
+
+.dormant-note {
+	font-size: 0.82rem;
+	color: var(--gris);
+	margin-top: 8px;
+}
+
+.content > form > .form-actions {
+	justify-content: flex-end;
+	padding-bottom: 30px;
+}

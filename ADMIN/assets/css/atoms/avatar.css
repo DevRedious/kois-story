@@ -1,0 +1,80 @@
+/* Atom — avatar + koi thumb (admin tables) */
+.avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	font-family: var(--font-body);
+	font-weight: 700;
+	flex-shrink: 0;
+	color: var(--blanc-pur);
+	background: var(--rouge-sombre);
+	user-select: none;
+}
+
+.avatar-sm {
+	width: 28px;
+	height: 28px;
+	font-size: 0.65rem;
+}
+
+.avatar-md {
+	width: 36px;
+	height: 36px;
+	font-size: 0.8rem;
+}
+
+.avatar-lg {
+	width: 48px;
+	height: 48px;
+	font-size: 1rem;
+}
+
+.avatar-xl {
+	width: 64px;
+	height: 64px;
+	font-size: 1.3rem;
+}
+
+.avatar-noir {
+	background: var(--noir);
+	color: var(--blanc-pur);
+}
+
+.avatar-rouge {
+	background: var(--rouge-vif);
+	color: var(--blanc-pur);
+}
+
+.avatar-gris {
+	background: #e8ecf0;
+	color: var(--gris);
+}
+
+.koi-thumb {
+	border-radius: 6px;
+	background: #e8ecf0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	overflow: hidden;
+}
+
+.koi-thumb-sm {
+	width: 36px;
+	height: 36px;
+	font-size: 1rem;
+}
+
+.koi-thumb-md {
+	width: 52px;
+	height: 52px;
+	font-size: 1.4rem;
+}
+
+.koi-thumb-lg {
+	width: 80px;
+	height: 80px;
+	font-size: 2rem;
+}

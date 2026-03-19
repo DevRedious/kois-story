@@ -5,18 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Molecule — Koi Row</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 32px; }
-    h3   { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin-bottom: 10px; margin-top: 28px; }
-
-    /* ── KOI-ROW MOLECULE ────────────────────────────────────── */
-    .koi-thumb   { width: 48px; height: 48px; border-radius: 6px; background: #e8ecf0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
-    .koi-name    { font-weight: 600; font-size: 0.875rem; }
-    .koi-variety { font-size: 0.75rem; color: var(--gris); margin-top: 1px; }
-    .koi-price   { font-weight: 700; font-size: 0.9rem; white-space: nowrap; }
-    .logo-konishi { height: 1.15em; width: auto; vertical-align: middle; display: inline-block; }
-    .row-actions { display: flex; gap: 6px; white-space: nowrap; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
 </head>
 <body>
 
@@ -39,7 +28,7 @@
           <td class="koi-price">1 800 €</td>
           <td><span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span></td>
           <td><span class="badge badge-dispo">Disponible</span></td>
-          <td><div class="row-actions"><button class="btn btn-outline btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+          <td><div class="row-actions"><button class="btn btn--outline btn--sm">Éditer</button><button class="btn btn--danger btn--sm">Supprimer</button></div></td>
         </tr>
 
         <tr>
@@ -49,7 +38,7 @@
           <td class="koi-price">720 €</td>
           <td>—</td>
           <td><span class="badge badge-dispo">Disponible</span></td>
-          <td><div class="row-actions"><button class="btn btn-outline btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+          <td><div class="row-actions"><button class="btn btn--outline btn--sm">Éditer</button><button class="btn btn--danger btn--sm">Supprimer</button></div></td>
         </tr>
 
         <tr class="vendu">
@@ -59,7 +48,7 @@
           <td class="koi-price">3 200 €</td>
           <td><span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span></td>
           <td><span class="badge badge-vendu">Vendu</span></td>
-          <td><div class="row-actions"><button class="btn btn-ghost btn-sm">Voir</button></div></td>
+          <td><div class="row-actions"><button class="btn btn--ghost btn--sm">Voir</button></div></td>
         </tr>
 
       </tbody>

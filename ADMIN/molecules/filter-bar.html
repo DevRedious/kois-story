@@ -5,33 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Molecule — Filter Bar</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 32px; }
-    h3   { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin-bottom: 12px; margin-top: 28px; }
-
-    /* ── FILTER-BAR MOLECULE ─────────────────────────────────── */
-    .filter-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .filter-bar select,
-    .filter-bar input[type="text"],
-    .filter-bar input[type="search"] {
-      font-family: var(--font-body); font-size: 0.82rem; color: var(--noir);
-      border: 1.5px solid #d8dde3; border-radius: 6px; padding: 7px 12px;
-      background: var(--blanc-pur); outline: none; height: 36px;
-      transition: border-color 0.15s;
-    }
-    .filter-bar select:focus, .filter-bar input:focus {
-      border-color: var(--rouge-sombre);
-      box-shadow: 0 0 0 2px rgba(99,15,15,0.08);
-    }
-    .filter-bar select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px;
-    }
-    .filter-search { width: 200px; }
-    .filter-spacer { flex: 1; }
-    .filter-count  { font-size: 0.8rem; color: var(--gris); white-space: nowrap; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
 </head>
 <body>
 
@@ -52,10 +26,10 @@
     </select>
     <div class="filter-spacer"></div>
     <span class="filter-count">12 koïs</span>
-    <button class="btn btn-primary btn-sm">＋ Nouveau koï</button>
+    <button class="btn btn--primary btn--sm">＋ Nouveau koï</button>
   </div>
 
-  <h3 style="margin-top: 40px;">Filter Bar — Messages</h3>
+  <h3 class="demo-title-spaced">Filter Bar — Messages</h3>
   <div class="filter-bar">
     <select>
       <option value="">Tous messages</option>
@@ -63,7 +37,7 @@
     </select>
     <div class="filter-spacer"></div>
     <span class="filter-count">3 non lus</span>
-    <button class="btn btn-outline btn-sm">Tout marquer comme lu</button>
+    <button class="btn btn--outline btn--sm">Tout marquer comme lu</button>
   </div>
 
 </body>
