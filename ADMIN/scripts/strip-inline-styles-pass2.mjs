@@ -27,8 +27,14 @@ const replacements = [
 		/<div style="display:flex;gap:20px;flex-wrap:wrap;">/g,
 		'<div class="accounting-panels-row">',
 	],
-	[/<div class="panel" style="flex:1;min-width:280px;">/g, '<div class="panel accounting-panel">'],
-	[/<div class="panel-body" style="padding:0;">/g, '<div class="panel-body panel-body--flush">'],
+	[
+		/<div class="panel" style="flex:1;min-width:280px;">/g,
+		'<div class="panel accounting-panel">',
+	],
+	[
+		/<div class="panel-body" style="padding:0;">/g,
+		'<div class="panel-body panel-body--flush">',
+	],
 	[
 		/<table style="width:100%;border-collapse:collapse;">/g,
 		'<table class="admin-data-table">',
@@ -63,7 +69,10 @@ const replacements = [
 		/<div class="dormant-banner" style="font-size:0\.95rem;line-height:1\.6;">/g,
 		'<div class="dormant-banner dormant-banner--relaxed">',
 	],
-	[/<div class="stats-grid" style="opacity:0\.5;">/g, '<div class="stats-grid dormant-faded">'],
+	[
+		/<div class="stats-grid" style="opacity:0\.5;">/g,
+		'<div class="stats-grid dormant-faded">',
+	],
 	[
 		/<div class="panel" style="opacity:0\.5;pointer-events:none;">/g,
 		'<div class="panel dormant-faded--no-pointer">',
@@ -140,13 +149,13 @@ const replacements = [
 		/<td style="padding:8px 14px;border-bottom:1px solid #f5f5f5;"><span/g,
 		"<td><span",
 	],
-	[
-		/<td style="padding:8px 14px;border-bottom:1px solid #f5f5f5;">/g,
-		"<td>",
-	],
+	[/<td style="padding:8px 14px;border-bottom:1px solid #f5f5f5;">/g, "<td>"],
 	[/<td style="padding:8px 14px;font-weight:600;">/g, '<td class="td-strong">'],
 	[/<td style="padding:8px 14px;text-align:right;">/g, '<td class="td-right">'],
-	[/<td style="padding:8px 14px;font-size:0\.82rem;">/g, '<td class="accounting-td-date">'],
+	[
+		/<td style="padding:8px 14px;font-size:0\.82rem;">/g,
+		'<td class="accounting-td-date">',
+	],
 	[/<td style="padding:8px 14px;"><span/g, "<td><span"],
 	[/<td style="padding:8px 14px;">/g, "<td>"],
 	[
@@ -185,10 +194,7 @@ const replacements = [
 		/<td style="padding:10px 16px;border-bottom:1px solid #f5f5f5;"><span/g,
 		"<td><span",
 	],
-	[
-		/<td style="padding:10px 16px;border-bottom:1px solid #f5f5f5;">/g,
-		"<td>",
-	],
+	[/<td style="padding:10px 16px;border-bottom:1px solid #f5f5f5;">/g, "<td>"],
 	[
 		/<td style="padding:10px 16px;text-align:center;" class="td-actions"/g,
 		'<td class="td-center td-actions"',
@@ -201,9 +207,18 @@ const replacements = [
 		/<td style="padding:10px 16px;text-align:center;">/g,
 		'<td class="td-center">',
 	],
-	[/<td style="padding:10px 16px;font-weight:600;">/g, '<td class="td-strong">'],
-	[/<td style="padding:10px 16px;color:#aaa;" title=/g, '<td class="td-placeholder" title='],
-	[/<td style="padding:10px 16px;color:#aaa;">/g, '<td class="td-placeholder">'],
+	[
+		/<td style="padding:10px 16px;font-weight:600;">/g,
+		'<td class="td-strong">',
+	],
+	[
+		/<td style="padding:10px 16px;color:#aaa;" title=/g,
+		'<td class="td-placeholder" title=',
+	],
+	[
+		/<td style="padding:10px 16px;color:#aaa;">/g,
+		'<td class="td-placeholder">',
+	],
 	[
 		/<td style="padding:10px 16px;color:#e67e22;font-weight:600;">/g,
 		'<td class="td-due-warn">',
