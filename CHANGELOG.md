@@ -11,6 +11,9 @@ This project follows a pre-production workflow until the first production deploy
 
 
 ### Integration
+- Merge pull request #18 from DevRedious/chore/auto-update-changelog
+
+docs: auto-update CHANGELOG
 - Merge pull request #15 from DevRedious/chore/auto-update-changelog
 
 docs: auto-update CHANGELOG
