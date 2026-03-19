@@ -19,6 +19,7 @@
       <span class="nav__indicator" id="nav-indicator"></span>
       <ul>
         <li><a href="home.html">Accueil</a></li>
+        <li><a href="decouvrir.html" class="active">Nous découvrir</a></li>
         <li><a href="kois.html">Nos Koïs</a></li>
         <li class="has-dropdown">
           <a href="#" class="dropdown-toggle">
@@ -34,7 +35,7 @@
         <li><a href="azukari.html">Azukari</a></li>
       </ul>
     </nav>
-    <button type="button" class="header__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="header__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="nav-backdrop" id="nav-backdrop"></div>
@@ -113,15 +114,35 @@
       <a href="home.html" class="footer__logo"><img src="../../docs/assets/LOGO MANU FINI.png" alt="Koi's Story"></a>
       <nav class="footer__links" id="footer-links">
         <span class="footer__indicator" id="footer-indicator"></span>
-        <a href="kois.html">Nos Koïs</a>
-        <a href="materiel.html">Matériel</a>
-        <a href="nourriture.html">Nourriture</a>
-        <a href="soins.html">Soins</a>
-        <a href="azukari.html">Azukari</a>
         <a href="decouvrir.html">Nous découvrir</a>
+        <a href="kois.html">Nos Koïs</a>
+        <div class="footer__legal-menu" id="footer-products">
+        <a role="button" class="footer__legal-toggle" aria-expanded="false" aria-haspopup="true" tabindex="0">
+          Produits
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,8 6,4 10,8"/></svg>
+        </a>
+        <ul class="footer__legal-dropdown" role="menu">
+          <li><a href="materiel.html" role="menuitem">Matériel</a></li>
+          <li><a href="nourriture.html" role="menuitem">Nourriture</a></li>
+          <li><a href="soins.html" role="menuitem">Soins</a></li>
+        </ul>
+      </div>
+        <a href="azukari.html">Azukari</a>
         <a href="contact.html">Contact</a>
-        <a href="#">Mentions légales</a>
+      
+              <div class="footer__legal-menu" id="footer-legal">
+        <a role="button" class="footer__legal-toggle" tabindex="0" aria-expanded="false" aria-haspopup="true">
+          Légal
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,8 6,4 10,8"/></svg>
+        </a>
+        <ul class="footer__legal-dropdown" role="menu">
+          <li><a href="mentions-legales.html" role="menuitem">Mentions légales</a></li>
+          <li><a href="cgv.html" role="menuitem">CGV</a></li>
+          <li><a href="confidentialite.html" role="menuitem">Politique de confidentialité</a></li>
+        </ul>
+      </div>
       </nav>
+      
       <p class="footer__copy">&copy; 2026 Koi's Story</p>
     </div>
   </div>
@@ -207,7 +228,7 @@
   const footerLinksEl   = document.getElementById('footer-links');
   const footerIndicator = document.getElementById('footer-indicator');
   if (footerLinksEl && footerIndicator) {
-    footerLinksEl.querySelectorAll('a').forEach(a => {
+    Array.from(footerLinksEl.querySelectorAll('a')).filter(a => !a.closest('.footer__legal-dropdown')).forEach(a => {
       a.addEventListener('mouseenter', () => {
         const navRect = footerLinksEl.getBoundingClientRect();
         const aRect   = a.getBoundingClientRect();

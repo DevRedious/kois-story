@@ -57,3 +57,28 @@ const initVideoFade = () => {
 
 document.addEventListener("DOMContentLoaded", initVideoFade);
 document.addEventListener("turbo:load", initVideoFade);
+
+/* ── Footer legal dropdown ──────────────────────────────────────────── */
+const initFooterDropdown = (id) => {
+	const menu = document.getElementById(id);
+	if (!menu) return;
+	const toggle = menu.querySelector(".footer__legal-toggle");
+	toggle.addEventListener("click", () => {
+		const isOpen = menu.classList.toggle("open");
+		toggle.setAttribute("aria-expanded", String(isOpen));
+	});
+	document.addEventListener("click", (e) => {
+		if (!menu.contains(e.target)) {
+			menu.classList.remove("open");
+			toggle.setAttribute("aria-expanded", "false");
+		}
+	});
+};
+
+const initFooterDropdowns = () => {
+	initFooterDropdown("footer-legal");
+	initFooterDropdown("footer-products");
+};
+
+document.addEventListener("DOMContentLoaded", initFooterDropdowns);
+document.addEventListener("turbo:load", initFooterDropdowns);
