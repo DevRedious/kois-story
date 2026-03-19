@@ -1,4 +1,4 @@
-name: Mise à jour du CHANGELOG
+name: Update CHANGELOG
 
 on:
   push:
@@ -7,18 +7,18 @@ on:
 
 jobs:
   changelog:
-    name: Générer le CHANGELOG
+    name: Generate CHANGELOG
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-      - name: Récupérer le dépôt (historique complet)
+      - name: Checkout repository (full history)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Générer le CHANGELOG avec git-cliff
+      - name: Generate CHANGELOG with git-cliff
         uses: orhun/git-cliff-action@v3
         with:
           config: cliff.toml
@@ -26,10 +26,10 @@ jobs:
         env:
           OUTPUT: CHANGELOG.md
 
-      - name: Commiter le CHANGELOG mis à jour
+      - name: Commit updated CHANGELOG
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git diff --cached --quiet || git commit -m "docs: mise à jour automatique du CHANGELOG [skip ci]"
+          git diff --cached --quiet || git commit -m "docs: auto-update CHANGELOG [skip ci]"
           git push
