@@ -9,6 +9,7 @@
 	flex-shrink: 0;
 	color: var(--blanc-pur);
 	background: var(--rouge-sombre);
+	-webkit-user-select: none;
 	user-select: none;
 }
 

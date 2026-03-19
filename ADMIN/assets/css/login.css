@@ -187,7 +187,7 @@ body.login-page > .login-theme-switcher {
 }
 
 .dev-access-wrap[hidden] {
-	display: none !important;
+	display: none;
 }
 
 .dev-access-btn {

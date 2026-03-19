@@ -1,92 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Organism — Products Table</title>
-  <link rel="stylesheet" href="../assets/css/admin.css">
-  <link rel="stylesheet" href="../assets/css/preview-shell.css">
-</head>
-<body>
-
-<!-- ── PRODUCTS TABLE ORGANISM ───────────────────────────── -->
-<div class="panel">
-  <div class="panel-header">
-    <span class="panel-title">Catalogue produits</span>
-    <div class="panel-toolbar">
-      <select id="cat-filter" class="u-toolbar-control">
-        <option value="">Toutes catégories</option>
-        <option value="materiel">Matériel</option>
-        <option value="soins">Soins</option>
-        <option value="nourriture">Nourriture</option>
-      </select>
-      <a href="product-form.html" class="btn btn--primary btn--sm">＋ Nouveau produit</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organism — Products Table</title>
+    <link rel="stylesheet" href="../assets/css/admin.css" />
+    <link rel="stylesheet" href="../assets/css/preview-shell.css" />
+  </head>
+  <body>
+    <!-- ── PRODUCTS TABLE ORGANISM ───────────────────────────── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Catalogue produits</span>
+        <div class="panel-toolbar">
+          <select
+            id="cat-filter"
+            class="u-toolbar-control"
+            aria-label="Filtrer par catégorie"
+          >
+            <option value="">Toutes catégories</option>
+            <option value="materiel">Matériel</option>
+            <option value="soins">Soins</option>
+            <option value="nourriture">Nourriture</option>
+          </select>
+          <a href="product-form.html" class="btn btn--primary btn--sm"
+            >＋ Nouveau produit</a
+          >
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table id="products-table">
+          <thead>
+            <tr>
+              <th>Produit</th>
+              <th>Référence</th>
+              <th>Catégorie</th>
+              <th>Prix</th>
+              <th>Stock</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-cat="materiel">
+              <td><strong>Filtre Biotec 36</strong></td>
+              <td class="td-ref-muted">—</td>
+              <td><span class="badge badge-materiel">Matériel</span></td>
+              <td>480,00 €</td>
+              <td>4</td>
+              <td><span class="badge badge-dispo">Actif</span></td>
+              <td>
+                <div class="td-actions">
+                  <a href="product-form.html" class="btn btn--outline btn--sm"
+                    >Éditer</a
+                  >
+                  <button type="button" class="btn btn--ghost btn--sm">
+                    Stock
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr data-cat="nourriture">
+              <td><strong>Nourriture Konishi Flottant 5kg</strong></td>
+              <td class="td-ref-muted">—</td>
+              <td><span class="badge badge-nourriture">Nourriture</span></td>
+              <td>68,00 €</td>
+              <td class="stock-low">1 ⚠</td>
+              <td><span class="badge badge-dispo">Actif</span></td>
+              <td>
+                <div class="td-actions">
+                  <a href="product-form.html" class="btn btn--outline btn--sm"
+                    >Éditer</a
+                  >
+                  <button type="button" class="btn btn--primary btn--sm">
+                    Réappro
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr data-cat="soins">
+              <td><strong>Microscope 40× Koï</strong></td>
+              <td class="td-ref-muted">—</td>
+              <td><span class="badge badge-soins">Soins</span></td>
+              <td>220,00 €</td>
+              <td class="u-text-muted">0</td>
+              <td><span class="badge badge-vendu">Inactif</span></td>
+              <td>
+                <a href="product-form.html" class="btn btn--outline btn--sm"
+                  >Éditer</a
+                >
+              </td>
+            </tr>
+            <tr data-cat="nourriture">
+              <td><strong>Vitamines Mucus+</strong></td>
+              <td class="td-ref-muted">—</td>
+              <td><span class="badge badge-nourriture">Nourriture</span></td>
+              <td>24,00 €</td>
+              <td>12</td>
+              <td><span class="badge badge-dispo">Actif</span></td>
+              <td>
+                <div class="td-actions">
+                  <a href="product-form.html" class="btn btn--outline btn--sm"
+                    >Éditer</a
+                  >
+                  <button type="button" class="btn btn--ghost btn--sm">
+                    Stock
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-  <div class="table-responsive">
-    <table id="products-table">
-      <thead>
-        <tr>
-          <th>Produit</th><th>Référence</th><th>Catégorie</th>
-          <th>Prix</th><th>Stock</th><th>Statut</th><th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr data-cat="materiel">
-          <td><strong>Filtre Biotec 36</strong></td>
-          <td class="td-ref-muted">—</td>
-          <td><span class="badge badge-materiel">Matériel</span></td>
-          <td>480,00 €</td><td>4</td>
-          <td><span class="badge badge-dispo">Actif</span></td>
-          <td><div class="td-actions">
-            <a href="product-form.html" class="btn btn--outline btn--sm">Éditer</a>
-            <button class="btn btn--ghost btn--sm">Stock</button>
-          </div></td>
-        </tr>
-        <tr data-cat="nourriture">
-          <td><strong>Nourriture Konishi Flottant 5kg</strong></td>
-          <td class="td-ref-muted">—</td>
-          <td><span class="badge badge-nourriture">Nourriture</span></td>
-          <td>68,00 €</td>
-          <td class="stock-low">1 ⚠</td>
-          <td><span class="badge badge-dispo">Actif</span></td>
-          <td><div class="td-actions">
-            <a href="product-form.html" class="btn btn--outline btn--sm">Éditer</a>
-            <button class="btn btn--primary btn--sm">Réappro</button>
-          </div></td>
-        </tr>
-        <tr data-cat="soins">
-          <td><strong>Microscope 40× Koï</strong></td>
-          <td class="td-ref-muted">—</td>
-          <td><span class="badge badge-soins">Soins</span></td>
-          <td>220,00 €</td>
-          <td class="u-text-muted">0</td>
-          <td><span class="badge badge-vendu">Inactif</span></td>
-          <td><a href="product-form.html" class="btn btn--outline btn--sm">Éditer</a></td>
-        </tr>
-        <tr data-cat="nourriture">
-          <td><strong>Vitamines Mucus+</strong></td>
-          <td class="td-ref-muted">—</td>
-          <td><span class="badge badge-nourriture">Nourriture</span></td>
-          <td>24,00 €</td><td>12</td>
-          <td><span class="badge badge-dispo">Actif</span></td>
-          <td><div class="td-actions">
-            <a href="product-form.html" class="btn btn--outline btn--sm">Éditer</a>
-            <button class="btn btn--ghost btn--sm">Stock</button>
-          </div></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
 
-<script>
-  document.getElementById('cat-filter').addEventListener('change', function() {
-    const val = this.value;
-    document.querySelectorAll('#products-table tbody tr').forEach(row => {
-      row.style.display = (!val || row.dataset.cat === val) ? '' : 'none';
-    });
-  });
-</script>
-
-</body>
+    <script>
+      document
+        .getElementById("cat-filter")
+        .addEventListener("change", function () {
+          const val = this.value;
+          document
+            .querySelectorAll("#products-table tbody tr")
+            .forEach((row) => {
+              row.style.display = !val || row.dataset.cat === val ? "" : "none";
+            });
+        });
+    </script>
+  </body>
 </html>
