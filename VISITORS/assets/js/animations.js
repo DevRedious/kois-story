@@ -43,3 +43,17 @@ const initFloatCta = () => {
 
 document.addEventListener("DOMContentLoaded", initFloatCta);
 document.addEventListener("turbo:load", initFloatCta);
+
+/* ── Video → poster fade on ended ──────────────────────────────────── */
+const initVideoFade = () => {
+	const video = document.querySelector(".hero__video");
+	const poster = document.querySelector(".hero__poster");
+	if (!video || !poster) return;
+	video.addEventListener("ended", () => {
+		video.classList.add("hero__video--fading");
+		poster.classList.add("hero__poster--visible");
+	});
+};
+
+document.addEventListener("DOMContentLoaded", initVideoFade);
+document.addEventListener("turbo:load", initVideoFade);

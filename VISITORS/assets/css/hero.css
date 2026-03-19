@@ -90,13 +90,31 @@
 }
 
 /* ── VIDEO HERO ──────────────────────────────────────────────────── */
+.hero__poster {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	background: var(--c-black);
+	z-index: 3;
+	opacity: 0;
+	transition: opacity 1.5s ease;
+}
+.hero__poster--visible {
+	opacity: 1;
+}
 .hero__video {
 	position: absolute;
 	inset: 0;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	z-index: 0;
+	z-index: 1;
+	transition: opacity 1.5s ease;
+}
+.hero__video--fading {
+	opacity: 0;
 }
 
 /* ── HERO WAVY BOTTOM ────────────────────────────────────────────── */
