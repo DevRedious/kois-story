@@ -15,7 +15,10 @@ function walkHtmlFiles(dir, out = []) {
 }
 
 const replacements = [
-	[/ alt="" style="height:26px;border-radius:50%;"/g, ' alt="" class="brand-logo-img"'],
+	[
+		/ alt="" style="height:26px;border-radius:50%;"/g,
+		' alt="" class="brand-logo-img"',
+	],
 	[
 		/<div class="nav-section" style="margin-top:6px;">/g,
 		'<div class="nav-section nav-section--spaced">',
@@ -28,7 +31,10 @@ const replacements = [
 		/<div style="display:flex;gap:8px;flex-wrap:wrap;">/g,
 		'<div class="panel-toolbar">',
 	],
-	[/<div style="display:flex;gap:8px;">/g, '<div class="panel-toolbar panel-toolbar--nowrap">'],
+	[
+		/<div style="display:flex;gap:8px;">/g,
+		'<div class="panel-toolbar panel-toolbar--nowrap">',
+	],
 	[
 		/<div style="display:flex;gap:8px;align-items:center;">/g,
 		'<div class="page-header-toolbar">',
@@ -69,15 +75,24 @@ const replacements = [
 		/<span style="font-size:0\.75rem;color:var\(--gris\);">/g,
 		'<span class="amount-secondary">',
 	],
-	[/<td style="font-size:0\.8rem;color:var\(--gris\);">/g, '<td class="td-date-muted">'],
-	[/<td style="font-size:0\.78rem;color:var\(--gris\);">/g, '<td class="td-ref-muted">'],
+	[
+		/<td style="font-size:0\.8rem;color:var\(--gris\);">/g,
+		'<td class="td-date-muted">',
+	],
+	[
+		/<td style="font-size:0\.78rem;color:var\(--gris\);">/g,
+		'<td class="td-ref-muted">',
+	],
 	[/<td style="color:var\(--gris\);">/g, '<td class="u-text-muted">'],
 	[/<td style="font-size:0\.8rem;">/g, '<td class="td-fs-08">'],
 	[
 		/<td style="font-size:0\.8rem;color:var\(--rouge-vif\);">/g,
 		'<td class="td-date-alert">',
 	],
-	[/<span style="color:var\(--gris\);font-size:0\.8rem;">/g, '<span class="order-line-qty">'],
+	[
+		/<span style="color:var\(--gris\);font-size:0\.8rem;">/g,
+		'<span class="order-line-qty">',
+	],
 	[/<div style="font-weight:600;">/g, '<div class="client-name-strong">'],
 	[
 		/<div style="font-size:0\.75rem;color:var\(--gris\);">/g,
@@ -111,7 +126,10 @@ const replacements = [
 		/<span class="badge badge-konishi" style="font-size:0\.8rem;padding:6px 14px;">/g,
 		'<span class="badge badge-konishi badge-konishi-padded">',
 	],
-	[/<span class="badge" style="background:var\(--noir\);color:#fff;">/g, '<span class="badge badge-solid-dark">'],
+	[
+		/<span class="badge" style="background:var\(--noir\);color:#fff;">/g,
+		'<span class="badge badge-solid-dark">',
+	],
 	[
 		/<div class="demo-group" style="gap:20px;">/g,
 		'<div class="demo-group demo-group--gap-20">',
