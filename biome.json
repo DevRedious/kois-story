@@ -7,5 +7,15 @@
       "!**/.edge",
       "!**/edge-tools"
     ]
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noImportantStyles": "warn"
+      },
+      "style": {
+        "noDescendingSpecificity": "warn"
+      }
+    }
   }
 }
