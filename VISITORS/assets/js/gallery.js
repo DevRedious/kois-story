@@ -4,10 +4,8 @@
  * Clic sur .koi-detail__thumb → affiche en grand dans un overlay.
  * Touche Escape ou clic overlay pour fermer.
  */
-(function () {
-	"use strict";
-
-	document.addEventListener("DOMContentLoaded", function () {
+(() => {
+	document.addEventListener("DOMContentLoaded", () => {
 		// ── Construction de l'overlay ────────────────────────────────────
 		var overlay = document.createElement("div");
 		overlay.id = "gallery-overlay";
@@ -78,15 +76,15 @@
 		}
 
 		// ── Événements ───────────────────────────────────────────────────
-		overlay.addEventListener("click", function (e) {
+		overlay.addEventListener("click", (e) => {
 			if (e.target === overlay) closeLightbox();
 		});
 		closeBtn.addEventListener("click", closeLightbox);
-		overlayImg.addEventListener("click", function (e) {
+		overlayImg.addEventListener("click", (e) => {
 			e.stopPropagation();
 		});
 
-		document.addEventListener("keydown", function (e) {
+		document.addEventListener("keydown", (e) => {
 			if (e.key === "Escape") closeLightbox();
 		});
 
@@ -95,7 +93,7 @@
 			var thumbs = document.querySelectorAll(
 				".koi-detail__thumb img, .gallery-cell img",
 			);
-			thumbs.forEach(function (img) {
+			thumbs.forEach((img) => {
 				img.style.cursor = "zoom-in";
 				img.addEventListener("click", function () {
 					openLightbox(this.src, this.alt);

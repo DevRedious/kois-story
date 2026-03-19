@@ -89,7 +89,7 @@
 
 .btn--wa {
 	background: var(--c-wa);
-	color: var(--c-white);
+	color: var(--c-black);
 	border-color: var(--c-wa);
 }
 .btn--wa:hover {

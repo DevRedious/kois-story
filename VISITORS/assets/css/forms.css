@@ -197,6 +197,8 @@
 .info-item__icon {
 	font-size: 1.5rem;
 	flex-shrink: 0;
+	display: flex;
+	align-items: center;
 }
 .info-item__text strong {
 	font-size: var(--text-sm);
@@ -211,7 +213,7 @@
 	line-height: var(--leading-normal);
 }
 .info-item__text a {
-	color: var(--c-wa);
+	color: var(--c-wine);
 	font-weight: 700;
 }
 .map-placeholder {
@@ -259,6 +261,35 @@
 	gap: var(--sp-5);
 }
 
+/* ── HOME VARIANT — glassmorphisme ──────────────────────────────── */
+.contact-form--home {
+	background: rgba(255, 255, 255, 0.45);
+	backdrop-filter: blur(20px) saturate(160%);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	box-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.1),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	border-radius: var(--r-xl);
+	padding: var(--sp-10);
+}
+.contact-form--home .contact-form__note {
+	text-align: center;
+}
+
+/* ── CONTACT RAPIDE — boutons WA ─────────────────────────────────── */
+.contact-quick__wa {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-3);
+	margin-top: var(--sp-6);
+}
+.contact-quick__wa .btn--wa:hover {
+	background: #1fba5a;
+	border-color: #1fba5a;
+	box-shadow: none;
+}
+
 @media (max-width: 900px) {
 	.contact-section__inner {
 		grid-template-columns: 1fr;
@@ -271,5 +302,11 @@
 @media (min-width: 769px) {
 	.form-row {
 		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 580px) {
+	.contact-quick__wa {
+		grid-template-columns: 1fr;
 	}
 }

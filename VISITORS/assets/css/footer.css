@@ -67,6 +67,26 @@
 	background: #25d366;
 }
 
+.footer__social {
+	display: flex;
+	align-items: center;
+	gap: var(--sp-4);
+}
+.footer__social-link {
+	display: flex;
+	align-items: center;
+	gap: var(--sp-2);
+	font-family: var(--font-sans);
+	font-size: var(--text-sm);
+	font-weight: 600;
+	color: var(--w-70);
+	text-decoration: none;
+	transition: color var(--t-fast);
+}
+.footer__social-link:hover {
+	color: var(--c-white);
+}
+
 .footer__col h4 {
 	font-size: var(--text-xs);
 	font-weight: 700;
