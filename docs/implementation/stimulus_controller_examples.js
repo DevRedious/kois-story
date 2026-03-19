@@ -17,7 +17,6 @@
  * ============================================================
  */
 
-
 // ============================================================
 // 1. HEADER CONTROLLER
 // Migration de : VISITORS/assets/js/header.js
@@ -31,55 +30,54 @@
 // </header>
 // ============================================================
 
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export class HeaderController extends Controller {
-  static targets = ["nav", "dropdown", "burger"]
-  static values  = { scrollThreshold: { type: Number, default: 80 } }
+	static targets = ["nav", "dropdown", "burger"];
+	static values = { scrollThreshold: { type: Number, default: 80 } };
 
-  connect() {
-    this.scrolled = false
-    this._setupScrollObserver()
-  }
+	connect() {
+		this.scrolled = false;
+		this._setupScrollObserver();
+	}
 
-  disconnect() {
-    if (this.observer) this.observer.disconnect()
-  }
+	disconnect() {
+		if (this.observer) this.observer.disconnect();
+	}
 
-  toggleMenu() {
-    const isOpen = this.dropdownTarget.classList.contains("nav-dropdown--open")
-    this.dropdownTarget.classList.toggle("nav-dropdown--open", !isOpen)
-    this.burgerTarget.setAttribute("aria-expanded", String(!isOpen))
-  }
+	toggleMenu() {
+		const isOpen = this.dropdownTarget.classList.contains("nav-dropdown--open");
+		this.dropdownTarget.classList.toggle("nav-dropdown--open", !isOpen);
+		this.burgerTarget.setAttribute("aria-expanded", String(!isOpen));
+	}
 
-  closeMenu() {
-    this.dropdownTarget.classList.remove("nav-dropdown--open")
-    this.burgerTarget.setAttribute("aria-expanded", "false")
-  }
+	closeMenu() {
+		this.dropdownTarget.classList.remove("nav-dropdown--open");
+		this.burgerTarget.setAttribute("aria-expanded", "false");
+	}
 
-  _setupScrollObserver() {
-    const hero = document.querySelector(".hero")
+	_setupScrollObserver() {
+		const hero = document.querySelector(".hero");
 
-    if (hero) {
-      this.observer = new IntersectionObserver(
-        ([entry]) => this._handleScrollState(!entry.isIntersecting),
-        { threshold: 0.1 }
-      )
-      this.observer.observe(hero)
-    } else {
-      // Fallback : écouter le scroll directement
-      this._scrollHandler = () => {
-        this._handleScrollState(window.scrollY > this.scrollThresholdValue)
-      }
-      window.addEventListener("scroll", this._scrollHandler, { passive: true })
-    }
-  }
+		if (hero) {
+			this.observer = new IntersectionObserver(
+				([entry]) => this._handleScrollState(!entry.isIntersecting),
+				{ threshold: 0.1 },
+			);
+			this.observer.observe(hero);
+		} else {
+			// Fallback : écouter le scroll directement
+			this._scrollHandler = () => {
+				this._handleScrollState(window.scrollY > this.scrollThresholdValue);
+			};
+			window.addEventListener("scroll", this._scrollHandler, { passive: true });
+		}
+	}
 
-  _handleScrollState(isScrolled) {
-    this.element.classList.toggle("site-header--scrolled", isScrolled)
-  }
+	_handleScrollState(isScrolled) {
+		this.element.classList.toggle("site-header--scrolled", isScrolled);
+	}
 }
-
 
 // ============================================================
 // 2. FILTER CONTROLLER
@@ -105,52 +103,56 @@ export class HeaderController extends Controller {
 // ============================================================
 
 export class FilterController extends Controller {
-  static targets = ["list", "count"]
+	static targets = ["list", "count"];
 
-  connect() {
-    this.apply()
-  }
+	connect() {
+		this.apply();
+	}
 
-  apply() {
-    const variety  = this.element.querySelector("#filter-variety")?.value  || ""
-    const age      = this.element.querySelector("#filter-age")?.value      || ""
-    const priceMax = this.element.querySelector("#filter-price")?.value    || ""
-    const konishi  = this.element.querySelector("#filter-konishi")?.checked || false
+	apply() {
+		const variety = this.element.querySelector("#filter-variety")?.value || "";
+		const age = this.element.querySelector("#filter-age")?.value || "";
+		const priceMax = this.element.querySelector("#filter-price")?.value || "";
+		const konishi =
+			this.element.querySelector("#filter-konishi")?.checked || false;
 
-    const cards = this.listTarget.querySelectorAll(".koi-card")
-    let visible = 0
+		const cards = this.listTarget.querySelectorAll(".koi-card");
+		let visible = 0;
 
-    cards.forEach(card => {
-      const matchVariety  = !variety  || card.dataset.variety === variety
-      const matchAge      = !age      || card.dataset.age     === age
-      const matchPrice    = !priceMax || parseFloat(card.dataset.price || 0) <= parseFloat(priceMax)
-      const matchKonishi  = !konishi  || card.dataset.konishi === "true"
+		cards.forEach((card) => {
+			const matchVariety = !variety || card.dataset.variety === variety;
+			const matchAge = !age || card.dataset.age === age;
+			const matchPrice =
+				!priceMax ||
+				parseFloat(card.dataset.price || 0) <= parseFloat(priceMax);
+			const matchKonishi = !konishi || card.dataset.konishi === "true";
 
-      const show = matchVariety && matchAge && matchPrice && matchKonishi
-      card.closest("li").hidden = !show
-      if (show) visible++
-    })
+			const show = matchVariety && matchAge && matchPrice && matchKonishi;
+			card.closest("li").hidden = !show;
+			if (show) visible++;
+		});
 
-    this._updateCount(visible)
-  }
+		this._updateCount(visible);
+	}
 
-  reset() {
-    this.element.querySelectorAll("select, input[type='number']").forEach(el => {
-      el.value = ""
-    })
-    this.element.querySelectorAll("input[type='checkbox']").forEach(el => {
-      el.checked = false
-    })
-    this.apply()
-  }
+	reset() {
+		this.element
+			.querySelectorAll("select, input[type='number']")
+			.forEach((el) => {
+				el.value = "";
+			});
+		this.element.querySelectorAll("input[type='checkbox']").forEach((el) => {
+			el.checked = false;
+		});
+		this.apply();
+	}
 
-  _updateCount(count) {
-    if (!this.hasCountTarget) return
-    const label = count <= 1 ? "koï disponible" : "koïs disponibles"
-    this.countTarget.textContent = `${count} ${label}`
-  }
+	_updateCount(count) {
+		if (!this.hasCountTarget) return;
+		const label = count <= 1 ? "koï disponible" : "koïs disponibles";
+		this.countTarget.textContent = `${count} ${label}`;
+	}
 }
-
 
 // ============================================================
 // 3. GALLERY CONTROLLER
@@ -173,61 +175,62 @@ export class FilterController extends Controller {
 // ============================================================
 
 export class GalleryController extends Controller {
-  static targets = ["overlay", "fullImage", "thumbs"]
+	static targets = ["overlay", "fullImage", "thumbs"];
 
-  connect() {
-    // Écouter la touche Escape pour fermer
-    this._keyHandler = (e) => { if (e.key === "Escape") this.close() }
-    document.addEventListener("keydown", this._keyHandler)
-  }
+	connect() {
+		// Écouter la touche Escape pour fermer
+		this._keyHandler = (e) => {
+			if (e.key === "Escape") this.close();
+		};
+		document.addEventListener("keydown", this._keyHandler);
+	}
 
-  disconnect() {
-    document.removeEventListener("keydown", this._keyHandler)
-  }
+	disconnect() {
+		document.removeEventListener("keydown", this._keyHandler);
+	}
 
-  open(event) {
-    const img = event.currentTarget
-    const src = img.dataset.src || img.src
-    const alt = img.alt
+	open(event) {
+		const img = event.currentTarget;
+		const src = img.dataset.src || img.src;
+		const alt = img.alt;
 
-    this.fullImageTarget.src = src
-    this.fullImageTarget.alt = alt
-    this.overlayTarget.hidden = false
-    this.overlayTarget.classList.add("gallery-overlay--open")
+		this.fullImageTarget.src = src;
+		this.fullImageTarget.alt = alt;
+		this.overlayTarget.hidden = false;
+		this.overlayTarget.classList.add("gallery-overlay--open");
 
-    document.body.style.overflow = "hidden"
-    this._trapFocus(this.overlayTarget)
-  }
+		document.body.style.overflow = "hidden";
+		this._trapFocus(this.overlayTarget);
+	}
 
-  close() {
-    this.overlayTarget.hidden = true
-    this.overlayTarget.classList.remove("gallery-overlay--open")
-    document.body.style.overflow = ""
-    this.fullImageTarget.src = ""
-  }
+	close() {
+		this.overlayTarget.hidden = true;
+		this.overlayTarget.classList.remove("gallery-overlay--open");
+		document.body.style.overflow = "";
+		this.fullImageTarget.src = "";
+	}
 
-  _trapFocus(container) {
-    const focusable = container.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    )
-    const first = focusable[0]
-    const last  = focusable[focusable.length - 1]
+	_trapFocus(container) {
+		const focusable = container.querySelectorAll(
+			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+		);
+		const first = focusable[0];
+		const last = focusable[focusable.length - 1];
 
-    first?.focus()
+		first?.focus();
 
-    container.addEventListener("keydown", (e) => {
-      if (e.key !== "Tab") return
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault()
-        last.focus()
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault()
-        first.focus()
-      }
-    })
-  }
+		container.addEventListener("keydown", (e) => {
+			if (e.key !== "Tab") return;
+			if (e.shiftKey && document.activeElement === first) {
+				e.preventDefault();
+				last.focus();
+			} else if (!e.shiftKey && document.activeElement === last) {
+				e.preventDefault();
+				first.focus();
+			}
+		});
+	}
 }
-
 
 // ============================================================
 // 4. SIDEBAR CONTROLLER (Admin)
@@ -248,22 +251,21 @@ export class GalleryController extends Controller {
 // ============================================================
 
 export class SidebarController extends Controller {
-  static targets = ["sidebar", "overlay", "burger"]
+	static targets = ["sidebar", "overlay", "burger"];
 
-  toggle() {
-    const isOpen = this.sidebarTarget.classList.contains("open")
-    this.sidebarTarget.classList.toggle("open", !isOpen)
-    this.overlayTarget.classList.toggle("active", !isOpen)
-    this.burgerTarget.setAttribute("aria-expanded", String(!isOpen))
-  }
+	toggle() {
+		const isOpen = this.sidebarTarget.classList.contains("open");
+		this.sidebarTarget.classList.toggle("open", !isOpen);
+		this.overlayTarget.classList.toggle("active", !isOpen);
+		this.burgerTarget.setAttribute("aria-expanded", String(!isOpen));
+	}
 
-  close() {
-    this.sidebarTarget.classList.remove("open")
-    this.overlayTarget.classList.remove("active")
-    this.burgerTarget.setAttribute("aria-expanded", "false")
-  }
+	close() {
+		this.sidebarTarget.classList.remove("open");
+		this.overlayTarget.classList.remove("active");
+		this.burgerTarget.setAttribute("aria-expanded", "false");
+	}
 }
-
 
 // ============================================================
 // 5. ORDER FORM CONTROLLER (Admin)
@@ -283,36 +285,36 @@ export class SidebarController extends Controller {
 // ============================================================
 
 export class OrderFormController extends Controller {
-  static targets = ["lines", "total"]
-  static values  = { nextIndex: { type: Number, default: 0 } }
+	static targets = ["lines", "total"];
+	static values = { nextIndex: { type: Number, default: 0 } };
 
-  addLine() {
-    const index = this.nextIndexValue
-    const tr = this._createRow(index)
-    this.linesTarget.appendChild(tr)
-    this.nextIndexValue = index + 1
-  }
+	addLine() {
+		const index = this.nextIndexValue;
+		const tr = this._createRow(index);
+		this.linesTarget.appendChild(tr);
+		this.nextIndexValue = index + 1;
+	}
 
-  removeLine(event) {
-    event.currentTarget.closest("tr").remove()
-    this._updateTotal()
-  }
+	removeLine(event) {
+		event.currentTarget.closest("tr").remove();
+		this._updateTotal();
+	}
 
-  updateRow(event) {
-    const row   = event.currentTarget.closest("tr")
-    const qty   = parseFloat(row.querySelector(".line-qty")?.value   || 0)
-    const price = parseFloat(row.querySelector(".line-price")?.value || 0)
-    const total = qty * price
+	updateRow(event) {
+		const row = event.currentTarget.closest("tr");
+		const qty = parseFloat(row.querySelector(".line-qty")?.value || 0);
+		const price = parseFloat(row.querySelector(".line-price")?.value || 0);
+		const total = qty * price;
 
-    row.querySelector(".line-total").textContent =
-      total.toLocaleString("fr-FR", { minimumFractionDigits: 2 }) + " €"
+		row.querySelector(".line-total").textContent =
+			`${total.toLocaleString("fr-FR", { minimumFractionDigits: 2 })} €`;
 
-    this._updateTotal()
-  }
+		this._updateTotal();
+	}
 
-  _createRow(index) {
-    const tr = document.createElement("tr")
-    tr.innerHTML = `
+	_createRow(index) {
+		const tr = document.createElement("tr");
+		tr.innerHTML = `
       <td>
         <select class="line-select form-select"
                 name="order[order_items_attributes][${index}][koi_id]"
@@ -341,23 +343,21 @@ export class OrderFormController extends Controller {
           ✕
         </button>
       </td>
-    `
-    return tr
-  }
+    `;
+		return tr;
+	}
 
-  _updateTotal() {
-    const rows  = this.linesTarget.querySelectorAll("tr")
-    const total = Array.from(rows).reduce((sum, row) => {
-      const qty   = parseFloat(row.querySelector(".line-qty")?.value   || 0)
-      const price = parseFloat(row.querySelector(".line-price")?.value || 0)
-      return sum + qty * price
-    }, 0)
+	_updateTotal() {
+		const rows = this.linesTarget.querySelectorAll("tr");
+		const total = Array.from(rows).reduce((sum, row) => {
+			const qty = parseFloat(row.querySelector(".line-qty")?.value || 0);
+			const price = parseFloat(row.querySelector(".line-price")?.value || 0);
+			return sum + qty * price;
+		}, 0);
 
-    this.totalTarget.textContent =
-      total.toLocaleString("fr-FR", { minimumFractionDigits: 2 }) + " €"
-  }
+		this.totalTarget.textContent = `${total.toLocaleString("fr-FR", { minimumFractionDigits: 2 })} €`;
+	}
 }
-
 
 // ============================================================
 // 6. ANIMATION CONTROLLER
@@ -373,35 +373,37 @@ export class OrderFormController extends Controller {
 // ============================================================
 
 export class AnimationController extends Controller {
-  connect() {
-    this.observer = new IntersectionObserver(
-      (entries) => this._handleEntries(entries),
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    )
+	connect() {
+		this.observer = new IntersectionObserver(
+			(entries) => this._handleEntries(entries),
+			{ threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+		);
 
-    this.element.querySelectorAll("[data-animate]").forEach(el => {
-      this.observer.observe(el)
-    })
-  }
+		this.element.querySelectorAll("[data-animate]").forEach((el) => {
+			this.observer.observe(el);
+		});
+	}
 
-  disconnect() {
-    if (this.observer) this.observer.disconnect()
-  }
+	disconnect() {
+		if (this.observer) this.observer.disconnect();
+	}
 
-  _handleEntries(entries) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return
+	_handleEntries(entries) {
+		entries.forEach((entry) => {
+			if (!entry.isIntersecting) return;
 
-      const delay = entry.target.dataset.delay || 0
-      setTimeout(() => {
-        entry.target.classList.add("is-visible")
-      }, parseInt(delay))
+			const delay = entry.target.dataset.delay || 0;
+			setTimeout(
+				() => {
+					entry.target.classList.add("is-visible");
+				},
+				parseInt(delay, 10),
+			);
 
-      this.observer.unobserve(entry.target)
-    })
-  }
+			this.observer.unobserve(entry.target);
+		});
+	}
 }
-
 
 // ============================================================
 // 7. TABLE CONTROLLER (Admin search + sort)
@@ -422,19 +424,18 @@ export class AnimationController extends Controller {
 // ============================================================
 
 export class TableController extends Controller {
-  static targets = ["body", "search"]
+	static targets = ["body", "search"];
 
-  filter() {
-    const query = this.searchTarget.value.toLowerCase().trim()
-    const rows  = this.bodyTarget.querySelectorAll("tr")
+	filter() {
+		const query = this.searchTarget.value.toLowerCase().trim();
+		const rows = this.bodyTarget.querySelectorAll("tr");
 
-    rows.forEach(row => {
-      const text  = row.textContent.toLowerCase()
-      row.hidden  = query.length > 0 && !text.includes(query)
-    })
-  }
+		rows.forEach((row) => {
+			const text = row.textContent.toLowerCase();
+			row.hidden = query.length > 0 && !text.includes(query);
+		});
+	}
 }
-
 
 // ============================================================
 // ENREGISTREMENT DE TOUS LES CONTROLLERS
