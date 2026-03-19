@@ -1,0 +1,22 @@
+name: Biome — Lint & Format
+
+on:
+  pull_request:
+    branches:
+      - DEV
+      - main
+
+jobs:
+  biome:
+    name: Check code quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Biome
+        uses: biomejs/setup-biome@v2
+
+      - name: Check
+        run: biome check .

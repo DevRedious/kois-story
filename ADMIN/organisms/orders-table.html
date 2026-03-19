@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Organism — Orders Table</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    body { padding: 24px; background: var(--blanc-casse); }
+    .badge-materiel  { background: #e8f0fe; color: #1a56b0; }
+    .badge-soins     { background: #e2d9f3; color: #4a235a; }
+    .badge-nourriture{ background: #fff3cd; color: #856404; }
+  </style>
+</head>
+<body>
+
+<!-- ── ORDERS TABLE ORGANISM ─────────────────────────────── -->
+<div class="panel">
+  <div class="panel-header">
+    <span class="panel-title">Commandes</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <select style="padding:6px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.8rem;" id="orders-filter-status">
+        <option value="">Tous statuts</option>
+        <option value="pending">En attente</option>
+        <option value="confirmed">Confirmée</option>
+        <option value="in_progress">En cours</option>
+        <option value="completed">Terminée</option>
+        <option value="cancelled">Annulée</option>
+      </select>
+      <a href="order-form.html" class="btn btn-primary btn-sm">＋ Nouvelle commande</a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table id="orders-table">
+      <thead>
+        <tr>
+          <th>#</th><th>Client</th><th>Contenu</th>
+          <th>Montant</th><th>Paiement</th><th>Statut</th><th>Date</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-status="pending">
+          <td><strong>#042</strong></td>
+          <td>Thomas Lefèvre</td>
+          <td>Kohaku #001</td>
+          <td>850,00 €</td>
+          <td><span class="badge badge-partial">Partiel</span></td>
+          <td><span class="badge badge-pending">En attente</span></td>
+          <td style="font-size:0.8rem;color:var(--gris);">12/03/2026</td>
+          <td><div class="td-actions">
+            <a href="order-form.html" class="btn btn-outline btn-sm">Éditer</a>
+            <a href="payments.html" class="btn btn-secondary btn-sm">Paiement</a>
+          </div></td>
+        </tr>
+        <tr data-status="confirmed">
+          <td><strong>#041</strong></td>
+          <td>Gérard Dupont</td>
+          <td>Showa #005 + Nourriture ×2</td>
+          <td>1 120,00 €</td>
+          <td><span class="badge badge-paid">Payé</span></td>
+          <td><span class="badge badge-confirmed">Confirmée</span></td>
+          <td style="font-size:0.8rem;color:var(--gris);">10/03/2026</td>
+          <td><div class="td-actions">
+            <a href="order-form.html" class="btn btn-outline btn-sm">Éditer</a>
+          </div></td>
+        </tr>
+        <tr data-status="completed">
+          <td><strong>#040</strong></td>
+          <td>Léa Martin</td>
+          <td>Pompe bassin Pro</td>
+          <td>320,00 €</td>
+          <td><span class="badge badge-paid">Payé</span></td>
+          <td><span class="badge badge-completed">Terminée</span></td>
+          <td style="font-size:0.8rem;color:var(--gris);">05/03/2026</td>
+          <td><a href="order-form.html" class="btn btn-ghost btn-sm">Voir</a></td>
+        </tr>
+        <tr data-status="cancelled">
+          <td><strong>#039</strong></td>
+          <td>Pierre Moreau</td>
+          <td>Filtre Biotec 36</td>
+          <td>480,00 €</td>
+          <td><span class="badge badge-pending">En attente</span></td>
+          <td><span class="badge badge-cancelled">Annulée</span></td>
+          <td style="font-size:0.8rem;color:var(--gris);">02/03/2026</td>
+          <td><a href="order-form.html" class="btn btn-ghost btn-sm">Voir</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.getElementById('orders-filter-status').addEventListener('change', function() {
+    const val = this.value;
+    document.querySelectorAll('#orders-table tbody tr').forEach(row => {
+      row.style.display = (!val || row.dataset.status === val) ? '' : 'none';
+    });
+  });
+</script>
+
+</body>
+</html>

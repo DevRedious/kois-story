@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Molecule — Payment Row</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    body { padding: 24px; }
+    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin: 20px 0 8px; }
+    .amount { font-family: var(--font-title); font-weight: 700; }
+    .amount.paid    { color: var(--vert-dispo); }
+    .amount.partial { color: #856404; }
+    .amount.pending { color: var(--gris); }
+  </style>
+</head>
+<body>
+
+  <h3>Lignes de paiement</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Commande</th><th>Client</th><th>Type</th>
+        <th>Montant</th><th>Statut</th><th>Date</th><th>Échéance</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- ── PAYMENT ROW (complet / payé) ─────────────────── -->
+      <tr>
+        <td><a href="order-form.html" style="color:var(--noir);font-weight:600;">#041</a></td>
+        <td>Gérard Dupont</td>
+        <td><span class="badge badge-konishi" style="font-size:0.6rem;">Complet</span></td>
+        <td><span class="amount paid">1 120,00 €</span></td>
+        <td><span class="badge badge-paid">Payé</span></td>
+        <td style="font-size:0.8rem;">11/03/2026</td>
+        <td style="font-size:0.8rem;color:var(--gris);">—</td>
+        <td><button class="btn btn-ghost btn-sm">Voir</button></td>
+      </tr>
+
+      <!-- ── PAYMENT ROW (acompte / partiel) ──────────────── -->
+      <tr>
+        <td><a href="order-form.html" style="color:var(--noir);font-weight:600;">#042</a></td>
+        <td>Thomas Lefèvre</td>
+        <td><span class="badge badge-arrivage" style="font-size:0.6rem;">Acompte</span></td>
+        <td><span class="amount partial">200,00 €</span><span style="font-size:0.75rem;color:var(--gris);"> / 850,00 €</span></td>
+        <td><span class="badge badge-partial">Partiel</span></td>
+        <td style="font-size:0.8rem;">12/03/2026</td>
+        <td style="font-size:0.8rem;color:var(--rouge-vif);">30/03/2026</td>
+        <td>
+          <div class="td-actions">
+            <button class="btn btn-success btn-sm">Solder</button>
+            <button class="btn btn-ghost btn-sm">Voir</button>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ── PAYMENT ROW (échelonné / en attente) ──────────── -->
+      <tr>
+        <td><a href="order-form.html" style="color:var(--noir);font-weight:600;">#039</a></td>
+        <td>Camille Rousseau</td>
+        <td><span class="badge badge-vendu" style="font-size:0.6rem;">Échelonné</span></td>
+        <td><span class="amount pending">600,00 €</span></td>
+        <td><span class="badge badge-pending">En attente</span></td>
+        <td style="font-size:0.8rem;color:var(--gris);">—</td>
+        <td style="font-size:0.8rem;color:var(--rouge-vif);">15/03/2026</td>
+        <td>
+          <div class="td-actions">
+            <button class="btn btn-success btn-sm">Saisir</button>
+            <button class="btn btn-ghost btn-sm">Voir</button>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</body>
+</html>

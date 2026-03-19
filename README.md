@@ -10,6 +10,16 @@
   </p>
 
   <p align="center">
+    <img src="https://img.shields.io/badge/Palette_V3-%E2%80%94-lightgrey" alt="Palette V3">
+    <img src="https://img.shields.io/badge/Rouge_Vif-%23e60000-e60000" alt="#e60000">
+    <img src="https://img.shields.io/badge/Rouge_Sombre-%23630f0f-630f0f" alt="#630f0f">
+    <img src="https://img.shields.io/badge/Noir-%23000000-000000" alt="#000000">
+    <img src="https://img.shields.io/badge/Blanc_Cass%C3%A9-%23f5f5f2-f5f5f2?labelColor=999999" alt="#f5f5f2">
+    <img src="https://img.shields.io/badge/Blanc_Pur-%23ffffff-ffffff?labelColor=999999" alt="#ffffff">
+    <img src="https://img.shields.io/badge/WhatsApp-%2325d366-25d366?logo=whatsapp&logoColor=white" alt="#25d366">
+  </p>
+
+  <p align="center">
     <i>Digital showcase platform for a koi carp breeding farm affiliated with the Konishi lineage.</i><br>
     Final project  <a href="https://www.thehackingproject.org">The Hacking Project</a><br>
    Trello Board  <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>

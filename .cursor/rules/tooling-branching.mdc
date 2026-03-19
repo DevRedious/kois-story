@@ -1,0 +1,17 @@
+---
+description: Biome, polices, assets partagés, branches et commits
+globs: kois-story/**
+alwaysApply: false
+---
+
+# Tooling et branching (kois-story)
+
+**Biome** : `npx biome check .` (lint JS, CSS, JSON) ; `npx biome format --write .`. `biome.json` ignore `**/*.html`.
+
+**Polices** : `docs/fonts/inter/` et `docs/fonts/playfair-display/`. Les `@font-face` des composants pointent vers ce dossier. À déplacer vers `app/assets/fonts/` à l’intégration Rails.
+
+**Assets partagés** : `docs/assets/` (images, logos, SVG). Les composants utilisent `../../docs/assets/` — à corriger pour Rails (Asset Pipeline / Cloudinary).
+
+**Branches** : voir `CONTRIBUTING.md`. `dev` (intégration) → `main` (prod). Pas de commit direct sur `main`. Branches de feature depuis `dev`, PR vers `dev`. Messages de commit en anglais, format conventionnel : `feat:`, `fix:`, `docs:`, `refactor:`.
+
+**Fichiers racine** : `koi_story_ui_mockup.jsx`, `docs/design/atomic_design.md`, `docs/design/brand/charte_graphique.md`, `docs/design/wireframes/`, `docs/roadmap.md`, `docs/todo.md`.

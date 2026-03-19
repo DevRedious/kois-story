@@ -17,15 +17,47 @@ Do not commit directly to `main`.
 4. Validate documentation and repository consistency before merge.
 5. Merge `dev` into `main` only when the release is ready.
 
-## Commit messages
+## Installation locale (une seule fois)
 
-Use clear, imperative commit messages in English.
+Après avoir cloné le dépôt, lance ce script pour activer les hooks et le template de commit :
 
-Examples:
+```bash
+sh setup.sh
+```
 
-- `docs: add roadmap and contribution guidelines`
-- `feat: add koi catalogue page`
-- `fix: correct WhatsApp link generation`
+Cela configure automatiquement :
+- Le hook `commit-msg` qui vérifie le format de tes messages
+- Le template de commit qui s'affiche dans ton éditeur
+
+## Messages de commit
+
+Utilise le format Conventional Commits en français :
+
+```
+<type>: <description courte>
+```
+
+Types disponibles :
+
+| Type       | Usage                                              |
+|------------|----------------------------------------------------|
+| `feat`     | Nouvelle fonctionnalité                            |
+| `fix`      | Correction de bug                                  |
+| `docs`     | Documentation, README                              |
+| `style`    | CSS, mise en forme (pas de logique)                |
+| `refactor` | Réorganisation du code sans changement de comportement |
+| `chore`    | Maintenance, config, dépendances                   |
+| `test`     | Ajout ou correction de tests                       |
+| `perf`     | Amélioration des performances                      |
+
+Exemples :
+
+- `feat: ajouter le bouton WhatsApp sur la fiche produit`
+- `fix: corriger l'affichage du prix sur mobile`
+- `style: harmoniser les couleurs du footer`
+- `chore: mettre à jour biome.json`
+
+Le hook local bloquera tout commit ne respectant pas ce format et affichera un message d'aide.
 
 ## Pull requests
 
