@@ -1,0 +1,93 @@
+/* ── FONTS ────────────────────────────────────────────────── */
+@font-face {
+	font-family: "Playfair Display";
+	src: url("../../../docs/fonts/playfair-display/PlayfairDisplay-Regular.otf");
+	font-weight: 400;
+}
+@font-face {
+	font-family: "Playfair Display";
+	src: url("../../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf");
+	font-weight: 700;
+}
+@font-face {
+	font-family: "Inter";
+	src: url("../../../docs/fonts/inter/Inter-Regular.otf");
+	font-weight: 400;
+}
+@font-face {
+	font-family: "Inter";
+	src: url("../../../docs/fonts/inter/Inter-Medium.otf");
+	font-weight: 500;
+}
+@font-face {
+	font-family: "Inter";
+	src: url("../../../docs/fonts/inter/Inter-SemiBold.otf");
+	font-weight: 600;
+}
+@font-face {
+	font-family: "Inter";
+	src: url("../../../docs/fonts/inter/Inter-Bold.otf");
+	font-weight: 700;
+}
+
+/* ── VARIABLES (Palette V3) ────────────────────────────────── */
+/* Light theme (default) */
+:root {
+	/* Palette V3 */
+	--rouge-vif: #e60000; /* CTA principal, accents forts */
+	--rouge-sombre: #630f0f; /* fonds sombres, hover, sidebar active */
+	--noir: #000000; /* texte principal */
+	--blanc-casse: #f5f5f2; /* fond de page */
+	--blanc-pur: #ffffff; /* surfaces cards, formulaires */
+
+	/* Sémantiques thème (light) */
+	--surface-dark: #000000; /* sidebar, btn-secondary */
+	--topbar-bg: #ffffff;
+	--border-color: #e5e9ee;
+
+	/* Utilitaires */
+	--gris: #6c757d; /* textes secondaires */
+	--vert-dispo: #2d9e5a; /* statut disponible */
+	--sidebar-w: 64px;
+	--sidebar-open-w: 280px;
+	--topbar-h: 60px;
+	--font-title: "Playfair Display", Georgia, serif;
+	--font-body: "Inter", system-ui, sans-serif;
+	--sidebar-ease: 0.22s ease;
+}
+
+/* System: dark si l’OS est en dark */
+/* System: dark — Palette V3 : card/noir, accents/rouge */
+@media (prefers-color-scheme: dark) {
+	html:not([data-theme="light"]) {
+		--blanc-casse: #000000; /* noir — fond de page */
+		--blanc-pur: #000000; /* noir — surfaces cards, formulaires */
+		--noir: #ffffff; /* blanc pur — texte principal */
+		--gris: #f5f5f2; /* blanc cassé — textes secondaires */
+		--surface-dark: #000000; /* noir — sidebar */
+		--topbar-bg: #000000; /* noir */
+		--border-color: #630f0f; /* rouge sombre — bordures pour délimiter la card */
+	}
+}
+
+/* Thème dark forcé — card noir, accents rouge */
+[data-theme="dark"] {
+	--blanc-casse: #000000;
+	--blanc-pur: #000000;
+	--noir: #ffffff;
+	--gris: #f5f5f2;
+	--surface-dark: #000000;
+	--topbar-bg: #000000;
+	--border-color: #630f0f;
+}
+
+/* Thème light forcé (priorité sur system) */
+[data-theme="light"] {
+	--blanc-casse: #f5f5f2;
+	--blanc-pur: #ffffff;
+	--noir: #000000;
+	--gris: #6c757d;
+	--surface-dark: #000000;
+	--topbar-bg: #ffffff;
+	--border-color: #e5e9ee;
+}

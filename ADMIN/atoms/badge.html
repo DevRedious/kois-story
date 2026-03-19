@@ -4,49 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Badge</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
   <style>
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Bold.otf'); font-weight: 700; }
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 24px; }
-    .group { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-
-    /* ── BADGE ATOM ──────────────────────────────────────────── */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      white-space: nowrap;
-      line-height: 1;
-    }
-
-    /* Variants */
-    .badge-konishi { background: var(--or-konishi);  color: var(--bleu-profond); }
-    .badge-dispo   { background: #d4f0e0;            color: #1a6e3e; }
-    .badge-vendu   { background: #e8ecf0;            color: var(--gris-pierre); }
-    .badge-nonlu   { background: #fde8e8;            color: var(--rouge-koi); }
-    .badge-lu      { background: #e8ecf0;            color: var(--gris-pierre); }
-    .badge-admin   { background: var(--bleu-profond); color: #fff; }
-    .badge-nouveau { background: var(--rouge-koi);   color: #fff; }
-
-    /* Sizes */
-    .badge-lg { font-size: 0.8rem; padding: 6px 14px; }
+    body { padding:32px; }
+    h3   { font-size:0.68rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--gris); margin:24px 0 10px; }
+    h3:first-child { margin-top:0; }
+    .group { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .logo-konishi { height:1.1em; vertical-align:middle; }
   </style>
 </head>
 <body>
@@ -54,26 +18,43 @@
   <h3>Statut Koïs</h3>
   <div class="group">
     <span class="badge badge-dispo">Disponible</span>
+    <span class="badge badge-arrivage">Arrivage</span>
+    <span class="badge badge-rupture">Rupture</span>
     <span class="badge badge-vendu">Vendu</span>
   </div>
 
   <h3>Lignée Konishi</h3>
   <div class="group">
-    <span class="badge badge-konishi"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Konishi</span>
-    <span class="badge badge-konishi badge-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Lignée Konishi</span>
+    <span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span>
+    <span class="badge badge-konishi" style="font-size:0.8rem;padding:6px 14px;">Lignée <img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span>
+  </div>
+
+  <h3>Statut commandes</h3>
+  <div class="group">
+    <span class="badge badge-pending">En attente</span>
+    <span class="badge badge-confirmed">Confirmée</span>
+    <span class="badge badge-in-progress">En cours</span>
+    <span class="badge badge-completed">Terminée</span>
+    <span class="badge badge-cancelled">Annulée</span>
+  </div>
+
+  <h3>Statut paiements</h3>
+  <div class="group">
+    <span class="badge badge-paid">Payé</span>
+    <span class="badge badge-partial">Partiel</span>
+    <span class="badge badge-pending">En attente</span>
   </div>
 
   <h3>Messages</h3>
   <div class="group">
     <span class="badge badge-nonlu">Non lu</span>
     <span class="badge badge-lu">Lu</span>
-    <span class="badge badge-nouveau">Nouveau</span>
   </div>
 
-  <h3>Rôles utilisateur</h3>
+  <h3>Divers</h3>
   <div class="group">
-    <span class="badge badge-admin">Admin</span>
-    <span class="badge badge-vendu">Visiteur</span>
+    <span class="badge badge-dormant">Dormant V2</span>
+    <span class="badge" style="background:var(--noir);color:#fff;">Admin</span>
   </div>
 
 </body>

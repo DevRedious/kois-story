@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Molecule — Product Row</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    body { padding: 24px; }
+    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin: 20px 0 8px; }
+    .badge-materiel  { background: #e8f0fe; color: #1a56b0; }
+    .badge-soins     { background: #e2d9f3; color: #4a235a; }
+    .badge-nourriture{ background: #fff3cd; color: #856404; }
+    .stock-low { color: var(--rouge-vif); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <h3>Lignes produits</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Produit</th><th>Référence</th><th>Catégorie</th>
+        <th>Prix</th><th>Stock</th><th>Statut</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- ── PRODUCT ROW (matériel) ────────────────────────── -->
+      <tr>
+        <td><strong>Filtre Biotec 36</strong></td>
+        <td style="font-size:0.78rem;color:var(--gris);">—</td>
+        <td><span class="badge badge-materiel">Matériel</span></td>
+        <td>480,00 €</td>
+        <td>4</td>
+        <td><span class="badge badge-dispo">Actif</span></td>
+        <td>
+          <div class="td-actions">
+            <a href="product-form.html" class="btn btn-outline btn-sm">Éditer</a>
+            <button class="btn btn-ghost btn-sm">Stock</button>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ── PRODUCT ROW (nourriture / stock bas) ──────────── -->
+      <tr>
+        <td><strong>Nourriture Konishi Flottant 5kg</strong></td>
+        <td style="font-size:0.78rem;color:var(--gris);">—</td>
+        <td><span class="badge badge-nourriture">Nourriture</span></td>
+        <td>68,00 €</td>
+        <td class="stock-low">1 ⚠</td>
+        <td><span class="badge badge-dispo">Actif</span></td>
+        <td>
+          <div class="td-actions">
+            <a href="product-form.html" class="btn btn-outline btn-sm">Éditer</a>
+            <button class="btn btn-primary btn-sm">Réappro</button>
+          </div>
+        </td>
+      </tr>
+
+      <!-- ── PRODUCT ROW (soins / inactif) ─────────────────── -->
+      <tr>
+        <td><strong>Microscope 40× Koï</strong></td>
+        <td style="font-size:0.78rem;color:var(--gris);">—</td>
+        <td><span class="badge badge-soins">Soins</span></td>
+        <td>220,00 €</td>
+        <td style="color:var(--gris);">0</td>
+        <td><span class="badge badge-vendu">Inactif</span></td>
+        <td>
+          <div class="td-actions">
+            <a href="product-form.html" class="btn btn-outline btn-sm">Éditer</a>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</body>
+</html>

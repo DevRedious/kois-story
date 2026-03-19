@@ -4,70 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Stat Card</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
   <style>
-    @font-face { font-family: 'Playfair Display'; src: url('../../docs/fonts/playfair-display/PlayfairDisplay-Bold.otf'); font-weight: 700; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Regular.otf'); font-weight: 400; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --vert-dispo:   #2D9E5A;
-      --font-title:   'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 16px; margin-top: 28px; }
-    .grid { display: grid; grid-template-columns: repeat(3, 240px); gap: 20px; flex-wrap: wrap; }
+    body { padding: 32px; }
+    h3   { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin-bottom: 16px; margin-top: 28px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 240px); gap: 20px; }
 
-    /* ── STAT-CARD ATOM ──────────────────────────────────────── */
+    /* ── STAT-CARD ATOM (Preview overrides) ──────────────────── */
     .stat-card {
-      background: #fff;
+      background: var(--blanc-pur);
       border-radius: 10px;
       padding: 24px;
-      box-shadow: 0 1px 4px rgba(0,48,73,0.07);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
       border-top: 3px solid transparent;
       position: relative;
       overflow: hidden;
     }
-
-    /* Accent couleur */
     .stat-card.dispo    { border-top-color: var(--vert-dispo); }
-    .stat-card.vendu    { border-top-color: var(--gris-pierre); }
-    .stat-card.messages { border-top-color: var(--rouge-koi); }
-    .stat-card.konishi  { border-top-color: var(--or-konishi); }
+    .stat-card.vendu    { border-top-color: var(--gris); }
+    .stat-card.messages { border-top-color: var(--rouge-vif); }
+    .stat-card.konishi  { border-top-color: var(--rouge-sombre); }
 
-    .stat-icon {
-      position: absolute;
-      top: 18px; right: 18px;
-      font-size: 2rem;
-      opacity: 0.12;
-    }
-    .stat-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--gris-pierre);
-      margin-bottom: 10px;
-    }
-    .stat-value {
-      font-family: var(--font-title);
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--bleu-profond);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-sub {
-      font-size: 0.75rem;
-      color: var(--gris-pierre);
-    }
+    .stat-icon { position: absolute; top: 18px; right: 18px; font-size: 2rem; opacity: 0.12; }
+    .logo-konishi { height: 1.15em; width: auto; vertical-align: middle; display: inline-block; }
+    .stat-value { font-size: 2.4rem; }
     .stat-sub.up   { color: var(--vert-dispo); }
-    .stat-sub.down { color: var(--rouge-koi); }
+    .stat-sub.down { color: var(--rouge-vif); }
   </style>
 </head>
 <body>
@@ -76,29 +38,29 @@
   <div class="grid">
 
     <div class="stat-card dispo">
-      <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"></path><circle cx="12" cy="12" r="2"></circle></svg></div>
+      <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div>
       <div class="stat-label">Koïs disponibles</div>
       <div class="stat-value">12</div>
       <div class="stat-sub up">↑ 3 ajoutés ce mois</div>
     </div>
 
     <div class="stat-card vendu">
-      <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+      <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
       <div class="stat-label">Koïs vendus</div>
       <div class="stat-value">7</div>
       <div class="stat-sub">Depuis l'ouverture</div>
     </div>
 
     <div class="stat-card messages">
-      <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+      <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
       <div class="stat-label">Messages non lus</div>
       <div class="stat-value">3</div>
       <div class="stat-sub down">2 reçus aujourd'hui</div>
     </div>
 
     <div class="stat-card konishi">
-      <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
-      <div class="stat-label">Lignée Konishi</div>
+      <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div class="stat-label">Lignée <img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></div>
       <div class="stat-value">8</div>
       <div class="stat-sub">Spécimens certifiés</div>
     </div>

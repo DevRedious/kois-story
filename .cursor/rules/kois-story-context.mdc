@@ -1,0 +1,14 @@
+---
+description: Contexte du repo Koi's Story — prototypes HTML/CSS/JS, pas encore Rails
+alwaysApply: true
+---
+
+# Contexte Koi's Story
+
+Le répertoire `kois-story` contient **uniquement des prototypes HTML/CSS/JS** — aucune app Rails pour l’instant.
+
+- **Référence projet complet** : lire d’abord `../CLAUDE.md` (racine THP-Final) pour le spec Rails, modèle de données, routes, contraintes THP et design.
+- **Deux espaces de prototypage** :
+  - `ADMIN/` — back-office (dashboard Mathilde)
+  - `VISITORS/` — site public
+- Pages ouvrables directement (double-clic, pas de serveur). Sidebar/nav injectés en inline dans chaque page — pas de `fetch()` pour les composants.

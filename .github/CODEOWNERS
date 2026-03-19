@@ -1,0 +1,25 @@
+# CODEOWNERS — automatic reviewer assignment on pull requests
+#
+# Replace @username placeholders with actual GitHub usernames.
+# Format: <path pattern>  <@github-username> ...
+#
+# Find your GitHub username at https://github.com/settings/profile
+
+# Default — all files require review from the lead
+*                   @DevRedious
+
+# Back-office admin — reviewed by the admin dev
+ADMIN/              @DevRedious
+
+# Public-facing prototype — reviewed by the VISITORS dev
+# Replace @ValVoy-github and @ff14eternitalis-github with real usernames
+VISITORS/           @ValVoy @ff14eternitalis-debug
+
+# Shared design tokens and docs
+docs/               @DevRedious
+
+# CI/CD and tooling — lead only
+.github/            @DevRedious
+cliff.toml          @DevRedious
+biome.json          @DevRedious
+setup.sh            @DevRedious

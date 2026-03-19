@@ -4,59 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Button</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
   <style>
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-Medium.otf'); font-weight: 500; }
-    @font-face { font-family: 'Inter'; src: url('../../docs/fonts/inter/Inter-SemiBold.otf'); font-weight: 600; }
-    :root {
-      --rouge-koi:    #D62828;
-      --bleu-profond: #003049;
-      --or-konishi:   #E09F3E;
-      --gris-pierre:  #6C757D;
-      --blanc-perle:  #F8F9FA;
-      --font-body:    'Inter', system-ui, sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--blanc-perle); padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris-pierre); margin-bottom: 12px; margin-top: 24px; }
+    body  { padding: 32px; }
+    h3    { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin-bottom: 12px; margin-top: 24px; }
     .group { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-
-    /* ── BUTTON ATOM ─────────────────────────────────────────── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 9px 18px;
-      border-radius: 6px;
-      font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      line-height: 1;
-      transition: opacity 0.15s, transform 0.1s;
-      text-decoration: none;
-    }
-    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); opacity: 1; }
-
-    /* Variants */
-    .btn-primary   { background: var(--rouge-koi);    color: #fff; }
-    .btn-secondary { background: var(--bleu-profond); color: #fff; }
-    .btn-outline   { background: transparent; border: 1.5px solid var(--bleu-profond); color: var(--bleu-profond); }
-    .btn-danger    { background: #dc3545; color: #fff; }
-    .btn-ghost     { background: transparent; color: var(--gris-pierre); }
-    .btn-ghost:hover { background: rgba(0,48,73,0.06); color: var(--bleu-profond); opacity: 1; }
-
-    /* Sizes */
-    .btn-sm { padding: 5px 12px; font-size: 0.775rem; }
+    /* Taille large (non présente dans admin.css) */
     .btn-lg { padding: 13px 28px; font-size: 1rem; }
-
-    /* Disabled */
-    .btn:disabled, .btn[disabled] {
-      opacity: 0.4;
-      cursor: not-allowed;
-      transform: none;
-    }
   </style>
 </head>
 <body>

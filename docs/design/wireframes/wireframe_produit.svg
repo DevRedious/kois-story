@@ -44,7 +44,7 @@
   <rect x="460" y="106" width="320" height="380" rx="6" fill="#fffdf5" stroke="#e8dcc8" stroke-width="1"/>
   <text x="480" y="144" fill="#1a1a2e" font-size="22" font-weight="bold">Hanami</text>
   <rect x="480" y="154" width="140" height="24" rx="12" fill="#f5f0e8" stroke="#c8b89a" stroke-width="1"/>
-  <text x="550" y="171" fill="#8b7355" font-size="11" text-anchor="middle">★ Lignee Konishi</text>
+  <text x="550" y="171" fill="#8b7355" font-size="11" text-anchor="middle">Lignee Konishi</text>
   <line x1="480" y1="192" x2="760" y2="192" stroke="#e8dcc8" stroke-width="1"/>
   <text x="480" y="218" fill="#666666" font-size="13">Variete :</text>
   <text x="590" y="218" fill="#1a1a2e" font-size="13" font-weight="bold">Kohaku</text>
