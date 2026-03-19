@@ -1,0 +1,17 @@
+/* Page — product form */
+.content > form .label-hint {
+	font-size: 0.78rem;
+	color: var(--gris);
+	font-weight: 400;
+}
+
+.field-hint {
+	margin-top: 6px;
+	font-size: 0.82rem;
+	color: var(--gris);
+}
+
+.content > form > .form-actions {
+	justify-content: flex-end;
+	padding-bottom: 30px;
+}

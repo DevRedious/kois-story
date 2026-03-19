@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <td class="td-center"><input type="number" class="qty-input" value="1" min="1"></td>
       <td class="td-right"><span class="unit-price">— €</span></td>
       <td class="td-right"><span class="subtotal">— €</span></td>
-      <td class="td-center"><button type="button" class="btn btn-danger btn-sm remove-line" aria-label="Supprimer">✕</button></td>`;
+      <td class="td-center"><button type="button" class="btn btn--danger btn--sm remove-line" aria-label="Supprimer">✕</button></td>`;
 		linesBody.appendChild(tr);
 	}
 

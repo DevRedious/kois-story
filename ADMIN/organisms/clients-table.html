@@ -2,13 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Organism — Clients Table</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 24px; background: var(--blanc-casse); }
-    .client-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--noir); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
-    .client-cell   { display: flex; align-items: center; gap: 10px; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
 </head>
 <body>
 
@@ -16,9 +13,9 @@
 <div class="panel">
   <div class="panel-header">
     <span class="panel-title">Clients</span>
-    <div style="display:flex;gap:8px;">
-      <input type="text" placeholder="Rechercher…" id="client-search" style="padding:6px 10px;border:1.5px solid #d0d7de;border-radius:6px;font-size:0.8rem;width:200px;">
-      <a href="client-form.html" class="btn btn-primary btn-sm">＋ Nouveau client</a>
+    <div class="panel-toolbar panel-toolbar--nowrap">
+      <input type="text" placeholder="Rechercher…" id="client-search" class="u-toolbar-control u-toolbar-search-wide">
+      <a href="client-form.html" class="btn btn--primary btn--sm">＋ Nouveau client</a>
     </div>
   </div>
   <div class="table-responsive">
@@ -33,43 +30,43 @@
         <tr>
           <td><div class="client-cell">
             <div class="client-avatar">TL</div>
-            <div><div style="font-weight:600;">Thomas Lefèvre</div><div style="font-size:0.75rem;color:var(--gris);">Lyon, 69</div></div>
+            <div><div class="client-name-strong">Thomas Lefèvre</div><div class="client-location-muted">Lyon, 69</div></div>
           </div></td>
-          <td style="font-size:0.82rem;">thomas.lefevre@mail.fr</td>
-          <td style="font-size:0.82rem;">06 12 34 56 78</td>
-          <td style="text-align:center;font-weight:600;">3</td>
+          <td class="td-client-contact">thomas.lefevre@mail.fr</td>
+          <td class="td-client-contact">06 12 34 56 78</td>
+          <td class="td-count-center">3</td>
           <td><strong>2 450,00 €</strong></td>
           <td><div class="td-actions">
-            <a href="client-form.html" class="btn btn-outline btn-sm">Fiche</a>
-            <a href="orders.html" class="btn btn-ghost btn-sm">Commandes</a>
+            <a href="client-form.html" class="btn btn--outline btn--sm">Fiche</a>
+            <a href="orders.html" class="btn btn--ghost btn--sm">Commandes</a>
           </div></td>
         </tr>
         <tr>
           <td><div class="client-cell">
-            <div class="client-avatar" style="background:var(--rouge-sombre);color:var(--blanc-pur);">GD</div>
-            <div><div style="font-weight:600;">Gérard Dupont</div><div style="font-size:0.75rem;color:var(--gris);">Villeurbanne, 69</div></div>
+            <div class="client-avatar client-avatar--brand">GD</div>
+            <div><div class="client-name-strong">Gérard Dupont</div><div class="client-location-muted">Villeurbanne, 69</div></div>
           </div></td>
-          <td style="font-size:0.82rem;">g.dupont@mail.fr</td>
-          <td style="font-size:0.82rem;">07 98 76 54 32</td>
-          <td style="text-align:center;font-weight:600;">1</td>
+          <td class="td-client-contact">g.dupont@mail.fr</td>
+          <td class="td-client-contact">07 98 76 54 32</td>
+          <td class="td-count-center">1</td>
           <td><strong>1 120,00 €</strong></td>
           <td><div class="td-actions">
-            <a href="client-form.html" class="btn btn-outline btn-sm">Fiche</a>
-            <a href="orders.html" class="btn btn-ghost btn-sm">Commandes</a>
+            <a href="client-form.html" class="btn btn--outline btn--sm">Fiche</a>
+            <a href="orders.html" class="btn btn--ghost btn--sm">Commandes</a>
           </div></td>
         </tr>
         <tr>
           <td><div class="client-cell">
-            <div class="client-avatar" style="background:#e2d9f3;color:#4a235a;">LM</div>
-            <div><div style="font-weight:600;">Léa Martin</div><div style="font-size:0.75rem;color:var(--gris);">Bourg-en-Bresse, 01</div></div>
+            <div class="client-avatar client-avatar--lavender">LM</div>
+            <div><div class="client-name-strong">Léa Martin</div><div class="client-location-muted">Bourg-en-Bresse, 01</div></div>
           </div></td>
-          <td style="font-size:0.82rem;">lea.martin@mail.fr</td>
-          <td style="font-size:0.82rem;">06 55 44 33 22</td>
-          <td style="text-align:center;font-weight:600;">1</td>
+          <td class="td-client-contact">lea.martin@mail.fr</td>
+          <td class="td-client-contact">06 55 44 33 22</td>
+          <td class="td-count-center">1</td>
           <td><strong>320,00 €</strong></td>
           <td><div class="td-actions">
-            <a href="client-form.html" class="btn btn-outline btn-sm">Fiche</a>
-            <a href="orders.html" class="btn btn-ghost btn-sm">Commandes</a>
+            <a href="client-form.html" class="btn btn--outline btn--sm">Fiche</a>
+            <a href="orders.html" class="btn btn--ghost btn--sm">Commandes</a>
           </div></td>
         </tr>
       </tbody>

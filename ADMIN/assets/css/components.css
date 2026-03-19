@@ -1,70 +1,5 @@
 /* ── BUTTONS ──────────────────────────────────────────────── */
-.btn {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	padding: 10px 16px; /* Plus grand pour le tactile */
-	border-radius: 8px;
-	font-family: var(--font-body);
-	font-size: 0.875rem;
-	font-weight: 600;
-	cursor: pointer;
-	border: none;
-	transition:
-		opacity 0.15s,
-		transform 0.1s;
-	text-decoration: none;
-	line-height: 1;
-}
-.btn:hover {
-	opacity: 0.86;
-	transform: translateY(-1px);
-}
-.btn:active {
-	transform: none;
-	opacity: 1;
-}
-
-.btn-primary {
-	background: var(--rouge-vif);
-	color: #fff;
-}
-.btn-secondary {
-	background: var(--surface-dark);
-	color: #fff;
-}
-.btn-outline {
-	background: transparent;
-	border: 1.5px solid #d0d7de;
-	color: var(--gris);
-}
-.btn-success {
-	background: var(--vert-dispo);
-	color: #fff;
-}
-.btn-danger {
-	background: #dc3545;
-	color: #fff;
-}
-.btn-ghost {
-	background: transparent;
-	color: var(--gris);
-}
-.btn-ghost:hover {
-	background: rgba(0, 0, 0, 0.06);
-	color: var(--noir);
-	opacity: 1;
-}
-
-.btn-sm {
-	padding: 6px 12px;
-	font-size: 0.8rem;
-}
-.btn-lg {
-	padding: 13px 22px;
-	font-size: 1rem;
-}
+/* Base + variantes : VISITORS button.css (btn, btn--primary, btn--ghost, …) */
 
 .btn-icon {
 	display: inline-flex;
@@ -149,6 +84,20 @@
 	border-top-color: var(--rouge-vif);
 }
 .stat-card.c-konishi {
+	border-top-color: var(--rouge-sombre);
+}
+
+/* Aliases (atom previews / legacy markup) */
+.stat-card.dispo {
+	border-top-color: var(--vert-dispo);
+}
+.stat-card.vendu {
+	border-top-color: var(--gris);
+}
+.stat-card.messages {
+	border-top-color: var(--rouge-vif);
+}
+.stat-card.konishi {
 	border-top-color: var(--rouge-sombre);
 }
 

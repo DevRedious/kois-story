@@ -2,45 +2,16 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Toggle</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin: 20px 0 10px; }
-    .group { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
-
-    /* ── TOGGLE ATOM ─────────────────────────────────────────── */
-    .toggle-wrap  { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
-    .toggle-input { display: none; }
-    .toggle-track {
-      width: 40px; height: 22px;
-      background: #d0d7de;
-      border-radius: 11px;
-      position: relative;
-      transition: background 0.2s;
-      flex-shrink: 0;
-    }
-    .toggle-track::after {
-      content: '';
-      position: absolute;
-      top: 3px; left: 3px;
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-    }
-    .toggle-input:checked + .toggle-track             { background: var(--vert-dispo); }
-    .toggle-input:checked + .toggle-track::after      { transform: translateX(18px); }
-    .toggle-input:disabled + .toggle-track            { opacity: 0.4; cursor: not-allowed; }
-    .toggle-label { font-size: 0.875rem; font-weight: 500; color: var(--noir); }
-    .toggle-label.dormant-label { color: var(--gris); font-style: italic; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+  <link rel="stylesheet" href="../assets/css/atoms/toggle.css">
 </head>
 <body>
 
   <h3>Actif / Inactif</h3>
-  <div class="group">
+  <div class="demo-group demo-group--gap-20">
     <label class="toggle-wrap">
       <input type="checkbox" class="toggle-input" checked>
       <span class="toggle-track"></span>
@@ -54,7 +25,7 @@
   </div>
 
   <h3>Dormant V2 (désactivé)</h3>
-  <div class="group">
+  <div class="demo-group demo-group--gap-20">
     <label class="toggle-wrap">
       <input type="checkbox" class="toggle-input" disabled>
       <span class="toggle-track"></span>

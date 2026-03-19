@@ -5,30 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Input</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 32px; max-width: 520px; }
-    h3   { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin-bottom: 12px; margin-top: 28px; }
-
-    /* ── INPUT ATOM ──────────────────────────────────────────── */
-    .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
-    .field label    { font-size: 0.8rem; font-weight: 600; color: var(--noir); }
-    .field .hint    { font-size: 0.72rem; color: var(--gris); }
-    .field .error-msg { font-size: 0.72rem; color: var(--rouge-vif); font-weight: 500; }
-
-    input.error, select.error, textarea.error {
-      border-color: var(--rouge-vif);
-      box-shadow: 0 0 0 3px rgba(230,0,0,0.1);
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--rouge-sombre);
-      box-shadow: 0 0 0 3px rgba(99,15,15,0.1);
-    }
-
-    /* Checkbox */
-    .checkbox-field { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-    .checkbox-field input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--rouge-sombre); cursor: pointer; }
-    .checkbox-field span { font-size: 0.875rem; color: var(--noir); font-weight: 500; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+  <link rel="stylesheet" href="../assets/css/atoms/input-atom.css">
 </head>
 <body>
 
@@ -80,8 +58,8 @@
 
   <h3>Désactivé</h3>
   <div class="field">
-    <label>Champ désactivé</label>
-    <input type="text" disabled value="Non modifiable">
+    <label for="disabled-field">Champ désactivé</label>
+    <input type="text" id="disabled-field" disabled value="Non modifiable">
   </div>
 
 </body>

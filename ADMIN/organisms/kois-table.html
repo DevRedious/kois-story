@@ -5,38 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Organism — Kois Table</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 28px; }
-
-    /* ── FILTER BAR ──────────────────────────────────────────── */
-    .filter-bar   { display: flex; align-items: center; gap: 8px; flex: 1; flex-wrap: wrap; }
-    .spacer       { flex: 1; }
-    .filter-count { font-size: 0.78rem; color: var(--gris); white-space: nowrap; }
-
-    select, input[type="search"] {
-      font-family: var(--font-body); font-size: 0.8rem;
-      color: var(--noir); background: var(--blanc-pur);
-      border: 1.5px solid #d8dde3; border-radius: 6px;
-      padding: 6px 10px; outline: none; height: 34px;
-      transition: border-color 0.15s;
-    }
-    select:focus, input:focus { border-color: var(--rouge-sombre); }
-    select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 10px center; padding-right: 26px;
-    }
-    input[type="search"] { width: 180px; }
-
-    /* ── KOI-SPECIFIC ────────────────────────────────────────── */
-    .koi-thumb   { width: 46px; height: 46px; border-radius: 6px; background: #e8ecf0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .koi-name    { font-weight: 600; font-size: 0.875rem; }
-    .koi-variety { font-size: 0.74rem; color: var(--gris); margin-top: 1px; }
-    .koi-price   { font-weight: 700; white-space: nowrap; }
-    .logo-konishi { height: 1.15em; width: auto; vertical-align: middle; display: inline-block; }
-    .row-actions { display: flex; gap: 6px; }
-    .empty { text-align: center; padding: 48px; color: var(--gris); font-size: 0.875rem; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
 </head>
 <body>
 
@@ -45,8 +14,8 @@
     <div class="panel-header">
       <span class="panel-title">Catalogue</span>
       <div class="filter-bar">
-        <input type="search" placeholder="Rechercher…">
-        <select>
+        <input type="search" placeholder="Rechercher…" aria-label="Rechercher dans le catalogue koïs">
+        <select aria-label="Filtrer par variété">
           <option value="">Toutes variétés</option>
           <option value="aragoke">Aragoke</option>
           <option value="asagi">Asagi</option>
@@ -75,7 +44,7 @@
           <option value="yamabuki">Yamabuki</option>
           <option value="yellow monkey">Yellow Monkey</option>
         </select>
-        <select>
+        <select aria-label="Filtrer par statut catalogue">
           <option value="">Tous statuts</option>
           <option value="dispo">Disponible</option>
           <option value="arrivage">Arrivage</option>
@@ -84,7 +53,7 @@
         </select>
         <div class="spacer"></div>
         <span class="filter-count">19 koïs</span>
-        <a href="pages/koi-form.html" class="btn btn-primary btn-sm">＋ Nouveau koï</a>
+        <a href="pages/koi-form.html" class="btn btn--primary btn--sm">＋ Nouveau koï</a>
       </div>
     </div>
 
@@ -98,31 +67,31 @@
         </thead>
         <tbody>
           <tr>
-            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
+            <td><div class="koi-thumb"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
             <td><div class="koi-name">Sakura</div><div class="koi-variety">Kohaku</div></td>
             <td>72 cm</td>
             <td class="koi-price">1 800 €</td>
             <td><span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span></td>
             <td><span class="badge badge-dispo">Disponible</span></td>
-            <td><div class="row-actions"><button class="btn btn-outline btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+            <td><div class="row-actions"><button type="button" class="btn btn--outline btn--sm">Éditer</button><button type="button" class="btn btn--danger btn--sm">Supprimer</button></div></td>
           </tr>
           <tr>
-            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
+            <td><div class="koi-thumb"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
             <td><div class="koi-name">Ryū</div><div class="koi-variety">Showa</div></td>
             <td>65 cm</td>
             <td class="koi-price">2 400 €</td>
             <td><span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span></td>
             <td><span class="badge badge-dispo">Disponible</span></td>
-            <td><div class="row-actions"><button class="btn btn-outline btn-sm">Éditer</button><button class="btn btn-danger btn-sm">Supprimer</button></div></td>
+            <td><div class="row-actions"><button type="button" class="btn btn--outline btn--sm">Éditer</button><button type="button" class="btn btn--danger btn--sm">Supprimer</button></div></td>
           </tr>
           <tr>
-            <td><div class="koi-thumb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
+            <td><div class="koi-thumb"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16s9-15 20-4C24 17 13 24 2 16z"/><circle cx="12" cy="12" r="2"/></svg></div></td>
             <td><div class="koi-name">Taro</div><div class="koi-variety">Tancho</div></td>
             <td>80 cm</td>
             <td class="koi-price">3 200 €</td>
             <td><span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span></td>
             <td><span class="badge badge-vendu">Vendu</span></td>
-            <td><div class="row-actions"><button class="btn btn-ghost btn-sm">Voir</button></div></td>
+            <td><div class="row-actions"><button type="button" class="btn btn--ghost btn--sm">Voir</button></div></td>
           </tr>
         </tbody>
       </table>

@@ -5,13 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Badge</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding:32px; }
-    h3   { font-size:0.68rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--gris); margin:24px 0 10px; }
-    h3:first-child { margin-top:0; }
-    .group { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-    .logo-konishi { height:1.1em; vertical-align:middle; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+  <link rel="stylesheet" href="../assets/css/atoms/badge-preview.css">
 </head>
 <body>
 
@@ -26,7 +21,7 @@
   <h3>Lignée Konishi</h3>
   <div class="group">
     <span class="badge badge-konishi"><img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span>
-    <span class="badge badge-konishi" style="font-size:0.8rem;padding:6px 14px;">Lignée <img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span>
+    <span class="badge badge-konishi badge-konishi-padded">Lignée <img src="../../docs/assets/Logos_konishi-black_1.png" alt="Konishi" class="logo-konishi"></span>
   </div>
 
   <h3>Statut commandes</h3>
@@ -54,7 +49,7 @@
   <h3>Divers</h3>
   <div class="group">
     <span class="badge badge-dormant">Dormant V2</span>
-    <span class="badge" style="background:var(--noir);color:#fff;">Admin</span>
+    <span class="badge badge-solid-dark">Admin</span>
   </div>
 
 </body>

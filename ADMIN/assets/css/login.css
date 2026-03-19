@@ -182,6 +182,38 @@ body.login-page > .login-theme-switcher {
 	transition: all ease-in-out 0.3s;
 }
 
+.dev-access-wrap {
+	margin-top: 12px;
+}
+
+.dev-access-wrap[hidden] {
+	display: none;
+}
+
+.dev-access-btn {
+	display: block;
+	width: 100%;
+	color: var(--gris);
+	background-color: transparent;
+	font-family: var(--font-body);
+	font-weight: 600;
+	font-size: 13px;
+	margin: 0;
+	padding: 10px 12px;
+	border: 1px dashed var(--border-color);
+	border-radius: 8px;
+	line-height: 1;
+	cursor: pointer;
+	transition:
+		border-color 0.2s,
+		color 0.2s;
+}
+
+.dev-access-btn:hover {
+	border-color: var(--gris);
+	color: var(--noir);
+}
+
 #forgot-pass {
 	text-align: center;
 	margin-top: 10px;

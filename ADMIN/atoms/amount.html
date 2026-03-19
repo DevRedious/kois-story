@@ -2,35 +2,23 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atom — Amount</title>
   <link rel="stylesheet" href="../assets/css/admin.css">
-  <style>
-    body { padding: 32px; }
-    h3 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gris); margin: 20px 0 10px; }
-    .group { display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; }
-
-    /* ── AMOUNT ATOM ─────────────────────────────────────────── */
-    .amount        { font-family: var(--font-title); font-weight: 700; color: var(--noir); line-height: 1; }
-    .amount-lg     { font-size: 1.8rem; }
-    .amount-md     { font-size: 1.2rem; }
-    .amount-sm     { font-size: 0.95rem; }
-    .amount-currency { font-size: 0.6em; font-weight: 600; vertical-align: super; margin-right: 2px; font-family: var(--font-body); }
-    .amount.paid   { color: var(--vert-dispo); }
-    .amount.partial{ color: #856404; }
-    .amount.pending{ color: var(--gris); }
-  </style>
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+  <link rel="stylesheet" href="../assets/css/atoms/amount.css">
 </head>
 <body>
 
   <h3>Tailles</h3>
-  <div class="group">
+  <div class="demo-group demo-group--gap-16-base">
     <span class="amount amount-lg"><span class="amount-currency">€</span>1 200,00</span>
     <span class="amount amount-md"><span class="amount-currency">€</span>850,00</span>
     <span class="amount amount-sm"><span class="amount-currency">€</span>320,00</span>
   </div>
 
   <h3>Statuts paiement</h3>
-  <div class="group">
+  <div class="demo-group demo-group--gap-16-base">
     <span class="amount amount-md paid"><span class="amount-currency">€</span>1 200,00</span>
     <span class="amount amount-md partial"><span class="amount-currency">€</span>400,00</span>
     <span class="amount amount-md pending"><span class="amount-currency">€</span>800,00</span>
