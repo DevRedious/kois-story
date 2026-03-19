@@ -3,9 +3,18 @@
    ========================================================================== */
 
 .azukari-desc {
-	padding: calc(60px + var(--sp-20)) var(--sp-10) var(--sp-20);
-	margin-top: -60px;
+	padding: calc(50px + var(--sp-20)) var(--sp-10) var(--sp-20);
 	background: rgba(245, 245, 242, 0.9);
+}
+@media (max-width: 768px) {
+	.azukari-desc {
+		padding: calc(52px + var(--sp-16)) var(--sp-6) var(--sp-16);
+	}
+}
+@media (max-width: 480px) {
+	.azukari-desc {
+		padding: calc(60px + var(--sp-12)) var(--sp-4) var(--sp-12);
+	}
 }
 .azukari-desc__inner {
 	max-width: var(--max-width);

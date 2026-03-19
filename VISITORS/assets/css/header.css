@@ -18,6 +18,15 @@
 	width: auto;
 	display: block;
 }
+@media (max-width: 480px) {
+	.site-logo img {
+		height: 52px;
+	}
+	.site-logo {
+		top: var(--sp-3);
+		left: var(--sp-4);
+	}
+}
 .site-logo--hidden {
 	opacity: 0;
 	pointer-events: none;

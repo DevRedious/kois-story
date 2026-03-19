@@ -292,6 +292,7 @@
 	.decouvrir-story {
 		grid-template-columns: 1fr;
 		gap: var(--sp-8);
+		padding: var(--sp-10) var(--sp-6);
 	}
 	.story-block {
 		grid-template-columns: 1fr;
@@ -304,5 +305,25 @@
 	}
 	.gallery-row2 {
 		grid-template-columns: repeat(2, 1fr);
+	}
+	.story {
+		padding: var(--sp-12) var(--sp-6);
+	}
+}
+@media (max-width: 480px) {
+	.gallery-row-2 {
+		grid-template-columns: 1fr;
+	}
+	.gallery-row2 {
+		grid-template-columns: 1fr;
+	}
+	.farm-gallery {
+		padding: var(--sp-12) var(--sp-4);
+	}
+	.decouvrir-story {
+		padding: var(--sp-8) var(--sp-4);
+	}
+	.story {
+		padding: var(--sp-10) var(--sp-4);
 	}
 }

@@ -200,7 +200,7 @@
 	display: block;
 	font-family: var(--font-serif);
 	font-weight: 900;
-	font-size: clamp(5rem, 14vw, 12rem);
+	font-size: clamp(2.5rem, 14vw, 12rem);
 	color: var(--c-white);
 	line-height: 0.9;
 	letter-spacing: -0.02em;
@@ -211,7 +211,7 @@
 /* ── CTA WHATSAPP FLOTTANT  toutes pages ────────────────────────── */
 .cta-wa-float {
 	position: fixed;
-	bottom: var(--sp-6);
+	bottom: calc(var(--sp-6) + env(safe-area-inset-bottom, 0px));
 	right: var(--sp-6);
 	z-index: 200;
 	display: inline-flex;

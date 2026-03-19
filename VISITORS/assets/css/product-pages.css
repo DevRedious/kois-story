@@ -341,3 +341,12 @@
 		padding-right: var(--sp-4);
 	}
 }
+@media (max-width: 480px) {
+	.gallery-thumb {
+		width: 56px;
+		height: 56px;
+	}
+	.related-grid {
+		grid-template-columns: 1fr;
+	}
+}
