@@ -1,5 +1,0 @@
-/* Atom — button preview page tweaks (aligné VISITORS btn--lg) */
-.btn--lg {
-	padding: var(--sp-4) var(--sp-8);
-	font-size: var(--text-lg);
-}
