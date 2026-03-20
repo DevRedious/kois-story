@@ -13,6 +13,8 @@ class Message < ApplicationRecord
   private
 
   def notify_admin
+    return if ENV["ADMIN_EMAIL"].blank?
+
     MessageMailer.new_message(self).deliver_now
   end
 end
