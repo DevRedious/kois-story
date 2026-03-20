@@ -1,0 +1,10 @@
+<section class="related">
+  <div class="related-inner">
+    <h2 data-animate="fade-up">Vous pourriez aussi aimer</h2>
+    <div class="related-grid">
+      <% related_kois.each_with_index do |koi, index| %>
+        <%= render "pages/koi_card", koi: koi, index: index %>
+      <% end %>
+    </div>
+  </div>
+</section>

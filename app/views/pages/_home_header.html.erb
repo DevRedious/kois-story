@@ -1,0 +1,33 @@
+<%= link_to root_path, class: "site-logo", id: "site-logo", aria: { label: "Retour a l'accueil" } do %>
+  <%= image_tag docs_asset_path("LOGO MANU FINI.png"), alt: "Koi's Story" %>
+<% end %>
+
+<header class="site-header" id="site-header">
+  <div class="header__pill">
+    <nav class="header__nav" id="header-nav" aria-label="Navigation principale">
+      <span class="nav__indicator" id="nav-indicator"></span>
+      <ul>
+        <li><%= link_to "Accueil", root_path %></li>
+        <li><%= link_to "Nous découvrir", decouvrir_path %></li>
+        <li><%= link_to "Nos Koïs", kois_path %></li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Produits
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="2,4 6,8 10,4"/>
+            </svg>
+          </button>
+          <ul class="dropdown">
+            <li><%= link_to "Matériel", materiel_path %></li>
+            <li><%= link_to "Nourriture", nourriture_path %></li>
+            <li><%= link_to "Soins", soins_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to "Azukari", azukari_path %></li>
+      </ul>
+    </nav>
+    <button type="button" class="header__burger" id="burger" aria-label="Menu" aria-controls="header-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="nav-backdrop" id="nav-backdrop"></div>

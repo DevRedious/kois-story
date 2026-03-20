@@ -1,0 +1,16 @@
+<section class="hero hero--wavy-bottom" id="hero">
+  <%= image_tag docs_asset_path("LOGO MANU FINI.png"), class: "hero__poster", alt: "", aria: { hidden: true } %>
+  <%= video_tag docs_asset_path("Kois-story-video.mp4"), autoplay: true, muted: true, playsinline: true, class: "hero__video" %>
+  <div class="hero__overlay"></div>
+</section>
+
+<section class="hero-intro">
+  <div class="hero-intro__inner">
+    <h1 class="hero-intro__title" data-animate="fade-up">Des koïs d'exception,<br>issus de la lignée Konishi</h1>
+    <p class="hero-intro__sub" data-animate="fade-up" data-delay="1">Mathilde &amp; Emmanuel vous proposent des carpes koïs sélectionnées avec passion. Livraison dans un rayon de 50 km. Sur rendez-vous uniquement.</p>
+    <div class="hero-intro__ctas" data-animate="fade-up" data-delay="2">
+      <%= link_to "Voir le catalogue", kois_path, class: "btn btn--primary" %>
+      <%= link_to "Notre élevage", decouvrir_path, class: "btn btn--ghost" %>
+    </div>
+  </div>
+</section>

@@ -22,9 +22,8 @@ const initAnimations = () => {
 };
 
 document.addEventListener("turbo:load", initAnimations);
-document.addEventListener("turbo:load", initAnimations);
 
-/* ── Floating CTA  hide when footer enters viewport ────────────────── */
+/* Floating CTA: hide when footer enters viewport */
 const initFloatCta = () => {
 	const cta = document.querySelector(".cta-wa-float");
 	const footer = document.querySelector(".site-footer");
@@ -42,9 +41,8 @@ const initFloatCta = () => {
 };
 
 document.addEventListener("turbo:load", initFloatCta);
-document.addEventListener("turbo:load", initFloatCta);
 
-/* ── Video → poster fade on ended ──────────────────────────────────── */
+/* Video -> poster fade on ended */
 const initVideoFade = () => {
 	const video = document.querySelector(".hero__video");
 	const poster = document.querySelector(".hero__poster");
@@ -56,23 +54,35 @@ const initVideoFade = () => {
 };
 
 document.addEventListener("turbo:load", initVideoFade);
-document.addEventListener("turbo:load", initVideoFade);
 
-/* ── Footer legal dropdown ──────────────────────────────────────────── */
+/* Footer legal dropdown */
 const initFooterDropdown = (id) => {
 	const menu = document.getElementById(id);
 	if (!menu) return;
+
 	const toggle = menu.querySelector(".footer__legal-toggle");
-	toggle.addEventListener("click", () => {
+	if (!toggle || menu.dataset.bound === "true") return;
+
+	const closeMenu = () => {
+		menu.classList.remove("open");
+		toggle.setAttribute("aria-expanded", "false");
+	};
+
+	toggle.addEventListener("click", (event) => {
+		event.preventDefault();
 		const isOpen = menu.classList.toggle("open");
 		toggle.setAttribute("aria-expanded", String(isOpen));
 	});
-	document.addEventListener("click", (e) => {
-		if (!menu.contains(e.target)) {
-			menu.classList.remove("open");
-			toggle.setAttribute("aria-expanded", "false");
-		}
+
+	document.addEventListener("click", (event) => {
+		if (!menu.contains(event.target)) closeMenu();
 	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") closeMenu();
+	});
+
+	menu.dataset.bound = "true";
 };
 
 const initFooterDropdowns = () => {
@@ -80,5 +90,4 @@ const initFooterDropdowns = () => {
 	initFooterDropdown("footer-products");
 };
 
-document.addEventListener("turbo:load", initFooterDropdowns);
 document.addEventListener("turbo:load", initFooterDropdowns);

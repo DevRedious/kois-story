@@ -1,0 +1,15 @@
+<div class="konishi-band konishi-band--wavy-bottom">
+  <div class="konishi-band__inner">
+    <div data-animate="fade-right">
+      <p class="section-label section-label--red" aria-hidden="true">Partenaire officiel</p>
+      <h2 class="konishi-band__title"><span class="title-line">La lignée Konishi :</span><span class="title-line">l'excellence japonaise</span></h2>
+      <p class="konishi-band__text">Fondé au Japon, l'élevage Konishi est reconnu mondialement. Mathilde et Emmanuel sont les seuls importateurs français officiellement certifiés. Chaque koï est livré avec son certificat d'authenticité.</p>
+      <%= link_to decouvrir_path, class: "btn btn--ghost-white", aria: { label: "Découvrir notre partenariat avec Konishi" } do %>
+        Découvrir le partenariat <span aria-hidden="true">→</span>
+      <% end %>
+    </div>
+    <div class="konishi-band__img" data-animate="fade-left">
+      <%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Logo Konishi · partenaire officiel, sélectionneur de la lignée Konishi" %>
+    </div>
+  </div>
+</div>

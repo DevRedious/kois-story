@@ -1,2 +1,12 @@
-<h1>Azukari Service</h1>
-<p>Boarding service with monitored growth for selected koi.</p>
+<% content_for :title, "Service Azukari | Koi's Story" %>
+<% content_for :skip_default_footer, true %>
+
+<%= render "pages/home_wave_defs" %>
+<%= render "pages/home_header" %>
+<%= render "pages/product_hero", label: "Pensionnat koïs", title: "Service Azukari", subtitle: "Un service permettant la garde et la croissance de vos carpes koï dans nos installations, avec un suivi attentif et des conditions optimales pour leur développement.", wavy: true %>
+
+<main>
+  <%= render "pages/azukari_content" %>
+</main>
+
+<%= render "pages/home_footer" %>

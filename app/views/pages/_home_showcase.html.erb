@@ -1,0 +1,73 @@
+<section class="koi-showcase">
+  <div class="koi-showcase__inner">
+    <div class="koi-showcase__header" data-animate="fade-up">
+      <div>
+        <p class="section-label" aria-hidden="true">Le catalogue</p>
+        <h2 class="section-title">Nos spécimens disponibles</h2>
+      </div>
+      <%= link_to kois_path, class: "koi-showcase__link", aria: { label: "Voir tout le catalogue de carpes koïs" } do %>
+        Voir tout <span aria-hidden="true">→</span>
+      <% end %>
+    </div>
+
+    <% if editorial_koi.present? %>
+      <%= link_to koi_path(editorial_koi), class: "editorial", data: { animate: "fade-scale" } do %>
+        <div class="editorial__media">
+          <%= image_tag docs_asset_path("carpe-koi-showa-scaled-hero.jpg"), alt: "#{editorial_koi.name} · spécimen du mois · lignée Konishi" %>
+          <div class="editorial__overlay"></div>
+        </div>
+        <div class="editorial__content">
+          <span class="editorial__badge"><span aria-hidden="true">★</span> Spécimen du mois</span>
+          <h3 class="editorial__title"><%= editorial_koi.name %></h3>
+          <p class="editorial__sub"><%= showcase_meta(editorial_koi) %></p>
+          <div class="editorial__cta">
+            <span class="editorial__price"><%= showcase_price(editorial_koi) %> <sup aria-hidden="true">€</sup></span>
+            <span class="btn btn--primary">Voir la fiche <span aria-hidden="true">→</span></span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="koi-grid">
+      <% showcase_kois.each_with_index do |koi, index| %>
+        <article class="koi-card" data-animate="fade-up" data-delay="<%= index %>">
+          <div class="koi-card-image">
+            <%= image_tag koi_image_source(koi, index), alt: koi.name %>
+            <div class="koi-card-badges">
+              <% if koi.konishi_lineage? %>
+                <span class="koi-card-badge koi-card-badge--konishi">
+                  <%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Certifié Konishi · lignée officielle japonaise" %>
+                </span>
+              <% end %>
+              <span class="koi-card-badge koi-card-badge--status"><%= koi.status.humanize %></span>
+            </div>
+          </div>
+          <div class="koi-card-image-caption">
+            <div class="koi-card-caption-left">
+              <h4 class="koi-card-name"><%= koi.name %></h4>
+              <p class="koi-card-meta"><%= showcase_meta(koi) %></p>
+            </div>
+            <div class="koi-card-price-block">
+              <span class="koi-card-price-label">Prix</span>
+              <span class="koi-card-price"><%= showcase_price(koi) %><span class="koi-card-price-currency" aria-hidden="true">€</span></span>
+            </div>
+          </div>
+          <div class="koi-card-content">
+            <p class="koi-card-cert">Spécimen sélectionné, certificat disponible</p>
+            <div class="koi-card-actions">
+              <%= link_to whatsapp_link("33600000000", "Bonjour, je suis intéressé(e) par #{koi.name} (#{showcase_meta(koi)})."), class: "koi-card-cta koi-card-cta--primary", target: "_blank", rel: "noopener noreferrer" do %>
+                <%= whatsapp_icon %>
+                Commander
+              <% end %>
+              <%= link_to "Voir la fiche", koi_path(koi), class: "koi-card-cta koi-card-cta--secondary" %>
+            </div>
+          </div>
+        </article>
+      <% end %>
+    </div>
+
+    <div class="koi-showcase__footer">
+      <%= link_to "Voir tout le catalogue", kois_path, class: "btn btn--primary" %>
+    </div>
+  </div>
+</section>

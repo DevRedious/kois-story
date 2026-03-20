@@ -1,13 +1,20 @@
 /**
  * gallery.js  Koi's Story V3
- * Lightbox simple pour la galerie de la fiche produit.
- * Clic sur .koi-detail__thumb → affiche en grand dans un overlay.
- * Touche Escape ou clic overlay pour fermer.
+ * Product gallery slider + lightbox, compatible with Turbo.
  */
 (() => {
 	document.addEventListener("turbo:load", () => {
-		// ── Construction de l'overlay ────────────────────────────────────
-		var overlay = document.createElement("div");
+		const track = document.getElementById("gallery-track");
+		const main = document.getElementById("gallery-main");
+		const thumbs = Array.from(document.querySelectorAll(".gallery-thumb"));
+		if (!track || !main || thumbs.length === 0) return;
+
+		const slides = Array.from(track.querySelectorAll("img"));
+		const prevBtn = document.querySelector(".gallery-nav.prev");
+		const nextBtn = document.querySelector(".gallery-nav.next");
+		let current = 0;
+
+		const overlay = document.createElement("div");
 		overlay.id = "gallery-overlay";
 		overlay.setAttribute("role", "dialog");
 		overlay.setAttribute("aria-modal", "true");
@@ -21,21 +28,20 @@
 			"align-items:center",
 			"justify-content:center",
 			"cursor:zoom-out",
-			"padding:var(--sp-8,2rem)",
+			"padding:var(--sp-8,2rem)"
 		].join(";");
 
-		var overlayImg = document.createElement("img");
+		const overlayImg = document.createElement("img");
 		overlayImg.style.cssText = [
 			"max-width:90vw",
 			"max-height:90vh",
 			"object-fit:contain",
 			"border-radius:8px",
 			"box-shadow:0 8px 40px rgba(0,0,0,0.6)",
-			"cursor:default",
+			"cursor:default"
 		].join(";");
-		overlayImg.setAttribute("alt", "Photo koï agrandie");
 
-		var closeBtn = document.createElement("button");
+		const closeBtn = document.createElement("button");
 		closeBtn.textContent = "✕";
 		closeBtn.setAttribute("aria-label", "Fermer");
 		closeBtn.style.cssText = [
@@ -49,58 +55,65 @@
 			"width:40px",
 			"height:40px",
 			"font-size:1.1rem",
-			"cursor:pointer",
-			"display:flex",
-			"align-items:center",
-			"justify-content:center",
-			"transition:background 150ms ease",
+			"cursor:pointer"
 		].join(";");
 
 		overlay.appendChild(overlayImg);
 		overlay.appendChild(closeBtn);
 		document.body.appendChild(overlay);
 
-		// ── Ouverture ────────────────────────────────────────────────────
-		function openLightbox(src, alt) {
-			overlayImg.src = src;
-			overlayImg.alt = alt || "";
+		const goTo = (index) => {
+			current = (index + slides.length) % slides.length;
+			track.style.transform = `translateX(-${current * 100}%)`;
+			thumbs.forEach((thumb, thumbIndex) => {
+				thumb.classList.toggle("active", thumbIndex === current);
+			});
+		};
+
+		const openLightbox = () => {
+			overlayImg.src = slides[current].src;
+			overlayImg.alt = slides[current].alt || "";
 			overlay.style.display = "flex";
 			document.body.style.overflow = "hidden";
 			closeBtn.focus();
-		}
+		};
 
-		function closeLightbox() {
+		const closeLightbox = () => {
 			overlay.style.display = "none";
 			overlayImg.src = "";
 			document.body.style.overflow = "";
-		}
+		};
 
-		// ── Événements ───────────────────────────────────────────────────
-		overlay.addEventListener("click", (e) => {
-			if (e.target === overlay) closeLightbox();
+		prevBtn?.addEventListener("click", () => goTo(current - 1));
+		nextBtn?.addEventListener("click", () => goTo(current + 1));
+
+		thumbs.forEach((thumb, index) => {
+			thumb.addEventListener("click", () => goTo(index));
+		});
+
+		main.addEventListener("click", (event) => {
+			if (event.target.closest(".gallery-nav")) return;
+			openLightbox();
+		});
+
+		overlay.addEventListener("click", (event) => {
+			if (event.target === overlay) closeLightbox();
 		});
 		closeBtn.addEventListener("click", closeLightbox);
-		overlayImg.addEventListener("click", (e) => {
-			e.stopPropagation();
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape") closeLightbox();
+			if (overlay.style.display !== "flex") return;
+			if (event.key === "ArrowLeft") {
+				goTo(current - 1);
+				overlayImg.src = slides[current].src;
+			}
+			if (event.key === "ArrowRight") {
+				goTo(current + 1);
+				overlayImg.src = slides[current].src;
+			}
 		});
 
-		document.addEventListener("keydown", (e) => {
-			if (e.key === "Escape") closeLightbox();
-		});
-
-		// ── Attacher aux miniatures ──────────────────────────────────────
-		function attachThumbs() {
-			var thumbs = document.querySelectorAll(
-				".koi-detail__thumb img, .gallery-cell img",
-			);
-			thumbs.forEach((img) => {
-				img.style.cursor = "zoom-in";
-				img.addEventListener("click", function () {
-					openLightbox(this.src, this.alt);
-				});
-			});
-		}
-
-		attachThumbs();
+		goTo(0);
 	});
 })();

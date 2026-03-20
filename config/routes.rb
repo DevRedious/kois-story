@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/nourriture", to: "pages#nourriture"
   get "/azukari", to: "pages#azukari"
   get "/mentions-legales", to: "pages#mentions_legales"
+  get "/cgv", to: "pages#cgv"
+  get "/politique-de-confidentialite", to: "pages#politique_confidentialite"
   resources :kois, only: [:index, :show]
   resources :messages, only: [:create]
 

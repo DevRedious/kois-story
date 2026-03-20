@@ -1,11 +1,11 @@
-/* ==========================================================================
-   fonts.css  Déclarations @font-face locales Koi's Story V3
-   Chemin depuis VISITORS/assets/css/ → ../../../docs/fonts/
-   ========================================================================== */
+/* ======================================================================
+   fonts.css  Local @font-face declarations for Koi's Story V3
+   Served through Rails public assets.
+   ====================================================================== */
 
 @font-face {
 	font-family: "Inter";
-	src: url("Inter-Regular.otf") format("opentype");
+	src: url("/assets/Inter-Regular.otf") format("opentype");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -13,7 +13,7 @@
 
 @font-face {
 	font-family: "Inter";
-	src: url("Inter-Italic.otf") format("opentype");
+	src: url("/assets/Inter-Italic.otf") format("opentype");
 	font-weight: 400;
 	font-style: italic;
 	font-display: swap;
@@ -21,7 +21,7 @@
 
 @font-face {
 	font-family: "Inter";
-	src: url("Inter-Light.otf") format("opentype");
+	src: url("/assets/Inter-Light.otf") format("opentype");
 	font-weight: 300;
 	font-style: normal;
 	font-display: swap;
@@ -29,7 +29,7 @@
 
 @font-face {
 	font-family: "Inter";
-	src: url("Inter-Medium.otf") format("opentype");
+	src: url("/assets/Inter-Medium.otf") format("opentype");
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
@@ -37,7 +37,7 @@
 
 @font-face {
 	font-family: "Inter";
-	src: url("Inter-SemiBold.otf") format("opentype");
+	src: url("/assets/Inter-SemiBold.otf") format("opentype");
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
@@ -45,7 +45,7 @@
 
 @font-face {
 	font-family: "Inter";
-	src: url("Inter-Bold.otf") format("opentype");
+	src: url("/assets/Inter-Bold.otf") format("opentype");
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
@@ -53,7 +53,7 @@
 
 @font-face {
 	font-family: "Inter";
-	src: url("Inter-ExtraBold.otf") format("opentype");
+	src: url("/assets/Inter-ExtraBold.otf") format("opentype");
 	font-weight: 800;
 	font-style: normal;
 	font-display: swap;
@@ -61,8 +61,7 @@
 
 @font-face {
 	font-family: "Playfair Display";
-	src: url("PlayfairDisplay-Regular.otf")
-		format("opentype");
+	src: url("/assets/PlayfairDisplay-Regular.otf") format("opentype");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -70,8 +69,7 @@
 
 @font-face {
 	font-family: "Playfair Display";
-	src: url("PlayfairDisplay-Italic.otf")
-		format("opentype");
+	src: url("/assets/PlayfairDisplay-Italic.otf") format("opentype");
 	font-weight: 400;
 	font-style: italic;
 	font-display: swap;
@@ -79,8 +77,7 @@
 
 @font-face {
 	font-family: "Playfair Display";
-	src: url("PlayfairDisplay-Bold.otf")
-		format("opentype");
+	src: url("/assets/PlayfairDisplay-Bold.otf") format("opentype");
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
@@ -88,8 +85,7 @@
 
 @font-face {
 	font-family: "Playfair Display";
-	src: url("PlayfairDisplay-BoldItalic.otf")
-		format("opentype");
+	src: url("/assets/PlayfairDisplay-BoldItalic.otf") format("opentype");
 	font-weight: 700;
 	font-style: italic;
 	font-display: swap;
@@ -97,8 +93,7 @@
 
 @font-face {
 	font-family: "Playfair Display";
-	src: url("PlayfairDisplay-Black.otf")
-		format("opentype");
+	src: url("/assets/PlayfairDisplay-Black.otf") format("opentype");
 	font-weight: 900;
 	font-style: normal;
 	font-display: swap;
@@ -106,8 +101,7 @@
 
 @font-face {
 	font-family: "Playfair Display";
-	src: url("PlayfairDisplay-BlackItalic.otf")
-		format("opentype");
+	src: url("/assets/PlayfairDisplay-BlackItalic.otf") format("opentype");
 	font-weight: 900;
 	font-style: italic;
 	font-display: swap;

@@ -1,15 +1,19 @@
-<h1><%= @koi.name %></h1>
-<p><%= @koi.variety %> - <%= @koi.size_cm %> cm</p>
-<p><%= @koi.description %></p>
-<p><%= number_to_currency(@koi.price, unit: "EUR ") %></p>
+<% content_for :title, "#{@koi.name} | Koi's Story" %>
+<% content_for :skip_default_footer, true %>
+<% gallery_images = koi_gallery_images(@koi) %>
 
-<% if @koi.konishi_lineage? %>
-  <span class="badge badge-konishi">Konishi Lineage</span>
-<% end %>
+<%= render "pages/home_header" %>
 
-<%
-  wa_number = "33XXXXXXXXX"
-  wa_text = URI.encode_www_form_component("Hello, I'm interested in #{@koi.name} (#{@koi.variety}, #{@koi.size_cm}cm).")
-%>
-<%= link_to "Order via WhatsApp", "https://wa.me/#{wa_number}?text=#{wa_text}",
-    class: "btn btn-wa", target: "_blank", rel: "noopener" %>
+<nav class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <%= link_to "Accueil", root_path %>
+    <span>/</span>
+    <%= link_to "Nos Koïs", kois_path %>
+    <span>/</span>
+    <span><%= @koi.name %></span>
+  </div>
+</nav>
+
+<%= render "pages/kois_product_detail", koi: @koi, gallery_images: gallery_images %>
+<%= render "pages/kois_related", related_kois: @related_kois %>
+<%= render "pages/home_footer" %>

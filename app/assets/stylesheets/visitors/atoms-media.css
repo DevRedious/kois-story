@@ -125,22 +125,27 @@
 	color: var(--c-wa);
 	flex-shrink: 0;
 }
-.icon-wa svg {
+.icon-wa svg,
+.icon-wa__img {
 	display: block;
 }
-.icon-wa--24 svg {
+.icon-wa--24 svg,
+.icon-wa--24 .icon-wa__img {
 	width: 24px;
 	height: 24px;
 }
-.icon-wa--32 svg {
+.icon-wa--32 svg,
+.icon-wa--32 .icon-wa__img {
 	width: 32px;
 	height: 32px;
 }
-.icon-wa--48 svg {
+.icon-wa--48 svg,
+.icon-wa--48 .icon-wa__img {
 	width: 48px;
 	height: 48px;
 }
-.icon-wa--64 svg {
+.icon-wa--64 svg,
+.icon-wa--64 .icon-wa__img {
 	width: 64px;
 	height: 64px;
 }

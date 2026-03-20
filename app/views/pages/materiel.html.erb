@@ -1,2 +1,26 @@
-<h1>Equipment</h1>
-<p>Selection of filtration and pond equipment products.</p>
+<% content_for :title, "Matériel | Koi's Story" %>
+<% content_for :skip_default_footer, true %>
+<%
+  filtration_items = [
+    { icon: "⚙️", badge: "Filtration", name: "Filtre biologique", description: "Filtration mécanique et biologique pour bassins jusqu'à 50 000 L." },
+    { icon: "🔄", badge: "Filtration", name: "Filtre japonais", description: "Système multi-chambres inspiré des élevages japonais. Idéal pour les grandes collections." },
+    { icon: "🧹", badge: "Filtration", name: "Brosserie de filtration", description: "Brosses en polypropylène, haute résistance. Compatible tous types de filtres." }
+  ]
+  pump_items = [
+    { icon: "💧", badge: "Pompes", name: "Pompe de bassin", description: "Pompe haute performance, débit réglable, très faible consommation." },
+    { icon: "☀️", badge: "UV", name: "Stérilisateur UV", description: "Élimine bactéries et algues. Eau cristalline garantie. De 25 W à 110 W." },
+    { icon: "🌡️", badge: "Chauffage", name: "Chauffage bassin", description: "Maintien de la température optimale pour favoriser la croissance et la santé." }
+  ]
+%>
+<%= render "pages/home_wave_defs" %>
+<%= render "pages/home_header" %>
+<%= render "pages/product_hero", label: "Équipement", title: "Matériel", subtitle: "Filtration, pompes, UV, chauffage, tout le nécessaire pour vos koïs.", wavy: true %>
+<main>
+  <div class="shop-section">
+    <div class="shop-section__inner">
+      <%= render "pages/shop_category", title: "Filtration", items: filtration_items %>
+      <%= render "pages/shop_category", title: "Pompes & UV", items: pump_items %>
+    </div>
+  </div>
+</main>
+<%= render "pages/home_footer" %>

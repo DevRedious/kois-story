@@ -1,5 +1,6 @@
 /* Split from VISITORS/assets/css/header.css - section 2/3 */
-.header__nav a {
+.header__nav a,
+.dropdown-toggle {
 	font-family: var(--font-sans);
 	font-size: var(--text-sm);
 	font-weight: 600;
@@ -10,6 +11,9 @@
 	position: relative;
 	z-index: 1;
 	white-space: nowrap;
+	background: transparent;
+	border: 0;
+	text-decoration: none;
 }
 .header__nav a.active {
 	background: linear-gradient(135deg, #980000 0%, #630f0f 50%, #980000 100%);
@@ -38,14 +42,15 @@
 	display: flex;
 	align-items: center;
 	gap: 4px;
-	cursor: default;
+	cursor: pointer;
 }
 .dropdown-toggle svg {
 	flex-shrink: 0;
 	transition: transform var(--t-fast);
 }
 .has-dropdown:hover .dropdown-toggle svg,
-.has-dropdown:focus-within .dropdown-toggle svg {
+.has-dropdown:focus-within .dropdown-toggle svg,
+.dropdown-toggle.open svg {
 	transform: rotate(180deg);
 }
 
@@ -99,6 +104,7 @@
 	.site-logo,
 	.header__pill,
 	.header__nav a,
+	.dropdown-toggle,
 	.nav__indicator,
 	.dropdown,
 	.header__burger span {

@@ -16,4 +16,10 @@ class PagesController < ApplicationController
 
   def mentions_legales
   end
+
+  def cgv
+  end
+
+  def politique_confidentialite
+  end
 end

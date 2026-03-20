@@ -1,0 +1,62 @@
+<footer class="site-footer">
+  <div class="footer__inner">
+    <div class="footer__bar">
+      <%= link_to root_path, class: "footer__logo" do %>
+        <%= image_tag docs_asset_path("LOGO MANU FINI.png"), alt: "Koi's Story · Retour à l'accueil" %>
+      <% end %>
+      <nav class="footer__links" id="footer-links">
+        <span class="footer__indicator" id="footer-indicator"></span>
+        <%= link_to "Nous découvrir", decouvrir_path %>
+        <%= link_to "Nos Koïs", kois_path %>
+        <div class="footer__legal-menu" id="footer-products">
+          <button
+            type="button"
+            class="footer__legal-toggle"
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            Produits
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,8 6,4 10,8"/></svg>
+          </button>
+          <ul class="footer__legal-dropdown" role="menu">
+            <li><%= link_to "Matériel", materiel_path, role: "menuitem" %></li>
+            <li><%= link_to "Nourriture", nourriture_path, role: "menuitem" %></li>
+            <li><%= link_to "Soins", soins_path, role: "menuitem" %></li>
+          </ul>
+        </div>
+        <%= link_to "Azukari", azukari_path %>
+        <%= link_to "Contact", root_path(anchor: "contact") %>
+        <div class="footer__legal-menu" id="footer-legal">
+          <button
+            type="button"
+            class="footer__legal-toggle"
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            Légal
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,8 6,4 10,8"/></svg>
+          </button>
+          <ul class="footer__legal-dropdown" role="menu">
+            <li><%= link_to "Mentions légales", mentions_legales_path, role: "menuitem" %></li>
+            <li><%= link_to "CGV", cgv_path, role: "menuitem" %></li>
+            <li><%= link_to "Politique de confidentialité", politique_de_confidentialite_path, role: "menuitem" %></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="footer__social">
+        <%= link_to "https://www.facebook.com/share/1G1wTgtsim/", class: "footer__social-link", target: "_blank", rel: "noopener noreferrer", aria: { label: "Koi's Story sur Facebook" } do %>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+        <% end %>
+        <%= link_to "https://www.instagram.com/koi.story.officiel", class: "footer__social-link", target: "_blank", rel: "noopener noreferrer", aria: { label: "Koi's Story sur Instagram" } do %>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/></svg>
+        <% end %>
+      </div>
+      <p class="footer__copy"><small><span aria-label="Copyright">©</span> 2026 Koi's Story</small></p>
+    </div>
+  </div>
+</footer>
+
+<%= link_to "https://wa.me/33600000000", class: "cta-wa-float", target: "_blank", rel: "noopener", aria: { label: "Contacter l'élevage via WhatsApp" } do %>
+  <%= whatsapp_icon %>
+  Contacter l'élevage
+<% end %>

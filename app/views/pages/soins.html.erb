@@ -1,2 +1,26 @@
-<h1>Care</h1>
-<p>Health checks, diagnostics, and treatment guidance for koi.</p>
+<% content_for :title, "Soins & Santé | Koi's Story" %>
+<% content_for :skip_default_footer, true %>
+<%
+  diagnostic_items = [
+    { icon: "🔬", badge: "Microscope", name: "Microscope koï", description: "Microscope de paillasse 40×-400×. Idéal pour identifier parasites et bactéries sur écouvillon cutané." },
+    { icon: "🧪", badge: "Tests", name: "Kit analyse eau", description: "Mesure nitrites, nitrates, pH, KH, GH, ammoniaque. Indispensable pour tout élevage sérieux." },
+    { icon: "📊", badge: "Électronique", name: "Oxymètre numérique", description: "Mesure le taux d'oxygène dissous en temps réel. Affichage LCD, étanche." }
+  ]
+  treatment_items = [
+    { icon: "💊", badge: "Antiparasitaire", name: "Anti-parasites", description: "Traitement efficace contre vers, ancres et autres ectoparasites. Dosage précis selon volume bassin." },
+    { icon: "🌿", badge: "Naturel", name: "Bactéries nitrifiantes", description: "Ré-ensemencement rapide du filtre biologique. Idéal après traitement ou démarrage de bassin." },
+    { icon: "🩹", badge: "Plaies", name: "Traitement plaies", description: "Gel antiseptique pour plaies et ulcères. Application directe sur le poisson. Formule japonaise." }
+  ]
+%>
+<%= render "pages/home_wave_defs" %>
+<%= render "pages/home_header" %>
+<%= render "pages/product_hero", label: "Santé", title: "Soins & Santé", subtitle: "Microscopes, tests d'eau, traitements, tous les outils pour garder vos koïs en parfaite santé.", wavy: true %>
+<main>
+  <div class="shop-section">
+    <div class="shop-section__inner">
+      <%= render "pages/shop_category", title: "Diagnostic & Analyse", items: diagnostic_items %>
+      <%= render "pages/shop_category", title: "Traitements", items: treatment_items %>
+    </div>
+  </div>
+</main>
+<%= render "pages/home_footer" %>

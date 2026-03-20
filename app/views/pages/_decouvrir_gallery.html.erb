@@ -1,0 +1,25 @@
+<section class="gallery">
+  <div class="gallery__inner">
+    <h2 class="gallery__title" data-animate="fade-up">Notre élevage en images</h2>
+    <div class="gallery-grid">
+      <div class="gallery-cell gallery-cell--tall" data-animate="fade-scale">
+        <%= image_tag docs_asset_path("carpe-koi-showa-scaled-hero.jpg"), alt: "Vue bassin" %>
+      </div>
+      <div class="gallery-cell--right">
+        <div class="gallery-cell" data-animate="fade-scale" data-delay="1">
+          <%= image_tag docs_asset_path("24148-Sakura-Grand-Voile-Suda-600x800.jpg"), alt: "Sakura" %>
+        </div>
+        <div class="gallery-cell" data-animate="fade-scale" data-delay="2">
+          <%= image_tag docs_asset_path("butterfly-tancho-kujaku.jpg"), alt: "Butterfly" %>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-row2">
+      <div class="gallery-cell gallery-cell--sq" data-animate="fade-scale">
+        <%= image_tag docs_asset_path("carpe-koi-showa-scaled.jpg"), alt: "Showa" %>
+      </div>
+      <div class="gallery-cell gallery-cell--sq gallery-cell--placeholder">Photo à venir</div>
+      <div class="gallery-cell gallery-cell--sq gallery-cell--placeholder">Photo à venir</div>
+    </div>
+  </div>
+</section>

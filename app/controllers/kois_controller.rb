@@ -7,5 +7,6 @@ class KoisController < ApplicationController
   def show
     @koi = Koi.find(params[:id])
     @images = @koi.images
+    @related_kois = Koi.available.where.not(id: @koi.id).includes(:images).limit(3)
   end
 end

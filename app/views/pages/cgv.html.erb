@@ -1,0 +1,61 @@
+<% content_for :title, "CGV | Koi's Story" %>
+<% content_for :skip_default_footer, true %>
+
+<%= render "pages/home_wave_defs" %>
+<%= render "pages/home_header" %>
+<%= render "pages/product_hero", label: "Informations legales", title: "Conditions generales de vente", subtitle: "Conditions applicables aux commandes, aux reservations et aux prestations proposees par Koi's Story.", wavy: true %>
+
+<main>
+  <section class="legal-page">
+    <div class="legal-container">
+      <h1>Conditions generales de vente</h1>
+
+      <h2>Objet</h2>
+      <p>
+        Les presentes conditions generales de vente definissent les modalites de vente des kois,
+        produits et prestations proposes par <strong>Koi's Story</strong>.
+      </p>
+
+      <h2>Commandes</h2>
+      <p>
+        Toute commande est consideree comme validee apres confirmation ecrite par Koi's Story.
+        Les disponibilites sont indiquees a titre informatif et peuvent evoluer entre la prise de contact
+        et la validation definitive.
+      </p>
+
+      <h2>Prix</h2>
+      <p>
+        Les prix affiches sont exprimes en euros. Sauf mention contraire, ils s'entendent toutes taxes
+        comprises. Les frais eventuels de transport, d'acclimatation ou de prestation complementaire sont
+        precises avant validation.
+      </p>
+
+      <h2>Paiement</h2>
+      <p>
+        Le paiement peut faire l'objet d'un acompte ou d'un reglement integral selon la nature de la commande.
+        Les modalites exactes sont convenues avec le client lors de la confirmation.
+      </p>
+
+      <h2>Reservation et retrait</h2>
+      <p>
+        Une reservation n'est effective qu'apres accord explicite et, le cas echeant, reception de l'acompte.
+        Le retrait ou la livraison sont organises d'un commun accord avec le client.
+      </p>
+
+      <h2>Responsabilite</h2>
+      <p>
+        Koi's Story s'engage a fournir des informations sinceres sur l'etat et les caracteristiques des kois.
+        La responsabilite de l'elevage ne saurait etre engagee en cas de mauvaise acclimatation ou de conditions
+        de maintenance inadaptees apres remise.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Pour toute question relative a une commande, vous pouvez ecrire a
+        <%= mail_to "contact.koistory@gmail.com" %>.
+      </p>
+    </div>
+  </section>
+</main>
+
+<%= render "pages/home_footer" %>
