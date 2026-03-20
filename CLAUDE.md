@@ -8,12 +8,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repo Contains Now
 
-This repo is **HTML/CSS/JS prototypes only**  no Rails app yet. Two independent prototyping workspaces:
+Two phases coexist in this repo:
 
-- `ADMIN/`  Back-office admin interface (Mathilde's dashboard)
-- `VISITORS/`  Public-facing site prototype
+**Prototype (branches `DEV`, `main`, `admin-and-back`):**
+- `ADMIN/` - Back-office admin interface (Mathilde's dashboard)
+- `VISITORS/` - Public-facing site prototype
+- Pages open directly via double-click (no server needed)
+- All sidebar/navigation HTML is injected inline - no `fetch()` for components
 
-Pages can be opened directly via double-click (no server needed). All sidebar/navigation HTML is injected inline into each page file  there is no `fetch()` for components.
+**Rails MVP (branch `MVP`):**
+- Rails app being scaffolded from scratch
+- Follow `docs/rails_mvp_plan.md` for the full step-by-step implementation guide
+- Do NOT modify `ADMIN/` or `VISITORS/` on the MVP branch - they are reference only
+- CSS/fonts from the prototype will be copied to `app/assets/` during integration
+
+## Branching
+
+| Branch | Purpose |
+|---|---|
+| `main` | Production - no direct commits |
+| `DEV` | Integration - all PRs target here |
+| `MVP` | Rails app scaffold - oral blanc 2026-03-20 |
+| `admin-and-back` | Docs, CI/CD, changelog, contributors |
+
+Active PR: `admin-and-back` -> `DEV` (#39) - merge this before branching new features.
 
 ---
 
