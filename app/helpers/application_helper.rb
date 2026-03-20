@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def whatsapp_icon(size: 24, extra_classes: nil)
-    classes = ["icon-wa", "icon-wa--#{size}", extra_classes].compact.join(" ")
+    classes = [ "icon-wa", "icon-wa--#{size}", extra_classes ].compact.join(" ")
     content_tag(:span, class: classes, aria: { hidden: true }) do
       image_tag docs_asset_path("icon-whatsapps.svg"), alt: "", class: "icon-wa__img"
     end

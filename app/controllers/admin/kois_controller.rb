@@ -1,6 +1,6 @@
 module Admin
   class KoisController < Admin::BaseController
-    before_action :set_koi, only: [:show, :edit, :update, :destroy]
+    before_action :set_koi, only: [ :show, :edit, :update, :destroy ]
 
     def index
       @kois = Koi.includes(:images).order(created_at: :desc)
