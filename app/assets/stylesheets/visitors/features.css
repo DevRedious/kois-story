@@ -1,1 +1,3 @@
-/* Simplified stylesheet to keep file maintainable (<=200 lines). */
+/* Manifest split of VISITORS/assets/css/features.css */
+@import url("features-section-1.css");
+@import url("features-section-2.css");

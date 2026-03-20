@@ -1,0 +1,144 @@
+/* Split from ADMIN/assets/css/layout.css - section 3/3 */
+.nav-item.dormant {
+	opacity: 0.55;
+}
+
+.sidebar-nav {
+	flex: 1;
+	overflow-y: auto;
+	padding: 14px 0;
+}
+.sidebar-footer {
+	padding: 14px 22px;
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	flex-shrink: 0;
+}
+.brand-sub {
+	font-size: 0.63rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: rgba(255, 255, 255, 0.4);
+	margin-top: 3px;
+	white-space: nowrap;
+}
+
+.admin-user {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.admin-info {
+	white-space: nowrap;
+	overflow: hidden;
+}
+.admin-avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background: var(--rouge-sombre);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.72rem;
+	font-weight: 700;
+	color: var(--blanc-pur);
+	flex-shrink: 0;
+}
+.admin-name {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #fff;
+}
+.admin-role {
+	font-size: 0.62rem;
+	color: rgba(255, 255, 255, 0.4);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin-top: 1px;
+}
+
+/* ── BREADCRUMB ──────────────────────────────────────────── */
+.breadcrumb {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 0.72rem;
+	color: var(--gris);
+	margin-top: 1px;
+}
+.breadcrumb a {
+	color: var(--gris);
+	text-decoration: none;
+}
+.breadcrumb a:hover {
+	color: var(--noir);
+}
+.breadcrumb .sep {
+	color: #ccc;
+}
+.breadcrumb .current {
+	color: var(--noir);
+	font-weight: 600;
+}
+
+/* ── DASHBOARD HELPERS ───────────────────────────────────── */
+.quick-actions {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin-bottom: 24px;
+}
+.page-greeting {
+	font-family: var(--font-title);
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--noir);
+	margin-bottom: 4px;
+}
+.page-date {
+	font-size: 0.82rem;
+	color: var(--gris);
+	margin-bottom: 20px;
+}
+
+/* Masquage des textes en mode réduit desktop */
+@media (min-width: 769px) {
+	.brand-title-text,
+	.brand-sub,
+	.nav-label,
+	.nav-badge,
+	.nav-badge-dormant,
+	.nav-section,
+	.admin-info {
+		max-width: 0;
+		overflow: hidden;
+		opacity: 0;
+		transition:
+			max-width var(--sidebar-ease),
+			opacity 0.18s ease;
+	}
+
+	.sidebar:hover .brand-title-text {
+		max-width: 160px;
+		opacity: 1;
+	}
+	.sidebar:hover .brand-sub {
+		max-width: 200px;
+		opacity: 1;
+	}
+	.sidebar:hover .nav-label {
+		max-width: 190px;
+		opacity: 1;
+	}
+	.sidebar:hover .nav-badge {
+		opacity: 1;
+	}
+	.sidebar:hover .nav-section {
+		opacity: 1;
+	}
+	.sidebar:hover .admin-info {
+		max-width: 160px;
+		opacity: 1;
+	}
+}

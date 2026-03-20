@@ -1,1 +1,3 @@
-/* Simplified stylesheet to keep file maintainable (<=200 lines). */
+/* Manifest split of VISITORS/assets/css/footer-full.css */
+@import url("footer-full-section-1.css");
+@import url("footer-full-section-2.css");

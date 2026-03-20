@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:registrations]
 
   # Public — read only, no account required
-  root to: redirect("/VISITORS/pages/home.html")
+  root "home#index"
   get "/decouvrir", to: "pages#decouvrir"
   get "/materiel", to: "pages#materiel"
   get "/soins", to: "pages#soins"

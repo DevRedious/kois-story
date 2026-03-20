@@ -1,1 +1,3 @@
-/* Simplified stylesheet to keep file maintainable (<=200 lines). */
+/* Manifest split of VISITORS/assets/css/koi-card.css */
+@import url("koi-card-section-1.css");
+@import url("koi-card-section-2.css");

@@ -1,1 +1,4 @@
-/* Simplified stylesheet to keep file maintainable (<=200 lines). */
+/* Manifest split of VISITORS/assets/css/farm.css */
+@import url("farm-section-1.css");
+@import url("farm-section-2.css");
+@import url("farm-section-3.css");

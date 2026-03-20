@@ -1,1 +1,3 @@
-/* Simplified stylesheet to keep file maintainable (<=200 lines). */
+/* Manifest split of VISITORS/assets/css/catalogue.css */
+@import url("catalogue-section-1.css");
+@import url("catalogue-section-2.css");

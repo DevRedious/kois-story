@@ -1,0 +1,113 @@
+/* Split from VISITORS/assets/css/product-pages.css - section 2/3 */
+.info-meta-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 5px 14px;
+	border-radius: var(--r-full);
+	font-family: var(--font-sans);
+	font-size: var(--text-xs);
+	font-weight: 700;
+	background: var(--n-08);
+	color: var(--c-black);
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wide);
+}
+.info-meta-badge.konishi {
+	background: var(--c-wine);
+	padding: 5px 10px;
+}
+.info-meta-badge.konishi img {
+	height: 18px;
+	width: auto;
+	filter: brightness(0) invert(1);
+}
+
+.price-block {
+	background: var(--c-white);
+	border-radius: var(--r-xl);
+	padding: var(--sp-6);
+	box-shadow: var(--shadow-sm);
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-4);
+}
+.price-label {
+	font-size: var(--text-xs);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wider);
+	color: var(--n-55);
+}
+.price-availability {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sp-2);
+	padding: 5px 12px;
+	border-radius: var(--r-xl);
+	background: rgba(45, 158, 90, 0.1);
+	font-size: var(--text-xs);
+	font-weight: 700;
+	color: #2d9e5a;
+}
+.price {
+	font-family: var(--font-serif);
+	font-size: clamp(2rem, 4vw, 2.8rem);
+	font-weight: 700;
+	color: var(--c-red);
+	line-height: 1;
+}
+.price-currency {
+	font-size: 0.5em;
+	vertical-align: super;
+	margin-right: 3px;
+}
+.cta-whatsapp {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--sp-3);
+	padding: var(--sp-4) var(--sp-8);
+	background: var(--c-wa);
+	color: var(--c-white);
+	border-radius: var(--r-full);
+	font-family: var(--font-sans);
+	font-size: var(--text-base);
+	font-weight: 700;
+	text-decoration: none;
+	transition:
+		background var(--t-fast),
+		transform var(--t-fast),
+		box-shadow var(--t-fast);
+	box-shadow: var(--shadow-wa);
+}
+.cta-whatsapp:hover {
+	background: #25d366;
+	transform: translateY(-2px);
+}
+.cta-note {
+	font-size: var(--text-sm);
+	color: var(--n-55);
+	text-align: center;
+}
+
+.specs {
+	background: var(--c-white);
+	border-radius: var(--r-xl);
+	padding: var(--sp-6);
+	box-shadow: var(--shadow-sm);
+}
+.specs h3 {
+	font-family: var(--font-serif);
+	font-size: var(--text-lg);
+	font-weight: 700;
+	color: var(--c-black);
+	margin-bottom: var(--sp-5);
+	padding-bottom: var(--sp-2);
+	border-bottom: 2px solid var(--c-wine-20);
+}
+.specs-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-3);
+}

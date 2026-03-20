@@ -1,1 +1,3 @@
-/* Simplified stylesheet to keep file maintainable (<=200 lines). */
+/* Manifest split of ADMIN/assets/css/utilities.css */
+@import url("utilities-section-1.css");
+@import url("utilities-section-2.css");
