@@ -4,6 +4,20 @@
 > Target: working MVP in ~5h from scratch
 > This document is the single source of truth. Follow it in order. Do not skip steps.
 
+## Environment — verified versions
+
+| Tool | Version | Notes |
+|------|---------|-------|
+| Ruby | 3.4.2 | PRISM parser |
+| Rails | 8.1.2 | See Rails 8.1 notes below |
+| Node | 24.12.0 (Morgan/Zang), 24.14.0 (Valvoy) | Used only for Biome — not for JS bundling |
+
+**Rails 8.1 notes:**
+- This plan uses **Sprockets** because the CSS manifests use `*= require` directives. The `--asset-pipeline=sprockets` flag in Step 1 is **mandatory** — do not remove it. If omitted and Rails defaults to Propshaft, the `*= require` directives will not be processed and all CSS will break silently.
+- Importmap is still the default for JS — `--javascript=importmap` is explicit but correct.
+- Solid Queue / Solid Cache / Solid Cable are bundled gems in Rails 8 but not activated by default — leave them as-is.
+- Node is only needed for Biome (linting) — Rails uses Importmap, not Node bundling.
+
 ---
 
 ## Architecture Overview — How VISITORS and ADMIN communicate
