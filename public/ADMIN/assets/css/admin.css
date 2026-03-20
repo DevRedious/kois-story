@@ -1,0 +1,43 @@
+/* 
+  ADMIN MANIFEST 
+  Fichier principal regroupant les modules CSS éclatés.
+  Cette structure permet une maintenance facilitée et évite les fichiers géants.
+*/
+
+@import "variables.css";
+@import url("../../../VISITORS/assets/css/variables.css");
+@import url("../../../VISITORS/assets/css/button.css");
+@import "atoms/admin-btn-extensions.css";
+@import "layout.css";
+@import "components.css";
+@import "forms.css";
+@import "tables.css";
+@import "atoms/amount.css";
+@import "molecules/filter-bar.css";
+@import "molecules/messages-ui.css";
+@import "molecules/koi-admin.css";
+@import "molecules/client-row.css";
+@import "molecules/admin-data-table.css";
+@import "molecules/modal.css";
+@import "pages/dashboard.css";
+@import "pages/orders.css";
+@import "pages/order-form.css";
+@import "pages/product-form.css";
+@import "pages/client-form.css";
+@import "pages/accounting.css";
+@import "utilities.css";
+
+/* ─── GENERIC RESET ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: var(--font-body);
+	background: var(--blanc-casse);
+	min-height: 100vh;
+	display: flex;
+}

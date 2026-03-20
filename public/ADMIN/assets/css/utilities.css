@@ -1,0 +1,256 @@
+/*
+  UTILITIES — classes réutilisables pour éviter les style="" résiduels.
+  À utiliser progressivement sur les pages (tableaux, panels, formulaires).
+*/
+
+/* Accessibilité */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Marges */
+.u-mt-1 {
+	margin-top: 8px;
+}
+.u-mt-2 {
+	margin-top: 16px;
+}
+.u-mb-1 {
+	margin-bottom: 8px;
+}
+
+/* Typo */
+.u-fw-600 {
+	font-weight: 600;
+}
+.u-fs-sm {
+	font-size: 0.8rem;
+}
+.u-fs-xs {
+	font-size: 0.78rem;
+}
+.u-text-muted {
+	color: var(--gris);
+}
+.u-text-aaa {
+	color: #aaa;
+}
+
+/* Flex */
+.u-flex {
+	display: flex;
+}
+.u-flex-wrap {
+	flex-wrap: wrap;
+}
+.u-gap-1 {
+	gap: 8px;
+}
+.u-gap-2 {
+	gap: 16px;
+}
+.u-align-center {
+	align-items: center;
+}
+
+/* Panel / table overrides (quand le module ne suffit pas) */
+.u-panel-select {
+	padding: 6px 12px;
+	border: 1px solid #dee2e6;
+	border-radius: 6px;
+	font-size: 0.85rem;
+}
+
+/* ── Marque / sidebar (remplace style="" résiduels) ───────── */
+.brand-logo-img {
+	height: 26px;
+	border-radius: 50%;
+}
+
+.nav-section--spaced {
+	margin-top: 6px;
+}
+
+.nav-section--spaced-lg {
+	margin-top: 8px;
+}
+
+/* Barres d’outils panneaux */
+.panel-toolbar {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.panel-toolbar--nowrap {
+	flex-wrap: nowrap;
+}
+
+.page-header-toolbar {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.u-toolbar-control {
+	padding: 6px 10px;
+	border: 1.5px solid #d0d7de;
+	border-radius: 6px;
+	font-size: 0.8rem;
+	font-family: var(--font-body);
+	color: var(--noir);
+	background: var(--blanc-pur);
+}
+
+.u-toolbar-select-wide {
+	padding: 6px 12px;
+	border: 1px solid #dee2e6;
+	border-radius: 6px;
+	font-size: 0.85rem;
+	font-family: var(--font-body);
+	color: var(--noir);
+	background: var(--blanc-pur);
+}
+
+.u-toolbar-search {
+	width: 180px;
+}
+
+.u-toolbar-search-wide {
+	width: 200px;
+}
+
+.stats-grid--cols-4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+/* Tableaux / cellules */
+.link-order-ref {
+	color: var(--noir);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.badge--compact {
+	font-size: 0.6rem;
+}
+
+.amount-secondary {
+	font-size: 0.75rem;
+	color: var(--gris);
+}
+
+.td-date-muted {
+	font-size: 0.8rem;
+	color: var(--gris);
+}
+
+.td-date-alert {
+	font-size: 0.8rem;
+	color: var(--rouge-vif);
+}
+
+.td-muted-dash {
+	font-size: 0.8rem;
+	color: var(--gris);
+}
+
+.td-ref-muted {
+	font-size: 0.78rem;
+	color: var(--gris);
+}
+
+.td-fs-08 {
+	font-size: 0.8rem;
+}
+
+.u-fs-082 {
+	font-size: 0.82rem;
+}
+
+.u-text-center {
+	text-align: center;
+}
+
+.td-count-center {
+	text-align: center;
+	font-weight: 600;
+}
+
+.client-name-strong {
+	font-weight: 600;
+}
+
+.client-location-muted {
+	font-size: 0.75rem;
+	color: var(--gris);
+}
+
+.td-client-contact {
+	font-size: 0.82rem;
+}
+
+.client-avatar--brand {
+	background: var(--rouge-sombre);
+	color: var(--blanc-pur);
+}
+
+.client-avatar--lavender {
+	background: #e2d9f3;
+	color: #4a235a;
+}
+
+.order-line-qty {
+	color: var(--gris);
+	font-size: 0.8rem;
+}
+
+.koi-meta-label {
+	font-size: 0.78rem;
+}
+
+.msg-datetime-cell {
+	white-space: nowrap;
+	font-size: 0.82rem;
+}
+
+.td-right-numeric {
+	text-align: right;
+}
+
+/* Démos atoms */
+.demo-group--gap-20 {
+	gap: 20px;
+}
+
+.demo-group--gap-16-base {
+	gap: 16px;
+	align-items: baseline;
+}
+
+.badge-konishi-padded {
+	font-size: 0.8rem;
+	padding: 6px 14px;
+}
+
+.badge-solid-dark {
+	background: var(--noir);
+	color: #fff;
+}
+
+.demo-title-spaced {
+	margin-top: 40px;
+}
+
+.panel-body--flush {
+	padding: 0;
+}

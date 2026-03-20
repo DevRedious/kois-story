@@ -1,0 +1,71 @@
+/* Molecule — message list rows + dashboard widget */
+.unread-count {
+	font-size: 0.72rem;
+	font-weight: 700;
+	background: #fde8e8;
+	color: var(--rouge-vif);
+	padding: 3px 10px;
+	border-radius: 10px;
+}
+
+.msg-row.unread td {
+	background: rgba(0, 0, 0, 0.025);
+	font-weight: 500;
+}
+
+.msg-row.unread td:first-child {
+	border-left: 3px solid var(--rouge-vif);
+	padding-left: 15px;
+}
+
+.msg-date {
+	white-space: nowrap;
+	font-size: 0.82rem;
+}
+
+.msg-time {
+	font-size: 0.7rem;
+	color: var(--gris);
+	margin-top: 1px;
+}
+
+.msg-email {
+	font-size: 0.74rem;
+	color: var(--gris);
+	margin-top: 1px;
+}
+
+.msg-preview {
+	max-width: 160px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 0.82rem;
+	color: var(--gris);
+}
+
+.msg-row.unread .msg-preview {
+	color: var(--noir);
+}
+
+@media (min-width: 769px) {
+	.msg-preview {
+		max-width: 280px;
+	}
+}
+
+.panel--messages .panel-header select {
+	font-family: var(--font-body);
+	font-size: 0.8rem;
+	color: var(--noir);
+	background: var(--blanc-pur);
+	border: 1.5px solid #d8dde3;
+	border-radius: 6px;
+	padding: 6px 28px 6px 10px;
+	outline: none;
+	height: 34px;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+}

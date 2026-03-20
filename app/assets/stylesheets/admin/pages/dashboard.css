@@ -1,0 +1,26 @@
+/* Page — dashboard */
+.page-greeting {
+	font-family: var(--font-title);
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--noir);
+	margin-bottom: 4px;
+}
+
+.page-date {
+	font-size: 0.82rem;
+	color: var(--gris);
+	margin-bottom: 20px;
+}
+
+.quick-actions {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin-bottom: 24px;
+}
+
+.logo-konishi {
+	height: 1.1em;
+	vertical-align: middle;
+}

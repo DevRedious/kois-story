@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_20_130139) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_20_143856) do
+  create_table "client_profiles", force: :cascade do |t|
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.text "notes"
+    t.string "phone"
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_client_profiles_on_user_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "alt"
     t.datetime "created_at", null: false
@@ -57,6 +68,53 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_130139) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "koi_id", null: false
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity"
+    t.decimal "unit_price"
+    t.datetime "updated_at", null: false
+    t.index ["koi_id"], name: "index_order_items_on_koi_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "client_profile_id", null: false
+    t.datetime "created_at", null: false
+    t.text "notes"
+    t.integer "status"
+    t.decimal "total_amount"
+    t.datetime "updated_at", null: false
+    t.index ["client_profile_id"], name: "index_orders_on_client_profile_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "due_at"
+    t.integer "order_id", null: false
+    t.datetime "paid_at"
+    t.integer "payment_type"
+    t.integer "status"
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "category"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "name"
+    t.decimal "price"
+    t.string "reference"
+    t.integer "status"
+    t.integer "stock_quantity"
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.integer "category"
     t.datetime "created_at", null: false
@@ -80,7 +138,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_130139) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "client_profiles", "users"
   add_foreign_key "koi_tags", "kois"
   add_foreign_key "koi_tags", "tags"
   add_foreign_key "kois", "users"
+  add_foreign_key "order_items", "kois"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "client_profiles"
+  add_foreign_key "payments", "orders"
 end

@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:registrations]
 
   # Public — read only, no account required
-  root "home#index"
+  root to: redirect("/VISITORS/pages/home.html")
   get "/decouvrir", to: "pages#decouvrir"
   get "/materiel", to: "pages#materiel"
   get "/soins", to: "pages#soins"
   get "/nourriture", to: "pages#nourriture"
   get "/azukari", to: "pages#azukari"
+  get "/mentions-legales", to: "pages#mentions_legales"
   resources :kois, only: [:index, :show]
   resources :messages, only: [:create]
 

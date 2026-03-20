@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atom — Input</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <link rel="stylesheet" href="../assets/css/preview-shell.css">
+  <link rel="stylesheet" href="../assets/css/atoms/input-atom.css">
+</head>
+<body>
+
+  <h3>Champs texte</h3>
+  <div class="field">
+    <label for="nom">Nom du koï</label>
+    <input type="text" id="nom" placeholder="ex. Sakura">
+  </div>
+  <div class="field">
+    <label for="email">Email expéditeur</label>
+    <input type="email" id="email" placeholder="contact@exemple.fr">
+    <span class="hint">Utilisé pour la réponse admin uniquement.</span>
+  </div>
+  <div class="field">
+    <label for="prix">Prix (€)</label>
+    <input type="number" id="prix" placeholder="0" min="0">
+  </div>
+
+  <h3>Select</h3>
+  <div class="field">
+    <label for="variete">Variété</label>
+    <select id="variete">
+      <option value="">-- Choisir --</option>
+      <option>Kohaku</option><option>Showa</option><option>Kujaku</option><option>Tancho</option>
+    </select>
+  </div>
+
+  <h3>Textarea</h3>
+  <div class="field">
+    <label for="desc">Description</label>
+    <textarea id="desc" placeholder="Description du koï, particularités, historique…"></textarea>
+  </div>
+
+  <h3>Checkbox</h3>
+  <label class="checkbox-field">
+    <input type="checkbox"> <span>Lignée Konishi</span>
+  </label>
+  <br>
+  <label class="checkbox-field">
+    <input type="checkbox" checked> <span>Disponible à la vente</span>
+  </label>
+
+  <h3>Erreur</h3>
+  <div class="field">
+    <label for="nom-err">Nom du koï</label>
+    <input type="text" id="nom-err" class="error" value="">
+    <span class="error-msg">Ce champ est obligatoire.</span>
+  </div>
+
+  <h3>Désactivé</h3>
+  <div class="field">
+    <label for="disabled-field">Champ désactivé</label>
+    <input type="text" id="disabled-field" disabled value="Non modifiable">
+  </div>
+
+</body>
+</html>

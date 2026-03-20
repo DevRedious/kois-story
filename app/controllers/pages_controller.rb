@@ -13,4 +13,7 @@ class PagesController < ApplicationController
 
   def azukari
   end
+
+  def mentions_legales
+  end
 end

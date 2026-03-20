@@ -1,32 +1,32 @@
 /* ── FONTS ────────────────────────────────────────────────── */
 @font-face {
 	font-family: "Playfair Display";
-	src: url("/assets/PlayfairDisplay-Regular.otf");
+	src: url("/PlayfairDisplay-Regular.otf");
 	font-weight: 400;
 }
 @font-face {
 	font-family: "Playfair Display";
-	src: url("/assets/PlayfairDisplay-Bold.otf");
+	src: url("/PlayfairDisplay-Bold.otf");
 	font-weight: 700;
 }
 @font-face {
 	font-family: "Inter";
-	src: url("/assets/Inter-Regular.otf");
+	src: url("/Inter-Regular.otf");
 	font-weight: 400;
 }
 @font-face {
 	font-family: "Inter";
-	src: url("/assets/Inter-Medium.otf");
+	src: url("/Inter-Medium.otf");
 	font-weight: 500;
 }
 @font-face {
 	font-family: "Inter";
-	src: url("/assets/Inter-SemiBold.otf");
+	src: url("/Inter-SemiBold.otf");
 	font-weight: 600;
 }
 @font-face {
 	font-family: "Inter";
-	src: url("/assets/Inter-Bold.otf");
+	src: url("/Inter-Bold.otf");
 	font-weight: 700;
 }
 

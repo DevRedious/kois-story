@@ -1,0 +1,58 @@
+/* Standalone preview pages (atoms / molecules / organisms demos) */
+body {
+	padding: 28px;
+	background: var(--blanc-casse);
+	min-height: 100vh;
+}
+
+.admin-preview-title {
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--gris);
+	margin-bottom: 10px;
+	margin-top: 28px;
+}
+
+.admin-preview-title:first-child {
+	margin-top: 0;
+}
+
+body > h3 {
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--gris);
+	margin-bottom: 10px;
+	margin-top: 28px;
+}
+
+body > h3:first-child {
+	margin-top: 0;
+}
+
+.demo-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+}
+
+.admin-preview-group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+}
+
+.admin-preview-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 240px);
+	gap: 20px;
+}
+
+body.admin-preview--compact {
+	padding: 24px;
+}

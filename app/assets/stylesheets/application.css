@@ -1,8 +1,23 @@
-/*
- *= require shared/variables
- *= require visitors/variables
- *= require visitors/fonts
- *= require visitors/base
- *= require_tree ./visitors
- *= require_self
- */
+@import url("./shared/variables.css");
+@import url("./visitors/fonts.css");
+@import url("./visitors/variables.css");
+@import url("./visitors/base.css");
+@import url("./visitors/badge.css");
+@import url("./visitors/button.css");
+@import url("./visitors/price.css");
+@import url("./visitors/forms.css");
+@import url("./visitors/atoms-media.css");
+@import url("./visitors/header.css");
+@import url("./visitors/footer.css");
+@import url("./visitors/footer-full.css");
+@import url("./visitors/hero.css");
+@import url("./visitors/features.css");
+@import url("./visitors/konishi.css");
+@import url("./visitors/koi-card.css");
+@import url("./visitors/catalogue.css");
+@import url("./visitors/product.css");
+@import url("./visitors/shop.css");
+@import url("./visitors/farm.css");
+@import url("./visitors/koi-card-pages.css");
+@import url("./visitors/product-pages.css");
+@import url("./visitors/azukari.css");

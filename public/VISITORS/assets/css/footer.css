@@ -1,0 +1,141 @@
+/* ==========================================================================
+   footer.css  Base site-footer + variante B (compact) + CTA flottant
+   ========================================================================== */
+
+.site-footer {
+	background:
+		radial-gradient(
+			ellipse 65% 120% at 0% 110%,
+			rgba(99, 15, 15, 0.28) 0%,
+			transparent 60%
+		),
+		radial-gradient(
+			ellipse 40% 60% at 100% 40%,
+			rgba(99, 15, 15, 0.1) 0%,
+			transparent 55%
+		),
+		#0c0c0c;
+	border-top: 1px solid rgba(230, 0, 0, 0.22);
+}
+
+/* ── VARIANTE B  footer compact (pages secondaires) ────────────────── */
+.footer__inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+}
+
+.footer__bar {
+	border-top: 1px solid var(--w-10);
+	padding: var(--sp-4) 0 var(--sp-6);
+	display: flex;
+	flex-wrap: wrap;
+	/* Mobile-first: colonne */
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--sp-4);
+	margin: 0 var(--sp-4);
+}
+@media (min-width: 769px) {
+	.footer__bar {
+		flex-direction: row;
+		align-items: center;
+		gap: var(--sp-6);
+		margin: 0 var(--sp-10);
+	}
+}
+
+.footer__bar .footer__logo img {
+	height: 52px;
+	width: auto;
+	opacity: 0.85;
+	flex-shrink: 0;
+}
+
+.footer__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0;
+	flex: 1;
+	position: relative;
+}
+.footer__links a {
+	font-size: var(--text-sm);
+	color: var(--w-70);
+	text-decoration: none;
+	transition: color var(--t-fast);
+	white-space: nowrap;
+	padding: var(--sp-1) var(--sp-3);
+	position: relative;
+	z-index: 1;
+}
+.footer__links a:hover {
+	color: var(--c-white);
+}
+
+.footer__indicator {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 28px;
+	border-radius: var(--r-full);
+	background: rgba(255, 255, 255, 0.08);
+	transition:
+		left 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+		width 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
+		opacity var(--t-fast);
+	pointer-events: none;
+	opacity: 0;
+	z-index: 0;
+}
+
+.footer__copy {
+	font-size: var(--text-sm);
+	color: var(--w-70);
+	/* Mobile-first */
+	white-space: normal;
+	margin-left: 0;
+	border-top: 1px solid var(--w-10);
+	padding-top: var(--sp-4);
+	width: 100%;
+}
+@media (min-width: 769px) {
+	.footer__copy {
+		white-space: nowrap;
+		margin-left: auto;
+		border-top: none;
+		padding-top: 0;
+		width: auto;
+	}
+}
+
+/* ── CTA WHATSAPP FLOTTANT  toutes pages ────────────────────────── */
+.cta-wa-float {
+	position: fixed;
+	bottom: calc(var(--sp-6) + env(safe-area-inset-bottom, 0px));
+	right: var(--sp-6);
+	z-index: 200;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sp-3);
+	padding: var(--sp-3) var(--sp-6);
+	background: var(--c-wa);
+	color: var(--c-black);
+	border-radius: var(--r-full);
+	font-family: var(--font-sans);
+	font-size: var(--text-base);
+	font-weight: 700;
+	text-decoration: none;
+	box-shadow: var(--shadow-wa);
+	transition:
+		transform var(--t-fast),
+		opacity 0.3s ease,
+		visibility 0.3s ease;
+}
+.cta-wa-float:hover {
+	transform: scale(1.04);
+}
+.cta-wa-float--hidden {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}

@@ -1,0 +1,40 @@
+/* Variantes admin (hors atom VISITORS) — s’appuient sur .btn de button.css */
+.btn:disabled,
+.btn[disabled] {
+	opacity: 0.55;
+	cursor: not-allowed;
+	transform: none;
+	pointer-events: none;
+}
+
+.btn--success {
+	background: var(--vert-dispo);
+	color: var(--c-white);
+	border-color: var(--vert-dispo);
+}
+.btn--success:hover {
+	filter: brightness(1.06);
+	box-shadow: 0 4px 16px rgba(45, 158, 90, 0.35);
+}
+
+.btn--danger {
+	background: #dc3545;
+	color: var(--c-white);
+	border-color: #dc3545;
+}
+.btn--danger:hover {
+	filter: brightness(1.05);
+	box-shadow: 0 4px 16px rgba(220, 53, 69, 0.35);
+}
+
+/* Contour neutre (ex- btn-outline admin), distinct du btn--ghost bordeaux VISITORS */
+.btn--outline {
+	background: transparent;
+	color: var(--gris);
+	border-color: #d0d7de;
+}
+.btn--outline:hover {
+	background: rgba(0, 0, 0, 0.06);
+	color: var(--noir);
+	border-color: var(--noir);
+}
