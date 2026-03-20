@@ -4,18 +4,18 @@
 
 This project follows a two-branch policy:
 
-- `dev`  integration and testing
+- `DEV`  integration and testing
 - `main`  production
 
 Do not commit directly to `main`.
 
 ## Workflow
 
-1. Create a feature branch from `dev`.
+1. Create a feature branch from `DEV`.
 2. Keep commits focused and easy to review.
-3. Open a pull request toward `dev`.
+3. Open a pull request toward `DEV`.
 4. Validate documentation and repository consistency before merge.
-5. Merge `dev` into `main` only when the release is ready.
+5. Merge `DEV` into `main` only when the release is ready.
 
 ## Installation locale (une seule fois)
 

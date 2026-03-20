@@ -50,7 +50,7 @@
 - `ADMIN/` & `VISITORS/`: Atomic Design prototyping structures.
 
 ## Development Workflow
-- **Branching:** `dev` (integration) -> `main` (production). Feature branches (e.g., `Morgan`, `Romain`, `Valentin`) target `dev`.
+- **Branching:** `DEV` (integration) -> `main` (production). Feature branches (e.g., `Morgan`, `Romain`, `Valentin`) target `DEV`.
 - **Commits:** Conventional Commits in **French** (e.g., `feat: ...`, `fix: ...`).
 - **THP Compliance:** "Fat Model / Skinny Controller", Rails helpers only (`link_to`, `image_tag`), secrets in `.env`.
 
