@@ -6,6 +6,60 @@
 
 ---
 
+## Architecture Overview — How VISITORS and ADMIN communicate
+
+They do not communicate directly. **They share the same database through the same models.**
+
+```
+┌─────────────────────────────────────┐
+│           DATABASE                  │
+│    kois, messages, users, images... │
+└──────────────┬──────────────────────┘
+               │ same models
+       ┌───────┴────────┐
+       │                │
+┌──────▼──────┐  ┌──────▼──────┐
+│  VISITORS   │  │    ADMIN    │
+│  /kois      │  │ /admin/kois │
+│  /kois/:id  │  │ /admin/...  │
+│             │  │             │
+│  layout:    │  │  layout:    │
+│  application│  │  admin      │
+│  .html.erb  │  │  .html.erb  │
+│             │  │             │
+│  visitors/  │  │  admin/     │
+│  CSS + JS   │  │  CSS + JS   │
+└─────────────┘  └─────────────┘
+```
+
+Mathilde creates a koi in ADMIN → it immediately appears in the VISITORS catalogue. Same `kois` table, same `Koi` model.
+
+**Separation is enforced at three levels:**
+
+1. **Routes** — `namespace :admin` isolates all admin URLs under `/admin/`
+2. **Controllers** — `Admin::BaseController` blocks access with `before_action :require_admin!`
+3. **Layouts** — `layouts/application.html.erb` (visitors CSS/JS) vs `layouts/admin.html.erb` (admin CSS/JS)
+
+VISITORS controllers are read-only (index, show). ADMIN controllers have full CRUD.
+The `Admin::BaseController` is the single security gate — all admin controllers inherit from it.
+
+---
+
+## Detailed Reference Docs — Read These Too
+
+These docs in `docs/audit/` and `docs/implementation/` contain information that complements this plan. Read them at the relevant step:
+
+| Doc | When to read | What it contains |
+|-----|-------------|-----------------|
+| `docs/audit/COMPONENT_MAPPING.md` | Step 10 (Views) | Exhaustive HTML → ERB partial mapping with full code examples for every component |
+| `docs/implementation/partials_structure.md` | Step 10 (Views) | Complete `app/views/` directory tree with source file for every partial |
+| `docs/implementation/asset_pipeline_setup.md` | Step 1 (Rails new) | Exact Sprockets + Importmap config for this project |
+| `docs/implementation/stimulus_controller_examples.js` | After MVP | Stimulus controllers for post-MVP JS migration |
+| `docs/audit/THP_COMPLIANCE_CHECKLIST.md` | Step 12 (Verification) | Full THP requirements checklist — run through it before demo |
+| `docs/audit/RISKS_AND_BLOCKERS.md` | Now | All known blockers and mitigations |
+
+---
+
 ## CRITICAL - Files to Never Touch
 
 These exist already and must not be modified or deleted:
@@ -143,6 +197,23 @@ class User < ApplicationRecord
     role == 'admin'
   end
 end
+```
+
+**IMPORTANT — disable public registration.** Visitors do not need accounts in V1. Mathilde and Manu are created via seeds only. The Devise views still exist in `app/views/devise/` (THP requires 5 views — they just need to exist).
+
+In `config/routes.rb`, replace the generated `devise_for :users` with:
+
+```ruby
+devise_for :users, skip: [:registrations]
+```
+
+This removes `/users/sign_up` entirely. Accounts are managed only via `rails console` or `seeds.rb`.
+
+Access summary:
+- `/users/sign_in` — admin login (Mathilde/Manu, by direct URL only — no link in public navbar)
+- `/users/sign_up` — disabled, route does not exist
+- `/users/password/new` — password reset (Devise default, keep it)
+- `/admin` — redirects to sign_in if not authenticated, then to dashboard
 ```
 
 Edit `config/environments/development.rb` - add at the bottom inside the block:
@@ -486,15 +557,19 @@ Replace `config/routes.rb` entirely:
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'kois#index'
+  # Devise — registration disabled, admin login only
+  devise_for :users, skip: [:registrations]
 
+  # Public — read only, no account required
+  root 'kois#index'
   resources :kois, only: [:index, :show]
   resources :messages, only: [:create]
 
+  # Admin — protected by Admin::BaseController
   namespace :admin do
     root 'kois#index'
     resources :kois
-    resources :messages, only: [:index, :show]
+    resources :messages, only: [:index, :show, :update]
   end
 end
 ```
@@ -503,28 +578,203 @@ end
 
 ## Step 10 - Views (60 min)
 
-### Layout - app/views/layouts/application.html.erb
+### Layout - app/views/layouts/application.html.erb (VISITORS)
 
-Keep the Rails generated one but add the CSS link and basic structure. Reference the VISITORS prototype for CSS classes.
+Public layout. Must include:
+- `stylesheet_link_tag 'application'` (loads visitors CSS)
+- `javascript_include_tag 'application'` with `defer: true`
+- Flash messages
+- Footer partial with contact form
 
-Key things to include:
-- Link to `VISITORS/assets/css/visitor.css` OR copy the CSS to `app/assets/stylesheets/`
-- Flash messages display
-- Contact form in footer (partial)
+### Layout - app/views/layouts/admin.html.erb (ADMIN)
 
-### Recommended approach for CSS
+Create this file manually — Rails does not generate it. All `Admin::` controllers use it automatically when named `admin.html.erb`.
 
-Copy these files from `VISITORS/assets/css/` to `app/assets/stylesheets/`:
-- `variables.css`
-- `base.css`
-- `header.css`
-- `hero.css`
-- `catalogue.css`
-- `product.css`
-- `koi-card.css`
-- `footer.css`
+```erb
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin — Koi's Story</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'admin_application', media: 'all' %>
+    <%= javascript_include_tag 'admin_application', defer: true %>
+  </head>
+  <body>
+    <%= render 'layouts/admin_sidebar' %>
+    <main class="main-content">
+      <%= render 'layouts/admin_topbar' %>
+      <% if notice %><div class="alert alert-success"><%= notice %></div><% end %>
+      <% if alert %><div class="alert alert-danger"><%= alert %></div><% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>
+```
 
-Copy fonts from `docs/fonts/` to `app/assets/fonts/`.
+To tell admin controllers to use this layout, add to `Admin::BaseController`:
+```ruby
+layout 'admin'
+```
+
+### CRITICAL — CSS variable naming conflict
+
+ADMIN and VISITORS use different variable names for the same palette V3 colors:
+
+| ADMIN token | VISITORS token | Value |
+|---|---|---|
+| `--rouge-vif` | `--c-red` | `#e60000` |
+| `--rouge-sombre` | `--c-wine` | `#630f0f` |
+| `--noir` | `--c-black` | `#000000` |
+| `--blanc-casse` | `--c-cream` | `#f5f5f2` |
+| `--blanc-pur` | `--c-white` | `#ffffff` |
+
+When both CSS sets are loaded in Rails, components referencing the wrong tokens will break silently.
+
+**Fix:** Create `app/assets/stylesheets/shared/variables.css` with unified tokens (both names pointing to the same value), and import it first in both `application.css` and `admin_application.css`:
+
+```css
+/* app/assets/stylesheets/shared/variables.css */
+:root {
+  --color-red:    #e60000;
+  --rouge-vif:    #e60000;  /* ADMIN alias */
+  --c-red:        #e60000;  /* VISITORS alias */
+
+  --color-wine:   #630f0f;
+  --rouge-sombre: #630f0f;
+  --c-wine:       #630f0f;
+
+  --color-black:  #000000;
+  --noir:         #000000;
+  --c-black:      #000000;
+
+  --color-cream:  #f5f5f2;
+  --blanc-casse:  #f5f5f2;
+  --c-cream:      #f5f5f2;
+
+  --color-white:  #ffffff;
+  --blanc-pur:    #ffffff;
+  --c-white:      #ffffff;
+
+  --color-whatsapp: #25d366; /* Never change */
+}
+```
+
+### Asset migration — run this script once from the Rails root
+
+Do not copy files manually. Run this script from `app/` root to copy everything at once:
+
+```bash
+# From the repo root (where VISITORS/ and ADMIN/ directories are)
+
+# CSS
+mkdir -p app/assets/stylesheets/visitors
+mkdir -p app/assets/stylesheets/admin/atoms
+mkdir -p app/assets/stylesheets/admin/molecules
+mkdir -p app/assets/stylesheets/admin/templates
+cp VISITORS/assets/css/*.css app/assets/stylesheets/visitors/
+cp ADMIN/assets/css/*.css app/assets/stylesheets/admin/
+cp ADMIN/assets/css/atoms/*.css app/assets/stylesheets/admin/atoms/
+cp ADMIN/assets/css/molecules/*.css app/assets/stylesheets/admin/molecules/
+cp ADMIN/assets/css/templates/*.css app/assets/stylesheets/admin/templates/
+
+# JS
+mkdir -p app/javascript/visitors
+mkdir -p app/javascript/admin
+cp VISITORS/assets/js/*.js app/javascript/visitors/
+cp ADMIN/assets/js/*.js app/javascript/admin/
+
+# Fonts
+mkdir -p app/assets/fonts
+cp -r docs/fonts/inter/* app/assets/fonts/
+cp -r docs/fonts/playfair-display/* app/assets/fonts/
+```
+
+**Verify the copy worked** (expected counts):
+```bash
+ls app/assets/stylesheets/visitors/ | wc -l   # should be 24
+ls app/assets/stylesheets/admin/ | wc -l       # should be 11 (9 files + 3 dirs)
+ls app/javascript/visitors/ | wc -l            # should be 4
+ls app/javascript/admin/ | wc -l              # should be 10
+```
+
+### CSS — application.css
+
+Replace the generated `app/assets/stylesheets/application.css` with:
+```css
+/*
+ *= require visitors/variables
+ *= require visitors/fonts
+ *= require visitors/base
+ *= require_tree ./visitors
+ *= require_self
+ */
+```
+
+For admin layout, use a separate `app/assets/stylesheets/admin_application.css`:
+```css
+/*
+ *= require admin/variables
+ *= require_tree ./admin
+ *= require_self
+ */
+```
+
+After copying, update font paths in `app/assets/stylesheets/visitors/fonts.css` — change all `url('../../docs/fonts/...')` to `url('/assets/...')`.
+
+### JavaScript — CRITICAL: Turbo breaks `DOMContentLoaded`
+
+With Hotwire, Turbo replaces `<body>` on navigation without a full page reload. `DOMContentLoaded` only fires once on initial load — all subsequent pages get no JS.
+
+**In every copied JS file**, replace:
+```js
+document.addEventListener('DOMContentLoaded', () => { ... })
+```
+with:
+```js
+document.addEventListener('turbo:load', () => { ... })
+```
+
+Files to update (14 total):
+- `app/javascript/visitors/header.js`
+- `app/javascript/visitors/filter.js`
+- `app/javascript/visitors/gallery.js`
+- `app/javascript/visitors/animations.js`
+- `app/javascript/admin/admin.js`
+- `app/javascript/admin/koi-form.js`
+- `app/javascript/admin/kois.js`
+- `app/javascript/admin/messages.js`
+- `app/javascript/admin/modal.js`
+- `app/javascript/admin/notifications.js`
+- `app/javascript/admin/order-form.js`
+- `app/javascript/admin/orders.js`
+- `app/javascript/admin/payments.js`
+- `app/javascript/admin/theme.js`
+
+In `app/javascript/application.js`, add after existing imports:
+```js
+import "./visitors/header"
+import "./visitors/filter"
+import "./visitors/gallery"
+import "./visitors/animations"
+```
+
+Create `app/javascript/admin_application.js`:
+```js
+import "@hotwired/turbo-rails"
+import "controllers"
+import "./admin/admin"
+import "./admin/modal"
+import "./admin/notifications"
+import "./admin/theme"
+import "./admin/kois"
+import "./admin/koi-form"
+import "./admin/messages"
+import "./admin/orders"
+import "./admin/order-form"
+import "./admin/payments"
+```
 
 ### Minimum views required for MVP
 
@@ -538,6 +788,48 @@ Copy fonts from `docs/fonts/` to `app/assets/fonts/`.
 - `app/views/admin/kois/new.html.erb` and `edit.html.erb` - forms
 - `app/views/admin/messages/index.html.erb` - messages list
 - `app/views/admin/messages/show.html.erb` - message detail
+
+### Login page — app/views/devise/sessions/new.html.erb
+
+The login page serves two audiences: visitors who land here by accident, and admins (Mathilde/Manu).
+Do NOT use the default Devise generated view. Replace it entirely with:
+
+```erb
+<div class="login-page">
+  <div class="login-logo">
+    <%= image_tag 'logo.png', alt: "Koi's Story" %>
+  </div>
+
+  <%# --- VISITOR SECTION --- %>
+  <div class="login-visitor">
+    <h2>Discover our koi</h2>
+    <p class="login-hint">Member area coming soon</p>
+    <%= link_to 'Enter the catalogue', root_path, class: 'btn btn-primary' %>
+  </div>
+
+  <div class="login-divider">or</div>
+
+  <%# --- ADMIN SECTION --- %>
+  <div class="login-admin">
+    <h2>Administration</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <%= f.submit 'Sign in', class: 'btn btn-secondary' %>
+    <% end %>
+    <%= link_to 'Forgot your password?', new_password_path(resource_name), class: 'login-forgot' %>
+  </div>
+</div>
+```
+
+This page uses the **public `application` layout** (not admin) so it loads visitors CSS.
+Style it using the existing `ADMIN/pages/login.html` as visual reference — the CSS is already in `login.css`.
 
 ### WhatsApp button (on koi show page)
 
@@ -666,6 +958,10 @@ gh pr create --base DEV --title "feat: Rails MVP scaffold"
 | Risk | Mitigation |
 |---|---|
 | Cloudinary credentials not available | Use local file storage for MVP demo, wire Cloudinary after |
-| ActionMailer not configured for prod | Use Letter Opener gem in dev to preview emails |
-| CSS integration takes too long | Use Bootstrap CDN as fallback, prototype CSS as visual reference |
-| Time runs out | Prioritize: Devise > Koi CRUD > Contact form > CSS |
+| ActionMailer not configured for prod | Use Letter Opener gem in dev, Mailjet SMTP in prod (1000 mails/month free) |
+| CSS integration takes too long | Copy prototype CSS files to `app/assets/stylesheets/` — no Bootstrap/Tailwind needed |
+| CSS variables broken (ADMIN vs VISITORS naming) | Create `shared/variables.css` with both alias names — see CSS section above |
+| JS stops working after navigation | Replace `DOMContentLoaded` with `turbo:load` in every JS file |
+| SQLite lock errors in production (Puma multi-process) | Add `config/initializers/sqlite_wal.rb`: `ActiveRecord::Base.connection.execute("PRAGMA journal_mode=WAL")` |
+| Catalogue appears empty at demo | Use placeholder images in seeds: `https://placehold.co/800x600/000/fff?text=Koi` |
+| Time runs out | Prioritize: Devise > Koi CRUD > Contact form > CSS > JS |
