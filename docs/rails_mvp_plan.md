@@ -146,8 +146,8 @@ Add to Gemfile:
 
 ```ruby
 # Auth
-gem 'devise'
-gem 'devise-two-factor'  # 2FA infrastructure — dormant in MVP
+gem 'devise'                         # 5.0.x installed — verified compatible
+gem 'devise-two-factor', '>= 6.4.0' # 6.4.0+ required for Devise 5 compatibility (6.1.x only supports ~> 4.0)
 gem 'rotp'               # TOTP code generation
 gem 'rqrcode'            # QR code for 2FA setup
 
