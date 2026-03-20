@@ -1,3 +1,6 @@
+# Default: let Git classify text vs binary
+*           text=auto
+
 # Force LF line endings for shell scripts and hooks (required for bash on Windows)
 *.sh        text eol=lf
 .githooks/* text eol=lf
@@ -5,5 +8,18 @@
 # Windows-only scripts keep CRLF
 *.ps1       text eol=crlf
 
-# Default behavior for other files
-*           text=auto
+# Docs & config: LF in repo and working tree (stops LF/CRLF warnings with core.autocrlf on Windows)
+*.md        text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.toml      text eol=lf
+*.json      text eol=lf
+.editorconfig text eol=lf
+
+# Frontend / markup / scripts (same as CI/Linux)
+*.css       text eol=lf
+*.scss      text eol=lf
+*.js        text eol=lf
+*.jsx       text eol=lf
+*.html      text eol=lf
+*.erb       text eol=lf
