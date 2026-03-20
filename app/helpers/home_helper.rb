@@ -6,8 +6,8 @@ module HomeHelper
   ].freeze
 
   def koi_image_source(koi, index = 0)
-    uploaded = koi.images.first&.url
-    return uploaded.url if uploaded.present?
+    first_image = koi.images.order(:position).first
+    return first_image.url.url if first_image&.url.present?
 
     docs_asset_path(SHOWCASE_FALLBACKS[index % SHOWCASE_FALLBACKS.size])
   end

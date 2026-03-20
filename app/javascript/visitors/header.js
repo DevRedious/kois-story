@@ -74,11 +74,14 @@
 			}
 
 			list?.querySelectorAll(":scope > li").forEach((item) => {
-				item.addEventListener("mouseenter", () => moveIndicator(nav, navIndicator, item));
+				item.addEventListener("mouseenter", () =>
+					moveIndicator(nav, navIndicator, item),
+				);
 			});
 
 			list?.addEventListener("mouseleave", () => {
-				if (activeLink) moveIndicator(nav, navIndicator, activeLink.closest("li"));
+				if (activeLink)
+					moveIndicator(nav, navIndicator, activeLink.closest("li"));
 			});
 		};
 
@@ -136,10 +139,16 @@
 			if (!footerLinks || !footerIndicator) return;
 
 			Array.from(
-				footerLinks.querySelectorAll(":scope > a, :scope > .footer__legal-menu > .footer__legal-toggle"),
+				footerLinks.querySelectorAll(
+					":scope > a, :scope > .footer__legal-menu > .footer__legal-toggle",
+				),
 			).forEach((item) => {
-				item.addEventListener("mouseenter", () => moveIndicator(footerLinks, footerIndicator, item));
-				item.addEventListener("focus", () => moveIndicator(footerLinks, footerIndicator, item));
+				item.addEventListener("mouseenter", () =>
+					moveIndicator(footerLinks, footerIndicator, item),
+				);
+				item.addEventListener("focus", () =>
+					moveIndicator(footerLinks, footerIndicator, item),
+				);
 			});
 
 			footerLinks.addEventListener("mouseleave", () => {

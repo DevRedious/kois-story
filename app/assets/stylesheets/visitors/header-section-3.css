@@ -124,7 +124,7 @@
 	.dropdown.dropdown--open {
 		display: block;
 	}
-	.dropdown li a {
+	.header__nav.open .dropdown li a {
 		display: block;
 		padding: var(--sp-3) var(--sp-4) var(--sp-3) calc(var(--sp-4) + var(--sp-4));
 		border-radius: var(--r-md);
@@ -135,7 +135,7 @@
 			background var(--t-fast),
 			color var(--t-fast);
 	}
-	.dropdown li a:hover {
+	.header__nav.open .dropdown li a:hover {
 		background: var(--w-06);
 		color: var(--c-white);
 	}

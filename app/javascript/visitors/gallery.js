@@ -28,7 +28,7 @@
 			"align-items:center",
 			"justify-content:center",
 			"cursor:zoom-out",
-			"padding:var(--sp-8,2rem)"
+			"padding:var(--sp-8,2rem)",
 		].join(";");
 
 		const overlayImg = document.createElement("img");
@@ -38,7 +38,7 @@
 			"object-fit:contain",
 			"border-radius:8px",
 			"box-shadow:0 8px 40px rgba(0,0,0,0.6)",
-			"cursor:default"
+			"cursor:default",
 		].join(";");
 
 		const closeBtn = document.createElement("button");
@@ -55,7 +55,7 @@
 			"width:40px",
 			"height:40px",
 			"font-size:1.1rem",
-			"cursor:pointer"
+			"cursor:pointer",
 		].join(";");
 
 		overlay.appendChild(overlayImg);

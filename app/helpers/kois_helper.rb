@@ -7,14 +7,14 @@ module KoisHelper
   ].freeze
 
   def koi_card_image_source(koi, index = 0)
-    uploaded = koi.images.first&.url
-    return uploaded.url if uploaded.present?
+    first_image = koi.images.order(:position).first
+    return first_image.url.url if first_image&.url.present?
 
     docs_asset_path(KOI_FALLBACKS[index % KOI_FALLBACKS.size])
   end
 
   def koi_gallery_images(koi)
-    uploaded = koi.images.sort_by { |image| image.position || 999 }.filter_map { |image| image.url.url if image.url.present? }
+    uploaded = koi.images.order(:position).filter_map { |image| image.url.url if image.url.present? }
     return uploaded if uploaded.any?
 
     KOI_FALLBACKS.first(3).map { |filename| docs_asset_path(filename) }
