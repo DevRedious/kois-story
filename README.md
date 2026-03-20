@@ -200,4 +200,4 @@ Project history is tracked in `CHANGELOG.md`.
 
 ## Team
 
-Morgan VERHAEGHE · Romain ROYER · Valentin CHÉRON THP Fullstack cohort
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the full team.
