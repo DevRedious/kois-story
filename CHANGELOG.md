@@ -24,6 +24,9 @@ This project follows a pre-production workflow until the first production deploy
 
 
 ### Integration
+- Merge pull request #40 from DevRedious/chore/auto-update-changelog
+
+docs: auto-update CHANGELOG
 - Merge pull request #39 from DevRedious/admin-and-back
 
 docs: CHANGELOG history, CONTRIBUTORS avatars, README progress tracker
@@ -39,15 +42,7 @@ chore: update changelog format and commit parser rules
 - Merge branch 'main' into admin-and-back
 
 
----# Journal des modifications
-
-Toutes les modifications notables de ce projet sont documentées dans ce fichier.
-
-Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
-Ce projet suit un workflow de pré-production jusqu'au premier déploiement en production.
-
 ---
-
 ## [Unreleased]
 
 ### Added
