@@ -12,7 +12,7 @@ This project follows a pre-production workflow until the first production deploy
 
 body = """
 {% if version %}\
-## [{{ timestamp | date(format="%Y-%m-%d") }}]
+## [{{ version }}]
 {% else %}\
 ## [Unreleased]
 
@@ -23,6 +23,7 @@ body = """
 - {% if commit.scope %}**{{ commit.scope }}**: {% endif %}{{ commit.message }}
 {% endfor %}
 {% endfor %}
+---
 """
 
 footer = ""

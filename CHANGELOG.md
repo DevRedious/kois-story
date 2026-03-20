@@ -7,128 +7,181 @@ Ce projet suit un workflow de pré-production jusqu'au premier déploiement en p
 
 ---
 
-## [Non publié]
+## [Unreleased]
 
-### Ajouté
+### Added
 - Unification des fichiers TODO en un seul `TODO.md` structuré par thème
 
 ---
 
-## [2026-03-19]
+## [2026-03-20] — Morgan
 
-### Ajouté
-- Restauration complète du dossier `VISITORS/` depuis la branche `Maquette` (69 fichiers : CSS, JS, HTML atoms/molecules/organisms/pages/templates)
-- Récupération des fichiers absents de `admin-and-back` : `index.html`, `.nojekyll`, tokens de design, assets clients (vidéo, bambou, captures maquettes ChatGPT)
-- Règles Cursor (`.cursor/rules/`) documentant l'architecture CSS admin, JS, Atomic Design, barème THP
-
-### Modifié
-- Refactorisation des composants admin : badge, button, input, avatar — palette V3 et nouvelles variables CSS appliquées
-- Amélioration de la barre de filtres et de la structure des lignes koï pour une meilleure utilisabilité
-- `README.md` mis à jour avec les statuts de badges et la fonctionnalité de sélecteur de thème
-- `docs/todo.md` synchronisé avec la section retour client maquettes ChatGPT
-
-### Corrigé
-- Suppression accidentelle de tous les fichiers `VISITORS/` lors d'un rebase raté sur `admin-and-back` (commit `e00ff38`)
+### Changed
+- Standardize branch naming from `dev` to `DEV` across all documentation *(Morgan)*
 
 ---
 
-## [2026-03-18]
+## [2026-03-19] — Morgan · Valentin · Romain
 
-### Ajouté
-- Architecture CSS modulaire complète pour `VISITORS/assets/css/` : 20 fichiers spécialisés (`variables`, `base`, `header`, `hero`, `catalogue`, `product`, `farm`, `shop`, `konishi`, `badge`, `button`, `price`, `forms`, `atoms-media`, `footer`, `features`, `koi-card`, `koi-card-pages`, `product-pages`, `azukari`, `demo`, `visitor`)
-- Séparateurs en vague (`wave.svg`, `wave-divider`) sur les pages intérieures
-- Animations au défilement sur toutes les pages visiteurs
-- Nouvelle navbar et footer déployés sur toutes les pages visiteurs
-- Modularisation JavaScript de VISITORS : `header.js`, `filter.js`, `gallery.js`, `animations.js` (tous sous 200 lignes)
-- Conformité accessibilité WCAG AAA : contraste corrigé sur l'ensemble de `VISITORS/`
-- Intégration de la branche `DEV` dans `Maquette` via la pull request #2
+### Added
+- Modal system implemented and wired to all non-functional buttons in ADMIN *(Morgan)*
+- Wave clip-path and story background added to `decouvrir` page *(Romain)*
+- CHANGELOG automation setup with git-cliff and commit message guidelines *(Morgan)*
+- Missing files restored from `Maquette` branch (assets, design tokens, docs) *(Morgan)*
+- VISITORS fully restored after accidental deletion in commit `e00ff38` *(Morgan)*
+- THP/Rails full audit and implementation guides added to `docs/` *(Morgan)*
+- GEMINI.md guidance file added for Gemini CLI *(Morgan)*
+- Biome, HTML validation, release and stale GitHub Actions workflows added *(Morgan)*
+- PowerShell setup script added for Windows users *(Morgan)*
+- Action plan added to `docs/` *(Romain)*
 
-### Modifié
-- Couleur du hero passée au noir pour améliorer la lisibilité du texte superposé
-- Style des boutons : suppression de la variante liquide
-- Koï en vedette sur la page d'accueil mis à jour
-- Rayon de bordure des boutons harmonisé sur toutes les pages
-- Correction de l'affichage du symbole euro sur la page d'accueil
+### Changed
+- Admin components refactored (badge, button, input, avatar) — V3 palette and new CSS variables applied *(Morgan)*
+- Filter bar and koi row structures improved for better usability *(Morgan)*
+- README updated with new badge statuses and theme switcher functionality *(Morgan)*
+- `docs/todo.md` synced with Maquette — client ChatGPT feedback section added *(Morgan)*
+- CODEOWNERS updated with real GitHub usernames *(Morgan)*
+- Old todo files removed, superseded by `TODO.md` *(Morgan)*
+- Shell scripts converted to LF line endings, `.gitattributes` added *(Morgan)*
+- Admin wired to VISITORS buttons, inline styles dropped from HTML *(Morgan)*
+- Biome auto-format applied across ADMIN scripts *(Morgan)*
+- Contact section reworked on home page *(Valentin)*
+- `refactoring-media-queries.md` doc improved *(Romain)*
+- Azukari page layout, text contrast and hero-intro centering improved *(Romain)*
+- `btn--wa` text color, footer social icons and hero video fade corrected *(Valentin)*
 
-### Corrigé
-- Problème de police sur le koï Hanabi
-- Conflit de fusion sur `hero.css` — approche wave clip-path de Maquette conservée
-- Conflit de fusion sur `catalogue.css` — valeurs `top: 0` et `backdrop-filter` conservées
-- Problème de navbar sur la page catalogue
-- Lisibilité des cards et du footer
-- Migration complète des styles CSS : 0 balise `<style>` inline restante dans les 34 fichiers HTML de VISITORS
+### Fixed
+- Merge conflicts with DEV resolved — admin-and-back version kept for VISITORS *(Morgan)*
+- Biome and html-validate rules relaxed for prototype files *(Morgan)*
+- CI: git-cliff install migrated from Docker to `taiki-e/install-action` *(Morgan)*
+- HTML/CSS accessibility and compatibility lint issues resolved *(Morgan)*
+- Biome lint issues fixed in modal system and config files *(Morgan)*
+- Navbar and footer structure repaired across all visitor pages *(Valentin)*
+- Responsive wave clip-path compensation fixed on mobile *(Romain)*
+- Euro sign moved after price amount (`number€` instead of `€number`) *(Valentin)*
+- Biome lint issue fixed *(Romain)*
 
-### Supprimé
-- Galerie circulaire (`CircularGallery`) suite au retour client
-- Boucle de lecture automatique sur la vidéo du hero
-- `main.js` (405 lignes, hors limite 200 lignes) remplacé par les modules JS dédiés
-
----
-
-## [2026-03-17]
-
-### Ajouté
-- Fichiers transmis par le client : contenus textuels, assets visuels et informations recueillies lors de l'appel
-- Maquette V2 après appel client : base de travail intégrant les premiers retours visuels
-
-### Modifié
-- Maquette V3 : intégration d'animations et de la galerie circulaire (retirée par la suite)
-
----
-
-## [2026-03-16]
-
-### Ajouté
-- Configuration GitHub Pages pour la branche `Maquette` (`.nojekyll`, `index.html` de redirection)
-- Vidéo dans la section hero de la page d'accueil
-
-### Corrigé
-- Ratios d'images incorrects (formats 4/3 et 3/4) sur toutes les pages
-- Lien défectueux sur la page d'accueil
-- Problème d'affichage de l'image sur les cards koï
-
-### Supprimé
-- Second bouton catalogue sur la page d'accueil
-- Galerie photo sur la page d'accueil
+### Integration
+- Merge pull request #14 from DevRedious/admin-and-back *(Morgan)*
+- Merge pull request #13 from DevRedious/DEV *(Romain)*
+- Merge pull request #12 from DevRedious/Maquette *(Morgan)*
+- Merge pull request #11 from DevRedious/Maquette *(Morgan)*
+- Merge pull request #10 from DevRedious/admin-and-back *(Romain)*
+- Merge pull request #9 from DevRedious/admin-and-back *(Romain)*
+- Merge pull request #8 from DevRedious/Maquette *(Romain)*
+- Merge pull request #7 from DevRedious/Maquette *(Valentin)*
+- Merge pull request #6 from DevRedious/admin-and-back *(Morgan)*
+- Merge pull request #5 from DevRedious/admin-and-back *(Romain)*
+- Merge pull request #4 from DevRedious/admin-and-back *(Romain)*
 
 ---
 
-## [2026-03-13]
+## [2026-03-18] — Valentin · Romain · Morgan
 
-### Modifié
-- `CONTRIBUTING.md` : clarification du modèle de branches et du workflow (noms de branches en minuscules, directions des pull requests précisées)
-- `biome.json` : extension des patterns de fichiers ignorés (tous les fichiers HTML et répertoires spécifiques)
+### Added
+- CSS architecture modularized for `VISITORS/assets/css/`: 20 specialized files (`variables`, `base`, `header`, `hero`, `catalogue`, `product`, `farm`, `shop`, `konishi`, `badge`, `button`, `price`, `forms`, `atoms-media`, `footer`, `features`, `koi-card`, `koi-card-pages`, `product-pages`, `azukari`, `demo`, `visitor`) *(Romain)*
+- Wave separators (`wave-divider`) added to inner pages *(Romain)*
+- Scroll animations added to all visitor pages *(Romain)*
+- New navbar and footer deployed on all visitor pages *(Valentin)*
+- JavaScript modularization: `header.js`, `filter.js`, `gallery.js`, `animations.js` (all under 200 lines) *(Romain)*
+- WCAG AAA accessibility compliance — contrast fixed across VISITORS *(Romain)*
+- DEV branch integrated into Maquette via pull request #2 *(Morgan)*
+
+### Changed
+- Hero color changed to black for better text readability *(Valentin)*
+- Button liquid variant removed *(Valentin)*
+- Featured koi on home page updated, euro symbol display corrected *(Valentin)*
+- Border radius harmonized across all buttons *(Valentin)*
+- Wave clip-path approach improved, documentation added *(Romain)*
+- Card information display updated *(Romain)*
+
+### Fixed
+- Navbar issue on kois page fixed, border-radius and footer readability improved *(Valentin)*
+- Merge conflict in `hero.css` resolved — Maquette wave clip-path approach kept *(Valentin)*
+- Merge conflict in `catalogue.css` resolved — `top: 0` and `backdrop-filter` kept *(Valentin)*
+- Font issue on Hanabi koi fixed *(Valentin)*
+- Multiple card and product page issues fixed *(Romain)*
+- CSS and atomic design features fixed *(Romain)*
+
+### Removed
+- Circular gallery (`CircularGallery`) removed — client feedback *(Romain)*
+- Video loop removed from hero *(Romain)*
+- `wave.svg` removed *(Romain)*
+- `main.js` (405 lines, over 200-line limit) replaced by dedicated JS modules *(Romain)*
+
+### Integration
+- Merge pull request #2 from DevRedious/Maquette *(Morgan)*
 
 ---
 
-## [2026-03-12]
+## [2026-03-17] — Valentin · Romain
 
-### Ajouté
-- Structure Atomic Design documentée pour `ADMIN/` et `VISITORS/` dans `docs/`
-- Plan d'implémentation admin (`docs/planning/admin_implementation.md`)
-- Réorganisation des wireframes et fichiers de design sous `docs/design/`
+### Added
+- Client files received: text content, visual assets and notes from the call *(Valentin)*
+- Maquette V2 created after client call *(Valentin)*
+- Maquette V3: animations and circular gallery added (later removed per client feedback) *(Romain)*
+- New navbar and footer added to all pages *(Valentin)*
+- Scroll animations added to all pages *(Romain)*
 
-### Modifié
-- `README.md` enrichi avec le statut du dépôt et les standards de collaboration
-- `docs/todo.md` mis à jour pour utiliser `ADMIN/` et `VISITORS/` comme espaces de travail UI
-
----
-
-## [2026-03-11]
-
-### Modifié
-- `README.md` complété avec les informations du projet (deux itérations)
-
-### Intégration
-- Fusion de la branche `DEV` dans `main` via la pull request #1
+### Removed
+- Circular gallery removed following client feedback *(Romain)*
 
 ---
 
-## [2026-03-10]
+## [2026-03-16] — Valentin · Romain
 
-### Ajouté
-- Initialisation du dépôt
-- Structure de base : `docs/`, `ADMIN/`, `VISITORS/`
-- Fichiers de gouvernance du dépôt : templates GitHub (issues, pull requests), `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`
-- `docs/todo.md`, `docs/roadmap.md`, `docs/stack.md`, `docs/agent.md`
-- `docs/design/atomic_design.md` — stratégie d'architecture UI
+### Added
+- GitHub Pages configuration for `Maquette` branch (`.nojekyll`, redirect `index.html`) *(Valentin)*
+- Video added to hero section on home page *(Romain)*
+
+### Fixed
+- Incorrect image ratios (4/3 and 3/4) fixed across all pages *(Valentin)*
+- Broken link on home page fixed *(Valentin)*
+- Fish picture display issue on koi cards fixed *(Valentin)*
+
+### Removed
+- Second catalogue button on home page removed *(Valentin)*
+- Photo gallery on home page removed *(Valentin)*
+- Video loop in hero removed *(Romain)*
+
+---
+
+## [2026-03-13] — Morgan
+
+### Changed
+- `CONTRIBUTING.md` updated: branch model and workflow clarified, branch names lowercased, PR directions adjusted *(Morgan)*
+- `biome.json` updated: ignored file patterns expanded to all HTML files and specific directories *(Morgan)*
+
+---
+
+## [2026-03-12] — Morgan
+
+### Added
+- Atomic Design structure documented for `ADMIN/` and `VISITORS/` in `docs/` *(Morgan)*
+- Admin implementation plan added (`docs/planning/admin_implementation.md`) *(Morgan)*
+- Wireframes and design files reorganized under `docs/design/` *(Morgan)*
+
+### Changed
+- `README.md` enriched with repository status and collaboration standards *(Morgan)*
+- `docs/todo.md` updated to use `ADMIN/` and `VISITORS/` as UI workspaces *(Morgan)*
+
+---
+
+## [2026-03-11] — Valentin · Morgan
+
+### Changed
+- `README.md` updated (two iterations) *(Valentin)*
+
+### Integration
+- DEV merged into `main` via pull request #1 *(Morgan)*
+
+---
+
+## [2026-03-10] — Morgan
+
+### Added
+- Repository initialized *(Morgan)*
+- Base structure created: `docs/`, `ADMIN/`, `VISITORS/` *(Morgan)*
+- Governance files added: GitHub templates (issues, PRs), `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md` *(Morgan)*
+- `docs/todo.md`, `docs/roadmap.md`, `docs/stack.md`, `docs/agent.md` *(Morgan)*
+- `docs/design/atomic_design.md` — UI architecture strategy *(Morgan)*

@@ -41,6 +41,16 @@
 - Contact form with email notification
 - Admin back-office (koi CRUD, message management)
 
+## Project Progress
+
+| Phase              | Status                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------- |
+| Planning & Design  | ![100%](https://geps.dev/progress/100?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e) |
+| HTML/CSS Prototype | ![83%](https://geps.dev/progress/83?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+| Rails Integration  | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
+| Tests & QA         | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
+| Production Deploy  | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
+
 ## Repository Status
 
 This repository is currently in the planning and documentation phase.
@@ -92,38 +102,45 @@ An example configuration file is available at `.env.example`.
 ## Executive Summary
 
 ### Presentation
+
 Koi's Story is a premium digital showcase dedicated to the breeding and sale of exceptional koi carp. Led by Mathilde and Emmanuel, this farm stands out for its exclusive affiliation with the prestigious Konishi lineage. The project aims to transform a market traditionally based on word-of-mouth into a modern and immersive digital experience, matching the nobility of these specimens.
 
 ### Business Model
+
 The model is based on the sale of high-quality specimens. The platform facilitates conversion by allowing collectors to browse a filterable catalog (variety, size, price) and initiate the purchase through a direct connection via WhatsApp. This channel favors personalized advice and secure transactions for high-value products, bypassing automated payment tunnels.
 
 ### Our Clients
+
 Our clients are koi carp enthusiasts, ranging from beginners to seasoned collectors. They seek exclusivity, traceability, and the aesthetic quality guaranteed by the Konishi lineage. This demanding audience prefers mobile consultation and direct contact with the breeder.
 
 ### Vision
+
 In 3 years, Koi's Story aims to become the essential digital reference for acquiring Konishi koi carp in France. We aim to consolidate our online presence and continuously optimize the user experience to solidify our position as a leader in this premium niche segment.
 
 ## User Journey
 
 ### 1. Visitor Journey (Buyer)
+
 The goal is to allow the user to find a fish and contact the seller in **less than 3 clicks**.
 
-*   **Step 1: Discovery & Home (/)**: Arrival on an immersive landing page (visual hero of a pond).
-*   **Step 2: Catalog Exploration (/catalogue)**: Browsing product cards with dynamic filtering (Hotwire) by variety, size, and price.
-*   **Step 3: Product Detail View (/catalogue/:id)**: Examining HD photos and technical characteristics (size, estimated age, description).
-*   **Step 4: Contact (WhatsApp)**: One-click "Order via WhatsApp" button opening a pre-filled message with koi reference.
+- **Step 1: Discovery & Home (/)**: Arrival on an immersive landing page (visual hero of a pond).
+- **Step 2: Catalog Exploration (/catalogue)**: Browsing product cards with dynamic filtering (Hotwire) by variety, size, and price.
+- **Step 3: Product Detail View (/catalogue/:id)**: Examining HD photos and technical characteristics (size, estimated age, description).
+- **Step 4: Contact (WhatsApp)**: One-click "Order via WhatsApp" button opening a pre-filled message with koi reference.
 
 ### 2. Administrator Journey (Manager)
+
 The goal is to provide a simplified interface for daily stock and contact management.
 
-*   **Step 1: Authentication (/users/sign_in)**: Secure access via Devise for administrators only.
-*   **Step 2: Dashboard**: Overview of received messages via the contact form and quick stock statistics.
-*   **Step 3: Stock Management (CRUD)**: Creating new listings (name, variety, price, size, Konishi badge), uploading photos (Cloudinary), and updating status (Available/Sold).
-*   **Step 4: Message Management**: Reading and tracking contact requests received by email/form.
+- **Step 1: Authentication (/users/sign_in)**: Secure access via Devise for administrators only.
+- **Step 2: Dashboard**: Overview of received messages via the contact form and quick stock statistics.
+- **Step 3: Stock Management (CRUD)**: Creating new listings (name, variety, price, size, Konishi badge), uploading photos (Cloudinary), and updating status (Available/Sold).
+- **Step 4: Message Management**: Reading and tracking contact requests received by email/form.
 
 ### 3. Journey Visualization
 
 #### Visitor Flow
+
 ```mermaid
 graph TD
     A[Home /] -->|1 click| B[Catalog /catalogue]
@@ -137,6 +154,7 @@ graph TD
 ```
 
 #### Administrator Flow
+
 ```mermaid
 graph LR
     Login[Devise Login] --> Dash[Admin Dashboard]
@@ -151,9 +169,11 @@ graph LR
 ## Wireframes
 
 ### Home Page
+
 ![Home Page Wireframe](docs/design/wireframes/wireframe_accueil.svg)
 
 ### Product Page
+
 ![Product Page Wireframe](docs/design/wireframes/wireframe_produit.svg)
 
 ## Documentation
@@ -164,23 +184,20 @@ The project documentation index is available in `docs/README.md`.
 
 Project history is tracked in `CHANGELOG.md`.
 
-
-
-
 ## Tech Stack
 
-| Layer          | Technology                         |
-| -------------- | ---------------------------------- |
-| Back-end       | Ruby on Rails (RESTful, MVC)       |
-| Front-end      | Hotwire  Turbo + Stimulus         |
-| CSS            | Bootstrap / Tailwind CSS           |
-| Database       | SQLite                             |
-| Authentication | Devise (roles:`visitor` / `admin`) |
-| Linter/Formatter | Biome                             |
-| Image upload   | Cloudinary                         |
-| Emails         | ActionMailer                       |
-| Hosting        | VPS                                |
+| Layer            | Technology                         |
+| ---------------- | ---------------------------------- |
+| Back-end         | Ruby on Rails (RESTful, MVC)       |
+| Front-end        | Hotwire Turbo + Stimulus           |
+| CSS              | Bootstrap / Tailwind CSS           |
+| Database         | SQLite                             |
+| Authentication   | Devise (roles:`visitor` / `admin`) |
+| Linter/Formatter | Biome                              |
+| Image upload     | Cloudinary                         |
+| Emails           | ActionMailer                       |
+| Hosting          | VPS                                |
 
 ## Team
 
-Morgan VERHAEGHE · Romain ROYER · Valentin CHÉRON  THP Fullstack cohort
+Morgan VERHAEGHE · Romain ROYER · Valentin CHÉRON THP Fullstack cohort
