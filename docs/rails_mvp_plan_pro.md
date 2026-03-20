@@ -1,236 +1,282 @@
 # Plan MVP Rails - Version Pro
 
 > Projet: Koi's Story  
-> Objectif: livrer un MVP Rails demonstrable, conforme aux exigences THP eliminatoires.
->
-> Version complete et detaillee: `docs/rails_mvp_plan.md`
+> Source de reference: `docs/rails_mvp_plan.md`  
+> Objectif: livrer un MVP Rails demonstrable en oral blanc, conforme aux exigences THP eliminatoires.
 
 ---
 
-## 1) Objectif et perimetre
+## 1) Alignement strategique
 
-### Objectif de la version
+### Positionnement du document
 
-Mettre en place une application Rails fonctionnelle avec:
+Ce plan pro est une version operationnelle condensee du plan complet.  
+Il conserve les decisions techniques critiques, l'ordre d'execution et les points de controle.
 
-- catalogue public des kois (liste + fiche)
-- espace admin protege (CRUD kois + consultation messages)
-- authentification admin via Devise
-- formulaire de contact avec envoi email
-- seed de demonstration couvrant 26 varietes
+### Scope MVP confirme
 
-### Hors perimetre MVP
+- front public lecture seule (`home`, pages statiques, `kois#index`, `kois#show`)
+- back-office admin protege (`/admin`) avec CRUD kois et gestion messages
+- authentification Devise admin uniquement (inscription publique desactivee)
+- contact form footer + ActionMailer actif
+- integration API externe Cloudinary
+- seed de demonstration couvrant 26 varietes de koi
 
-- tunnel de paiement en ligne
-- modules V2 (orders, payments, client profiles, newsletter)
-- refonte front globale non bloquante
+### Hors scope MVP
+
+- tunnel de paiement
+- modules metier V2 (`orders`, `payments`, `client_profiles`, `newsletter_subscribers`)
+- activation 2FA en production immediate (infrastructure presente, activation differee)
 
 ---
 
-## 2) Contraintes non negociables (THP)
+## 2) Exigences eliminatoires THP
+
+Toutes ces contraintes doivent etre valides avant demo:
 
 - routes RESTful uniquement
 - code et `README.md` en anglais
-- helpers Rails pour liens et images (`link_to`, `image_tag`)
-- Devise installe + 5 vues existantes
-- ActionMailer operationnel
-- 1 API externe minimum (Cloudinary)
-- logique metier dans les modeles
-- seed de demonstration complet
+- usage des helpers Rails pour liens/images (`link_to`, `image_tag`)
+- Devise operationnel avec vues generees
+- ActionMailer fonctionnel en production
+- au moins une API externe branchee (Cloudinary)
+- logique metier en modeles (fat model / skinny controller)
+- aucun modele isole
+- relations N-N en `has_many :through` uniquement
+- `db/seeds.rb` exploitable avec donnees de demonstration
 
 ---
 
 ## 3) Architecture cible
 
-- base de donnees partagee entre public et admin
-- separation par namespace admin:
-  - routes: `/admin/*`
-  - controleurs: heritage `Admin::BaseController`
-  - layout: `admin.html.erb`
-- public en lecture seule (`kois#index`, `kois#show`)
-- admin en CRUD complet sur `Koi`
+### Separation public/admin
+
+VISITORS et ADMIN ne communiquent pas directement: ils partagent la meme base et les memes modeles.
+
+Separation imposee a 3 niveaux:
+
+1. routes: namespace `admin` (`/admin/*`)
+2. controleurs: heritage `Admin::BaseController` avec garde d'acces centralisee
+3. layouts: `application.html.erb` (public) vs `admin.html.erb` (admin)
+
+### Regle de securite
+
+`Admin::BaseController` est l'unique gatekeeper:
+
+- `before_action :authenticate_user!`
+- `before_action :require_admin!`
+- `layout 'admin'`
 
 ---
 
-## 4) Plan d'execution (ordre impose)
+## 4) Sequence d'implementation
 
-### Phase A - Initialisation (30 min)
+## Phase 1 - Bootstrap Rails
 
-1. Initialiser Rails dans `kois-story/` (`--skip-git`, sqlite).
-2. Installer les gems MVP:
-   - `devise`
-   - `cloudinary`
-   - `carrierwave`
-   - `carrierwave-cloudinary`
-   - `dotenv-rails`
-3. Preparer variables d'environnement:
-   - `CLOUDINARY_*`
-   - `ADMIN_EMAIL`
+- `rails new . --skip-git --database=sqlite3 --asset-pipeline=sprockets --javascript=importmap`
+- `bundle install`
+- `rails db:create`
+- restauration des entrees `.env` dans `.gitignore`
 
-Livrable: application Rails bootable + dependances installees.
+Livrable: application Rails propre et bootable.
 
-### Phase B - Auth et securite (30 min)
+## Phase 2 - Gems et variables d'environnement
 
-1. Installer Devise (`install`, `User`, `views`).
-2. Ajouter `role` sur `users` (enum `visitor/admin`, defaut `visitor`).
-3. Desactiver l'inscription publique (`skip: [:registrations]`).
-4. Creer `Admin::BaseController` avec:
-   - `authenticate_user!`
-   - `require_admin!`
-   - `layout 'admin'`
+Ajouter:
 
-Livrable: login admin fonctionnel, acces admin verrouille.
+- auth: `devise`, `devise-two-factor`, `rotp`, `rqrcode`
+- images: `cloudinary`, `carrierwave`, `carrierwave-cloudinary`
+- env: `dotenv-rails`
+- dev: `letter_opener`
 
-### Phase C - Modele metier MVP (45 min)
+Definir `.env` et `.env.example` avec:
 
-Creer et migrer:
+- `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
+- `RESEND_API_KEY`, `ADMIN_EMAIL`, `APP_HOST`
+- `OTP_SECRET_KEY`, `ADMIN_PASSWORD`
 
-- `User` (Devise + role)
-- `Koi`
-- `Image` (polymorphique)
-- `Tag`
-- `KoiTag` (`has_many :through`)
-- `Message`
+Livrable: dependances et secrets projet prets.
 
-Regles cles:
+## Phase 3 - Auth Devise et verrouillage acces
 
-- validations minimales sur `Koi` et `Message`
-- scopes de filtrage sur `Koi`
-- callback message vers mailer (`deliver_later`)
+- `rails generate devise:install`
+- `rails generate devise User`
+- `rails generate devise:views`
+- enrichir migration user (`role`, colonnes OTP)
+- configurer `User` avec enum roles et module `:two_factor_authenticatable`
+- desactiver inscriptions: `devise_for :users, skip: [:registrations]`
 
-Livrable: schema DB stable + modeles relies.
+Livrable: login admin operationnel, inscription publique absente.
 
-### Phase D - Integrations externes (25 min)
+## Phase 4 - Modeles MVP
 
-1. Initializer Cloudinary.
-2. Uploader CarrierWave (`ImageUploader`).
-3. Mailer `MessageMailer` (HTML + texte).
-4. Config ActionMailer dev (URL localhost).
+Generer dans l'ordre:
 
-Livrable: upload et envoi email cables.
+1. `Koi`
+2. `Image` (polymorphic)
+3. `Tag`
+4. `KoiTag`
+5. `Message`
 
-### Phase E - Controleurs et routes (30 min)
+Points critiques:
 
-Implementer:
+- enums `Koi` (`status`, `sex`, `age_class`)
+- methodes de filtrage catalogue
+- callback mailer sur creation de message
+- default `read: false` dans migration `messages`
 
-- `KoisController`: `index`, `show`
-- `MessagesController`: `create`
-- `Admin::KoisController`: CRUD
-- `Admin::MessagesController`: `index`, `show`, `update`
+Puis `rails db:migrate`.
 
-Routes minimales:
+Livrable: schema MVP stable et relie.
 
-- `root 'kois#index'`
+## Phase 5 - Integrations externes
+
+- initializer Cloudinary
+- `ImageUploader` CarrierWave + Cloudinary
+- config ActionMailer:
+  - dev: `letter_opener`
+  - prod: SMTP Resend
+- `MessageMailer` + templates HTML/TXT
+
+Livrable: upload image et envoi email branches.
+
+## Phase 6 - Controleurs et routes
+
+Controleurs:
+
+- `HomeController`
+- `PagesController`
+- `KoisController`
+- `MessagesController`
+- `Admin::KoisController`
+- `Admin::MessagesController`
+- `Admin::BaseController` (manuel)
+
+Routes:
+
+- `root 'home#index'`
+- pages statiques (`/decouvrir`, `/materiel`, `/soins`, `/nourriture`, `/azukari`)
 - `resources :kois, only: [:index, :show]`
 - `resources :messages, only: [:create]`
-- namespace `admin` avec ressources necessaires
+- namespace `admin` avec `root 'kois#index'`, `resources :kois`, `resources :messages, only: [:index, :show, :update]`
 
-Livrable: navigation publique + admin complete.
+Livrable: parcours public et admin complet.
 
-### Phase F - Vues minimales demonstrables (60 min)
+## Phase 7 - Vues minimales + UX obligatoire
 
 Public:
 
-- `kois/index`
-- `kois/show`
+- home
+- 5 pages statiques
+- catalogue koi + fiche
 - footer avec formulaire contact
 
 Admin:
 
-- `admin/kois/index`
-- `admin/kois/new` + `edit`
-- `admin/messages/index`
-- `admin/messages/show`
+- liste kois
+- formulaire new/edit koi
+- liste messages + detail
 
 Devise:
 
-- page login personnalisee selon maquette
+- page login personnalisee double audience (visiteur/admin)
 
-Elements obligatoires:
+Elements metier obligatoires:
 
-- bouton WhatsApp sur fiche koi
+- bouton WhatsApp en fiche koi
 - badge Konishi conditionnel
 
-Livrable: parcours jury complet utilisable.
+Livrable: demo fonctionnelle de bout en bout.
 
-### Phase G - Assets et compatibilite Turbo (35 min)
+## Phase 8 - Assets, CSS, JS, Turbo
 
-1. Copier assets `VISITORS/` et `ADMIN/` vers `app/assets` + `app/javascript`.
-2. Creer `admin_application.css` et `admin_application.js`.
-3. Remplacer `DOMContentLoaded` par `turbo:load` dans JS migre.
-4. Unifier tokens CSS (aliases admin/visitors dans `shared/variables.css`).
+Actions:
 
-Livrable: styles et JS stables sur navigation Turbo.
+- migration assets `VISITORS/` et `ADMIN/` vers pipeline Rails
+- creation `admin_application.css` et `admin_application.js`
+- pin Importmap pour `admin_application`
+- precompile asset admin dedie
+- remplacement global `DOMContentLoaded` -> `turbo:load`
+- normalisation variables CSS admin/visitors via `shared/variables.css`
 
-### Phase H - Seed et verification finale (30 min)
+Livrable: rendu visuel stable et JS fonctionnel apres navigation Turbo.
 
-1. Seed:
-   - 1 admin
-   - 26 varietes koi
-   - donnees plausibles (prix, taille, statut)
-2. Verification complete:
-   - login admin
-   - CRUD koi
-   - contact form
-   - logs mailer
-   - routes REST
+## Phase 9 - Seeds et verification finale
 
-Livrable: environnement de demo pret.
+Seed:
 
----
+- admin users
+- 26 varietes koi
+- statuts/disponibilites coherents
 
-## 5) Definition du Done (DoD)
+Verification:
 
-Le MVP est valide si:
+- pages publiques OK
+- auth Devise OK
+- acces `/admin` protege
+- CRUD koi admin OK
+- gestion messages OK
+- formulaire contact + logs mailer OK
+- routes REST verify via `rails routes`
 
-- l'app demarre sans erreur
-- `/` affiche le catalogue
-- `/kois/:id` affiche WhatsApp + badge Konishi
-- `/users/sign_in` fonctionne
-- `/admin` est inaccessible sans auth
-- admin peut creer / modifier / supprimer un koi
-- formulaire contact persiste et declenche l'envoi mail
-- `rails db:seed` reconstruit une base de demo propre
+Livrable: environnement de soutenance pret.
 
 ---
 
-## 6) Gestion des risques
+## 5) Definition of Done
 
-| Risque | Impact | Reponse |
+Le MVP est accepte si:
+
+- serveur Rails demarre sans erreur
+- home affiche hero/pitch + contenus attendus
+- catalogue et detail koi fonctionnent
+- WhatsApp et badge Konishi visibles selon conditions
+- login admin valide, inscription publique absente
+- espace admin protege et CRUD koi operationnel
+- formulaire contact persiste et declenche le mail
+- seed reconstruit une base demo complete
+
+---
+
+## 6) Risques majeurs et mitigation
+
+| Risque | Impact | Mitigation |
 |---|---|---|
-| Cloudinary indisponible | Eleve | fallback stockage local temporaire |
-| SMTP prod non pret | Eleve | Mailjet prioritaire, test reel avant demo |
-| JS casse apres navigation | Eleve | migration systematique vers `turbo:load` |
-| dette CSS trop large | Moyen | limiter au strict MVP |
-| manque de temps | Critique | priorite: Devise -> CRUD koi -> contact -> seed |
+| credentials Cloudinary manquants | eleve | fallback stockage local temporaire |
+| SMTP prod non finalise | eleve | configuration Resend complete + test reel |
+| collision tokens CSS admin/public | eleve | aliases centralises dans `shared/variables.css` |
+| JS inactif apres navigation | eleve | migration systematique vers `turbo:load` |
+| `admin_application` non charge | eleve | pin Importmap + precompile css admin |
+| app ne boot pas (OTP secret absent) | eleve | forcer `OTP_SECRET_KEY` meme en dev |
+| manque de temps execution | critique | priorite: Devise -> CRUD koi -> contact -> seed |
 
 ---
 
-## 7) Branching et livraison
+## 7) Branche et livraison
 
-- base: `DEV`
-- branche de travail: `feat/rails-mvp-scaffold`
-- PR cible: `DEV`
-- merge vers `main` uniquement apres validation demo
+- base de travail: `MVP`
+- push regulier apres chaque phase critique
+- PR de `MVP` vers `DEV` a la fin du scaffold
 
 ---
 
-## 8) References operationnelles
+## 8) Documents de reference associes
 
-- `docs/audit/RAILS_MIGRATION_PLAN.md`
-- `docs/audit/THP_COMPLIANCE_CHECKLIST.md`
 - `docs/audit/COMPONENT_MAPPING.md`
 - `docs/implementation/partials_structure.md`
 - `docs/implementation/asset_pipeline_setup.md`
+- `docs/implementation/stimulus_controller_examples.js`
+- `docs/audit/THP_COMPLIANCE_CHECKLIST.md`
+- `docs/audit/RISKS_AND_BLOCKERS.md`
 
 ---
 
-## 9) Priorite execution (si contrainte temps)
+## 9) Priorisation en contrainte de temps
 
-1. Devise + securite admin
-2. Modeles et migrations MVP
+1. auth admin Devise + verrouillage acces
+2. modeles/migrations MVP
 3. CRUD koi admin
-4. Catalogue public + fiche produit
-5. Contact + mailer
-6. Seed 26 varietes
-7. Habillage CSS/JS restant
+4. catalogue public + fiche koi
+5. contact + ActionMailer
+6. seeds 26 varietes
+7. assets CSS/JS restants
