@@ -1,0 +1,90 @@
+<div class="page-greeting">Bonjour, <%= admin_user_name %></div>
+<div class="page-date"><%= l(Date.current, format: :long) rescue Date.current.strftime("%d/%m/%Y") %></div>
+
+<div class="quick-actions">
+  <%= link_to "＋ Nouveau koi", new_admin_koi_path, class: "btn btn--primary" %>
+  <%= link_to "Voir les kois", admin_kois_path, class: "btn btn--dark" %>
+  <%= link_to admin_messages_path, class: "btn btn--outline" do %>
+    Voir les messages
+    <% if @unread_messages_count.positive? %><span class="badge badge-nonlu"><%= @unread_messages_count %></span><% end %>
+  <% end %>
+</div>
+
+<div class="stats-grid stats-6">
+  <div class="stat-card c-dispo">
+    <div class="stat-label">Kois disponibles</div>
+    <div class="stat-value"><%= @available_kois_count %></div>
+    <div class="stat-sub up">Catalogue public synchronise</div>
+  </div>
+  <div class="stat-card c-arrivage">
+    <div class="stat-label">Kois vendus</div>
+    <div class="stat-value"><%= @sold_kois_count %></div>
+    <div class="stat-sub">Historique actuel</div>
+  </div>
+  <div class="stat-card c-konishi">
+    <div class="stat-label">Messages recus</div>
+    <div class="stat-value"><%= @messages_count %></div>
+    <div class="stat-sub">Depuis le lancement</div>
+  </div>
+  <div class="stat-card c-messages">
+    <div class="stat-label">Messages non lus</div>
+    <div class="stat-value"><%= @unread_messages_count %></div>
+    <div class="stat-sub down">A traiter en priorite</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Derniers messages recus</div>
+    <%= link_to "Voir tout", admin_messages_path, class: "btn btn--outline btn--sm" %>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Expediteur</th><th>Apercu</th><th>Statut</th></tr>
+      </thead>
+      <tbody>
+        <% if @recent_messages.any? %>
+          <% @recent_messages.each do |message| %>
+            <tr class="msg-row <%= 'unread' unless message.read? %>">
+              <td class="msg-datetime-cell"><%= l(message.created_at, format: :short) rescue message.created_at.strftime("%d/%m · %H:%M") %></td>
+              <td><strong><%= message.sender_name %></strong></td>
+              <td class="msg-preview"><%= truncate(message.body, length: 80) %></td>
+              <td><span class="badge <%= message.read? ? 'badge-lu' : 'badge-nonlu' %>"><%= message.read? ? "Lu" : "Non lu" %></span></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr><td colspan="4">Aucun message pour le moment.</td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Derniers kois ajoutes</div>
+    <%= link_to "Gerer le catalogue", admin_kois_path, class: "btn btn--outline btn--sm" %>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr><th>Nom</th><th>Variete</th><th>Statut</th><th>Prix</th></tr>
+      </thead>
+      <tbody>
+        <% if @recent_kois.any? %>
+          <% @recent_kois.each do |koi| %>
+            <tr>
+              <td><%= link_to koi.name, admin_koi_path(koi) %></td>
+              <td><%= koi.variety.presence || "-" %></td>
+              <td><%= koi.status.presence || "-" %></td>
+              <td><%= number_to_currency(koi.price, unit: "", precision: 0, delimiter: " ").strip %> €</td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr><td colspan="4">Aucun koi enregistre pour le moment.</td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -11,11 +11,14 @@
   </head>
   <body>
     <%= render "admin/shared/sidebar" %>
-    <main class="main-content">
+    <div class="main">
       <%= render "admin/shared/topbar" %>
-      <% if notice %><div class="flash notice"><%= notice %></div><% end %>
-      <% if alert %><div class="flash alert"><%= alert %></div><% end %>
-      <%= yield %>
-    </main>
+      <div class="content">
+        <% if notice %><div class="flash notice"><%= notice %></div><% end %>
+        <% if alert %><div class="flash alert"><%= alert %></div><% end %>
+        <%= yield %>
+      </div>
+    </div>
+    <div class="overlay"></div>
   </body>
 </html>

@@ -1,5 +1,24 @@
-<h2>Message detail</h2>
-<p><strong>From:</strong> <%= @message.sender_name %></p>
-<p><strong>Email:</strong> <%= @message.sender_email %></p>
-<p><strong>Message:</strong> <%= @message.body %></p>
-<%= link_to "Back", admin_messages_path %>
+<div class="page-sub">Lecture detaillee du message et acces rapide a la reponse email.</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Message de <%= @message.sender_name %></div>
+    <div class="td-actions">
+      <%= link_to "Retour", admin_messages_path, class: "btn btn--outline btn--sm" %>
+      <%= mail_to @message.sender_email, "Repondre", class: "btn btn--primary btn--sm" %>
+    </div>
+  </div>
+
+  <dl class="modal-msg-meta">
+    <dt>De</dt>
+    <dd><%= @message.sender_name %></dd>
+    <dt>Email</dt>
+    <dd><%= mail_to @message.sender_email %></dd>
+    <dt>Date</dt>
+    <dd><%= admin_message_datetime(@message) %> a <%= admin_message_time(@message) %></dd>
+    <dt>Statut</dt>
+    <dd><span class="badge <%= admin_message_status_badge_class(@message) %>"><%= admin_message_status_label(@message) %></span></dd>
+  </dl>
+
+  <div class="modal-msg-body"><%= simple_format(@message.body) %></div>
+</div>

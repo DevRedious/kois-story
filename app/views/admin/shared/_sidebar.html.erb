@@ -1,7 +1,48 @@
-<aside class="admin-sidebar">
-  <h2>Admin</h2>
-  <nav>
-    <%= link_to "Kois", admin_kois_path %>
-    <%= link_to "Messages", admin_messages_path %>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-title">
+      <%= image_tag docs_asset_path("LOGO MANU FINI 2.png"), alt: "", class: "brand-logo-img" %>
+      <span class="brand-title-text">Koi's Story</span>
+    </div>
+    <div class="brand-sub">Administration</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">Tableau de bord</div>
+    <%= link_to admin_root_path, class: "nav-item #{'active' if admin_current_page == :dashboard}", data: { page: "dashboard" } do %>
+      <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></span>
+      <span class="nav-label">Dashboard</span>
+    <% end %>
+
+    <div class="nav-section nav-section--spaced">Catalogue</div>
+    <%= link_to admin_kois_path, class: "nav-item #{'active' if admin_current_page == :kois}", data: { page: "kois" } do %>
+      <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M168 76a12 12 0 1 1-12-12a12 12 0 0 1 12 12m48.72 67.64c-19.37 34.9-55.44 53.76-107.24 56.1l-22 51.41A8 8 0 0 1 80.1 256h-.51a8 8 0 0 1-7.19-5.78l-14.8-51.83l-51.8-14.83a8 8 0 0 1-1-15.05l51.41-22c2.35-51.78 21.21-87.84 56.09-107.22c24.75-13.74 52.74-15.84 71.88-15.18c18.64.64 36 4.27 38.86 6a8 8 0 0 1 2.83 2.83c1.69 2.85 5.33 20.21 6 38.85c.68 19.1-1.41 47.1-15.15 71.85m-55.18 29a52.11 52.11 0 0 1-33.4-44.78a52.09 52.09 0 0 1-44.77-33.39q-10.45 23.79-11.3 57.59a8 8 0 0 1-4.85 7.17l-35.39 15.14l34.45 9.86a8 8 0 0 1 5.49 5.5l9.84 34.44l15.16-35.4a8 8 0 0 1 7.17-4.84q33.77-.81 57.6-11.29m50.88-129.07c-14.15-3-64.1-11-100.3 14.75a81.2 81.2 0 0 0-16 15.07a36 36 0 0 0 39.35 38.44a8 8 0 0 1 8.73 8.73a36 36 0 0 0 38.47 39.34a80.8 80.8 0 0 0 15-16c25.75-36.17 17.75-86.16 14.75-100.33"/></svg></span>
+      <span class="nav-label">Gestion des Kois</span>
+    <% end %>
+
+    <div class="nav-section nav-section--spaced">Messagerie</div>
+    <%= link_to admin_messages_path, class: "nav-item #{'active' if admin_current_page == :messages}", data: { page: "messages" } do %>
+      <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg></span>
+      <span class="nav-label">Messages</span>
+      <% if admin_unread_messages_count.positive? %>
+        <span class="nav-badge" id="msg-count"><%= admin_unread_messages_count %></span>
+      <% end %>
+    <% end %>
+
+    <div class="nav-section nav-section--spaced">Site</div>
+    <%= link_to root_path, class: "nav-item" do %>
+      <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 256 367" fill="currentColor"><path d="M70.585 271.865a371 371 0 0 1 28.911 42.642c7.374 13.982 10.448 23.463 15.837 40.31c3.305 9.308 6.292 12.086 12.714 12.086c6.998 0 10.173-4.726 12.626-12.035c5.094-15.91 9.091-28.052 15.397-39.525c12.374-22.15 27.75-41.833 42.858-60.75c4.09-5.354 30.534-36.545 42.439-61.156c0 0 14.632-27.035 14.632-64.792c0-35.318-14.43-59.813-14.43-59.813l-41.545 11.126l-25.23 66.451l-6.242 9.163l-1.248 1.66l-1.66 2.078l-2.914 3.319l-4.164 4.163l-22.467 18.304l-56.17 32.432z"/><path d="M12.612 188.892c13.709 31.313 40.145 58.839 58.031 82.995l95.001-112.534s-13.384 17.504-37.662 17.504c-27.043 0-48.89-21.595-48.89-48.825c0-18.673 11.234-31.501 11.234-31.501l-64.489 17.28z"/><path d="M166.705 5.787c31.552 10.173 58.558 31.53 74.893 63.023l-75.925 90.478s11.234-13.06 11.234-31.617c0-27.864-23.463-48.68-48.81-48.68c-23.969 0-37.735 17.475-37.735 17.475v-57z"/><path d="M30.015 45.765C48.86 23.218 82.02 0 127.736 0c22.18 0 38.89 5.823 38.89 5.823L90.29 96.516H36.205z"/><path d="M12.612 188.892S0 164.194 0 128.414c0-33.817 13.146-63.377 30.015-82.649l60.318 50.759z"/></svg></span>
+      <span class="nav-label">Voir le site public</span>
+    <% end %>
   </nav>
+
+  <div class="sidebar-footer">
+    <div class="admin-user">
+      <div class="admin-avatar"><%= admin_user_initials %></div>
+      <div class="admin-info">
+        <div class="admin-name"><%= admin_user_name %></div>
+        <div class="admin-role">Administrateur</div>
+      </div>
+    </div>
+  </div>
 </aside>

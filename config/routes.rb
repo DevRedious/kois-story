@@ -17,7 +17,8 @@ Rails.application.routes.draw do
 
   # Admin — protected by Admin::BaseController
   namespace :admin do
-    root "kois#index"
+    root "dashboard#index"
+    get :dashboard, to: "dashboard#index"
     resources :kois
     resources :messages, only: [ :index, :show, :update ]
   end

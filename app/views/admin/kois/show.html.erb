@@ -1,4 +1,41 @@
-<h2><%= @koi.name %></h2>
-<p><%= @koi.variety %></p>
-<p><%= @koi.description %></p>
-<%= link_to "Back", admin_kois_path %>
+<div class="page-sub">Fiche detaillee du koi, visible avant publication ou mise a jour du catalogue.</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title"><%= @koi.name %></div>
+    <div class="td-actions">
+      <%= link_to "Retour", admin_kois_path, class: "btn btn--outline btn--sm" %>
+      <%= link_to "Editer", edit_admin_koi_path(@koi), class: "btn btn--primary btn--sm" %>
+    </div>
+  </div>
+
+  <div class="koi-cell">
+    <%= image_tag admin_koi_image_source(@koi), alt: "", class: "koi-thumb koi-thumb-lg" %>
+    <div>
+      <div class="koi-name"><%= @koi.name %></div>
+      <div class="koi-variety"><%= @koi.variety %></div>
+      <p><%= @koi.description.presence || "Aucune description renseignee." %></p>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Informations catalogue</div>
+  </div>
+
+  <div class="table-responsive">
+    <table>
+      <tbody>
+        <tr><th>Statut</th><td><span class="badge <%= admin_koi_status_badge_class(@koi) %>"><%= admin_koi_status_label(@koi) %></span></td></tr>
+        <tr><th>Lignee</th><td><%= @koi.konishi_lineage? ? "Konishi" : "Standard" %></td></tr>
+        <tr><th>Classe d'age</th><td><%= admin_koi_age_label(@koi) %></td></tr>
+        <tr><th>Age</th><td><%= @koi.age.present? ? "#{@koi.age} ans" : "-" %></td></tr>
+        <tr><th>Sexe</th><td><%= @koi.sex.present? ? @koi.sex.humanize : "-" %></td></tr>
+        <tr><th>Taille</th><td><%= @koi.size_cm.present? ? "#{@koi.size_cm} cm" : "-" %></td></tr>
+        <tr><th>Prix</th><td><%= number_to_currency(@koi.price, unit: "", precision: 0, delimiter: " ").strip %> €</td></tr>
+        <tr><th>Creation</th><td><%= l(@koi.created_at, format: :long) rescue @koi.created_at.strftime("%d/%m/%Y %H:%M") %></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

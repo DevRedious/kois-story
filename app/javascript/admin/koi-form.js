@@ -18,12 +18,13 @@ document.addEventListener("turbo:load", () => {
 		// ── PRÉVISUALISATION DES IMAGES ────────────────────────────
 		fileInput.addEventListener("change", function () {
 			if (!preview) return;
+			preview.querySelectorAll(".img-thumb--new").forEach((node) => node.remove());
 			Array.from(this.files).forEach((file, i) => {
 				if (!file.type.startsWith("image/")) return;
 				const reader = new FileReader();
 				reader.onload = (e) => {
 					const div = document.createElement("div");
-					div.className = "img-thumb";
+					div.className = "img-thumb img-thumb--new";
 					div.innerHTML = `<img src="${e.target.result}" alt="Preview ${i + 1}">
             <button type="button" class="img-remove" aria-label="Supprimer cette image">✕</button>`;
 					preview.appendChild(div);
@@ -38,22 +39,6 @@ document.addEventListener("turbo:load", () => {
 		preview.addEventListener("click", (e) => {
 			const btn = e.target.closest(".img-remove");
 			if (btn) btn.closest(".img-thumb").remove();
-		});
-	}
-
-	// ── SOUMISSION DU FORMULAIRE ──────────────────────────────────
-	const form = document.getElementById("koi-form");
-	const submitBtn = document.getElementById("submit-btn");
-	if (form) {
-		form.addEventListener("submit", (e) => {
-			e.preventDefault();
-			if (submitBtn) {
-				submitBtn.textContent = "Enregistrement…";
-				submitBtn.disabled = true;
-			}
-			setTimeout(() => {
-				window.location.href = "kois.html";
-			}, 1200);
 		});
 	}
 });

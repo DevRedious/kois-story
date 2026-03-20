@@ -1,26 +1,76 @@
-<h2>Kois</h2>
-<%= link_to "New koi", new_admin_koi_path, class: "btn" %>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Variety</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @kois.each do |koi| %>
-      <tr>
-        <td><%= koi.name %></td>
-        <td><%= koi.variety %></td>
-        <td><%= koi.status %></td>
-        <td>
-          <%= link_to "Show", admin_koi_path(koi) %>
-          <%= link_to "Edit", edit_admin_koi_path(koi) %>
-          <%= button_to "Delete", admin_koi_path(koi), method: :delete, form: { style: "display:inline" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="page-sub">Gestion du catalogue, des statuts de vente et de la lignée Konishi.</div>
+
+<div class="panel panel--koi-list">
+  <div class="panel-header">
+    <span class="panel-title">Tous les kois</span>
+    <input id="koi-search" type="search" placeholder="Rechercher..." aria-label="Rechercher dans le catalogue kois">
+    <select id="variety-filter" aria-label="Filtrer par variete">
+      <option value="">Toutes varietes</option>
+      <% @varieties.each do |variety| %>
+        <option value="<%= variety.downcase %>"><%= variety %></option>
+      <% end %>
+    </select>
+    <select id="status-filter" aria-label="Filtrer par statut">
+      <option value="">Tous statuts</option>
+      <option value="available">Disponible</option>
+      <option value="incoming">Arrivage</option>
+      <option value="sold_out">Vendu</option>
+    </select>
+    <select id="lineage-filter" aria-label="Filtrer par lignee">
+      <option value="">Toutes lignees</option>
+      <option value="konishi">Konishi</option>
+      <option value="standard">Standard</option>
+    </select>
+    <div class="spacer"></div>
+    <span class="filter-count" id="koi-count"><%= @kois.size %> koi<%= "s" if @kois.many? %></span>
+  </div>
+
+  <div class="table-responsive">
+    <table id="kois-table">
+      <thead>
+        <tr>
+          <th>Koi</th>
+          <th>Classe / Age</th>
+          <th>Taille</th>
+          <th>Prix</th>
+          <th>Lignee</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @kois.each do |koi| %>
+          <tr data-status="<%= koi.status %>" data-variety="<%= koi.variety.to_s.downcase %>" data-lineage="<%= admin_koi_lineage_value(koi) %>">
+            <td>
+              <div class="koi-cell">
+                <%= image_tag admin_koi_image_source(koi), alt: "", class: "koi-thumb koi-thumb-sm" %>
+                <div>
+                  <div class="koi-name"><%= koi.name %></div>
+                  <div class="koi-variety"><%= koi.variety %></div>
+                </div>
+              </div>
+            </td>
+            <td><span class="koi-meta-label"><%= admin_koi_age_label(koi) %><%= " · #{koi.age} ans" if koi.age.present? %></span></td>
+            <td><%= koi.size_cm.present? ? "#{koi.size_cm} cm" : "-" %></td>
+            <td class="koi-price"><%= number_to_currency(koi.price, unit: "", precision: 0, delimiter: " ").strip %> €</td>
+            <td>
+              <% if koi.konishi_lineage? %>
+                <span class="badge badge-konishi">Konishi</span>
+              <% else %>
+                —
+              <% end %>
+            </td>
+            <td><span class="badge <%= admin_koi_status_badge_class(koi) %>"><%= admin_koi_status_label(koi) %></span></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Voir", admin_koi_path(koi), class: "btn btn--ghost btn--sm" %>
+                <%= link_to "Editer", edit_admin_koi_path(koi), class: "btn btn--outline btn--sm" %>
+                <%= button_to "Supprimer", admin_koi_path(koi), method: :delete, class: "btn btn--danger btn--sm", form: { data: { turbo_confirm: "Supprimer #{koi.name} ?" } } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

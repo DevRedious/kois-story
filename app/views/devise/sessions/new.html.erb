@@ -1,34 +1,82 @@
-<div class="login-page">
-  <div class="login-logo">
-    <h1>Koi's Story</h1>
-  </div>
+<% content_for :title, "Connexion - Admin | Koi's Story" %>
+<% content_for :body_class, "login-page" %>
+<% content_for :extra_stylesheet, "admin_application" %>
+<% content_for :skip_default_footer, true %>
+<% content_for :head do %>
+  <script>
+    (() => {
+      const saved = localStorage.getItem("admin-theme") || "system";
+      if (saved === "system") {
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", saved);
+      }
+    })();
+  </script>
+<% end %>
 
-  <div class="login-visitor">
-    <h2>Discover our koi</h2>
-    <p class="login-hint">Member area coming soon</p>
-    <%= link_to "Enter the catalogue", root_path, class: "btn btn-primary" %>
-  </div>
-
-  <div class="login-divider">or</div>
-
-  <div class="login-admin">
-    <h2>Administration</h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
-
-      <%= f.submit "Sign in", class: "btn btn-secondary" %>
-    <% end %>
-    <%= link_to "Forgot your password?", new_password_path(resource_name), class: "login-forgot" %>
-    <div>
-      <%= render "devise/shared/links" %>
-    </div>
-  </div>
+<div class="login-theme-switcher">
+  <label for="theme-select" class="sr-only">Theme</label>
+  <select id="theme-select" aria-label="Choisir le theme d'affichage">
+    <option value="system">Systeme</option>
+    <option value="light">Clair</option>
+    <option value="dark">Sombre</option>
+  </select>
 </div>
+
+<div id="form-ui">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "form" }) do |f| %>
+    <div id="form-body">
+      <div id="welcome-lines">
+        <%= image_tag docs_asset_path("LOGO MANU FINI 2.png"), alt: "Koi's Story", class: "login-logo-img" %>
+        <div id="welcome-line-1">Koi's Story</div>
+        <div id="welcome-line-2">Administration</div>
+      </div>
+
+      <div id="input-area">
+        <div class="form-inp">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Adresse email", required: true %>
+        </div>
+        <div class="form-inp">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Mot de passe", required: true %>
+        </div>
+      </div>
+
+      <% if resource.errors.any? %>
+        <div class="cloudinary-note">
+          <%= resource.errors.full_messages.to_sentence %>
+        </div>
+      <% end %>
+
+      <div id="submit-button-cvr">
+        <%= f.submit "Se connecter", id: "submit-button" %>
+      </div>
+
+      <div id="forgot-pass">
+        <%= link_to "Mot de passe oublie ?", new_password_path(resource_name) %>
+      </div>
+
+      <div id="forgot-pass">
+        <%= link_to "Retour au site public", root_path %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  (() => {
+    const themeSelect = document.getElementById("theme-select");
+    if (!themeSelect) return;
+    const current = localStorage.getItem("admin-theme") || "system";
+    themeSelect.value = current;
+    themeSelect.addEventListener("change", function () {
+      const value = this.value;
+      localStorage.setItem("admin-theme", value);
+      if (value === "system") {
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", value);
+      }
+    });
+  })();
+</script>

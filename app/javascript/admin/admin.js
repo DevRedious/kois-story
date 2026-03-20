@@ -47,15 +47,19 @@ document.addEventListener("turbo:load", () => {
 
 	// ── DÉCONNEXION ───────────────────────────────────────────────
 	document.addEventListener("click", (e) => {
-		if (e.target.closest(".logout-btn")) {
-			e.preventDefault();
-			if (confirm("Voulez-vous vraiment vous déconnecter ?")) {
-				showNotification("Déconnexion réussie", "success");
-				setTimeout(() => {
-					window.location.href = "login.html";
-				}, 1000);
-			}
+		const logoutButton = e.target.closest(".logout-btn");
+		if (!logoutButton) return;
+
+		e.preventDefault();
+		if (!confirm("Voulez-vous vraiment vous déconnecter ?")) return;
+
+		const logoutForm = logoutButton.closest("form");
+		if (logoutForm) {
+			logoutForm.requestSubmit();
+			return;
 		}
+
+		window.location.href = "/users/sign_in";
 	});
 
 	// ── SUPPRIMER (modal confirm) ─────────────────────────────────
