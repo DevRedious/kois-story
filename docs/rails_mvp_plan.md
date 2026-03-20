@@ -101,7 +101,7 @@ Every item below is eliminatory at the oral. Verify each one before presenting.
 Run from inside `kois-story/`:
 
 ```bash
-rails new . --skip-git --database=sqlite3
+rails new . --skip-git --database=sqlite3 --asset-pipeline=sprockets --javascript=importmap
 ```
 
 When prompted for conflicts:
@@ -128,14 +128,30 @@ After `.gitignore` is overwritten, add these lines at the bottom:
 
 ## Step 2 - Gems to Add in Gemfile (5 min)
 
-Add inside the main group (not development/test):
+Add to Gemfile:
 
 ```ruby
+# Auth
 gem 'devise'
+gem 'devise-two-factor'  # 2FA infrastructure — dormant in MVP
+gem 'rotp'               # TOTP code generation
+gem 'rqrcode'            # QR code for 2FA setup
+
+# Images
 gem 'cloudinary'
 gem 'carrierwave'
 gem 'carrierwave-cloudinary'
+
+# Env
 gem 'dotenv-rails'
+```
+
+Development/test group:
+
+```ruby
+group :development do
+  gem 'letter_opener'  # Preview emails in browser instead of sending
+end
 ```
 
 Then:
@@ -151,10 +167,21 @@ bundle install
 Create `.env` at root:
 
 ```
+# Cloudinary
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
+
+# Mailer (Resend)
+RESEND_API_KEY=re_xxxxxxxxxxxx
 ADMIN_EMAIL=contact.koistory@gmail.com
+APP_HOST=votredomaine.com
+
+# 2FA (generate with: rails secret | head -c 32)
+OTP_SECRET_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Admin seed password
+ADMIN_PASSWORD=changeme
 ```
 
 Create `.env.example` at root (same keys, empty values):
@@ -163,7 +190,11 @@ Create `.env.example` at root (same keys, empty values):
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
+RESEND_API_KEY=
 ADMIN_EMAIL=
+APP_HOST=
+OTP_SECRET_KEY=
+ADMIN_PASSWORD=
 ```
 
 ---
@@ -176,12 +207,17 @@ rails generate devise User
 rails generate devise:views
 ```
 
-Edit the generated migration to add the `role` column:
+Edit the generated migration to add all extra columns:
 
 ```ruby
 # db/migrate/TIMESTAMP_devise_create_users.rb
 # Add inside create_table :users block:
 t.integer :role, default: 0, null: false
+
+# devise-two-factor columns (dormant for MVP)
+t.string  :otp_secret
+t.integer :consumed_timestep
+t.boolean :otp_required_for_login, default: false, null: false
 ```
 
 Edit `app/models/user.rb`:
@@ -189,13 +225,19 @@ Edit `app/models/user.rb`:
 ```ruby
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :two_factor_authenticatable,
+         otp_secret_encryption_key: ENV['OTP_SECRET_KEY']
 
   enum role: { visitor: 0, admin: 1 }
 
   def admin?
     role == 'admin'
   end
+
+  # 2FA is built but NOT enforced in MVP.
+  # To activate: set otp_required_for_login: true on the admin user
+  # and add before_action :authenticate_with_otp! in Admin::BaseController.
 end
 ```
 
@@ -214,7 +256,6 @@ Access summary:
 - `/users/sign_up` — disabled, route does not exist
 - `/users/password/new` — password reset (Devise default, keep it)
 - `/admin` — redirects to sign_in if not authenticated, then to dashboard
-```
 
 Edit `config/environments/development.rb` - add at the bottom inside the block:
 
@@ -367,6 +408,40 @@ end
 
 ## Step 7 - ActionMailer (20 min)
 
+### SMTP provider: Resend
+
+- Create account at https://resend.com (free tier: 3000 emails/month)
+- Add a verified domain or use the sandbox for dev
+- Get the API key from the Resend dashboard
+- No gem needed — standard Rails SMTP config
+
+### config/environments/development.rb
+
+```ruby
+config.action_mailer.delivery_method = :letter_opener
+config.action_mailer.perform_deliveries = true
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+```
+
+### config/environments/production.rb
+
+```ruby
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.default_url_options = { host: ENV['APP_HOST'] }
+config.action_mailer.smtp_settings = {
+  address:              'smtp.resend.com',
+  port:                 587,
+  domain:               ENV['APP_HOST'],
+  user_name:            'resend',
+  password:             ENV['RESEND_API_KEY'],
+  authentication:       :plain,
+  enable_starttls_auto: true
+}
+```
+
+### Generate mailer
+
 ```bash
 rails generate mailer MessageMailer
 ```
@@ -375,14 +450,12 @@ Edit `app/mailers/message_mailer.rb`:
 
 ```ruby
 class MessageMailer < ApplicationMailer
-  default to: -> { ENV['ADMIN_EMAIL'] }
+  default to: -> { ENV['ADMIN_EMAIL'] },
+          from: "Koi's Story <noreply@koistory.fr>"
 
   def new_message(message)
     @message = message
-    mail(
-      from: message.sender_email,
-      subject: "[Koi's Story] New message from #{message.sender_name}"
-    )
+    mail(subject: "[Koi's Story] Nouveau message de #{message.sender_name}")
   end
 end
 ```
@@ -390,7 +463,7 @@ end
 Create `app/views/message_mailer/new_message.html.erb`:
 
 ```erb
-<h2>New message from <%= @message.sender_name %></h2>
+<h2>Nouveau message de <%= @message.sender_name %></h2>
 <p><strong>Email:</strong> <%= @message.sender_email %></p>
 <p><strong>Message:</strong></p>
 <p><%= @message.body %></p>
@@ -399,7 +472,7 @@ Create `app/views/message_mailer/new_message.html.erb`:
 Create `app/views/message_mailer/new_message.text.erb`:
 
 ```
-New message from <%= @message.sender_name %>
+Nouveau message de <%= @message.sender_name %>
 Email: <%= @message.sender_email %>
 
 <%= @message.body %>
@@ -555,8 +628,6 @@ Replace `config/routes.rb` entirely:
 
 ```ruby
 Rails.application.routes.draw do
-  devise_for :users
-
   # Devise — registration disabled, admin login only
   devise_for :users, skip: [:registrations]
 
@@ -602,9 +673,9 @@ Create this file manually — Rails does not generate it. All `Admin::` controll
     <%= javascript_include_tag 'admin_application', defer: true %>
   </head>
   <body>
-    <%= render 'layouts/admin_sidebar' %>
+    <%= render 'admin/shared/sidebar' %>
     <main class="main-content">
-      <%= render 'layouts/admin_topbar' %>
+      <%= render 'admin/shared/topbar' %>
       <% if notice %><div class="alert alert-success"><%= notice %></div><% end %>
       <% if alert %><div class="alert alert-danger"><%= alert %></div><% end %>
       <%= yield %>
@@ -867,8 +938,8 @@ User.destroy_all
 # Admin user
 admin = User.create!(
   email: 'contact.koistory@gmail.com',
-  password: 'password123',
-  password_confirmation: 'password123',
+  password: ENV['ADMIN_PASSWORD'],
+  password_confirmation: ENV['ADMIN_PASSWORD'],
   role: :admin
 )
 
@@ -924,7 +995,7 @@ Check each item:
 - [ ] Koi product page shows WhatsApp button
 - [ ] Konishi badge displays on eligible kois
 - [ ] `http://localhost:3000/users/sign_in` - Devise login works
-- [ ] Login with `contact.koistory@gmail.com` / `password123`
+- [ ] Login with `contact.koistory@gmail.com` / value of `ADMIN_PASSWORD` in `.env`
 - [ ] `http://localhost:3000/admin` - admin dashboard accessible
 - [ ] Admin can create/edit/delete a koi
 - [ ] Admin can view messages
@@ -936,18 +1007,17 @@ Check each item:
 
 ## Branch Strategy
 
-Work on a new branch from DEV:
+The `MVP` branch already exists and is ready. Switch to it:
 
 ```bash
-git checkout DEV
+git checkout MVP
 git pull
-git checkout -b feat/rails-scaffold
 ```
 
 Commit frequently after each step. When done:
 
 ```bash
-git push origin feat/rails-scaffold
+git push origin MVP
 gh pr create --base DEV --title "feat: Rails MVP scaffold"
 ```
 
@@ -958,7 +1028,7 @@ gh pr create --base DEV --title "feat: Rails MVP scaffold"
 | Risk | Mitigation |
 |---|---|
 | Cloudinary credentials not available | Use local file storage for MVP demo, wire Cloudinary after |
-| ActionMailer not configured for prod | Use Letter Opener gem in dev, Mailjet SMTP in prod (1000 mails/month free) |
+| ActionMailer not configured for prod | Resend SMTP — see Step 7 for full config |
 | CSS integration takes too long | Copy prototype CSS files to `app/assets/stylesheets/` — no Bootstrap/Tailwind needed |
 | CSS variables broken (ADMIN vs VISITORS naming) | Create `shared/variables.css` with both alias names — see CSS section above |
 | JS stops working after navigation | Replace `DOMContentLoaded` with `turbo:load` in every JS file |
