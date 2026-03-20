@@ -1,0 +1,26 @@
+<h2>Kois</h2>
+<%= link_to "New koi", new_admin_koi_path, class: "btn" %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Variety</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @kois.each do |koi| %>
+      <tr>
+        <td><%= koi.name %></td>
+        <td><%= koi.variety %></td>
+        <td><%= koi.status %></td>
+        <td>
+          <%= link_to "Show", admin_koi_path(koi) %>
+          <%= link_to "Edit", edit_admin_koi_path(koi) %>
+          <%= button_to "Delete", admin_koi_path(koi), method: :delete, form: { style: "display:inline" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

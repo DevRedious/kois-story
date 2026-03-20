@@ -152,9 +152,10 @@ gem 'rotp'               # TOTP code generation
 gem 'rqrcode'            # QR code for 2FA setup
 
 # Images
+# NOTE: carrierwave-cloudinary is NOT on RubyGems — do not add it
+# CarrierWave >= 3.1.0 has built-in Cloudinary support via the cloudinary gem directly
 gem 'cloudinary'
-gem 'carrierwave'
-gem 'carrierwave-cloudinary'
+gem 'carrierwave', '>= 3.1.0'
 
 # Env
 gem 'dotenv-rails'
@@ -1241,6 +1242,7 @@ gh pr create --base DEV --title "feat: Rails MVP scaffold"
 | Risk | Mitigation |
 |---|---|
 | Cloudinary credentials not available | Use local file storage for MVP demo, wire Cloudinary after |
+| `carrierwave-cloudinary` gem not on RubyGems | Use `carrierwave >= 3.1.0` + `cloudinary` directly — built-in support, no third gem needed |
 | ActionMailer not configured for prod | Resend SMTP — see Step 7 for full config |
 | CSS integration takes too long | Copy prototype CSS files to `app/assets/stylesheets/` — no Bootstrap/Tailwind needed |
 | CSS variables broken (ADMIN vs VISITORS naming) | Create `shared/variables.css` with both alias names — see CSS section above |

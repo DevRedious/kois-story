@@ -1,0 +1,26 @@
+<h2>Messages</h2>
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>Email</th>
+      <th>Read</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.sender_name %></td>
+        <td><%= message.sender_email %></td>
+        <td><%= message.read? ? "Yes" : "No" %></td>
+        <td>
+          <%= link_to "Show", admin_message_path(message) %>
+          <% unless message.read? %>
+            <%= button_to "Mark read", admin_message_path(message), method: :patch, form: { style: "display:inline" } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,234 @@
+/* ============================================================
+   ADMIN — Molecules — Modal
+   Système de modals : overlay, conteneur, header, body, footer
+   Variants : confirm suppression, lecture message, paiement
+   ============================================================ */
+
+/* ── Overlay backdrop ──────────────────────────────────────── */
+.modal-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.52);
+	z-index: 900;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.2s ease,
+		visibility 0.2s ease;
+}
+
+.modal-overlay--open {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* ── Conteneur modal ───────────────────────────────────────── */
+.modal {
+	background: var(--blanc-pur);
+	border-radius: 12px;
+	box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22);
+	width: 100%;
+	max-width: 520px;
+	max-height: 90vh;
+	overflow-y: auto;
+	transform: translateY(10px) scale(0.98);
+	transition: transform 0.2s ease;
+	position: relative;
+}
+
+.modal-overlay--open .modal {
+	transform: translateY(0) scale(1);
+}
+
+.modal--sm {
+	max-width: 400px;
+}
+.modal--lg {
+	max-width: 660px;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1.2rem 1.5rem;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+	font-family: var(--font-title);
+	font-size: 1.05rem;
+	font-weight: 700;
+	color: var(--noir);
+	margin: 0;
+	flex: 1;
+}
+
+.modal-close {
+	width: 30px;
+	height: 30px;
+	border-radius: 6px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--gris);
+	transition:
+		background 0.15s,
+		color 0.15s;
+	flex-shrink: 0;
+}
+
+.modal-close:hover {
+	background: var(--blanc-casse);
+	color: var(--noir);
+}
+
+/* ── Body ──────────────────────────────────────────────────── */
+.modal-body {
+	padding: 1.5rem;
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+.modal-footer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.75rem;
+	padding: 1rem 1.5rem;
+	border-top: 1px solid var(--border-color);
+	background: var(--blanc-casse);
+	border-radius: 0 0 12px 12px;
+}
+
+.modal-footer--centered {
+	justify-content: center;
+}
+
+/* ── Confirm modal ─────────────────────────────────────────── */
+.modal-confirm-icon {
+	width: 52px;
+	height: 52px;
+	border-radius: 50%;
+	background: #fff0f0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 1rem;
+	color: var(--rouge-vif);
+}
+
+.modal-confirm-text {
+	text-align: center;
+	color: var(--gris);
+	font-size: 0.9375rem;
+	line-height: 1.6;
+}
+
+.modal-confirm-item {
+	display: block;
+	font-weight: 700;
+	color: var(--noir);
+	margin-top: 0.25rem;
+}
+
+/* ── Message modal ─────────────────────────────────────────── */
+.modal-msg-meta {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0.3rem 1rem;
+	margin-bottom: 1.25rem;
+	font-size: 0.875rem;
+}
+
+.modal-msg-meta dt {
+	color: var(--gris);
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.modal-msg-meta dd {
+	color: var(--noir);
+	margin: 0;
+	word-break: break-word;
+}
+
+.modal-msg-body {
+	background: var(--blanc-casse);
+	border-left: 3px solid var(--rouge-vif);
+	border-radius: 0 8px 8px 0;
+	padding: 1rem 1.25rem;
+	font-size: 0.9375rem;
+	line-height: 1.65;
+	color: var(--noir);
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+/* ── Payment modal ─────────────────────────────────────────── */
+.modal-payment-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.modal-payment-field dt {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+	color: var(--gris);
+	font-weight: 600;
+	margin-bottom: 0.2rem;
+}
+
+.modal-payment-field dd {
+	font-size: 0.9375rem;
+	font-weight: 600;
+	color: var(--noir);
+	margin: 0;
+}
+
+.modal-payment-amount {
+	font-size: 1.4rem;
+	color: var(--rouge-vif);
+	font-family: var(--font-title);
+}
+
+.modal-pay-form {
+	border-top: 1px solid var(--border-color);
+	padding-top: 1.25rem;
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+/* ── Boutons danger / success ──────────────────────────────── */
+.btn--danger {
+	background: var(--rouge-vif);
+	color: #fff;
+	border: 1px solid transparent;
+}
+
+.btn--danger:hover {
+	background: #c70000;
+}
+
+.btn--success {
+	background: #28a745;
+	color: #fff;
+	border: 1px solid transparent;
+}
+
+.btn--success:hover {
+	background: #218838;
+}

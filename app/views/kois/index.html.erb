@@ -1,0 +1,20 @@
+<h1>Koi catalogue</h1>
+
+<%= form_with url: kois_path, method: :get, local: true do |f| %>
+  <%= f.label :variety, "Variety" %>
+  <%= f.select :variety, options_for_select(@varieties, params[:variety]), include_blank: "All" %>
+  <%= f.submit "Filter" %>
+<% end %>
+
+<div class="koi-grid">
+  <% @kois.each do |koi| %>
+    <article class="koi-card">
+      <h2><%= link_to koi.name, koi_path(koi) %></h2>
+      <p><%= koi.variety %></p>
+      <% if koi.konishi_lineage? %>
+        <span class="badge badge-konishi">Konishi Lineage</span>
+      <% end %>
+      <p><%= number_to_currency(koi.price, unit: "EUR ") %></p>
+    </article>
+  <% end %>
+</div>

@@ -1,0 +1,6 @@
+/*
+ *= require shared/variables
+ *= require admin/variables
+ *= require_tree ./admin
+ *= require_self
+ */

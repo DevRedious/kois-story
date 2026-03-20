@@ -1,0 +1,34 @@
+<div class="login-page">
+  <div class="login-logo">
+    <h1>Koi's Story</h1>
+  </div>
+
+  <div class="login-visitor">
+    <h2>Discover our koi</h2>
+    <p class="login-hint">Member area coming soon</p>
+    <%= link_to "Enter the catalogue", root_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="login-divider">or</div>
+
+  <div class="login-admin">
+    <h2>Administration</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <%= f.submit "Sign in", class: "btn btn-secondary" %>
+    <% end %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name), class: "login-forgot" %>
+    <div>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

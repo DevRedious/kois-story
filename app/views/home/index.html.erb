@@ -1,0 +1,18 @@
+<section class="hero">
+  <h1>Koi's Story</h1>
+  <p>French Konishi-lineage koi breeder.</p>
+  <%= link_to "Browse kois", kois_path, class: "btn" %>
+</section>
+
+<section>
+  <h2>Featured kois</h2>
+  <div class="koi-grid">
+    <% @featured_kois.each do |koi| %>
+      <article class="koi-card">
+        <h3><%= link_to koi.name, koi_path(koi) %></h3>
+        <p><%= koi.variety %> - <%= koi.size_cm %> cm</p>
+        <p><%= number_to_currency(koi.price, unit: "EUR ") %></p>
+      </article>
+    <% end %>
+  </div>
+</section>

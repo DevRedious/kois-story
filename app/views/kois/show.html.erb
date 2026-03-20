@@ -1,0 +1,15 @@
+<h1><%= @koi.name %></h1>
+<p><%= @koi.variety %> - <%= @koi.size_cm %> cm</p>
+<p><%= @koi.description %></p>
+<p><%= number_to_currency(@koi.price, unit: "EUR ") %></p>
+
+<% if @koi.konishi_lineage? %>
+  <span class="badge badge-konishi">Konishi Lineage</span>
+<% end %>
+
+<%
+  wa_number = "33XXXXXXXXX"
+  wa_text = URI.encode_www_form_component("Hello, I'm interested in #{@koi.name} (#{@koi.variety}, #{@koi.size_cm}cm).")
+%>
+<%= link_to "Order via WhatsApp", "https://wa.me/#{wa_number}?text=#{wa_text}",
+    class: "btn btn-wa", target: "_blank", rel: "noopener" %>

@@ -1,0 +1,12 @@
+/* Atom — badge preview */
+.logo-konishi {
+	height: 1.1em;
+	vertical-align: middle;
+}
+
+.group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+}

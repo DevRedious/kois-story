@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Koi's Story" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% if notice %><div class="flash notice"><%= notice %></div><% end %>
+    <% if alert %><div class="flash alert"><%= alert %></div><% end %>
+    <%= yield %>
+    <%= render "layouts/footer" %>
+  </body>
+</html>

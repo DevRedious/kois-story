@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sender_name: Alice
+  sender_email: alice@example.com
+  body: Hello from Alice
+  read: false
+
+two:
+  sender_name: Bob
+  sender_email: bob@example.com
+  body: Hello from Bob
+  read: false

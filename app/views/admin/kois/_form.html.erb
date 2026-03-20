@@ -1,0 +1,33 @@
+<%= form_with model: [:admin, koi], local: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true %>
+
+  <%= f.label :variety %>
+  <%= f.text_field :variety, required: true %>
+
+  <%= f.label :age_class %>
+  <%= f.select :age_class, Koi.age_classes.keys %>
+
+  <%= f.label :age %>
+  <%= f.number_field :age %>
+
+  <%= f.label :sex %>
+  <%= f.select :sex, Koi.sexes.keys %>
+
+  <%= f.label :size_cm %>
+  <%= f.number_field :size_cm %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price, step: 0.01, required: true %>
+
+  <%= f.label :status %>
+  <%= f.select :status, Koi.statuses.keys %>
+
+  <%= f.label :konishi_lineage %>
+  <%= f.check_box :konishi_lineage %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.submit %>
+<% end %>
