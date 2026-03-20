@@ -166,16 +166,16 @@
 
 ### Versioning Git
 
-- [x] Branche `dev` (intégration) — branche actuelle : `admin-and-back`
+- [x] Branche `DEV` (intégration) — branche actuelle : `admin-and-back`
 - [x] Branche `main` (production)
 - [ ] Pas de commit direct sur `main` — règle à faire respecter
-- [ ] Feature branches depuis `dev`, PR vers `dev`
+- [ ] Feature branches depuis `DEV`, PR vers `DEV`
 - [ ] Messages de commit en anglais, format conventionnel (`feat:`, `fix:`, `docs:`)
 
 ### GitHub Actions
 
 - [ ] Action `CONTRIBUTORS.md` — logging automatique des tâches
-- [ ] Action CI (tests) sur PR vers dev
+- [ ] Action CI (tests) sur PR vers `DEV`
 - [ ] Vérification Biome (lint) sur PR
 
 ### Hébergement VPS

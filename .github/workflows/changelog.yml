@@ -3,7 +3,6 @@ name: Update CHANGELOG
 on:
   push:
     branches:
-      - dev
       - DEV
       - main
   workflow_dispatch:

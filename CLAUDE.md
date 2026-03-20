@@ -240,8 +240,8 @@ Stockées dans `docs/fonts/inter/` et `docs/fonts/playfair-display/`. Toutes les
 
 Voir `CONTRIBUTING.md` pour le détail complet.
 
-- Branches : `dev` (intégration) → `main` (prod). Jamais de commit direct sur `main`.
-- Feature branches depuis `dev`, PR vers `dev`.
+- Branches : `DEV` (intégration) → `main` (prod). Jamais de commit direct sur `main`.
+- Feature branches depuis `DEV`, PR vers `DEV`.
 - Messages de commit en anglais, format conventionnel : `feat:`, `fix:`, `docs:`, `refactor:`.
 
 ---

@@ -73,7 +73,7 @@ An example configuration file is available at `.env.example`.
 
 - `Main` is the production branch
 - `DEV` is the integration branch
-- contributor branches are `Morgan`, `Romain`, and `Valentin`
+- contributor branches are `Morgan`, `Romain`, and `Valentin`; **Cursor**, **Claude**, and **Gemini** are acknowledged as tooling contributors in `CONTRIBUTORS.md`
 - all code and `README.md` content must stay in English
 - routes must remain RESTful
 - business logic belongs in models
