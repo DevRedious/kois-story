@@ -16,8 +16,8 @@ module Admin
     def create
       @koi = Koi.new(koi_params)
       @koi.user = current_user
-      if @koi.save
-        attach_uploaded_images(@koi)
+
+      if persist_koi_with_images(@koi)
         redirect_to admin_kois_path, notice: "Koi created successfully."
       else
         render :new, status: :unprocessable_entity
@@ -27,8 +27,9 @@ module Admin
     def edit; end
 
     def update
-      if @koi.update(koi_params)
-        attach_uploaded_images(@koi)
+      @koi.assign_attributes(koi_params)
+
+      if persist_koi_with_images(@koi)
         redirect_to admin_kois_path, notice: "Koi updated successfully."
       else
         render :edit, status: :unprocessable_entity
@@ -53,7 +54,17 @@ module Admin
       )
     end
 
-    def attach_uploaded_images(koi)
+    def persist_koi_with_images(koi)
+      ActiveRecord::Base.transaction do
+        koi.save!
+        attach_uploaded_images!(koi)
+      end
+      true
+    rescue ActiveRecord::RecordInvalid
+      false
+    end
+
+    def attach_uploaded_images!(koi)
       return unless params.dig(:koi, :uploaded_images).present?
 
       base_position = koi.images.count

@@ -5,11 +5,11 @@ one:
   alt: MyString
   position: 1
   imageable: one
-  imageable_type: Imageable
+  imageable_type: Koi
 
 two:
   url: MyString
   alt: MyString
   position: 1
   imageable: two
-  imageable_type: Imageable
+  imageable_type: Koi

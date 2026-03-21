@@ -18,5 +18,13 @@ class Admin::MessagesControllerTest < ActionDispatch::IntegrationTest
   test "should update read status" do
     patch admin_message_url(messages(:one))
     assert_redirected_to admin_messages_url
+    assert messages(:one).reload.read?
+  end
+
+  test "should mark message as read when showing it" do
+    get admin_message_url(messages(:one))
+
+    assert_response :success
+    assert messages(:one).reload.read?
   end
 end

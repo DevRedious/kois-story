@@ -18,7 +18,11 @@ document.addEventListener("turbo:load", () => {
 		// ── PRÉVISUALISATION DES IMAGES ────────────────────────────
 		fileInput.addEventListener("change", function () {
 			if (!preview) return;
-			preview.querySelectorAll(".img-thumb--new").forEach((node) => node.remove());
+			preview
+				.querySelectorAll(".img-thumb--new")
+				.forEach((node) => {
+					node.remove();
+				});
 			Array.from(this.files).forEach((file, i) => {
 				if (!file.type.startsWith("image/")) return;
 				const reader = new FileReader();

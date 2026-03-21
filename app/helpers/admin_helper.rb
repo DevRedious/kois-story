@@ -17,7 +17,7 @@ module AdminHelper
     when :dashboard
       "Tableau de bord"
     when :kois
-      action_name.in?(%w[new create edit update]) ? "Edition des kois" : "Gestion des kois"
+      action_name.in?(%w[ new create edit update ]) ? "Edition des kois" : "Gestion des kois"
     when :messages
       action_name == "show" ? "Message client" : "Messages"
     else
@@ -32,7 +32,7 @@ module AdminHelper
       items
     when :kois
       items << { label: "Kois", url: admin_kois_path }
-      items << { label: action_name == "new" ? "Nouveau" : "Edition", url: nil } if action_name.in?(%w[new edit])
+      items << { label: action_name == "new" ? "Nouveau" : "Edition", url: nil } if action_name.in?(%w[ new edit ])
       items << { label: @koi.name, url: nil } if action_name == "show" && defined?(@koi) && @koi.present?
     when :messages
       items << { label: "Messages", url: admin_messages_path }

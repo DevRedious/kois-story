@@ -9,3 +9,9 @@ two:
   encrypted_password: <%= Devise::Encryptor.digest(User, "password123") %>
   role: 1
   otp_required_for_login: false
+
+visitor:
+  email: visitor@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password123") %>
+  role: 0
+  otp_required_for_login: false

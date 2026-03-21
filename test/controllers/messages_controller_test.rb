@@ -9,4 +9,14 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
+
+  test "should not create invalid message" do
+    assert_no_difference("Message.count") do
+      post messages_url, params: {
+        message: { sender_name: "", sender_email: "invalid", body: "" }
+      }
+    end
+
+    assert_redirected_to root_url
+  end
 end
