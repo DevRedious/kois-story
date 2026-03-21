@@ -7,10 +7,10 @@ module ApplicationHelper
     return unless image&.url.present?
 
     candidate = image.url.url
-    return candidate if candidate.present?
+    candidate if candidate.present?
   rescue StandardError
     candidate = image[:url].to_s
-    return candidate if candidate.start_with?("/", "http://", "https://")
+    candidate if candidate.start_with?("/", "http://", "https://")
   end
 
   def whatsapp_link(phone, message)
