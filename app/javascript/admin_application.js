@@ -1,12 +1,8 @@
 import "@hotwired/turbo-rails";
 import "controllers";
 import "admin/admin";
-import "admin/modal";
 import "admin/notifications";
 import "admin/theme";
 import "admin/kois";
 import "admin/koi-form";
 import "admin/messages";
-import "admin/orders";
-import "admin/order-form";
-import "admin/payments";

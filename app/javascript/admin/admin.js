@@ -5,7 +5,6 @@
  */
 
 document.addEventListener("turbo:load", () => {
-	// ── THEME SWITCHER (light / dark / system, défaut: system) ──────
 	var themeSelect = document.querySelector(".theme-switcher select");
 	if (themeSelect) {
 		const current = localStorage.getItem("admin-theme") || "system";
@@ -21,7 +20,6 @@ document.addEventListener("turbo:load", () => {
 		});
 	}
 
-	// ── SIDEBAR MOBILE TOGGLE ─────────────────────────────────────
 	const menuBurger = document.querySelector(".menu-burger");
 	const sidebar = document.querySelector(".sidebar");
 	const overlay = document.querySelector(".overlay");
@@ -45,7 +43,6 @@ document.addEventListener("turbo:load", () => {
 		this.classList.remove("active");
 	});
 
-	// ── DÉCONNEXION ───────────────────────────────────────────────
 	document.addEventListener("click", (e) => {
 		const logoutButton = e.target.closest(".logout-btn");
 		if (!logoutButton) return;
@@ -62,54 +59,6 @@ document.addEventListener("turbo:load", () => {
 		window.location.href = "/users/sign_in";
 	});
 
-	// ── SUPPRIMER (modal confirm) ─────────────────────────────────
-	let pendingDeleteRow = null;
-
-	document.addEventListener("click", (e) => {
-		const btn = e.target.closest("[data-delete-label]");
-		if (!btn) return;
-		e.preventDefault();
-		pendingDeleteRow = btn.closest("tr");
-		const label = btn.dataset.deleteLabel || "cet élément";
-		const itemEl = document.getElementById("confirm-item-label");
-		if (itemEl) itemEl.textContent = label;
-		window.AdminModal?.open("modal-confirm");
-	});
-
-	document.addEventListener("click", (e) => {
-		if (!e.target.closest("#btn-confirm-delete")) return;
-		window.AdminModal?.closeAll();
-		if (pendingDeleteRow) {
-			pendingDeleteRow.style.transition = "opacity 0.3s ease";
-			pendingDeleteRow.style.opacity = "0";
-			setTimeout(() => {
-				pendingDeleteRow?.remove();
-				pendingDeleteRow = null;
-			}, 300);
-		}
-		showNotification("Élément supprimé", "success");
-	});
-
-	// ── RECHERCHE ─────────────────────────────────────────────────
-	document.addEventListener("input", (e) => {
-		const input = e.target.closest('.filter-search, input[type="search"]');
-		if (!input) return;
-		const query = input.value.toLowerCase();
-		document.querySelectorAll("tbody tr").forEach((row) => {
-			row.style.display = row.textContent.toLowerCase().includes(query)
-				? ""
-				: "none";
-		});
-	});
-
-	// ── FILTRES ───────────────────────────────────────────────────
-	document.addEventListener("change", (e) => {
-		const select = e.target.closest(".filter-select");
-		if (!select) return;
-		showNotification(`Filtre appliqué : ${select.value}`, "info");
-	});
-
-	// ── GUARD FORMULAIRE NON SAUVEGARDÉ ──────────────────────────
 	let formModified = false;
 	document.querySelectorAll("form").forEach((form) => {
 		form.addEventListener("change", () => {
@@ -125,6 +74,4 @@ document.addEventListener("turbo:load", () => {
 			e.returnValue = "";
 		}
 	});
-
-	console.log("🐟 Koi's Story Admin — chargé");
 });

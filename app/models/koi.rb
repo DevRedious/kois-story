@@ -12,9 +12,10 @@ class Koi < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
 
   scope :konishi, -> { where(konishi_lineage: true) }
+  scope :with_images, -> { joins(:images).where(images: { imageable_type: name }).distinct }
 
   def self.filter(params)
-    kois = all
+    kois = with_images
     kois = kois.where(variety: params[:variety]) if params[:variety].present?
     kois = kois.where(age_class: params[:age_class]) if params[:age_class].present?
     kois = kois.where(sex: params[:sex]) if params[:sex].present?

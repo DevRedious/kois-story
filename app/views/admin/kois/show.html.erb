@@ -10,7 +10,11 @@
   </div>
 
   <div class="koi-cell">
-    <%= image_tag admin_koi_image_source(@koi), alt: "", class: "koi-thumb koi-thumb-lg" %>
+    <% if admin_koi_image_source(@koi).present? %>
+      <%= image_tag admin_koi_image_source(@koi), alt: "", class: "koi-thumb koi-thumb-lg" %>
+    <% else %>
+      <div class="koi-thumb koi-thumb-lg">Aucune photo</div>
+    <% end %>
     <div>
       <div class="koi-name"><%= @koi.name %></div>
       <div class="koi-variety"><%= @koi.variety %></div>

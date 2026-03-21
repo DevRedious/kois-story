@@ -1,9 +1,7 @@
 module Admin::KoisHelper
   def admin_koi_image_source(koi)
     first_image = koi.images.order(:position).first
-    return first_image.url.url if first_image&.url.present?
-
-    docs_asset_path("carpe-koi-showa-scaled.jpg")
+    first_image&.url&.url
   end
 
   def admin_koi_status_label(koi)

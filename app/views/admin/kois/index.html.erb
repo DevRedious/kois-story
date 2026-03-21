@@ -43,7 +43,11 @@
           <tr data-status="<%= koi.status %>" data-variety="<%= koi.variety.to_s.downcase %>" data-lineage="<%= admin_koi_lineage_value(koi) %>">
             <td>
               <div class="koi-cell">
-                <%= image_tag admin_koi_image_source(koi), alt: "", class: "koi-thumb koi-thumb-sm" %>
+                <% if admin_koi_image_source(koi).present? %>
+                  <%= image_tag admin_koi_image_source(koi), alt: "", class: "koi-thumb koi-thumb-sm" %>
+                <% else %>
+                  <div class="koi-thumb koi-thumb-sm">?</div>
+                <% end %>
                 <div>
                   <div class="koi-name"><%= koi.name %></div>
                   <div class="koi-variety"><%= koi.variety %></div>

@@ -1,6 +1,6 @@
 <article class="koi-card" data-variety="<%= koi.variety.to_s.parameterize %>" data-age="<%= koi.age_class.to_s.parameterize %>" data-price="<%= koi.price.to_i %>" data-konishi="<%= koi.konishi_lineage? %>" data-animate="fade-up" data-delay="<%= index %>">
   <div class="koi-card-image">
-    <%= image_tag koi_card_image_source(koi, index), alt: koi.name %>
+    <%= image_tag koi_card_image_source(koi), alt: koi.name if koi_card_image_source(koi).present? %>
     <div class="koi-card-badges">
       <% if koi.konishi_lineage? %>
         <span class="koi-card-badge koi-card-badge--konishi"><%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %></span>

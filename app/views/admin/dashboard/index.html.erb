@@ -48,7 +48,7 @@
           <% @recent_messages.each do |message| %>
             <tr class="msg-row <%= 'unread' unless message.read? %>">
               <td class="msg-datetime-cell"><%= l(message.created_at, format: :short) rescue message.created_at.strftime("%d/%m · %H:%M") %></td>
-              <td><strong><%= message.sender_name %></strong></td>
+              <td><strong><%= link_to message.sender_name, admin_message_path(message) %></strong></td>
               <td class="msg-preview"><%= truncate(message.body, length: 80) %></td>
               <td><span class="badge <%= message.read? ? 'badge-lu' : 'badge-nonlu' %>"><%= message.read? ? "Lu" : "Non lu" %></span></td>
             </tr>

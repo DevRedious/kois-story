@@ -1,23 +1,11 @@
 module KoisHelper
-  KOI_FALLBACKS = [
-    "carpe-koi-showa-scaled-hero.jpg",
-    "24148-Sakura-Grand-Voile-Suda-600x800.jpg",
-    "butterfly-tancho-kujaku.jpg",
-    "carpe-koi-showa-scaled.jpg"
-  ].freeze
-
-  def koi_card_image_source(koi, index = 0)
+  def koi_card_image_source(koi)
     first_image = koi.images.order(:position).first
-    return first_image.url.url if first_image&.url.present?
-
-    docs_asset_path(KOI_FALLBACKS[index % KOI_FALLBACKS.size])
+    first_image&.url&.url
   end
 
   def koi_gallery_images(koi)
-    uploaded = koi.images.order(:position).filter_map { |image| image.url.url if image.url.present? }
-    return uploaded if uploaded.any?
-
-    KOI_FALLBACKS.first(3).map { |filename| docs_asset_path(filename) }
+    koi.images.order(:position).filter_map { |image| image.url.url if image.url.present? }
   end
 
   def koi_meta(koi)
