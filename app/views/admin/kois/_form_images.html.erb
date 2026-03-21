@@ -17,7 +17,11 @@
   <div class="img-preview" id="img-preview">
     <% koi.images.order(:position).each do |image| %>
       <div class="img-thumb">
-        <%= image_tag image.url.url, alt: image.alt.presence || "Photo du koi" %>
+        <% if resolved_image_source(image).present? %>
+          <%= image_tag resolved_image_source(image), alt: image.alt.presence || "Photo du koi" %>
+        <% else %>
+          <div class="koi-thumb koi-thumb-sm">?</div>
+        <% end %>
       </div>
     <% end %>
   </div>

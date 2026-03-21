@@ -1,11 +1,11 @@
 module KoisHelper
   def koi_card_image_source(koi)
     first_image = koi.images.order(:position).first
-    image_source(first_image)
+    resolved_image_source(first_image)
   end
 
   def koi_gallery_images(koi)
-    koi.images.order(:position).filter_map { |image| image_source(image) }
+    koi.images.order(:position).filter_map { |image| resolved_image_source(image) }
   end
 
   def koi_meta(koi)
@@ -28,15 +28,5 @@ module KoisHelper
     return "Inconnu" if koi.sex.blank? || koi.sex == "unknown"
 
     koi.sex == "female" ? "Femelle" : "Mâle"
-  end
-
-  private
-
-  def image_source(image)
-    return unless image&.url.present?
-
-    image.url.url
-  rescue StandardError
-    image[:url].presence
   end
 end

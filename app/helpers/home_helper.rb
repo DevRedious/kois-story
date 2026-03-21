@@ -1,7 +1,7 @@
 module HomeHelper
   def koi_image_source(koi)
     first_image = koi.images.order(:position).first
-    first_image&.url&.url
+    resolved_image_source(first_image)
   end
 
   def showcase_meta(koi)

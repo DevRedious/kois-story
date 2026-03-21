@@ -3,6 +3,16 @@ module ApplicationHelper
     "/docs/assets/#{ERB::Util.url_encode(filename)}"
   end
 
+  def resolved_image_source(image)
+    return unless image&.url.present?
+
+    candidate = image.url.url
+    return candidate if candidate.present?
+  rescue StandardError
+    candidate = image[:url].to_s
+    return candidate if candidate.start_with?("/", "http://", "https://")
+  end
+
   def whatsapp_link(phone, message)
     "https://wa.me/#{phone}?text=#{ERB::Util.url_encode(message)}"
   end
