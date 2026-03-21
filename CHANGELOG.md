@@ -44,6 +44,9 @@ This project follows a pre-production workflow until the first production deploy
 
 
 ### Integration
+- Merge pull request #49 from DevRedious/chore/auto-update-changelog
+
+docs: auto-update CHANGELOG
 - Merge pull request #51 from DevRedious/MVP
 
 Mvp
@@ -69,41 +72,6 @@ Mvp
 - Merge pull request #48 from DevRedious/chore/auto-update-changelog
 
 docs: auto-update CHANGELOG
-- Merge pull request #40 from DevRedious/chore/auto-update-changelog
-
-docs: auto-update CHANGELOG
-- Merge pull request #39 from DevRedious/admin-and-back
-
-docs: CHANGELOG history, CONTRIBUTORS avatars, README progress tracker
-- Merge pull request #18 from DevRedious/chore/auto-update-changelog
-
-docs: auto-update CHANGELOG
-- Merge pull request #15 from DevRedious/chore/auto-update-changelog
-
-docs: auto-update CHANGELOG
-- Merge pull request #17 from DevRedious/admin-and-back
-
-chore: update changelog format and commit parser rules
-- Merge branch 'main' into admin-and-back
-
-
----## [2026-03-20]
-
-### Changed
-- resolve CHANGELOG conflict — keep curated version from admin-and-back
-- remove duplicate Team section from README, point to CONTRIBUTORS.md
-- normalize line endings to LF across VISITORS and todo.md
-- update .gitattributes for consistent line endings
-- update CHANGELOG, CONTRIBUTORS and README with project tracking
-- standardize branch naming from `dev` to `DEV` across documentation
-- update changelog format and commit parser rules
-
-
-### Fixed
-- **ci**: restrict changelog workflow to DEV branch only
-
-
-### Integration
 - Merge pull request #40 from DevRedious/chore/auto-update-changelog
 
 docs: auto-update CHANGELOG
