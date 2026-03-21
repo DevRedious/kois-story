@@ -8,12 +8,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repo Contains Now
 
-This repo is **HTML/CSS/JS prototypes only**  no Rails app yet. Two independent prototyping workspaces:
+Two phases coexist in this repo:
 
-- `ADMIN/`  Back-office admin interface (Mathilde's dashboard)
-- `VISITORS/`  Public-facing site prototype
+**Prototype (branches `DEV`, `main`, `admin-and-back`):**
+- `ADMIN/` - Back-office admin interface (Mathilde's dashboard)
+- `VISITORS/` - Public-facing site prototype
+- Pages open directly via double-click (no server needed)
+- All sidebar/navigation HTML is injected inline - no `fetch()` for components
 
-Pages can be opened directly via double-click (no server needed). All sidebar/navigation HTML is injected inline into each page file  there is no `fetch()` for components.
+**Rails MVP (branch `MVP`):**
+- Rails app being scaffolded from scratch
+- Follow `docs/rails_mvp_plan.md` for the full step-by-step implementation guide
+- Do NOT modify `ADMIN/` or `VISITORS/` on the MVP branch - they are reference only
+- CSS/fonts from the prototype will be copied to `app/assets/` during integration
+
+## Branching
+
+| Branch | Purpose |
+|---|---|
+| `main` | Production - no direct commits |
+| `DEV` | Integration - all PRs target here |
+| `MVP` | Rails app scaffold - oral blanc 2026-03-20 |
+| `admin-and-back` | Docs, CI/CD, changelog, contributors |
+
+Active PR: `admin-and-back` -> `DEV` (#39) - merge this before branching new features.
 
 ---
 
@@ -58,17 +76,25 @@ assets/
 
 ### CSS Architecture
 
-`assets/css/admin.css` is a **pure manifest**  it only imports the five modules:
+`assets/css/admin.css` is the **manifest** that imports the modules. The CSS is organized in subdirectories following Atomic Design:
 
-| File | Responsibility |
-|---|---|
-| `variables.css` | All CSS custom properties (colors, fonts, sizes) |
-| `layout.css` | Sidebar, topbar, main, overlay, mobile toggle |
-| `components.css` | Buttons, badges, stat-cards, panels |
-| `forms.css` | Input, select, textarea, form-group |
-| `tables.css` | Table base styles + `.table-responsive` wrapper |
+```
+assets/css/
+  admin.css          → manifest (imports only)
+  variables.css      → CSS custom properties
+  layout.css         → sidebar, topbar, main, overlay (388 lines - over limit)
+  components.css     → buttons, badges, stat-cards, panels (328 lines - over limit)
+  forms.css          → input, select, textarea (294 lines - over limit)
+  utilities.css      → utility classes (256 lines - over limit)
+  login.css          → login page styles (230 lines - over limit)
+  tables.css         → table base + .table-responsive (197 lines - ok)
+  preview-shell.css  → standalone preview shell
+  atoms/             → per-atom CSS files
+  molecules/         → per-molecule CSS files (modal.css, messages-ui.css, etc.)
+  templates/         → admin-layout.css
+```
 
-**Never write styles directly in `admin.css`.** Add to the appropriate module.
+**Never write styles directly in `admin.css`.** Add to the appropriate module. Note: several files exceed the 200-line limit and should be split before Rails integration.
 
 ### CSS Variables (from `variables.css`)
 
@@ -103,22 +129,24 @@ Use **`min-width` only** (mobile-first). The base styles target mobile; desktop 
 
 Never add `max-width` media queries in CSS files. Page-level `<style>` blocks in `dashboard.html` and `messages.html` currently violate this  fix before Rails integration.
 
-### JavaScript (`assets/js/admin.js`)
+### JavaScript
 
-Single file, one `DOMContentLoaded` listener. Handles globally:
-- Sidebar mobile toggle (`.menu-burger` → `.sidebar.open`)
-- Overlay close on click
-- Logout confirmation (`.logout-btn`)
-- Table row search (`.filter-search`)
-- Message read state (`.msg-row.unread`)
-- `beforeunload` guard when form is modified
+JS is now split into **10 dedicated modules** (all under 200 lines):
 
-**Known gaps (not yet migrated to `admin.js`):**
-- `koi-form.html`  image preview + `onclick` on upload button and image removal
-- `order-form.html`  7 inline functions: `addLine()`, `removeLine()`, `updateRow()`, `updateTotal()` + dynamic HTML with embedded `onclick`/`onchange`
-- `kois.html`, `orders.html`, `payments.html`  inline filter/sort `<script>` blocks
+| File | Lines | Responsibility |
+|---|---|---|
+| `admin.js` | 126 | Core: sidebar toggle, overlay, logout, search, read state, form guard |
+| `order-form.js` | 104 | Dynamic order lines: addLine, removeLine, updateRow, updateTotal |
+| `messages.js` | 100 | Message read/unread state management |
+| `payments.js` | 99 | Payment filters and sort |
+| `modal.js` | 60 | Modal open/close/confirm system |
+| `koi-form.js` | 59 | Image preview + upload button |
+| `notifications.js` | 58 | Toast notification system |
+| `kois.js` | 40 | Koi table filter/sort |
+| `orders.js` | 26 | Order table filter/sort |
+| `theme.js` | 12 | Theme toggle |
 
-When adding new interactive behavior, **always add it to `admin.js` via event delegation**  no `onclick=""` in HTML.
+No `onclick=""` violations remain in HTML. When adding new interactive behavior, **always add it via event delegation in the appropriate module** - no `onclick=""` in HTML.
 
 ### Sidebar
 
@@ -146,37 +174,51 @@ Every table must be wrapped in `<div class="table-responsive">`. This is already
 
 **Règle obligatoire : tout CSS doit être dans `VISITORS/assets/css/`.** Aucun style ne doit rester embarqué dans les fichiers HTML (ni `<style>` inline, ni attribut `style=""`). Un fichier CSS par composant ou section, max 200 lignes chacun.
 
-**État actuel : le dossier `VISITORS/assets/css/` n'existe pas encore.** Tous les styles sont embarqués dans les HTML  c'est une violation à corriger. Modèle à suivre : celui d'ADMIN (`variables.css`, puis un fichier par responsabilité, `admin.css` comme manifest d'import).
+**État actuel : le dossier `VISITORS/assets/css/` existe et contient 23 fichiers modules.** L'extraction CSS est complète.
 
-Structure cible :
+Fichiers présents :
 ```
 assets/css/
-  variables.css      → tokens (couleurs, fonts, sizes)  partagé avec preview
+  variables.css      → tokens (couleurs, fonts, sizes)
   base.css           → reset, body
+  fonts.css          → @font-face declarations
   header.css         → navigation
   hero.css           → hero homepage
   catalogue.css      → grille koi + filtres
   product.css        → fiche produit koi
+  product-pages.css  → pages produit statiques
   koi-card.css       → molecule koi-card
+  koi-card-pages.css → variantes koi-card
   farm.css           → page découvrir / galerie
-  footer.css         → footer + formulaire contact
-  …                  → un fichier par composant/section, max 200 lignes
+  footer.css         → footer standard
+  footer-full.css    → footer complet avec formulaire contact
+  features.css       → section fonctionnalités
+  konishi.css        → badge et section Konishi
+  shop.css           → section boutique produits
+  badge.css          → atom badge
+  button.css         → atom button
+  price.css          → atom price
+  forms.css          → formulaires
+  azukari.css        → page azukari
+  atoms-media.css    → media queries atoms
+  demo.css           → page demo/preview
+  visitor.css        → manifest principal (imports)
 ```
 
 Chaque page ne `<link>`e que les CSS dont elle a besoin. Pas de fichier "tout-en-un".
 
-### JavaScript  4 modules (état au 18/03/2026)
+### JavaScript - 4 modules (état au 20/03/2026)
 
-`main.js` monolithique découpé en modules, tous sous 200 lignes :
+`main.js` monolithique découpé en 4 modules, tous sous 200 lignes :
 
 | Fichier | Lignes | Rôle |
 |---|---|---|
-| `assets/js/header.js` | 41 | nav mobile, menu toggle |
-| `assets/js/filter.js` | 76 | filtres catalogue koi |
-| `assets/js/gallery.js` | 104 | galerie photos |
-| `assets/js/animations.js` | 22 | animations scroll |
+| `assets/js/header.js` | 78 | nav mobile, menu toggle |
+| `assets/js/filter.js` | 77 | filtres catalogue koi |
+| `assets/js/gallery.js` | 106 | galerie photos |
+| `assets/js/animations.js` | 84 | animations scroll |
 
-### Composants disponibles (état au 18/03/2026)
+### Composants disponibles (état au 20/03/2026)
 
 **Atoms :** `badge`, `button`, `input`, `price`, `koi-thumb`, `icon-wa`, `wave-divider`, `logo`
 
@@ -184,34 +226,45 @@ Chaque page ne `<link>`e que les CSS dont elle a besoin. Pas de fichier "tout-en
 
 **Organisms :** `header`, `footer`, `hero`, `koi-detail`, `koi-showcase`, `farm-gallery`, `features`, `konishi-band`, `shop-section`
 
-**Pages :** `home`, `product`, `kois`, `contact`, `decouvrir`, `azukari`, `nourriture`, `materiel`, `soins`
+**Pages :** `home`, `product`, `kois`, `contact`, `decouvrir`, `azukari`, `nourriture`, `materiel`, `soins`, `mentions-legales`
 
-### Violations 200 lignes restantes dans VISITORS
+**Templates :** `visitor-layout.html` (175 lines - exception standalone)
 
-Non-exceptions à corriger :
+### Etat des violations 200 lignes dans VISITORS
 
-| Fichier | Lignes | Problème |
+**HTML - toutes violations resolues.** Comptes actuels :
+
+| Fichier | Lignes | Statut |
 |---|---|---|
-| `organisms/header.html` | 320 | trop lourd  extraire nav items en molecule |
-| `molecules/nav-header.html` | 310 | trop lourd pour une molecule |
-| `organisms/koi-showcase.html` | 218 | légèrement au-dessus |
-| `organisms/koi-detail.html` | 212 | légèrement au-dessus |
+| `pages/home.html` | 455 | exception page |
+| `pages/product.html` | 431 | exception page |
+| `pages/kois.html` | 390 | exception page |
+| `pages/contact.html` | 263 | exception page |
+| `pages/decouvrir.html` | 254 | exception page |
+| `pages/azukari.html` | 238 | exception page |
+| `pages/nourriture.html` | 227 | exception page |
+| `pages/soins.html` | 215 | exception page |
+| `pages/materiel.html` | 215 | exception page |
+| `pages/mentions-legales.html` | 198 | ok |
+| All organisms/molecules/atoms | < 175 | ok |
 
-Pages (exceptions tolérées, mais excessives  le contenu doit migrer vers les organisms) :
+**CSS - plusieurs fichiers depassent 200 lignes** (a corriger avant Rails) :
 
 | Fichier | Lignes |
 |---|---|
-| `pages/product.html` | 940 |
-| `pages/home.html` | 841 |
-| `pages/kois.html` | 653 |
-| `pages/contact.html` | 500 |
-| `pages/decouvrir.html` | 486 |
-| `pages/azukari.html` | 465 |
-| `pages/nourriture.html` | 453 |
-| `pages/materiel.html` | 436 |
-| `pages/soins.html` | 435 |
-
-`templates/visitor-layout.html` à 426 lignes  exception (template de référence standalone, comme `admin-layout.html`).
+| `header.css` | 387 |
+| `product-pages.css` | 352 |
+| `farm.css` | 334 |
+| `forms.css` | 312 |
+| `koi-card-pages.css` | 310 |
+| `product.css` | 267 |
+| `features.css` | 249 |
+| `hero.css` | 247 |
+| `footer-full.css` | 233 |
+| `shop.css` | 231 |
+| `catalogue.css` | 222 |
+| `variables.css` | 218 |
+| `koi-card.css` | 213 |
 
 ---
 

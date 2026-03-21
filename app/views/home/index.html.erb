@@ -1,0 +1,14 @@
+<% content_for :title, "Accueil | Koi's Story" %>
+<% content_for :skip_default_footer, true %>
+
+<% editorial_koi = @featured_kois.first %>
+<% showcase_kois = @featured_kois.drop(1).first(3) %>
+
+<%= render "pages/home_wave_defs" %>
+<%= render "pages/home_header" %>
+<%= render "pages/home_hero" %>
+<%= render "pages/home_showcase", editorial_koi: editorial_koi, showcase_kois: showcase_kois %>
+<%= render "pages/home_features" %>
+<%= render "pages/home_konishi_band" %>
+<%= render "pages/home_contact_quick" %>
+<%= render "pages/home_footer" %>

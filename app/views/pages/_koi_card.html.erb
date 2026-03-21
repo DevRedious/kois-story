@@ -1,0 +1,31 @@
+<article class="koi-card" data-variety="<%= koi.variety.to_s.parameterize %>" data-age="<%= koi.age_class.to_s.parameterize %>" data-price="<%= koi.price.to_i %>" data-konishi="<%= koi.konishi_lineage? %>" data-animate="fade-up" data-delay="<%= index %>">
+  <div class="koi-card-image">
+    <%= image_tag koi_card_image_source(koi), alt: koi.name if koi_card_image_source(koi).present? %>
+    <div class="koi-card-badges">
+      <% if koi.konishi_lineage? %>
+        <span class="koi-card-badge koi-card-badge--konishi"><%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %></span>
+      <% end %>
+      <span class="koi-card-badge koi-card-badge--status"><%= koi_status_label(koi) %></span>
+    </div>
+  </div>
+  <div class="koi-card-image-caption">
+    <div class="koi-card-caption-left">
+      <h4 class="koi-card-name"><%= koi.name %></h4>
+      <p class="koi-card-meta"><%= koi_meta(koi) %></p>
+    </div>
+    <div class="koi-card-price-block">
+      <span class="koi-card-price-label">Prix</span>
+      <span class="koi-card-price"><%= koi_price(koi) %><span class="koi-card-price-currency">€</span></span>
+    </div>
+  </div>
+  <div class="koi-card-content">
+    <p class="koi-card-cert">Spécimen sélectionné, certificat disponible</p>
+    <div class="koi-card-actions">
+      <%= link_to koi_whatsapp_link(koi), class: "koi-card-cta koi-card-cta--primary", target: "_blank", rel: "noopener noreferrer" do %>
+        <%= whatsapp_icon %>
+        Commander
+      <% end %>
+      <%= link_to "Voir la fiche", koi_path(koi), class: "koi-card-cta koi-card-cta--secondary" %>
+    </div>
+  </div>
+</article>

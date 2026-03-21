@@ -1,0 +1,52 @@
+<section class="contact-quick" id="contact">
+  <div class="contact-quick__inner">
+    <div class="contact-quick__left" data-animate="fade-right">
+      <p class="section-label" aria-hidden="true">Contact</p>
+      <h2>Vous avez une question ?</h2>
+      <p>Envoyez-nous un message ou contactez directement Manu ou Mathilde via WhatsApp pour une réponse immédiate.</p>
+      <div class="contact-quick__info">
+        <div class="info-item">
+          <div class="info-item__text"><strong>Adresse</strong><p>Parc d'activités des chênes<br>Grange des Échets · 01700 Miribel<br>Livraison dans un rayon de 50 km</p></div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__text"><strong>Horaires</strong><p>Sur rendez-vous uniquement</p></div>
+        </div>
+        <div class="info-item">
+          <div class="info-item__text"><strong>Email</strong><p><%= mail_to "contact.koistory@gmail.com" %></p></div>
+        </div>
+      </div>
+      <div class="contact-quick__wa">
+        <%= link_to whatsapp_link("33600000000", "Bonjour Emmanuel, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
+          <%= whatsapp_icon %>
+          Contacter Emmanuel
+        <% end %>
+        <%= link_to whatsapp_link("33600000001", "Bonjour Mathilde, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
+          <%= whatsapp_icon %>
+          Contacter Mathilde
+        <% end %>
+      </div>
+    </div>
+
+    <%= form_with model: Message.new, url: messages_path, class: "contact-form contact-form--home", data: { animate: "fade-left" } do |form| %>
+      <p class="contact-form__title">Envoyer un message</p>
+      <div class="form-fields">
+        <div class="form-row">
+          <div class="field">
+            <%= form.label :sender_name, "Prénom & Nom *", class: "field__label" %>
+            <%= form.text_field :sender_name, class: "field__input", placeholder: "Votre nom", required: true, autocomplete: "name" %>
+          </div>
+          <div class="field">
+            <%= form.label :sender_email, "Email *", class: "field__label" %>
+            <%= form.email_field :sender_email, class: "field__input", placeholder: "vous@exemple.fr", required: true, autocomplete: "email" %>
+          </div>
+        </div>
+        <div class="field">
+          <%= form.label :body, "Message *", class: "field__label" %>
+          <%= form.text_area :body, class: "field__textarea", placeholder: "Votre question...", required: true %>
+        </div>
+      </div>
+      <%= form.submit "Envoyer le message", class: "btn btn--primary btn--full" %>
+      <p class="contact-form__note">Réponse sous 48 h · Formulaire sécurisé</p>
+    <% end %>
+  </div>
+</section>

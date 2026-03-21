@@ -1,0 +1,4 @@
+/* Manifest split of ADMIN/assets/css/layout.css */
+@import url("layout-section-1.css");
+@import url("layout-section-2.css");
+@import url("layout-section-3.css");

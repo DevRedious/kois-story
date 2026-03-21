@@ -1,0 +1,37 @@
+<% content_for :title, "Nourriture Konishi | Koi's Story" %>
+<% content_for :skip_default_footer, true %>
+<%
+  floating_items = [
+    { icon: "🐟", badge: "Coulant", name: "Konishi Growth", description: "Granulés coulants haute protéine. Favorise la croissance rapide des jeunes koïs. Tosaï et Nisaï." },
+    { icon: "🎨", badge: "Flottant", name: "Konishi Color", description: "Aliment enrichi en spiruline et caroténoïdes naturels. Intensifie le rouge et le blanc." },
+    { icon: "⭐", badge: "Premium", name: "Konishi Premium", description: "Formule complète tous stades. Protéines de qualité, vitamines, minéraux. Recommandé toute l'année." }
+  ]
+  extra_items = [
+    { icon: "💊", badge: "Vitamines", name: "Supplément vitaminé", description: "Complexe de vitamines A, C, D, E pour booster l'immunité et la vitalité. Idéal en période de stress." },
+    { icon: "🍂", badge: "Hiver", name: "Konishi Winter", description: "Aliment basse température facilement digestible. Pour koïs en période froide (eau < 12°C)." },
+    { icon: "🎯", badge: "Distributeur", name: "Distributeur automatique", description: "Programmation journalière jusqu'à 6 repas. Idéal pour maintenir un rythme d'alimentation régulier." }
+  ]
+%>
+<%= render "pages/home_wave_defs" %>
+<%= render "pages/home_header" %>
+<%= render "pages/product_hero", label: "Alimentation", title: "Nourriture Konishi", subtitle: "Gamme d'alimentation premium pour révéler les couleurs et favoriser la croissance.", wavy: false %>
+<div class="konishi-info">
+  <div class="konishi-info__inner">
+    <div data-animate="fade-right">
+      <h2 class="konishi-info__title">L'alimentation officielle Konishi</h2>
+      <p class="konishi-info__text">Formulée par les experts japonais Konishi, cette gamme est développée pour optimiser la pigmentation, la croissance et la santé immunitaire des koïs. Nous sommes les seuls distributeurs français agréés.</p>
+    </div>
+    <div class="konishi-info__logo" data-animate="fade-left">
+      <%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %>
+    </div>
+  </div>
+</div>
+<main>
+  <div class="shop-section">
+    <div class="shop-section__inner">
+      <%= render "pages/shop_category", title: "Aliments flottants & coulants", items: floating_items %>
+      <%= render "pages/shop_category", title: "Compléments & accessoires", items: extra_items %>
+    </div>
+  </div>
+</main>
+<%= render "pages/home_footer" %>

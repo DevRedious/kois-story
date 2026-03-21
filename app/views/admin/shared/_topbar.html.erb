@@ -1,0 +1,51 @@
+<header class="topbar">
+  <div class="topbar-left">
+    <button type="button" class="menu-burger" aria-label="Menu">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="burger-icon">
+        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <div>
+      <div class="topbar-title">
+        <%= admin_page_title %>
+        <% if admin_current_page == :messages && admin_unread_messages_count.positive? && action_name == "index" %>
+          <span class="topbar-count"><%= admin_unread_messages_count %> non lus</span>
+        <% end %>
+      </div>
+      <div class="breadcrumb">
+        <% breadcrumb_items = admin_breadcrumb_items %>
+        <% breadcrumb_items.each_with_index do |item, index| %>
+          <% if index.positive? %><span class="sep">›</span><% end %>
+          <% if item[:url].present? && index < breadcrumb_items.length - 1 %>
+            <%= link_to item[:label], item[:url] %>
+          <% else %>
+            <span class="current"><%= item[:label] %></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="theme-switcher">
+      <label for="theme-select" class="sr-only">Theme</label>
+      <select id="theme-select" aria-label="Choisir le theme d'affichage">
+        <option value="system">Systeme</option>
+        <option value="light">Clair</option>
+        <option value="dark">Sombre</option>
+      </select>
+    </div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-user">
+      <div class="topbar-avatar"><%= admin_user_initials %></div>
+      <%= admin_user_name %>
+    </div>
+    <div class="topbar-divider"></div>
+    <%= button_to destroy_user_session_path, method: :delete, form_class: "logout-form", class: "btn-icon logout-btn", title: "Deconnexion", aria: { label: "Deconnexion" } do %>
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+        <polyline points="16 17 21 12 16 7"></polyline>
+        <line x1="21" y1="12" x2="9" y2="12"></line>
+      </svg>
+    <% end %>
+  </div>
+</header>

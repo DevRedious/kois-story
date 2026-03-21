@@ -1,0 +1,22 @@
+<%= form_with model: [ :admin, koi ], local: true, html: { id: "koi-form", multipart: true } do |f| %>
+  <% if koi.errors.any? %>
+    <div class="panel">
+      <div class="panel-title">Le formulaire contient des erreurs</div>
+      <ul>
+        <% koi.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render "form_identity", f:, koi: %>
+  <%= render "form_measurements", f:, koi: %>
+  <%= render "form_status", f:, koi: %>
+  <%= render "form_images", f:, koi: %>
+
+  <div class="form-footer">
+    <%= link_to "Annuler", admin_kois_path, class: "btn btn--outline" %>
+    <%= f.submit(koi.persisted? ? "Mettre a jour le koi" : "Enregistrer le koi", class: "btn btn--primary", id: "submit-btn") %>
+  </div>
+<% end %>

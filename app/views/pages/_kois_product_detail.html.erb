@@ -1,0 +1,78 @@
+<section class="product">
+  <div class="product-grid">
+    <div class="gallery">
+      <div class="gallery-main" id="gallery-main">
+        <div class="gallery-track" id="gallery-track">
+          <% gallery_images.each_with_index do |image, index| %>
+            <%= image_tag image, alt: "#{koi.name} · vue #{index + 1}" %>
+          <% end %>
+        </div>
+        <% if gallery_images.size > 1 %>
+          <button class="gallery-nav prev" type="button" aria-label="Photo précédente">❮</button>
+          <button class="gallery-nav next" type="button" aria-label="Photo suivante">❯</button>
+        <% end %>
+      </div>
+      <div class="gallery-thumbs" id="gallery-thumbs" role="list" aria-label="Vignettes de la galerie">
+        <% gallery_images.each_with_index do |image, index| %>
+          <div class="gallery-thumb <%= "active" if index.zero? %>" role="listitem">
+            <%= image_tag image, alt: "#{koi.name} · miniature #{index + 1}" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="info-header">
+        <h1><%= koi.name %></h1>
+        <div class="info-meta">
+          <% if koi.konishi_lineage? %>
+            <span class="info-meta-badge konishi"><%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %></span>
+          <% end %>
+          <span class="info-meta-badge"><%= koi.variety %></span>
+          <span class="info-meta-badge"><%= koi.size_cm %> cm</span>
+          <span class="info-meta-badge"><%= koi.age_class&.humanize %></span>
+        </div>
+      </div>
+
+      <div class="price-block">
+        <div class="price-block-header">
+          <span class="price-label">Prix</span>
+          <span class="price-availability">● <%= koi_status_label(koi) %></span>
+        </div>
+        <div class="price"><%= koi_price(koi) %><span class="price-currency">€</span></div>
+        <%= link_to koi_whatsapp_link(koi), class: "cta-whatsapp", target: "_blank", rel: "noopener noreferrer", aria: { label: "Commander #{koi.name} via WhatsApp" } do %>
+          <%= whatsapp_icon %>
+          Commander via WhatsApp
+        <% end %>
+        <p class="cta-note">Message pré-rempli avec la référence · Livraison sur RDV · 50 km · Acompte à la réservation</p>
+      </div>
+
+      <div class="specs">
+        <h2>Caractéristiques</h2>
+        <div class="specs-grid">
+          <div class="spec"><span class="spec-label">Variété</span><span class="spec-value"><%= koi.variety %></span></div>
+          <div class="spec"><span class="spec-label">Taille</span><span class="spec-value"><%= koi.size_cm %> cm</span></div>
+          <div class="spec"><span class="spec-label">Âge estimé</span><span class="spec-value"><%= koi.age || "-" %> ans</span></div>
+          <div class="spec"><span class="spec-label">Lignée</span><span class="spec-value"><%= koi.konishi_lineage? ? "Konishi" : "Sélection ferme" %></span></div>
+          <div class="spec"><span class="spec-label">Sexe</span><span class="spec-value"><%= koi_sex_label(koi) %></span></div>
+          <div class="spec"><span class="spec-label">Classe d'âge</span><span class="spec-value"><%= koi.age_class&.humanize %></span></div>
+        </div>
+      </div>
+
+      <div class="description">
+        <h2>Description</h2>
+        <p><%= koi.description.presence || "Spécimen sélectionné avec soin dans notre élevage, disponible sur rendez-vous." %></p>
+      </div>
+
+      <% if koi.konishi_lineage? %>
+        <div class="certifications">
+          <div class="cert-header">
+            <div class="cert-icon" aria-hidden="true">★</div>
+            <h3 class="cert-title">Certification Lignée Konishi</h3>
+          </div>
+          <p class="cert-text">Ce spécimen est accompagné d'un certificat d'authenticité garantissant son origine et la qualité de sa génétique.</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

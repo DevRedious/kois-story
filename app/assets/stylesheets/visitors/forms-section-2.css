@@ -1,0 +1,159 @@
+/* Split from VISITORS/assets/css/forms.css - section 2/2 */
+.form-submit:hover {
+	background: var(--c-black);
+}
+.form-note {
+	font-size: var(--text-sm);
+	color: var(--n-75);
+}
+
+/* ── PAGE CONTACT ────────────────────────────────────────────────── */
+.contact-section {
+	padding: var(--sp-20) var(--sp-10);
+}
+.contact-section__inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-12);
+	align-items: start;
+}
+.contact-info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-8);
+}
+.contact-info h3 {
+	font-family: var(--font-serif);
+	font-size: var(--text-xl);
+	font-weight: 700;
+	color: var(--c-black);
+	margin-bottom: var(--sp-4);
+}
+.info-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-4);
+}
+.info-item {
+	display: flex;
+	gap: var(--sp-4);
+	align-items: flex-start;
+}
+.info-item__icon {
+	font-size: 1.5rem;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+}
+.info-item__text strong {
+	font-size: var(--text-sm);
+	font-weight: 700;
+	color: var(--c-black);
+	display: block;
+	margin-bottom: 2px;
+}
+.info-item__text p {
+	font-size: var(--text-sm);
+	color: var(--n-75);
+	line-height: var(--leading-normal);
+}
+.info-item__text a {
+	color: var(--c-wine);
+	font-weight: 700;
+}
+.map-placeholder {
+	aspect-ratio: 16 / 9;
+	background: var(--n-08);
+	border-radius: var(--r-xl);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--n-36);
+	font-style: italic;
+	font-size: var(--text-sm);
+	border: 2px dashed var(--n-17);
+}
+
+/* ── CONTACT RAPIDE (home) ───────────────────────────────────────── */
+.contact-quick {
+	padding: var(--sp-20) var(--sp-10);
+	background: rgba(245, 245, 242, 0.9);
+}
+.contact-quick__inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-12);
+	align-items: start;
+}
+.contact-quick__left h2 {
+	font-family: var(--font-serif);
+	font-size: var(--text-3xl);
+	font-weight: 700;
+	color: var(--c-black);
+	margin-bottom: var(--sp-4);
+}
+.contact-quick__left p {
+	font-size: var(--text-base);
+	color: var(--n-75);
+	line-height: var(--leading-normal);
+	margin-bottom: var(--sp-6);
+}
+.contact-quick__info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-5);
+}
+
+/* ── HOME VARIANT — glassmorphisme ──────────────────────────────── */
+.contact-form--home {
+	background: rgba(255, 255, 255, 0.45);
+	backdrop-filter: blur(20px) saturate(160%);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	box-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.1),
+		inset 0 1px 0 rgba(255, 255, 255, 0.9);
+	border-radius: var(--r-xl);
+	padding: var(--sp-10);
+}
+.contact-form--home .contact-form__note {
+	text-align: center;
+}
+
+/* ── CONTACT RAPIDE — boutons WA ─────────────────────────────────── */
+.contact-quick__wa {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-3);
+	margin-top: var(--sp-6);
+}
+.contact-quick__wa .btn--wa:hover {
+	background: #1fba5a;
+	border-color: #1fba5a;
+	box-shadow: none;
+}
+
+@media (max-width: 900px) {
+	.contact-section__inner {
+		grid-template-columns: 1fr;
+	}
+	.contact-quick__inner {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (min-width: 769px) {
+	.form-row {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 580px) {
+	.contact-quick__wa {
+		grid-template-columns: 1fr;
+	}
+}

@@ -1,0 +1,136 @@
+/* Split from VISITORS/assets/css/header.css - section 2/3 */
+.header__nav a,
+.dropdown-toggle {
+	font-family: var(--font-sans);
+	font-size: var(--text-sm);
+	font-weight: 600;
+	color: var(--c-white);
+	letter-spacing: 0.04em;
+	padding: var(--sp-2) var(--sp-3);
+	transition: color var(--t-fast);
+	position: relative;
+	z-index: 1;
+	white-space: nowrap;
+	background: transparent;
+	border: 0;
+	text-decoration: none;
+}
+.header__nav a.active {
+	background: linear-gradient(135deg, #980000 0%, #630f0f 50%, #980000 100%);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	color: var(--c-white);
+	border-radius: var(--r-xl);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	box-shadow:
+		0 2px 14px rgba(230, 0, 0, 0.5),
+		inset 0 1px 0 rgba(255, 255, 255, 0.22);
+	transition:
+		background-position 0.6s linear,
+		box-shadow var(--t-fast),
+		color var(--t-fast);
+}
+.header__nav a.active:hover {
+	background-position: 100% 100%;
+}
+
+/* ── DROPDOWN ────────────────────────────────────────────────────────── */
+.has-dropdown {
+	position: relative;
+}
+.dropdown-toggle {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	cursor: pointer;
+}
+.dropdown-toggle svg {
+	flex-shrink: 0;
+	transition: transform var(--t-fast);
+}
+.has-dropdown:hover .dropdown-toggle svg,
+.has-dropdown:focus-within .dropdown-toggle svg,
+.dropdown-toggle.open svg {
+	transform: rotate(180deg);
+}
+
+.dropdown {
+	position: absolute;
+	top: calc(100% + var(--sp-3));
+	left: 50%;
+	transform: translateX(-50%) translateY(-6px);
+	background: rgba(8, 8, 8, 0.8);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border: 1px solid var(--w-10);
+	border-radius: var(--r-xl);
+	padding: var(--sp-2) 0;
+	min-width: 168px;
+	list-style: none;
+	opacity: 0;
+	pointer-events: none;
+	transition:
+		opacity var(--t-fast),
+		transform var(--t-fast);
+}
+.dropdown::before {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	right: 0;
+	height: calc(var(--sp-3) + 4px);
+}
+.has-dropdown:hover .dropdown,
+.has-dropdown:focus-within .dropdown {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateX(-50%) translateY(0);
+}
+.dropdown li a {
+	display: block;
+	padding: var(--sp-2) var(--sp-5);
+	white-space: nowrap;
+	transition:
+		background var(--t-fast),
+		color var(--t-fast);
+}
+.dropdown li a:hover {
+	background: var(--w-06);
+	color: var(--c-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.site-logo,
+	.header__pill,
+	.header__nav a,
+	.dropdown-toggle,
+	.nav__indicator,
+	.dropdown,
+	.header__burger span {
+		transition: none;
+	}
+}
+
+/* ── BURGER ──────────────────────────────────────────────────────────── */
+.header__burger {
+	display: none;
+	flex-direction: column;
+	gap: 5px;
+	margin-left: auto;
+	cursor: pointer;
+	padding: var(--sp-3);
+	background: rgba(0, 0, 0, 0.45);
+	border-radius: var(--r-full);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.header__burger span {
+	display: block;
+	width: 22px;
+	height: 2px;
+	background: var(--c-white);
+	transition:
+		transform var(--t-base),
+		opacity var(--t-fast);
+	transform-origin: center;
+}

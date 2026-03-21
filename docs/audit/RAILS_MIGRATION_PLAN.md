@@ -33,8 +33,8 @@ Phase 11 — Production Deploy        (J17–J18)
 rails new kois-story \
   --database=sqlite3 \
   --asset-pipeline=sprockets \
-  --javascript=importmap \
-  --css=bootstrap   # ou tailwind selon décision finale
+  --javascript=importmap
+# NOTE: pas de --css= flag — on utilise le CSS custom du prototype (VISITORS + ADMIN)
 
 cd kois-story
 bundle install

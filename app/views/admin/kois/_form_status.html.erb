@@ -1,0 +1,25 @@
+<div class="form-section">
+  <div class="form-section-title"><span class="section-num">3</span> Statut et lignee</div>
+  <div class="form-grid">
+    <div class="form-group">
+      <%= f.label :status, "Statut de vente" %>
+      <span class="required">*</span>
+      <%= f.select :status, options_for_select(status_options, koi.status), {}, { required: true, aria: { label: "Statut de vente" } } %>
+      <span class="form-hint">Determine le badge affiche sur la fiche publique</span>
+    </div>
+
+    <div class="form-group">
+      <label>Lignee Konishi</label>
+      <div class="toggle-row mt-1">
+        <label class="toggle-switch">
+          <%= f.check_box :konishi_lineage, id: "konishi-toggle", aria: { label: "Lignee Konishi" } %>
+          <span class="toggle-slider"></span>
+        </label>
+        <div>
+          <div class="toggle-desc">Issu de la lignee Konishi</div>
+          <div class="toggle-hint">Affiche le badge Konishi sur la fiche produit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

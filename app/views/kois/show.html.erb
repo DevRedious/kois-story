@@ -1,0 +1,19 @@
+<% content_for :title, "#{@koi.name} | Koi's Story" %>
+<% content_for :skip_default_footer, true %>
+<% gallery_images = koi_gallery_images(@koi) %>
+
+<%= render "pages/home_header" %>
+
+<nav class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <%= link_to "Accueil", root_path %>
+    <span>/</span>
+    <%= link_to "Nos Koïs", kois_path %>
+    <span>/</span>
+    <span><%= @koi.name %></span>
+  </div>
+</nav>
+
+<%= render "pages/kois_product_detail", koi: @koi, gallery_images: gallery_images %>
+<%= render "pages/kois_related", related_kois: @related_kois %>
+<%= render "pages/home_footer" %>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin - Koi's Story</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= favicon_link_tag "/docs/assets/LOGO%20MANU%20FINI.png", type: "image/png" %>
+    <%= stylesheet_link_tag "admin_application", media: "all", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags "admin_application" %>
+  </head>
+  <body>
+    <%= render "admin/shared/sidebar" %>
+    <div class="main">
+      <%= render "admin/shared/topbar" %>
+      <div class="content">
+        <% if notice %><div class="flash notice"><%= notice %></div><% end %>
+        <% if alert %><div class="flash alert"><%= alert %></div><% end %>
+        <%= yield %>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </body>
+</html>

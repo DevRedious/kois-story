@@ -1,0 +1,32 @@
+<div class="filter-bar">
+  <div class="filter-bar__inner">
+    <span class="filter-bar__label">Filtrer :</span>
+    <span class="filter-count" id="filter-count"><%= pluralize(kois.size, "koï") %></span>
+    <span class="filter-bar__sep"></span>
+    <select class="filter-select" id="filter-variety" aria-label="Variété">
+      <option value="">Toutes variétés</option>
+      <% varieties.each do |variety| %>
+        <option value="<%= variety.parameterize %>"><%= variety %></option>
+      <% end %>
+    </select>
+    <select class="filter-select" id="filter-age" aria-label="Classe d'âge">
+      <option value="">Tout âge</option>
+      <% Koi.age_classes.keys.each do |age_class| %>
+        <option value="<%= age_class.parameterize %>"><%= age_class.humanize %></option>
+      <% end %>
+    </select>
+    <select class="filter-select" id="filter-price" aria-label="Prix max">
+      <option value="">Prix max</option>
+      <option value="500">≤ 500 €</option>
+      <option value="1000">≤ 1 000 €</option>
+      <option value="2000">≤ 2 000 €</option>
+      <option value="5000">≤ 5 000 €</option>
+    </select>
+    <div class="filter-bar__sep"></div>
+    <label class="filter-toggle">
+      <input type="checkbox" id="filter-konishi">
+      <span class="filter-toggle__text">★ Konishi uniquement</span>
+    </label>
+    <button class="filter-reset" id="filter-reset" type="button">Réinitialiser</button>
+  </div>
+</div>

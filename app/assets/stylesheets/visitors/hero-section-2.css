@@ -1,0 +1,125 @@
+/* Split from VISITORS/assets/css/hero.css - section 2/2 */
+
+/* ── HERO INTRO  texte sous la vidéo ───────────────────────────── */
+.hero-intro {
+	padding: var(--sp-16) var(--sp-10) var(--sp-12);
+}
+
+/* Remonte hero-intro pour combler les creux de la vague (12% de 100vh max) */
+.hero--wavy-bottom + .hero-intro {
+	margin-top: -12vh;
+	padding-top: calc(12vh + var(--sp-16));
+}
+@media (max-width: 768px) {
+	.hero--wavy-bottom + .hero-intro {
+		margin-top: -8vh;
+		padding-top: calc(8vh + var(--sp-16));
+	}
+}
+@media (max-width: 480px) {
+	.hero--wavy-bottom + .hero-intro {
+		margin-top: -6vh;
+		padding-top: calc(6vh + var(--sp-16));
+	}
+}
+.hero-intro__inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+.hero-intro__title {
+	font-family: var(--font-serif);
+	font-size: var(--text-hero);
+	font-weight: 900;
+	color: var(--c-black);
+	line-height: var(--leading-tight);
+	margin-bottom: var(--sp-5);
+	max-width: 780px;
+}
+.hero-intro__sub {
+	font-size: var(--text-lg);
+	color: var(--n-75);
+	line-height: var(--leading-normal);
+	margin-bottom: var(--sp-8);
+	max-width: 560px;
+}
+.hero-intro__ctas {
+	display: flex;
+	gap: var(--sp-4);
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+/* ── HERO COMPACT WAVY BOTTOM ────────────────────────────────────── */
+/* hero-compact ~390px → 12% ≈ 47px → overlap 50px avec marge */
+.hero-compact--wavy-bottom {
+	clip-path: url(#wave-clip);
+}
+
+/* main transparent : on remonte pour couvrir la vague au complet */
+.hero-compact--wavy-bottom + main {
+	margin-top: -50px;
+}
+@media (max-width: 768px) {
+	.hero-compact--wavy-bottom + main {
+		margin-top: -52px;
+	}
+}
+@media (max-width: 480px) {
+	.hero-compact--wavy-bottom + main {
+		margin-top: -60px;
+	}
+}
+
+/* konishi-info (nourriture) a un fond propre : compenser le padding */
+.hero-compact--wavy-bottom + .konishi-info {
+	margin-top: -40px;
+	padding-top: calc(40px + var(--sp-12));
+}
+
+/* ── HERO COMPACT  pages intérieures ───────────────────────────── */
+.hero-compact {
+	background: var(--c-black);
+	padding: calc(var(--header-height) + var(--sp-16)) var(--sp-10) var(--sp-24);
+	position: relative;
+	overflow: hidden;
+}
+.hero-compact::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background:
+		url("../../../docs/assets/bg_sakura.png") center / cover no-repeat;
+	filter: saturate(0.28) contrast(0.82) brightness(1.15) sepia(0.1);
+	opacity: 0.22;
+	pointer-events: none;
+}
+.hero-compact__inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	position: relative;
+	z-index: 2;
+}
+.hero-compact__label {
+	font-size: var(--text-xs);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wider);
+	color: var(--c-cream);
+	margin-bottom: var(--sp-3);
+}
+.hero-compact__title {
+	font-family: var(--font-serif);
+	font-size: var(--text-3xl);
+	font-weight: 900;
+	color: var(--c-white);
+	margin-bottom: var(--sp-3);
+}
+.hero-compact__sub {
+	font-size: var(--text-lg);
+	color: var(--c-white);
+	max-width: 560px;
+}

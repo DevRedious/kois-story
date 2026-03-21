@@ -1,0 +1,111 @@
+/* Split from VISITORS/assets/css/footer-full.css - section 1/2 */
+/* ==========================================================================
+   footer-full.css  Variante A footer complet (home.html uniquement)
+   ========================================================================== */
+
+.footer__inner--full {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: var(--sp-16) var(--sp-10) var(--sp-8);
+}
+
+/* Grid — mobile-first: 1 col → 2 col → 4 col */
+.footer__top {
+	display: grid;
+	gap: var(--sp-10);
+	margin-bottom: var(--sp-12);
+	grid-template-columns: 1fr;
+}
+@media (min-width: 481px) {
+	.footer__top {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+@media (min-width: 901px) {
+	.footer__top {
+		grid-template-columns: 1.4fr 1fr 1fr 1fr;
+	}
+}
+
+.footer__brand {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-5);
+}
+.footer__logo img {
+	height: 48px;
+	width: auto;
+	opacity: 0.9;
+}
+.footer__tagline {
+	font-size: var(--text-sm);
+	color: var(--w-70);
+	line-height: var(--leading-normal);
+}
+
+.footer__wa {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sp-2);
+	padding: var(--sp-3) var(--sp-6);
+	background: var(--c-wa);
+	color: var(--c-black);
+	border-radius: var(--r-xl);
+	font-family: var(--font-sans);
+	font-size: var(--text-sm);
+	font-weight: 700;
+	text-decoration: none;
+	width: fit-content;
+	transition: background var(--t-fast);
+}
+.footer__wa:hover {
+	background: #25d366;
+}
+
+/* ── MENU LÉGAL (dropdown) ───────────────────────────────────────── */
+.footer__legal-menu {
+	position: relative;
+}
+.footer__legal-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--sp-1);
+	font-size: var(--text-sm);
+	color: var(--w-70);
+	padding: var(--sp-1) var(--sp-3);
+	text-decoration: none;
+	cursor: pointer;
+	transition: color var(--t-fast);
+}
+.footer__legal-toggle:hover {
+	color: var(--c-white);
+}
+.footer__legal-toggle svg {
+	transition: transform var(--t-fast);
+}
+.footer__legal-menu.open .footer__legal-toggle svg {
+	transform: rotate(180deg);
+}
+.footer__legal-dropdown {
+	position: absolute;
+	bottom: calc(100% + var(--sp-2));
+	left: 0;
+	background: #1a1a1a;
+	border: 1px solid var(--w-10);
+	border-radius: var(--r-md);
+	padding: var(--sp-2) 0;
+	min-width: 220px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(4px);
+	transition:
+		opacity var(--t-fast),
+		transform var(--t-fast),
+		visibility var(--t-fast);
+	z-index: 100;
+}
+.footer__legal-menu.open .footer__legal-dropdown {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}

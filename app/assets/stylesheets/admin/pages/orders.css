@@ -1,0 +1,20 @@
+/* Page — orders list */
+.amount-cell {
+	line-height: 1.6;
+}
+
+.amount-ttc {
+	font-weight: 700;
+	font-size: 0.9rem;
+	color: var(--noir);
+}
+
+.amount-ht {
+	font-size: 0.73rem;
+	color: var(--gris);
+}
+
+.amount-tva {
+	font-size: 0.73rem;
+	color: var(--gris);
+}
