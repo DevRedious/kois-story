@@ -1,7 +1,11 @@
 module Admin::KoisHelper
   def admin_koi_image_source(koi)
     first_image = koi.images.order(:position).first
-    first_image&.url&.url
+    return unless first_image&.url.present?
+
+    first_image.url.url
+  rescue StandardError
+    first_image[:url].presence
   end
 
   def admin_koi_status_label(koi)

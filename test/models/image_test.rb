@@ -19,7 +19,7 @@ class ImageTest < ActiveSupport::TestCase
       image.url = Rack::Test::UploadedFile.new(file.path, "text/plain")
 
       assert_not image.valid?
-      assert_includes image.errors[:url], "must be a supported image format"
+      assert_includes image.errors[:url].join(" "), "allowed types"
     end
   end
 

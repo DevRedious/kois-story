@@ -26,7 +26,7 @@ module AdminHelper
   end
 
   def admin_breadcrumb_items
-    items = [{ label: "Admin", url: admin_root_path }]
+    items = [ { label: "Admin", url: admin_root_path } ]
     case admin_current_page
     when :dashboard
       items

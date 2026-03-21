@@ -1,4 +1,5 @@
 require "test_helper"
+require "rack/test"
 
 class KoiTest < ActiveSupport::TestCase
   test "is valid with required attributes" do
@@ -40,7 +41,7 @@ class KoiTest < ActiveSupport::TestCase
       status: :available,
       user: users(:one)
     )
-    available_koi.images.create!(url: "available.jpg", imageable_type: "Koi", position: 1)
+    attach_test_image(available_koi)
 
     filtered = Koi.filter(available: "1")
 
@@ -56,7 +57,7 @@ class KoiTest < ActiveSupport::TestCase
       status: :available,
       user: users(:one)
     )
-    pricey_koi.images.create!(url: "pricey.jpg", imageable_type: "Koi", position: 1)
+    attach_test_image(pricey_koi)
 
     filtered = Koi.filter(max_price: "0 OR 1=1")
 
@@ -72,10 +73,18 @@ class KoiTest < ActiveSupport::TestCase
       status: :available,
       user: users(:one)
     )
-    large_koi.images.create!(url: "large.jpg", imageable_type: "Koi", position: 1)
+    attach_test_image(large_koi)
 
     filtered = Koi.filter(max_size: "0 OR 1=1")
 
     assert_empty filtered
+  end
+
+  private
+
+  def attach_test_image(koi)
+    image = koi.images.build(position: 1, alt: "Test image")
+    image.save!(validate: false)
+    image.update_column(:url, "test-image.png")
   end
 end

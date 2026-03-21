@@ -2,7 +2,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   ALLOWED_EXTENSIONS = %w[jpg jpeg png webp gif avif].freeze
-  ALLOWED_CONTENT_TYPES = [%r{\Aimage/jpeg\z}, %r{\Aimage/png\z}, %r{\Aimage/webp\z}, %r{\Aimage/gif\z}, %r{\Aimage/avif\z}].freeze
+  ALLOWED_CONTENT_TYPES = [ %r{\Aimage/jpeg\z}, %r{\Aimage/png\z}, %r{\Aimage/webp\z}, %r{\Aimage/gif\z}, %r{\Aimage/avif\z} ].freeze
 
   def public_id
     "kois-story/#{model.class.name.downcase}/#{model.id}"

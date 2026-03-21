@@ -58,7 +58,23 @@ class Admin::KoisControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy koi" do
+    koi = Koi.create!(
+      name: "A supprimer",
+      variety: "Kohaku",
+      price: 900,
+      status: :available,
+      user: users(:one)
+    )
+
     assert_difference("Koi.count", -1) do
+      delete admin_koi_url(koi)
+    end
+
+    assert_redirected_to admin_kois_url
+  end
+
+  test "should not destroy koi linked to an order" do
+    assert_no_difference("Koi.count") do
       delete admin_koi_url(kois(:one))
     end
 
