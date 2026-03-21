@@ -7,7 +7,87 @@ This project follows a pre-production workflow until the first production deploy
 
 ---
 
-## [2026-03-20]
+## [2026-03-21]
+
+### Added
+- unify image source retrieval across helpers
+- improve koi deletion handling and refactor image source methods
+- enhance koi image validation and improve admin functionality
+- enhance koi image handling and admin email configuration
+- enhance koi management interface and functionality
+- migrate visitors pages to rails
+
+
+### Changed
+- streamline image URL retrieval in application helper
+- remove trailing whitespace in devise initializer
+- clean up CSS files and improve code consistency
+- standardize spacing in controller and helper files
+- update file permissions for executable scripts
+- improve CSS specificity and JavaScript formatting
+- enhance visitor pages with improved layout and styling
+- refactor Gemfile and remove unused files
+- remove outdated admin documentation and CSS files
+- migrate CSS from require to @import for modularity and maintainability
+- update .env.example and .gitignore, refine rails_mvp_plan.md
+- update rails_mvp_plan.md with gem version specifications
+- update rails_mvp_plan.md with environment details and Biome integration notes
+- update MVP plans with critical corrections and enhancements
+- add Audit for plan
+- expand check_mvp_plan.md with validation insights and additional corrections
+- refine check_mvp_plan.md with critical issues and minor corrections
+- add check mvp plan
+- complete and fix rails_mvp_plan.md
+- enhance CLAUDE.md and rails_mvp_plan.md with architecture overview and critical notes
+- update CLAUDE.md to reflect MVP branch and dual-phase structure
+- add Rails MVP implementation plan for oral blanc
+
+
+### Integration
+- Merge pull request #51 from DevRedious/MVP
+
+Mvp
+
+
+---## [2026-03-20]
+
+### Changed
+- resolve CHANGELOG conflict — keep curated version from admin-and-back
+- remove duplicate Team section from README, point to CONTRIBUTORS.md
+- normalize line endings to LF across VISITORS and todo.md
+- update .gitattributes for consistent line endings
+- update CHANGELOG, CONTRIBUTORS and README with project tracking
+- standardize branch naming from `dev` to `DEV` across documentation
+- update changelog format and commit parser rules
+
+
+### Fixed
+- **ci**: restrict changelog workflow to DEV branch only
+
+
+### Integration
+- Merge pull request #48 from DevRedious/chore/auto-update-changelog
+
+docs: auto-update CHANGELOG
+- Merge pull request #40 from DevRedious/chore/auto-update-changelog
+
+docs: auto-update CHANGELOG
+- Merge pull request #39 from DevRedious/admin-and-back
+
+docs: CHANGELOG history, CONTRIBUTORS avatars, README progress tracker
+- Merge pull request #18 from DevRedious/chore/auto-update-changelog
+
+docs: auto-update CHANGELOG
+- Merge pull request #15 from DevRedious/chore/auto-update-changelog
+
+docs: auto-update CHANGELOG
+- Merge pull request #17 from DevRedious/admin-and-back
+
+chore: update changelog format and commit parser rules
+- Merge branch 'main' into admin-and-back
+
+
+---## [2026-03-20]
 
 ### Changed
 - resolve CHANGELOG conflict — keep curated version from admin-and-back
