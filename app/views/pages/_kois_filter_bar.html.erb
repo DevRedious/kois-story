@@ -1,7 +1,7 @@
 <div class="filter-bar">
   <div class="filter-bar__inner">
     <span class="filter-bar__label">Filtrer :</span>
-    <span class="filter-count" id="filter-count"><%= pluralize(kois.size, "koï") %></span>
+    <span class="filter-count" id="filter-count" aria-live="polite" aria-atomic="true"><%= pluralize(kois.size, "koï") %></span>
     <span class="filter-bar__sep"></span>
     <select class="filter-select" id="filter-variety" aria-label="Variété">
       <option value="">Toutes variétés</option>

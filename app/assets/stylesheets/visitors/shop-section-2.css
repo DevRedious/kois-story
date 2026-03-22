@@ -28,7 +28,7 @@
 
 .shop-grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 1fr;
 	gap: var(--sp-6);
 }
 
@@ -70,7 +70,7 @@
 	max-width: var(--max-width);
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 1fr auto;
+	grid-template-columns: 1fr;
 	gap: var(--sp-10);
 	align-items: center;
 }
@@ -93,13 +93,11 @@
 	filter: brightness(0) invert(1);
 }
 
-@media (max-width: 768px) {
-	.konishi-info__inner {
-		grid-template-columns: 1fr;
-	}
+.shop-section__inner {
+	padding: var(--sp-8) var(--sp-4) var(--sp-12);
 }
 
-@media (max-width: 900px) {
+@media (min-width: 481px) {
 	.shop-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
@@ -107,11 +105,16 @@
 		padding: var(--sp-16) var(--sp-4) var(--sp-16);
 	}
 }
-@media (max-width: 480px) {
+@media (min-width: 769px) {
+	.konishi-info__inner {
+		grid-template-columns: 1fr auto;
+	}
+}
+@media (min-width: 901px) {
 	.shop-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(3, 1fr);
 	}
 	.shop-section__inner {
-		padding: var(--sp-8) var(--sp-4) var(--sp-12);
+		padding: var(--sp-16) var(--sp-10) var(--sp-20);
 	}
 }

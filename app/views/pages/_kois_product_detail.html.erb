@@ -15,7 +15,7 @@
       <div class="gallery-thumbs" id="gallery-thumbs" role="list" aria-label="Vignettes de la galerie">
         <% gallery_images.each_with_index do |image, index| %>
           <div class="gallery-thumb <%= "active" if index.zero? %>" role="listitem">
-            <%= image_tag image, alt: "#{koi.name} · miniature #{index + 1}" %>
+            <%= image_tag image, alt: "#{koi.name} · miniature #{index + 1}", loading: "lazy" %>
           </div>
         <% end %>
       </div>

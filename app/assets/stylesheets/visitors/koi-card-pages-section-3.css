@@ -4,9 +4,10 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	padding: var(--sp-8);
-	border-left: 1px solid var(--n-08);
-	box-shadow: inset 4px 0 16px rgba(0, 0, 0, 0.04);
+	padding: var(--sp-5);
+	border-left: none;
+	border-top: 1px solid var(--n-08);
+	box-shadow: none;
 }
 .editorial__badge {
 	display: inline-flex;
@@ -22,7 +23,7 @@
 }
 .editorial__title {
 	font-family: var(--font-serif);
-	font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+	font-size: 1.5rem;
 	font-weight: 900;
 	color: var(--c-black);
 	line-height: var(--leading-tight);
@@ -34,6 +35,7 @@
 	margin: 0;
 	padding-top: var(--sp-2);
 	border-top: 1px solid var(--n-08);
+	display: none;
 }
 .editorial__cta {
 	display: flex;
@@ -54,7 +56,7 @@
 
 /* ── KOI SHOWCASE  section grille home ─────────────────────────── */
 .koi-showcase {
-	padding: var(--sp-10) var(--sp-10) var(--sp-20);
+	padding: var(--sp-12) var(--sp-4);
 	background: rgba(245, 245, 242, 0.9);
 }
 .koi-showcase__inner {
@@ -85,30 +87,39 @@
 	gap: var(--sp-4);
 }
 
-@media (max-width: 900px) {
-	.koi-showcase {
-		padding: var(--sp-12) var(--sp-4);
-	}
-	.editorial {
-		flex-direction: column;
-		height: auto;
-	}
-	.editorial__media {
-		flex: none;
-		aspect-ratio: 16 / 9;
-	}
-	.editorial__content {
-		border-left: none;
-		border-top: 1px solid var(--n-08);
-		box-shadow: none;
-		padding: var(--sp-5);
-	}
+/* Responsive — mobile-first */
+.editorial {
+	flex-direction: column;
+	height: auto;
 }
-@media (max-width: 480px) {
+.editorial__media {
+	flex: none;
+	aspect-ratio: 16 / 9;
+}
+@media (min-width: 481px) {
 	.editorial__title {
-		font-size: 1.5rem;
+		font-size: clamp(1.8rem, 2.5vw, 2.6rem);
 	}
 	.editorial__sub {
-		display: none;
+		display: block;
+	}
+}
+@media (min-width: 901px) {
+	.koi-showcase {
+		padding: var(--sp-10) var(--sp-10) var(--sp-20);
+	}
+	.editorial {
+		flex-direction: row;
+		height: 440px;
+	}
+	.editorial__media {
+		flex: 0 0 65%;
+		aspect-ratio: unset;
+	}
+	.editorial__content {
+		border-left: 1px solid var(--n-08);
+		border-top: none;
+		box-shadow: inset 4px 0 16px rgba(0, 0, 0, 0.04);
+		padding: var(--sp-8);
 	}
 }

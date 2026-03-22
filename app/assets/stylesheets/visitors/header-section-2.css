@@ -15,7 +15,8 @@
 	border: 0;
 	text-decoration: none;
 }
-.header__nav a.active {
+.header__nav a.active,
+.dropdown-toggle.active {
 	background: linear-gradient(135deg, #980000 0%, #630f0f 50%, #980000 100%);
 	background-size: 200% 200%;
 	background-position: 0% 0%;
@@ -30,7 +31,8 @@
 		box-shadow var(--t-fast),
 		color var(--t-fast);
 }
-.header__nav a.active:hover {
+.header__nav a.active:hover,
+.dropdown-toggle.active:hover {
 	background-position: 100% 100%;
 }
 

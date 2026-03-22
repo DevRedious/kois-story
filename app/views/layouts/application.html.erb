@@ -13,6 +13,7 @@
   </head>
 
   <body class="<%= content_for(:body_class) if content_for?(:body_class) %>">
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
     <% if notice %><div class="flash notice"><%= notice %></div><% end %>
     <% if alert %><div class="flash alert"><%= alert %></div><% end %>
     <%= yield %>

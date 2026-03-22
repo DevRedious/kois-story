@@ -5,13 +5,13 @@
 <%= render "pages/kois_hero" %>
 <%= render "pages/kois_filter_bar", kois: @kois, varieties: @varieties %>
 
-<main class="catalogue">
+<main class="catalogue" id="main-content">
   <div class="catalogue__inner">
-    <div class="koi-grid">
+    <ul class="koi-grid" role="list">
       <% @kois.each_with_index do |koi, index| %>
-        <%= render "pages/koi_card", koi: koi, index: index %>
+        <li><%= render "pages/koi_card", koi: koi, index: index %></li>
       <% end %>
-    </div>
+    </ul>
   </div>
 </main>
 

@@ -35,7 +35,7 @@
 	line-height: var(--leading-normal);
 }
 
-/* ── GALERIE  aliases convention page ──────────────────────────── */
+/* ── GALERIE  masonry convention page ──────────────────────────── */
 .gallery {
 	padding: var(--sp-12) var(--sp-10);
 }
@@ -43,82 +43,135 @@
 	max-width: var(--max-width);
 	margin: 0 auto;
 }
+.title-container {
+	text-align: center;
+	margin-bottom: var(--sp-8);
+}
 .gallery__title {
 	font-family: var(--font-serif);
 	font-size: var(--text-2xl);
 	font-weight: 700;
 	color: var(--c-black);
-	margin-bottom: var(--sp-6);
-	display: inline-block;
-	background: rgba(245, 245, 242, 0.9);
-	padding: var(--sp-2) var(--sp-5);
-	border-radius: var(--r-lg);
+	margin-bottom: var(--sp-3);
 }
-.gallery-grid {
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	gap: var(--sp-4);
+.wave-separator {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+}
+.wave {
+	width: 150px;
+	height: 45px;
+	flex-shrink: 0;
+	-webkit-mask-image: url("/docs/assets/sumi.svg");
+	mask-image: url("/docs/assets/sumi.svg");
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+}
+.wave--red {
+	background: var(--c-red);
+	transform: scaleX(-1);
+}
+.wave--black {
+	background: var(--c-black);
+}
+.fish-icon {
+	width: 52px;
+	height: 52px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	display: block;
+	filter: sepia(1) saturate(10) hue-rotate(330deg);
+}
+
+.masonry-gallery {
+	columns: 1;
+	column-gap: var(--sp-4);
+}
+.masonry-gallery .gallery-cell {
+	break-inside: avoid;
 	margin-bottom: var(--sp-4);
 }
-.gallery-row2 {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--sp-4);
+.masonry-gallery .gallery-cell img {
+	height: auto;
 }
-.gallery-cell--right {
-	display: flex;
-	flex-direction: column;
-	gap: var(--sp-4);
-}
-.gallery-cell--right .gallery-cell {
+.masonry-gallery .gallery-cell--placeholder {
 	aspect-ratio: 4 / 3;
 }
 
-@media (max-width: 768px) {
-	.gallery-row-1 {
-		grid-template-columns: 1fr;
-	}
-	.gallery-row-1__right {
-		flex-direction: row;
+/* ── LAYOUT CLASSES (farm-gallery prototype) ──────────────────── */
+.gallery-row-1 {
+	grid-template-columns: 1fr;
+}
+.gallery-row-1__right {
+	flex-direction: row;
+}
+.gallery-row-2 {
+	grid-template-columns: 1fr;
+}
+.decouvrir-story {
+	grid-template-columns: 1fr;
+	gap: var(--sp-8);
+	padding: var(--sp-8) var(--sp-4);
+}
+.story-block {
+	grid-template-columns: 1fr;
+}
+.story-block--reverse {
+	direction: ltr;
+}
+.farm-gallery {
+	padding: var(--sp-12) var(--sp-4);
+}
+.story {
+	padding: calc(60px + var(--sp-12)) var(--sp-4) var(--sp-12);
+}
+
+@media (min-width: 481px) {
+	.masonry-gallery {
+		columns: 2;
 	}
 	.gallery-row-2 {
 		grid-template-columns: repeat(2, 1fr);
 	}
 	.decouvrir-story {
-		grid-template-columns: 1fr;
-		gap: var(--sp-8);
 		padding: var(--sp-10) var(--sp-6);
 	}
-	.story-block {
-		grid-template-columns: 1fr;
-	}
-	.story-block--reverse {
-		direction: ltr;
-	}
-	.gallery-grid {
-		grid-template-columns: 1fr;
-	}
-	.gallery-row2 {
-		grid-template-columns: repeat(2, 1fr);
+	.farm-gallery {
+		padding: var(--sp-20) var(--sp-10);
 	}
 	.story {
 		padding: calc(52px + var(--sp-16)) var(--sp-6) var(--sp-16);
 	}
 }
-@media (max-width: 480px) {
+@media (min-width: 769px) {
+	.masonry-gallery {
+		columns: 3;
+	}
+	.gallery-row-1 {
+		grid-template-columns: 2fr 1fr;
+	}
+	.gallery-row-1__right {
+		flex-direction: column;
+	}
 	.gallery-row-2 {
-		grid-template-columns: 1fr;
-	}
-	.gallery-row2 {
-		grid-template-columns: 1fr;
-	}
-	.farm-gallery {
-		padding: var(--sp-12) var(--sp-4);
+		grid-template-columns: repeat(3, 1fr);
 	}
 	.decouvrir-story {
-		padding: var(--sp-8) var(--sp-4);
+		grid-template-columns: 1fr 1fr;
+		gap: var(--sp-12);
+		padding: var(--sp-16) var(--sp-10);
+	}
+	.story-block {
+		grid-template-columns: 1fr 1fr;
+	}
+	.story-block--reverse {
+		direction: rtl;
 	}
 	.story {
-		padding: calc(60px + var(--sp-12)) var(--sp-4) var(--sp-12);
+		padding: calc(50px + var(--sp-20)) var(--sp-10) var(--sp-20);
 	}
 }

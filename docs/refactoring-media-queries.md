@@ -77,74 +77,76 @@ La conversion n'est **pas** un simple find/replace. Elle demande de réorganiser
 
 ## Périmètre exact
 
-### VISITORS — 12 fichiers CSS à convertir
+> ⚠️ **Mise à jour post-migration Rails (22/03/2026)**
+> Les fichiers CSS ont été découpés en sections (`-section-1.css`, `-section-2.css`…) lors de l'intégration Rails.
+> Les media queries se trouvent dans les **dernières sections** de chaque fichier.
+> Tous les chemins ci-dessous sont relatifs à `app/assets/stylesheets/`.
 
-> À faire pendant `app/assets/stylesheets/visitors/` en Phase 4 Rails.
+### VISITORS — fichiers à convertir
 
-| Fichier | Difficulté | Breakpoints concernés |
+| Fichier à modifier | Difficulté | Breakpoints concernés |
 |---|---|---|
-| `azukari.css` | Facile | 768px, 480px |
-| `konishi.css` | Facile | 768px, 480px |
-| `shop.css` | Facile | 768px, 900px, 480px |
-| `catalogue.css` | Facile | 900px, 480px |
-| `hero.css` | Moyenne | 768px, 480px (+ `prefers-reduced-motion` à garder) |
-| `features.css` | Moyenne | 768px, 480px, 900px |
-| `farm.css` | Moyenne | 768px, 480px |
-| `forms.css` | Moyenne | 900px, 580px (+ `min-width: 769px` déjà correct) |
-| `product.css` | Moyenne | 900px, 480px |
-| `product-pages.css` | Difficile | 900px, 600px, 480px |
-| `koi-card-pages.css` | Difficile | 900px, 480px |
-| `header.css` | Difficile | 480px, 900px (navigation entière) |
+| `visitors/azukari.css` | Facile | 768px, 480px |
+| `visitors/konishi.css` | Facile | 768px, 480px |
+| `visitors/shop-section-2.css` | Facile | 768px, 900px, 480px |
+| `visitors/catalogue-section-2.css` | Facile | 900px, 480px |
+| `visitors/hero-section-2.css` | Moyenne | 768px, 480px (+ `prefers-reduced-motion` dans `hero-section-1.css` à laisser) |
+| `visitors/features-section-2.css` | Moyenne | 768px, 480px, 900px |
+| `visitors/farm-section-3.css` | Moyenne | 768px, 480px |
+| `visitors/forms-section-2.css` | Moyenne | 900px, 580px (+ `min-width: 769px` déjà correct — à garder) |
+| `visitors/product-section-2.css` | Moyenne | 900px, 480px |
+| `visitors/product-pages-section-3.css` | Difficile | 900px, 600px, 480px |
+| `visitors/koi-card-pages-section-3.css` | Difficile | 900px, 480px |
+| `visitors/header-section-1.css` | Difficile | 480px, 900px |
+| `visitors/header-section-3.css` | Difficile | 900px |
 
-### ADMIN — 1 fichier CSS à corriger
+### ADMIN — hors périmètre
 
-> Vérifié le 19/03/2026 — les pages HTML ADMIN ne contiennent plus de `<style>` inline avec `@media` (déjà corrigé). Le `FRONTEND_REFACTOR_PLAN.md` §9 décrivait un état antérieur.
-> Les fichiers `components.css`, `layout.css`, `tables.css`, `messages-ui.css` utilisent déjà `min-width` ✓.
-
-| Fichier | Action |
-|---|---|
-| `ADMIN/assets/css/templates/admin-layout.css` | Convertir `@media (max-width: 768px)` → `@media (min-width: 769px)` en inversant la logique des styles |
+> L'ADMIN est géré par un autre membre de l'équipe. Ne pas toucher aux fichiers `admin/`.
 
 ### Fichiers à ne PAS modifier
 
 | Fichier | Raison |
 |---|---|
-| `footer.css` | Déjà en `min-width: 769px` ✓ |
-| `forms.css` ligne 302 | Le `min-width: 769px` existant est correct — à garder |
-| `koi-card.css` | Aucune media query |
-| `base.css` | Aucune media query |
-| `atoms-media.css` | Aucune media query |
-| `variables.css` | Aucune media query |
-| `fonts.css` | Aucune media query |
-| `demo.css` | Preview only, hors scope |
+| `visitors/footer.css` | Déjà en `min-width: 769px` ✓ |
+| `visitors/footer-full-section-1.css` | Déjà en `min-width: 481px` et `min-width: 901px` ✓ |
+| `visitors/footer-full-section-2.css` | Déjà en `min-width: 481px` et `min-width: 769px` ✓ |
+| `visitors/legal.css` | Déjà en `min-width: 769px` ✓ |
+| `visitors/forms-section-2.css` ligne ~149 | Le `min-width: 769px` existant est correct — à garder |
+| `visitors/koi-card.css` | Aucune media query |
+| `visitors/base.css` | Aucune media query |
+| `visitors/atoms-media.css` | Aucune media query |
+| `visitors/variables-section-2.css` | Uniquement `prefers-reduced-motion` — à laisser |
+| `visitors/header-section-2.css` | Uniquement `prefers-reduced-motion` — à laisser |
+| `visitors/fonts.css` | Aucune media query |
 
 ---
 
 ## Ordre d'exécution recommandé
 
-> À suivre pendant la Phase 4 Rails — un fichier à la fois, testé avant de passer au suivant.
+> À suivre dans `app/assets/stylesheets/` — un fichier à la fois, testé avant de passer au suivant.
 
 ```
-Étape 1 — Facile
-  [ ] azukari.css
-  [ ] konishi.css
-  [ ] shop.css
-  [ ] catalogue.css
+Étape 1 — Facile ✅
+  [x] visitors/azukari.css
+  [x] visitors/konishi.css
+  [x] visitors/shop-section-2.css
+  [x] visitors/catalogue-section-2.css
 
-Étape 2 — Moyenne
-  [ ] hero.css          ← attention prefers-reduced-motion à garder
-  [ ] features.css
-  [ ] farm.css
-  [ ] forms.css         ← garder le min-width: 769px existant
-  [ ] product.css
+Étape 2 — Moyenne ✅
+  [x] visitors/hero-section-2.css        ← prefers-reduced-motion dans hero-section-1.css : ne pas toucher
+  [x] visitors/features-section-2.css
+  [x] visitors/farm-section-3.css
+  [x] visitors/forms-section-2.css       ← min-width: 769px pour form-row conservé
+  [x] visitors/product-section-2.css
 
-Étape 3 — Difficile
-  [ ] product-pages.css
-  [ ] koi-card-pages.css
-  [ ] header.css        ← en dernier (navigation mobile entière)
+Étape 3 — Difficile ✅
+  [x] visitors/product-pages-section-3.css
+  [x] visitors/koi-card-pages-section-3.css
+  [x] visitors/header-section-1.css      ← header mobile (nav entière)
+  [x] visitors/header-section-3.css      ← header desktop (dropdown)
 
-Étape 4 — ADMIN
-  [ ] templates/admin-layout.css  → convertir max-width: 768px → min-width: 769px
+-- ADMIN : hors périmètre --
 ```
 
 ---
@@ -158,20 +160,20 @@ Ouvrir dans le navigateur (ou DevTools en Rails) et vérifier à 4 tailles :
 3. **Tablette (820px)** — iPad Air
 4. **Desktop (1280px)** — standard
 
-| Fichier | Pages à tester |
+| Fichier | Routes Rails à tester |
 |---|---|
-| `azukari.css` | `pages/azukari.html` |
-| `konishi.css` | `pages/home.html`, `pages/nourriture.html` |
-| `shop.css` | `pages/nourriture.html`, `pages/materiel.html`, `pages/soins.html` |
-| `catalogue.css` | `pages/kois.html` |
-| `hero.css` | toutes les pages |
-| `features.css` | `pages/home.html` |
-| `farm.css` | `pages/decouvrir.html` |
-| `forms.css` | `pages/contact.html` |
-| `product.css` | `pages/product.html` |
-| `product-pages.css` | `pages/product.html` |
-| `koi-card-pages.css` | `pages/kois.html`, `pages/product.html` |
-| `header.css` | toutes les pages |
+| `visitors/azukari.css` | `/azukari` |
+| `visitors/konishi.css` | `/`, `/nourriture` |
+| `visitors/shop-section-2.css` | `/nourriture`, `/materiel`, `/soins` |
+| `visitors/catalogue-section-2.css` | `/kois` |
+| `visitors/hero-section-2.css` | toutes les pages |
+| `visitors/features-section-2.css` | `/` |
+| `visitors/farm-section-3.css` | `/decouvrir` |
+| `visitors/forms-section-2.css` | footer (toutes les pages) |
+| `visitors/product-section-2.css` | `/kois/:id` |
+| `visitors/product-pages-section-3.css` | `/kois/:id` |
+| `visitors/koi-card-pages-section-3.css` | `/kois`, `/kois/:id` |
+| `visitors/header-section-1.css` + `header-section-3.css` | toutes les pages |
 
 ---
 

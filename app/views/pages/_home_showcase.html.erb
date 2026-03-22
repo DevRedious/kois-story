@@ -13,7 +13,7 @@
     <% if editorial_koi.present? %>
       <%= link_to koi_path(editorial_koi), class: "editorial", data: { animate: "fade-scale" } do %>
         <div class="editorial__media">
-          <%= image_tag koi_image_source(editorial_koi), alt: "#{editorial_koi.name} · specimen du mois · lignee Konishi" if koi_image_source(editorial_koi).present? %>
+          <%= image_tag koi_image_source(editorial_koi), alt: "#{editorial_koi.name} · specimen du mois · lignee Konishi", loading: "lazy" if koi_image_source(editorial_koi).present? %>
           <div class="editorial__overlay"></div>
         </div>
         <div class="editorial__content">
@@ -32,7 +32,7 @@
       <% showcase_kois.each_with_index do |koi, index| %>
         <article class="koi-card" data-animate="fade-up" data-delay="<%= index %>">
           <div class="koi-card-image">
-            <%= image_tag koi_image_source(koi), alt: koi.name if koi_image_source(koi).present? %>
+            <%= image_tag koi_image_source(koi), alt: koi.name, loading: "lazy" if koi_image_source(koi).present? %>
             <div class="koi-card-badges">
               <% if koi.konishi_lineage? %>
                 <span class="koi-card-badge koi-card-badge--konishi">

@@ -23,6 +23,13 @@ body {
 	line-height: var(--leading-normal);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	min-height: 100dvh;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1;
 }
 
 /* ── Fond washi sakura ───────────────────────────────────────────── */
@@ -32,12 +39,7 @@ body::before {
 	position: fixed;
 	inset: 0;
 	z-index: -2;
-	background: radial-gradient(
-		circle at 20% 20%,
-		#ffffff 0%,
-		#f5f5f2 55%,
-		#ecece8 100%
-	);
+	background: url("bg_sakura.png") center / cover no-repeat;
 	filter: saturate(0.28) contrast(0.82) brightness(1.15) sepia(0.1);
 }
 /* Couche 2 : voile crème chaud + grain fibres papier */
@@ -80,6 +82,24 @@ textarea,
 select {
 	font-family: inherit;
 	font-size: inherit;
+}
+
+/* ── Skip link (accessibilité clavier) ─────────────────────────────── */
+.skip-link {
+	position: absolute;
+	top: -100px;
+	left: 1rem;
+	padding: var(--sp-2) var(--sp-4);
+	background: var(--c-wine);
+	color: var(--c-white);
+	border-radius: 0 0 var(--r-md) var(--r-md);
+	z-index: 9999;
+	font-weight: 700;
+	font-size: var(--text-sm);
+	transition: top 150ms ease;
+}
+.skip-link:focus {
+	top: 0;
 }
 
 /* ── Accessibilité  focus visible ──────────────────────────────────── */

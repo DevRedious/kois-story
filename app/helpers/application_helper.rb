@@ -6,11 +6,12 @@ module ApplicationHelper
   def resolved_image_source(image)
     return unless image&.url.present?
 
-    candidate = image.url.url
-    candidate if candidate.present?
+    raw = image[:url].to_s
+    return raw if raw.start_with?("http://", "https://", "/")
+
+    image.url.url.presence
   rescue StandardError
-    candidate = image[:url].to_s
-    candidate if candidate.start_with?("/", "http://", "https://")
+    nil
   end
 
   def whatsapp_link(phone, message)

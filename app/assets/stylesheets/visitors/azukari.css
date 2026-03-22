@@ -3,24 +3,24 @@
    ========================================================================== */
 
 .azukari-desc {
-	padding: calc(50px + var(--sp-20)) var(--sp-10) var(--sp-20);
+	padding: calc(60px + var(--sp-12)) var(--sp-4) var(--sp-12);
 	background: rgba(245, 245, 242, 0.9);
 }
-@media (max-width: 768px) {
+@media (min-width: 481px) {
 	.azukari-desc {
 		padding: calc(52px + var(--sp-16)) var(--sp-6) var(--sp-16);
 	}
 }
-@media (max-width: 480px) {
+@media (min-width: 769px) {
 	.azukari-desc {
-		padding: calc(60px + var(--sp-12)) var(--sp-4) var(--sp-12);
+		padding: calc(50px + var(--sp-20)) var(--sp-10) var(--sp-20);
 	}
 }
 .azukari-desc__inner {
 	max-width: var(--max-width);
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	gap: var(--sp-12);
 	align-items: start;
 }
@@ -43,7 +43,7 @@
 
 .azukari-features {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	gap: var(--sp-8) var(--sp-6);
 }
 .azukari-feature {
@@ -72,11 +72,11 @@
 	margin-top: var(--sp-2);
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
 	.azukari-desc__inner {
-		grid-template-columns: 1fr;
+		grid-template-columns: 1fr 1fr;
 	}
 	.azukari-features {
-		grid-template-columns: 1fr;
+		grid-template-columns: 1fr 1fr;
 	}
 }

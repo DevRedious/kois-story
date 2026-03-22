@@ -7,19 +7,19 @@
 
 /* Remonte hero-intro pour combler les creux de la vague (12% de 100vh max) */
 .hero--wavy-bottom + .hero-intro {
-	margin-top: -12vh;
-	padding-top: calc(12vh + var(--sp-16));
+	margin-top: -6vh;
+	padding-top: calc(6vh + var(--sp-16));
 }
-@media (max-width: 768px) {
+@media (min-width: 481px) {
 	.hero--wavy-bottom + .hero-intro {
 		margin-top: -8vh;
 		padding-top: calc(8vh + var(--sp-16));
 	}
 }
-@media (max-width: 480px) {
+@media (min-width: 769px) {
 	.hero--wavy-bottom + .hero-intro {
-		margin-top: -6vh;
-		padding-top: calc(6vh + var(--sp-16));
+		margin-top: -12vh;
+		padding-top: calc(12vh + var(--sp-16));
 	}
 }
 .hero-intro__inner {
@@ -61,16 +61,16 @@
 
 /* main transparent : on remonte pour couvrir la vague au complet */
 .hero-compact--wavy-bottom + main {
-	margin-top: -50px;
+	margin-top: -60px;
 }
-@media (max-width: 768px) {
+@media (min-width: 481px) {
 	.hero-compact--wavy-bottom + main {
 		margin-top: -52px;
 	}
 }
-@media (max-width: 480px) {
+@media (min-width: 769px) {
 	.hero-compact--wavy-bottom + main {
-		margin-top: -60px;
+		margin-top: -50px;
 	}
 }
 
@@ -92,7 +92,7 @@
 	position: absolute;
 	inset: 0;
 	background:
-		url("../../../docs/assets/bg_sakura.png") center / cover no-repeat;
+		url("bg_sakura.png") center / cover no-repeat;
 	filter: saturate(0.28) contrast(0.82) brightness(1.15) sepia(0.1);
 	opacity: 0.22;
 	pointer-events: none;
