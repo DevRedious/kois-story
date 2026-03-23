@@ -1,0 +1,54 @@
+<div class="page-sub">Vue centralisee des paiements lies aux commandes et a leur statut d'encaissement.</div>
+
+<div class="resource-hero">
+  <div class="resource-hero__content">
+    <div class="resource-hero__eyebrow">Tresorerie</div>
+    <h2 class="resource-hero__title">Paiements a suivre</h2>
+    <p class="resource-hero__text">Reperez les depots, echeances a venir et paiements deja soldes sans quitter l'admin.</p>
+  </div>
+  <div class="resource-metrics">
+    <div class="resource-metric">
+      <span class="resource-metric__label">Total</span>
+      <strong class="resource-metric__value"><%= @payments.size %></strong>
+    </div>
+    <div class="resource-metric">
+      <span class="resource-metric__label">En attente</span>
+      <strong class="resource-metric__value"><%= @payments.count(&:pending?) %></strong>
+    </div>
+    <div class="resource-metric">
+      <span class="resource-metric__label">Regles</span>
+      <strong class="resource-metric__value"><%= @payments.count(&:paid?) %></strong>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Paiements</div>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr><th>Commande</th><th>Client</th><th>Type</th><th>Montant</th><th>Statut</th><th>Echeance</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <% @payments.each do |payment| %>
+          <tr data-payment-status="<%= payment.status %>">
+            <td><%= admin_order_reference(payment.order) %></td>
+            <td><%= payment.order.client_profile&.name %></td>
+            <td><%= admin_payment_type_label(payment) %></td>
+            <td><%= number_to_currency(payment.amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td>
+            <td><span class="badge <%= admin_payment_status_badge_class(payment) %>"><%= admin_payment_status_label(payment) %></span></td>
+            <td><%= payment.due_at.present? ? l(payment.due_at.to_date) : "-" %></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Voir", admin_payment_path(payment), class: "btn btn--outline btn--sm" %>
+                <%= link_to "Editer", edit_admin_payment_path(payment), class: "btn btn--ghost btn--sm" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

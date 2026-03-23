@@ -5,6 +5,10 @@ module Admin
       @sold_kois_count = Koi.where(status: "sold_out").count
       @messages_count = Message.count
       @unread_messages_count = Message.unread.count
+      @products_count = Product.count
+      @orders_count = Order.count
+      @payments_count = Payment.count
+      @clients_count = ClientProfile.count
       @recent_messages = Message.order(created_at: :desc).limit(5)
       @recent_kois = Koi.order(created_at: :desc).limit(4)
     end

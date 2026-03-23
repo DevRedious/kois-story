@@ -1,0 +1,34 @@
+<div class="page-sub">Gestion du catalogue materiel, soins et nourriture.</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Produits</div>
+    <%= link_to "Nouveau produit", new_admin_product_path, class: "btn btn--primary btn--sm" %>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr><th>Nom</th><th>Reference</th><th>Categorie</th><th>Prix</th><th>Stock</th><th>Statut</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><strong><%= link_to product.name, admin_product_path(product) %></strong></td>
+            <td><%= product.reference %></td>
+            <td><%= admin_product_category_label(product) %></td>
+            <td><%= number_to_currency(product.price, unit: "", precision: 2, delimiter: " ").strip %> €</td>
+            <td><%= product.stock_quantity || 0 %></td>
+            <td><span class="badge <%= admin_product_status_badge_class(product) %>"><%= admin_product_status_label(product) %></span></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Voir", admin_product_path(product), class: "btn btn--ghost btn--sm" %>
+                <%= link_to "Editer", edit_admin_product_path(product), class: "btn btn--outline btn--sm" %>
+                <%= button_to "Supprimer", admin_product_path(product), method: :delete, class: "btn btn--danger btn--sm", form: { data: { turbo_confirm: "Supprimer #{product.name} ?" } } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

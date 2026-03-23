@@ -1,0 +1,41 @@
+<div class="page-sub">Mettez a jour le suivi du paiement associe a une commande.</div>
+
+<%= form_with model: [ :admin, @payment ], local: true do |f| %>
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title">Paiement #<%= @payment.id %></div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Commande</label>
+        <input type="text" value="<%= admin_order_reference(@payment.order) %>" disabled>
+      </div>
+      <div class="form-group">
+        <%= f.label :payment_type, "Type" %>
+        <%= f.select :payment_type, Payment.payment_types.keys.map { |key| [ key.humanize, key ] } %>
+      </div>
+      <div class="form-group">
+        <%= f.label :status, "Statut" %>
+        <%= f.select :status, Payment.statuses.keys.map { |key| [ key.humanize, key ] } %>
+      </div>
+      <div class="form-group">
+        <%= f.label :amount, "Montant (€)" %>
+        <%= f.number_field :amount, min: 0, step: 0.01 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :due_at, "Echeance" %>
+        <%= f.datetime_local_field :due_at %>
+      </div>
+      <div class="form-group">
+        <%= f.label :paid_at, "Date de paiement" %>
+        <%= f.datetime_local_field :paid_at %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-footer">
+    <%= link_to "Retour", admin_payment_path(@payment), class: "btn btn--outline" %>
+    <%= f.submit "Enregistrer", class: "btn btn--primary" %>
+  </div>
+<% end %>

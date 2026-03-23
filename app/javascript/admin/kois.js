@@ -11,7 +11,8 @@ document.addEventListener("turbo:load", () => {
 	const count = document.getElementById("koi-count");
 	const table = document.getElementById("kois-table");
 
-	if (!table) return;
+	if (!table || table.dataset.bound === "true") return;
+	table.dataset.bound = "true";
 
 	function applyFilters() {
 		const q = search?.value.toLowerCase() ?? "";

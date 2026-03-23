@@ -1,0 +1,39 @@
+<div class="page-sub">Preparation d'un envoi newsletter a partir des contacts deja presents dans l'application.</div>
+
+<div class="stats-grid">
+  <div class="stat-card c-konishi">
+    <div class="stat-label">Contacts uniques</div>
+    <div class="stat-value"><%= @contacts.size %></div>
+    <div class="stat-sub">Clients + messages recus</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Audience email</div>
+    <div class="td-actions">
+      <button type="button" class="btn btn--outline btn--sm" data-copy-target="#newsletter-emails">Copier la liste</button>
+      <% if @mailto_link.present? %>
+        <%= link_to "Ouvrir dans votre client mail", @mailto_link, class: "btn btn--primary btn--sm" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="newsletter-emails">Liste BCC</label>
+    <textarea id="newsletter-emails" readonly rows="5"><%= @emails_blob %></textarea>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <thead><tr><th>Nom</th><th>Email</th><th>Source</th></tr></thead>
+      <tbody>
+        <% @contacts.each do |contact| %>
+          <tr>
+            <td><%= contact[:name] %></td>
+            <td><%= mail_to contact[:email] %></td>
+            <td><span class="badge <%= admin_newsletter_source_badge_class(contact) %>"><%= contact[:source] %></span></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

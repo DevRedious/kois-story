@@ -3,6 +3,7 @@
 
 <div class="quick-actions">
   <%= link_to "＋ Nouveau koi", new_admin_koi_path, class: "btn btn--primary" %>
+  <%= link_to "＋ Nouveau produit", new_admin_product_path, class: "btn btn--dark" %>
   <%= link_to "Voir les kois", admin_kois_path, class: "btn btn--dark" %>
   <%= link_to admin_messages_path, class: "btn btn--outline" do %>
     Voir les messages
@@ -30,6 +31,21 @@
     <div class="stat-label">Messages non lus</div>
     <div class="stat-value"><%= @unread_messages_count %></div>
     <div class="stat-sub down">A traiter en priorite</div>
+  </div>
+  <div class="stat-card c-arrivage">
+    <div class="stat-label">Produits</div>
+    <div class="stat-value"><%= @products_count %></div>
+    <div class="stat-sub">Catalogue hors kois</div>
+  </div>
+  <div class="stat-card c-konishi">
+    <div class="stat-label">Commandes</div>
+    <div class="stat-value"><%= @orders_count %></div>
+    <div class="stat-sub">Suivi commercial</div>
+  </div>
+  <div class="stat-card c-dispo">
+    <div class="stat-label">Clients</div>
+    <div class="stat-value"><%= @clients_count %></div>
+    <div class="stat-sub"><%= @payments_count %> paiements lies</div>
   </div>
 </div>
 

@@ -1,0 +1,23 @@
+<div class="page-sub">Fiche produit et informations de stock.</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title"><%= @product.name %></div>
+    <div class="td-actions">
+      <%= link_to "Retour", admin_products_path, class: "btn btn--outline btn--sm" %>
+      <%= link_to "Editer", edit_admin_product_path(@product), class: "btn btn--primary btn--sm" %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <tbody>
+        <tr><th>Reference</th><td><%= @product.reference %></td></tr>
+        <tr><th>Categorie</th><td><%= admin_product_category_label(@product) %></td></tr>
+        <tr><th>Statut</th><td><span class="badge <%= admin_product_status_badge_class(@product) %>"><%= admin_product_status_label(@product) %></span></td></tr>
+        <tr><th>Prix</th><td><%= number_to_currency(@product.price, unit: "", precision: 2, delimiter: " ").strip %> €</td></tr>
+        <tr><th>Stock</th><td><%= @product.stock_quantity || 0 %></td></tr>
+        <tr><th>Description</th><td><%= @product.description.presence || "Aucune description renseignee." %></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -6,10 +6,10 @@
 @import url("./admin/tables.css");
 @import url("./admin/login.css");
 @import url("./admin/utilities.css");
+@import url("./admin/atoms/admin-buttons.css");
 @import url("./admin/atoms/admin-btn-extensions.css");
 @import url("./admin/atoms/amount.css");
 @import url("./admin/atoms/avatar.css");
-@import url("./admin/atoms/input-atom.css");
 @import url("./admin/atoms/toggle.css");
 @import url("./admin/molecules/filter-bar.css");
 @import url("./admin/molecules/messages-ui.css");
@@ -23,3 +23,20 @@
 @import url("./admin/pages/product-form.css");
 @import url("./admin/pages/client-form.css");
 @import url("./admin/pages/accounting.css");
+@import url("./admin/pages/admin-resources.css");
+@import url("./admin/pages/admin-responsive.css");
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: var(--font-body);
+	background: var(--blanc-casse);
+	min-height: 100vh;
+	display: flex;
+}

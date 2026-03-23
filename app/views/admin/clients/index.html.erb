@@ -1,0 +1,45 @@
+<div class="page-sub">Base clients issue des comptes et profils rattaches aux commandes et aux demandes du site.</div>
+
+<div class="resource-hero">
+  <div class="resource-hero__content">
+    <div class="resource-hero__eyebrow">Relation client</div>
+    <h2 class="resource-hero__title">Clients et historique</h2>
+    <p class="resource-hero__text">Retrouvez les coordonnees utiles et le poids commercial de chaque client en un coup d'oeil.</p>
+  </div>
+  <div class="resource-metrics">
+    <div class="resource-metric">
+      <span class="resource-metric__label">Clients</span>
+      <strong class="resource-metric__value"><%= @clients.size %></strong>
+    </div>
+    <div class="resource-metric">
+      <span class="resource-metric__label">Avec commandes</span>
+      <strong class="resource-metric__value"><%= @clients.count { |client| client.orders.any? } %></strong>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header"><div class="panel-title">Clients</div></div>
+  <div class="table-responsive">
+    <table>
+      <thead><tr><th>Nom</th><th>Email</th><th>Telephone</th><th>Commandes</th><th>Total</th><th>Action</th></tr></thead>
+      <tbody>
+        <% @clients.each do |client| %>
+          <tr>
+            <td><strong><%= admin_client_name(client) %></strong></td>
+            <td><%= client.user&.email || "-" %></td>
+            <td><%= client.phone.presence || "-" %></td>
+            <td><%= client.orders.count %></td>
+            <td><%= number_to_currency(admin_client_orders_total(client), unit: "", precision: 2, delimiter: " ").strip %> €</td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Voir", admin_client_path(client), class: "btn btn--outline btn--sm" %>
+                <%= link_to "Editer", edit_admin_client_path(client), class: "btn btn--ghost btn--sm" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

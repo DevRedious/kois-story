@@ -5,6 +5,9 @@
  */
 
 document.addEventListener("turbo:load", () => {
+	if (document.body.dataset.paymentsBound === "true") return;
+	document.body.dataset.paymentsBound = "true";
+
 	// ── FILTRE STATUT ──────────────────────────────────────────────
 	const statusFilter = document.getElementById("pay-status-filter");
 	const paymentsTable = document.querySelector(".panel table tbody");

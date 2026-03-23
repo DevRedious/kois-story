@@ -1,0 +1,179 @@
+.topbar {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	align-items: flex-start;
+}
+
+.topbar-left,
+.topbar-right {
+	width: 100%;
+}
+
+.topbar-left {
+	align-items: flex-start;
+}
+
+.topbar-left > div {
+	min-width: 0;
+	flex: 1;
+}
+
+.topbar-right {
+	justify-content: space-between;
+}
+
+.topbar-title {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.topbar-user-name {
+	display: none;
+}
+
+.theme-switcher {
+	flex: 1;
+}
+
+.theme-switcher select {
+	width: 100%;
+	min-width: 0;
+}
+
+.quick-actions {
+	flex-direction: column;
+}
+
+.quick-actions .btn {
+	width: 100%;
+	justify-content: center;
+}
+
+.stats-6 {
+	grid-template-columns: 1fr;
+}
+
+.page-sub {
+	line-height: 1.5;
+}
+
+.panel-header {
+	align-items: flex-start;
+}
+
+.td-actions {
+	flex-wrap: wrap;
+}
+
+.td-actions > .btn,
+.td-actions > .button_to,
+.td-actions > form {
+	flex: 1 1 100%;
+}
+
+.td-actions > form .btn {
+	width: 100%;
+}
+
+.form-footer {
+	flex-direction: column-reverse;
+}
+
+.form-footer .btn,
+.form-footer .button_to,
+.form-footer form {
+	width: 100%;
+}
+
+.resource-hero__title {
+	max-width: 12ch;
+}
+
+.modal-msg-meta {
+	grid-template-columns: 1fr;
+}
+
+.img-preview {
+	gap: 8px;
+}
+
+.img-thumb {
+	width: 72px;
+	height: 72px;
+}
+
+.table-responsive {
+	-webkit-overflow-scrolling: touch;
+	border-radius: 12px;
+}
+
+@media (min-width: 481px) {
+	.stats-6 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.topbar-user-name {
+		display: inline;
+	}
+}
+
+@media (min-width: 769px) {
+	.topbar {
+		padding-top: 0;
+		padding-bottom: 0;
+		align-items: center;
+	}
+
+	.topbar-left,
+	.topbar-right,
+	.panel-header > .td-actions,
+	.table-responsive .td-actions,
+	.form-footer .btn,
+	.form-footer .button_to,
+	.form-footer form {
+		width: auto;
+	}
+
+	.topbar-right {
+		justify-content: flex-end;
+	}
+
+	.theme-switcher {
+		flex: 0 0 auto;
+	}
+
+	.theme-switcher select {
+		width: auto;
+		min-width: 100px;
+	}
+
+	.quick-actions {
+		flex-direction: row;
+	}
+
+	.quick-actions .btn {
+		width: auto;
+	}
+
+	.td-actions > .btn,
+	.td-actions > .button_to,
+	.td-actions > form {
+		flex: 0 0 auto;
+	}
+
+	.form-footer {
+		flex-direction: row;
+	}
+
+	.resource-hero__title {
+		max-width: none;
+	}
+}
+
+@media (min-width: 1025px) {
+	.stats-6 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}

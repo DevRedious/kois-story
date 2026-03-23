@@ -52,7 +52,7 @@
 .topbar {
 	position: sticky;
 	top: 0;
-	height: var(--topbar-h);
+	min-height: var(--topbar-h);
 	background: var(--topbar-bg);
 	border-bottom: 1px solid var(--border-color);
 	display: flex;
@@ -61,6 +61,7 @@
 	padding: 0 16px;
 	z-index: 100;
 	gap: 12px;
+	flex-wrap: wrap;
 }
 
 .topbar-left {
@@ -72,6 +73,8 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	flex-wrap: wrap;
+	justify-content: flex-end;
 }
 .topbar-title {
 	font-family: var(--font-title);

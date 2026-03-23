@@ -1,0 +1,24 @@
+<div class="page-sub">Detail d'un paiement rattache a une commande.</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Paiement #<%= @payment.id %></div>
+    <div class="td-actions">
+      <%= link_to "Retour", admin_payments_path, class: "btn btn--outline btn--sm" %>
+      <%= link_to "Editer", edit_admin_payment_path(@payment), class: "btn btn--primary btn--sm" %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <tbody>
+        <tr><th>Commande</th><td><%= link_to admin_order_reference(@payment.order), admin_order_path(@payment.order) %></td></tr>
+        <tr><th>Client</th><td><%= @payment.order.client_profile&.name %></td></tr>
+        <tr><th>Type</th><td><%= admin_payment_type_label(@payment) %></td></tr>
+        <tr><th>Statut</th><td><span class="badge <%= admin_payment_status_badge_class(@payment) %>"><%= admin_payment_status_label(@payment) %></span></td></tr>
+        <tr><th>Montant</th><td><%= number_to_currency(@payment.amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td></tr>
+        <tr><th>Echeance</th><td><%= @payment.due_at.present? ? l(@payment.due_at.to_date) : "-" %></td></tr>
+        <tr><th>Paye le</th><td><%= @payment.paid_at.present? ? l(@payment.paid_at) : "-" %></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
