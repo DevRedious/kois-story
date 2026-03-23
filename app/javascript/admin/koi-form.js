@@ -13,13 +13,19 @@ document.addEventListener("turbo:load", () => {
 
 	const syncFiles = (files) => {
 		const dataTransfer = new DataTransfer();
-		files.forEach((file) => dataTransfer.items.add(file));
+		files.forEach((file) => {
+			dataTransfer.items.add(file);
+		});
 		fileInput.files = dataTransfer.files;
 	};
 
 	const renderPreviews = () => {
 		if (!preview) return;
-		preview.querySelectorAll(".img-thumb--new").forEach((node) => node.remove());
+		preview
+			.querySelectorAll(".img-thumb--new")
+			.forEach((node) => {
+				node.remove();
+			});
 		Array.from(fileInput.files).forEach((file, index) => {
 			if (!file.type.startsWith("image/")) return;
 			const reader = new FileReader();
@@ -57,7 +63,9 @@ document.addEventListener("turbo:load", () => {
 			}
 
 			const indexToRemove = Number(thumb.dataset.fileIndex);
-			const remainingFiles = Array.from(fileInput.files).filter((_, index) => index !== indexToRemove);
+			const remainingFiles = Array.from(fileInput.files).filter(
+				(_, index) => index !== indexToRemove,
+			);
 			syncFiles(remainingFiles);
 			renderPreviews();
 		});

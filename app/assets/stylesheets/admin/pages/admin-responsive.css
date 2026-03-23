@@ -63,11 +63,6 @@
 	align-items: flex-start;
 }
 
-.panel-header > .td-actions,
-.table-responsive .td-actions {
-	width: 100%;
-}
-
 .td-actions {
 	flex-wrap: wrap;
 }

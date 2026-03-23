@@ -1,6 +1,6 @@
 <div class="page-sub">Mettez a jour les informations de contact et les notes internes.</div>
 
-<%= form_with model: [ :admin, @client ], local: true do |f| %>
+<%= form_with model: @client, url: admin_client_path(@client), scope: :client_profile, local: true do |f| %>
   <div class="panel">
     <div class="panel-header">
       <div class="panel-title"><%= admin_client_name(@client) %></div>

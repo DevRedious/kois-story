@@ -1,7 +1,11 @@
 .resource-hero {
 	display: grid;
 	gap: 16px;
-	background: linear-gradient(135deg, rgba(99, 15, 15, 0.94), rgba(0, 0, 0, 0.96));
+	background: linear-gradient(
+		135deg,
+		rgba(99, 15, 15, 0.94),
+		rgba(0, 0, 0, 0.96)
+	);
 	color: var(--blanc-pur);
 	border-radius: 18px;
 	padding: 20px;
@@ -59,8 +63,13 @@
 	line-height: 1;
 }
 
-.table-responsive .td-actions {
+.td-actions {
 	flex-wrap: wrap;
+}
+
+.table-responsive .td-actions,
+.panel-header > .td-actions {
+	width: 100%;
 }
 
 .panel .td-actions form {
