@@ -37,10 +37,11 @@ module Admin
     end
 
     def destroy
-      @koi.destroy
-      redirect_to admin_kois_path, notice: "Koi deleted."
-    rescue ActiveRecord::InvalidForeignKey
-      redirect_to admin_kois_path, alert: "This koi is linked to an order and cannot be deleted."
+      if @koi.destroy
+        redirect_to admin_kois_path, notice: "Koi deleted."
+      else
+        redirect_to admin_kois_path, alert: "This koi is linked to an order and cannot be deleted."
+      end
     end
 
     private

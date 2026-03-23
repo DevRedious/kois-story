@@ -3,6 +3,17 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "devise"
 
+CarrierWave.configure do |config|
+  config.storage = :file
+  config.enable_processing = false
+end
+
+ImageUploader.class_eval do
+  def remove!
+    # no-op in test — prevents Cloudinary API calls on destroy
+  end
+end
+
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers

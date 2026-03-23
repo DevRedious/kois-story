@@ -3,6 +3,20 @@ class Koi < ApplicationRecord
   has_many :koi_tags, dependent: :destroy
   has_many :tags, through: :koi_tags
   has_many :images, as: :imageable, dependent: :destroy
+  has_many :order_items
+
+  before_destroy :prevent_destroy_if_ordered
+
+  private
+
+  def prevent_destroy_if_ordered
+    return unless order_items.exists?
+
+    errors.add(:base, "Cannot delete a koi linked to an order")
+    throw :abort
+  end
+
+  public
 
   enum :status, { available: 0, sold_out: 1, incoming: 2 }
   enum :sex, { unknown: 0, male: 1, female: 2 }

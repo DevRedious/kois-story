@@ -14,8 +14,24 @@
 
   <body class="<%= content_for(:body_class) if content_for?(:body_class) %>">
     <a href="#main-content" class="skip-link">Aller au contenu principal</a>
-    <% if notice %><div class="flash notice"><%= notice %></div><% end %>
-    <% if alert %><div class="flash alert"><%= alert %></div><% end %>
+    <div class="toast-container">
+      <% if notice %>
+        <div class="toast toast--notice" data-toast>
+          <span class="toast__icon">✓</span>
+          <p class="toast__message"><%= notice %></p>
+          <button class="toast__close" data-toast-close aria-label="Fermer">×</button>
+          <div class="toast__progress"></div>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="toast toast--alert" data-toast>
+          <span class="toast__icon">!</span>
+          <p class="toast__message"><%= alert %></p>
+          <button class="toast__close" data-toast-close aria-label="Fermer">×</button>
+          <div class="toast__progress"></div>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
     <%= render "layouts/footer" unless content_for?(:skip_default_footer) %>
   </body>
