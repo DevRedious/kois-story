@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_20_143856) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_20_150000) do
   create_table "client_profiles", force: :cascade do |t|
     t.string "address"
     t.datetime "created_at", null: false
@@ -70,9 +70,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_143856) do
 
   create_table "order_items", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "koi_id", null: false
+    t.integer "koi_id"
     t.integer "order_id", null: false
-    t.integer "product_id", null: false
+    t.integer "product_id"
     t.integer "quantity"
     t.decimal "unit_price"
     t.datetime "updated_at", null: false
@@ -142,9 +142,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_143856) do
   add_foreign_key "koi_tags", "kois"
   add_foreign_key "koi_tags", "tags"
   add_foreign_key "kois", "users"
-  add_foreign_key "order_items", "kois"
+  add_foreign_key "order_items", "kois", on_delete: :nullify
   add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "products"
+  add_foreign_key "order_items", "products", on_delete: :nullify
   add_foreign_key "orders", "client_profiles"
   add_foreign_key "payments", "orders"
 end
