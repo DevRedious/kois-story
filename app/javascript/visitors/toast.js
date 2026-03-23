@@ -7,7 +7,9 @@
 
 	const dismissToast = (toast) => {
 		toast.classList.add("toast--leaving");
-		toast.addEventListener("animationend", () => toast.remove(), { once: true });
+		toast.addEventListener("animationend", () => toast.remove(), {
+			once: true,
+		});
 	};
 
 	document.addEventListener("turbo:load", () => {
