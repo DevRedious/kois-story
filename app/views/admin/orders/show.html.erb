@@ -1,0 +1,59 @@
+<div class="page-sub">Detail d'une commande client et des paiements associes.</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title"><%= admin_order_reference(@order) %></div>
+    <div class="td-actions">
+      <%= link_to "Retour", admin_orders_path, class: "btn btn--outline btn--sm" %>
+      <%= link_to "Editer", edit_admin_order_path(@order), class: "btn btn--primary btn--sm" %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <tbody>
+        <tr><th>Client</th><td><%= admin_order_client_name(@order) %></td></tr>
+        <tr><th>Statut</th><td><span class="badge <%= admin_order_status_badge_class(@order) %>"><%= admin_order_status_label(@order) %></span></td></tr>
+        <tr><th>Total</th><td><%= number_to_currency(@order.total_amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td></tr>
+        <tr><th>Notes</th><td><%= @order.notes.presence || "Aucune note." %></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header"><div class="panel-title">Lignes de commande</div></div>
+  <div class="table-responsive">
+    <table>
+      <thead><tr><th>Article</th><th>Quantite</th><th>Prix unitaire</th><th>Sous-total</th></tr></thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= admin_order_item_label(item) %></td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency(item.unit_price || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td>
+            <td><%= number_to_currency((item.unit_price || 0) * (item.quantity || 0), unit: "", precision: 2, delimiter: " ").strip %> €</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header"><div class="panel-title">Paiements</div></div>
+  <div class="table-responsive">
+    <table>
+      <thead><tr><th>Type</th><th>Montant</th><th>Statut</th><th>Echeance</th></tr></thead>
+      <tbody>
+        <% @payments.each do |payment| %>
+          <tr>
+            <td><%= admin_payment_type_label(payment) %></td>
+            <td><%= number_to_currency(payment.amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td>
+            <td><span class="badge <%= admin_payment_status_badge_class(payment) %>"><%= admin_payment_status_label(payment) %></span></td>
+            <td><%= payment.due_at.present? ? l(payment.due_at.to_date) : "-" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

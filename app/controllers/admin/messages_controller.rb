@@ -6,7 +6,6 @@ module Admin
 
     def show
       @message = Message.find(params[:id])
-      @message.mark_as_read!
     end
 
     def update

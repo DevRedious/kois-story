@@ -37,7 +37,7 @@
     <div class="topbar-divider"></div>
     <div class="topbar-user">
       <div class="topbar-avatar"><%= admin_user_initials %></div>
-      <%= admin_user_name %>
+      <span class="topbar-user-name"><%= admin_user_name %></span>
     </div>
     <div class="topbar-divider"></div>
     <%= button_to destroy_user_session_path, method: :delete, form_class: "logout-form", class: "btn-icon logout-btn", title: "Deconnexion", aria: { label: "Deconnexion" } do %>

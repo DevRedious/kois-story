@@ -5,7 +5,8 @@
 
 document.addEventListener("turbo:load", () => {
 	const filter = document.getElementById("msg-filter");
-	if (!filter) return;
+	if (!filter || filter.dataset.bound === "true") return;
+	filter.dataset.bound = "true";
 
 	filter.addEventListener("change", function () {
 		const value = this.value;

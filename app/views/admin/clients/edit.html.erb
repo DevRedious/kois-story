@@ -1,0 +1,38 @@
+<div class="page-sub">Mettez a jour les informations de contact et les notes internes.</div>
+
+<%= form_with model: [ :admin, @client ], local: true do |f| %>
+  <div class="panel">
+    <div class="panel-header">
+      <div class="panel-title"><%= admin_client_name(@client) %></div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <%= f.label :name, "Nom" %>
+        <%= f.text_field :name, required: true %>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" value="<%= @client.user&.email || '-' %>" disabled>
+      </div>
+      <div class="form-group">
+        <%= f.label :phone, "Telephone" %>
+        <%= f.telephone_field :phone %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address, "Adresse" %>
+        <%= f.text_field :address %>
+      </div>
+    </div>
+
+    <div class="form-group mt-2">
+      <%= f.label :notes, "Notes" %>
+      <%= f.text_area :notes, rows: 6 %>
+    </div>
+  </div>
+
+  <div class="form-footer">
+    <%= link_to "Retour", admin_client_path(@client), class: "btn btn--outline" %>
+    <%= f.submit "Enregistrer", class: "btn btn--primary" %>
+  </div>
+<% end %>

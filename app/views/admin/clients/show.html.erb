@@ -1,0 +1,40 @@
+<div class="page-sub">Fiche client et historique des commandes.</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title"><%= admin_client_name(@client) %></div>
+    <div class="td-actions">
+      <%= link_to "Retour", admin_clients_path, class: "btn btn--outline btn--sm" %>
+      <%= link_to "Editer", edit_admin_client_path(@client), class: "btn btn--primary btn--sm" %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <tbody>
+        <tr><th>Email</th><td><%= @client.user&.email || "-" %></td></tr>
+        <tr><th>Telephone</th><td><%= @client.phone.presence || "-" %></td></tr>
+        <tr><th>Adresse</th><td><%= @client.address.presence || "-" %></td></tr>
+        <tr><th>Notes</th><td><%= @client.notes.presence || "Aucune note." %></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header"><div class="panel-title">Historique des commandes</div></div>
+  <div class="table-responsive">
+    <table class="history-table">
+      <thead><tr><th>Commande</th><th>Statut</th><th>Total</th><th>Action</th></tr></thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td class="td-ref"><%= admin_order_reference(order) %></td>
+            <td><span class="badge <%= admin_order_status_badge_class(order) %>"><%= admin_order_status_label(order) %></span></td>
+            <td class="td-right"><%= number_to_currency(order.total_amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td>
+            <td><%= link_to "Voir", admin_order_path(order), class: "btn btn--outline btn--sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

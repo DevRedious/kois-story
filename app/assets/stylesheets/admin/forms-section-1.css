@@ -2,12 +2,12 @@
 /* ── FORMS ────────────────────────────────────────────────── */
 .form-grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	gap: 20px;
 }
 .form-grid-3 {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr;
 	gap: 20px;
 }
 .form-group {
@@ -131,9 +131,22 @@ textarea {
 	justify-content: flex-end;
 	padding-top: 8px;
 	padding-bottom: 20px;
+	flex-wrap: wrap;
 }
 .form-hint {
 	font-size: 0.78rem;
 	color: var(--gris);
 	margin-top: 4px;
+}
+
+@media (min-width: 769px) {
+	.form-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (min-width: 1025px) {
+	.form-grid-3 {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
 }

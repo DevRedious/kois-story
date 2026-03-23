@@ -21,6 +21,11 @@ Rails.application.routes.draw do
     get :dashboard, to: "dashboard#index"
     resources :kois
     resources :messages, only: [ :index, :show, :update ]
+    resources :products
+    resources :orders, only: [ :index, :show, :edit, :update ]
+    resources :payments, only: [ :index, :show, :edit, :update ]
+    resources :clients, only: [ :index, :show, :edit, :update ]
+    get :newsletter, to: "newsletter#index"
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

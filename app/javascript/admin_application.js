@@ -6,3 +6,5 @@ import "admin/theme";
 import "admin/kois";
 import "admin/koi-form";
 import "admin/messages";
+import "admin/orders";
+import "admin/payments";

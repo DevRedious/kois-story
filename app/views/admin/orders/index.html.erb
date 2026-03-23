@@ -1,0 +1,53 @@
+<div class="page-sub">Suivi des commandes clients, des lignes kois/produits et de leur avancement.</div>
+
+<div class="resource-hero">
+  <div class="resource-hero__content">
+    <div class="resource-hero__eyebrow">Suivi commercial</div>
+    <h2 class="resource-hero__title">Commandes et priorites</h2>
+    <p class="resource-hero__text">Consultez rapidement les commandes a confirmer, le chiffre d'affaires en cours et les clients a relancer.</p>
+  </div>
+  <div class="resource-metrics">
+    <div class="resource-metric">
+      <span class="resource-metric__label">Total</span>
+      <strong class="resource-metric__value"><%= @orders.size %></strong>
+    </div>
+    <div class="resource-metric">
+      <span class="resource-metric__label">En attente</span>
+      <strong class="resource-metric__value"><%= @orders.count(&:pending?) %></strong>
+    </div>
+    <div class="resource-metric">
+      <span class="resource-metric__label">Validees</span>
+      <strong class="resource-metric__value"><%= @orders.count(&:confirmed?) %></strong>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <div class="panel-title">Commandes</div>
+  </div>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr><th>Reference</th><th>Client</th><th>Articles</th><th>Total</th><th>Statut</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr data-status="<%= order.status %>">
+            <td><strong><%= admin_order_reference(order) %></strong></td>
+            <td><%= admin_order_client_name(order) %></td>
+            <td><%= order.order_items.size %> ligne<%= "s" if order.order_items.many? %></td>
+            <td class="amount-cell"><span class="amount-ttc"><%= number_to_currency(order.total_amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</span></td>
+            <td><span class="badge <%= admin_order_status_badge_class(order) %>"><%= admin_order_status_label(order) %></span></td>
+            <td>
+              <div class="td-actions">
+                <%= link_to "Voir", admin_order_path(order), class: "btn btn--outline btn--sm" %>
+                <%= link_to "Editer", edit_admin_order_path(order), class: "btn btn--ghost btn--sm" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -5,6 +5,9 @@
  */
 
 document.addEventListener("turbo:load", () => {
+	if (document.body.dataset.adminBound === "true") return;
+	document.body.dataset.adminBound = "true";
+
 	var themeSelect = document.querySelector(".theme-switcher select");
 	if (themeSelect) {
 		const current = localStorage.getItem("admin-theme") || "system";
@@ -44,6 +47,16 @@ document.addEventListener("turbo:load", () => {
 	});
 
 	document.addEventListener("click", (e) => {
+		const copyButton = e.target.closest("[data-copy-target]");
+		if (copyButton) {
+			const target = document.querySelector(copyButton.dataset.copyTarget);
+			const text = target?.value || target?.textContent;
+			if (text) {
+				navigator.clipboard?.writeText(text.trim());
+			}
+			return;
+		}
+
 		const logoutButton = e.target.closest(".logout-btn");
 		if (!logoutButton) return;
 
