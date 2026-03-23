@@ -21,11 +21,9 @@ document.addEventListener("turbo:load", () => {
 
 	const renderPreviews = () => {
 		if (!preview) return;
-		preview
-			.querySelectorAll(".img-thumb--new")
-			.forEach((node) => {
-				node.remove();
-			});
+		preview.querySelectorAll(".img-thumb--new").forEach((node) => {
+			node.remove();
+		});
 		Array.from(fileInput.files).forEach((file, index) => {
 			if (!file.type.startsWith("image/")) return;
 			const reader = new FileReader();
