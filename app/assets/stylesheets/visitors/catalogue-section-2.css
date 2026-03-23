@@ -24,7 +24,7 @@
 
 /* ── GRILLE CATALOGUE ────────────────────────────────────────────────── */
 .catalogue-section {
-	padding: var(--sp-10) var(--sp-10) var(--sp-20);
+	padding: var(--sp-6) var(--sp-4) var(--sp-16);
 	max-width: var(--max-width);
 	margin: 0 auto;
 }
@@ -54,7 +54,7 @@
 
 .koi-grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 1fr;
 	gap: var(--sp-6);
 	margin-bottom: var(--sp-12);
 }
@@ -82,7 +82,7 @@
 
 /* ── ALIASES CONVENTION PAGE ─────────────────────────────────────── */
 .catalogue {
-	padding: var(--sp-10) var(--sp-10) var(--sp-20);
+	padding: var(--sp-6) var(--sp-4) var(--sp-16);
 	max-width: var(--max-width);
 	margin: 0 auto;
 }
@@ -96,22 +96,26 @@
 	font-weight: 500;
 }
 
-@media (max-width: 900px) {
+.filter-bar__inner {
+	padding: var(--sp-3) var(--sp-4);
+}
+
+@media (min-width: 481px) {
 	.koi-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
-	.filter-bar__inner {
-		padding: var(--sp-3) var(--sp-4);
-	}
 }
-@media (max-width: 480px) {
+@media (min-width: 901px) {
 	.koi-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(3, 1fr);
 	}
 	.catalogue-section {
-		padding: var(--sp-6) var(--sp-4) var(--sp-16);
+		padding: var(--sp-10) var(--sp-10) var(--sp-20);
 	}
 	.catalogue {
-		padding: var(--sp-6) var(--sp-4) var(--sp-16);
+		padding: var(--sp-10) var(--sp-10) var(--sp-20);
+	}
+	.filter-bar__inner {
+		padding: var(--sp-3) var(--sp-8);
 	}
 }

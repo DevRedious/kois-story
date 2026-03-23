@@ -2,10 +2,12 @@
 
 > Refactors à effectuer AVANT ou PENDANT la migration Rails.
 > Priorité : 🔴 Bloquant | 🟠 Important | 🟡 Amélioration | 🟢 Optionnel
+>
+> **État post-migration Rails (22/03/2026)** — Légende : ✅ Fait | ⚠️ Partiel | ❌ À faire | 🚫 Hors périmètre VISITORS
 
 ---
 
-## 1. Fusion des Tokens CSS (Critique)
+## 1. Fusion des Tokens CSS (Critique) — ⚠️ Partiel
 
 ### Problème
 
@@ -106,6 +108,8 @@ Créer un fichier de tokens unifié `app/assets/stylesheets/shared/variables.css
 }
 ```
 
+> **État (22/03/2026) :** `app/assets/stylesheets/shared/variables.css` existe et définit les trois nomenclatures en alias simultanément (`--color-red`, `--rouge-vif`, `--c-red` → même valeur). Solution pragmatique Rails — le renommage complet vers `--color-*` n'a pas été effectué. Les CSS VISITORS utilisent encore `--c-*`, ceux de l'ADMIN utilisent `--rouge-*`. Fonctionnellement correct. Le renommage reste une dette technique non bloquante.
+
 ### Migration dans les CSS existants
 
 Remplacer partout :
@@ -130,7 +134,9 @@ Remplacer partout :
 
 ---
 
-## 2. Découpage CSS 200 Lignes — ADMIN
+## 2. Découpage CSS 200 Lignes — ADMIN — 🚫 Hors périmètre VISITORS
+
+> **État (22/03/2026) :** Fait côté ADMIN par l'autre membre de l'équipe — `layout-section-1/2/3.css`, `components-section-1/2.css`, `forms-section-1/2.css`, etc. sont présents dans `app/assets/stylesheets/admin/`. Non concerné par le périmètre VISITORS.
 
 ### 🔴 `layout.css` (388 lignes → 3 fichiers)
 
@@ -160,7 +166,9 @@ forms.css (294 lignes) →
 
 ---
 
-## 3. Découpage CSS 200 Lignes — VISITORS
+## 3. Découpage CSS 200 Lignes — VISITORS — ✅ Fait
+
+> **État (22/03/2026) :** Tous les fichiers VISITORS ont été découpés en sections (`-section-1`, `-section-2`, `-section-3`) lors de la migration Rails. Tous sont sous 200 lignes. Les manifests (`header.css`, `farm.css`, etc.) sont des fichiers d'import uniquement.
 
 ### 🔴 `header.css` (378 lignes → 2 fichiers)
 
@@ -201,9 +209,14 @@ Refactor optionnel si d'autres CSS y sont ajoutés.
 
 ---
 
-## 4. Refactor JavaScript — Suppression Inline Handlers
+## 4. Refactor JavaScript — Suppression Inline Handlers — ⚠️ Partiel
 
-### 🔴 `order-form.js` — `innerHTML` avec `onclick`
+> **État (22/03/2026) :**
+> - `turbo:load` ✅ — `header.js`, `gallery.js`, `filter.js`, `animations.js` utilisent tous `turbo:load`. Compatibilité Turbo assurée.
+> - `gallery.js style.cssText` ❌ — `style.cssText` encore présent aux lignes 22, 35 et 47 de `app/javascript/visitors/gallery.js`. À corriger.
+> - `order-form.js` 🚫 — Hors périmètre VISITORS (ADMIN).
+
+### 🔴 `order-form.js` — `innerHTML` avec `onclick` — 🚫 Hors périmètre VISITORS
 
 **Problème actuel :**
 ```js
@@ -284,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-### 🟠 `gallery.js` — Supprimer `style.cssText`
+### 🟠 `gallery.js` — Supprimer `style.cssText` — ❌ À faire
 
 **Problème :**
 ```js
@@ -334,7 +347,7 @@ function closeLightbox() {
 }
 ```
 
-### 🟡 Turbo Compatibility — Tous les JS
+### 🟡 Turbo Compatibility — Tous les JS — ✅ Fait
 
 **Problème :** `DOMContentLoaded` ne re-fire pas après navigation Turbo.
 
@@ -353,7 +366,7 @@ document.addEventListener("turbo:load", init);
 
 ---
 
-## 5. DRY — Élimination de la Sidebar Dupliquée
+## 5. DRY — Élimination de la Sidebar Dupliquée — ✅ Résolu en Rails (hors périmètre VISITORS)
 
 ### Problème Actuel
 
@@ -385,7 +398,7 @@ En Rails, cette duplication disparaît grâce au layout `admin.html.erb`.
 
 ---
 
-## 6. HTML Semantics — Cartes Koi
+## 6. HTML Semantics — Cartes Koi — ❌ À vérifier
 
 ### Problème
 
@@ -417,7 +430,7 @@ Et dans le catalogue (`kois/index.html.erb`) :
 
 ---
 
-## 7. Accessibilité — Corrections Prioritaires
+## 7. Accessibilité — Corrections Prioritaires — ❌ À faire
 
 ### 🔴 Skip Link (Obligatoire)
 
@@ -482,7 +495,7 @@ function trapFocus(overlay) {
 
 ---
 
-## 8. Performance — Images
+## 8. Performance — Images — ❌ À vérifier
 
 ### Ajouter `loading="lazy"` partout
 
@@ -501,14 +514,16 @@ Chaque `image_tag` doit avoir des dimensions explicites pour prévenir le Cumula
 
 ---
 
-## 9. Media Queries — Supprimer `max-width`
+## 9. Media Queries — Supprimer `max-width` — ✅ Fait (VISITORS)
 
 ### Fichiers Concernés
 
-- `ADMIN/pages/dashboard.html` — `<style>` inline avec `max-width`
-- `ADMIN/pages/messages.html` — `<style>` inline avec `max-width`
+- `ADMIN/pages/dashboard.html` — `<style>` inline avec `max-width` → 🚫 hors périmètre VISITORS
+- `ADMIN/pages/messages.html` — `<style>` inline avec `max-width` → 🚫 hors périmètre VISITORS
 
 ### Action
+
+> **État (22/03/2026) :** L'intégralité des CSS VISITORS a été convertie de `max-width` vers `min-width` (mobile-first). Toutes les étapes du plan `docs/refactoring-media-queries.md` sont complètes (étapes 1, 2 et 3 ✅). Les références ADMIN ci-dessus sont hors périmètre.
 
 1. Extraire les `<style>` inline → vers `admin/pages/dashboard.css` et `admin/pages/messages.css`
 2. Convertir `@media (max-width: X)` → `@media (min-width: Y)` en inversant la logique
@@ -517,17 +532,19 @@ Chaque `image_tag` doit avoir des dimensions explicites pour prévenir le Cumula
 
 ## Récapitulatif Priorisation
 
-| Refactor | Priorité | Bloquant | Effort |
-|---------|----------|----------|--------|
-| Fusion tokens CSS | 🔴 | Oui | Moyen |
-| `order-form.js` event delegation | 🔴 | Oui (Stimulus) | Moyen |
-| Skip link accessibilité | 🔴 | THP | Faible |
-| Layout ADMIN DRY (sidebar) | 🔴 | Rails | Automatique |
-| `gallery.js` cssText → classes | 🟠 | Non | Faible |
-| Turbo compatibility (DOMContentLoaded) | 🟠 | Rails/Turbo | Moyen |
-| Découpage CSS 200 lignes | 🟠 | CLAUDE.md | Moyen |
-| Focus trap lightbox | 🟠 | Non | Faible |
-| `<article>` cartes koi | 🟡 | Non | Faible |
-| `aria-live` filtres | 🟡 | Non | Faible |
-| `loading="lazy"` images | 🟡 | Non | Faible |
-| `max-width` media queries | 🟡 | Non | Faible |
+| Refactor | Priorité | État | Périmètre |
+|---------|----------|------|-----------|
+| Fusion tokens CSS | 🔴 | ⚠️ Alias créé, renommage en attente | VISITORS + ADMIN |
+| `order-form.js` event delegation | 🔴 | 🚫 Hors périmètre | ADMIN |
+| Skip link accessibilité | 🔴 | ✅ Fait — CSS + layout + `id="main-content"` sur toutes les vues | VISITORS |
+| Layout ADMIN DRY (sidebar) | 🔴 | ✅ Résolu par layout Rails | ADMIN |
+| `gallery.js` cssText → classes | 🟠 | ✅ Fait — CSS classes `.gallery-overlay*` | VISITORS |
+| Turbo compatibility (DOMContentLoaded) | 🟠 | ✅ Fait — tous les JS visitors | VISITORS |
+| Découpage CSS 200 lignes VISITORS | 🟠 | ✅ Fait — sections -1/-2/-3 | VISITORS |
+| Découpage CSS 200 lignes ADMIN | 🟠 | ✅ Fait (autre membre) | ADMIN |
+| Focus trap lightbox | 🟠 | ✅ Fait — overlay keydown Tab intercepté | VISITORS |
+| `<article>` cartes koi | 🟡 | ✅ Fait — `<article>` + `aria-label` présents | VISITORS |
+| `aria-live` filtres | 🟡 | ✅ Fait — `aria-live="polite"` sur `#filter-count` | VISITORS |
+| `loading="lazy"` images | 🟡 | ✅ Fait — toutes les images de contenu | VISITORS |
+| `max-width` media queries VISITORS | 🟡 | ✅ Fait — 100% mobile-first | VISITORS |
+| `max-width` media queries ADMIN | 🟡 | 🚫 Hors périmètre | ADMIN |

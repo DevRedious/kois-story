@@ -6,8 +6,8 @@
 /* ── LOGO FIXE ───────────────────────────────────────────────────────── */
 .site-logo {
 	position: fixed;
-	top: var(--sp-5);
-	left: var(--sp-8);
+	top: var(--sp-3);
+	left: var(--sp-4);
 	z-index: 100;
 	pointer-events: all;
 	transition:
@@ -15,17 +15,17 @@
 		transform var(--t-base);
 }
 .site-logo img {
-	height: 72px;
+	height: 52px;
 	width: auto;
 	display: block;
 }
-@media (max-width: 480px) {
-	.site-logo img {
-		height: 52px;
-	}
+@media (min-width: 481px) {
 	.site-logo {
-		top: var(--sp-3);
-		left: var(--sp-4);
+		top: var(--sp-5);
+		left: var(--sp-8);
+	}
+	.site-logo img {
+		height: 72px;
 	}
 }
 .site-logo--hidden {
@@ -56,12 +56,11 @@
 /* ── PAGE AVEC FILTER BAR  pill s'aligne avec la barre sticky ──────── */
 .site-header--on-filter {
 	top: 0;
-	padding: var(--sp-1) var(--sp-8);
+	padding: var(--sp-2) var(--sp-4);
 }
-@media (max-width: 900px) {
+@media (min-width: 901px) {
 	.site-header--on-filter {
-		top: 0;
-		padding: var(--sp-2) var(--sp-4);
+		padding: var(--sp-1) var(--sp-8);
 	}
 }
 

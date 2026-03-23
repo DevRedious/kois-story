@@ -16,47 +16,18 @@
 
 		const overlay = document.createElement("div");
 		overlay.id = "gallery-overlay";
+		overlay.className = "gallery-overlay";
 		overlay.setAttribute("role", "dialog");
 		overlay.setAttribute("aria-modal", "true");
 		overlay.setAttribute("aria-label", "Photo en plein écran");
-		overlay.style.cssText = [
-			"display:none",
-			"position:fixed",
-			"inset:0",
-			"z-index:9000",
-			"background:rgba(0,0,0,0.92)",
-			"align-items:center",
-			"justify-content:center",
-			"cursor:zoom-out",
-			"padding:var(--sp-8,2rem)",
-		].join(";");
 
 		const overlayImg = document.createElement("img");
-		overlayImg.style.cssText = [
-			"max-width:90vw",
-			"max-height:90vh",
-			"object-fit:contain",
-			"border-radius:8px",
-			"box-shadow:0 8px 40px rgba(0,0,0,0.6)",
-			"cursor:default",
-		].join(";");
+		overlayImg.className = "gallery-overlay__img";
 
 		const closeBtn = document.createElement("button");
 		closeBtn.textContent = "✕";
+		closeBtn.className = "gallery-overlay__close";
 		closeBtn.setAttribute("aria-label", "Fermer");
-		closeBtn.style.cssText = [
-			"position:absolute",
-			"top:1rem",
-			"right:1rem",
-			"background:rgba(255,255,255,0.12)",
-			"color:#fff",
-			"border:none",
-			"border-radius:50%",
-			"width:40px",
-			"height:40px",
-			"font-size:1.1rem",
-			"cursor:pointer",
-		].join(";");
 
 		overlay.appendChild(overlayImg);
 		overlay.appendChild(closeBtn);
@@ -73,13 +44,13 @@
 		const openLightbox = () => {
 			overlayImg.src = slides[current].src;
 			overlayImg.alt = slides[current].alt || "";
-			overlay.style.display = "flex";
+			overlay.classList.add("gallery-overlay--open");
 			document.body.style.overflow = "hidden";
 			closeBtn.focus();
 		};
 
 		const closeLightbox = () => {
-			overlay.style.display = "none";
+			overlay.classList.remove("gallery-overlay--open");
 			overlayImg.src = "";
 			document.body.style.overflow = "";
 		};
@@ -101,9 +72,16 @@
 		});
 		closeBtn.addEventListener("click", closeLightbox);
 
+		overlay.addEventListener("keydown", (event) => {
+			if (event.key === "Tab") {
+				event.preventDefault();
+				closeBtn.focus();
+			}
+		});
+
 		document.addEventListener("keydown", (event) => {
 			if (event.key === "Escape") closeLightbox();
-			if (overlay.style.display !== "flex") return;
+			if (!overlay.classList.contains("gallery-overlay--open")) return;
 			if (event.key === "ArrowLeft") {
 				goTo(current - 1);
 				overlayImg.src = slides[current].src;

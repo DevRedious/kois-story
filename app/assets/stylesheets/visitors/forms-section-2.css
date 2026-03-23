@@ -15,7 +15,7 @@
 	max-width: var(--max-width);
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	gap: var(--sp-12);
 	align-items: start;
 }
@@ -85,7 +85,7 @@
 	max-width: var(--max-width);
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	gap: var(--sp-12);
 	align-items: start;
 }
@@ -127,7 +127,7 @@
 /* ── CONTACT RAPIDE — boutons WA ─────────────────────────────────── */
 .contact-quick__wa {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	gap: var(--sp-3);
 	margin-top: var(--sp-6);
 }
@@ -137,12 +137,9 @@
 	box-shadow: none;
 }
 
-@media (max-width: 900px) {
-	.contact-section__inner {
-		grid-template-columns: 1fr;
-	}
-	.contact-quick__inner {
-		grid-template-columns: 1fr;
+@media (min-width: 581px) {
+	.contact-quick__wa {
+		grid-template-columns: 1fr 1fr;
 	}
 }
 
@@ -152,8 +149,11 @@
 	}
 }
 
-@media (max-width: 580px) {
-	.contact-quick__wa {
-		grid-template-columns: 1fr;
+@media (min-width: 901px) {
+	.contact-section__inner {
+		grid-template-columns: 1fr 1fr;
+	}
+	.contact-quick__inner {
+		grid-template-columns: 1fr 1fr;
 	}
 }

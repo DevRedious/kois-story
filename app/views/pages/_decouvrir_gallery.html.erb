@@ -1,25 +1,26 @@
 <section class="gallery">
   <div class="gallery__inner">
-    <h2 class="gallery__title" data-animate="fade-up">Notre élevage en images</h2>
-    <div class="gallery-grid">
-      <div class="gallery-cell gallery-cell--tall" data-animate="fade-scale">
-        <%= image_tag docs_asset_path("carpe-koi-showa-scaled-hero.jpg"), alt: "Vue bassin" %>
-      </div>
-      <div class="gallery-cell--right">
-        <div class="gallery-cell" data-animate="fade-scale" data-delay="1">
-          <%= image_tag docs_asset_path("24148-Sakura-Grand-Voile-Suda-600x800.jpg"), alt: "Sakura" %>
-        </div>
-        <div class="gallery-cell" data-animate="fade-scale" data-delay="2">
-          <%= image_tag docs_asset_path("butterfly-tancho-kujaku.jpg"), alt: "Butterfly" %>
-        </div>
+    <div class="title-container">
+      <h2 class="gallery__title" data-animate="fade-up">Notre élevage en images</h2>
+      <div data-animate="fade-up" data-delay="1">
+        <%= render "shared/wave_separator" %>
       </div>
     </div>
-    <div class="gallery-row2">
-      <div class="gallery-cell gallery-cell--sq" data-animate="fade-scale">
-        <%= image_tag docs_asset_path("carpe-koi-showa-scaled.jpg"), alt: "Showa" %>
+    <div class="masonry-gallery">
+      <div class="gallery-cell" data-animate="fade-scale">
+        <%= image_tag docs_asset_path("carpe-koi-showa-scaled-hero.jpg"), alt: "Vue bassin", loading: "lazy" %>
       </div>
-      <div class="gallery-cell gallery-cell--sq gallery-cell--placeholder">Photo à venir</div>
-      <div class="gallery-cell gallery-cell--sq gallery-cell--placeholder">Photo à venir</div>
+      <div class="gallery-cell" data-animate="fade-scale" data-delay="1">
+        <%= image_tag docs_asset_path("24148-Sakura-Grand-Voile-Suda-600x800.jpg"), alt: "Sakura", loading: "lazy" %>
+      </div>
+      <div class="gallery-cell" data-animate="fade-scale" data-delay="2">
+        <%= image_tag docs_asset_path("butterfly-tancho-kujaku.jpg"), alt: "Butterfly Tancho", loading: "lazy" %>
+      </div>
+      <div class="gallery-cell" data-animate="fade-scale" data-delay="3">
+        <%= image_tag docs_asset_path("carpe-koi-showa-scaled.jpg"), alt: "Showa", loading: "lazy" %>
+      </div>
+      <div class="gallery-cell gallery-cell--placeholder" data-animate="fade-scale" data-delay="4">Photo à venir</div>
+      <div class="gallery-cell gallery-cell--placeholder" data-animate="fade-scale" data-delay="5">Photo à venir</div>
     </div>
   </div>
 </section>

@@ -56,6 +56,7 @@
 			const currentPage = currentPath.split("/").filter(Boolean).pop() || "";
 
 			nav.querySelectorAll("a[href]").forEach((link) => {
+				if (link.closest(".dropdown")) return;
 				const href = link.getAttribute("href");
 				if (!href || href === "#" || href.startsWith("http")) return;
 
@@ -68,20 +69,24 @@
 				if (isCurrent) link.classList.add("active");
 			});
 
-			const activeLink = nav.querySelector("a.active");
+			const activeLink = nav.querySelector("ul > li > a.active");
 			if (navIndicator && activeLink) {
-				moveIndicator(nav, navIndicator, activeLink.closest("li"));
+				moveIndicator(nav, navIndicator, activeLink);
 			}
 
 			list?.querySelectorAll(":scope > li").forEach((item) => {
+				const hoverTarget =
+					item.querySelector(".dropdown-toggle") ??
+					item.querySelector("a") ??
+					item;
 				item.addEventListener("mouseenter", () =>
-					moveIndicator(nav, navIndicator, item),
+					moveIndicator(nav, navIndicator, hoverTarget),
 				);
 			});
 
 			list?.addEventListener("mouseleave", () => {
-				if (activeLink)
-					moveIndicator(nav, navIndicator, activeLink.closest("li"));
+				if (activeLink) moveIndicator(nav, navIndicator, activeLink);
+				else if (navIndicator) navIndicator.style.opacity = "0";
 			});
 		};
 

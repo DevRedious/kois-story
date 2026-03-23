@@ -45,4 +45,23 @@ varieties.each_with_index do |variety, index|
   )
 end
 
-puts "Seed completed: #{User.count} users, #{Koi.count} kois."
+Image.where(imageable_type: "Koi").delete_all
+
+placeholder_url = "https://placehold.co/600x400/1a1a1a/ffffff?text=Koi"
+now = Time.current
+
+image_rows = Koi.all.map do |koi|
+  {
+    url: placeholder_url,
+    alt: "#{koi.name} – #{koi.variety}",
+    position: 0,
+    imageable_type: "Koi",
+    imageable_id: koi.id,
+    created_at: now,
+    updated_at: now
+  }
+end
+
+Image.insert_all(image_rows) if image_rows.any?
+
+puts "Seed completed: #{User.count} users, #{Koi.count} kois, #{Image.count} images."
