@@ -171,17 +171,17 @@
 					entries.forEach((entry) => {
 						if (entry.isIntersecting) {
 							header.classList.remove("site-header--scrolled");
+							logo?.classList.remove("site-logo--hidden");
 							if (filterBar) {
 								header.classList.remove("site-header--on-filter");
 								removeNavOffset();
-								logo?.classList.remove("site-logo--hidden");
 							}
 						} else {
 							header.classList.add("site-header--scrolled");
+							logo?.classList.add("site-logo--hidden");
 							if (filterBar) {
 								header.classList.add("site-header--on-filter");
 								applyNavOffset();
-								logo?.classList.add("site-logo--hidden");
 							}
 						}
 					});

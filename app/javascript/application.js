@@ -5,3 +5,4 @@ import "visitors/header";
 import "visitors/filter";
 import "visitors/gallery";
 import "visitors/animations";
+import "visitors/toast";
