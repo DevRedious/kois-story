@@ -41,10 +41,14 @@
 }
 .hero-intro__sub {
 	font-size: var(--text-lg);
-	color: var(--n-75);
+	color: var(--c-black);
 	line-height: var(--leading-normal);
 	margin-bottom: var(--sp-8);
 	max-width: 560px;
+	background: rgba(255, 255, 255, 0.72);
+	backdrop-filter: blur(2px);
+	padding: var(--sp-4) var(--sp-5);
+	border-radius: var(--r-md);
 }
 .hero-intro__ctas {
 	display: flex;
@@ -126,6 +130,15 @@
 	font-size: var(--text-lg);
 	color: var(--c-white);
 	max-width: 560px;
+}
+/* Espace sous le texte pour dégager la vague en mobile */
+.hero-compact--wavy-bottom .hero-compact__sub {
+	padding-bottom: 20vw;
+}
+@media (min-width: 901px) {
+	.hero-compact--wavy-bottom .hero-compact__sub {
+		padding-bottom: 0;
+	}
 }
 .hero-title-underline {
 	display: block;

@@ -52,6 +52,8 @@
 	position: absolute;
 	top: var(--sp-3);
 	left: var(--sp-3);
+	background: var(--c-wine);
+	color: var(--c-cream);
 }
 
 .shop-card__body {
@@ -111,5 +113,15 @@
 .shop-section__inner {
 	max-width: var(--max-width);
 	margin: 0 auto;
-	padding: var(--sp-16) var(--sp-10) var(--sp-20);
+	padding: calc(var(--sp-16) + 100px) var(--sp-4) var(--sp-20);
+}
+@media (min-width: 481px) {
+	.shop-section__inner {
+		padding-top: calc(var(--sp-16) + 80px);
+	}
+}
+@media (min-width: 901px) {
+	.shop-section__inner {
+		padding: var(--sp-16) var(--sp-10) var(--sp-20);
+	}
 }

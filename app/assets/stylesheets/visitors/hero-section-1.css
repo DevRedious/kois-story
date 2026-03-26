@@ -117,6 +117,14 @@
 .hero__video--fading {
 	opacity: 0;
 }
+@media (max-width: 900px) {
+	.hero__video {
+		display: none;
+	}
+	.hero__poster {
+		opacity: 1;
+	}
+}
 
 /* ── HERO WAVY BOTTOM ────────────────────────────────────────────── */
 .hero--wavy-bottom {

@@ -121,5 +121,10 @@
 	line-height: var(--leading-snug);
 }
 .features .section-label {
-	color: var(--c-black);
+	color: var(--c-white);
+	background: var(--c-black);
+	padding: var(--sp-2) var(--sp-4);
+	border-radius: var(--r-md);
+	width: fit-content;
+	margin: 0 auto var(--sp-4);
 }

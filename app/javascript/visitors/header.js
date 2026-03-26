@@ -179,7 +179,7 @@
 							}
 						} else {
 							header.classList.add("site-header--scrolled");
-							if (!filterBar) logo?.classList.add("site-logo--hidden");
+							logo?.classList.add("site-logo--hidden");
 							if (filterBar) {
 								header.classList.add("site-header--on-filter");
 								applyNavOffset();
@@ -191,6 +191,20 @@
 			);
 
 			observer.observe(hero);
+		} else {
+			window.addEventListener(
+				"scroll",
+				() => {
+					if (window.scrollY > 80) {
+						header.classList.add("site-header--scrolled");
+						logo?.classList.add("site-logo--hidden");
+					} else {
+						header.classList.remove("site-header--scrolled");
+						logo?.classList.remove("site-logo--hidden");
+					}
+				},
+				{ passive: true },
+			);
 		}
 	});
 })();

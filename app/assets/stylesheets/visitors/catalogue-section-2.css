@@ -54,8 +54,8 @@
 
 .koi-grid {
 	display: grid;
-	grid-template-columns: 1fr;
-	gap: var(--sp-6);
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--sp-3);
 	margin-bottom: var(--sp-12);
 }
 
@@ -129,7 +129,7 @@
 
 @media (min-width: 481px) {
 	.koi-grid {
-		grid-template-columns: repeat(2, 1fr);
+		gap: var(--sp-6);
 	}
 }
 @media (min-width: 901px) {

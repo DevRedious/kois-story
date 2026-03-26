@@ -163,3 +163,12 @@
 	visibility: hidden;
 	pointer-events: none;
 }
+@media (max-width: 768px) {
+	.cta-wa-float {
+		padding: var(--sp-3);
+		gap: 0;
+	}
+	.cta-wa-float__label {
+		display: none;
+	}
+}

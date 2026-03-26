@@ -46,8 +46,8 @@
 }
 
 .certifications {
-	background: rgba(99, 15, 15, 0.05);
-	border: 2px solid var(--c-wine-20);
+	background: var(--c-black);
+	border: 2px solid var(--c-black);
 	border-radius: var(--r-xl);
 	padding: var(--sp-6);
 }
@@ -67,11 +67,11 @@
 	font-family: var(--font-serif);
 	font-size: var(--text-base);
 	font-weight: 700;
-	color: var(--c-wine);
+	color: var(--c-red);
 }
 .cert-text {
 	font-size: var(--text-sm);
-	color: var(--n-55);
+	color: var(--c-white);
 	line-height: var(--leading-normal);
 }
 
