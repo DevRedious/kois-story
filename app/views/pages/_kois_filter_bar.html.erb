@@ -1,27 +1,43 @@
 <div class="filter-bar">
   <div class="filter-bar__inner">
-    <span class="filter-bar__label">Filtrer :</span>
     <span class="filter-count" id="filter-count" aria-live="polite" aria-atomic="true"><%= pluralize(kois.size, "koï") %></span>
     <span class="filter-bar__sep"></span>
-    <select class="filter-select" id="filter-variety" aria-label="Variété">
+
+    <%# Desktop: native selects (hidden on mobile via CSS) %>
+    <select class="filter-select filter-select--desktop" id="filter-variety" aria-label="Variété">
       <option value="">Toutes variétés</option>
       <% varieties.each do |variety| %>
         <option value="<%= variety.parameterize %>"><%= variety %></option>
       <% end %>
     </select>
-    <select class="filter-select" id="filter-age" aria-label="Classe d'âge">
+    <select class="filter-select filter-select--desktop" id="filter-age" aria-label="Classe d'âge">
       <option value="">Tout âge</option>
       <% Koi.age_classes.keys.each do |age_class| %>
         <option value="<%= age_class.parameterize %>"><%= age_class.humanize %></option>
       <% end %>
     </select>
-    <select class="filter-select" id="filter-price" aria-label="Prix max">
+    <select class="filter-select filter-select--desktop" id="filter-price" aria-label="Prix max">
       <option value="">Prix max</option>
       <option value="500">≤ 500 €</option>
       <option value="1000">≤ 1 000 €</option>
       <option value="2000">≤ 2 000 €</option>
       <option value="5000">≤ 5 000 €</option>
     </select>
+
+    <%# Mobile: pill buttons (hidden on desktop via CSS) %>
+    <button type="button" class="filter-pill" data-select="filter-variety" aria-expanded="false">
+      <span class="filter-pill__label" data-default="Variété">Variété</span>
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polyline points="1,1 5,5 9,1"/></svg>
+    </button>
+    <button type="button" class="filter-pill" data-select="filter-age" aria-expanded="false">
+      <span class="filter-pill__label" data-default="Âge">Âge</span>
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polyline points="1,1 5,5 9,1"/></svg>
+    </button>
+    <button type="button" class="filter-pill" data-select="filter-price" aria-expanded="false">
+      <span class="filter-pill__label" data-default="Prix max">Prix max</span>
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polyline points="1,1 5,5 9,1"/></svg>
+    </button>
+
     <div class="filter-bar__sep"></div>
     <label class="filter-toggle">
       <input type="checkbox" id="filter-konishi">

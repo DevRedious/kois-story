@@ -5,15 +5,6 @@
 <%= render "pages/home_header" %>
 <span id="main-content" tabindex="-1" aria-hidden="true"></span>
 
-<nav class="breadcrumb">
-  <div class="breadcrumb-inner">
-    <%= link_to "Accueil", root_path %>
-    <span>/</span>
-    <%= link_to "Nos Koïs", kois_path %>
-    <span>/</span>
-    <span><%= @koi.name %></span>
-  </div>
-</nav>
 
 <%= render "pages/kois_product_detail", koi: @koi, gallery_images: gallery_images %>
 <%= render "pages/kois_related", related_kois: @related_kois %>

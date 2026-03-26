@@ -120,3 +120,6 @@
 	color: var(--c-black);
 	line-height: var(--leading-snug);
 }
+.features .section-label {
+	color: var(--c-black);
+}

@@ -123,3 +123,6 @@
 		padding: var(--sp-8);
 	}
 }
+.koi-showcase .section-label {
+	color: var(--c-black);
+}

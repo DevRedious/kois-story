@@ -8,7 +8,7 @@
 	position: fixed;
 	top: var(--sp-3);
 	left: var(--sp-4);
-	z-index: 100;
+	z-index: 101;
 	pointer-events: all;
 	transition:
 		opacity var(--t-base),
@@ -47,20 +47,45 @@
 	justify-content: flex-end;
 	transition:
 		padding var(--t-base),
-		top var(--t-base);
+		top var(--t-base),
+		transform var(--t-base),
+		background var(--t-base),
+		box-shadow var(--t-base);
+}
+.site-header--scroll-hidden {
+	transform: translateY(-100%);
+}
+@media (min-width: 901px) {
+	.site-header--scroll-hidden {
+		transform: none;
+	}
 }
 .site-header--scrolled {
 	padding: var(--sp-3) var(--sp-8);
 }
 
-/* ── PAGE AVEC FILTER BAR  pill s'aligne avec la barre sticky ──────── */
+/* ── PAGE AVEC FILTER BAR  barre blanche mobile, pill desktop ────────── */
 .site-header--on-filter {
 	top: 0;
 	padding: var(--sp-2) var(--sp-4);
+	background: var(--c-white);
+	box-shadow: var(--shadow-sm);
+	pointer-events: all;
+}
+.site-header--on-filter .header__burger {
+	background: transparent;
+	border-color: transparent;
+	box-shadow: none;
+}
+.site-header--on-filter .header__burger span {
+	background: var(--c-black);
 }
 @media (min-width: 901px) {
 	.site-header--on-filter {
 		padding: var(--sp-1) var(--sp-8);
+		background: transparent;
+		box-shadow: none;
+		pointer-events: none;
 	}
 }
 
@@ -80,16 +105,17 @@
 		background var(--t-base),
 		box-shadow var(--t-base);
 }
-.site-header--scrolled .header__pill {
-	background: rgba(0, 0, 0, 0.68);
-	box-shadow:
-		0 8px 32px rgba(0, 0, 0, 0.28),
-		0 1px 0 rgba(255, 255, 255, 0.06);
+@media (min-width: 901px) {
+	.site-header--scrolled .header__pill {
+		background: rgba(0, 0, 0, 0.68);
+		box-shadow:
+			0 8px 32px rgba(0, 0, 0, 0.28),
+			0 1px 0 rgba(255, 255, 255, 0.06);
+	}
 }
 
 /* ── NAV + LIQUID INDICATOR ──────────────────────────────────────────── */
 .header__nav {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: relative;

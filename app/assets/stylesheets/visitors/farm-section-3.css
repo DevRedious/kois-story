@@ -52,7 +52,14 @@
 	font-size: var(--text-2xl);
 	font-weight: 700;
 	color: var(--c-black);
-	margin-bottom: var(--sp-3);
+	margin-bottom: var(--sp-1);
+}
+.gallery-title-underline {
+	display: block;
+	width: 220px;
+	height: auto;
+	margin: 0 auto var(--sp-6);
+	filter: brightness(0);
 }
 .wave-separator {
 	display: flex;
@@ -64,8 +71,8 @@
 	width: 150px;
 	height: 45px;
 	flex-shrink: 0;
-	-webkit-mask-image: url("/docs/assets/sumi.svg");
-	mask-image: url("/docs/assets/sumi.svg");
+	-webkit-mask-image: url("/assets/sumi.svg");
+	mask-image: url("/assets/sumi.svg");
 	-webkit-mask-size: 100% 100%;
 	mask-size: 100% 100%;
 	-webkit-mask-repeat: no-repeat;
@@ -77,14 +84,6 @@
 }
 .wave--black {
 	background: var(--c-black);
-}
-.fish-icon {
-	width: 52px;
-	height: 52px;
-	border-radius: 50%;
-	flex-shrink: 0;
-	display: block;
-	filter: sepia(1) saturate(10) hue-rotate(330deg);
 }
 
 .masonry-gallery {

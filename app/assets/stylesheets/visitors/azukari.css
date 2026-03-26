@@ -32,7 +32,7 @@
 	font-size: var(--text-2xl);
 	font-weight: 700;
 	color: var(--c-black);
-	margin-bottom: var(--sp-5);
+	margin-bottom: var(--sp-4);
 }
 .azukari-desc__text p {
 	font-size: var(--text-base);

@@ -83,9 +83,14 @@
 /* ── HERO COMPACT  pages intérieures ───────────────────────────── */
 .hero-compact {
 	background: var(--c-black);
-	padding: calc(var(--header-height) + var(--sp-16)) var(--sp-10) var(--sp-24);
+	padding: calc(var(--header-height) + var(--sp-6)) var(--sp-4) var(--sp-8);
 	position: relative;
 	overflow: hidden;
+}
+@media (min-width: 901px) {
+	.hero-compact {
+		padding: calc(var(--header-height) + var(--sp-16)) var(--sp-10) var(--sp-24);
+	}
 }
 .hero-compact::after {
 	content: "";
@@ -115,10 +120,18 @@
 	font-size: var(--text-3xl);
 	font-weight: 900;
 	color: var(--c-white);
-	margin-bottom: var(--sp-3);
+	margin-bottom: var(--sp-1);
 }
 .hero-compact__sub {
 	font-size: var(--text-lg);
 	color: var(--c-white);
 	max-width: 560px;
+}
+.hero-title-underline {
+	display: block;
+	width: 260px;
+	height: auto;
+	margin-bottom: var(--sp-3);
+	filter: brightness(0) invert(1);
+	opacity: 0.8;
 }

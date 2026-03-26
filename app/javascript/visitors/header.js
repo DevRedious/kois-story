@@ -34,6 +34,7 @@
 
 		const applyNavOffset = () => {
 			if (!filterInner || !pill) return;
+			if (window.innerWidth <= 900) return;
 			const pillWidth = pill.offsetWidth;
 			const spacing =
 				parseInt(
@@ -178,7 +179,7 @@
 							}
 						} else {
 							header.classList.add("site-header--scrolled");
-							logo?.classList.add("site-logo--hidden");
+							if (!filterBar) logo?.classList.add("site-logo--hidden");
 							if (filterBar) {
 								header.classList.add("site-header--on-filter");
 								applyNavOffset();
