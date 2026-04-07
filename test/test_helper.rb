@@ -16,8 +16,8 @@ end
 
 module ActiveSupport
   class TestCase
-    # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors)
+    # Windows Ruby does not implement fork, which Rails parallel tests use.
+    parallelize(workers: :number_of_processors) unless Gem.win_platform?
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all

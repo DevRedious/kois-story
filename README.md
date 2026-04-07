@@ -2,7 +2,7 @@
   <img src="docs/assets/LOGO MANU FINI 2.png" alt="Koi's Story Logo" width="200">
 
   <p align="center">
-    <img src="https://img.shields.io/badge/Rails-7.x-CC0000?logo=rubyonrails&logoColor=white" alt="Ruby on Rails">
+    <img src="https://img.shields.io/badge/Rails-8.1-CC0000?logo=rubyonrails&logoColor=white" alt="Ruby on Rails">
     <img src="https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite&logoColor=white" alt="SQLite">
     <img src="https://img.shields.io/badge/Hotwire-Turbo%20%2B%20Stimulus-9B59B6" alt="Hotwire">
     <img src="https://img.shields.io/badge/Auth-Devise-orange" alt="Devise">
@@ -21,7 +21,7 @@
 
   <p align="center">
     <i>Digital showcase platform for a koi carp breeding farm affiliated with the Konishi lineage.</i><br>
-    Final project  <a href="https://www.thehackingproject.org">The Hacking Project</a><br>
+    Independent Rails application, originally started as a THP final project<br>
    Trello Board  <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>
   </p>
 </div>
@@ -47,37 +47,37 @@
 | ------------------ | ------------------------------------------------------------------------------------------------- |
 | Planning & Design  | ![100%](https://geps.dev/progress/100?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e) |
 | HTML/CSS Prototype | ![83%](https://geps.dev/progress/83?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
-| Rails Integration  | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
-| Tests & QA         | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
-| Production Deploy  | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
+| Rails Integration  | ![70%](https://geps.dev/progress/70?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+| Tests & QA         | ![35%](https://geps.dev/progress/35?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+| Production Deploy  | ![20%](https://geps.dev/progress/20?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
 
 ## Repository Status
 
-This repository is currently in the planning and documentation phase.
+The Rails application is now the active source of truth.
 
-The Rails application has not been scaffolded yet. At this stage, the repository contains:
+- `app/`, `config/`, `db/`, and `test/` contain the Rails MVP.
+- `docs/prototypes/ADMIN/` contains the archived standalone admin prototype.
+- `docs/prototypes/VISITORS/` contains the archived standalone public prototype.
 
-- product framing
-- UX documentation
-- design references
-- delivery planning
-- collaboration standards
+The Rails MVP includes public pages, a filterable koi catalog, koi detail pages, a contact form with mail notification, Devise admin authentication, admin CRUD for kois and products, and admin screens for messages, clients, orders, and payments.
 
-## Planned Setup
-
-Once implementation starts, the project is expected to use:
-
-- Ruby on Rails
-- SQLite
-- Hotwire
-- Devise
-- Cloudinary
-- ActionMailer
-- Atomic Design for UI composition
+The historical THP/prototype constraints are kept only as project memory. New work should target Rails first; archived prototypes are reference material, not parallel surfaces to maintain.
 
 ## Environment
 
 An example configuration file is available at `.env.example`.
+
+Required production values include Cloudinary credentials, Resend SMTP credentials, `ADMIN_EMAIL`, `MAILER_FROM`, `APP_HOST`, `OTP_SECRET_KEY`, `ADMIN_PASSWORD`, and `WHATSAPP_PHONE`.
+
+Useful local commands:
+
+```bash
+bundle install
+bin/rails db:prepare
+bin/rails test
+bin/rubocop
+npx biome check .
+```
 
 ## Working Standards
 
@@ -186,17 +186,17 @@ Project history is tracked in `CHANGELOG.md`.
 
 ## Tech Stack
 
-| Layer            | Technology                         |
-| ---------------- | ---------------------------------- |
-| Back-end         | Ruby on Rails (RESTful, MVC)       |
-| Front-end        | Hotwire Turbo + Stimulus           |
-| CSS              | Bootstrap / Tailwind CSS           |
-| Database         | SQLite                             |
-| Authentication   | Devise (roles:`visitor` / `admin`) |
-| Linter/Formatter | Biome                              |
-| Image upload     | Cloudinary                         |
-| Emails           | ActionMailer                       |
-| Hosting          | VPS                                |
+| Layer            | Technology                                      |
+| ---------------- | ----------------------------------------------- |
+| Back-end         | Ruby on Rails 8.1 (RESTful, MVC)                |
+| Front-end        | Hotwire Turbo + Stimulus + importmap            |
+| CSS              | Propshaft assets from the Atomic Design modules |
+| Database         | SQLite                                          |
+| Authentication   | Devise + devise-two-factor                      |
+| Linter/Formatter | RuboCop + Biome                                 |
+| Image upload     | CarrierWave + Cloudinary                        |
+| Emails           | ActionMailer + Resend SMTP                      |
+| Hosting          | VPS via Kamal                                   |
 
 ## Team
 

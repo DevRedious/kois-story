@@ -23,8 +23,8 @@ jobs:
       - name: Install html-validate
         run: npm install --global html-validate
 
-      - name: Validate ADMIN HTML
-        run: html-validate "ADMIN/**/*.html"
+      - name: Validate archived ADMIN prototype HTML
+        run: html-validate "docs/prototypes/ADMIN/**/*.html"
 
-      - name: Validate VISITORS HTML
-        run: html-validate "VISITORS/**/*.html"
+      - name: Validate archived VISITORS prototype HTML
+        run: html-validate "docs/prototypes/VISITORS/**/*.html"

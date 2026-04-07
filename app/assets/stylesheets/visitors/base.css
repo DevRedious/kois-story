@@ -102,6 +102,11 @@ select {
 	top: 0;
 }
 
+.svg-defs-hidden {
+	position: absolute;
+	overflow: hidden;
+}
+
 /* ── Accessibilité  focus visible ──────────────────────────────────── */
 :focus-visible {
 	outline: 3px solid var(--c-wine);

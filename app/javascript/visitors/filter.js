@@ -21,7 +21,9 @@
 			var age = selectAge ? selectAge.value.toLowerCase() : "";
 			var priceMax = selectPrice ? parseInt(selectPrice.value, 10) || 0 : 0;
 			var konishiOnly = konishiToggle ? konishiToggle.checked : false;
-			var cards = document.querySelectorAll(".koi-card[data-variety], .koi-card");
+			var cards = document.querySelectorAll(
+				".koi-card[data-variety], .koi-card",
+			);
 			var visible = 0;
 
 			cards.forEach((card) => {
@@ -42,7 +44,8 @@
 				if (show) visible++;
 			});
 
-			if (countEl) countEl.textContent = visible + (visible > 1 ? " koïs" : " koï");
+			if (countEl)
+				countEl.textContent = visible + (visible > 1 ? " koïs" : " koï");
 		}
 
 		[selectVariety, selectAge, selectPrice].forEach((el) => {
@@ -59,7 +62,9 @@
 				p.hidden = true;
 				p.setAttribute("aria-hidden", "true");
 			});
-			pills.forEach((p) => p.setAttribute("aria-expanded", "false"));
+			pills.forEach((p) => {
+				p.setAttribute("aria-expanded", "false");
+			});
 		}
 
 		function onOptionSelect(select, pill, panel, btn) {
@@ -88,10 +93,12 @@
 			Array.from(select.options).forEach((opt) => {
 				var btn = document.createElement("button");
 				btn.type = "button";
-				btn.className = "filter-option" + (!opt.value ? " filter-option--active" : "");
+				btn.className = `filter-option${!opt.value ? " filter-option--active" : ""}`;
 				btn.dataset.value = opt.value;
 				btn.textContent = opt.text;
-				btn.addEventListener("click", () => onOptionSelect(select, pill, panel, btn));
+				btn.addEventListener("click", () =>
+					onOptionSelect(select, pill, panel, btn),
+				);
 				panel.appendChild(btn);
 			});
 
@@ -123,13 +130,13 @@
 
 		// ── Drag-to-scroll ────────────────────────────────────────────────────
 		var filterInner = document.querySelector(".filter-bar__inner");
+		var isDragging = false;
+		var dragStartX = 0;
+		var scrollStart = 0;
 		if (filterInner) {
-			var isDragging = false;
-			var dragStartX = 0;
-			var scrollStart = 0;
-
 			filterInner.addEventListener("mousedown", (e) => {
-				if (e.target.closest(".filter-pill, .filter-toggle, .filter-reset")) return;
+				if (e.target.closest(".filter-pill, .filter-toggle, .filter-reset"))
+					return;
 				isDragging = true;
 				dragStartX = e.pageX;
 				scrollStart = filterInner.scrollLeft;
@@ -176,19 +183,26 @@
 		var siteLogo = document.querySelector(".site-logo");
 		var lastScrollY = window.scrollY;
 		var scrollTicking = false;
-		window.addEventListener("scroll", () => {
-			if (window.innerWidth > 900 || scrollTicking) return;
-			scrollTicking = true;
-			window.requestAnimationFrame(() => {
-				var currentY = window.scrollY;
-				var goingDown = currentY > lastScrollY && currentY > 80;
-				if (header) header.classList.toggle("site-header--scroll-hidden", goingDown);
-				if (filterBar) filterBar.classList.toggle("filter-bar--at-top", goingDown);
-				if (siteLogo) siteLogo.classList.toggle("site-logo--hidden", goingDown);
-				lastScrollY = currentY;
-				scrollTicking = false;
-			});
-		}, { passive: true });
+		window.addEventListener(
+			"scroll",
+			() => {
+				if (window.innerWidth > 900 || scrollTicking) return;
+				scrollTicking = true;
+				window.requestAnimationFrame(() => {
+					var currentY = window.scrollY;
+					var goingDown = currentY > lastScrollY && currentY > 80;
+					if (header)
+						header.classList.toggle("site-header--scroll-hidden", goingDown);
+					if (filterBar)
+						filterBar.classList.toggle("filter-bar--at-top", goingDown);
+					if (siteLogo)
+						siteLogo.classList.toggle("site-logo--hidden", goingDown);
+					lastScrollY = currentY;
+					scrollTicking = false;
+				});
+			},
+			{ passive: true },
+		);
 
 		applyFilters();
 	});

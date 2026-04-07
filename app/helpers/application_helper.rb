@@ -15,7 +15,13 @@ module ApplicationHelper
   end
 
   def whatsapp_link(phone, message)
+    return "#" if phone.blank?
+
     "https://wa.me/#{phone}?text=#{ERB::Util.url_encode(message)}"
+  end
+
+  def whatsapp_phone_number
+    ENV["WHATSAPP_PHONE"].presence
   end
 
   def whatsapp_icon(size: 24, extra_classes: nil)

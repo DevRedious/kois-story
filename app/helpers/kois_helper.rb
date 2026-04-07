@@ -21,7 +21,7 @@ module KoisHelper
   end
 
   def koi_whatsapp_link(koi)
-    whatsapp_link("33600000000", "Bonjour, je suis intéressé(e) par #{koi.name} (#{koi_meta(koi)}).")
+    whatsapp_link(whatsapp_phone_number, "Bonjour, je suis intéressé(e) par #{koi.name} (#{koi_meta(koi)}).")
   end
 
   def koi_sex_label(koi)

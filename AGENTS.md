@@ -2,25 +2,35 @@
 
 This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
-> The parent directory (`../AGENTS.md`) contains the full project spec: Rails stack, data model, routes, THP constraints, and design system. Read it first.
+> The parent directory (`../AGENTS.md`) may contain the historical project spec. Treat the current repository state below as authoritative when it conflicts.
+
+---
+
+## Current Override - 2026-04-08
+
+The project is no longer managed as a THP prototype-first submission. The Rails app is now the active source of truth.
+
+- Work on `app/`, `config/`, `db/`, `test/`, and Rails-facing assets by default.
+- `docs/prototypes/ADMIN/` and `docs/prototypes/VISITORS/` are archived references only.
+- Do not keep Rails and the archived prototypes in parallel maintenance.
+- Historical THP constraints below are project memory, not active blockers, unless the user explicitly asks to preserve them for a task.
 
 ---
 
 ## What This Repo Contains Now
 
-Two phases coexist in this repo:
+Two phases previously coexisted in this repo:
 
-**Prototype (branches `DEV`, `main`, `admin-and-back`):**
-- `ADMIN/` - Back-office admin interface (Mathilde's dashboard)
-- `VISITORS/` - Public-facing site prototype
+**Archived prototype reference:**
+- `docs/prototypes/ADMIN/` - Back-office admin interface (Mathilde's dashboard)
+- `docs/prototypes/VISITORS/` - Public-facing site prototype
 - Pages open directly via double-click (no server needed)
 - All sidebar/navigation HTML is injected inline - no `fetch()` for components
 
-**Rails MVP (branch `MVP`):**
-- Rails app being scaffolded from scratch
-- Follow `docs/rails_mvp_plan.md` for the full step-by-step implementation guide
-- Do NOT modify `ADMIN/` or `VISITORS/` on the MVP branch - they are reference only
-- CSS/fonts from the prototype will be copied to `app/assets/` during integration
+**Rails app:**
+- Rails MVP exists and is the active implementation surface.
+- Follow current Rails code and docs before historical prototype plans.
+- Do NOT modify archived prototypes unless the user explicitly asks for prototype work.
 
 ## Branching
 
@@ -50,7 +60,7 @@ When a file is too long, the fix is always **to extract into a smaller component
 
 ## Architecture: Atomic Design
 
-Both `ADMIN/` and `VISITORS/` follow the same layered structure:
+Both archived prototype folders (`docs/prototypes/ADMIN/` and `docs/prototypes/VISITORS/`) follow the same layered structure:
 
 ```
 atoms/        → single UI elements (badge, button, input, stat-card…)
@@ -172,9 +182,9 @@ Every table must be wrapped in `<div class="table-responsive">`. This is already
 
 ### CSS Architecture
 
-**Règle obligatoire : tout CSS doit être dans `VISITORS/assets/css/`.** Aucun style ne doit rester embarqué dans les fichiers HTML (ni `<style>` inline, ni attribut `style=""`). Un fichier CSS par composant ou section, max 200 lignes chacun.
+**Règle historique : tout CSS doit être dans `docs/prototypes/VISITORS/assets/css/`.** Aucun style ne doit rester embarqué dans les fichiers HTML (ni `<style>` inline, ni attribut `style=""`). Un fichier CSS par composant ou section, max 200 lignes chacun.
 
-**État actuel : le dossier `VISITORS/assets/css/` existe et contient 23 fichiers modules.** L'extraction CSS est complète.
+**État archivé : le dossier `docs/prototypes/VISITORS/assets/css/` existe et contient les modules CSS.** L'extraction CSS est complète.
 
 Fichiers présents :
 ```
@@ -306,4 +316,4 @@ Voir `CONTRIBUTING.md` pour le détail complet.
 - `docs/design/brand/charte_graphique.md`  charte graphique complète (couleurs, typo, règles)
 - `docs/design/wireframes/`  wireframes SVG + HTML de référence
 - `docs/roadmap.md`  roadmap du projet
-- `docs/todo.md`  todo global projet (distinct de `ADMIN/todo.md`)
+- `docs/todo.md`  todo global projet (distinct de `docs/prototypes/ADMIN/todo.md`)

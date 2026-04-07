@@ -46,7 +46,7 @@
 	--border-color: #e5e9ee;
 
 	/* Utilitaires */
-	--gris: #6c757d; /* textes secondaires */
+	--gris: rgba(0, 0, 0, 0.62); /* textes secondaires */
 	--vert-dispo: #2d9e5a; /* statut disponible */
 	--sidebar-w: 64px;
 	--sidebar-open-w: 280px;
@@ -86,7 +86,7 @@
 	--blanc-casse: #f5f5f2;
 	--blanc-pur: #ffffff;
 	--noir: #000000;
-	--gris: #6c757d;
+	--gris: rgba(0, 0, 0, 0.62);
 	--surface-dark: #000000;
 	--topbar-bg: #ffffff;
 	--border-color: #e5e9ee;

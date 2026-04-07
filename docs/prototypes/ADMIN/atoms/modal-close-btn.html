@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Atom — Modal Close Button</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <script src="../assets/js/theme.js"></script>
+</head>
+<body class="modal-preview-page">
+<h2 class="modal-preview-title modal-preview-title--spaced">Atom — Bouton fermer modal</h2>
+
+<div class="modal-close-preview">
+  <!-- État par défaut -->
+  <div>
+    <button type="button" class="modal-close" aria-label="Fermer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="modal-close-preview__label">Défaut</div>
+  </div>
+
+  <!-- Simulé hover via classe -->
+  <div>
+    <button type="button" class="modal-close modal-close--preview-hover" aria-label="Fermer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="modal-close-preview__label">Hover</div>
+  </div>
+
+  <!-- Sur fond sombre -->
+  <div>
+    <div class="modal-close-preview__dark">
+      <button type="button" class="modal-close modal-close--preview-inverse" aria-label="Fermer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-close-preview__label">Sur fond sombre</div>
+  </div>
+</div>
+
+<!-- Specs -->
+<table class="modal-preview-specs">
+  <tr><th>Classe</th><td>.modal-close</td></tr>
+  <tr><th>Taille</th><td>30×30px</td></tr>
+  <tr><th>Attribut</th><td>data-modal-close (pour fermer via modal.js)</td></tr>
+  <tr><th>Aria</th><td>aria-label="Fermer" obligatoire</td></tr>
+</table>
+</body>
+</html>

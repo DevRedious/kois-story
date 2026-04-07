@@ -3,6 +3,7 @@
 ## Structure
 
 - `github/` : GitHub workflow, branching, and protection notes
+- `deployment/` : production deployment guides
 - `assets/` : images, logos, UI kits, diagrams
 - `business/` : executive summary and business framing
 - `design/brand/` : visual identity and brand guidelines
@@ -16,6 +17,7 @@
 ## Key Documents
 
 - `github/branching_and_protection.md`
+- `deployment/coolify.md`
 - `agent.md`
 - `business/executive_summary_kois_story.md`
 - `design/atomic_design.md`

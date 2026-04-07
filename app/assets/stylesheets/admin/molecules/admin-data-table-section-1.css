@@ -6,9 +6,9 @@
 }
 
 .admin-data-table thead tr {
-	background: #f8f9fa;
+	background: var(--blanc-casse);
 	font-size: 0.8rem;
-	color: #6c757d;
+	color: var(--gris);
 	text-transform: uppercase;
 }
 
