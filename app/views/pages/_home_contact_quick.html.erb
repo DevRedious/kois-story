@@ -1,4 +1,9 @@
 <section class="contact-quick" id="contact">
+  <% if turnstile_enabled? %>
+    <% content_for :head do %>
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <% end %>
+  <% end %>
   <div class="contact-quick__inner">
     <div class="contact-quick__left" data-animate="fade-right">
       <p class="section-label" aria-hidden="true">Contact</p>
@@ -44,7 +49,12 @@
           <%= form.label :body, "Message *", class: "field__label" %>
           <%= form.text_area :body, class: "field__textarea", placeholder: "Votre question...", required: true %>
         </div>
-        <% if contact_verification_required? %>
+        <% if contact_verification_required? && turnstile_enabled? %>
+          <div class="contact-form__human-check field">
+            <div class="cf-turnstile" data-sitekey="<%= turnstile_site_key %>" data-theme="light"></div>
+            <p class="contact-form__human-note">Verification de securite activee pour proteger le formulaire contre les bots.</p>
+          </div>
+        <% elsif contact_verification_required? %>
           <div class="contact-form__human-check field">
             <div class="contact-form__honeypot" aria-hidden="true">
               <%= label_tag :contact_website, "Site web" %>

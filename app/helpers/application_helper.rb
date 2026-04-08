@@ -30,4 +30,12 @@ module ApplicationHelper
       image_tag docs_asset_path("icon-whatsapps.svg"), alt: "", class: "icon-wa__img"
     end
   end
+
+  def turnstile_enabled?
+    ENV["TURNSTILE_SITE_KEY"].present? && ENV["TURNSTILE_SECRET_KEY"].present?
+  end
+
+  def turnstile_site_key
+    ENV["TURNSTILE_SITE_KEY"].presence
+  end
 end

@@ -15,7 +15,11 @@ class MessagesController < ApplicationController
   private
 
   def contact_verification_failed?
-    contact_verification_required? && params[:contact_human_check] != "1"
+    return false unless contact_verification_required?
+
+    return turnstile_failed? if turnstile_enabled?
+
+    params[:contact_human_check] != "1"
   end
 
   def message_params
@@ -28,5 +32,14 @@ class MessagesController < ApplicationController
 
   def success_notice
     "Votre message a bien ete envoye. Nous vous repondrons dans les plus brefs delais."
+  end
+
+  def turnstile_enabled?
+    helpers.turnstile_enabled?
+  end
+
+  def turnstile_failed?
+    token = params["cf-turnstile-response"]
+    TurnstileVerifier.verify(token:, remote_ip: request.remote_ip) == false
   end
 end
