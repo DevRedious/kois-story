@@ -75,29 +75,26 @@ Dockerfile
 
 ## Domaine et SSL
 
-Dans Coolify, attacher le domaine de production, par exemple :
+Dans Coolify, attacher le domaine de production ou de test avec le schema
+`https://`.
+
+Valeurs recommandees :
 
 ```text
-kois-story.fr
-www.kois-story.fr
-```
-
-Valeurs recommandees en production :
-
-```text
-APP_HOST=kois-story.fr
+APP_HOST=<domaine sans schema, exemple kois-story.fr>
 FORCE_SSL=true
 ASSUME_SSL=true
 ```
 
-Si le premier deploiement se fait sur une URL temporaire Coolify sans domaine HTTPS final, utiliser :
+Garder le port expose sur `80` et le healthcheck interne Coolify sur `http`
+avec le chemin `/up`. Rails est servi en HTTP dans le conteneur ; Coolify gere
+le certificat HTTPS en entree.
+
+Documentation detaillee :
 
 ```text
-FORCE_SSL=false
-ASSUME_SSL=false
+docs/deployment/coolify-https.md
 ```
-
-Passer ensuite les deux valeurs a `true` lorsque le domaine final et le certificat SSL sont prets.
 
 ## Stockage persistant
 
