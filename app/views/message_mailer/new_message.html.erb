@@ -1,4 +1,45 @@
-<h2>New message from <%= @message.sender_name %></h2>
-<p><strong>Email:</strong> <%= @message.sender_email %></p>
-<p><strong>Message:</strong></p>
-<p><%= @message.body %></p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0;padding:0;background:#f5f5f2;">
+  <tr>
+    <td align="center" style="padding:24px 12px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border:1px solid #e6e6e1;">
+        <tr>
+          <td style="background:#630f0f url('<%= docs_asset_url("bg_sakura.png") %>') center center / cover no-repeat;padding:28px 24px;text-align:center;">
+            <img src="<%= docs_asset_url("LOGO MANU FINI.png") %>" alt="Koi's Story" width="140" style="display:block;margin:0 auto 14px auto;width:140px;max-width:100%;height:auto;">
+            <div style="font-family:Georgia,serif;font-size:28px;line-height:1.2;color:#ffffff;font-weight:700;">Koi's Story</div>
+            <div style="font-family:Arial,sans-serif;font-size:13px;line-height:1.5;color:#f5f5f2;padding-top:8px;">Nouveau message reçu depuis le site</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:28px 24px 18px 24px;font-family:Arial,sans-serif;color:#111111;">
+            <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;">Un nouveau message vient d'être envoyé depuis le formulaire de contact.</p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:22px 0;background:#f5f5f2;border-left:4px solid #e60000;">
+              <tr>
+                <td style="padding:16px 18px;">
+                  <div style="font-size:13px;line-height:1.5;color:#630f0f;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">Coordonnées</div>
+                  <p style="margin:10px 0 4px 0;font-size:15px;line-height:1.6;color:#111111;"><strong>Nom :</strong> <%= @message.sender_name %></p>
+                  <p style="margin:0;font-size:15px;line-height:1.6;color:#111111;"><strong>Email :</strong> <a href="mailto:<%= @message.sender_email %>" style="color:#e60000;text-decoration:none;"><%= @message.sender_email %></a></p>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:22px 0;background:#f5f5f2;border-left:4px solid #630f0f;">
+              <tr>
+                <td style="padding:16px 18px;">
+                  <div style="font-size:13px;line-height:1.5;color:#630f0f;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">Message</div>
+                  <div style="padding-top:8px;font-size:15px;line-height:1.7;color:#111111;"><%= simple_format(ERB::Util.html_escape(@message.body), {}, wrapper_tag: "div") %></div>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" cellpadding="0" cellspacing="0" style="margin:26px auto 10px auto;">
+              <tr>
+                <td align="center" bgcolor="#e60000" style="border-radius:6px;">
+                  <a href="mailto:<%= @message.sender_email %>" style="display:inline-block;padding:12px 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1;color:#ffffff;text-decoration:none;font-weight:700;">Répondre au client</a>
+                </td>
+              </tr>
+            </table>
+            <p style="margin:18px 0 0 0;font-size:15px;line-height:1.7;color:#111111;">Notification automatique envoyée par <strong>Koi's Story</strong>.</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

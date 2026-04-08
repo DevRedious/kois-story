@@ -4,7 +4,7 @@ class MessageMailer < ApplicationMailer
     mail(
       to: admin_recipient,
       reply_to: message.sender_email,
-      subject: "[Koi's Story] New message from #{message.sender_name}"
+      subject: "[Koi's Story] Nouveau message de #{message.sender_name}"
     )
   end
 
