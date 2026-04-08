@@ -4,14 +4,17 @@
  * Desktop: selects natifs. Les deux partagent les mêmes selects comme source d'état.
  */
 (() => {
-	document.addEventListener("turbo:load", () => {
+	function init() {
+		var filterBar = document.querySelector(".filter-bar");
+		if (!filterBar || filterBar.dataset.bound === "true") return;
+		filterBar.dataset.bound = "true";
+
 		var selectVariety = document.getElementById("filter-variety");
 		var selectAge = document.getElementById("filter-age");
 		var selectPrice = document.getElementById("filter-price");
 		var konishiToggle = document.getElementById("filter-konishi");
 		var resetBtn = document.getElementById("filter-reset");
 		var countEl = document.getElementById("filter-count");
-		var filterBar = document.querySelector(".filter-bar");
 
 		if (!selectVariety && !selectAge && !selectPrice) return;
 
@@ -135,7 +138,7 @@
 		var scrollStart = 0;
 		if (filterInner) {
 			filterInner.addEventListener("mousedown", (e) => {
-				if (e.target.closest(".filter-pill, .filter-toggle, .filter-reset"))
+				if (e.target.closest(".filter-pill, .filter-toggle, .filter-reset, .filter-select"))
 					return;
 				isDragging = true;
 				dragStartX = e.pageX;
@@ -205,5 +208,8 @@
 		);
 
 		applyFilters();
-	});
+	}
+
+	document.addEventListener("turbo:load", init);
+	requestAnimationFrame(init);
 })();
