@@ -9,52 +9,52 @@
 
   <nav class="sidebar-nav">
     <div class="nav-section">Tableau de bord</div>
-    <%= link_to admin_root_path, class: "nav-item #{'active' if admin_current_page == :dashboard}", data: { page: "dashboard" } do %>
+    <%= link_to admin_root_path, class: "nav-item #{'active' if admin_current_page == :dashboard}", data: { page: "dashboard" }, title: "Tableau de bord", aria: ({ current: ("page" if admin_current_page == :dashboard) }.compact) do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></span>
-      <span class="nav-label">Dashboard</span>
+      <span class="nav-label">Tableau de bord</span>
     <% end %>
 
     <div class="nav-section nav-section--spaced">Catalogue</div>
-    <%= link_to admin_kois_path, class: "nav-item #{'active' if admin_current_page == :kois}", data: { page: "kois" } do %>
+    <%= link_to admin_kois_path, class: "nav-item #{'active' if admin_current_page == :kois}", data: { page: "kois" }, title: "Catalogue koi", aria: ({ current: ("page" if admin_current_page == :kois) }.compact) do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M168 76a12 12 0 1 1-12-12a12 12 0 0 1 12 12m48.72 67.64c-19.37 34.9-55.44 53.76-107.24 56.1l-22 51.41A8 8 0 0 1 80.1 256h-.51a8 8 0 0 1-7.19-5.78l-14.8-51.83l-51.8-14.83a8 8 0 0 1-1-15.05l51.41-22c2.35-51.78 21.21-87.84 56.09-107.22c24.75-13.74 52.74-15.84 71.88-15.18c18.64.64 36 4.27 38.86 6a8 8 0 0 1 2.83 2.83c1.69 2.85 5.33 20.21 6 38.85c.68 19.1-1.41 47.1-15.15 71.85m-55.18 29a52.11 52.11 0 0 1-33.4-44.78a52.09 52.09 0 0 1-44.77-33.39q-10.45 23.79-11.3 57.59a8 8 0 0 1-4.85 7.17l-35.39 15.14l34.45 9.86a8 8 0 0 1 5.49 5.5l9.84 34.44l15.16-35.4a8 8 0 0 1 7.17-4.84q33.77-.81 57.6-11.29m50.88-129.07c-14.15-3-64.1-11-100.3 14.75a81.2 81.2 0 0 0-16 15.07a36 36 0 0 0 39.35 38.44a8 8 0 0 1 8.73 8.73a36 36 0 0 0 38.47 39.34a80.8 80.8 0 0 0 15-16c25.75-36.17 17.75-86.16 14.75-100.33"/></svg></span>
-      <span class="nav-label">Gestion des Kois</span>
+      <span class="nav-label">Catalogue koi</span>
     <% end %>
-    <%= link_to admin_products_path, class: "nav-item #{'active' if admin_current_page == :products}", data: { page: "products" } do %>
+    <%= link_to admin_products_path, class: "nav-item #{'active' if admin_current_page == :products}", data: { page: "products" }, title: "Materiel et produits", aria: ({ current: ("page" if admin_current_page == :products) }.compact) do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline><polyline points="7.5 19.79 7.5 14.6 3 12"></polyline><polyline points="21 12 16.5 14.6 16.5 19.79"></polyline><polyline points="12 22.08 12 17"></polyline></svg></span>
-      <span class="nav-label">Materiels & produits</span>
+      <span class="nav-label">Materiel et produits</span>
     <% end %>
 
     <div class="nav-section nav-section--spaced">Commandes</div>
-    <%= link_to admin_orders_path, class: "nav-item #{'active' if admin_current_page == :orders}", data: { page: "orders" } do %>
+    <%= link_to admin_orders_path, class: "nav-item #{'active' if admin_current_page == :orders}", data: { page: "orders" }, title: "Commandes", aria: ({ current: ("page" if admin_current_page == :orders) }.compact) do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></span>
       <span class="nav-label">Commandes</span>
     <% end %>
-    <%= link_to admin_payments_path, class: "nav-item #{'active' if admin_current_page == :payments}", data: { page: "payments" } do %>
+    <%= link_to admin_payments_path, class: "nav-item #{'active' if admin_current_page == :payments}", data: { page: "payments" }, title: "Paiements", aria: ({ current: ("page" if admin_current_page == :payments) }.compact) do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></span>
       <span class="nav-label">Paiements</span>
     <% end %>
-    <%= link_to admin_clients_path, class: "nav-item #{'active' if admin_current_page == :clients}", data: { page: "clients" } do %>
+    <%= link_to admin_clients_path, class: "nav-item #{'active' if admin_current_page == :clients}", data: { page: "clients" }, title: "Clients", aria: ({ current: ("page" if admin_current_page == :clients) }.compact) do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
       <span class="nav-label">Clients</span>
     <% end %>
 
     <div class="nav-section nav-section--spaced">Relation client</div>
-    <%= link_to admin_messages_path, class: "nav-item #{'active' if admin_current_page == :messages}", data: { page: "messages" } do %>
+    <%= link_to admin_messages_path, class: "nav-item #{'active' if admin_current_page == :messages}", data: { page: "messages" }, title: "Messages clients", aria: ({ current: ("page" if admin_current_page == :messages) }.compact) do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"/></svg></span>
-      <span class="nav-label">Messages</span>
+      <span class="nav-label">Messages clients</span>
       <% if admin_unread_messages_count.positive? %>
         <span class="nav-badge" id="msg-count"><%= admin_unread_messages_count %></span>
       <% end %>
     <% end %>
-    <%= link_to admin_newsletter_path, class: "nav-item #{'active' if admin_current_page == :newsletter}", data: { page: "newsletter" } do %>
+    <%= link_to admin_newsletter_path, class: "nav-item #{'active' if admin_current_page == :newsletter}", data: { page: "newsletter" }, title: "Newsletter", aria: ({ current: ("page" if admin_current_page == :newsletter) }.compact) do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"></path><path d="m22 6-10 7L2 6"></path></svg></span>
       <span class="nav-label">Newsletter</span>
     <% end %>
 
     <div class="nav-section nav-section--spaced">Site</div>
-    <%= link_to root_path, class: "nav-item" do %>
+    <%= link_to root_path, class: "nav-item", title: "Site public" do %>
       <span class="nav-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 256 367" fill="currentColor"><path d="M70.585 271.865a371 371 0 0 1 28.911 42.642c7.374 13.982 10.448 23.463 15.837 40.31c3.305 9.308 6.292 12.086 12.714 12.086c6.998 0 10.173-4.726 12.626-12.035c5.094-15.91 9.091-28.052 15.397-39.525c12.374-22.15 27.75-41.833 42.858-60.75c4.09-5.354 30.534-36.545 42.439-61.156c0 0 14.632-27.035 14.632-64.792c0-35.318-14.43-59.813-14.43-59.813l-41.545 11.126l-25.23 66.451l-6.242 9.163l-1.248 1.66l-1.66 2.078l-2.914 3.319l-4.164 4.163l-22.467 18.304l-56.17 32.432z"/><path d="M12.612 188.892c13.709 31.313 40.145 58.839 58.031 82.995l95.001-112.534s-13.384 17.504-37.662 17.504c-27.043 0-48.89-21.595-48.89-48.825c0-18.673 11.234-31.501 11.234-31.501l-64.489 17.28z"/><path d="M166.705 5.787c31.552 10.173 58.558 31.53 74.893 63.023l-75.925 90.478s11.234-13.06 11.234-31.617c0-27.864-23.463-48.68-48.81-48.68c-23.969 0-37.735 17.475-37.735 17.475v-57z"/><path d="M30.015 45.765C48.86 23.218 82.02 0 127.736 0c22.18 0 38.89 5.823 38.89 5.823L90.29 96.516H36.205z"/><path d="M12.612 188.892S0 164.194 0 128.414c0-33.817 13.146-63.377 30.015-82.649l60.318 50.759z"/></svg></span>
-      <span class="nav-label">Voir le site public</span>
+      <span class="nav-label">Site public</span>
     <% end %>
   </nav>
 

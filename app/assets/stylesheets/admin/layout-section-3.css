@@ -123,7 +123,15 @@
 		max-width: 160px;
 		opacity: 1;
 	}
+	.sidebar:focus-within .brand-title-text {
+		max-width: 160px;
+		opacity: 1;
+	}
 	.sidebar:hover .brand-sub {
+		max-width: 200px;
+		opacity: 1;
+	}
+	.sidebar:focus-within .brand-sub {
 		max-width: 200px;
 		opacity: 1;
 	}
@@ -131,13 +139,27 @@
 		max-width: 190px;
 		opacity: 1;
 	}
+	.sidebar:focus-within .nav-label {
+		max-width: 190px;
+		opacity: 1;
+	}
 	.sidebar:hover .nav-badge {
+		opacity: 1;
+	}
+	.sidebar:focus-within .nav-badge {
 		opacity: 1;
 	}
 	.sidebar:hover .nav-section {
 		opacity: 1;
 	}
+	.sidebar:focus-within .nav-section {
+		opacity: 1;
+	}
 	.sidebar:hover .admin-info {
+		max-width: 160px;
+		opacity: 1;
+	}
+	.sidebar:focus-within .admin-info {
 		max-width: 160px;
 		opacity: 1;
 	}
