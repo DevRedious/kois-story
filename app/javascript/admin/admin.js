@@ -8,21 +8,6 @@ document.addEventListener("turbo:load", () => {
 	if (document.body.dataset.adminBound === "true") return;
 	document.body.dataset.adminBound = "true";
 
-	var themeSelect = document.querySelector(".theme-switcher select");
-	if (themeSelect) {
-		const current = localStorage.getItem("admin-theme") || "system";
-		themeSelect.value = current;
-		themeSelect.addEventListener("change", function () {
-			var v = this.value;
-			localStorage.setItem("admin-theme", v);
-			if (v === "system") {
-				document.documentElement.removeAttribute("data-theme");
-			} else {
-				document.documentElement.setAttribute("data-theme", v);
-			}
-		});
-	}
-
 	const menuBurger = document.querySelector(".menu-burger");
 	const sidebar = document.querySelector(".sidebar");
 	const overlay = document.querySelector(".overlay");

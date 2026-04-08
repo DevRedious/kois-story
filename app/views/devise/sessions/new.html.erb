@@ -2,27 +2,6 @@
 <% content_for :body_class, "login-page" %>
 <% content_for :extra_stylesheet, "admin_application" %>
 <% content_for :skip_default_footer, true %>
-<% content_for :head do %>
-  <%= javascript_tag nonce: true do %>
-    (() => {
-      const saved = localStorage.getItem("admin-theme") || "system";
-      if (saved === "system") {
-        document.documentElement.removeAttribute("data-theme");
-      } else {
-        document.documentElement.setAttribute("data-theme", saved);
-      }
-    })();
-  <% end %>
-<% end %>
-
-<div class="login-theme-switcher">
-  <label for="theme-select" class="sr-only">Theme</label>
-  <select id="theme-select" aria-label="Choisir le theme d'affichage">
-    <option value="system">Systeme</option>
-    <option value="light">Clair</option>
-    <option value="dark">Sombre</option>
-  </select>
-</div>
 
 <div id="form-ui">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "form" }) do |f| %>
@@ -62,21 +41,3 @@
     </div>
   <% end %>
 </div>
-
-<%= javascript_tag nonce: true do %>
-  (() => {
-    const themeSelect = document.getElementById("theme-select");
-    if (!themeSelect) return;
-    const current = localStorage.getItem("admin-theme") || "system";
-    themeSelect.value = current;
-    themeSelect.addEventListener("change", function () {
-      const value = this.value;
-      localStorage.setItem("admin-theme", value);
-      if (value === "system") {
-        document.documentElement.removeAttribute("data-theme");
-      } else {
-        document.documentElement.setAttribute("data-theme", value);
-      }
-    });
-  })();
-<% end %>
