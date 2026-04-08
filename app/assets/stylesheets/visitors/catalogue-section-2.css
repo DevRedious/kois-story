@@ -99,6 +99,9 @@
 .filter-bar {
 	top: 66px;
 }
+.filter-bar.filter-bar--at-top {
+	top: 0;
+}
 .filter-bar__inner {
 	width: 100%;
 	max-width: none;
