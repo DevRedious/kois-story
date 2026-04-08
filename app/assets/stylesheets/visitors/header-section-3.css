@@ -161,6 +161,9 @@
 	.site-header--scrolled {
 		padding: var(--sp-3) var(--sp-8);
 	}
+	.site-header--on-filter {
+		padding: var(--sp-1) var(--sp-8);
+	}
 	.header__pill {
 		width: fit-content;
 		justify-content: flex-start;
