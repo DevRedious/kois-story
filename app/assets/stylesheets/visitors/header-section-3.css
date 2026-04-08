@@ -29,10 +29,13 @@
 /* ── MOBILE — base ────────────────────────────────────────────────────── */
 .site-header {
 	padding: var(--sp-3) var(--sp-4);
-	padding-right: max(var(--sp-4), env(safe-area-inset-right));
+	padding-top: max(var(--sp-3), env(safe-area-inset-top));
+	padding-right: max(var(--sp-6), env(safe-area-inset-right));
 }
 .site-header--scrolled {
 	padding: var(--sp-3) var(--sp-4);
+	padding-top: max(var(--sp-3), env(safe-area-inset-top));
+	padding-right: max(var(--sp-6), env(safe-area-inset-right));
 }
 .header__pill {
 	width: 100%;
