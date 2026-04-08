@@ -139,7 +139,11 @@
 		var scrollStart = 0;
 		if (filterInner) {
 			filterInner.addEventListener("mousedown", (e) => {
-				if (e.target.closest(".filter-pill, .filter-toggle, .filter-reset, .filter-select"))
+				if (
+					e.target.closest(
+						".filter-pill, .filter-toggle, .filter-reset, .filter-select",
+					)
+				)
 					return;
 				isDragging = true;
 				dragStartX = e.pageX;

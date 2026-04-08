@@ -11,6 +11,7 @@ class MessageMailerTest < ActionMailer::TestCase
 
     assert_equal [ "admin@example.com" ], mail.to
     assert_equal [ "contact@kois-story.fr" ], mail.from
+    assert_equal [ messages(:one).sender_email ], mail.reply_to
     assert_match "Alice", mail.subject
   ensure
     ENV["ADMIN_EMAIL"] = original_admin_email
