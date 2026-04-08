@@ -2,7 +2,7 @@ class Message < ApplicationRecord
   validates :sender_name, :sender_email, :body, presence: true
   validates :sender_email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
-  after_create :notify_admin
+  after_create :notify_contacts
 
   scope :unread, -> { where(read: false) }
 
@@ -12,9 +12,8 @@ class Message < ApplicationRecord
 
   private
 
-  def notify_admin
-    return if ENV["ADMIN_EMAIL"].blank?
-
-    MessageMailer.new_message(self).deliver_now
+  def notify_contacts
+    MessageMailer.new_message(self).deliver_now if ENV["ADMIN_EMAIL"].present?
+    MessageMailer.acknowledgement(self).deliver_now
   end
 end

@@ -1,6 +1,8 @@
 require "test_helper"
 
 class MessageTest < ActiveSupport::TestCase
+  include ActionMailer::TestHelper
+
   test "requires valid sender email" do
     message = Message.new(sender_name: "A", sender_email: "invalid", body: "Hi")
     assert_not message.valid?
@@ -21,5 +23,20 @@ class MessageTest < ActiveSupport::TestCase
     message.mark_as_read!
 
     assert message.reload.read?
+  end
+
+  test "sends admin and visitor emails after creation" do
+    original_admin_email = ENV["ADMIN_EMAIL"]
+    ENV["ADMIN_EMAIL"] = "admin@example.com"
+
+    assert_emails 2 do
+      Message.create!(
+        sender_name: "Camille",
+        sender_email: "camille@example.com",
+        body: "Bonjour"
+      )
+    end
+  ensure
+    ENV["ADMIN_EMAIL"] = original_admin_email
   end
 end
