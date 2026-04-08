@@ -94,6 +94,8 @@
 }
 .feature-main__badge {
 	display: inline-flex;
+	align-self: flex-start;
+	width: fit-content;
 	padding: var(--sp-2) var(--sp-4);
 	background: var(--c-wine);
 	color: var(--c-cream);

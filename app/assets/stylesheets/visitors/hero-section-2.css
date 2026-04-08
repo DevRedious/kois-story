@@ -140,11 +140,23 @@
 		padding-bottom: 0;
 	}
 }
-.hero-title-underline {
-	display: block;
-	width: 260px;
-	height: auto;
+.hero-compact__title--underlined {
+	display: inline-block;
+	width: fit-content;
+	max-width: 100%;
 	margin-bottom: var(--sp-3);
-	filter: brightness(0) invert(1);
+	padding-bottom: calc(var(--sp-2) + 12px);
+	position: relative;
+}
+.hero-compact__title--underlined::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 12px;
+	background-color: currentColor;
+	-webkit-mask: url("/docs/assets/sumi_e.svg") no-repeat center / 100% 100%;
+	mask: url("/docs/assets/sumi_e.svg") no-repeat center / 100% 100%;
 	opacity: 0.8;
 }

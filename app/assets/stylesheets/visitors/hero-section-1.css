@@ -100,10 +100,6 @@
 	background: var(--c-black);
 	z-index: 3;
 	opacity: 1;
-	transition: opacity 1.5s ease;
-}
-.hero__poster--visible {
-	opacity: 1;
 }
 .hero__video {
 	position: absolute;
@@ -113,10 +109,6 @@
 	object-fit: cover;
 	z-index: 1;
 	display: none;
-	transition: opacity 1.5s ease;
-}
-.hero__video--fading {
-	opacity: 0;
 }
 @media (min-width: 901px) {
 	.hero__video {
