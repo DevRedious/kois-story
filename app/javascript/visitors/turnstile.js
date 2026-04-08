@@ -1,31 +1,34 @@
-const fitTurnstile = () => {
-	document.querySelectorAll("[data-turnstile-shell]").forEach((shell) => {
-		const widget = shell.querySelector(".cf-turnstile");
-		const frame = shell.querySelector("iframe");
-		if (!widget || !frame) return;
+const renderTurnstileWidgets = () => {
+	if (!window.turnstile) return;
 
-		const availableWidth =
-			shell.parentElement?.clientWidth || shell.clientWidth;
-		const widgetWidth = frame.offsetWidth || widget.offsetWidth || 300;
-		const scale =
-			widgetWidth > availableWidth ? availableWidth / widgetWidth : 1;
+	document.querySelectorAll("[data-turnstile-widget]").forEach((widget) => {
+		const shell = widget.closest("[data-turnstile-shell]");
+		const width = shell?.clientWidth || widget.clientWidth || 300;
+		const size = width < 300 ? "compact" : "flexible";
+		const nextSignature = `${widget.dataset.sitekey}:${size}`;
 
-		widget.style.transform = `scale(${scale})`;
-		widget.style.transformOrigin = "left top";
-		shell.style.height = `${Math.ceil((frame.offsetHeight || 65) * scale)}px`;
+		if (widget.dataset.renderedSignature === nextSignature) return;
+
+		widget.innerHTML = "";
+		window.turnstile.render(widget, {
+			sitekey: widget.dataset.sitekey,
+			theme: widget.dataset.theme || "light",
+			size,
+		});
+		widget.dataset.renderedSignature = nextSignature;
 	});
 };
 
-const bindTurnstileFit = () => {
-	if (document.body.dataset.turnstileBound === "true") return;
+const bindTurnstile = () => {
+	if (document.body.dataset.turnstileBound === "true") {
+		renderTurnstileWidgets();
+		return;
+	}
 	document.body.dataset.turnstileBound = "true";
 
-	const sync = () => window.requestAnimationFrame(fitTurnstile);
+	const sync = () => window.requestAnimationFrame(renderTurnstileWidgets);
 	sync();
 	window.addEventListener("resize", sync);
-
-	const observer = new MutationObserver(sync);
-	observer.observe(document.body, { childList: true, subtree: true });
 };
 
-document.addEventListener("turbo:load", bindTurnstileFit);
+document.addEventListener("turbo:load", bindTurnstile);

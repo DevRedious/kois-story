@@ -10,25 +10,26 @@
 
 .contact-form__human-check {
 	padding: var(--sp-3);
-	overflow: hidden;
 }
 
 .turnstile-shell {
 	width: 100%;
 	max-width: 100%;
-	overflow: hidden;
 	display: flex;
 	justify-content: center;
-	transform-origin: left top;
 }
 
-.contact-form__human-check .cf-turnstile {
+.turnstile-shell [data-turnstile-widget],
+.turnstile-shell .cf-turnstile {
+	display: flex;
+	justify-content: center;
 	width: 100%;
 	max-width: 100%;
 }
 
 .contact-form__human-check iframe {
 	max-width: 100%;
+	border-radius: 8px;
 }
 
 @media (min-width: 581px) {
