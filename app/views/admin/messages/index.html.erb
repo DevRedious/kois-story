@@ -31,15 +31,23 @@
         <%= link_to "Reinitialiser", admin_messages_path, class: "btn btn--ghost btn--sm" %>
       <% end %>
     <% end %>
+    <%= form_with url: bulk_update_admin_messages_path, method: :patch, id: "bulk-messages-form", class: "panel-toolbar admin-bulk-form", local: true, data: { bulk_form: true } do |form| %>
+      <% [:q, :status, :sort, :direction, :page].each do |key| %>
+        <%= hidden_field_tag key, params[key] if params[key].present? %>
+      <% end %>
+      <%= form.select :bulk_action, options_for_select([["Action groupée", ""], ["Marquer lus", "read"], ["Marquer traites", "processed"], ["Repasser en nouveau", "unread"]]), {}, class: "u-toolbar-select-wide", data: { bulk_action: true } %>
+      <%= form.submit "Appliquer", class: "btn btn--outline btn--sm", disabled: true, data: { bulk_submit: true } %>
+    <% end %>
   </div>
 
   <div class="table-responsive">
     <table>
       <thead>
         <tr>
-          <th>Date</th>
+          <th class="bulk-col"><input type="checkbox" aria-label="Selectionner tous les messages" data-bulk-toggle="bulk-messages-form"></th>
+          <th><%= admin_sort_link("Date", :created_at) %></th>
           <th>Reference</th>
-          <th>Expediteur</th>
+          <th><%= admin_sort_link("Expediteur", :sender_name) %></th>
           <th>Message</th>
           <th>Statut</th>
           <th>Suivi</th>
@@ -49,6 +57,7 @@
       <tbody>
         <% @messages.each do |message| %>
           <tr class="<%= admin_message_row_class(message) %>" data-status="<%= message.status %>" data-search="<%= [message.contact_reference, message.sender_name, message.sender_email, message.body].join(' ').downcase %>">
+            <td class="bulk-col"><%= check_box_tag "message_ids[]", message.id, false, form: "bulk-messages-form", data: { bulk_item: true }, aria: { label: "Selectionner #{message.contact_reference}" } %></td>
             <td class="msg-date">
               <%= admin_message_datetime(message) %>
               <div class="msg-time"><%= admin_message_time(message) %></div>

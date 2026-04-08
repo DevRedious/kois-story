@@ -21,6 +21,16 @@ class Admin::ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_select "tbody tr", text: /Soin/, count: 0
   end
 
+  test "should sort products by price descending" do
+    Product.create!(name: "Petit filtre", reference: "FIL-1", category: :materiel, status: :active, price: 5)
+    Product.create!(name: "Grand filtre", reference: "FIL-2", category: :materiel, status: :active, price: 25)
+
+    get admin_products_url, params: { sort: :price, direction: :desc }
+
+    assert_response :success
+    assert_select "tbody tr:first-child td", text: /Grand filtre/
+  end
+
   test "should get show" do
     get admin_product_url(products(:one))
     assert_response :success

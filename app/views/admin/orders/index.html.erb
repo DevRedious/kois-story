@@ -33,16 +33,24 @@
         <%= link_to "Reinitialiser", admin_orders_path, class: "btn btn--ghost btn--sm" %>
       <% end %>
     <% end %>
+    <%= form_with url: bulk_update_admin_orders_path, method: :patch, id: "bulk-orders-form", class: "panel-toolbar admin-bulk-form", local: true, data: { bulk_form: true } do |form| %>
+      <% [:q, :status, :sort, :direction, :page].each do |key| %>
+        <%= hidden_field_tag key, params[key] if params[key].present? %>
+      <% end %>
+      <%= form.select :bulk_action, options_for_select([["Action groupée", ""], ["Passer en attente", "pending"], ["Confirmer", "confirmed"], ["Finaliser", "completed"], ["Annuler", "cancelled"]]), {}, class: "u-toolbar-select-wide", data: { bulk_action: true } %>
+      <%= form.submit "Appliquer", class: "btn btn--outline btn--sm", disabled: true, data: { bulk_submit: true } %>
+    <% end %>
   </div>
   <div class="table-responsive">
     <table id="orders-table">
       <thead>
-        <tr><th>Reference</th><th>Client</th><th>Articles</th><th>Paiements</th><th>Total</th><th>Statut</th><th>Actions</th></tr>
+        <tr><th class="bulk-col"><input type="checkbox" aria-label="Selectionner toutes les commandes" data-bulk-toggle="bulk-orders-form"></th><th><%= admin_sort_link("Reference", :created_at) %></th><th><%= admin_sort_link("Client", :client) %></th><th>Articles</th><th>Paiements</th><th><%= admin_sort_link("Total", :total_amount) %></th><th><%= admin_sort_link("Statut", :status) %></th><th>Actions</th></tr>
       </thead>
       <tbody>
         <% if @orders.any? %>
           <% @orders.each do |order| %>
           <tr data-status="<%= order.status %>">
+            <td class="bulk-col"><%= check_box_tag "order_ids[]", order.id, false, form: "bulk-orders-form", data: { bulk_item: true }, aria: { label: "Selectionner #{admin_order_reference(order)}" } %></td>
             <td><strong><%= admin_order_reference(order) %></strong></td>
             <td><%= link_to admin_order_client_name(order), admin_client_path(order.client_profile) %></td>
             <td><%= order.order_items.size %> ligne<%= "s" if order.order_items.many? %></td>
@@ -61,7 +69,7 @@
           </tr>
           <% end %>
         <% else %>
-          <tr><td colspan="7">Aucune commande a suivre pour le moment.</td></tr>
+          <tr><td colspan="8">Aucune commande a suivre pour le moment.</td></tr>
         <% end %>
       </tbody>
     </table>

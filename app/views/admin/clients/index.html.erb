@@ -35,7 +35,7 @@
   </div>
   <div class="table-responsive">
     <table>
-      <thead><tr><th>Nom</th><th>Email</th><th>Telephone</th><th>Commandes</th><th>Total</th><th>Action</th></tr></thead>
+      <thead><tr><th><%= admin_sort_link("Nom", :name) %></th><th><%= admin_sort_link("Email", :email) %></th><th><%= admin_sort_link("Telephone", :phone) %></th><th>Commandes</th><th>Total</th><th>Action</th></tr></thead>
       <tbody>
         <% @clients.each do |client| %>
           <tr>

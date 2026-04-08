@@ -19,7 +19,7 @@
   <div class="table-responsive">
     <table>
       <thead>
-        <tr><th>Nom</th><th>Reference</th><th>Categorie</th><th>Prix</th><th>Stock</th><th>Statut</th><th>Actions</th></tr>
+        <tr><th><%= admin_sort_link("Nom", :name) %></th><th><%= admin_sort_link("Reference", :reference) %></th><th><%= admin_sort_link("Categorie", :category) %></th><th><%= admin_sort_link("Prix", :price) %></th><th><%= admin_sort_link("Stock", :stock_quantity) %></th><th><%= admin_sort_link("Statut", :status) %></th><th>Actions</th></tr>
       </thead>
       <tbody>
         <% @products.each do |product| %>

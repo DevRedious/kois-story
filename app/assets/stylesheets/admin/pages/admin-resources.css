@@ -131,6 +131,26 @@ textarea[readonly] {
 	color: var(--gris);
 }
 
+.admin-bulk-form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.bulk-col {
+	width: 44px;
+}
+
+.sort-link {
+	color: inherit;
+	text-decoration: none;
+}
+
+.sort-link--active {
+	color: var(--rouge-vif);
+}
+
 @media (min-width: 769px) {
 	.resource-hero {
 		grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);

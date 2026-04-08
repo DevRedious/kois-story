@@ -3,7 +3,7 @@ module Admin
     before_action :set_koi, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      scope = filtered_kois
+      scope = sorted_kois(filtered_kois)
       @kois, @pagination = paginate_scope(scope, per_page: 12)
       @varieties = Koi.distinct.order(:variety).pluck(:variety).compact_blank
     end
@@ -86,6 +86,16 @@ module Admin
 
       query = "%#{params[:q].strip.downcase}%"
       scope.where("LOWER(name) LIKE :query OR LOWER(variety) LIKE :query OR LOWER(description) LIKE :query", query:)
+    end
+
+    def sorted_kois(scope)
+      direction = params[:direction] == "asc" ? :asc : :desc
+      case params[:sort]
+      when "name", "variety", "status", "size_cm", "price"
+        scope.order(params[:sort] => direction)
+      else
+        scope.order(created_at: direction)
+      end
     end
   end
 end

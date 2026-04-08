@@ -20,12 +20,12 @@
     <table id="kois-table">
       <thead>
         <tr>
-          <th>Koi</th>
+          <th><%= admin_sort_link("Koi", :name) %></th>
           <th>Classe / Age</th>
-          <th>Taille</th>
-          <th>Prix</th>
+          <th><%= admin_sort_link("Taille", :size_cm) %></th>
+          <th><%= admin_sort_link("Prix", :price) %></th>
           <th>Lignee</th>
-          <th>Statut</th>
+          <th><%= admin_sort_link("Statut", :status) %></th>
           <th>Actions</th>
         </tr>
       </thead>

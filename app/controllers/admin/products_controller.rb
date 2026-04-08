@@ -3,7 +3,7 @@ module Admin
     before_action :set_product, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @products, @pagination = paginate_scope(filtered_products, per_page: 12)
+      @products, @pagination = paginate_scope(sorted_products(filtered_products), per_page: 12)
     end
 
     def show; end
@@ -59,6 +59,16 @@ module Admin
 
       query = "%#{params[:q].strip.downcase}%"
       scope.where("LOWER(name) LIKE :query OR LOWER(reference) LIKE :query OR LOWER(description) LIKE :query", query:)
+    end
+
+    def sorted_products(scope)
+      direction = params[:direction] == "asc" ? :asc : :desc
+      case params[:sort]
+      when "name", "reference", "category", "price", "stock_quantity", "status"
+        scope.order(params[:sort] => direction)
+      else
+        scope.order(created_at: direction)
+      end
     end
   end
 end

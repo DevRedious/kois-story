@@ -3,7 +3,7 @@ module Admin
     before_action :set_client, only: [ :show, :edit, :update ]
 
     def index
-      scope = filtered_clients
+      scope = sorted_clients(filtered_clients)
       @clients, @pagination = paginate_scope(scope, per_page: 12)
     end
 
@@ -41,6 +41,18 @@ module Admin
         "LOWER(client_profiles.name) LIKE :query OR LOWER(client_profiles.phone) LIKE :query OR LOWER(client_profiles.address) LIKE :query OR LOWER(users.email) LIKE :query",
         query:
       )
+    end
+
+    def sorted_clients(scope)
+      direction = params[:direction] == "asc" ? :asc : :desc
+      case params[:sort]
+      when "name", "phone"
+        scope.order("client_profiles.#{params[:sort]} #{direction}")
+      when "email"
+        scope.left_joins(:user).order("users.email #{direction}")
+      else
+        scope.order(created_at: direction)
+      end
     end
   end
 end

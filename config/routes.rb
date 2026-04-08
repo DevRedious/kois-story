@@ -20,9 +20,13 @@ Rails.application.routes.draw do
     root "dashboard#index"
     get :dashboard, to: "dashboard#index"
     resources :kois
-    resources :messages, only: [ :index, :show, :update ]
+    resources :messages, only: [ :index, :show, :update ] do
+      patch :bulk_update, on: :collection
+    end
     resources :products
-    resources :orders, only: [ :index, :show, :edit, :update ]
+    resources :orders, only: [ :index, :show, :edit, :update ] do
+      patch :bulk_update, on: :collection
+    end
     resources :payments, only: [ :index, :show, :edit, :update ]
     resources :clients, only: [ :index, :show, :edit, :update ]
     get :newsletter, to: "newsletter#index"

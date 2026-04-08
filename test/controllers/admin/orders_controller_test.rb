@@ -42,4 +42,15 @@ class Admin::OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_equal "confirmed", orders(:one).reload.status
     assert_equal "Client rappele", orders(:one).reload.notes
   end
+
+  test "should bulk update orders" do
+    patch bulk_update_admin_orders_url, params: {
+      order_ids: [ orders(:one).id, orders(:two).id ],
+      bulk_action: :confirmed
+    }
+
+    assert_redirected_to admin_orders_url
+    assert_equal "confirmed", orders(:one).reload.status
+    assert_equal "confirmed", orders(:two).reload.status
+  end
 end

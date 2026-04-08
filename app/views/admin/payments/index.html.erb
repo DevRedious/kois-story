@@ -42,7 +42,7 @@
   <div class="table-responsive">
     <table>
       <thead>
-        <tr><th>Commande</th><th>Client</th><th>Type</th><th>Montant</th><th>Statut</th><th>Echeance</th><th>Action</th></tr>
+        <tr><th><%= admin_sort_link("Commande", :order) %></th><th>Client</th><th><%= admin_sort_link("Type", :payment_type) %></th><th><%= admin_sort_link("Montant", :amount) %></th><th><%= admin_sort_link("Statut", :status) %></th><th><%= admin_sort_link("Echeance", :due_at) %></th><th>Action</th></tr>
       </thead>
       <tbody>
         <% if @payments.any? %>

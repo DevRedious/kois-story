@@ -7,3 +7,4 @@ import "admin/koi-form";
 import "admin/messages";
 import "admin/orders";
 import "admin/payments";
+import "admin/bulk-actions";

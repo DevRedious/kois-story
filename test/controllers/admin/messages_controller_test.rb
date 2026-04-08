@@ -30,6 +30,17 @@ class Admin::MessagesControllerTest < ActionDispatch::IntegrationTest
     assert messages(:one).reload.read?
   end
 
+  test "should bulk update messages" do
+    patch bulk_update_admin_messages_url, params: {
+      message_ids: [ messages(:one).id, messages(:two).id ],
+      bulk_action: :processed
+    }
+
+    assert_redirected_to admin_messages_url
+    assert_equal :processed, messages(:one).reload.status
+    assert_equal :processed, messages(:two).reload.status
+  end
+
   test "should mark message as processed" do
     patch admin_message_url(messages(:one)), params: { status: :processed }
 
