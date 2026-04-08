@@ -123,6 +123,39 @@
 .contact-form--home .contact-form__note {
 	text-align: center;
 }
+.contact-form__human-check {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-3);
+	padding: var(--sp-4);
+	background: rgba(255, 255, 255, 0.6);
+	border: 1px solid rgba(99, 15, 15, 0.12);
+	border-radius: var(--r-md);
+}
+.contact-form__human-label {
+	display: flex;
+	gap: var(--sp-3);
+	align-items: flex-start;
+	font-size: var(--text-sm);
+	color: var(--c-black);
+	line-height: var(--leading-normal);
+}
+.contact-form__human-label input {
+	margin-top: 3px;
+	accent-color: var(--c-wine);
+}
+.contact-form__human-note {
+	font-size: var(--text-sm);
+	color: var(--n-75);
+	margin: 0;
+}
+.contact-form__honeypot {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
 
 /* ── CONTACT RAPIDE — boutons WA ─────────────────────────────────── */
 .contact-quick__wa {

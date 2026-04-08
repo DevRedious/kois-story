@@ -44,6 +44,19 @@
           <%= form.label :body, "Message *", class: "field__label" %>
           <%= form.text_area :body, class: "field__textarea", placeholder: "Votre question...", required: true %>
         </div>
+        <% if contact_verification_required? %>
+          <div class="contact-form__human-check field">
+            <div class="contact-form__honeypot" aria-hidden="true">
+              <%= label_tag :contact_website, "Site web" %>
+              <%= text_field_tag :contact_website, nil, tabindex: "-1", autocomplete: "off" %>
+            </div>
+            <label class="contact-form__human-label">
+              <%= check_box_tag :contact_human_check, "1", false, required: true %>
+              <span>Je confirme que je suis un humain et que ce message n'est pas envoye automatiquement.</span>
+            </label>
+            <p class="contact-form__human-note">Cette verification protege le formulaire contre les envois automatiques.</p>
+          </div>
+        <% end %>
       </div>
       <br>
       <%= form.submit "Envoyer le message", class: "btn btn--primary btn--full" %>

@@ -4,4 +4,12 @@ class ApplicationController < ActionController::Base
 
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
+
+  helper_method :contact_verification_required?
+
+  private
+
+  def contact_verification_required?
+    !(respond_to?(:user_signed_in?, true) && user_signed_in?)
+  end
 end
