@@ -81,27 +81,24 @@
       <div class="panel-title">Derniers messages recus</div>
       <%= link_to "Voir tout", admin_messages_path, class: "btn btn--outline btn--sm" %>
     </div>
-    <div class="table-responsive">
-      <table>
-        <thead>
-          <tr><th>Date</th><th>Expediteur</th><th>Apercu</th><th>Statut</th></tr>
-        </thead>
-        <tbody>
-          <% if @recent_messages.any? %>
-            <% @recent_messages.each do |message| %>
-              <tr class="<%= admin_message_row_class(message) %>">
-                <td class="msg-datetime-cell"><%= l(message.created_at, format: :short) rescue message.created_at.strftime("%d/%m · %H:%M") %></td>
-                <td><strong><%= link_to message.sender_name, admin_message_path(message) %></strong></td>
-                <td class="msg-preview"><%= truncate(message.body, length: 80) %></td>
-                <td><span class="badge <%= admin_message_status_badge_class(message) %>"><%= admin_message_status_label(message) %></span></td>
-              </tr>
-            <% end %>
-          <% else %>
-            <tr><td colspan="4">Aucun message pour le moment.</td></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% if @recent_messages.any? %>
+      <div class="dashboard-feed">
+        <% @recent_messages.each do |message| %>
+          <article class="dashboard-item">
+            <div class="dashboard-item__top">
+              <div>
+                <div class="dashboard-item__title"><%= link_to message.sender_name, admin_message_path(message) %></div>
+                <div class="dashboard-item__meta"><%= message.contact_reference %> · <%= admin_message_datetime(message) %></div>
+              </div>
+              <span class="badge <%= admin_message_status_badge_class(message) %>"><%= admin_message_status_label(message) %></span>
+            </div>
+            <p class="dashboard-item__text"><%= truncate(message.body, length: 88) %></p>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="dashboard-empty">Aucun message pour le moment.</div>
+    <% end %>
   </div>
 
   <div class="panel">
@@ -109,27 +106,24 @@
       <div class="panel-title">Commandes recentes</div>
       <%= link_to "Ouvrir les commandes", admin_orders_path, class: "btn btn--outline btn--sm" %>
     </div>
-    <div class="table-responsive">
-      <table>
-        <thead>
-          <tr><th>Reference</th><th>Client</th><th>Total</th><th>Statut</th></tr>
-        </thead>
-        <tbody>
-          <% if @recent_orders.any? %>
-            <% @recent_orders.each do |order| %>
-              <tr>
-                <td><strong><%= link_to admin_order_reference(order), admin_order_path(order) %></strong></td>
-                <td><%= admin_order_client_name(order) %></td>
-                <td><%= number_to_currency(order.total_amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td>
-                <td><span class="badge <%= admin_order_status_badge_class(order) %>"><%= admin_order_status_label(order) %></span></td>
-              </tr>
-            <% end %>
-          <% else %>
-            <tr><td colspan="4">Aucune commande enregistree pour le moment.</td></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% if @recent_orders.any? %>
+      <div class="dashboard-feed">
+        <% @recent_orders.each do |order| %>
+          <article class="dashboard-item">
+            <div class="dashboard-item__top">
+              <div>
+                <div class="dashboard-item__title"><%= link_to admin_order_reference(order), admin_order_path(order) %></div>
+                <div class="dashboard-item__meta"><%= admin_order_client_name(order) %></div>
+              </div>
+              <span class="badge <%= admin_order_status_badge_class(order) %>"><%= admin_order_status_label(order) %></span>
+            </div>
+            <p class="dashboard-item__text"><%= number_to_currency(order.total_amount || 0, unit: "", precision: 2, delimiter: " ").strip %> € · <%= admin_order_payments_label(order) %></p>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="dashboard-empty">Aucune commande enregistree pour le moment.</div>
+    <% end %>
   </div>
 
   <div class="panel">
@@ -137,26 +131,23 @@
       <div class="panel-title">Paiements recents</div>
       <%= link_to "Ouvrir les paiements", admin_payments_path, class: "btn btn--outline btn--sm" %>
     </div>
-    <div class="table-responsive">
-      <table>
-        <thead>
-          <tr><th>Commande</th><th>Client</th><th>Montant</th><th>Statut</th></tr>
-        </thead>
-        <tbody>
-          <% if @recent_payments.any? %>
-            <% @recent_payments.each do |payment| %>
-              <tr>
-                <td><%= link_to admin_order_reference(payment.order), admin_payment_path(payment) %></td>
-                <td><%= payment.order.client_profile&.name || "Client inconnu" %></td>
-                <td><%= number_to_currency(payment.amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td>
-                <td><span class="badge <%= admin_payment_status_badge_class(payment) %>"><%= admin_payment_status_label(payment) %></span></td>
-              </tr>
-            <% end %>
-          <% else %>
-            <tr><td colspan="4">Aucun paiement enregistre pour le moment.</td></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% if @recent_payments.any? %>
+      <div class="dashboard-feed">
+        <% @recent_payments.each do |payment| %>
+          <article class="dashboard-item">
+            <div class="dashboard-item__top">
+              <div>
+                <div class="dashboard-item__title"><%= link_to admin_order_reference(payment.order), admin_payment_path(payment) %></div>
+                <div class="dashboard-item__meta"><%= payment.order.client_profile&.name || "Client inconnu" %></div>
+              </div>
+              <span class="badge <%= admin_payment_status_badge_class(payment) %>"><%= admin_payment_status_label(payment) %></span>
+            </div>
+            <p class="dashboard-item__text"><%= number_to_currency(payment.amount || 0, unit: "", precision: 2, delimiter: " ").strip %> € · <%= admin_payment_due_label(payment) %></p>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="dashboard-empty">Aucun paiement enregistre pour le moment.</div>
+    <% end %>
   </div>
 </div>
