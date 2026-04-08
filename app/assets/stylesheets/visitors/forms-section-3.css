@@ -1,0 +1,14 @@
+/* Split from visitors forms - responsive safety for contact widgets */
+.contact-quick__left,
+.contact-form--home {
+	min-width: 0;
+}
+
+.contact-form__human-check .cf-turnstile {
+	width: 100%;
+	max-width: 100%;
+}
+
+.contact-form__human-check iframe {
+	max-width: 100%;
+}
