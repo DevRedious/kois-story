@@ -88,6 +88,28 @@ textarea[readonly] {
 	resize: vertical;
 }
 
+.pagination-bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 16px 20px 20px;
+}
+
+.pagination-bar__summary,
+.pagination-bar__current {
+	font-size: 0.8rem;
+	color: var(--gris);
+}
+
+.pagination-bar__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
 @media (min-width: 769px) {
 	.resource-hero {
 		grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);

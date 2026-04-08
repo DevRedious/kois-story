@@ -3,7 +3,8 @@ module Admin
     before_action :set_payment, only: [ :show, :edit, :update ]
 
     def index
-      @payments = Payment.includes(order: :client_profile).order(created_at: :desc)
+      scope = Payment.includes(order: :client_profile).order(created_at: :desc)
+      @payments, @pagination = paginate_scope(scope, per_page: 12)
     end
 
     def show; end

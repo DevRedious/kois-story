@@ -9,7 +9,7 @@
   <div class="resource-metrics">
     <div class="resource-metric">
       <span class="resource-metric__label">Clients</span>
-      <strong class="resource-metric__value"><%= @clients.size %></strong>
+      <strong class="resource-metric__value"><%= @pagination[:total_count] %></strong>
     </div>
     <div class="resource-metric">
       <span class="resource-metric__label">Avec commandes</span>
@@ -42,4 +42,6 @@
       </tbody>
     </table>
   </div>
+
+  <%= render "admin/shared/pagination", pagination: @pagination, item_name: "clients" %>
 </div>

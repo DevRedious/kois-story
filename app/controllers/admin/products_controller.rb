@@ -3,7 +3,7 @@ module Admin
     before_action :set_product, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @products = Product.order(created_at: :desc)
+      @products, @pagination = paginate_scope(Product.order(created_at: :desc), per_page: 12)
     end
 
     def show; end

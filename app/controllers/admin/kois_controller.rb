@@ -3,8 +3,9 @@ module Admin
     before_action :set_koi, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @kois = Koi.includes(:images).order(created_at: :desc)
-      @varieties = @kois.map(&:variety).compact_blank.uniq.sort
+      scope = Koi.includes(:images).order(created_at: :desc)
+      @kois, @pagination = paginate_scope(scope, per_page: 12)
+      @varieties = Koi.distinct.order(:variety).pluck(:variety).compact_blank
     end
 
     def show; end

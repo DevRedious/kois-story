@@ -3,7 +3,8 @@ module Admin
     before_action :set_order, only: [ :show, :edit, :update ]
 
     def index
-      @orders = Order.includes(client_profile: :user, order_items: [ :koi, :product ]).order(created_at: :desc)
+      scope = Order.includes(client_profile: :user, order_items: [ :koi, :product ]).order(created_at: :desc)
+      @orders, @pagination = paginate_scope(scope, per_page: 12)
     end
 
     def show

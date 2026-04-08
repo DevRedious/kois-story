@@ -1,7 +1,8 @@
 module Admin
   class MessagesController < Admin::BaseController
     def index
-      @messages = Message.order(created_at: :desc)
+      scope = Message.order(created_at: :desc)
+      @messages, @pagination = paginate_scope(scope, per_page: 12)
       @message_metrics = {
         unread: Message.where(read: false).count,
         read: Message.where(read: true, processed_at: nil).count,

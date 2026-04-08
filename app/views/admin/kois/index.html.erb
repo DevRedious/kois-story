@@ -22,7 +22,7 @@
       <option value="standard">Standard</option>
     </select>
     <div class="spacer"></div>
-    <span class="filter-count" id="koi-count"><%= @kois.size %> koi<%= "s" if @kois.many? %></span>
+    <span class="filter-count" id="koi-count"><%= @pagination[:total_count] %> koi<%= "s" if @pagination[:total_count] > 1 %></span>
   </div>
 
   <div class="table-responsive">
@@ -77,4 +77,6 @@
       </tbody>
     </table>
   </div>
+
+  <%= render "admin/shared/pagination", pagination: @pagination, item_name: "kois" %>
 </div>
