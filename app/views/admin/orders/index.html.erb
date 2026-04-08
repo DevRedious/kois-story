@@ -25,27 +25,47 @@
 <div class="panel">
   <div class="panel-header">
     <div class="panel-title">Commandes</div>
+    <div class="panel-toolbar">
+      <label class="sr-only" for="order-search">Rechercher une commande</label>
+      <input id="order-search" type="search" class="u-toolbar-control u-toolbar-search" placeholder="Reference ou client">
+      <label class="sr-only" for="status-filter">Filtrer les commandes</label>
+      <select id="status-filter" class="u-toolbar-select-wide" aria-label="Filtrer les commandes">
+        <option value="">Tous les statuts</option>
+        <option value="pending">En attente</option>
+        <option value="confirmed">Confirmees</option>
+        <option value="completed">Finalisees</option>
+        <option value="cancelled">Annulees</option>
+      </select>
+    </div>
   </div>
   <div class="table-responsive">
-    <table>
+    <table id="orders-table">
       <thead>
-        <tr><th>Reference</th><th>Client</th><th>Articles</th><th>Total</th><th>Statut</th><th>Actions</th></tr>
+        <tr><th>Reference</th><th>Client</th><th>Articles</th><th>Paiements</th><th>Total</th><th>Statut</th><th>Actions</th></tr>
       </thead>
       <tbody>
-        <% @orders.each do |order| %>
+        <% if @orders.any? %>
+          <% @orders.each do |order| %>
           <tr data-status="<%= order.status %>">
             <td><strong><%= admin_order_reference(order) %></strong></td>
-            <td><%= admin_order_client_name(order) %></td>
+            <td><%= link_to admin_order_client_name(order), admin_client_path(order.client_profile) %></td>
             <td><%= order.order_items.size %> ligne<%= "s" if order.order_items.many? %></td>
+            <td class="u-fs-sm u-text-muted"><%= admin_order_payments_label(order) %></td>
             <td class="amount-cell"><span class="amount-ttc"><%= number_to_currency(order.total_amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</span></td>
             <td><span class="badge <%= admin_order_status_badge_class(order) %>"><%= admin_order_status_label(order) %></span></td>
             <td>
               <div class="td-actions">
                 <%= link_to "Voir", admin_order_path(order), class: "btn btn--outline btn--sm" %>
+                <% if order.payments.any? %>
+                  <%= link_to "Paiements", admin_payment_path(order.payments.first), class: "btn btn--outline btn--sm" %>
+                <% end %>
                 <%= link_to "Editer", edit_admin_order_path(order), class: "btn btn--ghost btn--sm" %>
               </div>
             </td>
           </tr>
+          <% end %>
+        <% else %>
+          <tr><td colspan="7">Aucune commande a suivre pour le moment.</td></tr>
         <% end %>
       </tbody>
     </table>

@@ -25,6 +25,15 @@
 <div class="panel">
   <div class="panel-header">
     <div class="panel-title">Paiements</div>
+    <div class="panel-toolbar">
+      <label class="sr-only" for="pay-status-filter">Filtrer les paiements</label>
+      <select id="pay-status-filter" class="u-toolbar-select-wide" aria-label="Filtrer les paiements">
+        <option value="">Tous les statuts</option>
+        <option value="pending">En attente</option>
+        <option value="partial">Partiels</option>
+        <option value="paid">Regles</option>
+      </select>
+    </div>
   </div>
   <div class="table-responsive">
     <table>
@@ -32,21 +41,26 @@
         <tr><th>Commande</th><th>Client</th><th>Type</th><th>Montant</th><th>Statut</th><th>Echeance</th><th>Action</th></tr>
       </thead>
       <tbody>
-        <% @payments.each do |payment| %>
+        <% if @payments.any? %>
+          <% @payments.each do |payment| %>
           <tr data-payment-status="<%= payment.status %>">
-            <td><%= admin_order_reference(payment.order) %></td>
-            <td><%= payment.order.client_profile&.name %></td>
+            <td><%= link_to admin_order_reference(payment.order), admin_order_path(payment.order) %></td>
+            <td><%= link_to(payment.order.client_profile&.name || "Client inconnu", admin_client_path(payment.order.client_profile)) %></td>
             <td><%= admin_payment_type_label(payment) %></td>
             <td><%= number_to_currency(payment.amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td>
             <td><span class="badge <%= admin_payment_status_badge_class(payment) %>"><%= admin_payment_status_label(payment) %></span></td>
-            <td><%= payment.due_at.present? ? l(payment.due_at.to_date) : "-" %></td>
+            <td><%= admin_payment_due_label(payment) %></td>
             <td>
               <div class="td-actions">
                 <%= link_to "Voir", admin_payment_path(payment), class: "btn btn--outline btn--sm" %>
+                <%= link_to "Commande", admin_order_path(payment.order), class: "btn btn--outline btn--sm" %>
                 <%= link_to "Editer", edit_admin_payment_path(payment), class: "btn btn--ghost btn--sm" %>
               </div>
             </td>
           </tr>
+          <% end %>
+        <% else %>
+          <tr><td colspan="7">Aucun paiement a suivre pour le moment.</td></tr>
         <% end %>
       </tbody>
     </table>

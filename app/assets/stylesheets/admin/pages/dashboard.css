@@ -20,6 +20,18 @@
 	margin-bottom: 24px;
 }
 
+.dashboard-panels {
+	display: grid;
+	gap: 24px;
+}
+
+@media (min-width: 1025px) {
+	.dashboard-panels {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: start;
+	}
+}
+
 .logo-konishi {
 	height: 1.1em;
 	vertical-align: middle;

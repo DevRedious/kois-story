@@ -5,4 +5,8 @@ class Payment < ApplicationRecord
   enum :status, { pending: 0, partial: 1, paid: 2 }
 
   validates :amount, numericality: { greater_than: 0 }
+
+  def overdue?
+    due_at.present? && !paid? && due_at < Time.current
+  end
 end

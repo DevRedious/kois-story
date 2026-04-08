@@ -46,6 +46,14 @@ class MessageTest < ActiveSupport::TestCase
     assert_equal :unread, message.status
   end
 
+  test "follow up becomes read before processed" do
+    message = messages(:one)
+
+    message.mark_as_read!
+
+    assert_equal :read, message.status
+  end
+
   test "sends admin and visitor emails after creation" do
     original_admin_email = ENV["ADMIN_EMAIL"]
     ENV["ADMIN_EMAIL"] = "admin@example.com"

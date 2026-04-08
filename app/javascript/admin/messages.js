@@ -4,14 +4,36 @@
  */
 
 document.addEventListener("turbo:load", () => {
-	const filter = document.getElementById("msg-filter");
-	if (!filter || filter.dataset.bound === "true") return;
-	filter.dataset.bound = "true";
+	const table = document.querySelector(".panel--messages tbody");
+	const searchInput = document.getElementById("msg-search");
+	const filters = document.querySelectorAll("[data-filter-status]");
+	if (!table || table.dataset.bound === "true") return;
+	table.dataset.bound = "true";
 
-	filter.addEventListener("change", function () {
-		const value = this.value;
-		document.querySelectorAll("tbody .msg-row").forEach((row) => {
-			row.style.display = !value || row.dataset.status === value ? "" : "none";
+	const state = { status: "", query: "" };
+
+	const applyFilters = () => {
+		table.querySelectorAll(".msg-row").forEach((row) => {
+			const matchesStatus =
+				!state.status || row.dataset.status === state.status;
+			const haystack = row.dataset.search || "";
+			const matchesQuery = !state.query || haystack.includes(state.query);
+			row.style.display = matchesStatus && matchesQuery ? "" : "none";
+		});
+	};
+
+	searchInput?.addEventListener("input", () => {
+		state.query = searchInput.value.trim().toLowerCase();
+		applyFilters();
+	});
+
+	filters.forEach((filter) => {
+		filter.addEventListener("click", () => {
+			state.status = filter.dataset.filterStatus || "";
+			filters.forEach((button) => {
+				button.classList.toggle("is-active", button === filter);
+			});
+			applyFilters();
 		});
 	});
 });

@@ -27,4 +27,11 @@ module Admin::OrdersHelper
   def admin_order_item_label(item)
     item.koi&.name || item.product&.name || "Element supprime"
   end
+
+  def admin_order_payments_label(order)
+    count = order.payments.size
+    return "Aucun paiement" if count.zero?
+
+    "#{count} paiement#{'s' if count > 1}"
+  end
 end

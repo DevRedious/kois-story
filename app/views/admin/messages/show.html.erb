@@ -26,6 +26,8 @@
     <dd><%= admin_message_datetime(@message) %> a <%= admin_message_time(@message) %></dd>
     <dt>Statut</dt>
     <dd><span class="badge <%= admin_message_status_badge_class(@message) %>"><%= admin_message_status_label(@message) %></span></dd>
+    <dt>Suivi</dt>
+    <dd><%= admin_message_follow_up(@message) %></dd>
   </dl>
 
   <div class="modal-msg-body"><%= simple_format(@message.body) %></div>

@@ -30,6 +30,37 @@
 	white-space: nowrap;
 }
 
+.messages-toolbar {
+	width: 100%;
+}
+
+.messages-search {
+	min-width: min(240px, 100%);
+}
+
+.messages-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.messages-filter-chip {
+	border: 1px solid #d0d7de;
+	background: var(--blanc-pur);
+	color: var(--gris);
+	border-radius: 999px;
+	padding: 6px 10px;
+	font-size: 0.78rem;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.messages-filter-chip.is-active {
+	background: rgba(230, 0, 0, 0.08);
+	color: var(--rouge-vif);
+	border-color: rgba(230, 0, 0, 0.2);
+}
+
 .msg-time {
 	font-size: 0.7rem;
 	color: var(--gris);
@@ -53,6 +84,13 @@
 
 .msg-row.unread .msg-preview {
 	color: var(--noir);
+}
+
+.msg-followup {
+	min-width: 150px;
+	font-size: 0.76rem;
+	color: var(--gris);
+	line-height: 1.4;
 }
 
 @media (min-width: 769px) {

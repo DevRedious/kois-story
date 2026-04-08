@@ -8,11 +8,15 @@ class Admin::OrdersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get admin_orders_url
     assert_response :success
+    assert_select "#order-search"
+    assert_select "#status-filter"
   end
 
   test "should get show" do
     get admin_order_url(orders(:one))
     assert_response :success
+    assert_select "a[href='#{admin_client_path(client_profiles(:one))}']", text: /Client|MyString/
+    assert_select "a[href='#{admin_payment_path(payments(:one))}']", text: "Voir"
   end
 
   test "should get edit" do

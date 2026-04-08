@@ -23,11 +23,15 @@
 <div class="panel panel--messages">
   <div class="panel-header">
     <div class="panel-title">Messages recus</div>
-    <select id="msg-filter" aria-label="Filtrer les messages">
-      <% admin_message_status_options.each do |label, value| %>
-        <option value="<%= value %>"><%= label %></option>
-      <% end %>
-    </select>
+    <div class="panel-toolbar messages-toolbar">
+      <label class="sr-only" for="msg-search">Rechercher un message</label>
+      <input id="msg-search" type="search" class="u-toolbar-control messages-search" placeholder="Nom, email ou reference">
+      <div class="messages-filters" role="group" aria-label="Filtrer les messages">
+        <% admin_message_status_options.each do |label, value| %>
+          <button type="button" class="messages-filter-chip <%= 'is-active' if value.blank? %>" data-filter-status="<%= value %>"><%= label %></button>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="table-responsive">
@@ -39,12 +43,13 @@
           <th>Expediteur</th>
           <th>Message</th>
           <th>Statut</th>
+          <th>Suivi</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <% @messages.each do |message| %>
-          <tr class="<%= admin_message_row_class(message) %>" data-status="<%= message.status %>">
+          <tr class="<%= admin_message_row_class(message) %>" data-status="<%= message.status %>" data-search="<%= [message.contact_reference, message.sender_name, message.sender_email, message.body].join(' ').downcase %>">
             <td class="msg-date">
               <%= admin_message_datetime(message) %>
               <div class="msg-time"><%= admin_message_time(message) %></div>
@@ -58,6 +63,7 @@
             <td>
               <span class="badge <%= admin_message_status_badge_class(message) %>"><%= admin_message_status_label(message) %></span>
             </td>
+            <td class="msg-followup"><%= admin_message_follow_up(message) %></td>
             <td>
               <div class="td-actions">
                 <%= link_to(message.status == :unread ? "Lire" : "Voir", admin_message_path(message), class: "btn #{message.status == :unread ? 'btn--primary' : 'btn--outline'} btn--sm") %>
