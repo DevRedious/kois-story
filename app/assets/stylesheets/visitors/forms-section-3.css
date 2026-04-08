@@ -4,6 +4,13 @@
 	min-width: 0;
 }
 
+.turnstile-shell {
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	transform-origin: left top;
+}
+
 .contact-form__human-check .cf-turnstile {
 	width: 100%;
 	max-width: 100%;

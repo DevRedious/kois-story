@@ -7,3 +7,4 @@ import "visitors/gallery";
 import "visitors/animations";
 import "visitors/toast";
 import "visitors/contact-form";
+import "visitors/turnstile";

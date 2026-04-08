@@ -51,7 +51,9 @@
         </div>
         <% if contact_verification_required? && turnstile_enabled? %>
           <div class="contact-form__human-check field">
-            <div class="cf-turnstile" data-sitekey="<%= turnstile_site_key %>" data-theme="light" data-size="flexible"></div>
+            <div class="turnstile-shell" data-turnstile-shell>
+              <div class="cf-turnstile" data-sitekey="<%= turnstile_site_key %>" data-theme="light" data-size="flexible"></div>
+            </div>
             <p class="contact-form__human-note">Verification de securite activee pour proteger le formulaire contre les bots.</p>
           </div>
         <% elsif contact_verification_required? %>
