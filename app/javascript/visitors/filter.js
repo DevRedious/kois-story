@@ -43,7 +43,8 @@
 				if (priceMax > 0 && cardPrice > priceMax) show = false;
 				if (konishiOnly && !cardKonishi) show = false;
 
-				card.style.display = show ? "" : "none";
+				var item = card.closest("li") || card;
+				item.style.display = show ? "" : "none";
 				if (show) visible++;
 			});
 
