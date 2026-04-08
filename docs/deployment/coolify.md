@@ -249,3 +249,8 @@ Si les uploads echouent :
 - Variables d'environnement Coolify : https://coolify.io/docs/resources/environment-variables
 - Stockage persistant Coolify : https://coolify.io/docs/resources/persistent-storage
 - Health checks Coolify : https://coolify.io/docs/resources/health-checks
+
+## Note de verification
+
+Ce fichier peut etre modifie sans impact runtime pour verifier le webhook
+GitHub -> Coolify sur la branche `deploy`.
