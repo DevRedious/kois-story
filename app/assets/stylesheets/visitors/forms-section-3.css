@@ -4,10 +4,21 @@
 	min-width: 0;
 }
 
+.contact-form--home {
+	padding: var(--sp-6);
+}
+
+.contact-form__human-check {
+	padding: var(--sp-3);
+	overflow: hidden;
+}
+
 .turnstile-shell {
 	width: 100%;
 	max-width: 100%;
 	overflow: hidden;
+	display: flex;
+	justify-content: center;
 	transform-origin: left top;
 }
 
@@ -18,4 +29,14 @@
 
 .contact-form__human-check iframe {
 	max-width: 100%;
+}
+
+@media (min-width: 581px) {
+	.contact-form--home {
+		padding: var(--sp-10);
+	}
+
+	.contact-form__human-check {
+		padding: var(--sp-4);
+	}
 }
