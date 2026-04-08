@@ -15,13 +15,24 @@ const animObserver = new IntersectionObserver(
 	{ threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
 );
 
+const isInViewport = (el) => {
+	const rect = el.getBoundingClientRect();
+	return rect.top < window.innerHeight - 40 && rect.bottom > 0;
+};
+
 const initAnimations = () => {
 	document.querySelectorAll("[data-animate]").forEach((el) => {
-		if (!el.classList.contains("is-visible")) animObserver.observe(el);
+		if (el.classList.contains("is-visible")) return;
+		if (isInViewport(el)) {
+			el.classList.add("is-visible");
+		} else {
+			animObserver.observe(el);
+		}
 	});
 };
 
 document.addEventListener("turbo:load", initAnimations);
+requestAnimationFrame(initAnimations);
 
 /* Floating CTA: hide when footer enters viewport */
 const initFloatCta = () => {
