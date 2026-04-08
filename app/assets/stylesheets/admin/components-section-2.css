@@ -53,6 +53,10 @@
 	background: #e8ecf0;
 	color: var(--gris);
 }
+.badge-traite {
+	background: #d4f0e0;
+	color: #1a6e3e;
+}
 .badge-completed {
 	background: #d4f0e0;
 	color: #1a6e3e;

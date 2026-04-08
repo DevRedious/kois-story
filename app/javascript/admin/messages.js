@@ -11,7 +11,7 @@ document.addEventListener("turbo:load", () => {
 	filter.addEventListener("change", function () {
 		const value = this.value;
 		document.querySelectorAll("tbody .msg-row").forEach((row) => {
-			row.style.display = !value || row.dataset.read === value ? "" : "none";
+			row.style.display = !value || row.dataset.status === value ? "" : "none";
 		});
 	});
 });

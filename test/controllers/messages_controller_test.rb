@@ -29,6 +29,7 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_redirected_to root_url(anchor: "contact")
+    assert_match(/Reference : KS-\d+\./, flash[:notice])
   end
 
   test "should not create invalid message" do
@@ -40,6 +41,9 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to root_url(anchor: "contact")
+    assert_equal "", flash[:contact_form]["sender_name"]
+    assert_equal "invalid", flash[:contact_form]["sender_email"]
+    assert_equal "", flash[:contact_form]["body"]
   end
 
   test "should create message with turnstile verification" do
@@ -66,6 +70,7 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to root_url(anchor: "contact")
+    assert_equal "Test", flash[:contact_form]["sender_name"]
   end
 
   test "should not create message with invalid turnstile token" do

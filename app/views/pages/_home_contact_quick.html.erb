@@ -32,22 +32,22 @@
       </div>
     </div>
 
-    <%= form_with model: Message.new, url: messages_path, class: "contact-form contact-form--home", data: { animate: "fade-left" } do |form| %>
+    <%= form_with model: Message.new, url: messages_path, class: "contact-form contact-form--home", data: { animate: "fade-left", contact_form: true } do |form| %>
       <p class="contact-form__title">Envoyer un message</p>
       <div class="form-fields">
         <div class="form-row">
           <div class="field">
             <%= form.label :sender_name, "Prénom & Nom *", class: "field__label" %>
-            <%= form.text_field :sender_name, class: "field__input", placeholder: "Votre nom", required: true, autocomplete: "name" %>
+            <%= form.text_field :sender_name, class: "field__input", placeholder: "Votre nom", required: true, autocomplete: "name", value: contact_form_value(:sender_name) %>
           </div>
           <div class="field">
             <%= form.label :sender_email, "Email *", class: "field__label" %>
-            <%= form.email_field :sender_email, class: "field__input", placeholder: "vous@exemple.fr", required: true, autocomplete: "email" %>
+            <%= form.email_field :sender_email, class: "field__input", placeholder: "vous@exemple.fr", required: true, autocomplete: "email", value: contact_form_value(:sender_email) %>
           </div>
         </div>
         <div class="field">
           <%= form.label :body, "Message *", class: "field__label" %>
-          <%= form.text_area :body, class: "field__textarea", placeholder: "Votre question...", required: true %>
+          <%= form.text_area :body, class: "field__textarea", placeholder: "Votre question...", required: true, value: contact_form_value(:body) %>
         </div>
         <% if contact_verification_required? && turnstile_enabled? %>
           <div class="contact-form__human-check field">
@@ -69,8 +69,8 @@
         <% end %>
       </div>
       <br>
-      <%= form.submit "Envoyer le message", class: "btn btn--primary btn--full" %>
-      <p class="contact-form__note">Réponse sous 48 h · Formulaire sécurisé</p>
+      <%= form.submit "Envoyer le message", class: "btn btn--primary btn--full", data: { submit_label: "Envoyer le message", loading_label: "Envoi en cours..." } %>
+      <p class="contact-form__note">Réponse sous 48 h · Formulaire sécurisé · Référence envoyée par email</p>
     <% end %>
   </div>
 </section>

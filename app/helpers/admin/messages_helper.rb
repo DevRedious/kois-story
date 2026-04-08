@@ -1,14 +1,24 @@
 module Admin::MessagesHelper
   def admin_message_row_class(message)
-    message.read? ? "msg-row" : "msg-row unread"
+    classes = [ "msg-row", "msg-row--#{message.status}" ]
+    classes << "unread" if message.status == :unread
+    classes.join(" ")
   end
 
   def admin_message_status_badge_class(message)
-    message.read? ? "badge-lu" : "badge-nonlu"
+    {
+      unread: "badge-nonlu",
+      read: "badge-lu",
+      processed: "badge-traite"
+    }.fetch(message.status)
   end
 
   def admin_message_status_label(message)
-    message.read? ? "Lu" : "Non lu"
+    {
+      unread: "Nouveau",
+      read: "Lu",
+      processed: "Traite"
+    }.fetch(message.status)
   end
 
   def admin_message_preview(message, length: 90)
@@ -23,5 +33,14 @@ module Admin::MessagesHelper
 
   def admin_message_time(message)
     message.created_at.strftime("%H:%M")
+  end
+
+  def admin_message_status_options
+    [
+      [ "Tous les messages", "" ],
+      [ "Nouveaux", "unread" ],
+      [ "Lus", "read" ],
+      [ "Traites", "processed" ]
+    ]
   end
 end

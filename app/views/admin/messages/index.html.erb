@@ -1,12 +1,32 @@
-<div class="page-sub">Boite de reception des demandes clients envoyees depuis le site public.</div>
+<div class="resource-hero">
+  <div class="resource-hero__content">
+    <div class="resource-hero__eyebrow">Relation client</div>
+    <h2 class="resource-hero__title">Demandes et suivi</h2>
+    <p class="resource-hero__text">Centralisez les messages recus, reperez ceux qui attendent une action et gardez un suivi simple jusqu'au traitement.</p>
+  </div>
+  <div class="resource-metrics">
+    <div class="resource-metric">
+      <span class="resource-metric__label">Nouveaux</span>
+      <strong class="resource-metric__value"><%= @message_metrics[:unread] %></strong>
+    </div>
+    <div class="resource-metric">
+      <span class="resource-metric__label">Lus</span>
+      <strong class="resource-metric__value"><%= @message_metrics[:read] %></strong>
+    </div>
+    <div class="resource-metric">
+      <span class="resource-metric__label">Traites</span>
+      <strong class="resource-metric__value"><%= @message_metrics[:processed] %></strong>
+    </div>
+  </div>
+</div>
 
 <div class="panel panel--messages">
   <div class="panel-header">
     <div class="panel-title">Messages recus</div>
     <select id="msg-filter" aria-label="Filtrer les messages">
-      <option value="">Tous les messages</option>
-      <option value="unread">Non lus</option>
-      <option value="read">Lus</option>
+      <% admin_message_status_options.each do |label, value| %>
+        <option value="<%= value %>"><%= label %></option>
+      <% end %>
     </select>
   </div>
 
@@ -15,6 +35,7 @@
       <thead>
         <tr>
           <th>Date</th>
+          <th>Reference</th>
           <th>Expediteur</th>
           <th>Message</th>
           <th>Statut</th>
@@ -23,11 +44,12 @@
       </thead>
       <tbody>
         <% @messages.each do |message| %>
-          <tr class="<%= admin_message_row_class(message) %>" data-read="<%= message.read? ? "read" : "unread" %>">
+          <tr class="<%= admin_message_row_class(message) %>" data-status="<%= message.status %>">
             <td class="msg-date">
               <%= admin_message_datetime(message) %>
               <div class="msg-time"><%= admin_message_time(message) %></div>
             </td>
+            <td class="msg-reference"><%= message.contact_reference %></td>
             <td>
               <strong><%= message.sender_name %></strong>
               <div class="msg-email"><%= mail_to message.sender_email %></div>
@@ -38,9 +60,12 @@
             </td>
             <td>
               <div class="td-actions">
-                <%= link_to(message.read? ? "Voir" : "Lire", admin_message_path(message), class: "btn #{message.read? ? 'btn--outline' : 'btn--primary'} btn--sm") %>
-                <% unless message.read? %>
-                  <%= button_to "Marquer lu", admin_message_path(message), method: :patch, class: "btn btn--outline btn--sm" %>
+                <%= link_to(message.status == :unread ? "Lire" : "Voir", admin_message_path(message), class: "btn #{message.status == :unread ? 'btn--primary' : 'btn--outline'} btn--sm") %>
+                <% if message.status == :unread %>
+                  <%= button_to "Marquer lu", admin_message_path(message, status: :read), method: :patch, class: "btn btn--outline btn--sm" %>
+                <% end %>
+                <% unless message.status == :processed %>
+                  <%= button_to "Traiter", admin_message_path(message, status: :processed), method: :patch, class: "btn btn--outline btn--sm" %>
                 <% end %>
               </div>
             </td>

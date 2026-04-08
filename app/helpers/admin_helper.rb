@@ -85,8 +85,18 @@ module AdminHelper
     "Administrateur"
   end
 
+  def admin_user_display_name
+    return "Administrateur" unless current_user&.email.present?
+
+    current_user.email.split("@").first.tr("._-", " ").split.map(&:capitalize).join(" ")
+  end
+
+  def admin_user_secondary_label
+    current_user&.email.presence || "Acces admin"
+  end
+
   def admin_user_initials
-    admin_user_name.split(/\s+/).first(2).map { |part| part[0] }.join.upcase
+    admin_user_display_name.split(/\s+/).first(2).map { |part| part[0] }.join.upcase
   end
 
   def admin_unread_messages_count

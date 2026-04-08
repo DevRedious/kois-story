@@ -38,4 +38,8 @@ module ApplicationHelper
   def turnstile_site_key
     ENV["TURNSTILE_SITE_KEY"].presence
   end
+
+  def contact_form_value(field)
+    flash.to_hash.fetch("contact_form", {}).fetch(field.to_s, "")
+  end
 end

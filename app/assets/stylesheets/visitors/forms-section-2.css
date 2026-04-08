@@ -123,6 +123,19 @@
 .contact-form--home .contact-form__note {
 	text-align: center;
 }
+.contact-form--submitting {
+	opacity: 0.92;
+}
+.contact-form--submitting .field__input,
+.contact-form--submitting .field__textarea,
+.contact-form--submitting .field__select {
+	pointer-events: none;
+}
+.contact-form--home .btn[disabled] {
+	opacity: 0.75;
+	cursor: progress;
+	box-shadow: none;
+}
 .contact-form__human-check {
 	display: flex;
 	flex-direction: column;
