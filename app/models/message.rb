@@ -10,6 +10,14 @@ class Message < ApplicationRecord
     update!(read: true)
   end
 
+  def contact_reference
+    "KS-#{id.to_s.rjust(4, '0')}"
+  end
+
+  def reply_subject
+    "[Koi's Story] Re: #{sender_name} - #{contact_reference}"
+  end
+
   private
 
   def notify_contacts

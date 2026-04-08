@@ -27,6 +27,14 @@
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:22px 0;background:#f5f5f2;border-left:4px solid #e60000;">
               <tr>
                 <td style="padding:16px 18px;">
+                  <div style="font-size:13px;line-height:1.5;color:#630f0f;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">Reference</div>
+                  <p style="margin:10px 0 0 0;font-size:15px;line-height:1.6;color:#111111;"><strong><%= @message.contact_reference %></strong></p>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:22px 0;background:#f5f5f2;border-left:4px solid #e60000;">
+              <tr>
+                <td style="padding:16px 18px;">
                   <div style="font-size:13px;line-height:1.5;color:#630f0f;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">Coordonnées</div>
                   <p style="margin:10px 0 4px 0;font-size:15px;line-height:1.6;color:#111111;"><strong>Nom :</strong> <%= @message.sender_name %></p>
                   <p style="margin:0;font-size:15px;line-height:1.6;color:#111111;"><strong>Email :</strong> <a href="mailto:<%= @message.sender_email %>" style="color:#e60000;text-decoration:none;"><%= @message.sender_email %></a></p>
@@ -44,7 +52,7 @@
             <table role="presentation" cellpadding="0" cellspacing="0" style="margin:26px auto 10px auto;">
               <tr>
                 <td align="center" bgcolor="#e60000" style="border-radius:6px;">
-                  <a href="mailto:<%= @message.sender_email %>" style="display:inline-block;padding:12px 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1;color:#ffffff;text-decoration:none;font-weight:700;">Répondre au client</a>
+                  <a href="mailto:<%= @message.sender_email %>?subject=<%= ERB::Util.url_encode(@message.reply_subject) %>" style="display:inline-block;padding:12px 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1;color:#ffffff;text-decoration:none;font-weight:700;">Répondre au client</a>
                 </td>
               </tr>
             </table>

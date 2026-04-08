@@ -16,10 +16,11 @@ class MessageMailerTest < ActionMailer::TestCase
     assert_equal [ "admin@example.com" ], mail.to
     assert_equal [ "no-reply@redious.fr" ], mail.from
     assert_equal [ messages(:one).sender_email ], mail.reply_to
-    assert_match "Nouveau message", mail.subject
-    assert_includes mail.text_part.body.to_s, "Nouveau message de Alice"
+    assert_match "Nouveau message de Alice - KS-", mail.subject
+    assert_includes mail.text_part.body.to_s, messages(:one).contact_reference
     assert_includes mail.html_part.body.to_s, "Koi's Story"
     assert_includes mail.html_part.body.to_s, "Répondre au client"
+    assert_includes mail.html_part.body.to_s, ERB::Util.url_encode(messages(:one).reply_subject)
   ensure
     ENV["ADMIN_EMAIL"] = original_admin_email
     ENV["MAILER_FROM"] = original_mailer_from
@@ -42,8 +43,9 @@ class MessageMailerTest < ActionMailer::TestCase
     assert_equal [ messages(:one).sender_email ], mail.to
     assert_equal [ "no-reply@redious.fr" ], mail.from
     assert_equal [ "admin@example.com" ], mail.reply_to
-    assert_match "bien été reçu", mail.subject
+    assert_match messages(:one).contact_reference, mail.subject
     assert_match "spams", mail.text_part.body.to_s
+    assert_includes mail.text_part.body.to_s, messages(:one).contact_reference
     assert_includes mail.html_part.body.to_s, "Koi's Story"
     assert_includes mail.html_part.body.to_s, "https://kois-story.test/docs/assets/LOGO%20MANU%20FINI.png"
   ensure
