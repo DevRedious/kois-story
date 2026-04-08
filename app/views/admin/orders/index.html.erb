@@ -25,18 +25,14 @@
 <div class="panel">
   <div class="panel-header">
     <div class="panel-title">Commandes</div>
-    <div class="panel-toolbar">
-      <label class="sr-only" for="order-search">Rechercher une commande</label>
-      <input id="order-search" type="search" class="u-toolbar-control u-toolbar-search" placeholder="Reference ou client">
-      <label class="sr-only" for="status-filter">Filtrer les commandes</label>
-      <select id="status-filter" class="u-toolbar-select-wide" aria-label="Filtrer les commandes">
-        <option value="">Tous les statuts</option>
-        <option value="pending">En attente</option>
-        <option value="confirmed">Confirmees</option>
-        <option value="completed">Finalisees</option>
-        <option value="cancelled">Annulees</option>
-      </select>
-    </div>
+    <%= form_with url: admin_orders_path, method: :get, class: "panel-toolbar admin-filter-form", local: true do |form| %>
+      <%= form.search_field :q, value: params[:q], id: "order-search", class: "u-toolbar-control admin-filter-form__grow", placeholder: "Reference, client ou note" %>
+      <%= form.select :status, options_for_select([["Tous les statuts", ""], ["En attente", "pending"], ["Confirmees", "confirmed"], ["Finalisees", "completed"], ["Annulees", "cancelled"]], params[:status]), { }, id: "status-filter", class: "u-toolbar-select-wide" %>
+      <%= form.submit "Filtrer", class: "btn btn--outline btn--sm" %>
+      <% if params[:q].present? || params[:status].present? %>
+        <%= link_to "Reinitialiser", admin_orders_path, class: "btn btn--ghost btn--sm" %>
+      <% end %>
+    <% end %>
   </div>
   <div class="table-responsive">
     <table id="orders-table">

@@ -10,6 +10,15 @@ class Admin::MessagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should filter messages by status" do
+    messages(:one).mark_as_processed!
+
+    get admin_messages_url, params: { status: :processed }
+
+    assert_response :success
+    assert_match messages(:one).sender_name, response.body
+  end
+
   test "should get show" do
     get admin_message_url(messages(:one))
     assert_response :success

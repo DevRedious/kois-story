@@ -3,7 +3,7 @@ module Admin
     before_action :set_product, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @products, @pagination = paginate_scope(Product.order(created_at: :desc), per_page: 12)
+      @products, @pagination = paginate_scope(filtered_products, per_page: 12)
     end
 
     def show; end
@@ -49,6 +49,16 @@ module Admin
       params.require(:product).permit(
         :name, :reference, :description, :price, :stock_quantity, :category, :status
       )
+    end
+
+    def filtered_products
+      scope = Product.order(created_at: :desc)
+      scope = scope.where(category: params[:category]) if params[:category].present?
+      scope = scope.where(status: params[:status]) if params[:status].present?
+      return scope if params[:q].blank?
+
+      query = "%#{params[:q].strip.downcase}%"
+      scope.where("LOWER(name) LIKE :query OR LOWER(reference) LIKE :query OR LOWER(description) LIKE :query", query:)
     end
   end
 end

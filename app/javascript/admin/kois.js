@@ -11,7 +11,12 @@ document.addEventListener("turbo:load", () => {
 	const count = document.getElementById("koi-count");
 	const table = document.getElementById("kois-table");
 
-	if (!table || table.dataset.bound === "true") return;
+	if (
+		!table ||
+		table.dataset.clientFilters !== "true" ||
+		table.dataset.bound === "true"
+	)
+		return;
 	table.dataset.bound = "true";
 
 	function applyFilters() {

@@ -1,7 +1,7 @@
 module Admin
   class MessagesController < Admin::BaseController
     def index
-      scope = Message.order(created_at: :desc)
+      scope = filtered_messages
       @messages, @pagination = paginate_scope(scope, per_page: 12)
       @message_metrics = {
         unread: Message.where(read: false).count,
@@ -35,6 +35,20 @@ module Admin
 
     def after_update_path
       params[:redirect_to] == "show" ? admin_message_path(@message) : admin_messages_path
+    end
+
+    def filtered_messages
+      scope = Message.order(created_at: :desc)
+      scope = case params[:status]
+      when "unread" then scope.where(read: false)
+      when "read" then scope.where(read: true, processed_at: nil)
+      when "processed" then scope.processed
+      else scope
+      end
+      return scope if params[:q].blank?
+
+      query = "%#{params[:q].strip.downcase}%"
+      scope.where("LOWER(sender_name) LIKE :query OR LOWER(sender_email) LIKE :query OR LOWER(body) LIKE :query", query:)
     end
   end
 end

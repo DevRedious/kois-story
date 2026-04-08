@@ -3,26 +3,17 @@
 <div class="panel panel--koi-list">
   <div class="panel-header">
     <span class="panel-title">Tous les kois</span>
-    <input id="koi-search" type="search" placeholder="Rechercher..." aria-label="Rechercher dans le catalogue kois">
-    <select id="variety-filter" aria-label="Filtrer par variete">
-      <option value="">Toutes varietes</option>
-      <% @varieties.each do |variety| %>
-        <option value="<%= variety.downcase %>"><%= variety %></option>
+    <%= form_with url: admin_kois_path, method: :get, class: "panel-toolbar admin-filter-form", local: true do |form| %>
+      <%= form.search_field :q, value: params[:q], placeholder: "Nom, variete ou description", class: "u-toolbar-control admin-filter-form__grow" %>
+      <%= form.select :variety, options_for_select([["Toutes varietes", ""]] + @varieties.map { |variety| [variety, variety] }, params[:variety]), {}, class: "u-toolbar-select-wide" %>
+      <%= form.select :status, options_for_select([["Tous statuts", ""], ["Disponible", "available"], ["Arrivage", "incoming"], ["Vendu", "sold_out"]], params[:status]), {}, class: "u-toolbar-select-wide" %>
+      <%= form.select :lineage, options_for_select([["Toutes lignees", ""], ["Konishi", "konishi"], ["Standard", "standard"]], params[:lineage]), {}, class: "u-toolbar-select-wide" %>
+      <%= form.submit "Filtrer", class: "btn btn--outline btn--sm" %>
+      <% if params[:q].present? || params[:variety].present? || params[:status].present? || params[:lineage].present? %>
+        <%= link_to "Reinitialiser", admin_kois_path, class: "btn btn--ghost btn--sm" %>
       <% end %>
-    </select>
-    <select id="status-filter" aria-label="Filtrer par statut">
-      <option value="">Tous statuts</option>
-      <option value="available">Disponible</option>
-      <option value="incoming">Arrivage</option>
-      <option value="sold_out">Vendu</option>
-    </select>
-    <select id="lineage-filter" aria-label="Filtrer par lignee">
-      <option value="">Toutes lignees</option>
-      <option value="konishi">Konishi</option>
-      <option value="standard">Standard</option>
-    </select>
-    <div class="spacer"></div>
-    <span class="filter-count" id="koi-count"><%= @pagination[:total_count] %> koi<%= "s" if @pagination[:total_count] > 1 %></span>
+      <span class="filter-count"><%= @pagination[:total_count] %> koi<%= "s" if @pagination[:total_count] > 1 %></span>
+    <% end %>
   </div>
 
   <div class="table-responsive">

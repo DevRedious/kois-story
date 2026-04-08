@@ -3,7 +3,7 @@ module Admin
     before_action :set_order, only: [ :show, :edit, :update ]
 
     def index
-      scope = Order.includes(client_profile: :user, order_items: [ :koi, :product ]).order(created_at: :desc)
+      scope = filtered_orders
       @orders, @pagination = paginate_scope(scope, per_page: 12)
     end
 
@@ -30,6 +30,18 @@ module Admin
 
     def order_params
       params.require(:order).permit(:status, :notes)
+    end
+
+    def filtered_orders
+      scope = Order.includes(client_profile: :user, order_items: [ :koi, :product ]).order(created_at: :desc)
+      scope = scope.where(status: params[:status]) if params[:status].present?
+      return scope if params[:q].blank?
+
+      query = "%#{params[:q].strip.downcase}%"
+      scope.left_joins(client_profile: :user).where(
+        "CAST(orders.id AS TEXT) LIKE :query OR LOWER(client_profiles.name) LIKE :query OR LOWER(users.email) LIKE :query OR LOWER(orders.notes) LIKE :query",
+        query:
+      ).distinct
     end
   end
 end

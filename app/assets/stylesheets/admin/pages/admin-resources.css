@@ -110,6 +110,27 @@ textarea[readonly] {
 	gap: 8px;
 }
 
+.admin-filter-form {
+	width: 100%;
+}
+
+.admin-filter-form__row {
+	width: 100%;
+}
+
+.admin-filter-form__grow {
+	flex: 1 1 220px;
+	min-width: 180px;
+}
+
+.admin-filter-check {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.82rem;
+	color: var(--gris);
+}
+
 @media (min-width: 769px) {
 	.resource-hero {
 		grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);

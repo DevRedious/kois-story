@@ -12,6 +12,14 @@ class Admin::KoisControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should filter kois by search query" do
+    get admin_kois_url, params: { q: kois(:one).name }
+
+    assert_response :success
+    assert_select "tbody tr", minimum: 1
+    assert_match kois(:one).name, response.body
+  end
+
   test "should get show" do
     get admin_koi_url(kois(:one))
     assert_response :success

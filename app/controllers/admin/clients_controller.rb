@@ -3,7 +3,7 @@ module Admin
     before_action :set_client, only: [ :show, :edit, :update ]
 
     def index
-      scope = ClientProfile.includes(:user, :orders).order(created_at: :desc)
+      scope = filtered_clients
       @clients, @pagination = paginate_scope(scope, per_page: 12)
     end
 
@@ -29,6 +29,18 @@ module Admin
 
     def client_params
       params.require(:client_profile).permit(:name, :phone, :address, :notes)
+    end
+
+    def filtered_clients
+      scope = ClientProfile.includes(:user, :orders).order(created_at: :desc)
+      scope = scope.joins(:orders).distinct if params[:has_orders] == "1"
+      return scope if params[:q].blank?
+
+      query = "%#{params[:q].strip.downcase}%"
+      scope.left_joins(:user).where(
+        "LOWER(client_profiles.name) LIKE :query OR LOWER(client_profiles.phone) LIKE :query OR LOWER(client_profiles.address) LIKE :query OR LOWER(users.email) LIKE :query",
+        query:
+      )
     end
   end
 end

@@ -7,7 +7,12 @@ document.addEventListener("turbo:load", () => {
 	const table = document.querySelector(".panel--messages tbody");
 	const searchInput = document.getElementById("msg-search");
 	const filters = document.querySelectorAll("[data-filter-status]");
-	if (!table || table.dataset.bound === "true") return;
+	if (
+		!table ||
+		table.dataset.clientFilters !== "true" ||
+		table.dataset.bound === "true"
+	)
+		return;
 	table.dataset.bound = "true";
 
 	const state = { status: "", query: "" };

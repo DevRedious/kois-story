@@ -25,15 +25,19 @@
 <div class="panel">
   <div class="panel-header">
     <div class="panel-title">Paiements</div>
-    <div class="panel-toolbar">
-      <label class="sr-only" for="pay-status-filter">Filtrer les paiements</label>
-      <select id="pay-status-filter" class="u-toolbar-select-wide" aria-label="Filtrer les paiements">
-        <option value="">Tous les statuts</option>
-        <option value="pending">En attente</option>
-        <option value="partial">Partiels</option>
-        <option value="paid">Regles</option>
-      </select>
-    </div>
+    <%= form_with url: admin_payments_path, method: :get, class: "panel-toolbar admin-filter-form", local: true do |form| %>
+      <%= form.search_field :q, value: params[:q], class: "u-toolbar-control admin-filter-form__grow", placeholder: "Commande, client ou statut" %>
+      <%= form.select :status, options_for_select([["Tous les statuts", ""], ["En attente", "pending"], ["Partiels", "partial"], ["Regles", "paid"]], params[:status]), { }, id: "pay-status-filter", class: "u-toolbar-select-wide" %>
+      <%= form.select :payment_type, options_for_select([["Tous les types", ""]] + Payment.payment_types.keys.map { |key| [key.humanize, key] }, params[:payment_type]), {}, class: "u-toolbar-select-wide" %>
+      <label class="admin-filter-check">
+        <%= check_box_tag :overdue, "1", params[:overdue] == "1" %>
+        <span>En retard</span>
+      </label>
+      <%= form.submit "Filtrer", class: "btn btn--outline btn--sm" %>
+      <% if params[:q].present? || params[:status].present? || params[:payment_type].present? || params[:overdue] == "1" %>
+        <%= link_to "Reinitialiser", admin_payments_path, class: "btn btn--ghost btn--sm" %>
+      <% end %>
+    <% end %>
   </div>
   <div class="table-responsive">
     <table>

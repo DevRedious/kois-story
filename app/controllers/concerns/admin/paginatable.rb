@@ -9,7 +9,11 @@ module Admin
       current_page = 1 if current_page < 1
       current_page = total_pages if current_page > total_pages
 
-      records = scope.offset((current_page - 1) * per_page).limit(per_page)
+      records = if scope.is_a?(Array)
+        scope.slice((current_page - 1) * per_page, per_page) || []
+      else
+        scope.offset((current_page - 1) * per_page).limit(per_page)
+      end
 
       [ records, {
         page: current_page,

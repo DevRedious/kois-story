@@ -6,7 +6,13 @@
 document.addEventListener("turbo:load", () => {
 	const filter = document.getElementById("pay-status-filter");
 	const table = document.querySelector(".panel table tbody");
-	if (!filter || !table || table.dataset.paymentsBound === "true") return;
+	if (
+		!filter ||
+		!table ||
+		table.dataset.clientFilters !== "true" ||
+		table.dataset.paymentsBound === "true"
+	)
+		return;
 	table.dataset.paymentsBound = "true";
 
 	filter.addEventListener("change", () => {

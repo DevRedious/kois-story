@@ -3,7 +3,18 @@
 <div class="panel">
   <div class="panel-header">
     <div class="panel-title">Produits</div>
-    <%= link_to "Nouveau produit", new_admin_product_path, class: "btn btn--primary btn--sm" %>
+    <div class="panel-toolbar admin-filter-form">
+      <%= form_with url: admin_products_path, method: :get, class: "panel-toolbar admin-filter-form__row", local: true do |form| %>
+        <%= form.search_field :q, value: params[:q], placeholder: "Nom, reference ou description", class: "u-toolbar-control admin-filter-form__grow" %>
+        <%= form.select :category, options_for_select([["Toutes categories", ""]] + Product.categories.keys.map { |key| [key.humanize, key] }, params[:category]), {}, class: "u-toolbar-select-wide" %>
+        <%= form.select :status, options_for_select([["Tous statuts", ""]] + Product.statuses.keys.map { |key| [key.humanize, key] }, params[:status]), {}, class: "u-toolbar-select-wide" %>
+        <%= form.submit "Filtrer", class: "btn btn--outline btn--sm" %>
+        <% if params[:q].present? || params[:category].present? || params[:status].present? %>
+          <%= link_to "Reinitialiser", admin_products_path, class: "btn btn--ghost btn--sm" %>
+        <% end %>
+      <% end %>
+      <%= link_to "Nouveau produit", new_admin_product_path, class: "btn btn--primary btn--sm" %>
+    </div>
   </div>
   <div class="table-responsive">
     <table>

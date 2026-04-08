@@ -12,6 +12,17 @@ class Admin::OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_select "#status-filter"
   end
 
+  test "should filter orders by status" do
+    orders(:one).update!(status: :pending)
+    orders(:two).update!(status: :completed)
+
+    get admin_orders_url, params: { status: :pending }
+
+    assert_response :success
+    assert_match "CMD-#{orders(:one).id.to_s.rjust(4, '0')}", response.body
+    assert_no_match "CMD-#{orders(:two).id.to_s.rjust(4, '0')}", response.body
+  end
+
   test "should get show" do
     get admin_order_url(orders(:one))
     assert_response :success
