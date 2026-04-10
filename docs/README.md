@@ -20,12 +20,14 @@
 - `deployment/coolify.md`
 - `agent.md`
 - `business/executive_summary_kois_story.md`
+- `business/client_brief_mathilde_2026-04-10.md`
 - `design/atomic_design.md`
 - `design/brand/charte_graphique.md`
 - `design/brand/charte_graphique.html`
 - `design/wireframes/wireframes.md`
 - `design/wireframes/wireframes.html`
 - `planning/admin_implementation.md`
+- `planning/client_mission_tasks_2026-04-10.md`
 - `planning/formulaire_thp.md`
 - `roadmap.md`
 - `stack.md`

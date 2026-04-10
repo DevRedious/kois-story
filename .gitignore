@@ -33,6 +33,8 @@ Thumbs.db
 *.swp
 *.swo
 
+# Local media working files
+/docs/audio/
 
 /valentin 
 
