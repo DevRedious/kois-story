@@ -12,7 +12,6 @@
 		var selectVariety = document.getElementById("filter-variety");
 		var selectAge = document.getElementById("filter-age");
 		var selectPrice = document.getElementById("filter-price");
-		var konishiToggle = document.getElementById("filter-konishi");
 		var resetBtn = document.getElementById("filter-reset");
 		var countEl = document.getElementById("filter-count");
 
@@ -23,7 +22,6 @@
 			var variety = selectVariety ? selectVariety.value.toLowerCase() : "";
 			var age = selectAge ? selectAge.value.toLowerCase() : "";
 			var priceMax = selectPrice ? parseInt(selectPrice.value, 10) || 0 : 0;
-			var konishiOnly = konishiToggle ? konishiToggle.checked : false;
 			var cards = document.querySelectorAll(
 				".koi-card[data-variety], .koi-card",
 			);
@@ -33,15 +31,10 @@
 				var cardVariety = (card.dataset.variety || "").toLowerCase();
 				var cardAge = (card.dataset.age || "").toLowerCase();
 				var cardPrice = parseInt(card.dataset.price, 10) || 0;
-				var cardKonishi =
-					card.dataset.konishi === "true" ||
-					card.querySelector(".badge--konishi") !== null;
-
 				var show = true;
 				if (variety && cardVariety && cardVariety !== variety) show = false;
 				if (age && cardAge && cardAge !== age) show = false;
 				if (priceMax > 0 && cardPrice > priceMax) show = false;
-				if (konishiOnly && !cardKonishi) show = false;
 
 				var item = card.closest("li") || card;
 				item.style.display = show ? "" : "none";
@@ -55,8 +48,6 @@
 		[selectVariety, selectAge, selectPrice].forEach((el) => {
 			if (el) el.addEventListener("change", applyFilters);
 		});
-		if (konishiToggle) konishiToggle.addEventListener("change", applyFilters);
-
 		// ── Pill panels (mobile) ──────────────────────────────────────────────
 		var pills = document.querySelectorAll(".filter-pill[data-select]");
 		var builtPanels = {};
@@ -170,8 +161,6 @@
 				if (selectVariety) selectVariety.value = "";
 				if (selectAge) selectAge.value = "";
 				if (selectPrice) selectPrice.value = "";
-				if (konishiToggle) konishiToggle.checked = false;
-
 				pills.forEach((pill) => {
 					var labelEl = pill.querySelector(".filter-pill__label");
 					if (labelEl) labelEl.textContent = labelEl.dataset.default || "";

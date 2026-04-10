@@ -9,6 +9,7 @@
       <p class="section-label" aria-hidden="true">Contact</p>
       <h2>Vous avez une question ?</h2>
       <p>Envoyez-nous un message ou contactez directement Manu ou Mathilde via WhatsApp pour une réponse immédiate.</p>
+      <p class="contact-quick__topics">Tests d'eau · Alimentation · Santé des koïs — on vous conseille avec plaisir.</p>
       <div class="contact-quick__info">
         <div class="info-item">
           <div class="info-item__text"><strong>Adresse</strong><p>Parc d'activités des chênes<br>Grange des Échets · 01700 Miribel<br>Livraison dans un rayon de 50 km</p></div>
@@ -21,9 +22,9 @@
         </div>
       </div>
       <div class="contact-quick__wa">
-        <%= link_to whatsapp_link(whatsapp_phone_number, "Bonjour Emmanuel, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
+        <%= link_to whatsapp_link(whatsapp_phone_number, "Bonjour Manu, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
           <%= whatsapp_icon %>
-          Contacter Emmanuel
+          Contacter Manu
         <% end %>
         <%= link_to whatsapp_link(whatsapp_phone_number, "Bonjour Mathilde, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
           <%= whatsapp_icon %>

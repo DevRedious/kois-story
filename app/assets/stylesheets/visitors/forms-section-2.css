@@ -102,6 +102,11 @@
 	line-height: var(--leading-normal);
 	margin-bottom: var(--sp-6);
 }
+.contact-quick__topics {
+	font-size: var(--text-sm);
+	font-style: italic;
+	margin-bottom: var(--sp-4);
+}
 .contact-quick__info {
 	display: flex;
 	flex-direction: column;

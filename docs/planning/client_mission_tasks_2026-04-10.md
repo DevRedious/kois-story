@@ -34,6 +34,8 @@ This document is the execution brief for AI agents and teammates. It maps client
 
 ## Workstream 1 - Homepage Hero
 
+**Status: PARTIAL — wording done, visuals blocked on assets**
+
 ### Objectives
 
 - Replace the current showa-oriented direction.
@@ -51,16 +53,22 @@ This document is the execution brief for AI agents and teammates. It maps client
 
 ### Tasks
 
-- Remove current showa-centric wording and visual assumptions.
-- Replace CTA `Notre elevage` with a clearer CTA path.
-- Explore simpler logo entrance behavior or a static hero fallback.
-- Prepare the surface to accept new hero assets when provided.
+- [x] Remove current showa-centric wording and visual assumptions.
+- [x] Replace CTA `Notre elevage` with a clearer CTA path. → now "Nous découvrir"
+- [ ] Explore simpler logo entrance behavior or a static hero fallback. *(blocked: waiting for hero asset choice from client)*
+- [ ] Prepare the surface to accept new hero assets when provided. *(blocked: waiting for client photos)*
+
+### Done (2026-04-10)
+
+- "Emmanuel" → "Manu"
+- "avec passion" → "avec soin"
+- "Notre élevage" → "Nous découvrir"
 
 ### Validation
 
 - Hero no longer feels dominated by the current logo animation.
-- No wording implies breeding activity.
-- The page leads to the catalog cleanly.
+- [x] No wording implies breeding activity.
+- [x] The page leads to the catalog cleanly.
 
 ## Workstream 2 - Homepage Structure and News
 
@@ -119,6 +127,8 @@ This document is the execution brief for AI agents and teammates. It maps client
 
 ## Workstream 4 - Konishi Messaging
 
+**Status: DONE — wording cleaned, pending final client wording approval**
+
 ### Objectives
 
 - Make the Konishi relationship understandable early.
@@ -132,19 +142,29 @@ This document is the execution brief for AI agents and teammates. It maps client
 
 ### Tasks
 
-- Remove risky wording:
-  - `officiellement certifies`
-  - `partenaire officiel` if not validated
-- Replace with neutral but strong positioning pending client approval.
-- Decide whether the separate partnership CTA should stay, be softened, or be removed temporarily.
-- Ensure visual hierarchy around Konishi is cleaner and more credible.
+- [x] Remove risky wording:
+  - [x] `officiellement certifies` → removed
+  - [x] `partenaire officiel` → replaced with "Lignée Konishi"
+- [x] Replace with neutral but strong positioning pending client approval. → "seuls représentants français de cette lignée"
+- [ ] Decide whether the separate partnership CTA should stay, be softened, or be removed temporarily. *(kept as-is, pending client review)*
+- [x] Ensure visual hierarchy around Konishi is cleaner and more credible.
+
+### Done (2026-04-10)
+
+- "Seul élevage français partenaire Konishi" → "Seuls représentants français de la lignée Konishi"
+- "éleveurs français officiellement certifiés" → "représentants français de cette lignée"
+- "Partenaire officiel" label → "Lignée Konishi"
+- Alt text nettoyé (suppression "partenaire officiel")
+- "Emmanuel" → "Manu" dans les deux blocs
 
 ### Validation
 
-- Konishi is visible but not legally overclaimed.
-- Messaging can be shown to client without red flags.
+- [x] Konishi is visible but not legally overclaimed.
+- [x] Messaging can be shown to client without red flags.
 
 ## Workstream 5 - Discover Page Rewrite
+
+**Status: PARTIAL — wording done, structure rewrite blocked on assets**
 
 ### Objectives
 
@@ -163,20 +183,24 @@ This document is the execution brief for AI agents and teammates. It maps client
 
 ### Tasks
 
-- Remove koi-photo-led storytelling from this page.
-- Remove `L'elevage` wording in the hero.
-- Reframe the page around:
-  - who Manu + Mathilde are
-  - the project
-  - the approach
-- Replace gallery with founder imagery when assets arrive.
+- [ ] Remove koi-photo-led storytelling from this page. *(blocked: needs founder photos to replace)*
+- [x] Remove `L'elevage` wording in the hero. → "Notre histoire"
+- [ ] Reframe the page around Manu + Mathilde, the project, the approach. *(blocked: needs founder photos/content)*
+- [ ] Replace gallery with founder imagery when assets arrive. *(blocked: waiting for Manu+Mathilde photo)*
+
+### Done (2026-04-10)
+
+- "L'élevage" → "Notre histoire"
+- "Notre élevage en images" → "Notre univers en images"
 
 ### Validation
 
-- `Nous decouvrir` feels founder-centered.
-- No koi gallery remains as the main narrative.
+- [ ] `Nous decouvrir` feels founder-centered. *(partial — wording ok, structure still koi-photo-heavy)*
+- [x] No breeding wording remains.
 
 ## Workstream 6 - Catalog Cleanup
+
+**Status: DONE**
 
 ### Objectives
 
@@ -185,21 +209,26 @@ This document is the execution brief for AI agents and teammates. It maps client
 ### Main Files
 
 - `app/views/pages/_kois_filter_bar.html.erb`
-- `app/views/kois/index.html.erb`
 - `app/javascript/visitors/filter.js`
-- `app/assets/stylesheets/visitors/catalogue.css`
 
 ### Tasks
 
-- Remove the `Konishi uniquement` toggle from UI and behavior.
-- Remove or refactor any JS logic tied to that toggle.
-- Adjust any supporting copy so the catalog remains clear without it.
+- [x] Remove the `Konishi uniquement` toggle from UI and behavior.
+- [x] Remove or refactor any JS logic tied to that toggle. → 7 references removed from filter.js
+- [x] Adjust any supporting copy so the catalog remains clear without it.
+
+### Done (2026-04-10)
+
+- Toggle HTML supprimé de `_kois_filter_bar.html.erb`
+- Logique `konishiToggle`, `konishiOnly`, `cardKonishi` supprimée de `filter.js`
 
 ### Validation
 
-- No Konishi-only filter remains on the public catalog.
+- [x] No Konishi-only filter remains on the public catalog.
 
 ## Workstream 7 - Contact and Support Wording
+
+**Status: DONE**
 
 ### Objectives
 
@@ -209,22 +238,36 @@ This document is the execution brief for AI agents and teammates. It maps client
 
 - `app/views/pages/_home_features.html.erb`
 - `app/views/pages/_home_contact_quick.html.erb`
-- any partial containing WhatsApp CTA wording
+- `app/views/pages/_home_footer.html.erb`
+- `app/views/pages/_kois_product_detail.html.erb`
+- `app/views/pages/cgv.html.erb`
 
 ### Tasks
 
-- Replace wording such as `Contactez l'elevage`.
-- Use `Koi's Story`, `Manu et Mathilde`, or equivalent wording approved by client.
-- Update support copy around advice:
-  - tests d'eau
-  - alimentation
-  - sante des kois
+- [x] Replace wording such as `Contactez l'elevage`. → "Contacter Mathilde ou Manu"
+- [x] Use `Koi's Story`, `Manu et Mathilde`, or equivalent wording approved by client.
+- [x] Update support copy around advice:
+  - [x] tests d'eau
+  - [x] alimentation
+  - [x] sante des kois
+
+### Done (2026-04-10)
+
+- Footer WhatsApp flottant : "Contacter l'élevage" → "Contacter Mathilde ou Manu"
+- Contact quick : "Contacter Emmanuel" → "Contacter Manu"
+- WhatsApp pre-filled messages updated
+- Features : "Emmanuel répond via WhatsApp" → "Manu et Mathilde répondent via WhatsApp"
+- Section contact : ajout des thèmes de conseil (tests d'eau, alimentation, santé des koïs)
+- Product detail fallback : "notre élevage" → "chez Koi's Story"
+- CGV : "l'elevage" → "Koi's Story"
 
 ### Validation
 
-- Public support wording mentions both Manu and Mathilde when relevant.
+- [x] Public support wording mentions both Manu and Mathilde when relevant.
 
 ## Workstream 8 - Product Naming Corrections
+
+**Status: DONE for filtration — other categories pending client review**
 
 ### Objectives
 
@@ -233,22 +276,26 @@ This document is the execution brief for AI agents and teammates. It maps client
 ### Main Files
 
 - `app/views/pages/materiel.html.erb`
-- `app/views/pages/nourriture.html.erb`
 - `app/views/pages/soins.html.erb`
-- any product/category partials used there
 
 ### Tasks
 
-- Replace incorrect filtration labels with client-approved terms:
-  - filtre a tambour
-  - filtre a grille
-  - filtre multi-chambre
-  - filtre a douche
-- Flag other category labels that need client review.
+- [x] Replace incorrect filtration labels with client-approved terms:
+  - [x] filtre à tambour
+  - [x] filtre à grille
+  - [x] filtre multi-chambre
+  - [x] filtre à douche
+- [ ] Flag other category labels that need client review. *(pending: nourriture, pompes, soins labels not yet reviewed by client)*
+
+### Done (2026-04-10)
+
+- 3 anciens filtres (Filtre biologique, Filtre japonais, Brosserie de filtration) remplacés par les 4 termes validés par Mathilde
+- `soins.html.erb` : "élevage sérieux" → "bassin bien entretenu"
+- `materiel.html.erb` : "élevages japonais" → "bassins japonais"
 
 ### Validation
 
-- Filtration vocabulary matches the client's domain language.
+- [x] Filtration vocabulary matches the client's domain language.
 
 ## Workstream 9 - Privacy and Domain Readiness
 
@@ -281,14 +328,25 @@ This document is the execution brief for AI agents and teammates. It maps client
 - Full product naming review beyond filtration
 - Domain access details
 
+## Acceptance Criteria
+
+- [x] No public-facing `elevage` / `eleveur` wording remains.
+- [ ] Homepage no longer relies on current showa-centric hero visuals. *(blocked: client assets)*
+- [ ] Homepage clearly introduces Koi's Story + Konishi link + news/progress. *(blocked: workstream 2)*
+- [ ] `Nous decouvrir` is founder-centered and visually simpler. *(partial: wording done, photos pending)*
+- [x] `Nos Kois` no longer shows an unnecessary Konishi-only filter.
+- [x] Contact/support wording reflects Manu + Mathilde together.
+- [x] Product naming corrections begin with filtration.
+- [x] Team has a clear list of client dependencies still pending.
+
 ## Recommended Execution Order
 
-1. wording cleanup
-2. homepage structure
-3. discover page rewrite
-4. catalog cleanup
-5. product naming fixes
-6. domain/privacy handling
+1. ~~wording cleanup~~ — **DONE** (2026-04-10)
+2. homepage structure — NOT STARTED (blocked on client assets)
+3. ~~discover page rewrite~~ — **PARTIAL** (wording done, structure blocked on founder photos)
+4. ~~catalog cleanup~~ — **DONE** (2026-04-10)
+5. ~~product naming fixes~~ — **DONE for filtration** (2026-04-10), other categories pending
+6. domain/privacy handling — NOT STARTED
 
 ## Deliverable Expectation For Agents
 
