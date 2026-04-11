@@ -137,7 +137,7 @@
 }
 @media (min-width: 901px) {
 	.filter-bar {
-		top: 0;
+		top: var(--header-height);
 	}
 	.filter-bar__inner {
 		max-width: var(--max-width);

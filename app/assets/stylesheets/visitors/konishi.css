@@ -95,29 +95,6 @@
 	);
 }
 
-/* ── WAVY BOTTOM ─────────────────────────────────────────────────── */
-.konishi-band--wavy-bottom {
-	clip-path: url(#wave-clip);
-}
-
-/* Remonte contact-quick pour combler les creux (~12% de la hauteur de la bande) */
-.konishi-band--wavy-bottom + .contact-quick {
-	margin-top: -88px;
-	padding-top: calc(88px + var(--sp-20));
-}
-@media (min-width: 481px) {
-	.konishi-band--wavy-bottom + .contact-quick {
-		margin-top: -96px;
-		padding-top: calc(96px + var(--sp-20));
-	}
-}
-@media (min-width: 769px) {
-	.konishi-band--wavy-bottom + .contact-quick {
-		margin-top: -60px;
-		padding-top: calc(60px + var(--sp-20));
-	}
-}
-
 /* ── ALIAS CONVENTION PAGE ───────────────────────────────────────── */
 .konishi-band__img {
 	display: flex;

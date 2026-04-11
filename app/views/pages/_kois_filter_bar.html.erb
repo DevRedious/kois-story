@@ -1,22 +1,22 @@
-<div class="filter-bar">
-  <div class="filter-bar__inner">
-    <span class="filter-count" id="filter-count" aria-live="polite" aria-atomic="true"><%= pluralize(kois.size, "koï") %></span>
+<div class="filter-bar" data-testid="koi-filter-bar">
+  <div class="filter-bar__inner" data-testid="koi-filter-inner">
+    <span class="filter-count" id="filter-count" aria-live="polite" aria-atomic="true" data-testid="koi-filter-count"><%= pluralize(kois.size, "koï") %></span>
     <span class="filter-bar__sep"></span>
 
     <%# Desktop: native selects (hidden on mobile via CSS) %>
-    <select class="filter-select filter-select--desktop" id="filter-variety" aria-label="Variété">
+    <select class="filter-select filter-select--desktop" id="filter-variety" aria-label="Variété" data-testid="filter-variety">
       <option value="">Toutes variétés</option>
       <% varieties.each do |variety| %>
         <option value="<%= variety.parameterize %>"><%= variety %></option>
       <% end %>
     </select>
-    <select class="filter-select filter-select--desktop" id="filter-age" aria-label="Classe d'âge">
+    <select class="filter-select filter-select--desktop" id="filter-age" aria-label="Classe d'âge" data-testid="filter-age">
       <option value="">Tout âge</option>
       <% Koi.age_classes.keys.each do |age_class| %>
         <option value="<%= age_class.parameterize %>"><%= age_class.humanize %></option>
       <% end %>
     </select>
-    <select class="filter-select filter-select--desktop" id="filter-price" aria-label="Prix max">
+    <select class="filter-select filter-select--desktop" id="filter-price" aria-label="Prix max" data-testid="filter-price">
       <option value="">Prix max</option>
       <option value="500">≤ 500 €</option>
       <option value="1000">≤ 1 000 €</option>
@@ -25,20 +25,20 @@
     </select>
 
     <%# Mobile: pill buttons (hidden on desktop via CSS) %>
-    <button type="button" class="filter-pill" data-select="filter-variety" aria-expanded="false">
+    <button type="button" class="filter-pill" data-select="filter-variety" aria-expanded="false" data-testid="filter-variety-pill">
       <span class="filter-pill__label" data-default="Variété">Variété</span>
       <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polyline points="1,1 5,5 9,1"/></svg>
     </button>
-    <button type="button" class="filter-pill" data-select="filter-age" aria-expanded="false">
+    <button type="button" class="filter-pill" data-select="filter-age" aria-expanded="false" data-testid="filter-age-pill">
       <span class="filter-pill__label" data-default="Âge">Âge</span>
       <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polyline points="1,1 5,5 9,1"/></svg>
     </button>
-    <button type="button" class="filter-pill" data-select="filter-price" aria-expanded="false">
+    <button type="button" class="filter-pill" data-select="filter-price" aria-expanded="false" data-testid="filter-price-pill">
       <span class="filter-pill__label" data-default="Prix max">Prix max</span>
       <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><polyline points="1,1 5,5 9,1"/></svg>
     </button>
 
     <div class="filter-bar__sep"></div>
-    <button class="filter-reset" id="filter-reset" type="button">Réinitialiser</button>
+    <button class="filter-reset" id="filter-reset" type="button" data-testid="filter-reset">Réinitialiser</button>
   </div>
 </div>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/soins", to: "pages#soins"
   get "/nourriture", to: "pages#nourriture"
   get "/azukari", to: "pages#azukari"
+  get "/a-propos", to: "pages#a_propos"
   get "/mentions-legales", to: "pages#mentions_legales"
   get "/cgv", to: "pages#cgv"
   get "/politique-de-confidentialite", to: "pages#politique_confidentialite"

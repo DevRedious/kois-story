@@ -1,7 +1,7 @@
 <div class="page-greeting">Bonjour, <%= admin_user_display_name %></div>
 <div class="page-date"><%= l(Date.current, format: :long) rescue Date.current.strftime("%d/%m/%Y") %></div>
 
-<div class="resource-hero">
+<div class="resource-hero" data-testid="admin-dashboard-hero">
   <div class="resource-hero__content">
     <div class="resource-hero__eyebrow">Pilotage admin</div>
     <h2 class="resource-hero__title">Vue d'ensemble Koi's Story</h2>
@@ -23,13 +23,13 @@
   </div>
 </div>
 
-<div class="quick-actions">
-  <%= link_to "＋ Nouveau koi", new_admin_koi_path, class: "btn btn--primary" %>
-  <%= link_to "＋ Nouveau produit", new_admin_product_path, class: "btn btn--dark" %>
-  <%= link_to "Voir les messages", admin_messages_path, class: "btn btn--dark" %>
-  <%= link_to "Voir les commandes", admin_orders_path, class: "btn btn--dark" %>
-  <%= link_to "Voir les paiements", admin_payments_path, class: "btn btn--dark" %>
-  <%= link_to "Voir le site", root_path, class: "btn btn--outline" %>
+<div class="quick-actions" data-testid="admin-quick-actions">
+  <%= link_to "＋ Nouveau koi", new_admin_koi_path, class: "btn btn--primary", data: { testid: "admin-quick-new-koi" } %>
+  <%= link_to "＋ Nouveau produit", new_admin_product_path, class: "btn btn--dark", data: { testid: "admin-quick-new-product" } %>
+  <%= link_to "Voir les messages", admin_messages_path, class: "btn btn--dark", data: { testid: "admin-quick-messages" } %>
+  <%= link_to "Voir les commandes", admin_orders_path, class: "btn btn--dark", data: { testid: "admin-quick-orders" } %>
+  <%= link_to "Voir les paiements", admin_payments_path, class: "btn btn--dark", data: { testid: "admin-quick-payments" } %>
+  <%= link_to "Voir le site", root_path, class: "btn btn--outline", data: { testid: "admin-quick-public-site" } %>
 </div>
 
 <div class="stats-grid stats-6">

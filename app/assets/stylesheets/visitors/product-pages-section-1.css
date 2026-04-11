@@ -34,7 +34,7 @@
 .product {
 	max-width: var(--max-width);
 	margin: 0 auto;
-	padding: var(--sp-6) var(--sp-10) var(--sp-20);
+	padding: calc(var(--header-height) + var(--sp-6)) var(--sp-10) var(--sp-20);
 }
 .product-grid {
 	display: grid;

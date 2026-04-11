@@ -41,3 +41,10 @@ Thumbs.db
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

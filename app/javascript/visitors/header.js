@@ -33,15 +33,8 @@
 		const footerIndicator = document.getElementById("footer-indicator");
 
 		const applyNavOffset = () => {
-			if (!filterInner || !pill) return;
-			if (window.innerWidth <= 900) return;
-			const pillWidth = pill.offsetWidth;
-			const spacing =
-				parseInt(
-					getComputedStyle(document.documentElement).getPropertyValue("--sp-8"),
-					10,
-				) || 32;
-			filterInner.style.paddingRight = `${pillWidth + spacing * 2}px`;
+			if (!filterInner || window.innerWidth <= 900) return;
+			filterInner.style.paddingRight = "";
 		};
 
 		const removeNavOffset = () => {
@@ -71,9 +64,20 @@
 			});
 
 			const activeLink = nav.querySelector("ul > li > a.active");
-			if (navIndicator && activeLink) {
-				moveIndicator(nav, navIndicator, activeLink);
-			}
+			const syncHeaderIndicator = () => {
+				if (!navIndicator) return;
+				if (window.innerWidth <= 900) {
+					navIndicator.style.opacity = "0";
+					return;
+				}
+				if (activeLink) {
+					moveIndicator(nav, navIndicator, activeLink);
+				} else {
+					navIndicator.style.opacity = "0";
+				}
+			};
+
+			syncHeaderIndicator();
 
 			list?.querySelectorAll(":scope > li").forEach((item) => {
 				const hoverTarget =
@@ -88,6 +92,11 @@
 			list?.addEventListener("mouseleave", () => {
 				if (activeLink) moveIndicator(nav, navIndicator, activeLink);
 				else if (navIndicator) navIndicator.style.opacity = "0";
+			});
+
+			window.addEventListener("resize", syncHeaderIndicator);
+			document.addEventListener("visibilitychange", () => {
+				if (document.visibilityState === "visible") syncHeaderIndicator();
 			});
 		};
 

@@ -118,8 +118,3 @@
 		opacity: 0;
 	}
 }
-
-/* ── HERO WAVY BOTTOM ────────────────────────────────────────────── */
-.hero--wavy-bottom {
-	clip-path: url(#wave-clip);
-}

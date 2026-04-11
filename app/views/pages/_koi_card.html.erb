@@ -4,10 +4,7 @@
       <%= image_tag koi_card_image_source(koi), alt: koi.name, loading: "lazy" if koi_card_image_source(koi).present? %>
     <% end %>
     <div class="koi-card-badges">
-      <% if koi.konishi_lineage? %>
-        <span class="koi-card-badge koi-card-badge--konishi"><%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %></span>
-      <% end %>
-      <span class="koi-card-badge koi-card-badge--status"><%= koi_status_label(koi) %></span>
+      <span class="koi-card-badge koi-card-badge--konishi"><%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %></span>
     </div>
   </div>
   <div class="koi-card-image-caption">

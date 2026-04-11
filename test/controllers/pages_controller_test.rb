@@ -26,6 +26,11 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get a propos" do
+    get a_propos_url
+    assert_response :success
+  end
+
   test "dropdown-toggle has active class on materiel" do
     get materiel_url
     assert_select "button.dropdown-toggle.active", text: /Produits/

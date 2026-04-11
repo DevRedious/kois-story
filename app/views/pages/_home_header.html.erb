@@ -4,30 +4,31 @@
 
 <header class="site-header" id="site-header">
   <div class="header__pill">
-    <nav class="header__nav" id="header-nav" aria-label="Navigation principale">
+    <nav class="header__nav" id="header-nav" aria-label="Navigation principale" data-testid="public-nav">
       <span class="nav__indicator" id="nav-indicator"></span>
       <ul>
-        <li><%= link_to "Accueil", root_path %></li>
-        <li><%= link_to "Nous découvrir", decouvrir_path %></li>
-        <li><%= link_to "Nos Koïs", kois_path %></li>
-        <li class="has-dropdown">
+        <li><%= link_to "Accueil", root_path, data: { testid: "nav-home" } %></li>
+        <li><%= link_to "Nous découvrir", decouvrir_path, data: { testid: "nav-decouvrir" } %></li>
+        <li><%= link_to "Nos Koïs", kois_path, data: { testid: "nav-kois" } %></li>
+        <li class="has-dropdown" data-testid="nav-products-group">
           <% produits_active = [materiel_path, nourriture_path, soins_path].include?(request.path) %>
-          <button type="button" class="dropdown-toggle<%= ' active' if produits_active %>" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="dropdown-toggle<%= ' active' if produits_active %>" aria-haspopup="true" aria-expanded="false" data-testid="nav-products-toggle">
             Produits
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="2,4 6,8 10,4"/>
             </svg>
           </button>
-          <ul class="dropdown">
-            <li><%= link_to "Matériel", materiel_path %></li>
-            <li><%= link_to "Nourriture", nourriture_path %></li>
-            <li><%= link_to "Soins", soins_path %></li>
+          <ul class="dropdown" data-testid="nav-products-menu">
+            <li><%= link_to "Matériel", materiel_path, data: { testid: "nav-products-materiel" } %></li>
+            <li><%= link_to "Nourriture", nourriture_path, data: { testid: "nav-products-nourriture" } %></li>
+            <li><%= link_to "Soins", soins_path, data: { testid: "nav-products-soins" } %></li>
           </ul>
         </li>
-        <li><%= link_to "Azukari", azukari_path %></li>
+        <li><%= link_to "Azukari", azukari_path, data: { testid: "nav-azukari" } %></li>
+        <li><%= link_to "À propos", a_propos_path, data: { testid: "nav-a-propos" } %></li>
       </ul>
     </nav>
-    <button type="button" class="header__burger" id="burger" aria-label="Menu" aria-controls="header-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button type="button" class="header__burger" id="burger" aria-label="Menu" aria-controls="header-nav" aria-expanded="false" data-testid="nav-burger"><span></span><span></span><span></span></button>
   </div>
 </header>
 

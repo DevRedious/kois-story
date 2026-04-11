@@ -5,23 +5,6 @@
 	padding: var(--sp-16) var(--sp-10) var(--sp-12);
 }
 
-/* Remonte hero-intro pour combler les creux de la vague (12% de 100vh max) */
-.hero--wavy-bottom + .hero-intro {
-	margin-top: -6vh;
-	padding-top: calc(6vh + var(--sp-16));
-}
-@media (min-width: 481px) {
-	.hero--wavy-bottom + .hero-intro {
-		margin-top: -8vh;
-		padding-top: calc(8vh + var(--sp-16));
-	}
-}
-@media (min-width: 769px) {
-	.hero--wavy-bottom + .hero-intro {
-		margin-top: -12vh;
-		padding-top: calc(12vh + var(--sp-16));
-	}
-}
 .hero-intro__inner {
 	max-width: var(--max-width);
 	margin: 0 auto;
@@ -55,33 +38,6 @@
 	gap: var(--sp-4);
 	flex-wrap: wrap;
 	justify-content: center;
-}
-
-/* ── HERO COMPACT WAVY BOTTOM ────────────────────────────────────── */
-/* hero-compact ~390px → 12% ≈ 47px → overlap 50px avec marge */
-.hero-compact--wavy-bottom {
-	clip-path: url(#wave-clip);
-}
-
-/* main transparent : on remonte pour couvrir la vague au complet */
-.hero-compact--wavy-bottom + main {
-	margin-top: -60px;
-}
-@media (min-width: 481px) {
-	.hero-compact--wavy-bottom + main {
-		margin-top: -52px;
-	}
-}
-@media (min-width: 769px) {
-	.hero-compact--wavy-bottom + main {
-		margin-top: -50px;
-	}
-}
-
-/* konishi-info (nourriture) a un fond propre : compenser le padding */
-.hero-compact--wavy-bottom + .konishi-info {
-	margin-top: -40px;
-	padding-top: calc(40px + var(--sp-12));
 }
 
 /* ── HERO COMPACT  pages intérieures ───────────────────────────── */
@@ -130,15 +86,6 @@
 	font-size: var(--text-lg);
 	color: var(--c-white);
 	max-width: 560px;
-}
-/* Espace sous le texte pour dégager la vague en mobile */
-.hero-compact--wavy-bottom .hero-compact__sub {
-	padding-bottom: 20vw;
-}
-@media (min-width: 901px) {
-	.hero-compact--wavy-bottom .hero-compact__sub {
-		padding-bottom: 0;
-	}
 }
 .hero-compact__title--underlined {
 	display: inline-block;
