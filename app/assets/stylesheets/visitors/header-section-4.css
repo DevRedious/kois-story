@@ -1,0 +1,47 @@
+/* Header partner mention kept separate to avoid growing the main header modules */
+.site-partner {
+	display: none;
+}
+
+@media (min-width: 901px) {
+	.site-partner {
+		position: fixed;
+		top: 11px;
+		left: 126px;
+		z-index: 101;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 72px;
+		padding: 0 0 0 var(--sp-5);
+		border-left: 1px solid rgba(255, 255, 255, 0.14);
+		color: var(--c-white);
+		pointer-events: none;
+		text-shadow: 0 2px 14px rgba(0, 0, 0, 0.32);
+	}
+
+	.site-partner__eyebrow {
+		font-size: 0.64rem;
+		font-weight: 600;
+		letter-spacing: 0.26em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.56);
+	}
+
+	.site-partner__name {
+		margin-top: 1px;
+		font-family: var(--font-serif);
+		font-size: 1.45rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		line-height: 1;
+		color: rgba(255, 255, 255, 0.96);
+	}
+}
+
+@media (min-width: 1200px) {
+	.site-partner {
+		left: 138px;
+		padding-left: var(--sp-6);
+	}
+}
