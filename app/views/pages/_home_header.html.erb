@@ -2,9 +2,11 @@
   <%= image_tag docs_asset_path("LOGO MANU FINI.png"), alt: "Koi's Story" %>
 <% end %>
 
-<div class="site-partner" aria-label="Partenaire exclusif Konishi">
-  <span class="site-partner__eyebrow">Partenaire exclusif</span>
-  <strong class="site-partner__name">Konishi</strong>
+<div class="site-partner" aria-label="Partenaire exclusif français Konishi">
+  <span class="site-partner__eyebrow">Partenaire exclusif français</span>
+  <%= image_tag docs_asset_path("Logos_konishi-black_1.png"),
+        alt: "Logo Konishi",
+        class: "site-partner__logo" %>
 </div>
 
 <header class="site-header" id="site-header">

@@ -5,15 +5,15 @@
 
     <%# Desktop: native selects (hidden on mobile via CSS) %>
     <select class="filter-select filter-select--desktop" id="filter-variety" aria-label="Variété" data-testid="filter-variety">
-      <option value="">Toutes variétés</option>
+      <option value="">Variétés</option>
       <% varieties.each do |variety| %>
         <option value="<%= variety.parameterize %>"><%= variety %></option>
       <% end %>
     </select>
     <select class="filter-select filter-select--desktop" id="filter-age" aria-label="Classe d'âge" data-testid="filter-age">
-      <option value="">Tout âge</option>
-      <% Koi.age_classes.keys.each do |age_class| %>
-        <option value="<%= age_class.parameterize %>"><%= age_class.humanize %></option>
+      <option value="">Âge</option>
+      <% age_class_options.each do |label, value| %>
+        <option value="<%= value.parameterize %>"><%= label %></option>
       <% end %>
     </select>
     <select class="filter-select filter-select--desktop" id="filter-price" aria-label="Prix max" data-testid="filter-price">

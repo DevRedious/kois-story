@@ -25,9 +25,7 @@
       <div class="info-header">
         <h1><%= koi.name %></h1>
         <div class="info-meta">
-          <% if koi.konishi_lineage? %>
-            <span class="info-meta-badge konishi"><%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %></span>
-          <% end %>
+          <span class="info-meta-badge konishi"><%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %></span>
           <span class="info-meta-badge"><%= koi.variety %></span>
           <span class="info-meta-badge"><%= koi.size_cm %> cm</span>
           <span class="info-meta-badge"><%= koi.age_class&.humanize %></span>
@@ -64,15 +62,12 @@
         <p><%= koi.description.presence || "Spécimen sélectionné avec soin chez Koi's Story, disponible sur rendez-vous." %></p>
       </div>
 
-      <% if koi.konishi_lineage? %>
-        <div class="certifications">
-          <div class="cert-header">
-            <div class="cert-icon" aria-hidden="true">★</div>
-            <h3 class="cert-title">Certification Lignée Konishi</h3>
-          </div>
-          <p class="cert-text">Ce spécimen est accompagné d'un certificat d'authenticité garantissant son origine et la qualité de sa génétique.</p>
+      <div class="certifications">
+        <div class="cert-header">
+          <h3 class="cert-title">Certification Lignée Konishi</h3>
         </div>
-      <% end %>
+        <p class="cert-text">Ce spécimen est accompagné d'un certificat d'authenticité garantissant son origine et la qualité de sa génétique.</p>
+      </div>
     </div>
   </div>
 </section>

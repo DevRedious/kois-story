@@ -39,6 +39,17 @@ module ApplicationHelper
     ENV["TURNSTILE_SITE_KEY"].presence
   end
 
+  def age_class_options
+    [
+      [ "Tosai (1 an)", "tosai" ],
+      [ "Jumbo Tosai (1 an, grande taille)", "jumbo_tosai" ],
+      [ "Nisai (2 ans)", "nisai" ],
+      [ "Sansai (3 ans)", "sansai" ],
+      [ "Yonsai (4 ans)", "yonsai" ],
+      [ "Gosai (5 ans et +)", "gosai" ]
+    ]
+  end
+
   def contact_form_value(field)
     flash.to_hash.fetch("contact_form", {}).fetch(field.to_s, "")
   end
