@@ -24,7 +24,7 @@
 		const filterBar = document.querySelector(".filter-bar");
 		const filterInner = document.querySelector(".filter-bar__inner");
 		const logo = document.getElementById("site-logo");
-		const pill = header.querySelector(".header__pill");
+		const partner = document.querySelector(".site-partner");
 		const nav = document.getElementById("header-nav");
 		const navIndicator = document.getElementById("nav-indicator");
 		const burger = document.getElementById("burger");
@@ -66,7 +66,7 @@
 			const activeLink = nav.querySelector("ul > li > a.active");
 			const syncHeaderIndicator = () => {
 				if (!navIndicator) return;
-				if (window.innerWidth <= 900) {
+				if (window.innerWidth <= 1280) {
 					navIndicator.style.opacity = "0";
 					return;
 				}
@@ -142,7 +142,7 @@
 			});
 
 			dropdownToggle?.addEventListener("click", (event) => {
-				if (window.innerWidth > 900) return;
+				if (window.innerWidth > 1280) return;
 				event.preventDefault();
 				const isOpen = dropdownMenu?.classList.toggle("dropdown--open");
 				dropdownToggle.classList.toggle("open", isOpen);
@@ -182,6 +182,7 @@
 						if (entry.isIntersecting) {
 							header.classList.remove("site-header--scrolled");
 							logo?.classList.remove("site-logo--hidden");
+							partner?.classList.remove("site-partner--shifted");
 							if (filterBar) {
 								header.classList.remove("site-header--on-filter");
 								removeNavOffset();
@@ -189,6 +190,7 @@
 						} else {
 							header.classList.add("site-header--scrolled");
 							logo?.classList.add("site-logo--hidden");
+							partner?.classList.add("site-partner--shifted");
 							if (filterBar) {
 								header.classList.add("site-header--on-filter");
 								applyNavOffset();
@@ -207,9 +209,11 @@
 					if (window.scrollY > 80) {
 						header.classList.add("site-header--scrolled");
 						logo?.classList.add("site-logo--hidden");
+						partner?.classList.add("site-partner--shifted");
 					} else {
 						header.classList.remove("site-header--scrolled");
 						logo?.classList.remove("site-logo--hidden");
+						partner?.classList.remove("site-partner--shifted");
 					}
 				},
 				{ passive: true },

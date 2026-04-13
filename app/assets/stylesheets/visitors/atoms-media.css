@@ -36,11 +36,6 @@
 	width: auto;
 	display: block;
 }
-.site-logo--hidden {
-	opacity: 0;
-	pointer-events: none;
-	transform: translateY(-6px);
-}
 
 /* ── KOI THUMB ATOM ─────────────────────────────────────────────────── */
 .koi-thumb {

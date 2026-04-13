@@ -175,32 +175,6 @@
 			});
 		}
 
-		// ── Nike scroll: header blanc disparaît, filter bar monte (mobile) ────
-		var header = document.querySelector(".site-header");
-		var siteLogo = document.querySelector(".site-logo");
-		var lastScrollY = window.scrollY;
-		var scrollTicking = false;
-		window.addEventListener(
-			"scroll",
-			() => {
-				if (window.innerWidth > 900 || scrollTicking) return;
-				scrollTicking = true;
-				window.requestAnimationFrame(() => {
-					var currentY = window.scrollY;
-					var goingDown = currentY > lastScrollY && currentY > 80;
-					if (header)
-						header.classList.toggle("site-header--scroll-hidden", goingDown);
-					if (filterBar)
-						filterBar.classList.toggle("filter-bar--at-top", goingDown);
-					if (siteLogo)
-						siteLogo.classList.toggle("site-logo--hidden", goingDown);
-					lastScrollY = currentY;
-					scrollTicking = false;
-				});
-			},
-			{ passive: true },
-		);
-
 		applyFilters();
 	}
 

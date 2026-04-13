@@ -1,4 +1,4 @@
-<%= link_to root_path, class: "site-logo", id: "site-logo", aria: { label: "Retour a l'accueil" } do %>
+<%= link_to root_path, class: "site-logo", id: "site-logo", aria: { label: "Retour à l'accueil" } do %>
   <%= image_tag docs_asset_path("LOGO MANU FINI.png"), alt: "Koi's Story" %>
 <% end %>
 
@@ -8,7 +8,7 @@
 </div>
 
 <header class="site-header" id="site-header">
-  <div class="header__pill">
+  <div class="header__inner">
     <nav class="header__nav" id="header-nav" aria-label="Navigation principale" data-testid="public-nav">
       <span class="nav__indicator" id="nav-indicator"></span>
       <ul>
@@ -33,7 +33,10 @@
         <li><%= link_to "À propos", a_propos_path, data: { testid: "nav-a-propos" } %></li>
       </ul>
     </nav>
-    <button type="button" class="header__burger" id="burger" aria-label="Menu" aria-controls="header-nav" aria-expanded="false" data-testid="nav-burger"><span></span><span></span><span></span></button>
+
+    <button type="button" class="header__burger" id="burger" aria-label="Menu" aria-controls="header-nav" aria-expanded="false" data-testid="nav-burger">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 

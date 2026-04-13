@@ -97,10 +97,7 @@
 }
 
 .filter-bar {
-	top: 66px;
-}
-.filter-bar.filter-bar--at-top {
-	top: 0;
+	top: var(--header-height);
 }
 .filter-bar__inner {
 	width: 100%;

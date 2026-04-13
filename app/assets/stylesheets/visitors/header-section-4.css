@@ -1,47 +1,139 @@
-/* Header partner mention kept separate to avoid growing the main header modules */
-.site-partner {
-	display: none;
-}
+/* Header desktop — @media (min-width: 1281px) */
 
-@media (min-width: 901px) {
+@media (min-width: 1281px) {
+	/* ── Logo — grand format, déborde sous la barre ──────────────────────── */
+	.site-logo {
+		top: var(--sp-3);
+		left: var(--sp-5);
+	}
+
+	.site-logo img {
+		height: 90px;
+	}
+
+	/* ── Konishi badge — fixed, aligné sur la barre ──────────────────────── */
 	.site-partner {
-		position: fixed;
-		top: 11px;
-		left: 126px;
-		z-index: 101;
 		display: flex;
+		position: fixed;
+		top: 0;
+		left: 150px;
+		z-index: 101;
+		height: var(--header-height);
 		flex-direction: column;
 		justify-content: center;
-		min-height: 72px;
-		padding: 0 0 0 var(--sp-5);
-		border-left: 1px solid rgba(255, 255, 255, 0.14);
-		color: var(--c-white);
+		padding-left: var(--sp-5);
+		border-left: 1px solid rgba(0, 0, 0, 0.5);
 		pointer-events: none;
-		text-shadow: 0 2px 14px rgba(0, 0, 0, 0.32);
+		transition:
+			left 600ms ease,
+			border-left-color 400ms ease,
+			padding-left 600ms ease;
+	}
+
+	.site-partner--shifted {
+		left: var(--sp-5);
+		border-left-color: transparent;
+		padding-left: 0;
 	}
 
 	.site-partner__eyebrow {
-		font-size: 0.64rem;
-		font-weight: 600;
-		letter-spacing: 0.26em;
+		font-family: var(--font-sans);
+		font-size: 0.6rem;
+		font-weight: 700;
+		letter-spacing: 0.24em;
 		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.56);
+		color: var(--w-50);
+		line-height: 1;
 	}
 
 	.site-partner__name {
-		margin-top: 1px;
 		font-family: var(--font-serif);
-		font-size: 1.45rem;
+		font-size: 1.3rem;
 		font-weight: 700;
-		letter-spacing: 0.14em;
+		letter-spacing: 0.12em;
 		line-height: 1;
-		color: rgba(255, 255, 255, 0.96);
+		color: var(--c-white);
+		margin-top: 3px;
 	}
-}
 
-@media (min-width: 1200px) {
-	.site-partner {
-		left: 138px;
-		padding-left: var(--sp-6);
+	/* ── Header inner — padding symétrique pour centrer la nav ──────────────── */
+	.header__inner {
+		padding-left: 270px;
+		padding-right: 270px;
+	}
+
+	/* ── Burger caché ────────────────────────────────────────────────────── */
+	.header__burger {
+		display: none;
+	}
+
+	/* ── Nav horizontal ──────────────────────────────────────────────────── */
+	.header__nav,
+	.header__nav.open {
+		display: flex;
+		position: relative;
+		top: auto;
+		left: auto;
+		right: auto;
+		max-height: none;
+		overflow: visible;
+		background: transparent;
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		border: none;
+		border-radius: 0;
+		padding: 0;
+		box-shadow: none;
+		animation: none;
+		z-index: auto;
+		height: 100%;
+	}
+
+	.header__nav > ul {
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(0.25rem, 1.2vw, 1.5rem);
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.header__nav > ul > li > a,
+	.header__nav > ul > li > .dropdown-toggle {
+		padding: var(--sp-2) var(--sp-3);
+		white-space: nowrap;
+	}
+
+	/* ── Indicator ───────────────────────────────────────────────────────── */
+	.nav__indicator {
+		display: block;
+	}
+
+	/* ── Dropdown ────────────────────────────────────────────────────────── */
+	.dropdown {
+		display: block;
+		position: absolute;
+		top: calc(100% + var(--sp-3));
+		left: 50%;
+		transform: translateX(-50%) translateY(-6px);
+		background: rgba(8, 8, 8, 0.88);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border: 1px solid var(--w-10);
+		border-radius: var(--r-xl);
+		padding: var(--sp-2) 0;
+		min-width: 168px;
+		opacity: 0;
+		pointer-events: none;
+		transition:
+			opacity var(--t-fast),
+			transform var(--t-fast);
+	}
+
+	.has-dropdown:hover .dropdown,
+	.has-dropdown:focus-within .dropdown {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateX(-50%) translateY(0);
 	}
 }
