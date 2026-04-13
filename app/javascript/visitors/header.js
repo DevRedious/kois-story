@@ -66,7 +66,7 @@
 			const activeLink = nav.querySelector("ul > li > a.active");
 			const syncHeaderIndicator = () => {
 				if (!navIndicator) return;
-				if (window.innerWidth <= 1280) {
+				if (window.innerWidth <= 1279) {
 					navIndicator.style.opacity = "0";
 					return;
 				}
@@ -142,7 +142,7 @@
 			});
 
 			dropdownToggle?.addEventListener("click", (event) => {
-				if (window.innerWidth > 1280) return;
+				if (window.innerWidth > 1279) return;
 				event.preventDefault();
 				const isOpen = dropdownMenu?.classList.toggle("dropdown--open");
 				dropdownToggle.classList.toggle("open", isOpen);

@@ -1,0 +1,44 @@
+/* Header — badge Konishi mobile (overridden by section-4 at desktop) */
+
+.site-partner {
+	display: flex;
+	position: fixed;
+	top: env(safe-area-inset-top, 0px);
+	left: calc(var(--sp-4) + 64px);
+	z-index: 101;
+	height: var(--header-height);
+	flex-direction: column;
+	justify-content: center;
+	padding-left: var(--sp-3);
+	border-left: 1px solid rgba(255, 255, 255, 0.12);
+	pointer-events: none;
+	transition:
+		left 600ms ease,
+		border-left-color 400ms ease,
+		padding-left 600ms ease;
+}
+
+.site-partner--shifted {
+	left: var(--sp-4);
+	border-left-color: transparent;
+	padding-left: 0;
+}
+
+.site-partner__eyebrow {
+	font-family: var(--font-sans);
+	font-size: 0.5rem;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--w-50);
+	line-height: 1;
+}
+
+.site-partner__logo {
+	height: 14px;
+	width: auto;
+	display: block;
+	margin-top: 2px;
+	filter: invert(1);
+	align-self: flex-start;
+}

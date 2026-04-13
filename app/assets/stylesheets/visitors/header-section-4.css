@@ -1,6 +1,6 @@
-/* Header desktop — @media (min-width: 1281px) */
+/* Header desktop — @media (min-width: 1280px) */
 
-@media (min-width: 1281px) {
+@media (min-width: 1280px) {
 	/* ── Logo — grand format, déborde sous la barre ──────────────────────── */
 	.site-logo {
 		top: var(--sp-3);
@@ -52,12 +52,13 @@
 		display: block;
 		margin-top: 3px;
 		filter: invert(1);
+		align-self: flex-start;
 	}
 
-	/* ── Header inner — padding symétrique pour centrer la nav ──────────────── */
+	/* ── Header inner — nav centrée large, glisse à droite en réduisant ─────── */
 	.header__inner {
-		padding-left: 270px;
-		padding-right: 270px;
+		padding-left: 310px;
+		padding-right: clamp(15px, calc(0.5 * 100vw - 580px), 310px);
 	}
 
 	/* ── Burger caché ────────────────────────────────────────────────────── */
