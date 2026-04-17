@@ -1,8 +1,14 @@
 /* Split from VISITORS/assets/css/hero.css - section 2/2 */
 
-/* ── HERO INTRO  texte sous la vidéo ───────────────────────────── */
+/* ── HERO INTRO  texte superposé sur l'image du hero ───────────── */
 .hero-intro {
-	padding: var(--sp-16) var(--sp-10) var(--sp-12);
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: calc(var(--header-height) + var(--sp-10)) var(--sp-10) var(--sp-10);
 }
 
 .hero-intro__inner {
@@ -17,21 +23,19 @@
 	font-family: var(--font-serif);
 	font-size: var(--text-hero);
 	font-weight: 900;
-	color: var(--c-black);
+	color: var(--c-white);
 	line-height: var(--leading-tight);
 	margin-bottom: var(--sp-5);
 	max-width: 780px;
+	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 .hero-intro__sub {
 	font-size: var(--text-lg);
-	color: var(--c-black);
+	color: var(--c-white);
 	line-height: var(--leading-normal);
 	margin-bottom: var(--sp-8);
 	max-width: 560px;
-	background: rgba(255, 255, 255, 0.72);
-	backdrop-filter: blur(2px);
-	padding: var(--sp-4) var(--sp-5);
-	border-radius: var(--r-md);
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 .hero-intro__ctas {
 	display: flex;

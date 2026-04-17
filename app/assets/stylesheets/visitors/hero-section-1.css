@@ -32,11 +32,12 @@
 .hero__overlay {
 	position: absolute;
 	inset: 0;
+	z-index: 2;
 	background: linear-gradient(
-		to top,
-		rgba(0, 0, 0, 0.45) 0%,
-		rgba(0, 0, 0, 0.1) 35%,
-		transparent 60%
+		to bottom,
+		rgba(0, 0, 0, 0.35) 0%,
+		rgba(0, 0, 0, 0.15) 40%,
+		rgba(0, 0, 0, 0.45) 100%
 	);
 }
 

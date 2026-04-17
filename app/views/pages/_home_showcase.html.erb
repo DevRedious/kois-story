@@ -3,7 +3,7 @@
     <div class="koi-showcase__header" data-animate="fade-up">
       <div>
         <p class="section-label" aria-hidden="true">Le catalogue</p>
-        <h2 class="section-title">Nos spécimens disponibles</h2>
+        <h2 class="section-title">Nos koïs disponibles</h2>
       </div>
       <%= link_to kois_path, class: "koi-showcase__link", aria: { label: "Voir tout le catalogue de carpes koïs" } do %>
         Voir tout <span aria-hidden="true">→</span>
@@ -17,7 +17,6 @@
           <div class="editorial__overlay"></div>
         </div>
         <div class="editorial__content">
-          <span class="editorial__badge"><span aria-hidden="true">★</span> Spécimen du mois</span>
           <h3 class="editorial__title"><%= editorial_koi.name %></h3>
           <p class="editorial__sub"><%= showcase_meta(editorial_koi) %></p>
           <div class="editorial__cta">

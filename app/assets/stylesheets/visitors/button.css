@@ -37,7 +37,7 @@
 	background-size: 200% 200%;
 	background-position: 0% 0%;
 	color: var(--c-white);
-	border: 2px solid rgba(255, 255, 255, 0.18);
+	border: 2px solid transparent;
 	backdrop-filter: blur(8px);
 	-webkit-backdrop-filter: blur(8px);
 	box-shadow:
