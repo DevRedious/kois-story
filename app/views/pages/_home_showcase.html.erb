@@ -13,7 +13,7 @@
     <% if editorial_koi.present? %>
       <%= link_to koi_path(editorial_koi), class: "editorial", data: { animate: "fade-scale" } do %>
         <div class="editorial__media">
-          <%= image_tag koi_image_source(editorial_koi), alt: "#{editorial_koi.name} · specimen du mois · lignee Konishi", loading: "lazy" if koi_image_source(editorial_koi).present? %>
+          <%= image_tag koi_image_source(editorial_koi), alt: "#{editorial_koi.name} · specimen du mois · 100% Konishi", loading: "lazy" if koi_image_source(editorial_koi).present? %>
           <div class="editorial__overlay"></div>
         </div>
         <div class="editorial__content">
