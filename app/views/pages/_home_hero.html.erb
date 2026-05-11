@@ -7,4 +7,8 @@
       <p class="hero-intro__sub" data-animate="fade-up" data-delay="1">Manu &amp; Mathilde vous proposent des carpes koïs sélectionnées avec soin. Livraison dans un rayon de 50 km. Sur rendez-vous uniquement.</p>
     </div>
   </div>
+  <%= link_to "#home-showcase", class: "hero-discover", aria: { label: "Découvrir les koïs disponibles" } do %>
+    <span class="hero-discover__label">Découvrir</span>
+    <span class="hero-discover__arrow" aria-hidden="true"></span>
+  <% end %>
 </section>
