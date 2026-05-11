@@ -12,7 +12,7 @@ class Admin::AccessControlTest < ActionDispatch::IntegrationTest
 
     get admin_root_url
 
-    assert_redirected_to root_path
+    assert_redirected_to public_redirect_target
   end
 
   test "rejects non admin users from koi management" do
@@ -20,7 +20,7 @@ class Admin::AccessControlTest < ActionDispatch::IntegrationTest
 
     get admin_kois_url
 
-    assert_redirected_to root_path
+    assert_redirected_to public_redirect_target
   end
 
   test "rejects non admin users from messages" do
@@ -28,6 +28,13 @@ class Admin::AccessControlTest < ActionDispatch::IntegrationTest
 
     get admin_messages_url
 
-    assert_redirected_to root_path
+    assert_redirected_to public_redirect_target
+  end
+
+  private
+
+  def public_redirect_target
+    base_url = ENV["PUBLIC_SITE_URL"].presence
+    base_url ? "#{base_url.chomp('/')}/" : root_path
   end
 end

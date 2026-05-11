@@ -1,0 +1,33 @@
+FROM ruby:3.4.2-slim
+
+WORKDIR /rails
+
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+      bash \
+      build-essential \
+      ca-certificates \
+      curl \
+      git \
+      gnupg \
+      libffi-dev \
+      libjemalloc2 \
+      libpq-dev \
+      libsqlite3-dev \
+      libvips \
+      libyaml-dev \
+      pkg-config \
+      sqlite3 \
+      tzdata && \
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install --no-install-recommends -y nodejs && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+RUN gem install bundler -v 4.0.4
+
+ENV BUNDLE_PATH=/bundle \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3 \
+    RAILS_ENV=development
+
+EXPOSE 3000

@@ -1,0 +1,105 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: kois_story_development
+      POSTGRES_USER: kois_story
+      POSTGRES_PASSWORD: kois_story
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kois_story -d kois_story_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  setup:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: >
+      bash -lc "unset SOLID_QUEUE_IN_PUMA &&
+      bundle install &&
+      bin/rails db:prepare"
+    env_file:
+      - .env.local
+    environment:
+      BUNDLE_PATH: /bundle
+      DATABASE_URL: postgres://kois_story:kois_story@db:5432/kois_story_development
+      RAILS_ENV: development
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/rails
+      - bundle:/bundle
+      - rails_storage:/rails/storage
+      - rails_tmp:/rails/tmp
+
+  public:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: >
+      bash -lc "unset SOLID_QUEUE_IN_PUMA &&
+      rm -f tmp/pids/public.pid &&
+      bin/rails server -b 0.0.0.0 -p 3000 -P tmp/pids/public.pid"
+    env_file:
+      - .env.local
+    environment:
+      BUNDLE_PATH: /bundle
+      DATABASE_URL: postgres://kois_story:kois_story@db:5432/kois_story_development
+      KOIS_APP_ROLE: public
+      PORT: "3000"
+      PUBLIC_SITE_URL: http://localhost:3000
+      RAILS_ENV: development
+    depends_on:
+      db:
+        condition: service_healthy
+      setup:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - .:/rails
+      - bundle:/bundle
+      - rails_storage:/rails/storage
+      - rails_tmp:/rails/tmp
+
+  admin:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: >
+      bash -lc "unset SOLID_QUEUE_IN_PUMA &&
+      rm -f tmp/pids/admin.pid &&
+      bin/rails server -b 0.0.0.0 -p 3001 -P tmp/pids/admin.pid"
+    env_file:
+      - .env.local
+    environment:
+      BUNDLE_PATH: /bundle
+      DATABASE_URL: postgres://kois_story:kois_story@db:5432/kois_story_development
+      KOIS_APP_ROLE: admin
+      PORT: "3001"
+      PUBLIC_SITE_URL: http://localhost:3000
+      RAILS_ENV: development
+    depends_on:
+      db:
+        condition: service_healthy
+      setup:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - .:/rails
+      - bundle:/bundle
+      - rails_storage:/rails/storage
+      - rails_tmp:/rails/tmp
+
+volumes:
+  bundle:
+  db_data:
+  rails_storage:
+  rails_tmp:
