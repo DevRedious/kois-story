@@ -27,14 +27,15 @@
 	background: linear-gradient(
 		135deg,
 		var(--c-gold) 0%,
-		var(--c-bronze) 50%,
+		var(--c-gold) 32%,
+		var(--c-bronze) 72%,
 		var(--c-gold) 100%
 	);
 	background-size: 200% 200%;
 	background-position: 0% 0%;
 	border: 1px solid var(--c-gold);
 	border-radius: var(--r-xl);
-	box-shadow: 0 2px 12px rgba(234, 178, 27, 0.24);
+	box-shadow: 0 4px 18px rgba(234, 178, 27, 0.34);
 }
 .header__nav a:hover,
 .dropdown-toggle:hover {
@@ -43,6 +44,14 @@
 .header__nav a.active:hover,
 .dropdown-toggle.active:hover {
 	color: var(--c-black);
+}
+.header__nav:not(.header__nav--indicator-ready) > ul > li > a.active:hover,
+.header__nav:not(.header__nav--indicator-ready)
+	> ul
+	> li
+	> .dropdown-toggle.active:hover {
+	background-position: 100% 100%;
+	box-shadow: 0 8px 24px rgba(234, 178, 27, 0.42);
 }
 
 /* ── DROPDOWN ────────────────────────────────────────────────────────── */
@@ -107,6 +116,6 @@
 		color var(--t-fast);
 }
 .dropdown li a:hover {
-	background: var(--w-06);
-	color: var(--c-red);
+	background: var(--c-gold-10);
+	color: var(--c-gold);
 }

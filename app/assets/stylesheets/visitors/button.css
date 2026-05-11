@@ -35,15 +35,18 @@
 .btn--primary {
 	background: linear-gradient(
 		135deg,
-		var(--c-bronze) 0%,
-		var(--c-gold) 50%,
-		var(--c-bronze) 100%
+		var(--c-gold) 0%,
+		var(--c-gold) 32%,
+		var(--c-bronze) 72%,
+		var(--c-gold) 100%
 	);
 	background-size: 200% 200%;
 	background-position: 0% 0%;
 	color: var(--c-black);
 	border-color: var(--c-gold);
-	box-shadow: 0 8px 22px rgba(165, 130, 65, 0.24);
+	box-shadow:
+		0 8px 24px rgba(234, 178, 27, 0.3),
+		0 0 0 1px rgba(234, 178, 27, 0.12);
 	transition:
 		background-position 0.6s linear,
 		color var(--t-fast),
@@ -54,8 +57,10 @@
 .btn--primary:hover {
 	background-position: 100% 100%;
 	color: var(--c-black);
-	border-color: var(--c-bronze);
-	box-shadow: 0 10px 26px rgba(234, 178, 27, 0.28);
+	border-color: var(--c-gold);
+	box-shadow:
+		0 10px 30px rgba(234, 178, 27, 0.42),
+		0 0 0 1px rgba(234, 178, 27, 0.2);
 }
 
 .btn--ghost {

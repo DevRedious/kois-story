@@ -41,11 +41,6 @@ export const moveIndicator = (container, indicator, element) => {
 		elementRect.left - containerRect.left,
 		elementRect.width,
 	);
-	const nextPosition =
-		indicator.dataset.gradientPosition === "end" ? "0% 0%" : "100% 100%";
-	indicator.dataset.gradientPosition =
-		nextPosition === "100% 100%" ? "end" : "start";
-	indicator.style.backgroundPosition = nextPosition;
 };
 
 export const findHeroTrigger = () =>

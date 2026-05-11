@@ -129,13 +129,18 @@
 	background: linear-gradient(
 		135deg,
 		var(--c-gold) 0%,
-		var(--c-bronze) 50%,
+		var(--c-gold) 32%,
+		var(--c-bronze) 72%,
 		var(--c-gold) 100%
 	);
+	background-size: 200% 200%;
+	border: 1px solid var(--c-gold);
 	color: var(--c-black);
+	box-shadow: 0 8px 24px rgba(234, 178, 27, 0.28);
 }
 .header__nav.open > ul > li > a.active:hover,
 .header__nav.open > ul > li > .dropdown-toggle.active:hover {
+	background-position: 100% 100%;
 	color: var(--c-black);
 }
 

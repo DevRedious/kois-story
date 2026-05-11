@@ -100,20 +100,35 @@
 	background: linear-gradient(
 		135deg,
 		var(--c-gold) 0%,
-		var(--c-bronze) 50%,
+		var(--c-gold) 32%,
+		var(--c-bronze) 72%,
 		var(--c-gold) 100%
 	);
 	background-size: 200% 200%;
 	background-position: 0% 0%;
-	border: 1px solid rgba(234, 178, 27, 0.72);
-	box-shadow: 0 6px 20px rgba(234, 178, 27, 0.24);
+	border: 1px solid var(--c-gold);
+	box-shadow:
+		0 6px 22px rgba(234, 178, 27, 0.34),
+		0 0 0 1px rgba(234, 178, 27, 0.14);
 	transition:
 		transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
 		width 420ms cubic-bezier(0.22, 1, 0.36, 1),
 		opacity var(--t-fast),
-		background-position 600ms linear;
+		background-position 600ms linear,
+		box-shadow var(--t-base);
 	pointer-events: none;
 	opacity: 0;
 	z-index: 0;
 	will-change: transform, width;
+}
+
+.header__nav--indicator-ready:has(a.active:hover) .nav__indicator,
+.header__nav--indicator-ready:has(.dropdown-toggle.active:hover) .nav__indicator,
+.header__nav--indicator-ready:has(a.active:focus-visible) .nav__indicator,
+.header__nav--indicator-ready:has(.dropdown-toggle.active:focus-visible)
+	.nav__indicator {
+	background-position: 100% 100%;
+	box-shadow:
+		0 10px 30px rgba(234, 178, 27, 0.46),
+		0 0 0 1px rgba(234, 178, 27, 0.24);
 }
