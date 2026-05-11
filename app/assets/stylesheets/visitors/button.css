@@ -1,5 +1,5 @@
 /* ==========================================================================
-   button.css  Atom btn + Molecule cta-whatsapp Koi's Story V3
+   button.css  Atom btn + Molecule cta-whatsapp Koi's Story V4
    ========================================================================== */
 
 /* ── BTN ATOM ────────────────────────────────────────────────────────── */
@@ -33,7 +33,12 @@
 }
 
 .btn--primary {
-	background: linear-gradient(135deg, #e60000 0%, #630f0f 50%, #e60000 100%);
+	background: linear-gradient(
+		135deg,
+		var(--c-bronze) 0%,
+		var(--c-navy) 50%,
+		var(--c-bronze) 100%
+	);
 	background-size: 200% 200%;
 	background-position: 0% 0%;
 	color: var(--c-white);
@@ -41,7 +46,7 @@
 	backdrop-filter: blur(8px);
 	-webkit-backdrop-filter: blur(8px);
 	box-shadow:
-		0 4px 22px rgba(230, 0, 0, 0.45),
+		0 4px 22px rgba(165, 130, 65, 0.45),
 		inset 0 1px 0 rgba(255, 255, 255, 0.24),
 		inset 0 -1px 0 rgba(0, 0, 0, 0.18);
 	transition:
@@ -52,7 +57,7 @@
 .btn--primary:hover {
 	background-position: 100% 100%;
 	box-shadow:
-		0 6px 32px rgba(230, 0, 0, 0.65),
+		0 6px 32px rgba(165, 130, 65, 0.65),
 		inset 0 1px 0 rgba(255, 255, 255, 0.32),
 		inset 0 -1px 0 rgba(0, 0, 0, 0.22);
 }

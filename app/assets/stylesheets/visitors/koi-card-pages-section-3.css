@@ -57,7 +57,7 @@
 /* ── KOI SHOWCASE  section grille home ─────────────────────────── */
 .koi-showcase {
 	padding: var(--sp-12) var(--sp-4);
-	background: rgba(245, 245, 242, 0.9);
+	background: var(--w-90);
 }
 .koi-showcase__inner {
 	max-width: var(--max-width);

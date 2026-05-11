@@ -3,7 +3,7 @@
 	gap: 16px;
 	background: linear-gradient(
 		135deg,
-		rgba(99, 15, 15, 0.94),
+		rgba(var(--bleu-nuit-profond-rgb), 0.94),
 		rgba(0, 0, 0, 0.96)
 	);
 	color: var(--blanc-pur);

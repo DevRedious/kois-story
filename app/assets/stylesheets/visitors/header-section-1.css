@@ -1,4 +1,4 @@
-/* Header organism — classic navbar Koi's Story V3 */
+/* Header organism — classic navbar Koi's Story V4 */
 
 /* ── LOGO (fixed, indépendant, surplombe la barre) ───────────────────── */
 .site-logo {
@@ -39,10 +39,10 @@
 	z-index: 100;
 	background: linear-gradient(
 		90deg,
-		rgba(99, 15, 15, 1) 0%,
+		var(--c-navy) 0%,
 		rgba(17, 17, 17, 1) 28%,
 		rgba(17, 17, 17, 1) 72%,
-		rgba(99, 15, 15, 1) 100%
+		var(--c-navy) 100%
 	);
 	box-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(8px);

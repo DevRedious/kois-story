@@ -17,7 +17,7 @@
 	font-family: var(--font-body);
 	font-size: 0.82rem;
 	color: var(--noir);
-	border: 1.5px solid #d8dde3;
+	border: 1.5px solid var(--border-color);
 	border-radius: 6px;
 	padding: 7px 12px;
 	background: var(--blanc-pur);
@@ -31,12 +31,12 @@
 .filter-bar select:focus,
 .filter-bar input:focus {
 	border-color: var(--rouge-sombre);
-	box-shadow: 0 0 0 2px rgba(99, 15, 15, 0.08);
+	box-shadow: 0 0 0 2px rgba(var(--bleu-nuit-profond-rgb), 0.08);
 }
 
 .filter-bar select {
 	appearance: none;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23011325' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 	background-repeat: no-repeat;
 	background-position: right 10px center;
 	padding-right: 28px;

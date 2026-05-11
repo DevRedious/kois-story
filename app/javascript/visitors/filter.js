@@ -1,5 +1,5 @@
 /**
- * filter.js  Koi's Story V3
+ * filter.js  Koi's Story V4
  * Filtrage des .koi-card. Mobile: pill buttons + panels construits depuis selects.
  * Desktop: selects natifs. Les deux partagent les mêmes selects comme source d'état.
  */

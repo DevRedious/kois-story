@@ -6,16 +6,16 @@
 	background:
 		radial-gradient(
 			ellipse 65% 120% at 0% 110%,
-			rgba(99, 15, 15, 0.28) 0%,
+			rgba(1, 19, 37, 0.28) 0%,
 			transparent 60%
 		),
 		radial-gradient(
 			ellipse 40% 60% at 100% 40%,
-			rgba(99, 15, 15, 0.1) 0%,
+			var(--c-wine-10) 0%,
 			transparent 55%
 		),
-		#0c0c0c;
-	border-top: 1px solid rgba(230, 0, 0, 0.22);
+		var(--c-black);
+	border-top: 1px solid rgba(165, 130, 65, 0.22);
 }
 
 /* ── VARIANTE B  footer compact (pages secondaires) ────────────────── */

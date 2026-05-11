@@ -30,24 +30,32 @@
 	font-weight: 700;
 }
 
-/* ── VARIABLES (Palette V3) ────────────────────────────────── */
+/* ── VARIABLES (Palette V4) ────────────────────────────────── */
 /* Light theme (default) */
 :root {
-	/* Palette V3 */
-	--rouge-vif: #e60000; /* CTA principal, accents forts */
-	--rouge-sombre: #630f0f; /* fonds sombres, hover, sidebar active */
+	/* Palette V4 */
+	--bronze: #a58241; /* CTA principal, accents chauds */
+	--or-konishi: #eab21b; /* accent premium */
+	--bleu-nuit: #011325; /* fonds sombres, hover, sidebar active */
+	--bleu-nuit-profond: #011325;
+	--bronze-rgb: 165, 130, 65;
+	--or-konishi-rgb: 234, 178, 27;
+	--bleu-nuit-rgb: 1, 19, 37;
+	--bleu-nuit-profond-rgb: 1, 19, 37;
+	--rouge-vif: #a58241; /* alias historique CTA */
+	--rouge-sombre: #011325; /* alias historique fonds sombres */
 	--noir: #000000; /* texte principal */
-	--blanc-casse: #f5f5f2; /* fond de page */
+	--blanc-casse: #ffffff; /* fond de page */
 	--blanc-pur: #ffffff; /* surfaces cards, formulaires */
 
 	/* Sémantiques thème (light) */
-	--surface-dark: #000000; /* sidebar, btn-secondary */
+	--surface-dark: #011325; /* sidebar, btn-secondary */
 	--topbar-bg: #ffffff;
-	--border-color: #e5e9ee;
+	--border-color: rgba(1, 19, 37, 0.14);
 
 	/* Utilitaires */
-	--gris: rgba(0, 0, 0, 0.62); /* textes secondaires */
-	--vert-dispo: #2d9e5a; /* statut disponible */
+	--gris: rgba(1, 19, 37, 0.66); /* textes secondaires */
+	--vert-dispo: #a58241; /* statut disponible */
 	--sidebar-w: 64px;
 	--sidebar-open-w: 280px;
 	--topbar-h: 60px;

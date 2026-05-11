@@ -31,7 +31,7 @@
 .btn--outline {
 	background: transparent;
 	color: var(--gris);
-	border-color: #d0d7de;
+	border-color: var(--border-color);
 }
 .btn--outline:hover {
 	background: rgba(0, 0, 0, 0.06);

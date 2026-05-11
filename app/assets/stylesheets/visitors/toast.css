@@ -63,8 +63,8 @@
 }
 
 .toast--alert .toast__icon {
-	background: rgba(230, 0, 0, 0.15);
-	color: #e60000;
+	background: rgba(165, 130, 65, 0.15);
+	color: #a58241;
 }
 
 /* ── Message ────────────────────────────────────────────────────────────── */
@@ -110,7 +110,7 @@
 }
 
 .toast--alert .toast__progress {
-	background: #e60000;
+	background: #a58241;
 }
 
 /* ── Animations ─────────────────────────────────────────────────────────── */

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   konishi.css  Organism konishi-band Koi's Story V3
+   konishi.css  Organism konishi-band Koi's Story V4
    ========================================================================== */
 
 /* ── KONISHI BAND ────────────────────────────────────────────────────── */
@@ -90,7 +90,7 @@
 	inset: 0;
 	background: radial-gradient(
 		circle at center,
-		rgba(99, 15, 15, 0.25) 0%,
+		rgba(1, 19, 37, 0.25) 0%,
 		transparent 70%
 	);
 }

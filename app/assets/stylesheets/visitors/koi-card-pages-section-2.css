@@ -43,8 +43,8 @@
 	border-color: var(--c-wa);
 }
 .koi-card-cta--primary:hover {
-	background: #1fba5a;
-	border-color: #1fba5a;
+	background: #25d366;
+	border-color: #25d366;
 	transform: translateY(-1px);
 }
 .koi-card-cta--secondary {

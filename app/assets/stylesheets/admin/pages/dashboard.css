@@ -28,7 +28,7 @@
 .dashboard-feed {
 	display: grid;
 	gap: 1px;
-	background: #f0f2f5;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.06);
 }
 
 .dashboard-item {

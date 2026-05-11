@@ -10,7 +10,7 @@
 /* ── CONTACT RAPIDE (home) ───────────────────────────────────────── */
 .contact-quick {
 	padding: var(--sp-20) var(--sp-10);
-	background: rgba(245, 245, 242, 0.9);
+	background: var(--w-90);
 }
 .contact-quick__inner {
 	max-width: var(--max-width);
@@ -78,7 +78,7 @@
 	gap: var(--sp-3);
 	padding: var(--sp-4);
 	background: rgba(255, 255, 255, 0.6);
-	border: 1px solid rgba(99, 15, 15, 0.12);
+	border: 1px solid rgba(1, 19, 37, 0.12);
 	border-radius: var(--r-md);
 }
 .contact-form__human-label {
@@ -114,8 +114,8 @@
 	margin-top: var(--sp-6);
 }
 .contact-quick__wa .btn--wa:hover {
-	background: #1fba5a;
-	border-color: #1fba5a;
+	background: #25d366;
+	border-color: #25d366;
 	box-shadow: none;
 }
 

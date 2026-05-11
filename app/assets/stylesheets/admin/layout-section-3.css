@@ -35,7 +35,7 @@
 	color: var(--noir);
 }
 .breadcrumb .sep {
-	color: #ccc;
+	color: rgba(var(--bleu-nuit-profond-rgb), 0.18);
 }
 .breadcrumb .current {
 	color: var(--noir);

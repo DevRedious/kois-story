@@ -1,6 +1,6 @@
 /* Split from VISITORS/assets/css/shop.css - section 1/2 */
 /* ==========================================================================
-   shop.css  Molecule shop-card + Organism shop-section Koi's Story V3
+   shop.css  Molecule shop-card + Organism shop-section Koi's Story V4
    ========================================================================== */
 
 /* ── SHOP CARD ───────────────────────────────────────────────────────── */
@@ -107,7 +107,7 @@
 
 /* ── SHOP SECTION ────────────────────────────────────────────────────── */
 .shop-section {
-	background: rgba(245, 245, 242, 0.9);
+	background: var(--w-90);
 }
 
 .shop-section__inner {

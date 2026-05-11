@@ -48,13 +48,13 @@
 }
 
 .avatar-gris {
-	background: #e8ecf0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.08);
 	color: var(--gris);
 }
 
 .koi-thumb {
 	border-radius: 6px;
-	background: #e8ecf0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.08);
 	display: flex;
 	align-items: center;
 	justify-content: center;

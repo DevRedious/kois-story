@@ -54,7 +54,7 @@ body.login-page > .login-theme-switcher {
 	width: 300px;
 	padding: 28px 25px;
 	background-color: var(--blanc-pur);
-	box-shadow: 0 15px 60px rgba(230, 0, 0, 0.2);
+	box-shadow: 0 15px 60px rgba(var(--or-konishi-rgb), 0.2);
 	outline: 1px solid var(--border-color);
 	border-radius: 10px;
 }
