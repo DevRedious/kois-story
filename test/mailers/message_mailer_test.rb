@@ -47,7 +47,7 @@ class MessageMailerTest < ActionMailer::TestCase
     assert_match "spams", mail.text_part.body.to_s
     assert_includes mail.text_part.body.to_s, messages(:one).contact_reference
     assert_includes mail.html_part.body.to_s, "Koi's Story"
-    assert_includes mail.html_part.body.to_s, "https://kois-story.test/logo_bg_circle_dark.png"
+    assert_includes mail.html_part.body.to_s, "https://kois-story.test/logo_bg_circle_dark_v2.png"
   ensure
     ENV["ADMIN_EMAIL"] = original_admin_email
     ENV["MAILER_FROM"] = original_mailer_from
