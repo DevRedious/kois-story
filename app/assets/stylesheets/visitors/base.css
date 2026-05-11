@@ -41,7 +41,7 @@ body::before {
 	position: fixed;
 	inset: 0;
 	z-index: -2;
-	background: url("bg_sakura.png") center / cover no-repeat;
+	background: url("/bg_sakura.avif") center / cover no-repeat;
 	filter: saturate(0.28) contrast(0.82) brightness(1.15) sepia(0.1);
 }
 /* Couche 2 : voile crème chaud + grain fibres papier */
