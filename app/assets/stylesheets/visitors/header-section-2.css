@@ -37,7 +37,9 @@
 	box-shadow: 0 2px 12px rgba(234, 178, 27, 0.24);
 }
 .header__nav a:hover,
-.dropdown-toggle:hover,
+.dropdown-toggle:hover {
+	color: var(--c-gold);
+}
 .header__nav a.active:hover,
 .dropdown-toggle.active:hover {
 	color: var(--c-black);

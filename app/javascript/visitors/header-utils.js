@@ -21,22 +21,31 @@ export const createLifecycle = () => {
 	};
 };
 
+export const setIndicatorFrame = (indicator, x, width) => {
+	if (!indicator) return;
+	indicator.style.setProperty(
+		"--nav-indicator-x",
+		`${x}px`,
+	);
+	indicator.style.width = `${width}px`;
+	indicator.style.opacity = "1";
+};
+
 export const moveIndicator = (container, indicator, element) => {
 	if (!container || !indicator || !element) return;
 
 	const containerRect = container.getBoundingClientRect();
 	const elementRect = element.getBoundingClientRect();
-	indicator.style.setProperty(
-		"--nav-indicator-x",
-		`${elementRect.left - containerRect.left}px`,
+	setIndicatorFrame(
+		indicator,
+		elementRect.left - containerRect.left,
+		elementRect.width,
 	);
-	indicator.style.width = `${elementRect.width}px`;
 	const nextPosition =
 		indicator.dataset.gradientPosition === "end" ? "0% 0%" : "100% 100%";
 	indicator.dataset.gradientPosition =
 		nextPosition === "100% 100%" ? "end" : "start";
 	indicator.style.backgroundPosition = nextPosition;
-	indicator.style.opacity = "1";
 };
 
 export const findHeroTrigger = () =>

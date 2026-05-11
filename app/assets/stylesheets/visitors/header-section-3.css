@@ -121,6 +121,7 @@
 .header__nav.open > ul > li > a:hover,
 .header__nav.open > ul > li > .dropdown-toggle:hover {
 	background: var(--w-06);
+	color: var(--c-white);
 }
 
 .header__nav.open > ul > li > a.active,
@@ -131,6 +132,10 @@
 		var(--c-bronze) 50%,
 		var(--c-gold) 100%
 	);
+	color: var(--c-black);
+}
+.header__nav.open > ul > li > a.active:hover,
+.header__nav.open > ul > li > .dropdown-toggle.active:hover {
 	color: var(--c-black);
 }
 
