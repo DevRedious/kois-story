@@ -1,7 +1,7 @@
 class ApplicationMailer < ActionMailer::Base
   default from: -> { ENV.fetch("MAILER_FROM", "Koi's Story <no-reply@kois-story.fr>") }
   layout "mailer"
-  helper_method :app_base_url, :docs_asset_url
+  helper_method :app_base_url, :docs_asset_url, :public_asset_url
 
   def app_base_url
     host = ENV.fetch("APP_HOST", "").strip
@@ -16,6 +16,12 @@ class ApplicationMailer < ActionMailer::Base
     return "" if app_base_url.blank?
 
     "#{app_base_url}/docs/assets/#{ERB::Util.url_encode(filename)}"
+  end
+
+  def public_asset_url(filename)
+    return "" if app_base_url.blank?
+
+    "#{app_base_url}/#{ERB::Util.url_encode(filename)}"
   end
 
   private
