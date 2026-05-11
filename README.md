@@ -1,12 +1,13 @@
 <div align="center">
-  <img src="docs/assets/LOGO MANU FINI 2.png" alt="Koi's Story Logo" width="200">
+  <img src="public/logo_bg_circle_dark_v2.png" alt="Koi's Story Logo" width="200">
 
   <p align="center">
     <img src="https://img.shields.io/badge/Rails-8.1-CC0000?logo=rubyonrails&logoColor=white" alt="Ruby on Rails">
-    <img src="https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite&logoColor=white" alt="SQLite">
+    <img src="https://img.shields.io/badge/PostgreSQL-17-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
+    <img src="https://img.shields.io/badge/Docker-Desktop-2496ED?logo=docker&logoColor=white" alt="Docker Desktop">
     <img src="https://img.shields.io/badge/Hotwire-Turbo%20%2B%20Stimulus-9B59B6" alt="Hotwire">
     <img src="https://img.shields.io/badge/Auth-Devise-orange" alt="Devise">
-    <img src="https://img.shields.io/badge/Linter-Biome-60A5FA?logo=biome&logoColor=white" alt="Biome">
+    <img src="https://img.shields.io/badge/Lint-RuboCop%20%2B%20Biome-60A5FA" alt="RuboCop and Biome">
   </p>
 
   <p align="center">
@@ -39,17 +40,20 @@
 - Pre-filled "Order via WhatsApp" button
 - Photo & video gallery of the breeding farm
 - Contact form with email notification
-- Admin back-office (koi CRUD, message management)
+- Admin back-office for kois, products, clients, orders, payments, messages, and newsletter exports
+- Docker Desktop local stack with public/admin route isolation and a shared PostgreSQL database
 
 ## Project Progress
 
-| Phase              | Status                                                                                            |
-| ------------------ | ------------------------------------------------------------------------------------------------- |
-| Planning & Design  | ![100%](https://geps.dev/progress/100?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e) |
-| HTML/CSS Prototype | ![83%](https://geps.dev/progress/83?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
-| Rails Integration  | ![70%](https://geps.dev/progress/70?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
-| Tests & QA         | ![35%](https://geps.dev/progress/35?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
-| Production Deploy  | ![20%](https://geps.dev/progress/20?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+| Phase                       | Status                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------- |
+| Planning & Design           | ![100%](https://geps.dev/progress/100?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e) |
+| Rails Public/Admin App      | ![90%](https://geps.dev/progress/90?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+| Local Docker Stack          | ![100%](https://geps.dev/progress/100?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e) |
+| Tests & QA                  | ![80%](https://geps.dev/progress/80?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+| Staging & Production Deploy | ![45%](https://geps.dev/progress/45?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+
+Current status: the Rails app is the active implementation, the local Docker stack runs `public`, `admin`, and `db` services, and the smoke script validates route isolation plus shared database access. Staging and production are still being prepared around the `DEV` branch, Coolify, Cloudflare DNS, and the future `admin.kois-story.com` service split.
 
 ## Repository Status
 
@@ -71,18 +75,17 @@ Create `.env.local` from `.env.example`, then start the complete local stack:
 
 ```bash
 docker compose build
-docker compose up -d
-docker compose exec admin bin/rails db:migrate
-docker compose exec admin bin/rails db:seed
+docker compose up -d --wait db public admin
+docker compose exec -T admin bin/rails db:seed
 ruby script/docker_smoke.rb
-docker compose exec admin bash -lc 'unset DATABASE_URL; KOIS_APP_ROLE=all bin/rails test'
-docker compose exec admin bin/rubocop
+docker compose run --rm -e KOIS_APP_ROLE=all -e RAILS_ENV=test public bash -lc "unset DATABASE_URL; bin/rails test"
+docker compose exec -T public bundle exec rubocop
 ```
 
 Local services:
 
-- public site: `http://localhost:3000`
-- admin site: `http://localhost:3001`
+- public site: `http://localhost:3000` (`KOIS_APP_ROLE=public`)
+- admin site: `http://localhost:3001` (`KOIS_APP_ROLE=admin`)
 - PostgreSQL: `127.0.0.1:5433`
 
 The Docker smoke script checks the public/admin route split, shared database, service health, and LF endings for Rails binstubs.
@@ -144,7 +147,7 @@ Project history is tracked in `CHANGELOG.md`.
 | Linter/Formatter | RuboCop + Biome                                 |
 | Image upload     | CarrierWave + Cloudinary                        |
 | Emails           | ActionMailer + Resend SMTP                      |
-| Hosting          | VPS via Kamal                                   |
+| Hosting          | Coolify-ready Docker on VPS; Kamal config kept as legacy reference |
 
 ## Team
 
