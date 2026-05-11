@@ -104,9 +104,10 @@ The Docker smoke script checks the public/admin route split, shared database, se
 ## Repository Documents
 
 - `docs/README.md` for the documentation index
-- `docs/todo.md` for execution tracking
+- `docs/development/local-docker.md` for the official Docker Desktop workflow
+- `docs/deployment/coolify.md` for Coolify deployment planning
 - `docs/roadmap.md` for milestones
-- `docs/stack.md` for the planned stack
+- `docs/stack.md` for the current stack
 - `CONTRIBUTING.md` for collaboration rules
 - `CONTRIBUTORS.md` for the contribution log
 - `SECURITY.md` for vulnerability reporting

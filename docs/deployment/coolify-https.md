@@ -1,90 +1,116 @@
-# Activer HTTPS avec Coolify
+# Activer HTTPS avec Coolify et Cloudflare
 
-Ce document decrit les etapes appliquees pour passer Koi's Story de HTTP a
-HTTPS sur Coolify.
+Ce document decrit la configuration HTTPS attendue pour les services Koi's
+Story geres par Coolify, avec Cloudflare devant le VPS `137.74.112.197`.
 
 ## Contexte
 
-Application Coolify :
+Les enregistrements DNS Cloudflare existent pour :
 
 ```text
-kois-story
+dev.kois-story.com   -> 137.74.112.197
+admin.kois-story.com -> 137.74.112.197
 ```
 
-URL de test utilisee :
+Ces domaines servent a valider staging et admin avant toute modification du
+public existant. Le domaine principal ne doit pas etre bascule tant que
+`dev.kois-story.com` et `admin.kois-story.com` ne sont pas valides.
+
+## Responsabilites
+
+| Couche | Role |
+|---|---|
+| Cloudflare DNS | Pointe les hosts vers le VPS. |
+| Proxy Cloudflare | Peut etre active pour proteger et proxyfier le trafic. |
+| Coolify/Traefik | Termine HTTPS et route vers le bon conteneur. |
+| Rails | Recoit du HTTP interne sur le port `80`. |
+
+Rails ne porte pas le certificat directement. Le conteneur expose `80`; Coolify
+gere l'entree HTTPS.
+
+## DNS Cloudflare
+
+Verifier les records :
 
 ```text
-lnvi1e1noiilgzfjsnwe7luj.137.74.112.197.sslip.io
+Type: A
+Name: dev
+Value: 137.74.112.197
+Proxy: active ou DNS only selon la phase de validation
 ```
-
-Objectif :
 
 ```text
-http://... -> redirection vers https://...
-https://... -> 200 OK
-Coolify -> running:healthy
+Type: A
+Name: admin
+Value: 137.74.112.197
+Proxy: active ou DNS only selon la phase de validation
 ```
+
+Pendant le diagnostic SSL, `DNS only` peut aider a isoler Coolify. En cible
+normale, le proxy Cloudflare peut etre active si le mode SSL Cloudflare est
+compatible avec le certificat Coolify.
+
+## Mode SSL Cloudflare
+
+Utiliser un mode qui chiffre aussi le trajet Cloudflare -> VPS. La cible
+recommandee est :
+
+```text
+SSL/TLS encryption mode: Full (strict)
+```
+
+Precondition : Coolify doit avoir un certificat valide pour le host concerne.
+Eviter `Flexible`, qui peut provoquer des boucles de redirection avec
+`FORCE_SSL=true`.
 
 ## Configuration Coolify
 
-Dans Coolify :
+Dans chaque application Coolify :
 
-1. Ouvrir l'application `kois-story`.
-2. Aller dans `Configuration > General`.
-3. Remplacer le domaine HTTP par le domaine HTTPS.
-4. Sauvegarder.
+1. Ouvrir `Configuration > General`.
+2. Ajouter le domaine avec le schema `https://`.
+3. Garder le port expose sur `80`.
+4. Garder le healthcheck interne en HTTP sur `/up`.
+5. Redeployer apres changement de domaine ou de variable SSL.
 
-Valeur appliquee pendant la phase de test :
-
-```text
-https://lnvi1e1noiilgzfjsnwe7luj.137.74.112.197.sslip.io
-```
-
-Pour un domaine final, utiliser par exemple :
+Exemples :
 
 ```text
-https://kois-story.fr
-https://www.kois-story.fr
+https://dev.kois-story.com
+https://admin.kois-story.com
 ```
 
-Garder :
-
-```text
-Port expose: 80
-Healthcheck scheme: http
-Healthcheck path: /up
-```
-
-Rails reste en HTTP dans le conteneur. Coolify/Traefik gere le certificat HTTPS
-en entree, puis transmet la requete au conteneur.
+Ne pas remplacer le domaine public existant pendant cette phase.
 
 ## Variables Rails
 
-Dans `Configuration > Environment Variables`, passer ces variables a :
+Variables par service :
 
 ```text
-APP_HOST=lnvi1e1noiilgzfjsnwe7luj.137.74.112.197.sslip.io
+APP_HOST=dev.kois-story.com
+PUBLIC_SITE_URL=https://dev.kois-story.com
 FORCE_SSL=true
 ASSUME_SSL=true
 ```
 
-Pour le domaine final :
-
 ```text
-APP_HOST=kois-story.fr
+APP_HOST=admin.kois-story.com
+PUBLIC_SITE_URL=https://dev.kois-story.com
 FORCE_SSL=true
 ASSUME_SSL=true
 ```
 
 Role :
 
-- `APP_HOST` : host utilise par Rails pour les URLs absolues et les emails.
-- `FORCE_SSL=true` : active `config.force_ssl` et redirige HTTP vers HTTPS.
+- `APP_HOST` : host canonique du service, sans schema.
+- `PUBLIC_SITE_URL` : URL absolue du public referencee par emails ou liens.
+- `FORCE_SSL=true` : active les redirections HTTPS Rails.
 - `ASSUME_SSL=true` : indique a Rails qu'il est derriere un proxy HTTPS.
 
 ## Cote Rails
 
-La configuration existe dans `config/environments/production.rb` :
+La production doit garder `/up` hors redirection SSL pour ne pas casser le
+healthcheck Coolify :
 
 ```ruby
 force_ssl = ENV["FORCE_SSL"] == "true"
@@ -93,47 +119,40 @@ config.force_ssl = force_ssl
 config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } } if force_ssl
 ```
 
-L'exclusion de `/up` est importante : elle evite que le healthcheck interne
-Coolify soit casse par une redirection HTTPS.
+## Ordre de validation
 
-## Rededeployer
-
-Apres avoir change le domaine et les variables :
-
-1. Lancer `Redeploy` dans Coolify.
-2. Attendre que le rolling update se termine.
-3. Verifier que Coolify indique `running:healthy`.
-
-Le deploiement valide a affiche :
-
-```text
-New container is healthy.
-Rolling update completed.
-```
+1. Valider `dev.kois-story.com` sur la branche `DEV`.
+2. Valider `admin.kois-story.com` avec son role applicatif.
+3. Verifier certificats, redirections, login admin, emails et liens publics.
+4. Garder le public actuel inchange tant que ces validations ne sont pas OK.
+5. Planifier ensuite la bascule du domaine principal vers le service public.
 
 ## Verification
 
 Commandes PowerShell :
 
 ```powershell
-$hostName = "lnvi1e1noiilgzfjsnwe7luj.137.74.112.197.sslip.io"
+$hostName = "dev.kois-story.com"
 Invoke-WebRequest "https://$hostName/up" -UseBasicParsing
 Invoke-WebRequest "https://$hostName" -UseBasicParsing
 Invoke-WebRequest "http://$hostName" -UseBasicParsing -MaximumRedirection 0
 ```
 
-Resultat obtenu :
+Resultat attendu :
 
 ```text
-https://.../up -> 200
-https://.../ -> 200
-http://.../ -> 302 vers https://.../
-Coolify -> running:healthy
+https://<host>/up -> 200
+https://<host>/   -> 200 ou page applicative attendue
+http://<host>/    -> redirection vers https://<host>/
+Coolify           -> running:healthy
 ```
+
+Repeter les checks pour `admin.kois-story.com`.
 
 ## Points d'attention
 
-- Ne pas mettre `APP_HOST` avec `https://`; Rails attend seulement le host.
+- Ne pas mettre `APP_HOST` avec `https://`.
 - Garder le healthcheck Coolify en `http` sur `/up`.
-- Si un domaine final remplace `sslip.io`, mettre a jour `APP_HOST`.
-- Si `FORCE_SSL=true` casse le healthcheck, verifier l'exclusion `/up`.
+- Eviter le mode Cloudflare `Flexible` avec `FORCE_SSL=true`.
+- Si le proxy Cloudflare masque une erreur, tester temporairement en `DNS only`.
+- Ne pas changer le domaine principal avant validation staging/admin.
