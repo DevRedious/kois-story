@@ -26,8 +26,16 @@ export const moveIndicator = (container, indicator, element) => {
 
 	const containerRect = container.getBoundingClientRect();
 	const elementRect = element.getBoundingClientRect();
-	indicator.style.left = `${elementRect.left - containerRect.left}px`;
+	indicator.style.setProperty(
+		"--nav-indicator-x",
+		`${elementRect.left - containerRect.left}px`,
+	);
 	indicator.style.width = `${elementRect.width}px`;
+	const nextPosition =
+		indicator.dataset.gradientPosition === "end" ? "0% 0%" : "100% 100%";
+	indicator.dataset.gradientPosition =
+		nextPosition === "100% 100%" ? "end" : "start";
+	indicator.style.backgroundPosition = nextPosition;
 	indicator.style.opacity = "1";
 };
 

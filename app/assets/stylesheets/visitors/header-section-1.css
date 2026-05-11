@@ -92,16 +92,28 @@
 /* ── NAV INDICATOR ────────────────────────────────────────────────────── */
 .nav__indicator {
 	position: absolute;
+	left: 0;
 	top: 50%;
-	transform: translateY(-50%);
-	height: 36px;
+	transform: translate3d(var(--nav-indicator-x, 0), -50%, 0);
+	height: 38px;
 	border-radius: var(--r-full);
-	background: rgba(255, 255, 255, 0.1);
+	background: linear-gradient(
+		135deg,
+		var(--c-gold) 0%,
+		var(--c-bronze) 50%,
+		var(--c-gold) 100%
+	);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	border: 1px solid rgba(234, 178, 27, 0.72);
+	box-shadow: 0 6px 20px rgba(234, 178, 27, 0.24);
 	transition:
-		left 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
-		width 320ms cubic-bezier(0.34, 1.56, 0.64, 1),
-		opacity var(--t-fast);
+		transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+		width 420ms cubic-bezier(0.22, 1, 0.36, 1),
+		opacity var(--t-fast),
+		background-position 600ms linear;
 	pointer-events: none;
 	opacity: 0;
 	z-index: 0;
+	will-change: transform, width;
 }

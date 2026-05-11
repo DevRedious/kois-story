@@ -123,9 +123,15 @@
 	background: var(--w-06);
 }
 
-.header__nav.open > ul > li > a.active {
-	background: var(--c-wine);
-	color: var(--c-white);
+.header__nav.open > ul > li > a.active,
+.header__nav.open > ul > li > .dropdown-toggle.active {
+	background: linear-gradient(
+		135deg,
+		var(--c-gold) 0%,
+		var(--c-bronze) 50%,
+		var(--c-gold) 100%
+	);
+	color: var(--c-black);
 }
 
 .nav__indicator {

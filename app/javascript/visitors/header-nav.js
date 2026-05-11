@@ -26,15 +26,23 @@ export const bindHeaderNav = ({ nav, navIndicator, lifecycle }) => {
 		}
 	});
 
-	const activeLink = nav.querySelector("ul > li > a.active");
+	const activeLink = nav.querySelector(
+		"ul > li > a.active, ul > li > .dropdown-toggle.active",
+	);
 	const syncHeaderIndicator = () => {
 		if (!navIndicator) return;
 		if (window.innerWidth <= 1279) {
+			nav.classList.remove("header__nav--indicator-ready");
 			navIndicator.style.opacity = "0";
 			return;
 		}
-		if (activeLink) moveIndicator(nav, navIndicator, activeLink);
-		else navIndicator.style.opacity = "0";
+		if (activeLink) {
+			nav.classList.add("header__nav--indicator-ready");
+			moveIndicator(nav, navIndicator, activeLink);
+		} else {
+			nav.classList.remove("header__nav--indicator-ready");
+			navIndicator.style.opacity = "0";
+		}
 	};
 
 	syncHeaderIndicator();
@@ -42,9 +50,9 @@ export const bindHeaderNav = ({ nav, navIndicator, lifecycle }) => {
 	list?.querySelectorAll(":scope > li").forEach((item) => {
 		const hoverTarget =
 			item.querySelector(".dropdown-toggle") ?? item.querySelector("a") ?? item;
-		lifecycle.listen(item, "mouseenter", () =>
-			moveIndicator(nav, navIndicator, hoverTarget),
-		);
+		lifecycle.listen(item, "mouseenter", () => {
+			if (window.innerWidth > 1279) moveIndicator(nav, navIndicator, hoverTarget);
+		});
 	});
 
 	lifecycle.listen(list, "mouseleave", () => {
