@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # Devise — registration disabled, admin login only
   devise_for :users, skip: [ :registrations ] if admin_routes
+  post "/users/local_admin_sign_in", to: "local_admin_sessions#create", as: :local_admin_session if admin_routes
 
   if public_routes
     # Public — read only, no account required

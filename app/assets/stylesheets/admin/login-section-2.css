@@ -69,7 +69,8 @@
 }
 
 .dev-access-wrap {
-	margin-top: 12px;
+	max-width: 230px;
+	margin: 12px auto 0;
 }
 
 .dev-access-wrap[hidden] {

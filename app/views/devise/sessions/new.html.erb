@@ -40,4 +40,10 @@
       </div>
     </div>
   <% end %>
+
+  <% if Rails.env.development? %>
+    <div class="dev-access-wrap">
+      <%= button_to "Accès admin local", local_admin_session_path, method: :post, class: "dev-access-btn", form: { data: { turbo: false } } %>
+    </div>
+  <% end %>
 </div>

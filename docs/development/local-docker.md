@@ -48,6 +48,10 @@ acceptées pour le démarrage Docker de base.
 | Admin | http://localhost:3001 | `KOIS_APP_ROLE=admin` | Back-office et authentification admin |
 | PostgreSQL | `127.0.0.1:5433` | n/a | Port Windows exposé vers le service `db` |
 
+En local, la page de connexion admin affiche aussi un bouton **Accès admin
+local**. Il crée ou réutilise `admin.local@kois-story.test`, puis ouvre
+directement le back-office. Ce raccourci est limité à `Rails.env.development?`.
+
 Les services `public` et `admin` partagent la même base PostgreSQL Docker.
 Le routage reste séparé par rôle : les routes admin ne doivent pas répondre sur
 `:3000`, et les routes publiques ne doivent pas répondre sur `:3001` quand elles
