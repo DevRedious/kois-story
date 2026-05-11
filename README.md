@@ -63,26 +63,35 @@ The Rails MVP includes public pages, a filterable koi catalog, koi detail pages,
 
 The historical THP/prototype constraints are kept only as project memory. New work should target Rails first; archived prototypes are reference material, not parallel surfaces to maintain.
 
-## Environment
+## Local Development
 
-An example configuration file is available at `.env.example`.
+Docker Desktop is the official local runtime. Do not run the Rails app directly on native Windows for team development.
 
-Required production values include Cloudinary credentials, Resend SMTP credentials, `ADMIN_EMAIL`, `MAILER_FROM`, `APP_HOST`, `OTP_SECRET_KEY`, `ADMIN_PASSWORD`, and `WHATSAPP_PHONE`.
-
-Useful local commands:
+Create `.env.local` from `.env.example`, then start the complete local stack:
 
 ```bash
-bundle install
-bin/rails db:prepare
-bin/rails test
-bin/rubocop
-npx biome check .
+docker compose build
+docker compose up -d
+docker compose exec admin bin/rails db:migrate
+docker compose exec admin bin/rails db:seed
+ruby script/docker_smoke.rb
+docker compose exec admin bash -lc 'unset DATABASE_URL; KOIS_APP_ROLE=all bin/rails test'
+docker compose exec admin bin/rubocop
 ```
+
+Local services:
+
+- public site: `http://localhost:3000`
+- admin site: `http://localhost:3001`
+- PostgreSQL: `127.0.0.1:5433`
+
+The Docker smoke script checks the public/admin route split, shared database, service health, and LF endings for Rails binstubs.
 
 ## Working Standards
 
-- `Main` is the production branch
+- `main` is the production branch
 - `DEV` is the integration branch
+- local/staging work must target `DEV` through pull requests
 - contributor branches are `Morgan`, `Romain`, and `Valentin`; **Cursor**, **Claude**, and **Gemini** are acknowledged as tooling contributors in `CONTRIBUTORS.md`
 - all code and `README.md` content must stay in English
 - routes must remain RESTful
@@ -99,72 +108,11 @@ npx biome check .
 - `CONTRIBUTORS.md` for the contribution log
 - `SECURITY.md` for vulnerability reporting
 
-## Executive Summary
+## Product Overview
 
-### Presentation
+Koi's Story is a premium digital showcase for Konishi koi carp. The public site helps visitors browse available koi and start a direct WhatsApp conversation. The admin app manages stock, products, clients, orders, payments, and contact messages.
 
-Koi's Story is a premium digital showcase dedicated to the breeding and sale of exceptional koi carp. Led by Mathilde and Emmanuel, this farm stands out for its exclusive affiliation with the prestigious Konishi lineage. The project aims to transform a market traditionally based on word-of-mouth into a modern and immersive digital experience, matching the nobility of these specimens.
-
-### Business Model
-
-The model is based on the sale of high-quality specimens. The platform facilitates conversion by allowing collectors to browse a filterable catalog (variety, size, price) and initiate the purchase through a direct connection via WhatsApp. This channel favors personalized advice and secure transactions for high-value products, bypassing automated payment tunnels.
-
-### Our Clients
-
-Our clients are koi carp enthusiasts, ranging from beginners to seasoned collectors. They seek exclusivity, traceability, and the aesthetic quality guaranteed by the Konishi lineage. This demanding audience prefers mobile consultation and direct contact with the breeder.
-
-### Vision
-
-In 3 years, Koi's Story aims to become the essential digital reference for acquiring Konishi koi carp in France. We aim to consolidate our online presence and continuously optimize the user experience to solidify our position as a leader in this premium niche segment.
-
-## User Journey
-
-### 1. Visitor Journey (Buyer)
-
-The goal is to allow the user to find a fish and contact the seller in **less than 3 clicks**.
-
-- **Step 1: Discovery & Home (/)**: Arrival on an immersive landing page (visual hero of a pond).
-- **Step 2: Catalog Exploration (/catalogue)**: Browsing product cards with dynamic filtering (Hotwire) by variety, size, and price.
-- **Step 3: Product Detail View (/catalogue/:id)**: Examining HD photos and technical characteristics (size, estimated age, description).
-- **Step 4: Contact (WhatsApp)**: One-click "Order via WhatsApp" button opening a pre-filled message with koi reference.
-
-### 2. Administrator Journey (Manager)
-
-The goal is to provide a simplified interface for daily stock and contact management.
-
-- **Step 1: Authentication (/users/sign_in)**: Secure access via Devise for administrators only.
-- **Step 2: Dashboard**: Overview of received messages via the contact form and quick stock statistics.
-- **Step 3: Stock Management (CRUD)**: Creating new listings (name, variety, price, size, Konishi badge), uploading photos (Cloudinary), and updating status (Available/Sold).
-- **Step 4: Message Management**: Reading and tracking contact requests received by email/form.
-
-### 3. Journey Visualization
-
-#### Visitor Flow
-
-```mermaid
-graph TD
-    A[Home /] -->|1 click| B[Catalog /catalogue]
-    B -->|Hotwire Filters| B
-    B -->|2 clicks| C[Product Page /catalogue/:id]
-    C -->|Reassurance| D[Our Farm /farm]
-    D --> C
-    C -->|3 clicks| E[WhatsApp Button]
-    E --> F{Conversation wa.me}
-    F -->|Advice| G[Sale finalized]
-```
-
-#### Administrator Flow
-
-```mermaid
-graph LR
-    Login[Devise Login] --> Dash[Admin Dashboard]
-    Dash --> Messages[Message Management]
-    Dash --> CRUD[Stock Management]
-    CRUD --> Create[Add Koi]
-    CRUD --> Update[Edit / Sell]
-    CRUD --> Delete[Delete]
-    Create --> Cloudinary[Upload HQ Images]
-```
+The public and admin surfaces share one database but run as separate local services. In deployment, public traffic should stay on the main domain while admin traffic moves to `admin.kois-story.com`.
 
 ## Wireframes
 
@@ -191,7 +139,7 @@ Project history is tracked in `CHANGELOG.md`.
 | Back-end         | Ruby on Rails 8.1 (RESTful, MVC)                |
 | Front-end        | Hotwire Turbo + Stimulus + importmap            |
 | CSS              | Propshaft assets from the Atomic Design modules |
-| Database         | SQLite                                          |
+| Database         | PostgreSQL in Docker local stack; SQLite legacy default |
 | Authentication   | Devise + devise-two-factor                      |
 | Linter/Formatter | RuboCop + Biome                                 |
 | Image upload     | CarrierWave + Cloudinary                        |

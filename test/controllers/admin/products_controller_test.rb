@@ -52,4 +52,13 @@ class Admin::ProductsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to admin_products_url
   end
+
+  test "should not delete product linked to an order" do
+    assert_no_difference("Product.count") do
+      delete admin_product_url(products(:two))
+    end
+
+    assert_redirected_to admin_products_url
+    assert_equal "This product is linked to an order and cannot be deleted.", flash[:alert]
+  end
 end

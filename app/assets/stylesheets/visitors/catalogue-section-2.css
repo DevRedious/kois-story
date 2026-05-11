@@ -104,8 +104,9 @@
 	max-width: none;
 	margin: 0;
 	padding: var(--sp-3) var(--sp-4);
-	flex-wrap: nowrap;
-	overflow-x: auto;
+	gap: var(--sp-2);
+	flex-wrap: wrap;
+	overflow-x: visible;
 	scrollbar-width: none;
 	-webkit-overflow-scrolling: touch;
 }
@@ -113,11 +114,14 @@
 	display: none;
 }
 .filter-bar__inner {
-	cursor: grab;
+	cursor: default;
 }
 .filter-bar__inner--dragging {
 	cursor: grabbing;
 	user-select: none;
+}
+.filter-bar__sep {
+	display: none;
 }
 .filter-pill,
 .filter-toggle,
@@ -139,8 +143,12 @@
 	.filter-bar__inner {
 		max-width: var(--max-width);
 		margin: 0 auto;
+		gap: var(--sp-4);
 		flex-wrap: wrap;
 		overflow-x: visible;
+	}
+	.filter-bar__sep {
+		display: block;
 	}
 	.filter-pill {
 		display: none;

@@ -107,7 +107,7 @@
 	bottom: 0;
 	height: 12px;
 	background-color: currentColor;
-	-webkit-mask: url("/docs/assets/sumi_e.svg") no-repeat center / 100% 100%;
-	mask: url("/docs/assets/sumi_e.svg") no-repeat center / 100% 100%;
+	border-radius: 999px;
 	opacity: 0.8;
+	transform: skewX(-12deg);
 }

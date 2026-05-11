@@ -33,8 +33,11 @@ module Admin
     end
 
     def destroy
-      @product.destroy
-      redirect_to admin_products_path, notice: "Product deleted."
+      if @product.destroy
+        redirect_to admin_products_path, notice: "Product deleted."
+      else
+        redirect_to admin_products_path, alert: "This product is linked to an order and cannot be deleted."
+      end
     rescue ActiveRecord::InvalidForeignKey
       redirect_to admin_products_path, alert: "This product is linked to an order and cannot be deleted."
     end

@@ -33,3 +33,5 @@ Rakefile    text eol=lf
 *.jsx       text eol=lf
 *.html      text eol=lf
 *.erb       text eol=lf
+*.svg       text eol=lf
+*.png       binary
