@@ -17,7 +17,7 @@
 }
 .header__nav a.active,
 .dropdown-toggle.active {
-	background: var(--c-gold);
+	background: linear-gradient(135deg, var(--c-gold) 0%, var(--c-bronze) 100%);
 	color: var(--c-black);
 	border-radius: var(--r-xl);
 	border: 1px solid var(--c-gold);
@@ -30,9 +30,9 @@
 }
 .header__nav a.active:hover,
 .dropdown-toggle.active:hover {
-	background: var(--c-bronze);
+	background: linear-gradient(135deg, var(--c-bronze) 0%, var(--c-gold) 100%);
 	border-color: var(--c-bronze);
-	color: var(--c-white);
+	color: var(--c-black);
 }
 
 /* ── DROPDOWN ────────────────────────────────────────────────────────── */

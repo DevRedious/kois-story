@@ -34,7 +34,7 @@ body {
 .nav-item.active {
 	color: var(--noir);
 	border-left-color: var(--or-konishi);
-	background: var(--or-konishi);
+	background: linear-gradient(90deg, var(--or-konishi) 0%, var(--bronze) 100%);
 	font-weight: 600;
 }
 

@@ -33,9 +33,9 @@
 }
 
 .btn--primary {
-	background: var(--c-bronze);
-	color: var(--c-white);
-	border-color: var(--c-bronze);
+	background: linear-gradient(135deg, var(--c-bronze) 0%, var(--c-gold) 100%);
+	color: var(--c-black);
+	border-color: var(--c-gold);
 	box-shadow: 0 8px 22px rgba(165, 130, 65, 0.24);
 	transition:
 		background var(--t-fast),
@@ -45,9 +45,9 @@
 		transform var(--t-fast);
 }
 .btn--primary:hover {
-	background: var(--c-gold);
+	background: linear-gradient(135deg, var(--c-gold) 0%, var(--c-bronze) 100%);
 	color: var(--c-black);
-	border-color: var(--c-gold);
+	border-color: var(--c-bronze);
 	box-shadow: 0 10px 26px rgba(234, 178, 27, 0.28);
 }
 
