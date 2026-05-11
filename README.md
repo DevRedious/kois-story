@@ -11,12 +11,12 @@
   </p>
 
   <p align="center">
-    <img src="https://img.shields.io/badge/Palette_V3-%E2%80%94-lightgrey" alt="Palette V3">
-    <img src="https://img.shields.io/badge/Rouge_Vif-%23e60000-e60000" alt="#e60000">
-    <img src="https://img.shields.io/badge/Rouge_Sombre-%23630f0f-630f0f" alt="#630f0f">
-    <img src="https://img.shields.io/badge/Noir-%23000000-000000" alt="#000000">
-    <img src="https://img.shields.io/badge/Blanc_Cass%C3%A9-%23f5f5f2-f5f5f2?labelColor=999999" alt="#f5f5f2">
-    <img src="https://img.shields.io/badge/Blanc_Pur-%23ffffff-ffffff?labelColor=999999" alt="#ffffff">
+    <img src="https://img.shields.io/badge/Palette_V4-%E2%80%94-lightgrey" alt="Palette V4">
+    <img src="https://img.shields.io/badge/Bronze-%23a58241-a58241" alt="#a58241">
+    <img src="https://img.shields.io/badge/Konishi_Gold-%23eab21b-eab21b?labelColor=000000" alt="#eab21b">
+    <img src="https://img.shields.io/badge/Deep_Navy-%23011325-011325" alt="#011325">
+    <img src="https://img.shields.io/badge/Black-%23000000-000000" alt="#000000">
+    <img src="https://img.shields.io/badge/White-%23ffffff-ffffff?labelColor=999999" alt="#ffffff">
     <img src="https://img.shields.io/badge/WhatsApp-%2325d366-25d366?logo=whatsapp&logoColor=white" alt="#25d366">
   </p>
 
@@ -117,15 +117,15 @@ Koi's Story is a premium digital showcase for Konishi koi carp. The public site 
 
 The public and admin surfaces share one database but run as separate local services. In deployment, public traffic should stay on the main domain while admin traffic moves to `admin.kois-story.com`.
 
-## Wireframes
+## Brand And Design References
 
-### Home Page
+The current visual source of truth is the Rails application, the V2 logo files in `public/`, and the V4 palette in `public/docs/assets/palette_V4.svg`.
 
-![Home Page Wireframe](docs/design/wireframes/wireframe_accueil.svg)
+The March 2026 wireframes remain useful as planning history, but they are archived references rather than live implementation screenshots:
 
-### Product Page
-
-![Product Page Wireframe](docs/design/wireframes/wireframe_produit.svg)
+- [Home page wireframe](docs/design/wireframes/wireframe_accueil.svg)
+- [Product page wireframe](docs/design/wireframes/wireframe_produit.svg)
+- [Wireframes overview](docs/design/wireframes/wireframes.md)
 
 ## Documentation
 
