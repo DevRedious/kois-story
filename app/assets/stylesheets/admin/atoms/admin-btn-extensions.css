@@ -8,23 +8,27 @@
 }
 
 .btn--success {
-	background: var(--vert-dispo);
-	color: var(--c-white);
-	border-color: var(--vert-dispo);
+	background: var(--bronze);
+	color: var(--blanc-pur);
+	border-color: var(--bronze);
 }
 .btn--success:hover {
-	filter: brightness(1.06);
-	box-shadow: 0 4px 16px rgba(45, 158, 90, 0.35);
+	background: var(--or-konishi);
+	color: var(--noir);
+	border-color: var(--or-konishi);
+	box-shadow: 0 4px 16px rgba(var(--or-konishi-rgb), 0.28);
 }
 
 .btn--danger {
-	background: #dc3545;
-	color: var(--c-white);
-	border-color: #dc3545;
+	background: var(--or-konishi);
+	color: var(--noir);
+	border-color: var(--or-konishi);
 }
 .btn--danger:hover {
-	filter: brightness(1.05);
-	box-shadow: 0 4px 16px rgba(220, 53, 69, 0.35);
+	background: var(--bronze);
+	color: var(--blanc-pur);
+	border-color: var(--bronze);
+	box-shadow: 0 4px 16px rgba(var(--bronze-rgb), 0.28);
 }
 
 /* Contour neutre (ex- btn-outline admin), distinct du btn--ghost bordeaux VISITORS */

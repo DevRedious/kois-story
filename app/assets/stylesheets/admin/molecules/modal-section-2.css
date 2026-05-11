@@ -100,21 +100,25 @@
 
 /* ── Boutons danger / success ──────────────────────────────── */
 .btn--danger {
-	background: var(--rouge-vif);
-	color: #fff;
-	border: 1px solid transparent;
+	background: var(--or-konishi);
+	color: var(--noir);
+	border: 1px solid var(--or-konishi);
 }
 
 .btn--danger:hover {
-	background: var(--bleu-nuit);
+	background: var(--bronze);
+	color: #fff;
+	border-color: var(--bronze);
 }
 
 .btn--success {
 	background: var(--bronze);
 	color: #fff;
-	border: 1px solid transparent;
+	border: 1px solid var(--bronze);
 }
 
 .btn--success:hover {
-	background: var(--bleu-nuit);
+	background: var(--or-konishi);
+	color: var(--noir);
+	border-color: var(--or-konishi);
 }

@@ -32,9 +32,9 @@ body {
 }
 
 .nav-item.active {
-	color: var(--blanc-pur);
-	border-left-color: var(--blanc-pur);
-	background: rgba(255, 255, 255, 0.12);
+	color: var(--noir);
+	border-left-color: var(--or-konishi);
+	background: var(--or-konishi);
 	font-weight: 600;
 }
 

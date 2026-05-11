@@ -161,9 +161,9 @@ body {
 }
 
 .nav-item.active {
-	color: var(--rouge-vif);
-	border-left-color: var(--rouge-vif);
-	background: rgba(var(--or-konishi-rgb), 0.14);
+	color: var(--noir);
+	border-left-color: var(--or-konishi);
+	background: var(--or-konishi);
 	font-weight: 600;
 }
 
