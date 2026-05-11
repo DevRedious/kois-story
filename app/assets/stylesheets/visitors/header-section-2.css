@@ -17,20 +17,27 @@
 }
 .header__nav a.active,
 .dropdown-toggle.active {
-	background: linear-gradient(135deg, var(--c-gold) 0%, var(--c-bronze) 100%);
+	background: linear-gradient(
+		135deg,
+		var(--c-gold) 0%,
+		var(--c-bronze) 50%,
+		var(--c-gold) 100%
+	);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
 	color: var(--c-black);
 	border-radius: var(--r-xl);
 	border: 1px solid var(--c-gold);
 	box-shadow: 0 2px 12px rgba(234, 178, 27, 0.24);
 	transition:
-		background var(--t-fast),
+		background-position 0.6s linear,
 		border-color var(--t-fast),
 		box-shadow var(--t-fast),
 		color var(--t-fast);
 }
 .header__nav a.active:hover,
 .dropdown-toggle.active:hover {
-	background: linear-gradient(135deg, var(--c-bronze) 0%, var(--c-gold) 100%);
+	background-position: 100% 100%;
 	border-color: var(--c-bronze);
 	color: var(--c-black);
 }

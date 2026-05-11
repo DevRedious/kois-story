@@ -100,25 +100,39 @@
 
 /* ── Boutons danger / success ──────────────────────────────── */
 .btn--danger {
-	background: linear-gradient(135deg, var(--or-konishi) 0%, var(--bronze) 100%);
+	background: linear-gradient(
+		135deg,
+		var(--or-konishi) 0%,
+		var(--bronze) 50%,
+		var(--or-konishi) 100%
+	);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
 	color: var(--noir);
 	border: 1px solid var(--or-konishi);
 }
 
 .btn--danger:hover {
-	background: linear-gradient(135deg, var(--bronze) 0%, var(--or-konishi) 100%);
+	background-position: 100% 100%;
 	color: var(--noir);
 	border-color: var(--bronze);
 }
 
 .btn--success {
-	background: linear-gradient(135deg, var(--bronze) 0%, var(--or-konishi) 100%);
+	background: linear-gradient(
+		135deg,
+		var(--bronze) 0%,
+		var(--or-konishi) 50%,
+		var(--bronze) 100%
+	);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
 	color: var(--noir);
 	border: 1px solid var(--or-konishi);
 }
 
 .btn--success:hover {
-	background: linear-gradient(135deg, var(--or-konishi) 0%, var(--bronze) 100%);
+	background-position: 100% 100%;
 	color: var(--noir);
 	border-color: var(--bronze);
 }

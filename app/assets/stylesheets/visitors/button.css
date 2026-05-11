@@ -33,19 +33,26 @@
 }
 
 .btn--primary {
-	background: linear-gradient(135deg, var(--c-bronze) 0%, var(--c-gold) 100%);
+	background: linear-gradient(
+		135deg,
+		var(--c-bronze) 0%,
+		var(--c-gold) 50%,
+		var(--c-bronze) 100%
+	);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
 	color: var(--c-black);
 	border-color: var(--c-gold);
 	box-shadow: 0 8px 22px rgba(165, 130, 65, 0.24);
 	transition:
-		background var(--t-fast),
+		background-position 0.6s linear,
 		color var(--t-fast),
 		border-color var(--t-fast),
 		box-shadow var(--t-fast),
 		transform var(--t-fast);
 }
 .btn--primary:hover {
-	background: linear-gradient(135deg, var(--c-gold) 0%, var(--c-bronze) 100%);
+	background-position: 100% 100%;
 	color: var(--c-black);
 	border-color: var(--c-bronze);
 	box-shadow: 0 10px 26px rgba(234, 178, 27, 0.28);

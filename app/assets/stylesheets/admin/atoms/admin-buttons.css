@@ -30,14 +30,21 @@
 }
 
 .btn--primary {
-	background: linear-gradient(135deg, var(--bronze) 0%, var(--or-konishi) 100%);
+	background: linear-gradient(
+		135deg,
+		var(--bronze) 0%,
+		var(--or-konishi) 50%,
+		var(--bronze) 100%
+	);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
 	color: var(--noir);
 	border-color: var(--or-konishi);
 	box-shadow: 0 8px 22px rgba(var(--bronze-rgb), 0.24);
 }
 
 .btn--primary:hover {
-	background: linear-gradient(135deg, var(--or-konishi) 0%, var(--bronze) 100%);
+	background-position: 100% 100%;
 	color: var(--noir);
 	border-color: var(--bronze);
 	box-shadow: 0 10px 26px rgba(var(--or-konishi-rgb), 0.28);

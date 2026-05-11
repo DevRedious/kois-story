@@ -34,8 +34,18 @@ body {
 .nav-item.active {
 	color: var(--noir);
 	border-left-color: var(--or-konishi);
-	background: linear-gradient(90deg, var(--or-konishi) 0%, var(--bronze) 100%);
+	background: linear-gradient(
+		90deg,
+		var(--or-konishi) 0%,
+		var(--bronze) 50%,
+		var(--or-konishi) 100%
+	);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
 	font-weight: 600;
+}
+.nav-item.active:hover {
+	background-position: 100% 100%;
 }
 
 .nav-item.disabled {
