@@ -1,3 +1,21 @@
+import { createLifecycle } from "visitors/header-utils";
+
+let lifecycle;
+
+const removeTurnstileWidget = (widget) => {
+	const widgetId = widget.dataset.widgetId;
+	if (window.turnstile && widgetId) {
+		try {
+			window.turnstile.remove(widgetId);
+		} catch {
+			// Turnstile may already have removed its iframe during a Turbo swap.
+		}
+	}
+	delete widget.dataset.widgetId;
+	delete widget.dataset.renderedSignature;
+	widget.innerHTML = "";
+};
+
 const renderTurnstileWidgets = () => {
 	if (!window.turnstile) return;
 
@@ -9,8 +27,8 @@ const renderTurnstileWidgets = () => {
 
 		if (widget.dataset.renderedSignature === nextSignature) return;
 
-		widget.innerHTML = "";
-		window.turnstile.render(widget, {
+		if (widget.dataset.widgetId) removeTurnstileWidget(widget);
+		widget.dataset.widgetId = window.turnstile.render(widget, {
 			sitekey: widget.dataset.sitekey,
 			theme: widget.dataset.theme || "light",
 			size,
@@ -20,15 +38,18 @@ const renderTurnstileWidgets = () => {
 };
 
 const bindTurnstile = () => {
-	if (document.body.dataset.turnstileBound === "true") {
-		renderTurnstileWidgets();
-		return;
-	}
-	document.body.dataset.turnstileBound = "true";
-
+	lifecycle?.destroy();
+	lifecycle = createLifecycle();
 	const sync = () => window.requestAnimationFrame(renderTurnstileWidgets);
 	sync();
-	window.addEventListener("resize", sync);
+	lifecycle.listen(window, "resize", sync);
 };
 
 document.addEventListener("turbo:load", bindTurnstile);
+document.addEventListener("turbo:before-cache", () => {
+	document.querySelectorAll("[data-turnstile-widget]").forEach((widget) => {
+		removeTurnstileWidget(widget);
+	});
+	lifecycle?.destroy();
+	lifecycle = undefined;
+});

@@ -4,7 +4,29 @@
  * Desktop: selects natifs. Les deux partagent les mêmes selects comme source d'état.
  */
 (() => {
+	let controller;
+
+	const listen = (target, type, handler, options = {}) => {
+		if (!target || !controller) return;
+		target.addEventListener(type, handler, {
+			...options,
+			signal: controller.signal,
+		});
+	};
+
+	const resetFilterDom = () => {
+		document.querySelectorAll(".filter-bar").forEach((filterBar) => {
+			filterBar.dataset.bound = "false";
+			filterBar.querySelectorAll(".filter-panel").forEach((panel) => {
+				panel.remove();
+			});
+		});
+	};
+
 	function init() {
+		controller?.abort();
+		controller = new AbortController();
+
 		var filterBar = document.querySelector(".filter-bar");
 		if (!filterBar || filterBar.dataset.bound === "true") return;
 		filterBar.dataset.bound = "true";
@@ -46,7 +68,7 @@
 		}
 
 		[selectVariety, selectAge, selectPrice].forEach((el) => {
-			if (el) el.addEventListener("change", applyFilters);
+			listen(el, "change", applyFilters);
 		});
 		// ── Pill panels (mobile) ──────────────────────────────────────────────
 		var pills = document.querySelectorAll(".filter-pill[data-select]");
@@ -91,7 +113,7 @@
 				btn.className = `filter-option${!opt.value ? " filter-option--active" : ""}`;
 				btn.dataset.value = opt.value;
 				btn.textContent = opt.text;
-				btn.addEventListener("click", () =>
+				listen(btn, "click", () =>
 					onOptionSelect(select, pill, panel, btn),
 				);
 				panel.appendChild(btn);
@@ -107,7 +129,7 @@
 			var panel = buildPanel(select, pill);
 			builtPanels[pill.dataset.select] = panel;
 
-			pill.addEventListener("click", (e) => {
+			listen(pill, "click", (e) => {
 				e.stopPropagation();
 				var isOpen = !panel.hidden;
 				closePillPanels();
@@ -119,7 +141,7 @@
 			});
 		});
 
-		document.addEventListener("click", (e) => {
+		listen(document, "click", (e) => {
 			if (filterBar && !filterBar.contains(e.target)) closePillPanels();
 		});
 
@@ -129,7 +151,7 @@
 		var dragStartX = 0;
 		var scrollStart = 0;
 		if (filterInner) {
-			filterInner.addEventListener("mousedown", (e) => {
+			listen(filterInner, "mousedown", (e) => {
 				if (
 					e.target.closest(
 						".filter-pill, .filter-toggle, .filter-reset, .filter-select",
@@ -143,12 +165,12 @@
 				e.preventDefault();
 			});
 
-			document.addEventListener("mousemove", (e) => {
+			listen(document, "mousemove", (e) => {
 				if (!isDragging) return;
 				filterInner.scrollLeft = scrollStart - (e.pageX - dragStartX);
 			});
 
-			document.addEventListener("mouseup", () => {
+			listen(document, "mouseup", () => {
 				if (!isDragging) return;
 				isDragging = false;
 				filterInner.classList.remove("filter-bar__inner--dragging");
@@ -157,7 +179,7 @@
 
 		// ── Reset ─────────────────────────────────────────────────────────────
 		if (resetBtn) {
-			resetBtn.addEventListener("click", () => {
+			listen(resetBtn, "click", () => {
 				if (selectVariety) selectVariety.value = "";
 				if (selectAge) selectAge.value = "";
 				if (selectPrice) selectPrice.value = "";
@@ -179,5 +201,9 @@
 	}
 
 	document.addEventListener("turbo:load", init);
-	requestAnimationFrame(init);
+	document.addEventListener("turbo:before-cache", () => {
+		controller?.abort();
+		controller = undefined;
+		resetFilterDom();
+	});
 })();

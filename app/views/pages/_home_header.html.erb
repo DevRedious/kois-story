@@ -1,15 +1,15 @@
-<%= link_to root_path, class: "site-logo", id: "site-logo", aria: { label: "Retour à l'accueil" } do %>
+<%= link_to root_path, class: "site-logo", id: "site-logo", aria: { label: "Retour à l'accueil" }, data: { turbo_permanent: true } do %>
   <%= image_tag "/logo_bg_circle_dark_v2.avif", alt: "Koi's Story" %>
 <% end %>
 
-<div class="site-partner" aria-label="Partenaire exclusif français Konishi">
+<div class="site-partner" id="site-partner" aria-label="Partenaire exclusif français Konishi" data-turbo-permanent>
   <span class="site-partner__eyebrow">Partenaire exclusif français</span>
   <%= image_tag "/logo_konishi_black.avif",
         alt: "Logo Konishi",
         class: "site-partner__logo" %>
 </div>
 
-<header class="site-header" id="site-header">
+<header class="site-header" id="site-header" data-turbo-permanent>
   <div class="header__inner">
     <nav class="header__nav" id="header-nav" aria-label="Navigation principale" data-testid="public-nav">
       <span class="nav__indicator" id="nav-indicator"></span>
@@ -42,4 +42,4 @@
   </div>
 </header>
 
-<div class="nav-backdrop" id="nav-backdrop"></div>
+<div class="nav-backdrop" id="nav-backdrop" data-turbo-permanent></div>

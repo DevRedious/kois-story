@@ -4,6 +4,10 @@
  * Compatible with Turbo (Rails Hotwire) via the turbo:load event.
  */
 
+import { createLifecycle } from "visitors/header-utils";
+
+let lifecycle;
+
 const animObserver = new IntersectionObserver(
 	(entries) => {
 		for (const entry of entries) {
@@ -31,9 +35,6 @@ const initAnimations = () => {
 	});
 };
 
-document.addEventListener("turbo:load", initAnimations);
-requestAnimationFrame(initAnimations);
-
 /* Floating CTA: hide when footer enters viewport */
 const initFloatCta = () => {
 	const cta = document.querySelector(".cta-wa-float");
@@ -47,11 +48,9 @@ const initFloatCta = () => {
 		);
 	};
 
-	window.addEventListener("scroll", check, { passive: true });
+	lifecycle.listen(window, "scroll", check, { passive: true });
 	check();
 };
-
-document.addEventListener("turbo:load", initFloatCta);
 
 /* Footer legal dropdown */
 const initFooterDropdown = (id) => {
@@ -66,17 +65,17 @@ const initFooterDropdown = (id) => {
 		toggle.setAttribute("aria-expanded", "false");
 	};
 
-	toggle.addEventListener("click", (event) => {
+	lifecycle.listen(toggle, "click", (event) => {
 		event.preventDefault();
 		const isOpen = menu.classList.toggle("open");
 		toggle.setAttribute("aria-expanded", String(isOpen));
 	});
 
-	document.addEventListener("click", (event) => {
+	lifecycle.listen(document, "click", (event) => {
 		if (!menu.contains(event.target)) closeMenu();
 	});
 
-	document.addEventListener("keydown", (event) => {
+	lifecycle.listen(document, "keydown", (event) => {
 		if (event.key === "Escape") closeMenu();
 	});
 
@@ -88,4 +87,16 @@ const initFooterDropdowns = () => {
 	initFooterDropdown("footer-products");
 };
 
-document.addEventListener("turbo:load", initFooterDropdowns);
+document.addEventListener("turbo:load", () => {
+	lifecycle?.destroy();
+	lifecycle = createLifecycle();
+	initAnimations();
+	initFloatCta();
+	initFooterDropdowns();
+});
+
+document.addEventListener("turbo:before-cache", () => {
+	lifecycle?.destroy();
+	lifecycle = undefined;
+	animObserver.disconnect();
+});
