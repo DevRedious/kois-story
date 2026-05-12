@@ -7,6 +7,8 @@
 			"!**/.vscode",
 			"!**/.edge",
 			"!**/edge-tools",
+			"!app/javascript/**/*.js",
+			"!docs/implementation/**/*.js",
 			"!public/assets",
 			"!vendor/bundle",
 			"!koi_story_ui_mockup.jsx"
