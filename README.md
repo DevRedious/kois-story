@@ -152,4 +152,4 @@ Project history is tracked in `CHANGELOG.md`.
 
 ## Team
 
-See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the full team.
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the full team..
