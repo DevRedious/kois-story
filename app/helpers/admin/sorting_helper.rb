@@ -6,8 +6,14 @@ module Admin::SortingHelper
 
     link_to(
       "#{label}#{indicator}",
-      url_for(params.permit!.to_h.merge(sort: column, direction: next_direction, page: nil)),
+      url_for(admin_sort_query_params.merge(sort: column, direction: next_direction, page: nil)),
       class: "sort-link#{' sort-link--active' if active}"
     )
+  end
+
+  private
+
+  def admin_sort_query_params
+    params.permit(:direction, :page, :per_page, :query, :sort, :status).to_h
   end
 end

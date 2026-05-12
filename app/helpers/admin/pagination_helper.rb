@@ -8,6 +8,12 @@ module Admin::PaginationHelper
   end
 
   def admin_pagination_path(page)
-    url_for(params.permit!.to_h.merge(page: page))
+    url_for(admin_safe_query_params.merge(page: page))
+  end
+
+  private
+
+  def admin_safe_query_params
+    params.permit(:direction, :page, :per_page, :query, :sort, :status).to_h
   end
 end

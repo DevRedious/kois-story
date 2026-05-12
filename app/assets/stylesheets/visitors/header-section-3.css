@@ -204,11 +204,12 @@
 
 /* ── REDUCED MOTION ───────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-	.site-logo,
-	.header__nav a,
-	.dropdown-toggle,
-	.nav__indicator,
-	.dropdown,
+	.site-header .site-logo,
+	.header__nav.open > ul > li > a,
+	.header__nav.open > ul > li > .dropdown-toggle,
+	.header__nav.open .dropdown li a,
+	.header__nav .nav__indicator,
+	.header__nav .dropdown,
 	.header__burger span {
 		transition: none;
 	}

@@ -1,4 +1,4 @@
-import { expect, Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 const ADMIN_EMAIL = 'contact.koistory@gmail.com';
 const ADMIN_PASSWORD = 'changeme';
