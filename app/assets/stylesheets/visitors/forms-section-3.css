@@ -1,0 +1,43 @@
+/* Split from visitors forms - responsive safety for contact widgets */
+.contact-quick__left,
+.contact-form--home {
+	min-width: 0;
+}
+
+.contact-form--home {
+	padding: var(--sp-6);
+}
+
+.contact-form__human-check {
+	padding: var(--sp-3);
+}
+
+.turnstile-shell {
+	width: 100%;
+	max-width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.turnstile-shell [data-turnstile-widget],
+.turnstile-shell .cf-turnstile {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	max-width: 100%;
+}
+
+.contact-form__human-check iframe {
+	max-width: 100%;
+	border-radius: 8px;
+}
+
+@media (min-width: 581px) {
+	.contact-form--home {
+		padding: var(--sp-10);
+	}
+
+	.contact-form__human-check {
+		padding: var(--sp-4);
+	}
+}

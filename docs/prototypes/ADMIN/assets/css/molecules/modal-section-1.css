@@ -1,0 +1,115 @@
+/* Split from ADMIN/assets/css/molecules/modal.css - section 1/2 */
+/* ============================================================
+   ADMIN — Molecules — Modal
+   Système de modals : overlay, conteneur, header, body, footer
+   Variants : confirm suppression, lecture message, paiement
+   ============================================================ */
+
+/* ── Overlay backdrop ──────────────────────────────────────── */
+.modal-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.52);
+	z-index: 900;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.2s ease,
+		visibility 0.2s ease;
+}
+
+.modal-overlay--open {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* ── Conteneur modal ───────────────────────────────────────── */
+.modal {
+	background: var(--blanc-pur);
+	border-radius: 12px;
+	box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22);
+	width: 100%;
+	max-width: 520px;
+	max-height: 90vh;
+	overflow-y: auto;
+	transform: translateY(10px) scale(0.98);
+	transition: transform 0.2s ease;
+	position: relative;
+}
+
+.modal-overlay--open .modal {
+	transform: translateY(0) scale(1);
+}
+
+.modal--sm {
+	max-width: 400px;
+}
+.modal--lg {
+	max-width: 660px;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1.2rem 1.5rem;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+	font-family: var(--font-title);
+	font-size: 1.05rem;
+	font-weight: 700;
+	color: var(--noir);
+	margin: 0;
+	flex: 1;
+}
+
+.modal-close {
+	width: 30px;
+	height: 30px;
+	border-radius: 6px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--gris);
+	transition:
+		background 0.15s,
+		color 0.15s;
+	flex-shrink: 0;
+}
+
+.modal-close:hover {
+	background: var(--blanc-casse);
+	color: var(--noir);
+}
+
+/* ── Body ──────────────────────────────────────────────────── */
+.modal-body {
+	padding: 1.5rem;
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+.modal-footer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.75rem;
+	padding: 1rem 1.5rem;
+	border-top: 1px solid var(--border-color);
+	background: var(--blanc-casse);
+	border-radius: 0 0 12px 12px;
+}
+
+.modal-footer--centered {
+	justify-content: center;
+}

@@ -1,0 +1,4 @@
+/* Manifest split of VISITORS/assets/css/product-pages.css */
+@import url("product-pages-section-1.css");
+@import url("product-pages-section-2.css");
+@import url("product-pages-section-3.css");

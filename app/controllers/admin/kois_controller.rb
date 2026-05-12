@@ -3,8 +3,9 @@ module Admin
     before_action :set_koi, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @kois = Koi.includes(:images).order(created_at: :desc)
-      @varieties = @kois.map(&:variety).compact_blank.uniq.sort
+      scope = sorted_kois(filtered_kois)
+      @kois, @pagination = paginate_scope(scope, per_page: 12)
+      @varieties = Koi.distinct.order(:variety).pluck(:variety).compact_blank
     end
 
     def show; end
@@ -73,6 +74,27 @@ module Admin
       base_position = koi.images.count
       params[:koi][:uploaded_images].reject(&:blank?).each_with_index do |uploaded_image, index|
         koi.images.create!(url: uploaded_image, position: base_position + index)
+      end
+    end
+
+    def filtered_kois
+      scope = Koi.includes(:images).order(created_at: :desc)
+      scope = scope.where(status: params[:status]) if params[:status].present?
+      scope = scope.where(variety: params[:variety]) if params[:variety].present?
+      scope = scope.where(konishi_lineage: params[:lineage] == "konishi") if params[:lineage].present?
+      return scope if params[:q].blank?
+
+      query = "%#{params[:q].strip.downcase}%"
+      scope.where("LOWER(name) LIKE :query OR LOWER(variety) LIKE :query OR LOWER(description) LIKE :query", query:)
+    end
+
+    def sorted_kois(scope)
+      direction = params[:direction] == "asc" ? :asc : :desc
+      case params[:sort]
+      when "name", "variety", "status", "size_cm", "price"
+        scope.order(params[:sort] => direction)
+      else
+        scope.order(created_at: direction)
       end
     end
   end

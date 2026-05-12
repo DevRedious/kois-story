@@ -2,7 +2,7 @@
   <div class="footer__inner">
     <div class="footer__bar">
       <%= link_to root_path, class: "footer__logo" do %>
-        <%= image_tag docs_asset_path("LOGO MANU FINI.png"), alt: "Koi's Story · Retour à l'accueil" %>
+        <%= image_tag "/logo_bg_circle_dark_v2.avif", alt: "Koi's Story · Retour à l'accueil" %>
       <% end %>
       <nav class="footer__links" id="footer-links">
         <span class="footer__indicator" id="footer-indicator"></span>
@@ -56,7 +56,7 @@
   </div>
 </footer>
 
-<%= link_to "https://wa.me/33600000000", class: "cta-wa-float", target: "_blank", rel: "noopener", aria: { label: "Contacter l'élevage via WhatsApp" } do %>
+<%= link_to whatsapp_link(whatsapp_phone_number, "Bonjour, je souhaite contacter Manu et Mathilde."), class: "cta-wa-float", target: "_blank", rel: "noopener", aria: { label: "Contacter Manu et Mathilde via WhatsApp" } do %>
   <%= whatsapp_icon %>
-  Contacter l'élevage
+  <span class="cta-wa-float__label">Contacter Manu et Mathilde</span>
 <% end %>

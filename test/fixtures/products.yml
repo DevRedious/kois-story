@@ -11,7 +11,7 @@ one:
 
 two:
   name: MyString
-  reference: MyString
+  reference: MyStringTwo
   description: MyText
   price: 9.99
   stock_quantity: 1

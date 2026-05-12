@@ -8,7 +8,12 @@ document.addEventListener("turbo:load", () => {
 	const searchInput = document.getElementById("order-search");
 	const table = document.getElementById("orders-table");
 
-	if (!table || table.dataset.bound === "true") return;
+	if (
+		!table ||
+		table.dataset.clientFilters !== "true" ||
+		table.dataset.bound === "true"
+	)
+		return;
 	table.dataset.bound = "true";
 
 	function applyFilters() {

@@ -2,9 +2,10 @@
 <% content_for :skip_default_footer, true %>
 <%
   filtration_items = [
-    { icon: "⚙️", badge: "Filtration", name: "Filtre biologique", description: "Filtration mécanique et biologique pour bassins jusqu'à 50 000 L." },
-    { icon: "🔄", badge: "Filtration", name: "Filtre japonais", description: "Système multi-chambres inspiré des élevages japonais. Idéal pour les grandes collections." },
-    { icon: "🧹", badge: "Filtration", name: "Brosserie de filtration", description: "Brosses en polypropylène, haute résistance. Compatible tous types de filtres." }
+    { icon: "⚙️", badge: "Filtration", name: "Filtre à tambour", description: "Filtration mécanique automatique, idéal pour les bassins à forte charge." },
+    { icon: "🔄", badge: "Filtration", name: "Filtre à grille", description: "Pré-filtration efficace des débris avant le passage en filtration biologique." },
+    { icon: "🧹", badge: "Filtration", name: "Filtre multi-chambre", description: "Système à plusieurs étapes pour une filtration mécanique et biologique complète." },
+    { icon: "🚿", badge: "Filtration", name: "Filtre à douche", description: "Filtration biologique par ruissellement, favorise l'oxygénation et la colonisation bactérienne." }
   ]
   pump_items = [
     { icon: "💧", badge: "Pompes", name: "Pompe de bassin", description: "Pompe haute performance, débit réglable, très faible consommation." },
@@ -12,9 +13,8 @@
     { icon: "🌡️", badge: "Chauffage", name: "Chauffage bassin", description: "Maintien de la température optimale pour favoriser la croissance et la santé." }
   ]
 %>
-<%= render "pages/home_wave_defs" %>
 <%= render "pages/home_header" %>
-<%= render "pages/product_hero", label: "Équipement", title: "Matériel", subtitle: "Filtration, pompes, UV, chauffage, tout le nécessaire pour vos koïs.", wavy: true %>
+<%= render "pages/product_hero", title: "Matériel", subtitle: "Filtration, pompes, UV, chauffage, tout le nécessaire pour vos koïs." %>
 <main id="main-content">
   <div class="shop-section">
     <div class="shop-section__inner">

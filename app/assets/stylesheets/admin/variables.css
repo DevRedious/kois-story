@@ -30,64 +30,36 @@
 	font-weight: 700;
 }
 
-/* ── VARIABLES (Palette V3) ────────────────────────────────── */
+/* ── VARIABLES (Palette V4) ────────────────────────────────── */
 /* Light theme (default) */
 :root {
-	/* Palette V3 */
-	--rouge-vif: #e60000; /* CTA principal, accents forts */
-	--rouge-sombre: #630f0f; /* fonds sombres, hover, sidebar active */
+	/* Palette V4 */
+	--bronze: #a58241; /* CTA principal, accents chauds */
+	--or-konishi: #eab21b; /* accent premium */
+	--bleu-nuit: #011325; /* fonds sombres, hover, sidebar active */
+	--bleu-nuit-profond: #011325;
+	--bronze-rgb: 165, 130, 65;
+	--or-konishi-rgb: 234, 178, 27;
+	--bleu-nuit-rgb: 1, 19, 37;
+	--bleu-nuit-profond-rgb: 1, 19, 37;
+	--rouge-vif: #a58241; /* alias historique CTA */
+	--rouge-sombre: #011325; /* alias historique fonds sombres */
 	--noir: #000000; /* texte principal */
-	--blanc-casse: #f5f5f2; /* fond de page */
+	--blanc-casse: #ffffff; /* fond de page */
 	--blanc-pur: #ffffff; /* surfaces cards, formulaires */
 
 	/* Sémantiques thème (light) */
-	--surface-dark: #000000; /* sidebar, btn-secondary */
+	--surface-dark: #011325; /* sidebar, btn-secondary */
 	--topbar-bg: #ffffff;
-	--border-color: #e5e9ee;
+	--border-color: rgba(1, 19, 37, 0.14);
 
 	/* Utilitaires */
-	--gris: #6c757d; /* textes secondaires */
-	--vert-dispo: #2d9e5a; /* statut disponible */
+	--gris: rgba(1, 19, 37, 0.66); /* textes secondaires */
+	--vert-dispo: #a58241; /* statut disponible */
 	--sidebar-w: 64px;
 	--sidebar-open-w: 280px;
 	--topbar-h: 60px;
 	--font-title: "Playfair Display", Georgia, serif;
 	--font-body: "Inter", system-ui, sans-serif;
 	--sidebar-ease: 0.22s ease;
-}
-
-/* System: dark si l’OS est en dark */
-/* System: dark — Palette V3 : card/noir, accents/rouge */
-@media (prefers-color-scheme: dark) {
-	html:not([data-theme="light"]) {
-		--blanc-casse: #000000; /* noir — fond de page */
-		--blanc-pur: #000000; /* noir — surfaces cards, formulaires */
-		--noir: #ffffff; /* blanc pur — texte principal */
-		--gris: #f5f5f2; /* blanc cassé — textes secondaires */
-		--surface-dark: #000000; /* noir — sidebar */
-		--topbar-bg: #000000; /* noir */
-		--border-color: #630f0f; /* rouge sombre — bordures pour délimiter la card */
-	}
-}
-
-/* Thème dark forcé — card noir, accents rouge */
-[data-theme="dark"] {
-	--blanc-casse: #000000;
-	--blanc-pur: #000000;
-	--noir: #ffffff;
-	--gris: #f5f5f2;
-	--surface-dark: #000000;
-	--topbar-bg: #000000;
-	--border-color: #630f0f;
-}
-
-/* Thème light forcé (priorité sur system) */
-[data-theme="light"] {
-	--blanc-casse: #f5f5f2;
-	--blanc-pur: #ffffff;
-	--noir: #000000;
-	--gris: #6c757d;
-	--surface-dark: #000000;
-	--topbar-bg: #ffffff;
-	--border-color: #e5e9ee;
 }

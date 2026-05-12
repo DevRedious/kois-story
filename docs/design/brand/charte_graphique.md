@@ -1,4 +1,4 @@
-# Charte graphique  Koi's Story
+# Charte graphique - Koi's Story
 
 ## 1. Positionnement visuel
 
@@ -6,24 +6,29 @@ Identité visuelle orientée : **Aquatique · Premium · Nature / Japon · Comme
 
 Objectif : valoriser la rareté des koï Konishi tout en restant accessible aux amateurs débutants et passionnés.
 
+La source visuelle actuelle est l'application Rails, le logo V2 dans `public/` et la palette V4 dans `public/docs/assets/palette_V4.svg`.
+
 ---
 
-## 2. Palette de couleurs
+## 2. Palette de couleurs V4
 
 ### Couleurs principales
 
 | Nom | Hex | Signification |
 |---|---|---|
-| Rouge Koi | `#D62828` | Poisson, tradition japonaise, énergie |
-| Bleu profond | `#003049` | Eau, profondeur, sérieux |
-| Blanc perle | `#F8F9FA` | Pureté, contraste, lisibilité |
+| Bronze | `#a58241` | Matière, artisanat, premium discret |
+| Or Konishi | `#eab21b` | Badge Konishi, accent haut de gamme, détails |
+| Bleu nuit profond | `#011325` | Fonds sombres, profondeur, contraste |
+| Noir | `#000000` | Texte fort, surfaces sombres, contraste |
+| Blanc | `#ffffff` | Surfaces claires, respiration, lisibilité |
 
-### Couleurs secondaires
+### Exception autorisée
 
 | Nom | Hex | Utilisation |
 |---|---|---|
-| Or Konishi | `#E09F3E` | Badge Konishi, éléments premium, détails |
-| Gris pierre | `#6C757D` | Texte secondaire, UI neutre |
+| WhatsApp | `#25d366` | Boutons, icônes, badges et CTA WhatsApp |
+
+La palette V3 rouge sombre / rouge vif (`#e60000`, `#630f0f`) est historique. Elle peut apparaître dans les prototypes archivés ou d'anciens audits, mais ne doit pas guider les nouveaux choix visuels.
 
 ---
 
@@ -40,15 +45,18 @@ Maximum 2 polices principales.
 
 ## 4. Logo
 
+Logo actuel : **V2**.
+
+Fichiers de référence :
+- `public/logo_bg_circle_dark_v2.svg`
+- `public/logo_bg_circle_dark_v2.png`
+- `public/logo_bg_circle_dark_v2.avif`
+
 **Règles d'utilisation :**
 - Toujours respecter l'espace de protection autour du logo
-- Fond clair ou bleu profond uniquement
+- Privilégier le fond bleu nuit profond ou noir quand le logo circulaire sombre est utilisé
+- Utiliser le blanc pour les compositions à fort contraste
 - Ne jamais étirer ou modifier les proportions
-
-**Variantes autorisées :**
-1. Logo couleur
-2. Logo blanc
-3. Logo noir
 
 ---
 
@@ -56,18 +64,19 @@ Maximum 2 polices principales.
 
 **Style d'images :**
 - Photos HD, vue dorsale des koï
-- Couleurs saturées, eau sombre pour contraste
+- Couleurs nettes, eau sombre pour contraste
+- Traitement premium, sans effet décoratif excessif
 
 **Règles :**
 - Pas de photos floues
 - Minimum 1 photo produit par fiche, idéalement 3 angles
 
-**Règles de mise en forme (Anti-distorsion) :**
-- **Object-fit** : Utiliser systématiquement `object-fit: cover` sur les conteneurs d'images pour éviter que les photos ne soient écrasées ou étirées.
+**Règles de mise en forme anti-distorsion :**
+- **Object-fit** : utiliser systématiquement `object-fit: cover` sur les conteneurs d'images pour éviter que les photos ne soient écrasées ou étirées.
 - **Ratios imposés** :
-  - **Hero** : Format panoramique, hauteur fixe (ex: 600px sur desktop, 40vh sur mobile).
-  - **Cards** : Ratio 3:4 (Portrait) pour uniformiser la grille du catalogue.
-  - **Modules transverses** : Ratio 4:3 ou 1:1.
+  - **Hero** : format panoramique, hauteur fixe (ex: 600px sur desktop, 40vh sur mobile).
+  - **Cards** : ratio 3:4 (portrait) pour uniformiser la grille du catalogue.
+  - **Modules transverses** : ratio 4:3 ou 1:1.
 
 ---
 
@@ -80,40 +89,43 @@ Contenu affiché (dans l'ordre) :
 2. Nom
 3. Variété
 4. Taille
-5. **Prix** (visible immédiatement)
-6. Badge Konishi (si applicable)
+5. **Prix** visible immédiatement
+6. Badge Konishi si applicable
 7. Bouton WhatsApp
+
+**Image** : ratio 3:4 obligatoire, `object-fit: cover`.
+**Style** : bordures arrondies `radius-md` (12px).
 
 ### Boutons
 
 | Type | Fond | Texte |
 |---|---|---|
-| Bouton principal | `#D62828` | Blanc |
-| Bouton secondaire | `#003049` | Blanc |
+| Bouton principal | `#a58241` | `#ffffff` |
+| Bouton secondaire | `#011325` | `#ffffff` |
+| Bouton accent | `#eab21b` | `#000000` |
+| Bouton WhatsApp | `#25d366` | `#ffffff` |
 
 ### Badge Konishi
 
 | Fond | Texte |
 |---|---|
-| `#E09F3E` | `#003049` |
-
-### Card produit
-**Image** : Ratio 3:4 obligatoire, `object-fit: cover`.
-**Style** : Bordures arrondies `radius-md` (12px).
+| `#eab21b` | `#000000` |
 
 ### Hero visuel
-**Image** : Doit couvrir toute la largeur (`w-full`), `object-fit: cover`.
-**Cadrage** : Point focal centré pour garantir la visibilité du poisson sur tous les écrans.
+
+**Image** : doit couvrir toute la largeur (`w-full`), `object-fit: cover`.
+**Cadrage** : point focal centré pour garantir la visibilité du poisson sur tous les écrans.
 
 ---
 
 ## 7. Style global
 
 - Contraste fort
-- Couleurs vives
+- Couleurs premium et lisibles
 - Interface **mobile-first**
+- App Rails actuelle prioritaire sur les prototypes archivés
 
-Direction artistique : **"Dynamique & commerçante"**  validée par le client.
+Direction artistique : **"Dynamique & commerçante"** validée par le client.
 
 ---
 
@@ -127,7 +139,7 @@ Direction artistique : **"Dynamique & commerçante"**  validée par le client.
 
 **Structure typique d'une page :**
 
-```
+```text
 Hero visuel
   ↓
 Argumentaire court
@@ -151,25 +163,26 @@ Le design doit évoquer : **la rareté, la qualité japonaise, la passion d'éle
 
 ## 10. Résumé rapide
 
-### Palette
+### Palette V4
 
-```
-Rouge koi    #D62828
-Bleu profond #003049
-Or Konishi   #E09F3E
-Blanc perle  #F8F9FA
-Gris pierre  #6C757D
+```text
+Bronze             #a58241
+Or Konishi         #eab21b
+Bleu nuit profond  #011325
+Noir               #000000
+Blanc              #ffffff
+WhatsApp           #25d366
 ```
 
 ### Typographie
 
-```
+```text
 Titres : Playfair Display
 Texte  : Inter
 ```
 
 ### Style
 
-```
+```text
 Aquatique · Premium · Contrastes forts · Mobile-first
 ```

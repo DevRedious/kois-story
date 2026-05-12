@@ -79,8 +79,8 @@
 }
 
 .client-avatar--lavender {
-	background: #e2d9f3;
-	color: #4a235a;
+	background: rgba(var(--or-konishi-rgb), 0.16);
+	color: var(--bleu-nuit);
 }
 
 .order-line-qty {

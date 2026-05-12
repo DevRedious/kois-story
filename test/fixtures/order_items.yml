@@ -5,11 +5,9 @@ one:
   unit_price: 9.99
   order: one
   koi: one
-  product: one
 
 two:
   quantity: 1
   unit_price: 9.99
   order: two
-  koi: two
   product: two

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   konishi.css  Organism konishi-band Koi's Story V3
+   konishi.css  Organism konishi-band Koi's Story V4
    ========================================================================== */
 
 /* ── KONISHI BAND ────────────────────────────────────────────────────── */
@@ -90,32 +90,9 @@
 	inset: 0;
 	background: radial-gradient(
 		circle at center,
-		rgba(99, 15, 15, 0.25) 0%,
+		rgba(1, 19, 37, 0.25) 0%,
 		transparent 70%
 	);
-}
-
-/* ── WAVY BOTTOM ─────────────────────────────────────────────────── */
-.konishi-band--wavy-bottom {
-	clip-path: url(#wave-clip);
-}
-
-/* Remonte contact-quick pour combler les creux (~12% de la hauteur de la bande) */
-.konishi-band--wavy-bottom + .contact-quick {
-	margin-top: -88px;
-	padding-top: calc(88px + var(--sp-20));
-}
-@media (min-width: 481px) {
-	.konishi-band--wavy-bottom + .contact-quick {
-		margin-top: -96px;
-		padding-top: calc(96px + var(--sp-20));
-	}
-}
-@media (min-width: 769px) {
-	.konishi-band--wavy-bottom + .contact-quick {
-		margin-top: -60px;
-		padding-top: calc(60px + var(--sp-20));
-	}
 }
 
 /* ── ALIAS CONVENTION PAGE ───────────────────────────────────────── */

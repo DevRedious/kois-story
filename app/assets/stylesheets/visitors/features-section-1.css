@@ -1,6 +1,6 @@
 /* Split from VISITORS/assets/css/features.css - section 1/2 */
 /* ==========================================================================
-   features.css  Organism features Koi's Story V3
+   features.css  Organism features Koi's Story V4
    ========================================================================== */
 
 .features {
@@ -59,7 +59,7 @@
 	border-radius: 50%;
 	background: radial-gradient(
 		circle,
-		rgba(99, 15, 15, 0.35) 0%,
+		rgba(1, 19, 37, 0.35) 0%,
 		transparent 70%
 	);
 	pointer-events: none;
@@ -119,4 +119,12 @@
 	font-weight: 700;
 	color: var(--c-black);
 	line-height: var(--leading-snug);
+}
+.features .section-label {
+	color: var(--c-white);
+	background: var(--c-black);
+	padding: var(--sp-2) var(--sp-4);
+	border-radius: var(--r-md);
+	width: fit-content;
+	margin: 0 auto var(--sp-4);
 }

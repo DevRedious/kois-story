@@ -1,0 +1,195 @@
+/* Split from VISITORS/assets/css/koi-card-pages.css - section 3/3 */
+.editorial__content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: var(--sp-5);
+	border-left: none;
+	border-top: 1px solid var(--n-08);
+	box-shadow: none;
+}
+.editorial__badge {
+	display: inline-flex;
+	padding: 3px 10px;
+	background: var(--c-wine);
+	width: fit-content;
+	color: var(--c-cream);
+	border-radius: var(--r-xl);
+	font-size: var(--text-xs);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wide);
+}
+.editorial__title {
+	font-family: var(--font-serif);
+	font-size: 1.5rem;
+	font-weight: 900;
+	color: var(--c-black);
+	line-height: var(--leading-tight);
+	margin: 0;
+}
+.editorial__sub {
+	font-size: var(--text-sm);
+	color: var(--n-55);
+	margin: 0;
+	padding-top: var(--sp-2);
+	border-top: 1px solid var(--n-08);
+	display: none;
+}
+.editorial__cta {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-3);
+}
+.editorial__price {
+	font-family: var(--font-sans);
+	font-size: var(--text-3xl);
+	font-weight: 900;
+	color: var(--c-red);
+	line-height: 1;
+}
+.editorial__price sup {
+	font-size: 0.45em;
+	vertical-align: super;
+}
+
+/* ── KOI SHOWCASE  section grille home ─────────────────────────── */
+.koi-showcase {
+	padding: var(--sp-12) var(--sp-4);
+	background: rgba(245, 245, 242, 0.9);
+}
+.koi-showcase__inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+}
+.koi-showcase__header {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	margin-bottom: var(--sp-8);
+}
+.koi-showcase__footer {
+	text-align: center;
+}
+.koi-showcase__link {
+	font-size: var(--text-sm);
+	font-weight: 700;
+	color: var(--c-wine);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/* ── TITLE LINE ─────────────────────────────────────────────────── */
+.title-line {
+	display: flex;
+	align-items: baseline;
+	gap: var(--sp-4);
+}
+
+/* Responsive — mobile-first */
+.editorial {
+	flex-direction: column;
+	height: auto;
+}
+.editorial__media {
+	flex: none;
+	aspect-ratio: 16 / 9;
+}
+@media (min-width: 481px) {
+	.editorial__title {
+		font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+	}
+	.editorial__sub {
+		display: block;
+	}
+}
+@media (min-width: 901px) {
+	.koi-showcase {
+		padding: var(--sp-10) var(--sp-10) var(--sp-20);
+	}
+	.editorial {
+		flex-direction: row;
+		height: 440px;
+	}
+	.editorial__media {
+		flex: 0 0 65%;
+		aspect-ratio: unset;
+	}
+	.editorial__content {
+		border-left: 1px solid var(--n-08);
+		border-top: none;
+		box-shadow: inset 4px 0 16px rgba(0, 0, 0, 0.04);
+		padding: var(--sp-8);
+	}
+}
+.koi-showcase .section-label {
+	color: var(--c-black);
+}
+
+/* ── KOI-GRID CARD  compact 2-col mobile (<481px) ──────────────── */
+.koi-grid .koi-card-image-caption {
+	padding: var(--sp-2) var(--sp-2) var(--sp-1);
+	gap: var(--sp-2);
+}
+.koi-grid .koi-card-name {
+	font-size: var(--text-sm);
+}
+.koi-grid .koi-card-meta,
+.koi-grid .koi-card-price-label {
+	display: none;
+}
+.koi-grid .koi-card-price {
+	font-size: var(--text-base);
+}
+.koi-grid .koi-card-content {
+	padding: var(--sp-2);
+}
+.koi-grid .koi-card-cert {
+	display: none;
+}
+.koi-grid .koi-card-cta--secondary {
+	display: none;
+}
+.koi-grid .koi-card-actions {
+	flex-direction: column;
+	gap: var(--sp-1);
+}
+.koi-grid .koi-card-cta {
+	font-size: 0.7rem;
+	padding: var(--sp-1) var(--sp-2);
+}
+@media (min-width: 481px) {
+	.koi-grid .koi-card-image-caption {
+		padding: var(--sp-4) var(--sp-4) var(--sp-2);
+		gap: var(--sp-4);
+	}
+	.koi-grid .koi-card-name {
+		font-size: var(--text-lg);
+	}
+	.koi-grid .koi-card-meta {
+		display: block;
+	}
+	.koi-grid .koi-card-price-label {
+		display: block;
+	}
+	.koi-grid .koi-card-price {
+		font-size: var(--text-xl);
+	}
+	.koi-grid .koi-card-content {
+		padding: var(--sp-4);
+	}
+	.koi-grid .koi-card-cert {
+		display: flex;
+	}
+	.koi-grid .koi-card-cta--secondary {
+		display: inline-flex;
+	}
+	.koi-grid .koi-card-actions {
+		flex-direction: row;
+	}
+	.koi-grid .koi-card-cta {
+		font-size: var(--text-sm);
+		padding: var(--sp-2) var(--sp-4);
+	}
+}

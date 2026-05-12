@@ -1,0 +1,132 @@
+/* Split from VISITORS/assets/css/product.css - section 1/2 */
+/* ==========================================================================
+   product.css  Organism koi-detail + page produit Koi's Story V3
+   ========================================================================== */
+
+/* ── KOI DETAIL ──────────────────────────────────────────────────────── */
+.koi-detail {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: var(--sp-12) var(--sp-10);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-10);
+	align-items: start;
+}
+
+/* Galerie gauche */
+.koi-detail__gallery {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-3);
+}
+.koi-detail__main-img {
+	position: relative;
+	aspect-ratio: 3 / 4;
+	border-radius: var(--r-xl);
+	overflow: hidden;
+	background: var(--n-08);
+}
+.koi-detail__main-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.gallery-nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 44px;
+	height: 44px;
+	background: rgba(0, 0, 0, 0.55);
+	color: var(--c-white);
+	border-radius: var(--r-full);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: var(--text-lg);
+	z-index: 2;
+	transition: background var(--t-fast);
+}
+.gallery-nav:hover {
+	background: rgba(0, 0, 0, 0.8);
+}
+.gallery-nav.prev {
+	left: var(--sp-3);
+}
+.gallery-nav.next {
+	right: var(--sp-3);
+}
+
+.koi-detail__thumbs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--sp-2);
+}
+.koi-detail__thumb {
+	aspect-ratio: 1 / 1;
+	border-radius: var(--r-lg);
+	overflow: hidden;
+	background: var(--n-08);
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: border-color var(--t-fast);
+}
+.koi-detail__thumb:hover,
+.koi-detail__thumb.active {
+	border-color: var(--c-red);
+}
+.koi-detail__thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Infos droite */
+.koi-detail__info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sp-5);
+}
+.koi-detail__badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--sp-2);
+}
+.koi-detail__name {
+	font-family: var(--font-serif);
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 900;
+	color: var(--c-black);
+	line-height: var(--leading-tight);
+}
+
+.koi-detail__specs {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--sp-3);
+}
+.spec-item {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.spec-item__label {
+	font-size: var(--text-xs);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: var(--tracking-wider);
+	color: var(--n-75);
+}
+.spec-item__value {
+	font-size: var(--text-base);
+	font-weight: 600;
+	color: var(--c-black);
+}
+
+.koi-detail__description {
+	font-size: var(--text-base);
+	color: var(--n-75);
+	line-height: var(--leading-normal);
+}

@@ -11,18 +11,18 @@
 }
 
 .client-list-avatar--teal {
-	background: #d4e8f0;
-	color: #1a6080;
+	background: rgba(var(--bronze-rgb), 0.16);
+	color: var(--bleu-nuit);
 }
 
 .client-list-avatar--violet {
-	background: #e8e0f0;
-	color: #4a235a;
+	background: rgba(var(--or-konishi-rgb), 0.2);
+	color: var(--bleu-nuit);
 }
 
 .client-list-avatar--rose {
-	background: #fde8e8;
-	color: #8b1a1a;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.08);
+	color: var(--bleu-nuit);
 }
 
 .accounting-td-date {
@@ -45,21 +45,21 @@
 
 .input-dormant {
 	padding: 6px 12px;
-	border: 1px solid #dee2e6;
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 	font-size: 0.85rem;
 	width: 200px;
-	background: #f5f5f5;
+	background: var(--blanc-pur);
 	cursor: not-allowed;
 }
 
 .input-dormant--full {
-	background: #f5f5f5;
+	background: var(--blanc-pur);
 	cursor: not-allowed;
 }
 
 .textarea-dormant {
-	background: #f5f5f5;
+	background: var(--blanc-pur);
 	cursor: not-allowed;
 	resize: vertical;
 }
@@ -74,7 +74,7 @@
 
 .footnote-muted-italic {
 	font-style: italic;
-	color: #999;
+	color: var(--gris);
 	font-size: 0.85rem;
 	text-align: center;
 	margin-top: 10px;
@@ -86,7 +86,7 @@
 
 .u-toolbar-control--tight {
 	padding: 5px 10px;
-	border: 1px solid #dee2e6;
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 	font-size: 0.85rem;
 	font-family: var(--font-body);
@@ -96,7 +96,7 @@
 
 .u-toolbar-input-tight {
 	padding: 5px 10px;
-	border: 1px solid #dee2e6;
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 	font-size: 0.85rem;
 	width: 180px;
@@ -105,7 +105,7 @@
 
 .u-search-clients {
 	padding: 6px 12px;
-	border: 1px solid #dee2e6;
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 	font-size: 0.85rem;
 	width: 220px;

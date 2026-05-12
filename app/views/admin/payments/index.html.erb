@@ -9,7 +9,7 @@
   <div class="resource-metrics">
     <div class="resource-metric">
       <span class="resource-metric__label">Total</span>
-      <strong class="resource-metric__value"><%= @payments.size %></strong>
+      <strong class="resource-metric__value"><%= @pagination[:total_count] %></strong>
     </div>
     <div class="resource-metric">
       <span class="resource-metric__label">En attente</span>
@@ -25,30 +25,50 @@
 <div class="panel">
   <div class="panel-header">
     <div class="panel-title">Paiements</div>
+    <%= form_with url: admin_payments_path, method: :get, class: "panel-toolbar admin-filter-form", local: true do |form| %>
+      <%= form.search_field :q, value: params[:q], class: "u-toolbar-control admin-filter-form__grow", placeholder: "Commande, client ou statut" %>
+      <%= form.select :status, options_for_select([["Tous les statuts", ""], ["En attente", "pending"], ["Partiels", "partial"], ["Regles", "paid"]], params[:status]), { }, id: "pay-status-filter", class: "u-toolbar-select-wide" %>
+      <%= form.select :payment_type, options_for_select([["Tous les types", ""]] + Payment.payment_types.keys.map { |key| [key.humanize, key] }, params[:payment_type]), {}, class: "u-toolbar-select-wide" %>
+      <label class="admin-filter-check">
+        <%= check_box_tag :overdue, "1", params[:overdue] == "1" %>
+        <span>En retard</span>
+      </label>
+      <%= form.submit "Filtrer", class: "btn btn--outline btn--sm" %>
+      <% if params[:q].present? || params[:status].present? || params[:payment_type].present? || params[:overdue] == "1" %>
+        <%= link_to "Reinitialiser", admin_payments_path, class: "btn btn--ghost btn--sm" %>
+      <% end %>
+    <% end %>
   </div>
   <div class="table-responsive">
     <table>
       <thead>
-        <tr><th>Commande</th><th>Client</th><th>Type</th><th>Montant</th><th>Statut</th><th>Echeance</th><th>Action</th></tr>
+        <tr><th><%= admin_sort_link("Commande", :order) %></th><th>Client</th><th><%= admin_sort_link("Type", :payment_type) %></th><th><%= admin_sort_link("Montant", :amount) %></th><th><%= admin_sort_link("Statut", :status) %></th><th><%= admin_sort_link("Echeance", :due_at) %></th><th>Action</th></tr>
       </thead>
       <tbody>
-        <% @payments.each do |payment| %>
+        <% if @payments.any? %>
+          <% @payments.each do |payment| %>
           <tr data-payment-status="<%= payment.status %>">
-            <td><%= admin_order_reference(payment.order) %></td>
-            <td><%= payment.order.client_profile&.name %></td>
+            <td><%= link_to admin_order_reference(payment.order), admin_order_path(payment.order) %></td>
+            <td><%= link_to(payment.order.client_profile&.name || "Client inconnu", admin_client_path(payment.order.client_profile)) %></td>
             <td><%= admin_payment_type_label(payment) %></td>
             <td><%= number_to_currency(payment.amount || 0, unit: "", precision: 2, delimiter: " ").strip %> €</td>
             <td><span class="badge <%= admin_payment_status_badge_class(payment) %>"><%= admin_payment_status_label(payment) %></span></td>
-            <td><%= payment.due_at.present? ? l(payment.due_at.to_date) : "-" %></td>
+            <td><%= admin_payment_due_label(payment) %></td>
             <td>
               <div class="td-actions">
                 <%= link_to "Voir", admin_payment_path(payment), class: "btn btn--outline btn--sm" %>
+                <%= link_to "Commande", admin_order_path(payment.order), class: "btn btn--outline btn--sm" %>
                 <%= link_to "Editer", edit_admin_payment_path(payment), class: "btn btn--ghost btn--sm" %>
               </div>
             </td>
           </tr>
+          <% end %>
+        <% else %>
+          <tr><td colspan="7">Aucun paiement a suivre pour le moment.</td></tr>
         <% end %>
       </tbody>
     </table>
   </div>
+
+  <%= render "admin/shared/pagination", pagination: @pagination, item_name: "paiements" %>
 </div>

@@ -8,12 +8,12 @@
 # Default — all files require review from the lead
 *                   @DevRedious
 
-# Back-office admin — reviewed by the admin dev
-ADMIN/              @DevRedious
+# Archived back-office prototype — reviewed by the admin dev
+docs/prototypes/ADMIN/      @DevRedious
 
-# Public-facing prototype — reviewed by the VISITORS dev
+# Archived public-facing prototype — reviewed by the VISITORS dev
 # Replace @ValVoy-github and @ff14eternitalis-github with real usernames
-VISITORS/           @ValVoy @ff14eternitalis-debug
+docs/prototypes/VISITORS/   @ValVoy @ff14eternitalis-debug
 
 # Shared design tokens and docs
 docs/               @DevRedious

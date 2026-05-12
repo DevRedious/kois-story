@@ -1,0 +1,130 @@
+/* Split from ADMIN/assets/css/utilities.css - section 2/2 */
+.u-toolbar-search-wide {
+	width: 200px;
+}
+
+.stats-grid--cols-4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+/* Tableaux / cellules */
+.link-order-ref {
+	color: var(--noir);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.badge--compact {
+	font-size: 0.6rem;
+}
+
+.amount-secondary {
+	font-size: 0.75rem;
+	color: var(--gris);
+}
+
+.td-date-muted {
+	font-size: 0.8rem;
+	color: var(--gris);
+}
+
+.td-date-alert {
+	font-size: 0.8rem;
+	color: var(--rouge-vif);
+}
+
+.td-muted-dash {
+	font-size: 0.8rem;
+	color: var(--gris);
+}
+
+.td-ref-muted {
+	font-size: 0.78rem;
+	color: var(--gris);
+}
+
+.td-fs-08 {
+	font-size: 0.8rem;
+}
+
+.u-fs-082 {
+	font-size: 0.82rem;
+}
+
+.u-text-center {
+	text-align: center;
+}
+
+.td-count-center {
+	text-align: center;
+	font-weight: 600;
+}
+
+.client-name-strong {
+	font-weight: 600;
+}
+
+.client-location-muted {
+	font-size: 0.75rem;
+	color: var(--gris);
+}
+
+.td-client-contact {
+	font-size: 0.82rem;
+}
+
+.client-avatar--brand {
+	background: var(--rouge-sombre);
+	color: var(--blanc-pur);
+}
+
+.client-avatar--lavender {
+	background: #e2d9f3;
+	color: #4a235a;
+}
+
+.order-line-qty {
+	color: var(--gris);
+	font-size: 0.8rem;
+}
+
+.koi-meta-label {
+	font-size: 0.78rem;
+}
+
+.msg-datetime-cell {
+	white-space: nowrap;
+	font-size: 0.82rem;
+}
+
+.td-right-numeric {
+	text-align: right;
+}
+
+/* Démos atoms */
+.demo-group--gap-20 {
+	gap: 20px;
+}
+
+.demo-group--gap-16-base {
+	gap: 16px;
+	align-items: baseline;
+}
+
+.badge-konishi-padded {
+	font-size: 0.8rem;
+	padding: 6px 14px;
+}
+
+.badge-solid-dark {
+	background: var(--noir);
+	color: #fff;
+}
+
+.demo-title-spaced {
+	margin-top: 40px;
+}
+
+.panel-body--flush {
+	padding: 0;
+}

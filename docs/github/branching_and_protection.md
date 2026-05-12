@@ -1,65 +1,70 @@
 # Branching model and GitHub protection
 
-This document describes how branches are used in this repository and how **GitHub branch protection** is expected to align with the workflow. It is derived from `CONTRIBUTING.md`, `CONTRIBUTORS.md`, `README.md`, and `.github/workflows/`. **Live GitHub settings cannot be read from a local clone**; owners must verify the items under [Verification on GitHub](#verification-on-github).
+This document describes how branches are expected to map to staging,
+production, and current infrastructure work. Live GitHub protection settings
+cannot be trusted from the local clone; repository owners must re-check them in
+GitHub after any workflow change.
 
 ## Canonical branches
 
-| Branch | Role | Direct commits |
-|--------|------|----------------|
-| `DEV` | Integration and testing; default target for feature PRs | No (changes via PR) |
-| `main` / `Main` | Production | No |
+| Branch | Role | Direct pushes |
+|---|---|---|
+| `DEV` | Staging integration branch; target for feature PRs and staging deploys | No |
+| `main` | Production branch; deploys only after validated release work | No |
 
-**Casing:** `README.md` uses `Main` / `DEV` for display; the Git branch names on the remote are `DEV` and `main` (verify exact casing in GitHub).
+`DEV` is the staging target. `main` is production. Do not push directly to
+either branch; use pull requests.
 
-## Contributor branches
+## Current work branch
 
-Personal work branches (see `CONTRIBUTORS.md`):
+| Branch | Role |
+|---|---|
+| `setup/local-docker-stack` | Current infrastructure work branch for local Docker/Coolify deployment preparation |
 
-| Branch   | Contributor |
-|----------|-------------|
-| `Morgan` | Morgan |
-| `Romain` | Romain |
-| `Valentin` | Valentin |
+Open PRs from this branch, or from future feature branches, into `DEV` first.
+Production promotion happens later from `DEV` to `main` when the release is
+validated.
 
-Feature branches may also use other names; they still merge into `DEV` via PR per `CONTRIBUTING.md`.
+## Pull request policy
 
-## Historical or auxiliary branches (changelog / docs)
+- Feature and infrastructure work starts from an up-to-date `DEV`.
+- Pull requests target `DEV` by default.
+- `main` receives only validated release changes from `DEV`.
+- No direct push to `DEV` or `main`.
+- Keep branch names descriptive; use scoped prefixes when useful.
 
-These names appear in project history; they are not part of the canonical two-branch model:
+## Deployment mapping
 
-| Name | Context (examples) |
-|------|---------------------|
-| `Maquette` | Prototype / GitHub Pages experiments |
-| `admin-and-back` | Former integration branch name |
+| Environment | Branch | Expected host |
+|---|---|---|
+| Staging | `DEV` | `dev.kois-story.com` |
+| Admin validation | `DEV` or release candidate from `DEV` | `admin.kois-story.com` |
+| Production public | `main` | main public domain |
 
-## Branch protection (policy)
+The current public site must not change until staging and admin are validated.
 
-The following rules match the documented workflow and THP expectations:
+## Branch protection policy
 
-- **No direct push** to `main` or to the integration branch (`DEV`).
-- Changes land via **pull requests** from feature or contributor branches.
-- **Merge `DEV` into `main`** only when a release is ready (`CONTRIBUTING.md`).
-- Optional but recommended: **required status checks** (CI) before merge; **required reviews** for `main` (and optionally `DEV`).
+Expected protections for `DEV` and `main`:
 
-## Automation tied to branches
-
-| Workflow | Trigger | Effect |
-|----------|---------|--------|
-| `changelog.yml` | Push to `DEV`, `main` | Regenerates `CHANGELOG.md` via **PR** (no direct push to protected branches). |
-| `release.yml` | Push to `main` | Creates a GitHub Release with notes from `git-cliff`. |
-| `biome.yml`, `html-validation.yml`, `stale.yml` | Per workflow file | CI / maintenance as configured. |
+- Require pull requests before merge.
+- Block direct pushes.
+- Require CI/status checks when the workflows are stable enough to gate merges.
+- Require review for `main`; review for `DEV` is recommended.
+- Keep force pushes and branch deletion disabled.
 
 ## Verification on GitHub
 
-Repository owners should confirm in **Settings → Branches** (or **Rulesets**):
+Re-verify the live settings in **Settings -> Branches** or **Rulesets**:
 
-1. **Protected branches:** `main` and `DEV` match the names actually used on the remote.
-2. **Restrict who can push** or **require a pull request** before merging.
-3. **Require approvals** if the team uses code review.
-4. **Require status checks** to pass if CI is mandatory.
+1. `DEV` and `main` are protected with the exact remote casing.
+2. Direct pushes are blocked for both branches.
+3. Pull requests are required before merge.
+4. Required checks match the workflows that actually run.
+5. Admin bypass rules are intentional and documented.
 
 ## Related files
 
-- `CONTRIBUTING.md` — workflow and branch rules
-- `CONTRIBUTORS.md` — people, tooling, branch names
-- `.github/workflows/` — automation
+- `CONTRIBUTING.md` - workflow and branch rules.
+- `.github/workflows/` - CI and release automation.
+- `docs/deployment/coolify.md` - Coolify deployment target.

@@ -31,14 +31,14 @@ input.error,
 select.error,
 textarea.error {
 	border-color: var(--rouge-vif);
-	box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.1);
+	box-shadow: 0 0 0 3px rgba(var(--or-konishi-rgb), 0.18);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
 	border-color: var(--rouge-sombre);
-	box-shadow: 0 0 0 3px rgba(99, 15, 15, 0.1);
+	box-shadow: 0 0 0 3px rgba(var(--bleu-nuit-profond-rgb), 0.12);
 }
 
 .checkbox-field {

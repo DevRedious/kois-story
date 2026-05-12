@@ -14,7 +14,7 @@
 .history-table th {
 	padding: 9px 16px;
 	text-align: left;
-	border-bottom: 1px solid #dee2e6;
+	border-bottom: 1px solid var(--border-color);
 }
 
 .history-table th.td-right {
@@ -23,7 +23,7 @@
 
 .history-table td {
 	padding: 9px 16px;
-	border-bottom: 1px solid #f5f5f5;
+	border-bottom: 1px solid rgba(var(--bleu-nuit-profond-rgb), 0.04);
 }
 
 .history-table td.td-right {

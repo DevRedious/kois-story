@@ -9,7 +9,7 @@
   <div class="resource-metrics">
     <div class="resource-metric">
       <span class="resource-metric__label">Clients</span>
-      <strong class="resource-metric__value"><%= @clients.size %></strong>
+      <strong class="resource-metric__value"><%= @pagination[:total_count] %></strong>
     </div>
     <div class="resource-metric">
       <span class="resource-metric__label">Avec commandes</span>
@@ -19,10 +19,23 @@
 </div>
 
 <div class="panel">
-  <div class="panel-header"><div class="panel-title">Clients</div></div>
+  <div class="panel-header">
+    <div class="panel-title">Clients</div>
+    <%= form_with url: admin_clients_path, method: :get, class: "panel-toolbar admin-filter-form", local: true do |form| %>
+      <%= form.search_field :q, value: params[:q], placeholder: "Nom, email, telephone ou adresse", class: "u-toolbar-control admin-filter-form__grow" %>
+      <label class="admin-filter-check">
+        <%= check_box_tag :has_orders, "1", params[:has_orders] == "1" %>
+        <span>Avec commandes</span>
+      </label>
+      <%= form.submit "Filtrer", class: "btn btn--outline btn--sm" %>
+      <% if params[:q].present? || params[:has_orders] == "1" %>
+        <%= link_to "Reinitialiser", admin_clients_path, class: "btn btn--ghost btn--sm" %>
+      <% end %>
+    <% end %>
+  </div>
   <div class="table-responsive">
     <table>
-      <thead><tr><th>Nom</th><th>Email</th><th>Telephone</th><th>Commandes</th><th>Total</th><th>Action</th></tr></thead>
+      <thead><tr><th><%= admin_sort_link("Nom", :name) %></th><th><%= admin_sort_link("Email", :email) %></th><th><%= admin_sort_link("Telephone", :phone) %></th><th>Commandes</th><th>Total</th><th>Action</th></tr></thead>
       <tbody>
         <% @clients.each do |client| %>
           <tr>
@@ -42,4 +55,6 @@
       </tbody>
     </table>
   </div>
+
+  <%= render "admin/shared/pagination", pagination: @pagination, item_name: "clients" %>
 </div>

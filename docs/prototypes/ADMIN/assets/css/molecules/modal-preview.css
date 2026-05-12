@@ -1,0 +1,128 @@
+/* Modal preview helpers for standalone Atomic Design demo pages */
+.modal-preview-page {
+	padding: 2rem;
+	background: var(--blanc-casse);
+	display: block;
+}
+
+.modal-preview-title {
+	margin-bottom: 0.5rem;
+	font-family: var(--font-title);
+}
+
+.modal-preview-title--spaced {
+	margin-bottom: 1.5rem;
+}
+
+.modal-preview-intro {
+	color: var(--gris);
+	font-size: 0.875rem;
+	margin-bottom: 2rem;
+}
+
+.modal-preview-row,
+.modal-close-preview {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.modal-preview-row {
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+
+.modal-preview-static {
+	position: relative;
+	flex: 1;
+	min-width: 300px;
+	max-width: 520px;
+}
+
+.modal-preview-static--center {
+	margin: 0 auto;
+}
+
+.modal-preview-static--sm {
+	max-width: 400px;
+}
+
+.modal-close-preview__label,
+.modal-preview-label {
+	font-size: 0.75rem;
+	color: var(--gris);
+	margin-top: 0.5rem;
+	font-weight: 600;
+}
+
+.modal-close-preview__dark {
+	background: var(--noir);
+	padding: 1rem;
+	border-radius: 8px;
+}
+
+.modal-close--preview-hover {
+	background: var(--blanc-casse);
+	color: var(--noir);
+}
+
+.modal-close--preview-inverse {
+	color: var(--blanc-pur);
+}
+
+.modal-preview-specs {
+	margin-top: 2rem;
+	border-collapse: collapse;
+	font-size: 0.85rem;
+}
+
+.modal-preview-specs th {
+	text-align: left;
+	padding: 0.4rem 1rem 0.4rem 0;
+	color: var(--gris);
+}
+
+.modal-preview-code {
+	margin-top: 2rem;
+}
+
+.modal-preview-summary {
+	cursor: pointer;
+	font-weight: 600;
+	color: var(--gris);
+	font-size: 0.875rem;
+}
+
+.modal-preview-pre {
+	background: var(--noir);
+	color: var(--blanc-pur);
+	padding: 1rem;
+	border-radius: 8px;
+	font-size: 0.8rem;
+	overflow-x: auto;
+	margin-top: 0.75rem;
+}
+
+.modal-preview-pre--sm {
+	font-size: 0.78rem;
+}
+
+.modal-preview-note {
+	font-size: 0.8rem;
+	color: var(--gris);
+	margin-top: 0.5rem;
+}
+
+.modal-action-summary {
+	color: var(--gris);
+	font-size: 0.9rem;
+	margin-bottom: 1rem;
+}
+
+.modal-footer--bare {
+	padding: 0;
+	border: none;
+	background: none;
+	margin-top: 0.5rem;
+}

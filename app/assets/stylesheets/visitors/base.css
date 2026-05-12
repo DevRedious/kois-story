@@ -1,5 +1,5 @@
 /* ==========================================================================
-   base.css  Reset minimal + body Koi's Story V3
+   base.css  Reset minimal + body Koi's Story V4
    ========================================================================== */
 
 *,
@@ -13,6 +13,7 @@
 html {
 	scroll-behavior: smooth;
 	-webkit-text-size-adjust: 100%;
+	overflow-x: clip;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
 	min-height: 100dvh;
 	display: flex;
 	flex-direction: column;
+	overflow-x: clip;
 }
 
 main {
@@ -39,7 +41,7 @@ body::before {
 	position: fixed;
 	inset: 0;
 	z-index: -2;
-	background: url("bg_sakura.png") center / cover no-repeat;
+	background: url("/bg_sakura.avif") center / cover no-repeat;
 	filter: saturate(0.28) contrast(0.82) brightness(1.15) sepia(0.1);
 }
 /* Couche 2 : voile crème chaud + grain fibres papier */
@@ -100,6 +102,11 @@ select {
 }
 .skip-link:focus {
 	top: 0;
+}
+
+.svg-defs-hidden {
+	position: absolute;
+	overflow: hidden;
 }
 
 /* ── Accessibilité  focus visible ──────────────────────────────────── */

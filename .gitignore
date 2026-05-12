@@ -14,6 +14,7 @@ Thumbs.db
 /storage/*
 /public/assets
 /public/packs
+/public/uploads
 /node_modules
 /vendor/bundle
 /db/*.sqlite3
@@ -32,9 +33,18 @@ Thumbs.db
 *.swp
 *.swo
 
+# Local media working files
+/docs/audio/
 
 /valentin 
 
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

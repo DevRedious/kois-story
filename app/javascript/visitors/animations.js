@@ -4,6 +4,10 @@
  * Compatible with Turbo (Rails Hotwire) via the turbo:load event.
  */
 
+import { createLifecycle } from "visitors/header-utils";
+
+let lifecycle;
+
 const animObserver = new IntersectionObserver(
 	(entries) => {
 		for (const entry of entries) {
@@ -15,13 +19,21 @@ const animObserver = new IntersectionObserver(
 	{ threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
 );
 
-const initAnimations = () => {
-	document.querySelectorAll("[data-animate]").forEach((el) => {
-		if (!el.classList.contains("is-visible")) animObserver.observe(el);
-	});
+const isInViewport = (el) => {
+	const rect = el.getBoundingClientRect();
+	return rect.top < window.innerHeight - 40 && rect.bottom > 0;
 };
 
-document.addEventListener("turbo:load", initAnimations);
+const initAnimations = () => {
+	document.querySelectorAll("[data-animate]").forEach((el) => {
+		if (el.classList.contains("is-visible")) return;
+		if (isInViewport(el)) {
+			el.classList.add("is-visible");
+		} else {
+			animObserver.observe(el);
+		}
+	});
+};
 
 /* Floating CTA: hide when footer enters viewport */
 const initFloatCta = () => {
@@ -36,24 +48,9 @@ const initFloatCta = () => {
 		);
 	};
 
-	window.addEventListener("scroll", check, { passive: true });
+	lifecycle.listen(window, "scroll", check, { passive: true });
 	check();
 };
-
-document.addEventListener("turbo:load", initFloatCta);
-
-/* Video -> poster fade on ended */
-const initVideoFade = () => {
-	const video = document.querySelector(".hero__video");
-	const poster = document.querySelector(".hero__poster");
-	if (!video || !poster) return;
-	video.addEventListener("ended", () => {
-		video.classList.add("hero__video--fading");
-		poster.classList.add("hero__poster--visible");
-	});
-};
-
-document.addEventListener("turbo:load", initVideoFade);
 
 /* Footer legal dropdown */
 const initFooterDropdown = (id) => {
@@ -68,17 +65,17 @@ const initFooterDropdown = (id) => {
 		toggle.setAttribute("aria-expanded", "false");
 	};
 
-	toggle.addEventListener("click", (event) => {
+	lifecycle.listen(toggle, "click", (event) => {
 		event.preventDefault();
 		const isOpen = menu.classList.toggle("open");
 		toggle.setAttribute("aria-expanded", String(isOpen));
 	});
 
-	document.addEventListener("click", (event) => {
+	lifecycle.listen(document, "click", (event) => {
 		if (!menu.contains(event.target)) closeMenu();
 	});
 
-	document.addEventListener("keydown", (event) => {
+	lifecycle.listen(document, "keydown", (event) => {
 		if (event.key === "Escape") closeMenu();
 	});
 
@@ -90,4 +87,16 @@ const initFooterDropdowns = () => {
 	initFooterDropdown("footer-products");
 };
 
-document.addEventListener("turbo:load", initFooterDropdowns);
+document.addEventListener("turbo:load", () => {
+	lifecycle?.destroy();
+	lifecycle = createLifecycle();
+	initAnimations();
+	initFloatCta();
+	initFooterDropdowns();
+});
+
+document.addEventListener("turbo:before-cache", () => {
+	lifecycle?.destroy();
+	lifecycle = undefined;
+	animObserver.disconnect();
+});

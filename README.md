@@ -1,27 +1,28 @@
 <div align="center">
-  <img src="docs/assets/LOGO MANU FINI 2.png" alt="Koi's Story Logo" width="200">
+  <img src="public/logo_bg_circle_dark_v2.png" alt="Koi's Story Logo" width="200">
 
   <p align="center">
-    <img src="https://img.shields.io/badge/Rails-7.x-CC0000?logo=rubyonrails&logoColor=white" alt="Ruby on Rails">
-    <img src="https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite&logoColor=white" alt="SQLite">
+    <img src="https://img.shields.io/badge/Rails-8.1-CC0000?logo=rubyonrails&logoColor=white" alt="Ruby on Rails">
+    <img src="https://img.shields.io/badge/PostgreSQL-17-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
+    <img src="https://img.shields.io/badge/Docker-Desktop-2496ED?logo=docker&logoColor=white" alt="Docker Desktop">
     <img src="https://img.shields.io/badge/Hotwire-Turbo%20%2B%20Stimulus-9B59B6" alt="Hotwire">
     <img src="https://img.shields.io/badge/Auth-Devise-orange" alt="Devise">
-    <img src="https://img.shields.io/badge/Linter-Biome-60A5FA?logo=biome&logoColor=white" alt="Biome">
+    <img src="https://img.shields.io/badge/Lint-RuboCop%20%2B%20Biome-60A5FA" alt="RuboCop and Biome">
   </p>
 
   <p align="center">
-    <img src="https://img.shields.io/badge/Palette_V3-%E2%80%94-lightgrey" alt="Palette V3">
-    <img src="https://img.shields.io/badge/Rouge_Vif-%23e60000-e60000" alt="#e60000">
-    <img src="https://img.shields.io/badge/Rouge_Sombre-%23630f0f-630f0f" alt="#630f0f">
-    <img src="https://img.shields.io/badge/Noir-%23000000-000000" alt="#000000">
-    <img src="https://img.shields.io/badge/Blanc_Cass%C3%A9-%23f5f5f2-f5f5f2?labelColor=999999" alt="#f5f5f2">
-    <img src="https://img.shields.io/badge/Blanc_Pur-%23ffffff-ffffff?labelColor=999999" alt="#ffffff">
+    <img src="https://img.shields.io/badge/Palette_V4-%E2%80%94-lightgrey" alt="Palette V4">
+    <img src="https://img.shields.io/badge/Bronze-%23a58241-a58241" alt="#a58241">
+    <img src="https://img.shields.io/badge/Konishi_Gold-%23eab21b-eab21b?labelColor=000000" alt="#eab21b">
+    <img src="https://img.shields.io/badge/Deep_Navy-%23011325-011325" alt="#011325">
+    <img src="https://img.shields.io/badge/Black-%23000000-000000" alt="#000000">
+    <img src="https://img.shields.io/badge/White-%23ffffff-ffffff?labelColor=999999" alt="#ffffff">
     <img src="https://img.shields.io/badge/WhatsApp-%2325d366-25d366?logo=whatsapp&logoColor=white" alt="#25d366">
   </p>
 
   <p align="center">
     <i>Digital showcase platform for a koi carp breeding farm affiliated with the Konishi lineage.</i><br>
-    Final project  <a href="https://www.thehackingproject.org">The Hacking Project</a><br>
+    Independent Rails application, originally started as a THP final project<br>
    Trello Board  <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>
   </p>
 </div>
@@ -39,50 +40,61 @@
 - Pre-filled "Order via WhatsApp" button
 - Photo & video gallery of the breeding farm
 - Contact form with email notification
-- Admin back-office (koi CRUD, message management)
+- Admin back-office for kois, products, clients, orders, payments, messages, and newsletter exports
+- Docker Desktop local stack with public/admin route isolation and a shared PostgreSQL database
 
 ## Project Progress
 
-| Phase              | Status                                                                                            |
-| ------------------ | ------------------------------------------------------------------------------------------------- |
-| Planning & Design  | ![100%](https://geps.dev/progress/100?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e) |
-| HTML/CSS Prototype | ![83%](https://geps.dev/progress/83?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
-| Rails Integration  | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
-| Tests & QA         | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
-| Production Deploy  | ![0%](https://geps.dev/progress/0?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)     |
+| Phase                       | Status                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------- |
+| Planning & Design           | ![100%](https://geps.dev/progress/100?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e) |
+| Rails Public/Admin App      | ![90%](https://geps.dev/progress/90?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+| Local Docker Stack          | ![100%](https://geps.dev/progress/100?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e) |
+| Tests & QA                  | ![80%](https://geps.dev/progress/80?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+| Staging & Production Deploy | ![45%](https://geps.dev/progress/45?dangerColor=ef4444&warningColor=f59e0b&successColor=22c55e)   |
+
+Current status: the Rails app is the active implementation, the local Docker stack runs `public`, `admin`, and `db` services, and the smoke script validates route isolation plus shared database access. Staging and production are still being prepared around the `DEV` branch, Coolify, Cloudflare DNS, and the future `admin.kois-story.com` service split.
 
 ## Repository Status
 
-This repository is currently in the planning and documentation phase.
+The Rails application is now the active source of truth.
 
-The Rails application has not been scaffolded yet. At this stage, the repository contains:
+- `app/`, `config/`, `db/`, and `test/` contain the Rails MVP.
+- `docs/prototypes/ADMIN/` contains the archived standalone admin prototype.
+- `docs/prototypes/VISITORS/` contains the archived standalone public prototype.
 
-- product framing
-- UX documentation
-- design references
-- delivery planning
-- collaboration standards
+The Rails MVP includes public pages, a filterable koi catalog, koi detail pages, a contact form with mail notification, Devise admin authentication, admin CRUD for kois and products, and admin screens for messages, clients, orders, and payments.
 
-## Planned Setup
+The historical THP/prototype constraints are kept only as project memory. New work should target Rails first; archived prototypes are reference material, not parallel surfaces to maintain.
 
-Once implementation starts, the project is expected to use:
+## Local Development
 
-- Ruby on Rails
-- SQLite
-- Hotwire
-- Devise
-- Cloudinary
-- ActionMailer
-- Atomic Design for UI composition
+Docker Desktop is the official local runtime. Do not run the Rails app directly on native Windows for team development.
 
-## Environment
+Create `.env.local` from `.env.example`, then start the complete local stack:
 
-An example configuration file is available at `.env.example`.
+```bash
+docker compose build
+docker compose up -d --wait db public admin
+docker compose exec -T admin bin/rails db:seed
+ruby script/docker_smoke.rb
+docker compose run --rm -e KOIS_APP_ROLE=all -e RAILS_ENV=test public bash -lc "unset DATABASE_URL; bin/rails test"
+docker compose exec -T public bundle exec rubocop
+```
+
+Local services:
+
+- public site: `http://localhost:3000` (`KOIS_APP_ROLE=public`)
+- admin site: `http://localhost:3001` (`KOIS_APP_ROLE=admin`)
+- PostgreSQL: `127.0.0.1:5433`
+
+The Docker smoke script checks the public/admin route split, shared database, service health, and LF endings for Rails binstubs.
 
 ## Working Standards
 
-- `Main` is the production branch
+- `main` is the production branch
 - `DEV` is the integration branch
+- local/staging work must target `DEV` through pull requests
 - contributor branches are `Morgan`, `Romain`, and `Valentin`; **Cursor**, **Claude**, and **Gemini** are acknowledged as tooling contributors in `CONTRIBUTORS.md`
 - all code and `README.md` content must stay in English
 - routes must remain RESTful
@@ -92,89 +104,29 @@ An example configuration file is available at `.env.example`.
 ## Repository Documents
 
 - `docs/README.md` for the documentation index
-- `docs/todo.md` for execution tracking
+- `docs/development/local-docker.md` for the official Docker Desktop workflow
+- `docs/deployment/coolify.md` for Coolify deployment planning
 - `docs/roadmap.md` for milestones
-- `docs/stack.md` for the planned stack
+- `docs/stack.md` for the current stack
 - `CONTRIBUTING.md` for collaboration rules
 - `CONTRIBUTORS.md` for the contribution log
 - `SECURITY.md` for vulnerability reporting
 
-## Executive Summary
+## Product Overview
 
-### Presentation
+Koi's Story is a premium digital showcase for Konishi koi carp. The public site helps visitors browse available koi and start a direct WhatsApp conversation. The admin app manages stock, products, clients, orders, payments, and contact messages.
 
-Koi's Story is a premium digital showcase dedicated to the breeding and sale of exceptional koi carp. Led by Mathilde and Emmanuel, this farm stands out for its exclusive affiliation with the prestigious Konishi lineage. The project aims to transform a market traditionally based on word-of-mouth into a modern and immersive digital experience, matching the nobility of these specimens.
+The public and admin surfaces share one database but run as separate local services. In deployment, public traffic should stay on the main domain while admin traffic moves to `admin.kois-story.com`.
 
-### Business Model
+## Brand And Design References
 
-The model is based on the sale of high-quality specimens. The platform facilitates conversion by allowing collectors to browse a filterable catalog (variety, size, price) and initiate the purchase through a direct connection via WhatsApp. This channel favors personalized advice and secure transactions for high-value products, bypassing automated payment tunnels.
+The current visual source of truth is the Rails application, the V2 logo files in `public/`, and the V4 palette in `public/docs/assets/palette_V4.svg`.
 
-### Our Clients
+The March 2026 wireframes remain useful as planning history, but they are archived references rather than live implementation screenshots:
 
-Our clients are koi carp enthusiasts, ranging from beginners to seasoned collectors. They seek exclusivity, traceability, and the aesthetic quality guaranteed by the Konishi lineage. This demanding audience prefers mobile consultation and direct contact with the breeder.
-
-### Vision
-
-In 3 years, Koi's Story aims to become the essential digital reference for acquiring Konishi koi carp in France. We aim to consolidate our online presence and continuously optimize the user experience to solidify our position as a leader in this premium niche segment.
-
-## User Journey
-
-### 1. Visitor Journey (Buyer)
-
-The goal is to allow the user to find a fish and contact the seller in **less than 3 clicks**.
-
-- **Step 1: Discovery & Home (/)**: Arrival on an immersive landing page (visual hero of a pond).
-- **Step 2: Catalog Exploration (/catalogue)**: Browsing product cards with dynamic filtering (Hotwire) by variety, size, and price.
-- **Step 3: Product Detail View (/catalogue/:id)**: Examining HD photos and technical characteristics (size, estimated age, description).
-- **Step 4: Contact (WhatsApp)**: One-click "Order via WhatsApp" button opening a pre-filled message with koi reference.
-
-### 2. Administrator Journey (Manager)
-
-The goal is to provide a simplified interface for daily stock and contact management.
-
-- **Step 1: Authentication (/users/sign_in)**: Secure access via Devise for administrators only.
-- **Step 2: Dashboard**: Overview of received messages via the contact form and quick stock statistics.
-- **Step 3: Stock Management (CRUD)**: Creating new listings (name, variety, price, size, Konishi badge), uploading photos (Cloudinary), and updating status (Available/Sold).
-- **Step 4: Message Management**: Reading and tracking contact requests received by email/form.
-
-### 3. Journey Visualization
-
-#### Visitor Flow
-
-```mermaid
-graph TD
-    A[Home /] -->|1 click| B[Catalog /catalogue]
-    B -->|Hotwire Filters| B
-    B -->|2 clicks| C[Product Page /catalogue/:id]
-    C -->|Reassurance| D[Our Farm /farm]
-    D --> C
-    C -->|3 clicks| E[WhatsApp Button]
-    E --> F{Conversation wa.me}
-    F -->|Advice| G[Sale finalized]
-```
-
-#### Administrator Flow
-
-```mermaid
-graph LR
-    Login[Devise Login] --> Dash[Admin Dashboard]
-    Dash --> Messages[Message Management]
-    Dash --> CRUD[Stock Management]
-    CRUD --> Create[Add Koi]
-    CRUD --> Update[Edit / Sell]
-    CRUD --> Delete[Delete]
-    Create --> Cloudinary[Upload HQ Images]
-```
-
-## Wireframes
-
-### Home Page
-
-![Home Page Wireframe](docs/design/wireframes/wireframe_accueil.svg)
-
-### Product Page
-
-![Product Page Wireframe](docs/design/wireframes/wireframe_produit.svg)
+- [Home page wireframe](docs/design/wireframes/wireframe_accueil.svg)
+- [Product page wireframe](docs/design/wireframes/wireframe_produit.svg)
+- [Wireframes overview](docs/design/wireframes/wireframes.md)
 
 ## Documentation
 
@@ -186,17 +138,17 @@ Project history is tracked in `CHANGELOG.md`.
 
 ## Tech Stack
 
-| Layer            | Technology                         |
-| ---------------- | ---------------------------------- |
-| Back-end         | Ruby on Rails (RESTful, MVC)       |
-| Front-end        | Hotwire Turbo + Stimulus           |
-| CSS              | Bootstrap / Tailwind CSS           |
-| Database         | SQLite                             |
-| Authentication   | Devise (roles:`visitor` / `admin`) |
-| Linter/Formatter | Biome                              |
-| Image upload     | Cloudinary                         |
-| Emails           | ActionMailer                       |
-| Hosting          | VPS                                |
+| Layer            | Technology                                      |
+| ---------------- | ----------------------------------------------- |
+| Back-end         | Ruby on Rails 8.1 (RESTful, MVC)                |
+| Front-end        | Hotwire Turbo + Stimulus + importmap            |
+| CSS              | Propshaft assets from the Atomic Design modules |
+| Database         | PostgreSQL in Docker local stack; SQLite legacy default |
+| Authentication   | Devise + devise-two-factor                      |
+| Linter/Formatter | RuboCop + Biome                                 |
+| Image upload     | CarrierWave + Cloudinary                        |
+| Emails           | ActionMailer + Resend SMTP                      |
+| Hosting          | Coolify-ready Docker on VPS; Kamal config kept as legacy reference |
 
 ## Team
 

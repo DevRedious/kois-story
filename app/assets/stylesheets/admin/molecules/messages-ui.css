@@ -2,7 +2,7 @@
 .unread-count {
 	font-size: 0.72rem;
 	font-weight: 700;
-	background: #fde8e8;
+	background: rgba(var(--or-konishi-rgb), 0.14);
 	color: var(--rouge-vif);
 	padding: 3px 10px;
 	border-radius: 10px;
@@ -21,6 +21,44 @@
 .msg-date {
 	white-space: nowrap;
 	font-size: 0.82rem;
+}
+
+.msg-reference {
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	white-space: nowrap;
+}
+
+.messages-toolbar {
+	width: 100%;
+}
+
+.messages-search {
+	min-width: min(240px, 100%);
+}
+
+.messages-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.messages-filter-chip {
+	border: 1px solid var(--border-color);
+	background: var(--blanc-pur);
+	color: var(--gris);
+	border-radius: 999px;
+	padding: 6px 10px;
+	font-size: 0.78rem;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.messages-filter-chip.is-active {
+	background: rgba(var(--or-konishi-rgb), 0.14);
+	color: var(--rouge-vif);
+	border-color: rgba(var(--or-konishi-rgb), 0.24);
 }
 
 .msg-time {
@@ -48,10 +86,21 @@
 	color: var(--noir);
 }
 
+.msg-followup {
+	min-width: 150px;
+	font-size: 0.76rem;
+	color: var(--gris);
+	line-height: 1.4;
+}
+
 @media (min-width: 769px) {
 	.msg-preview {
 		max-width: 280px;
 	}
+}
+
+.msg-row.msg-row--processed td {
+	background: rgba(45, 158, 90, 0.05);
 }
 
 .panel--messages .panel-header select {
@@ -59,13 +108,13 @@
 	font-size: 0.8rem;
 	color: var(--noir);
 	background: var(--blanc-pur);
-	border: 1.5px solid #d8dde3;
+	border: 1.5px solid var(--border-color);
 	border-radius: 6px;
 	padding: 6px 28px 6px 10px;
 	outline: none;
 	height: 34px;
 	appearance: none;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236C757D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23011325' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 	background-repeat: no-repeat;
 	background-position: right 10px center;
 }

@@ -23,9 +23,9 @@ if (!document.getElementById("admin-notification-styles")) {
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       animation: slideInRight 0.3s ease;
     }
-    .admin-notification.success { background: #d4f0e0; color: #1a6e3e; border: 1px solid #2D9E5A; }
-    .admin-notification.error   { background: #fde8e8; color: #e60000; border: 1px solid #e60000; }
-    .admin-notification.info    { background: #f5f5f2; color: #000000; border: 1px solid #630f0f; }
+    .admin-notification.success { background: #ffffff; color: #011325; border: 1px solid #a58241; }
+    .admin-notification.error   { background: #ffffff; color: #011325; border: 1px solid #eab21b; }
+    .admin-notification.info    { background: #ffffff; color: #000000; border: 1px solid #011325; }
     .admin-notification-close {
       background: none; border: none; cursor: pointer;
       font-size: 16px; line-height: 1; padding: 0; margin-left: 4px;

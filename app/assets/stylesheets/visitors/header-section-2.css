@@ -2,12 +2,12 @@
 .header__nav a,
 .dropdown-toggle {
 	font-family: var(--font-sans);
-	font-size: var(--text-sm);
+	font-size: 1rem;
 	font-weight: 600;
 	color: var(--c-white);
-	letter-spacing: 0.04em;
+	letter-spacing: 0.03em;
 	padding: var(--sp-2) var(--sp-3);
-	transition: color var(--t-fast);
+	transition: color 220ms ease;
 	position: relative;
 	z-index: 1;
 	white-space: nowrap;
@@ -17,23 +17,41 @@
 }
 .header__nav a.active,
 .dropdown-toggle.active {
-	background: linear-gradient(135deg, #980000 0%, #630f0f 50%, #980000 100%);
+	color: var(--c-black);
+}
+.header__nav:not(.header__nav--indicator-ready) > ul > li > a.active,
+.header__nav:not(.header__nav--indicator-ready)
+	> ul
+	> li
+	> .dropdown-toggle.active {
+	background: linear-gradient(
+		135deg,
+		var(--c-gold) 0%,
+		var(--c-gold) 32%,
+		var(--c-bronze) 72%,
+		var(--c-gold) 100%
+	);
 	background-size: 200% 200%;
 	background-position: 0% 0%;
-	color: var(--c-white);
+	border: 1px solid var(--c-gold);
 	border-radius: var(--r-xl);
-	border: 1px solid rgba(255, 255, 255, 0.18);
-	box-shadow:
-		0 2px 14px rgba(230, 0, 0, 0.5),
-		inset 0 1px 0 rgba(255, 255, 255, 0.22);
-	transition:
-		background-position 0.6s linear,
-		box-shadow var(--t-fast),
-		color var(--t-fast);
+	box-shadow: 0 4px 18px rgba(234, 178, 27, 0.34);
+}
+.header__nav a:hover,
+.dropdown-toggle:hover {
+	color: var(--c-gold);
 }
 .header__nav a.active:hover,
 .dropdown-toggle.active:hover {
+	color: var(--c-black);
+}
+.header__nav:not(.header__nav--indicator-ready) > ul > li > a.active:hover,
+.header__nav:not(.header__nav--indicator-ready)
+	> ul
+	> li
+	> .dropdown-toggle.active:hover {
 	background-position: 100% 100%;
+	box-shadow: 0 8px 24px rgba(234, 178, 27, 0.42);
 }
 
 /* ── DROPDOWN ────────────────────────────────────────────────────────── */
@@ -98,41 +116,6 @@
 		color var(--t-fast);
 }
 .dropdown li a:hover {
-	background: var(--w-06);
-	color: var(--c-red);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.site-logo,
-	.header__pill,
-	.header__nav a,
-	.dropdown-toggle,
-	.nav__indicator,
-	.dropdown,
-	.header__burger span {
-		transition: none;
-	}
-}
-
-/* ── BURGER ──────────────────────────────────────────────────────────── */
-.header__burger {
-	display: none;
-	flex-direction: column;
-	gap: 5px;
-	margin-left: auto;
-	cursor: pointer;
-	padding: var(--sp-3);
-	background: rgba(0, 0, 0, 0.45);
-	border-radius: var(--r-full);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.header__burger span {
-	display: block;
-	width: 22px;
-	height: 2px;
-	background: var(--c-white);
-	transition:
-		transform var(--t-base),
-		opacity var(--t-fast);
-	transform-origin: center;
+	background: var(--c-gold-10);
+	color: var(--c-gold);
 }

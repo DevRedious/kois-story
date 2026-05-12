@@ -1,10 +1,10 @@
 /* ==========================================================================
-   azukari.css  Page azukari (service pension) Koi's Story V3
+   azukari.css  Page azukari (service pension) Koi's Story V4
    ========================================================================== */
 
 .azukari-desc {
 	padding: calc(60px + var(--sp-12)) var(--sp-4) var(--sp-12);
-	background: rgba(245, 245, 242, 0.9);
+	background: var(--w-90);
 }
 @media (min-width: 481px) {
 	.azukari-desc {
@@ -32,7 +32,7 @@
 	font-size: var(--text-2xl);
 	font-weight: 700;
 	color: var(--c-black);
-	margin-bottom: var(--sp-5);
+	margin-bottom: var(--sp-4);
 }
 .azukari-desc__text p {
 	font-size: var(--text-base);

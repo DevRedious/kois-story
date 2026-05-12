@@ -12,9 +12,8 @@
     { icon: "🎯", badge: "Distributeur", name: "Distributeur automatique", description: "Programmation journalière jusqu'à 6 repas. Idéal pour maintenir un rythme d'alimentation régulier." }
   ]
 %>
-<%= render "pages/home_wave_defs" %>
 <%= render "pages/home_header" %>
-<%= render "pages/product_hero", label: "Alimentation", title: "Nourriture Konishi", subtitle: "Gamme d'alimentation premium pour révéler les couleurs et favoriser la croissance.", wavy: false %>
+<%= render "pages/product_hero", title: "Nourriture Konishi", subtitle: "Gamme d'alimentation premium pour révéler les couleurs et favoriser la croissance." %>
 <div class="konishi-info">
   <div class="konishi-info__inner">
     <div data-animate="fade-right">
@@ -22,7 +21,7 @@
       <p class="konishi-info__text">Formulée par les experts japonais Konishi, cette gamme est développée pour optimiser la pigmentation, la croissance et la santé immunitaire des koïs. Nous sommes les seuls distributeurs français agréés.</p>
     </div>
     <div class="konishi-info__logo" data-animate="fade-left">
-      <%= image_tag docs_asset_path("Logos_konishi-black_1.png"), alt: "Konishi" %>
+      <%= image_tag "/logo_konishi_black.avif", alt: "Konishi" %>
     </div>
   </div>
 </div>

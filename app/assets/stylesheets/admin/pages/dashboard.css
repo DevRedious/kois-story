@@ -20,6 +20,61 @@
 	margin-bottom: 24px;
 }
 
+.dashboard-panels {
+	display: grid;
+	gap: 24px;
+}
+
+.dashboard-feed {
+	display: grid;
+	gap: 1px;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.06);
+}
+
+.dashboard-item {
+	background: var(--blanc-pur);
+	padding: 16px 20px;
+	min-width: 0;
+}
+
+.dashboard-item__top {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 8px;
+}
+
+.dashboard-item__title {
+	font-weight: 700;
+	color: var(--noir);
+}
+
+.dashboard-item__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.dashboard-item__meta,
+.dashboard-item__text {
+	font-size: 0.8rem;
+	color: var(--gris);
+	line-height: 1.5;
+}
+
+.dashboard-empty {
+	padding: 20px;
+	font-size: 0.9rem;
+	color: var(--gris);
+}
+
+@media (min-width: 1025px) {
+	.dashboard-panels {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: start;
+	}
+}
+
 .logo-konishi {
 	height: 1.1em;
 	vertical-align: middle;

@@ -3,7 +3,7 @@ module Admin
     before_action :set_product, only: [ :show, :edit, :update, :destroy ]
 
     def index
-      @products = Product.order(created_at: :desc)
+      @products, @pagination = paginate_scope(sorted_products(filtered_products), per_page: 12)
     end
 
     def show; end
@@ -33,8 +33,11 @@ module Admin
     end
 
     def destroy
-      @product.destroy
-      redirect_to admin_products_path, notice: "Product deleted."
+      if @product.destroy
+        redirect_to admin_products_path, notice: "Product deleted."
+      else
+        redirect_to admin_products_path, alert: "This product is linked to an order and cannot be deleted."
+      end
     rescue ActiveRecord::InvalidForeignKey
       redirect_to admin_products_path, alert: "This product is linked to an order and cannot be deleted."
     end
@@ -49,6 +52,26 @@ module Admin
       params.require(:product).permit(
         :name, :reference, :description, :price, :stock_quantity, :category, :status
       )
+    end
+
+    def filtered_products
+      scope = Product.order(created_at: :desc)
+      scope = scope.where(category: params[:category]) if params[:category].present?
+      scope = scope.where(status: params[:status]) if params[:status].present?
+      return scope if params[:q].blank?
+
+      query = "%#{params[:q].strip.downcase}%"
+      scope.where("LOWER(name) LIKE :query OR LOWER(reference) LIKE :query OR LOWER(description) LIKE :query", query:)
+    end
+
+    def sorted_products(scope)
+      direction = params[:direction] == "asc" ? :asc : :desc
+      case params[:sort]
+      when "name", "reference", "category", "price", "stock_quantity", "status"
+        scope.order(params[:sort] => direction)
+      else
+        scope.order(created_at: direction)
+      end
     end
   end
 end

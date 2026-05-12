@@ -85,7 +85,7 @@
 /* ── STORYTELLING  page decouvrir ──────────────────────────────── */
 .story {
 	padding: calc(50px + var(--sp-20)) var(--sp-10) var(--sp-20);
-	background: rgba(245, 245, 242, 0.9);
+	background: var(--w-90);
 }
 .story__inner {
 	max-width: var(--max-width);

@@ -1,0 +1,51 @@
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0;padding:0;background:#011325;">
+  <tr>
+    <td align="center" style="padding:24px 12px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border:1px solid #a58241;">
+        <tr>
+          <td style="background:#011325 url('<%= docs_asset_url("bg_sakura.png") %>') center center / cover no-repeat;padding:0;text-align:center;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:rgba(1,19,37,0.72);">
+              <tr>
+                <td style="padding:26px 24px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:rgba(234,178,27,0.08);border:1px solid rgba(165,130,65,0.28);">
+                    <tr>
+                      <td style="padding:18px 18px 16px 18px;text-align:center;">
+                        <img src="<%= public_asset_url("logo_bg_circle_dark_v2.png") %>" alt="Koi's Story" width="140" style="display:block;margin:0 auto 14px auto;width:140px;max-width:100%;height:auto;">
+                        <div style="font-family:Georgia,serif;font-size:28px;line-height:1.2;color:#ffffff;font-weight:700;">Koi's Story</div>
+                        <div style="font-family:Arial,sans-serif;font-size:13px;line-height:1.5;color:#ffffff;padding-top:8px;">Votre message a bien été pris en compte</div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:28px 24px 18px 24px;font-family:Arial,sans-serif;color:#000000;">
+            <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;">Bonjour <strong><%= @message.sender_name %></strong>,</p>
+            <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;">Merci pour votre message. Nous l'avons bien reçu et nous vous répondrons prochainement.</p>
+            <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;">Votre reference de contact est <strong><%= @message.contact_reference %></strong>.</p>
+            <p style="margin:0 0 16px 0;font-size:16px;line-height:1.6;">Si vous ne voyez pas notre réponse dans votre boîte de réception, pensez à vérifier vos courriers indésirables ou spams.</p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0;background:#ffffff;border-left:4px solid #a58241;">
+              <tr>
+                <td style="padding:16px 18px;">
+                  <div style="font-size:13px;line-height:1.5;color:#011325;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">Votre message</div>
+                  <div style="padding-top:8px;font-size:15px;line-height:1.7;color:#000000;"><%= simple_format(ERB::Util.html_escape(@message.body), {}, wrapper_tag: "div") %></div>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" cellpadding="0" cellspacing="0" style="margin:26px auto 10px auto;">
+              <tr>
+                <td align="center" bgcolor="#eab21b" style="border-radius:6px;">
+                  <a href="<%= app_base_url %>" style="display:inline-block;padding:12px 20px;font-family:Arial,sans-serif;font-size:15px;line-height:1;color:#000000;text-decoration:none;font-weight:700;">Visiter Koi's Story</a>
+                </td>
+              </tr>
+            </table>
+            <p style="margin:18px 0 0 0;font-size:15px;line-height:1.7;color:#000000;">À bientôt,<br><strong>L'équipe Koi's Story</strong></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

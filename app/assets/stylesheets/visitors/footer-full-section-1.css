@@ -90,7 +90,7 @@
 	position: absolute;
 	bottom: calc(100% + var(--sp-2));
 	left: 0;
-	background: #1a1a1a;
+	background: var(--c-black);
 	border: 1px solid var(--w-10);
 	border-radius: var(--r-md);
 	padding: var(--sp-2) 0;

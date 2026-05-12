@@ -1,24 +1,30 @@
 /* Split from VISITORS/assets/css/variables.css - section 1/2 */
 /* ==========================================================================
-   variables.css  Design tokens Koi's Story V3
-   Palette : #e60000 · #630f0f · #000000 · #f5f5f2 · #ffffff · #25d366
+   variables.css  Design tokens Koi's Story V4
+   Palette : #a58241 · #eab21b · #011325 · #000000 · #ffffff · #25d366
    ========================================================================== */
 
 :root {
 	/* ── Couleurs ──────────────────────────────────────────────────────── */
-	--c-red: #e60000;
-	--c-wine: #630f0f;
+	--c-bronze: #a58241;
+	--c-gold: #eab21b;
+	--c-navy: #011325;
+	--c-red: var(--c-bronze);
+	--c-wine: var(--c-navy);
 	--c-black: #000000;
-	--c-cream: #f5f5f2;
+	--c-cream: #ffffff;
 	--c-white: #ffffff;
 	--c-wa: #25d366;
 
 	/* Teintes dérivées (rgba uniquement) */
-	--c-red-10: rgba(230, 0, 0, 0.1);
-	--c-red-20: rgba(230, 0, 0, 0.2);
-	--c-red-40: rgba(230, 0, 0, 0.4);
-	--c-wine-10: rgba(99, 15, 15, 0.1);
-	--c-wine-20: rgba(99, 15, 15, 0.2);
+	--c-red-10: rgba(165, 130, 65, 0.1);
+	--c-red-20: rgba(165, 130, 65, 0.2);
+	--c-red-40: rgba(165, 130, 65, 0.4);
+	--c-gold-10: rgba(234, 178, 27, 0.1);
+	--c-gold-20: rgba(234, 178, 27, 0.2);
+	--c-gold-40: rgba(234, 178, 27, 0.4);
+	--c-wine-10: rgba(1, 19, 37, 0.1);
+	--c-wine-20: rgba(1, 19, 37, 0.2);
 
 	/* Neutres (dérivés de #000 sur fond clair) */
 	--n-90: rgba(0, 0, 0, 0.9);
@@ -83,7 +89,7 @@
 	--shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
 	--shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
 	--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
-	--shadow-red: 0 4px 20px rgba(230, 0, 0, 0.4);
+	--shadow-red: 0 4px 20px rgba(165, 130, 65, 0.4);
 	--shadow-wa: 0 4px 20px rgba(37, 211, 102, 0.45);
 
 	/* ── Transitions ───────────────────────────────────────────────────── */
@@ -93,7 +99,7 @@
 
 	/* ── Layout ────────────────────────────────────────────────────────── */
 	--max-width: 1400px;
-	--header-height: 74px;
+	--header-height: 76px;
 	--section-padding: var(--sp-20) var(--sp-10);
 }
 

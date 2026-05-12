@@ -1,5 +1,5 @@
 /**
- * gallery.js  Koi's Story V3
+ * gallery.js  Koi's Story V4
  * Product gallery slider + lightbox, compatible with Turbo.
  */
 (() => {

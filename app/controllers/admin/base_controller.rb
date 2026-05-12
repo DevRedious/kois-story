@@ -1,5 +1,7 @@
 module Admin
   class BaseController < ApplicationController
+    include Paginatable
+
     before_action :authenticate_user!
     before_action :require_admin!
     layout "admin"
@@ -7,7 +9,11 @@ module Admin
     private
 
     def require_admin!
-      redirect_to root_path, alert: "Access denied." unless current_user.admin?
+      return if current_user.admin?
+
+      redirect_to public_site_url,
+                  alert: "Access denied.",
+                  allow_other_host: ENV["PUBLIC_SITE_URL"].present?
     end
   end
 end

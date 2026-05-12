@@ -1,9 +1,15 @@
 <section class="contact-quick" id="contact">
+  <% if turnstile_enabled? %>
+    <% content_for :head do %>
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+    <% end %>
+  <% end %>
   <div class="contact-quick__inner">
     <div class="contact-quick__left" data-animate="fade-right">
       <p class="section-label" aria-hidden="true">Contact</p>
       <h2>Vous avez une question ?</h2>
       <p>Envoyez-nous un message ou contactez directement Manu ou Mathilde via WhatsApp pour une réponse immédiate.</p>
+      <p class="contact-quick__topics">Tests d'eau · Alimentation · Santé des koïs — on vous conseille avec plaisir.</p>
       <div class="contact-quick__info">
         <div class="info-item">
           <div class="info-item__text"><strong>Adresse</strong><p>Parc d'activités des chênes<br>Grange des Échets · 01700 Miribel<br>Livraison dans un rayon de 50 km</p></div>
@@ -16,38 +22,57 @@
         </div>
       </div>
       <div class="contact-quick__wa">
-        <%= link_to whatsapp_link("33600000000", "Bonjour Emmanuel, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
+        <%= link_to whatsapp_link(whatsapp_phone_number, "Bonjour Manu, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
           <%= whatsapp_icon %>
-          Contacter Emmanuel
+          Contacter Manu
         <% end %>
-        <%= link_to whatsapp_link("33600000001", "Bonjour Mathilde, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
+        <%= link_to whatsapp_link(whatsapp_phone_number, "Bonjour Mathilde, j'ai une question concernant Koi's Story."), class: "btn btn--wa", target: "_blank", rel: "noopener noreferrer" do %>
           <%= whatsapp_icon %>
           Contacter Mathilde
         <% end %>
       </div>
     </div>
 
-    <%= form_with model: Message.new, url: messages_path, class: "contact-form contact-form--home", data: { animate: "fade-left" } do |form| %>
+    <%= form_with model: Message.new, url: messages_path, class: "contact-form contact-form--home", data: { animate: "fade-left", contact_form: true, testid: "public-contact-form" } do |form| %>
       <p class="contact-form__title">Envoyer un message</p>
       <div class="form-fields">
         <div class="form-row">
           <div class="field">
             <%= form.label :sender_name, "Prénom & Nom *", class: "field__label" %>
-            <%= form.text_field :sender_name, class: "field__input", placeholder: "Votre nom", required: true, autocomplete: "name" %>
+            <%= form.text_field :sender_name, class: "field__input", placeholder: "Votre nom", required: true, autocomplete: "name", value: contact_form_value(:sender_name), data: { testid: "contact-name" } %>
           </div>
           <div class="field">
             <%= form.label :sender_email, "Email *", class: "field__label" %>
-            <%= form.email_field :sender_email, class: "field__input", placeholder: "vous@exemple.fr", required: true, autocomplete: "email" %>
+            <%= form.email_field :sender_email, class: "field__input", placeholder: "vous@exemple.fr", required: true, autocomplete: "email", value: contact_form_value(:sender_email), data: { testid: "contact-email" } %>
           </div>
         </div>
         <div class="field">
           <%= form.label :body, "Message *", class: "field__label" %>
-          <%= form.text_area :body, class: "field__textarea", placeholder: "Votre question...", required: true %>
+            <%= form.text_area :body, class: "field__textarea", placeholder: "Votre question...", required: true, value: contact_form_value(:body), data: { testid: "contact-body" } %>
         </div>
+        <% if contact_verification_required? && turnstile_enabled? %>
+          <div class="contact-form__human-check field">
+            <div class="turnstile-shell" data-turnstile-shell>
+              <div data-turnstile-widget data-sitekey="<%= turnstile_site_key %>" data-theme="light"></div>
+            </div>
+            <p class="contact-form__human-note">Verification de securite activee pour proteger le formulaire contre les bots.</p>
+          </div>
+        <% elsif contact_verification_required? %>
+          <div class="contact-form__human-check field">
+            <div class="contact-form__honeypot" aria-hidden="true">
+              <%= label_tag :contact_website, "Site web" %>
+              <%= text_field_tag :contact_website, nil, tabindex: "-1", autocomplete: "off" %>
+            </div>
+            <label class="contact-form__human-label">
+              <%= check_box_tag :contact_human_check, "1", false, required: true, data: { testid: "contact-human-check" } %>
+              <span>Je confirme que je suis un humain et que ce message n'est pas envoye automatiquement.</span>
+            </label>
+            <p class="contact-form__human-note">Cette verification protege le formulaire contre les envois automatiques.</p>
+          </div>
+        <% end %>
       </div>
-      <br>
-      <%= form.submit "Envoyer le message", class: "btn btn--primary btn--full" %>
-      <p class="contact-form__note">Réponse sous 48 h · Formulaire sécurisé</p>
+      <%= form.submit "Envoyer le message", class: "btn btn--primary btn--full", data: { submit_label: "Envoyer le message", loading_label: "Envoi en cours...", testid: "contact-submit" } %>
+      <p class="contact-form__note">Réponse sous 48 h · Formulaire sécurisé · Référence envoyée par email</p>
     <% end %>
   </div>
 </section>

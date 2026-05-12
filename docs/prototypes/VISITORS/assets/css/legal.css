@@ -1,0 +1,78 @@
+/* ========================================================================== 
+   legal.css  Page mentions legales
+   ========================================================================== */
+
+.legal-page {
+	padding: clamp(5rem, 9vw, 7.5rem) var(--sp-4) var(--sp-12);
+	background:
+		radial-gradient(
+			ellipse 60% 80% at 0% 0%,
+			rgba(230, 0, 0, 0.08) 0%,
+			transparent 60%
+		),
+		linear-gradient(180deg, rgba(12, 12, 12, 0.98) 0%, rgba(18, 18, 18, 1) 100%);
+}
+
+.legal-container {
+	max-width: 860px;
+	margin: 0 auto;
+	padding: clamp(1.75rem, 4vw, 3rem);
+	background: rgba(245, 245, 242, 0.04);
+	border: 1px solid rgba(245, 245, 242, 0.1);
+	border-radius: var(--r-2xl);
+	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+	backdrop-filter: blur(18px);
+}
+
+.legal-container h1 {
+	font-family: var(--font-serif);
+	font-size: clamp(2rem, 5vw, 3.25rem);
+	line-height: 1;
+	letter-spacing: -0.03em;
+	color: var(--c-white);
+	margin-bottom: var(--sp-8);
+}
+
+.legal-container h2 {
+	font-size: var(--text-lg);
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	color: var(--c-white);
+	margin: var(--sp-8) 0 var(--sp-3);
+	padding-top: var(--sp-3);
+	border-top: 1px solid rgba(245, 245, 242, 0.08);
+}
+
+.legal-container h2:first-of-type {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 0;
+}
+
+.legal-container p {
+	font-size: var(--text-base);
+	line-height: 1.8;
+	color: var(--w-70);
+	margin: 0 0 var(--sp-4);
+}
+
+.legal-container strong {
+	color: var(--c-white);
+}
+
+.legal-container a {
+	color: var(--c-red);
+	text-decoration: none;
+	transition: color var(--t-fast);
+}
+
+.legal-container a:hover,
+.legal-container a:focus-visible {
+	color: var(--c-white);
+}
+
+@media (min-width: 769px) {
+	.legal-page {
+		padding-inline: var(--sp-10);
+	}
+}

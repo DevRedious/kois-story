@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore all environment files.
 /.env*
@@ -35,9 +36,24 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 /public/assets
+/public/uploads
 
 # Ignore CI service files.
 /.github
+
+# Ignore documentation that is not needed at runtime.
+/docs/audit
+/docs/business
+/docs/deployment
+/docs/design
+/docs/github
+/docs/implementation
+/docs/planning
+/docs/prototypes
+/docs/screen
+/docs/sources
+/docs/ux
+/docs/*.md
 
 # Ignore Kamal files.
 /config/deploy*.yml

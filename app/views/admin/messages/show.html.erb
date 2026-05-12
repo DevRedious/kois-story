@@ -1,18 +1,23 @@
-<div class="page-sub">Lecture detaillee du message et acces rapide a la reponse email.</div>
+<div class="page-sub">Lecture detaillee du message, reference de suivi et reponse email pre-remplie.</div>
 
 <div class="panel">
   <div class="panel-header">
     <div class="panel-title">Message de <%= @message.sender_name %></div>
     <div class="td-actions">
       <%= link_to "Retour", admin_messages_path, class: "btn btn--outline btn--sm" %>
-      <% unless @message.read? %>
-        <%= button_to "Marquer lu", admin_message_path(@message), method: :patch, class: "btn btn--outline btn--sm" %>
+      <% if @message.status == :unread %>
+        <%= button_to "Marquer lu", admin_message_path(@message, status: :read, redirect_to: :show), method: :patch, class: "btn btn--outline btn--sm" %>
       <% end %>
-      <%= mail_to @message.sender_email, "Repondre", class: "btn btn--primary btn--sm" %>
+      <% unless @message.status == :processed %>
+        <%= button_to "Marquer traite", admin_message_path(@message, status: :processed, redirect_to: :show), method: :patch, class: "btn btn--outline btn--sm" %>
+      <% end %>
+      <%= mail_to @message.sender_email, "Repondre", subject: @message.reply_subject, class: "btn btn--primary btn--sm" %>
     </div>
   </div>
 
   <dl class="modal-msg-meta">
+    <dt>Reference</dt>
+    <dd><strong><%= @message.contact_reference %></strong></dd>
     <dt>De</dt>
     <dd><%= @message.sender_name %></dd>
     <dt>Email</dt>
@@ -21,6 +26,8 @@
     <dd><%= admin_message_datetime(@message) %> a <%= admin_message_time(@message) %></dd>
     <dt>Statut</dt>
     <dd><span class="badge <%= admin_message_status_badge_class(@message) %>"><%= admin_message_status_label(@message) %></span></dd>
+    <dt>Suivi</dt>
+    <dd><%= admin_message_follow_up(@message) %></dd>
   </dl>
 
   <div class="modal-msg-body"><%= simple_format(@message.body) %></div>

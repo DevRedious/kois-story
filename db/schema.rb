@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_20_150000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_11_195700) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "client_profiles", force: :cascade do |t|
     t.string "address"
     t.datetime "created_at", null: false
@@ -62,6 +65,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_150000) do
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
+    t.datetime "processed_at"
     t.boolean "read", default: false, null: false
     t.string "sender_email"
     t.string "sender_name"
@@ -113,6 +117,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_150000) do
     t.integer "status"
     t.integer "stock_quantity"
     t.datetime "updated_at", null: false
+    t.index ["reference"], name: "index_products_on_reference", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
@@ -144,7 +149,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_150000) do
   add_foreign_key "kois", "users"
   add_foreign_key "order_items", "kois", on_delete: :nullify
   add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "products", on_delete: :nullify
+  add_foreign_key "order_items", "products"
   add_foreign_key "orders", "client_profiles"
   add_foreign_key "payments", "orders"
 end

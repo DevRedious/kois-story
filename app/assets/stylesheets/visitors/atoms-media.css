@@ -1,6 +1,6 @@
 /* ==========================================================================
    atoms-media.css  Atoms logo · koi-thumb · wave-divider · icon-wa
-   Koi's Story V3
+   Koi's Story V4
    ========================================================================== */
 
 /* ── LOGO ATOM ──────────────────────────────────────────────────────── */
@@ -35,11 +35,6 @@
 	height: 72px;
 	width: auto;
 	display: block;
-}
-.site-logo--hidden {
-	opacity: 0;
-	pointer-events: none;
-	transform: translateY(-6px);
 }
 
 /* ── KOI THUMB ATOM ─────────────────────────────────────────────────── */
@@ -105,7 +100,7 @@
 }
 
 .wave-divider--cream {
-	color: rgba(245, 245, 242, 0.9);
+	color: var(--w-90);
 }
 .wave-divider--black {
 	color: var(--c-black);

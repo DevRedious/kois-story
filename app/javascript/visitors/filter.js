@@ -1,77 +1,209 @@
 /**
- * filter.js  Koi's Story V3
- * Filtrage des .koi-card sur la page kois.html.
- * Écoute les selects (variété, âge, prix) et le toggle Konishi.
- * Cache les cards ne correspondant pas. Met à jour le compteur.
+ * filter.js  Koi's Story V4
+ * Filtrage des .koi-card. Mobile: pill buttons + panels construits depuis selects.
+ * Desktop: selects natifs. Les deux partagent les mêmes selects comme source d'état.
  */
 (() => {
-	document.addEventListener("turbo:load", () => {
+	let controller;
+
+	const listen = (target, type, handler, options = {}) => {
+		if (!target || !controller) return;
+		target.addEventListener(type, handler, {
+			...options,
+			signal: controller.signal,
+		});
+	};
+
+	const resetFilterDom = () => {
+		document.querySelectorAll(".filter-bar").forEach((filterBar) => {
+			filterBar.dataset.bound = "false";
+			filterBar.querySelectorAll(".filter-panel").forEach((panel) => {
+				panel.remove();
+			});
+		});
+	};
+
+	function init() {
+		controller?.abort();
+		controller = new AbortController();
+
+		var filterBar = document.querySelector(".filter-bar");
+		if (!filterBar || filterBar.dataset.bound === "true") return;
+		filterBar.dataset.bound = "true";
+
 		var selectVariety = document.getElementById("filter-variety");
 		var selectAge = document.getElementById("filter-age");
 		var selectPrice = document.getElementById("filter-price");
-		var konishiToggle = document.getElementById("filter-konishi");
 		var resetBtn = document.getElementById("filter-reset");
 		var countEl = document.getElementById("filter-count");
 
-		if (!selectVariety && !selectAge && !selectPrice && !konishiToggle) return;
+		if (!selectVariety && !selectAge && !selectPrice) return;
 
-		function getCards() {
-			return (
-				document.querySelectorAll(".koi-card[data-variety]") ||
-				document.querySelectorAll(".koi-card")
-			);
-		}
-
+		// ── Card filtering ────────────────────────────────────────────────────
 		function applyFilters() {
 			var variety = selectVariety ? selectVariety.value.toLowerCase() : "";
 			var age = selectAge ? selectAge.value.toLowerCase() : "";
 			var priceMax = selectPrice ? parseInt(selectPrice.value, 10) || 0 : 0;
-			var konishiOnly = konishiToggle ? konishiToggle.checked : false;
-
-			var cards = getCards();
+			var cards = document.querySelectorAll(
+				".koi-card[data-variety], .koi-card",
+			);
 			var visible = 0;
 
 			cards.forEach((card) => {
 				var cardVariety = (card.dataset.variety || "").toLowerCase();
 				var cardAge = (card.dataset.age || "").toLowerCase();
 				var cardPrice = parseInt(card.dataset.price, 10) || 0;
-				var cardKonishi =
-					card.dataset.konishi === "true" ||
-					card.querySelector(".badge--konishi") !== null;
-
 				var show = true;
-
 				if (variety && cardVariety && cardVariety !== variety) show = false;
 				if (age && cardAge && cardAge !== age) show = false;
 				if (priceMax > 0 && cardPrice > priceMax) show = false;
-				if (konishiOnly && !cardKonishi) show = false;
 
-				card.style.display = show ? "" : "none";
+				var item = card.closest("li") || card;
+				item.style.display = show ? "" : "none";
 				if (show) visible++;
 			});
 
-			if (countEl) {
+			if (countEl)
 				countEl.textContent = visible + (visible > 1 ? " koïs" : " koï");
-			}
 		}
 
-		// Listeners
 		[selectVariety, selectAge, selectPrice].forEach((el) => {
-			if (el) el.addEventListener("change", applyFilters);
+			listen(el, "change", applyFilters);
 		});
-		if (konishiToggle) konishiToggle.addEventListener("change", applyFilters);
+		// ── Pill panels (mobile) ──────────────────────────────────────────────
+		var pills = document.querySelectorAll(".filter-pill[data-select]");
+		var builtPanels = {};
 
+		function closePillPanels() {
+			Object.values(builtPanels).forEach((p) => {
+				p.hidden = true;
+				p.setAttribute("aria-hidden", "true");
+			});
+			pills.forEach((p) => {
+				p.setAttribute("aria-expanded", "false");
+			});
+		}
+
+		function onOptionSelect(select, pill, panel, btn) {
+			select.value = btn.dataset.value;
+			select.dispatchEvent(new Event("change"));
+
+			var labelEl = pill.querySelector(".filter-pill__label");
+			if (labelEl) {
+				labelEl.textContent = btn.dataset.value
+					? btn.textContent
+					: labelEl.dataset.default || "";
+			}
+			pill.classList.toggle("filter-pill--active", btn.dataset.value !== "");
+			panel.querySelectorAll(".filter-option").forEach((o) => {
+				o.classList.toggle("filter-option--active", o === btn);
+			});
+			closePillPanels();
+		}
+
+		function buildPanel(select, pill) {
+			var panel = document.createElement("div");
+			panel.className = "filter-panel";
+			panel.hidden = true;
+			panel.setAttribute("aria-hidden", "true");
+
+			Array.from(select.options).forEach((opt) => {
+				var btn = document.createElement("button");
+				btn.type = "button";
+				btn.className = `filter-option${!opt.value ? " filter-option--active" : ""}`;
+				btn.dataset.value = opt.value;
+				btn.textContent = opt.text;
+				listen(btn, "click", () =>
+					onOptionSelect(select, pill, panel, btn),
+				);
+				panel.appendChild(btn);
+			});
+
+			if (filterBar) filterBar.appendChild(panel);
+			return panel;
+		}
+
+		pills.forEach((pill) => {
+			var select = document.getElementById(pill.dataset.select);
+			if (!select) return;
+			var panel = buildPanel(select, pill);
+			builtPanels[pill.dataset.select] = panel;
+
+			listen(pill, "click", (e) => {
+				e.stopPropagation();
+				var isOpen = !panel.hidden;
+				closePillPanels();
+				if (!isOpen) {
+					panel.hidden = false;
+					panel.setAttribute("aria-hidden", "false");
+					pill.setAttribute("aria-expanded", "true");
+				}
+			});
+		});
+
+		listen(document, "click", (e) => {
+			if (filterBar && !filterBar.contains(e.target)) closePillPanels();
+		});
+
+		// ── Drag-to-scroll ────────────────────────────────────────────────────
+		var filterInner = document.querySelector(".filter-bar__inner");
+		var isDragging = false;
+		var dragStartX = 0;
+		var scrollStart = 0;
+		if (filterInner) {
+			listen(filterInner, "mousedown", (e) => {
+				if (
+					e.target.closest(
+						".filter-pill, .filter-toggle, .filter-reset, .filter-select",
+					)
+				)
+					return;
+				isDragging = true;
+				dragStartX = e.pageX;
+				scrollStart = filterInner.scrollLeft;
+				filterInner.classList.add("filter-bar__inner--dragging");
+				e.preventDefault();
+			});
+
+			listen(document, "mousemove", (e) => {
+				if (!isDragging) return;
+				filterInner.scrollLeft = scrollStart - (e.pageX - dragStartX);
+			});
+
+			listen(document, "mouseup", () => {
+				if (!isDragging) return;
+				isDragging = false;
+				filterInner.classList.remove("filter-bar__inner--dragging");
+			});
+		}
+
+		// ── Reset ─────────────────────────────────────────────────────────────
 		if (resetBtn) {
-			resetBtn.addEventListener("click", () => {
+			listen(resetBtn, "click", () => {
 				if (selectVariety) selectVariety.value = "";
 				if (selectAge) selectAge.value = "";
 				if (selectPrice) selectPrice.value = "";
-				if (konishiToggle) konishiToggle.checked = false;
+				pills.forEach((pill) => {
+					var labelEl = pill.querySelector(".filter-pill__label");
+					if (labelEl) labelEl.textContent = labelEl.dataset.default || "";
+					pill.classList.remove("filter-pill--active");
+				});
+				Object.values(builtPanels).forEach((panel) => {
+					panel.querySelectorAll(".filter-option").forEach((o) => {
+						o.classList.toggle("filter-option--active", !o.dataset.value);
+					});
+				});
 				applyFilters();
 			});
 		}
 
-		// Initialisation
 		applyFilters();
+	}
+
+	document.addEventListener("turbo:load", init);
+	document.addEventListener("turbo:before-cache", () => {
+		controller?.abort();
+		controller = undefined;
+		resetFilterDom();
 	});
 })();

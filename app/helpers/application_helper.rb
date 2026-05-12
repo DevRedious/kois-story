@@ -15,7 +15,13 @@ module ApplicationHelper
   end
 
   def whatsapp_link(phone, message)
+    return "#" if phone.blank?
+
     "https://wa.me/#{phone}?text=#{ERB::Util.url_encode(message)}"
+  end
+
+  def whatsapp_phone_number
+    ENV["WHATSAPP_PHONE"].presence
   end
 
   def whatsapp_icon(size: 24, extra_classes: nil)
@@ -23,5 +29,28 @@ module ApplicationHelper
     content_tag(:span, class: classes, aria: { hidden: true }) do
       image_tag docs_asset_path("icon-whatsapps.svg"), alt: "", class: "icon-wa__img"
     end
+  end
+
+  def turnstile_enabled?
+    ENV["TURNSTILE_SITE_KEY"].present? && ENV["TURNSTILE_SECRET_KEY"].present?
+  end
+
+  def turnstile_site_key
+    ENV["TURNSTILE_SITE_KEY"].presence
+  end
+
+  def age_class_options
+    [
+      [ "Tosai (1 an)", "tosai" ],
+      [ "Jumbo Tosai (1 an, grande taille)", "jumbo_tosai" ],
+      [ "Nisai (2 ans)", "nisai" ],
+      [ "Sansai (3 ans)", "sansai" ],
+      [ "Yonsai (4 ans)", "yonsai" ],
+      [ "Gosai (5 ans et +)", "gosai" ]
+    ]
+  end
+
+  def contact_form_value(field)
+    flash.to_hash.fetch("contact_form", {}).fetch(field.to_s, "")
   end
 end

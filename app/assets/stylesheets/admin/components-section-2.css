@@ -14,19 +14,19 @@
 	line-height: 1;
 }
 .badge-dispo {
-	background: #d4f0e0;
-	color: #1a6e3e;
+	background: rgba(var(--bronze-rgb), 0.16);
+	color: var(--bleu-nuit);
 }
 .badge-rupture {
-	background: #fde8e8;
-	color: var(--rouge-vif);
+	background: rgba(var(--or-konishi-rgb), 0.2);
+	color: var(--bleu-nuit);
 }
 .badge-arrivage {
-	background: #e8f0fe;
-	color: #1a56b0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.08);
+	color: var(--bleu-nuit);
 }
 .badge-vendu {
-	background: #e8ecf0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.06);
 	color: var(--gris);
 }
 .badge-konishi {
@@ -34,62 +34,66 @@
 	color: var(--blanc-pur);
 }
 .badge-paid {
-	background: #d4f0e0;
-	color: #1a6e3e;
+	background: rgba(var(--bronze-rgb), 0.16);
+	color: var(--bleu-nuit);
 }
 .badge-partial {
-	background: #fff3cd;
-	color: #856404;
+	background: rgba(var(--or-konishi-rgb), 0.2);
+	color: var(--bleu-nuit);
 }
 .badge-pending {
-	background: #fff3cd;
-	color: #856404;
+	background: rgba(var(--or-konishi-rgb), 0.2);
+	color: var(--bleu-nuit);
 }
 .badge-nonlu {
-	background: #fde8e8;
-	color: var(--rouge-vif);
+	background: rgba(var(--or-konishi-rgb), 0.2);
+	color: var(--bleu-nuit);
 }
 .badge-lu {
-	background: #e8ecf0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.06);
 	color: var(--gris);
 }
+.badge-traite {
+	background: rgba(var(--bronze-rgb), 0.16);
+	color: var(--bleu-nuit);
+}
 .badge-completed {
-	background: #d4f0e0;
-	color: #1a6e3e;
+	background: rgba(var(--bronze-rgb), 0.16);
+	color: var(--bleu-nuit);
 }
 .badge-confirmed {
-	background: #e8f0fe;
-	color: #1a56b0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.08);
+	color: var(--bleu-nuit);
 }
 .badge-in-progress {
-	background: #fff3cd;
-	color: #856404;
+	background: rgba(var(--or-konishi-rgb), 0.2);
+	color: var(--bleu-nuit);
 }
 .badge-cancelled {
-	background: #f0f0f0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.06);
 	color: var(--gris);
 }
 .badge-dormant {
-	background: #f0f0f0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.06);
 	color: var(--gris);
 }
 .badge-materiel {
-	background: #e8f0fe;
-	color: #1a56b0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.08);
+	color: var(--bleu-nuit);
 }
 .badge-nourriture {
-	background: #d4f0e0;
-	color: #1a6e3e;
+	background: rgba(var(--bronze-rgb), 0.16);
+	color: var(--bleu-nuit);
 }
 .badge-soins {
-	background: #fff3cd;
-	color: #856404;
+	background: rgba(var(--or-konishi-rgb), 0.2);
+	color: var(--bleu-nuit);
 }
 
 /* ── CATEGORY TAGS (products) ───────────────────────────── */
 .cat-materiel {
-	background: #e8f0fe;
-	color: #1a56b0;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.08);
+	color: var(--bleu-nuit);
 	padding: 2px 8px;
 	border-radius: 10px;
 	font-size: 0.78rem;
@@ -97,8 +101,8 @@
 	white-space: nowrap;
 }
 .cat-soins {
-	background: #e2d9f3;
-	color: #4a235a;
+	background: rgba(var(--or-konishi-rgb), 0.2);
+	color: var(--bleu-nuit);
 	padding: 2px 8px;
 	border-radius: 10px;
 	font-size: 0.78rem;
@@ -106,8 +110,8 @@
 	white-space: nowrap;
 }
 .cat-nourriture {
-	background: #fff3cd;
-	color: #856404;
+	background: rgba(var(--bronze-rgb), 0.16);
+	color: var(--bleu-nuit);
 	padding: 2px 8px;
 	border-radius: 10px;
 	font-size: 0.78rem;
@@ -123,7 +127,7 @@
 /* ── DORMANT (modules V2) ────────────────────────────────── */
 .dormant-banner {
 	background: var(--blanc-casse);
-	border: 1px solid #e0e0dc;
+	border: 1px solid var(--border-color);
 	border-radius: 8px;
 	padding: 14px 16px;
 	font-size: 0.85rem;
@@ -136,10 +140,10 @@
 	margin-bottom: 12px;
 }
 .stat-sub.up {
-	color: #1a6e3e;
+	color: var(--bronze);
 }
 .stat-sub.down {
-	color: var(--rouge-vif);
+	color: var(--or-konishi);
 }
 .stats-6 {
 	grid-template-columns: repeat(2, 1fr);

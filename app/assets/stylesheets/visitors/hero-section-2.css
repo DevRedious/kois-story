@@ -1,27 +1,16 @@
 /* Split from VISITORS/assets/css/hero.css - section 2/2 */
 
-/* ── HERO INTRO  texte sous la vidéo ───────────────────────────── */
+/* ── HERO INTRO  texte superposé sur l'image du hero ───────────── */
 .hero-intro {
-	padding: var(--sp-16) var(--sp-10) var(--sp-12);
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: calc(var(--header-height) + var(--sp-10)) var(--sp-10) var(--sp-10);
 }
 
-/* Remonte hero-intro pour combler les creux de la vague (12% de 100vh max) */
-.hero--wavy-bottom + .hero-intro {
-	margin-top: -6vh;
-	padding-top: calc(6vh + var(--sp-16));
-}
-@media (min-width: 481px) {
-	.hero--wavy-bottom + .hero-intro {
-		margin-top: -8vh;
-		padding-top: calc(8vh + var(--sp-16));
-	}
-}
-@media (min-width: 769px) {
-	.hero--wavy-bottom + .hero-intro {
-		margin-top: -12vh;
-		padding-top: calc(12vh + var(--sp-16));
-	}
-}
 .hero-intro__inner {
 	max-width: var(--max-width);
 	margin: 0 auto;
@@ -34,17 +23,19 @@
 	font-family: var(--font-serif);
 	font-size: var(--text-hero);
 	font-weight: 900;
-	color: var(--c-black);
+	color: var(--c-white);
 	line-height: var(--leading-tight);
 	margin-bottom: var(--sp-5);
 	max-width: 780px;
+	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 .hero-intro__sub {
 	font-size: var(--text-lg);
-	color: var(--n-75);
+	color: var(--c-white);
 	line-height: var(--leading-normal);
 	margin-bottom: var(--sp-8);
 	max-width: 560px;
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
 }
 .hero-intro__ctas {
 	display: flex;
@@ -53,45 +44,91 @@
 	justify-content: center;
 }
 
-/* ── HERO COMPACT WAVY BOTTOM ────────────────────────────────────── */
-/* hero-compact ~390px → 12% ≈ 47px → overlap 50px avec marge */
-.hero-compact--wavy-bottom {
-	clip-path: url(#wave-clip);
+.hero-discover {
+	position: absolute;
+	left: 50%;
+	bottom: calc(var(--sp-6) + env(safe-area-inset-bottom, 0px));
+	z-index: 4;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--sp-2);
+	color: var(--w-90);
+	font-size: var(--text-xs);
+	font-weight: 800;
+	letter-spacing: 0.28em;
+	line-height: 1;
+	text-decoration: none;
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+	text-transform: uppercase;
+	transform: translateX(-50%);
+	transition:
+		color var(--t-fast),
+		opacity var(--t-fast);
 }
 
-/* main transparent : on remonte pour couvrir la vague au complet */
-.hero-compact--wavy-bottom + main {
-	margin-top: -60px;
+.hero-discover:hover,
+.hero-discover:focus-visible {
+	color: var(--c-white);
+	opacity: 1;
 }
-@media (min-width: 481px) {
-	.hero-compact--wavy-bottom + main {
-		margin-top: -52px;
+
+.hero-discover__label {
+	display: block;
+}
+
+.hero-discover__arrow {
+	display: block;
+	width: 10px;
+	height: 10px;
+	border-right: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
+	animation: hero-discover-bounce 1.45s ease-in-out infinite;
+	transform: rotate(45deg);
+}
+
+@keyframes hero-discover-bounce {
+	0%,
+	100% {
+		opacity: 0.55;
+		transform: translateY(0) rotate(45deg);
+	}
+
+	50% {
+		opacity: 1;
+		transform: translateY(7px) rotate(45deg);
 	}
 }
+
 @media (min-width: 769px) {
-	.hero-compact--wavy-bottom + main {
-		margin-top: -50px;
+	.hero-discover {
+		bottom: var(--sp-8);
 	}
 }
 
-/* konishi-info (nourriture) a un fond propre : compenser le padding */
-.hero-compact--wavy-bottom + .konishi-info {
-	margin-top: -40px;
-	padding-top: calc(40px + var(--sp-12));
+@media (prefers-reduced-motion: reduce) {
+	.hero-discover__arrow {
+		animation: none;
+	}
 }
 
 /* ── HERO COMPACT  pages intérieures ───────────────────────────── */
 .hero-compact {
 	background: var(--c-black);
-	padding: calc(var(--header-height) + var(--sp-16)) var(--sp-10) var(--sp-24);
+	padding: calc(var(--header-height) + var(--sp-6)) var(--sp-4) var(--sp-8);
 	position: relative;
 	overflow: hidden;
+}
+@media (min-width: 901px) {
+	.hero-compact {
+		padding: calc(var(--header-height) + var(--sp-16)) var(--sp-10) var(--sp-24);
+	}
 }
 .hero-compact::after {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: url("bg_sakura.png") center / cover no-repeat;
+	background: url("/bg_sakura.avif") center / cover no-repeat;
 	filter: saturate(0.28) contrast(0.82) brightness(1.15) sepia(0.1);
 	opacity: 0.22;
 	pointer-events: none;
@@ -115,10 +152,30 @@
 	font-size: var(--text-3xl);
 	font-weight: 900;
 	color: var(--c-white);
-	margin-bottom: var(--sp-3);
+	margin-bottom: var(--sp-1);
 }
 .hero-compact__sub {
 	font-size: var(--text-lg);
 	color: var(--c-white);
 	max-width: 560px;
+}
+.hero-compact__title--underlined {
+	display: inline-block;
+	width: fit-content;
+	max-width: 100%;
+	margin-bottom: var(--sp-3);
+	padding-bottom: calc(var(--sp-2) + 12px);
+	position: relative;
+}
+.hero-compact__title--underlined::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 12px;
+	background-color: currentColor;
+	border-radius: 999px;
+	opacity: 0.8;
+	transform: skewX(-12deg);
 }

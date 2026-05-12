@@ -10,6 +10,27 @@ class Admin::ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should filter products by category" do
+    Product.create!(name: "Pompe", reference: "MAT-1", category: :materiel, status: :active, price: 10)
+    Product.create!(name: "Soin", reference: "SOI-1", category: :soins, status: :active, price: 12)
+
+    get admin_products_url, params: { category: :materiel }
+
+    assert_response :success
+    assert_select "tbody tr", text: /Pompe/
+    assert_select "tbody tr", text: /Soin/, count: 0
+  end
+
+  test "should sort products by price descending" do
+    Product.create!(name: "Petit filtre", reference: "FIL-1", category: :materiel, status: :active, price: 5)
+    Product.create!(name: "Grand filtre", reference: "FIL-2", category: :materiel, status: :active, price: 25)
+
+    get admin_products_url, params: { sort: :price, direction: :desc }
+
+    assert_response :success
+    assert_select "tbody tr:first-child td", text: /Grand filtre/
+  end
+
   test "should get show" do
     get admin_product_url(products(:one))
     assert_response :success
@@ -30,5 +51,14 @@ class Admin::ProductsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to admin_products_url
+  end
+
+  test "should not delete product linked to an order" do
+    assert_no_difference("Product.count") do
+      delete admin_product_url(products(:two))
+    end
+
+    assert_redirected_to admin_products_url
+    assert_equal "This product is linked to an order and cannot be deleted.", flash[:alert]
   end
 end

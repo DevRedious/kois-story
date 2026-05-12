@@ -1,0 +1,14 @@
+<% return if pagination[:total_pages] <= 1 %>
+
+<nav class="pagination-bar" aria-label="Pagination">
+  <div class="pagination-bar__summary"><%= admin_pagination_label(pagination, item_name) %></div>
+  <div class="pagination-bar__actions">
+    <% if pagination[:prev_page] %>
+      <%= link_to "Precedent", admin_pagination_path(pagination[:prev_page]), class: "btn btn--outline btn--sm" %>
+    <% end %>
+    <span class="pagination-bar__current">Page <%= pagination[:page] %> / <%= pagination[:total_pages] %></span>
+    <% if pagination[:next_page] %>
+      <%= link_to "Suivant", admin_pagination_path(pagination[:next_page]), class: "btn btn--outline btn--sm" %>
+    <% end %>
+  </div>
+</nav>

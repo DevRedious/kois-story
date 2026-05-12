@@ -1,7 +1,7 @@
 /* Split from ADMIN/assets/css/forms.css - section 2/2 */
 /* ── FILE UPLOAD ─────────────────────────────────────────── */
 .upload-zone {
-	border: 2px dashed #d0d7de;
+	border: 2px dashed var(--border-color);
 	border-radius: 10px;
 	padding: 28px 20px;
 	text-align: center;
@@ -115,7 +115,7 @@
 .toggle-slider {
 	position: absolute;
 	inset: 0;
-	background: #ccc;
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.18);
 	border-radius: 12px;
 	cursor: pointer;
 	transition: 0.2s;

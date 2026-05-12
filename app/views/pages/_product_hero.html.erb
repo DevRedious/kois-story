@@ -1,7 +1,9 @@
-<div class="hero-compact <%= "hero-compact--wavy-bottom" if local_assigns[:wavy] %>" data-scroll-trigger>
+<div class="hero-compact" data-scroll-trigger>
   <div class="hero-compact__inner">
-    <p class="hero-compact__label"><%= label %></p>
-    <h1 class="hero-compact__title"><%= title %></h1>
+    <% if local_assigns[:label].present? %>
+      <p class="hero-compact__label"><%= label %></p>
+    <% end %>
+    <h1 class="hero-compact__title hero-compact__title--underlined"><%= title %></h1>
     <p class="hero-compact__sub"><%= subtitle %></p>
   </div>
 </div>

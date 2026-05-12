@@ -31,13 +31,19 @@
 }
 
 :root {
-	--rouge-vif: #e60000;
-	--rouge-sombre: #630f0f;
+	--bronze: #a58241;
+	--or-konishi: #eab21b;
+	--bleu-nuit-profond: #011325;
+	--bronze-rgb: 165, 130, 65;
+	--or-konishi-rgb: 234, 178, 27;
+	--bleu-nuit-profond-rgb: 1, 19, 37;
+	--rouge-vif: var(--or-konishi);
+	--rouge-sombre: var(--bleu-nuit-profond);
 	--noir: #000000;
-	--blanc-casse: #f5f5f2;
+	--blanc-casse: #ffffff;
 	--blanc-pur: #ffffff;
-	--gris: #6c757d;
-	--vert-dispo: #2d9e5a;
+	--gris: rgba(0, 0, 0, 0.62);
+	--vert-dispo: var(--bronze);
 	--sidebar-w: 240px;
 	--topbar-h: 60px;
 	--font-title: "Playfair Display", Georgia, serif;
@@ -68,11 +74,12 @@ body {
 	display: flex;
 	flex-direction: column;
 	z-index: 200;
+	transform: translateX(calc(-1 * var(--sidebar-w)));
 	transition: transform 0.25s ease;
 }
 
 .main {
-	margin-left: var(--sidebar-w);
+	margin-left: 0;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -83,17 +90,17 @@ body {
 	top: 0;
 	height: var(--topbar-h);
 	background: #fff;
-	border-bottom: 1px solid #e5e9ee;
+	border-bottom: 1px solid var(--border-color);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 28px;
+	padding: 0 16px;
 	z-index: 100;
 }
 
 .content {
 	flex: 1;
-	padding: 32px;
+	padding: 20px 16px;
 }
 
 .sidebar-brand {
@@ -154,10 +161,20 @@ body {
 }
 
 .nav-item.active {
-	color: var(--rouge-vif);
-	border-left-color: var(--rouge-vif);
-	background: rgba(230, 0, 0, 0.08);
+	color: var(--noir);
+	border-left-color: var(--or-konishi);
+	background: linear-gradient(
+		90deg,
+		var(--or-konishi) 0%,
+		var(--bronze) 50%,
+		var(--or-konishi) 100%
+	);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
 	font-weight: 600;
+}
+.nav-item.active:hover {
+	background-position: 100% 100%;
 }
 
 .nav-icon {
