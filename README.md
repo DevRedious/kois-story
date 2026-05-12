@@ -1,7 +1,7 @@
 <div align="center">
   <img src="public/logo_bg_circle_dark_v2.png" alt="Koi's Story Logo" width="200">
 
-  <p align="center">
+<p align="center">
     <img src="https://img.shields.io/badge/Rails-8.1-CC0000?logo=rubyonrails&logoColor=white" alt="Ruby on Rails">
     <img src="https://img.shields.io/badge/PostgreSQL-17-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
     <img src="https://img.shields.io/badge/Docker-Desktop-2496ED?logo=docker&logoColor=white" alt="Docker Desktop">
@@ -10,7 +10,7 @@
     <img src="https://img.shields.io/badge/Lint-RuboCop%20%2B%20Biome-60A5FA" alt="RuboCop and Biome">
   </p>
 
-  <p align="center">
+<p align="center">
     <img src="https://img.shields.io/badge/Palette_V4-%E2%80%94-lightgrey" alt="Palette V4">
     <img src="https://img.shields.io/badge/Bronze-%23a58241-a58241" alt="#a58241">
     <img src="https://img.shields.io/badge/Konishi_Gold-%23eab21b-eab21b?labelColor=000000" alt="#eab21b">
@@ -20,7 +20,7 @@
     <img src="https://img.shields.io/badge/WhatsApp-%2325d366-25d366?logo=whatsapp&logoColor=white" alt="#25d366">
   </p>
 
-  <p align="center">
+<p align="center">
     <i>Digital showcase platform for a koi carp breeding farm affiliated with the Konishi lineage.</i><br>
     Independent Rails application, originally started as a THP final project<br>
    Trello Board  <a href="https://trello.com/b/u2kahNMY/kois-story">Koi's Story Trello</a>
@@ -138,18 +138,18 @@ Project history is tracked in `CHANGELOG.md`.
 
 ## Tech Stack
 
-| Layer            | Technology                                      |
-| ---------------- | ----------------------------------------------- |
-| Back-end         | Ruby on Rails 8.1 (RESTful, MVC)                |
-| Front-end        | Hotwire Turbo + Stimulus + importmap            |
-| CSS              | Propshaft assets from the Atomic Design modules |
-| Database         | PostgreSQL in Docker local stack; SQLite legacy default |
-| Authentication   | Devise + devise-two-factor                      |
-| Linter/Formatter | RuboCop + Biome                                 |
-| Image upload     | CarrierWave + Cloudinary                        |
-| Emails           | ActionMailer + Resend SMTP                      |
+| Layer            | Technology                                                         |
+| ---------------- | ------------------------------------------------------------------ |
+| Back-end         | Ruby on Rails 8.1 (RESTful, MVC)                                   |
+| Front-end        | Hotwire Turbo + Stimulus + importmap                               |
+| CSS              | Propshaft assets from the Atomic Design modules                    |
+| Database         | PostgreSQL in Docker local stack; SQLite legacy default            |
+| Authentication   | Devise + devise-two-factor                                         |
+| Linter/Formatter | RuboCop + Biome                                                    |
+| Image upload     | CarrierWave + Cloudinary                                           |
+| Emails           | ActionMailer + Resend SMTP                                         |
 | Hosting          | Coolify-ready Docker on VPS; Kamal config kept as legacy reference |
 
 ## Team
 
-See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the full team.
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for the full team..
