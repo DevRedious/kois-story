@@ -78,7 +78,7 @@ docker compose build
 docker compose up -d --wait db public admin
 docker compose exec -T admin bin/rails db:seed
 ruby script/docker_smoke.rb
-docker compose run --rm -e KOIS_APP_ROLE=all -e RAILS_ENV=test public bash -lc "unset DATABASE_URL; bin/rails test"
+docker compose run --rm -e KOIS_APP_ROLE=all -e RAILS_ENV=test public bin/rails test
 docker compose exec -T public bundle exec rubocop
 ```
 
@@ -87,6 +87,8 @@ Local services:
 - public site: `http://localhost:3000` (`KOIS_APP_ROLE=public`)
 - admin site: `http://localhost:3001` (`KOIS_APP_ROLE=admin`)
 - PostgreSQL: `127.0.0.1:5433`
+
+Rails tests run against `kois_story_test` through `TEST_DATABASE_URL`; they must not reuse or wipe the local development database.
 
 The Docker smoke script checks the public/admin route split, shared database, service health, and LF endings for Rails binstubs.
 
