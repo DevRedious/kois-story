@@ -1,14 +1,15 @@
 /**
  * Commander-style WhatsApp CTAs: navy + gold shimmer, white label, navy border,
  * nav-pill shadows; .icon-wa keeps brand green (#25d366).
+ * Selectors ascending by specificity (Biome noDescendingSpecificity).
  */
 @import url("../../shared/nav-pill-tokens.css");
 
+.price-block .cta-whatsapp,
+.azukari-desc__text .btn--wa,
 #home-showcase .koi-card-cta--primary,
 #main-content.catalogue .koi-card-cta--primary,
-#contact .contact-quick__wa .btn--wa,
-.azukari-desc__text .btn--wa,
-.price-block .cta-whatsapp {
+#contact .contact-quick__wa .btn--wa {
 	overflow: hidden;
 	background-color: var(--c-navy);
 	background-image: var(--wa-cta-navy-gold-gradient);
@@ -25,11 +26,11 @@
 		border-color var(--t-fast);
 }
 
+.price-block .cta-whatsapp:hover,
+.azukari-desc__text .btn--wa:hover,
 #home-showcase .koi-card-cta--primary:hover,
 #main-content.catalogue .koi-card-cta--primary:hover,
-#contact .contact-quick__wa .btn--wa:hover,
-.azukari-desc__text .btn--wa:hover,
-.price-block .cta-whatsapp:hover {
+#contact .contact-quick__wa .btn--wa:hover {
 	background-color: var(--c-navy);
 	background-image: var(--wa-cta-navy-gold-gradient);
 	background-size: 200% 200%;
@@ -40,29 +41,29 @@
 	color: var(--c-white);
 }
 
+.price-block .cta-whatsapp:active,
+.azukari-desc__text .btn--wa:active,
 #home-showcase .koi-card-cta--primary:active,
 #main-content.catalogue .koi-card-cta--primary:active,
-#contact .contact-quick__wa .btn--wa:active,
-.azukari-desc__text .btn--wa:active,
-.price-block .cta-whatsapp:active {
+#contact .contact-quick__wa .btn--wa:active {
 	transform: none;
 }
 
+.price-block .cta-whatsapp:focus-visible,
+.azukari-desc__text .btn--wa:focus-visible,
 #home-showcase .koi-card-cta--primary:focus-visible,
 #main-content.catalogue .koi-card-cta--primary:focus-visible,
-#contact .contact-quick__wa .btn--wa:focus-visible,
-.azukari-desc__text .btn--wa:focus-visible,
-.price-block .cta-whatsapp:focus-visible {
+#contact .contact-quick__wa .btn--wa:focus-visible {
 	outline: 2px solid var(--nav-pill-gold);
 	outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.price-block .cta-whatsapp,
+	.azukari-desc__text .btn--wa,
 	#home-showcase .koi-card-cta--primary,
 	#main-content.catalogue .koi-card-cta--primary,
-	#contact .contact-quick__wa .btn--wa,
-	.azukari-desc__text .btn--wa,
-	.price-block .cta-whatsapp {
+	#contact .contact-quick__wa .btn--wa {
 		transition:
 			box-shadow 220ms ease,
 			transform var(--t-fast),
@@ -70,11 +71,11 @@
 			border-color var(--t-fast);
 	}
 
+	.price-block .cta-whatsapp:hover,
+	.azukari-desc__text .btn--wa:hover,
 	#home-showcase .koi-card-cta--primary:hover,
 	#main-content.catalogue .koi-card-cta--primary:hover,
-	#contact .contact-quick__wa .btn--wa:hover,
-	.azukari-desc__text .btn--wa:hover,
-	.price-block .cta-whatsapp:hover {
+	#contact .contact-quick__wa .btn--wa:hover {
 		background-position: 100% 100%;
 	}
 }

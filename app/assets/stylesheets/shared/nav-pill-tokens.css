@@ -23,8 +23,8 @@
 	--nav-pill-shadow-link: 0 4px 18px rgba(234, 178, 27, 0.34);
 	--nav-pill-shadow-link-hover: 0 8px 24px rgba(234, 178, 27, 0.42);
 	--nav-pill-shadow-mobile: 0 8px 24px rgba(234, 178, 27, 0.28);
-	--nav-pill-shadow-indicator: 0 6px 22px rgba(234, 178, 27, 0.34),
-		0 0 0 1px rgba(234, 178, 27, 0.14);
-	--nav-pill-shadow-indicator-hover: 0 10px 30px rgba(234, 178, 27, 0.46),
-		0 0 0 1px rgba(234, 178, 27, 0.24);
+	--nav-pill-shadow-indicator:
+		0 6px 22px rgba(234, 178, 27, 0.34), 0 0 0 1px rgba(234, 178, 27, 0.14);
+	--nav-pill-shadow-indicator-hover:
+		0 10px 30px rgba(234, 178, 27, 0.46), 0 0 0 1px rgba(234, 178, 27, 0.24);
 }

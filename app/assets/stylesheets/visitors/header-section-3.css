@@ -184,7 +184,7 @@
 /* ── REDUCED MOTION ───────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
 	.site-header .site-logo,
-	.header__nav > ul > li > .nav-pill,
+	.header__nav:not(.open) > ul > li > .nav-pill,
 	.header__nav.open > ul > li > .nav-pill,
 	.header__nav.open .dropdown li a,
 	.header__nav .nav-pill__indicator,

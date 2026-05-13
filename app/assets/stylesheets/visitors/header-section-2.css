@@ -5,9 +5,9 @@
 .has-dropdown {
 	position: relative;
 }
+.nav-pill.dropdown-toggle.open svg,
 .has-dropdown:hover .nav-pill.dropdown-toggle svg,
-.has-dropdown:focus-within .nav-pill.dropdown-toggle svg,
-.nav-pill.dropdown-toggle.open svg {
+.has-dropdown:focus-within .nav-pill.dropdown-toggle svg {
 	transform: rotate(180deg);
 }
 
