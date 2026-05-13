@@ -11,19 +11,19 @@ This project follows a pre-production workflow until the first production deploy
 """
 
 body = """
-{% if version %}\
+{% if version %}
 ## [{{ version }}]
-{% else %}\
+{% else %}
 ## [Unreleased]
-
-{% endif %}\
+{% endif %}
 {% for group, commits in commits | group_by(attribute="group") %}
+
 ### {{ group }}
-{% for commit in commits %}\
+{% for commit in commits %}
 - {% if commit.scope %}**{{ commit.scope }}**: {% endif %}{{ commit.message }}
 {% endfor %}
 {% endfor %}
----
+
 """
 
 footer = ""
@@ -36,8 +36,11 @@ split_commits = false
 
 commit_parsers = [
   { message = "\\[skip ci\\]", skip = true },
-  { message = "^Merge", group = "Integration" },
+  { message = "auto-update CHANGELOG", skip = true },
+  { message = "^Merge pull request", skip = true },
+  { message = "^Merge branch", skip = true },
   { message = "^feat", group = "Added" },
+  { message = "^(add|added)(\\(.+\\))?:", group = "Added" },
   { message = "^fix", group = "Fixed" },
   { message = "^remove", group = "Removed" },
   { message = "^refactor", group = "Changed" },
