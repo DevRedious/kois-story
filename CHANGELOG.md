@@ -11,6 +11,7 @@ Each entry keeps its human author and short commit SHA for traceability.
 ## [2026-05-13]
 
 ### Changed
+- format Discord changelog mentions — Morgan (`76f1f00`)
 - clean dev changelog history — Morgan (`6f1089a`)
 - clean dev changelog history — Morgan (`20dacb8`)
 - stabilize changelog and release automation — Morgan (`7f6c3a0`)
@@ -19,6 +20,9 @@ Each entry keeps its human author and short commit SHA for traceability.
 - use Brevo SMTP for production mailer — Morgan (`c147674`)
 
 ### Integration
+- Merge pull request #67: docs: format Discord changelog mentions — Morgan (`63b4bbe`)
+- Merge pull request #66: docs: auto-update CHANGELOG — Automation (`a520191`)
+- auto-update CHANGELOG — Automation (`85dd003`)
 - Merge pull request #65: docs: clean changelog and add Discord digest — Morgan (`ca894ce`)
 - Merge pull request #64: docs: auto-update CHANGELOG — Automation (`ca04704`)
 - auto-update CHANGELOG — Automation (`5560f63`)
