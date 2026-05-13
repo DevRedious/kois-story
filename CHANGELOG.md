@@ -7,6 +7,16 @@ This project follows a pre-production workflow until the first production deploy
 
 ---
 
+
+## [Unreleased]
+
+
+
+### Changed
+
+- stabilize changelog and release automation
+
+
 ## [2026-05-13]
 
 ### Integration
@@ -561,13 +571,6 @@ chore: update changelog format and commit parser rules
 
 
 ---
-## [Unreleased]
-
-### Added
-- Unification des fichiers TODO en un seul `TODO.md` structuré par thème
-
----
-
 
 ## [2026-03-19] — Morgan · Valentin · Romain
 
