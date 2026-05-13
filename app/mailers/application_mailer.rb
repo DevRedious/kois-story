@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: -> { ENV.fetch("MAILER_FROM", "Koi's Story <no-reply@kois-story.fr>") }
+  default from: -> { ENV.fetch("MAILER_FROM", "Kois Story <contact@kois-story.com>") }
   layout "mailer"
   helper_method :app_base_url, :docs_asset_url, :public_asset_url
 

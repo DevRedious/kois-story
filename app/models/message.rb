@@ -37,7 +37,13 @@ class Message < ApplicationRecord
   private
 
   def notify_contacts
-    MessageMailer.new_message(self).deliver_now if ENV["ADMIN_EMAIL"].present?
-    MessageMailer.acknowledgement(self).deliver_now
+    deliver_contact_email { MessageMailer.new_message(self).deliver_now } if ENV["ADMIN_EMAIL"].present?
+    deliver_contact_email { MessageMailer.acknowledgement(self).deliver_now }
+  end
+
+  def deliver_contact_email
+    yield
+  rescue StandardError => error
+    Rails.logger.error("Contact email delivery failed for message #{id}: #{error.class}: #{error.message}")
   end
 end

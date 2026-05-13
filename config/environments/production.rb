@@ -63,13 +63,13 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: ENV["APP_HOST"] }
   config.action_mailer.smtp_settings = {
-    address: "smtp.resend.com",
-    port: 587,
-    domain: ENV["APP_HOST"],
-    user_name: "resend",
-    password: ENV["RESEND_API_KEY"],
+    address: ENV.fetch("SMTP_ADDRESS", "smtp-relay.brevo.com"),
+    port: ENV.fetch("SMTP_PORT", "587").to_i,
+    domain: ENV.fetch("SMTP_DOMAIN", "kois-story.com"),
+    user_name: ENV["SMTP_USERNAME"],
+    password: ENV["SMTP_PASSWORD"],
     authentication: :plain,
-    enable_starttls_auto: true
+    enable_starttls_auto: ENV.fetch("SMTP_ENABLE_STARTTLS_AUTO", "true") == "true"
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
