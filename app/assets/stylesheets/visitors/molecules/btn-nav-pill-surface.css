@@ -1,0 +1,40 @@
+/**
+ * Primary buttons using the same gradient + motion as navbar .nav-pill (active).
+ */
+@import url("../../shared/nav-pill-tokens.css");
+
+#home-showcase .btn--primary,
+#contact .contact-form--home .btn--primary {
+	background-image: var(--nav-pill-gradient);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	color: var(--c-black);
+	border: var(--nav-pill-border);
+	box-shadow: var(--nav-pill-shadow-link);
+	transition:
+		color 220ms ease,
+		background-position 600ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 220ms ease,
+		border-color 220ms ease,
+		transform var(--t-fast);
+}
+
+#home-showcase .btn--primary:hover,
+#contact .contact-form--home .btn--primary:hover {
+	background-position: 100% 100%;
+	color: var(--c-black);
+	border-color: var(--nav-pill-gold);
+	box-shadow: var(--nav-pill-shadow-link-hover);
+	transform: none;
+}
+
+#home-showcase .btn--primary:active,
+#contact .contact-form--home .btn--primary:active {
+	transform: none;
+}
+
+#home-showcase .btn--primary:focus-visible,
+#contact .contact-form--home .btn--primary:focus-visible {
+	outline: 2px solid var(--nav-pill-gold);
+	outline-offset: 2px;
+}

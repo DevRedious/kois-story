@@ -24,9 +24,6 @@
 	gap: var(--sp-12);
 	align-items: start;
 }
-.azukari-desc__text .btn--wa {
-	color: var(--c-black);
-}
 .azukari-desc__text h2 {
 	font-family: var(--font-serif);
 	font-size: var(--text-2xl);

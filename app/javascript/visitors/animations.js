@@ -35,24 +35,6 @@ const initAnimations = () => {
 	});
 };
 
-/* Floating CTA: hide when footer enters viewport */
-const initFloatCta = () => {
-	const cta = document.querySelector(".cta-wa-float");
-	const footer = document.querySelector(".site-footer");
-	if (!cta || !footer) return;
-
-	const check = () => {
-		cta.classList.toggle(
-			"cta-wa-float--hidden",
-			footer.getBoundingClientRect().top < window.innerHeight,
-		);
-	};
-
-	lifecycle.listen(window, "scroll", check, { passive: true });
-	check();
-};
-
-/* Footer legal dropdown */
 const initFooterDropdown = (id) => {
 	const menu = document.getElementById(id);
 	if (!menu) return;
@@ -91,7 +73,6 @@ document.addEventListener("turbo:load", () => {
 	lifecycle?.destroy();
 	lifecycle = createLifecycle();
 	initAnimations();
-	initFloatCta();
 	initFooterDropdowns();
 });
 

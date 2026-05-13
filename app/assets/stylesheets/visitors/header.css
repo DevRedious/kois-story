@@ -1,4 +1,5 @@
 /* Manifest split of VISITORS/assets/css/header.css */
+@import url("molecules/nav-pill-link.css");
 @import url("header-section-1.css");
 @import url("header-section-2.css");
 @import url("header-section-3.css");

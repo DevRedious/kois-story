@@ -20,7 +20,15 @@ class Koi < ApplicationRecord
 
   enum :status, { available: 0, sold_out: 1, incoming: 2 }
   enum :sex, { unknown: 0, male: 1, female: 2 }
-  enum :age_class, { tosai: 0, jumbo_tosai: 1, nisai: 2, sansai: 3, yonsai: 4, gosai: 5 }
+  enum :age_class, {
+    tosai: 0,
+    jumbo_tosai_femelle: 1,
+    nisai: 2,
+    sansai: 3,
+    yonsai: 4,
+    gosai: 5,
+    jumbo_tosai_hq: 6,
+  }
 
   validates :name, :variety, :price, :status, presence: true
   validates :price, numericality: { greater_than: 0 }

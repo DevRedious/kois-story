@@ -35,7 +35,7 @@ module Admin::KoisHelper
   end
 
   def admin_koi_age_label(koi)
-    koi.age_class.present? ? koi.age_class.humanize : "Non renseigne"
+    koi.age_class.present? ? age_class_label(koi.age_class) : "Non renseigne"
   end
 
   def variety_options

@@ -160,22 +160,5 @@
 	max-width: 560px;
 }
 .hero-compact__title--underlined {
-	display: inline-block;
-	width: fit-content;
-	max-width: 100%;
 	margin-bottom: var(--sp-3);
-	padding-bottom: calc(var(--sp-2) + 12px);
-	position: relative;
-}
-.hero-compact__title--underlined::after {
-	content: "";
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 12px;
-	background-color: currentColor;
-	border-radius: 999px;
-	opacity: 0.8;
-	transform: skewX(-12deg);
 }

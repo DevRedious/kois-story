@@ -1,0 +1,78 @@
+/**
+ * Admin .main .content CTAs: same motion as public nav-pill (shared/nav-pill-tokens.css).
+ * Primary = or/bronze nav-pill ; danger = même animation sur dégradé rouge (Supprimer).
+ */
+:root {
+	--admin-danger-gradient: linear-gradient(
+		135deg,
+		rgb(100, 28, 28) 0%,
+		rgb(100, 28, 28) 28%,
+		rgb(198, 40, 40) 50%,
+		rgb(100, 28, 28) 72%,
+		rgb(100, 28, 28) 100%
+	);
+	--admin-danger-border: 1px solid rgb(198, 40, 40);
+	--admin-danger-shadow: 0 4px 18px rgba(198, 40, 40, 0.35);
+	--admin-danger-shadow-hover: 0 8px 24px rgba(198, 40, 40, 0.45);
+}
+
+.main .content .btn--primary {
+	background-image: var(--nav-pill-gradient);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	color: var(--noir);
+	border: var(--nav-pill-border);
+	box-shadow: var(--nav-pill-shadow-link);
+	transition:
+		color 220ms ease,
+		background-position 600ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 220ms ease,
+		border-color 220ms ease,
+		transform 0.18s ease;
+}
+
+.main .content .btn--danger {
+	background-image: var(--admin-danger-gradient);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	color: var(--blanc-pur);
+	border: var(--admin-danger-border);
+	box-shadow: var(--admin-danger-shadow);
+	transition:
+		color 220ms ease,
+		background-position 600ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 220ms ease,
+		border-color 220ms ease,
+		transform 0.18s ease;
+}
+
+.main .content .btn--primary:hover {
+	background-position: 100% 100%;
+	color: var(--noir);
+	border-color: var(--nav-pill-gold);
+	box-shadow: var(--nav-pill-shadow-link-hover);
+	transform: none;
+}
+
+.main .content .btn--danger:hover {
+	background-position: 100% 100%;
+	color: var(--blanc-pur);
+	border-color: rgb(220, 60, 60);
+	box-shadow: var(--admin-danger-shadow-hover);
+	transform: none;
+}
+
+.main .content .btn--primary:active,
+.main .content .btn--danger:active {
+	transform: none;
+}
+
+.main .content .btn--primary:focus-visible {
+	outline: 2px solid var(--nav-pill-gold);
+	outline-offset: 2px;
+}
+
+.main .content .btn--danger:focus-visible {
+	outline: 2px solid rgb(220, 60, 60);
+	outline-offset: 2px;
+}

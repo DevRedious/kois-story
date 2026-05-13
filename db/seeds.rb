@@ -91,7 +91,7 @@ Koi.where("name LIKE ?", "Koi %").find_each(&:destroy)
 koi_rows = [
   [ "Sakura Grand Voile", "Butterfly Koi", :yonsai, 4, :female, 62, 2400, :sold_out, true, "24148-Sakura-Grand-Voile-Suda-600x800.jpg" ],
   [ "Akane Showa", "Showa Sanshoku", :nisai, 2, :female, 42, 1450, :available, true, "carpe-koi-showa-scaled.jpg" ],
-  [ "Hikari Tancho", "Tancho", :jumbo_tosai, 1, :unknown, 34, 850, :available, true, "butterfly-tancho-kujaku.jpg" ],
+  [ "Hikari Tancho", "Tancho", :jumbo_tosai_femelle, 1, :unknown, 34, 850, :available, true, "butterfly-tancho-kujaku.jpg" ],
   [ "Gin Rin Sanke", "Taisho Sanke", :sansai, 3, :male, 55, 1900, :incoming, false, "carpe-koi-showa-scaled-hero.jpg" ],
   [ "Chagoi Miel", "Chagoi", :nisai, 2, :female, 48, 1250, :available, false, "butterfly-tancho-kujaku.jpg" ],
   [ "Kujaku Argent", "Kujaku", :tosai, 1, :unknown, 28, 520, :available, false, "24148-Sakura-Grand-Voile-Suda-600x800.jpg" ],

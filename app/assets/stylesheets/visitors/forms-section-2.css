@@ -113,11 +113,6 @@
 	gap: var(--sp-3);
 	margin-top: var(--sp-6);
 }
-.contact-quick__wa .btn--wa:hover {
-	background: #25d366;
-	border-color: #25d366;
-	box-shadow: none;
-}
 
 @media (min-width: 581px) {
 	.contact-quick__wa {

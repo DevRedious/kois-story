@@ -12,14 +12,14 @@
 <header class="site-header" id="site-header" data-turbo-permanent>
   <div class="header__inner">
     <nav class="header__nav" id="header-nav" aria-label="Navigation principale" data-testid="public-nav">
-      <span class="nav__indicator" id="nav-indicator"></span>
+      <span class="nav-pill__indicator" id="nav-indicator" aria-hidden="true"></span>
       <ul>
-        <li><%= link_to "Accueil", root_path, data: { testid: "nav-home" } %></li>
-        <li><%= link_to "Nous découvrir", decouvrir_path, data: { testid: "nav-decouvrir" } %></li>
-        <li><%= link_to "Nos Koïs", kois_path, data: { testid: "nav-kois" } %></li>
+        <li><%= render "pages/nav_pill_link", label: "Accueil", url: root_path, testid: "nav-home" %></li>
+        <li><%= render "pages/nav_pill_link", label: "Nous découvrir", url: decouvrir_path, testid: "nav-decouvrir" %></li>
+        <li><%= render "pages/nav_pill_link", label: "Nos Koïs", url: kois_path, testid: "nav-kois" %></li>
         <li class="has-dropdown" data-testid="nav-products-group">
           <% produits_active = [materiel_path, nourriture_path, soins_path].include?(request.path) %>
-          <button type="button" class="dropdown-toggle<%= ' active' if produits_active %>" aria-haspopup="true" aria-expanded="false" data-testid="nav-products-toggle">
+          <button type="button" class="nav-pill dropdown-toggle<%= ' active' if produits_active %>" aria-haspopup="true" aria-expanded="false" data-testid="nav-products-toggle">
             Produits
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="2,4 6,8 10,4"/>
@@ -31,8 +31,8 @@
             <li><%= link_to "Soins", soins_path, data: { testid: "nav-products-soins" } %></li>
           </ul>
         </li>
-        <li><%= link_to "Azukari", azukari_path, data: { testid: "nav-azukari" } %></li>
-        <li><%= link_to "À propos", a_propos_path, data: { testid: "nav-a-propos" } %></li>
+        <li><%= render "pages/nav_pill_link", label: "Azukari", url: azukari_path, testid: "nav-azukari" %></li>
+        <li><%= render "pages/nav_pill_link", label: "À propos", url: a_propos_path, testid: "nav-a-propos" %></li>
       </ul>
     </nav>
 
