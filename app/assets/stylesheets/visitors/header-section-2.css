@@ -1,76 +1,13 @@
 /* Split from VISITORS/assets/css/header.css - section 2/3 */
-.header__nav a,
-.dropdown-toggle {
-	font-family: var(--font-sans);
-	font-size: 1rem;
-	font-weight: 600;
-	color: var(--c-white);
-	letter-spacing: 0.03em;
-	padding: var(--sp-2) var(--sp-3);
-	transition: color 220ms ease;
-	position: relative;
-	z-index: 1;
-	white-space: nowrap;
-	background: transparent;
-	border: 0;
-	text-decoration: none;
-}
-.header__nav a.active,
-.dropdown-toggle.active {
-	color: var(--c-black);
-}
-.header__nav:not(.header__nav--indicator-ready) > ul > li > a.active,
-.header__nav:not(.header__nav--indicator-ready)
-	> ul
-	> li
-	> .dropdown-toggle.active {
-	background: linear-gradient(
-		135deg,
-		var(--c-gold) 0%,
-		var(--c-gold) 32%,
-		var(--c-bronze) 72%,
-		var(--c-gold) 100%
-	);
-	background-size: 200% 200%;
-	background-position: 0% 0%;
-	border: 1px solid var(--c-gold);
-	border-radius: var(--r-xl);
-	box-shadow: 0 4px 18px rgba(234, 178, 27, 0.34);
-}
-.header__nav a:hover,
-.dropdown-toggle:hover {
-	color: var(--c-gold);
-}
-.header__nav a.active:hover,
-.dropdown-toggle.active:hover {
-	color: var(--c-black);
-}
-.header__nav:not(.header__nav--indicator-ready) > ul > li > a.active:hover,
-.header__nav:not(.header__nav--indicator-ready)
-	> ul
-	> li
-	> .dropdown-toggle.active:hover {
-	background-position: 100% 100%;
-	box-shadow: 0 8px 24px rgba(234, 178, 27, 0.42);
-}
+/* Nav link surface: molecules/nav-pill-link.css */
 
 /* ── DROPDOWN ────────────────────────────────────────────────────────── */
 .has-dropdown {
 	position: relative;
 }
-.dropdown-toggle {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	cursor: pointer;
-}
-.dropdown-toggle svg {
-	flex-shrink: 0;
-	transition: transform var(--t-fast);
-}
-.has-dropdown:hover .dropdown-toggle svg,
-.has-dropdown:focus-within .dropdown-toggle svg,
-.dropdown-toggle.open svg {
+.nav-pill.dropdown-toggle.open svg,
+.has-dropdown:hover .nav-pill.dropdown-toggle svg,
+.has-dropdown:focus-within .nav-pill.dropdown-toggle svg {
 	transform: rotate(180deg);
 }
 

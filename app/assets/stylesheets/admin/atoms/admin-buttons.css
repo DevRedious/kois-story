@@ -51,14 +51,14 @@
 }
 
 .btn--dark {
-	background: var(--noir);
+	background: var(--bleu-nuit-profond);
 	color: var(--blanc-pur);
-	border-color: var(--noir);
+	border-color: var(--bleu-nuit-profond);
 }
 
 .btn--dark:hover {
-	background: rgba(0, 0, 0, 0.86);
-	border-color: rgba(0, 0, 0, 0.86);
+	background: rgba(var(--bleu-nuit-profond-rgb), 0.88);
+	border-color: rgba(var(--bleu-nuit-profond-rgb), 0.88);
 }
 
 .btn--ghost {

@@ -1,0 +1,30 @@
+/* Shared with visitors (nav-pill, home CTAs) and admin primary/destructive CTAs */
+:root {
+	--nav-pill-gold: rgb(234, 178, 27);
+	--nav-pill-bronze: rgb(165, 130, 65);
+	--nav-pill-gradient: linear-gradient(
+		135deg,
+		var(--nav-pill-bronze) 0%,
+		var(--nav-pill-bronze) 28%,
+		var(--nav-pill-gold) 50%,
+		var(--nav-pill-bronze) 72%,
+		var(--nav-pill-bronze) 100%
+	);
+	/* Navy ↔ gold peak — Commander showcase + contact quick WA buttons */
+	--wa-cta-navy-gold-gradient: linear-gradient(
+		135deg,
+		var(--c-navy) 0%,
+		var(--c-navy) 28%,
+		var(--nav-pill-gold) 50%,
+		var(--c-navy) 72%,
+		var(--c-navy) 100%
+	);
+	--nav-pill-border: 1px solid var(--nav-pill-gold);
+	--nav-pill-shadow-link: 0 4px 18px rgba(234, 178, 27, 0.34);
+	--nav-pill-shadow-link-hover: 0 8px 24px rgba(234, 178, 27, 0.42);
+	--nav-pill-shadow-mobile: 0 8px 24px rgba(234, 178, 27, 0.28);
+	--nav-pill-shadow-indicator:
+		0 6px 22px rgba(234, 178, 27, 0.34), 0 0 0 1px rgba(234, 178, 27, 0.14);
+	--nav-pill-shadow-indicator-hover:
+		0 10px 30px rgba(234, 178, 27, 0.46), 0 0 0 1px rgba(234, 178, 27, 0.24);
+}

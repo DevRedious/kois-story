@@ -1,0 +1,81 @@
+/**
+ * Commander-style WhatsApp CTAs: navy + gold shimmer, white label, navy border,
+ * nav-pill shadows; .icon-wa keeps brand green (#25d366).
+ * Selectors ascending by specificity (Biome noDescendingSpecificity).
+ */
+@import url("../../shared/nav-pill-tokens.css");
+
+.price-block .cta-whatsapp,
+.azukari-desc__text .btn--wa,
+#home-showcase .koi-card-cta--primary,
+#main-content.catalogue .koi-card-cta--primary,
+#contact .contact-quick__wa .btn--wa {
+	overflow: hidden;
+	background-color: var(--c-navy);
+	background-image: var(--wa-cta-navy-gold-gradient);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	color: var(--c-white);
+	border: 2px solid var(--c-navy);
+	box-shadow: var(--nav-pill-shadow-link);
+	transition:
+		background-position 600ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 220ms ease,
+		transform var(--t-fast),
+		color var(--t-fast),
+		border-color var(--t-fast);
+}
+
+.price-block .cta-whatsapp:hover,
+.azukari-desc__text .btn--wa:hover,
+#home-showcase .koi-card-cta--primary:hover,
+#main-content.catalogue .koi-card-cta--primary:hover,
+#contact .contact-quick__wa .btn--wa:hover {
+	background-color: var(--c-navy);
+	background-image: var(--wa-cta-navy-gold-gradient);
+	background-size: 200% 200%;
+	background-position: 100% 100%;
+	border-color: var(--c-navy);
+	box-shadow: var(--nav-pill-shadow-link-hover);
+	transform: none;
+	color: var(--c-white);
+}
+
+.price-block .cta-whatsapp:active,
+.azukari-desc__text .btn--wa:active,
+#home-showcase .koi-card-cta--primary:active,
+#main-content.catalogue .koi-card-cta--primary:active,
+#contact .contact-quick__wa .btn--wa:active {
+	transform: none;
+}
+
+.price-block .cta-whatsapp:focus-visible,
+.azukari-desc__text .btn--wa:focus-visible,
+#home-showcase .koi-card-cta--primary:focus-visible,
+#main-content.catalogue .koi-card-cta--primary:focus-visible,
+#contact .contact-quick__wa .btn--wa:focus-visible {
+	outline: 2px solid var(--nav-pill-gold);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.price-block .cta-whatsapp,
+	.azukari-desc__text .btn--wa,
+	#home-showcase .koi-card-cta--primary,
+	#main-content.catalogue .koi-card-cta--primary,
+	#contact .contact-quick__wa .btn--wa {
+		transition:
+			box-shadow 220ms ease,
+			transform var(--t-fast),
+			color var(--t-fast),
+			border-color var(--t-fast);
+	}
+
+	.price-block .cta-whatsapp:hover,
+	.azukari-desc__text .btn--wa:hover,
+	#home-showcase .koi-card-cta--primary:hover,
+	#main-content.catalogue .koi-card-cta--primary:hover,
+	#contact .contact-quick__wa .btn--wa:hover {
+		background-position: 100% 100%;
+	}
+}

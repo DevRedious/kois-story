@@ -43,15 +43,24 @@ module ApplicationHelper
     ENV["TURNSTILE_SITE_KEY"].presence
   end
 
+  AGE_CLASS_LABELS = {
+    "tosai" => "Tosai",
+    "jumbo_tosai_femelle" => "Jumbo Tosai femelle",
+    "jumbo_tosai_hq" => "Jumbo Tosai HQ",
+    "nisai" => "Nisai",
+    "sansai" => "Sansai",
+    "yonsai" => "Yonsai",
+    "gosai" => "Gosai"
+  }.freeze
+
+  def age_class_label(age_class)
+    return "" if age_class.blank?
+
+    AGE_CLASS_LABELS[age_class.to_s] || age_class.to_s.tr("_", " ").humanize
+  end
+
   def age_class_options
-    [
-      [ "Tosai (1 an)", "tosai" ],
-      [ "Jumbo Tosai (1 an, grande taille)", "jumbo_tosai" ],
-      [ "Nisai (2 ans)", "nisai" ],
-      [ "Sansai (3 ans)", "sansai" ],
-      [ "Yonsai (4 ans)", "yonsai" ],
-      [ "Gosai (5 ans et +)", "gosai" ]
-    ]
+    AGE_CLASS_LABELS.map { |value, label| [ label, value ] }
   end
 
   def contact_form_value(field)

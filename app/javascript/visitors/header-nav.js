@@ -1,8 +1,7 @@
 import { moveIndicator } from "visitors/header-utils";
 
 const LEGACY_NAV_INDICATOR_KEY = "koisStoryNavIndicator";
-const ACTIVE_NAV_SELECTOR =
-	"ul > li > a.active, ul > li > .dropdown-toggle.active";
+const ACTIVE_NAV_SELECTOR = "ul > li > .nav-pill.active";
 
 const linkMatchesCurrentPath = (href, currentPath, currentPage) => {
 	if (!href || href === "#" || href.startsWith("http")) return false;
@@ -20,7 +19,7 @@ const getIndicatorTarget = (link) => {
 	if (link.closest(".dropdown")) {
 		return link.closest(".has-dropdown")?.querySelector(".dropdown-toggle");
 	}
-	return link.closest("li")?.querySelector("a, .dropdown-toggle") || link;
+	return link.closest("li")?.querySelector("a.nav-pill, .nav-pill.dropdown-toggle") || link;
 };
 
 const clearActiveLinks = (nav) => {

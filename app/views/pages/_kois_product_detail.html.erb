@@ -28,7 +28,7 @@
           <span class="info-meta-badge konishi"><%= image_tag "/logo_konishi_black.avif", alt: "Konishi" %></span>
           <span class="info-meta-badge"><%= koi.variety %></span>
           <span class="info-meta-badge"><%= koi.size_cm %> cm</span>
-          <span class="info-meta-badge"><%= koi.age_class&.humanize %></span>
+          <span class="info-meta-badge"><%= age_class_label(koi.age_class) %></span>
         </div>
       </div>
 
@@ -53,7 +53,7 @@
           <div class="spec"><span class="spec-label">Âge estimé</span><span class="spec-value"><%= koi.age || "-" %> ans</span></div>
           <div class="spec"><span class="spec-label">Lignée</span><span class="spec-value"><%= koi.konishi_lineage? ? "Konishi" : "Sélection ferme" %></span></div>
           <div class="spec"><span class="spec-label">Sexe</span><span class="spec-value"><%= koi_sex_label(koi) %></span></div>
-          <div class="spec"><span class="spec-label">Classe d'âge</span><span class="spec-value"><%= koi.age_class&.humanize %></span></div>
+          <div class="spec"><span class="spec-label">Classe d'âge</span><span class="spec-value"><%= age_class_label(koi.age_class) %></span></div>
         </div>
       </div>
 

@@ -1,0 +1,124 @@
+/**
+ * Molecule: nav-pill — source of truth for primary nav gold/bronze shine.
+ * Use class `nav-pill` on top-level header links and dropdown toggles.
+ * Sliding desktop pill: `.nav-pill__indicator` (#nav-indicator).
+ */
+@import url("../../shared/nav-pill-tokens.css");
+
+.nav-pill__indicator {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translate3d(var(--nav-indicator-x, 0), -50%, 0);
+	height: 38px;
+	border-radius: var(--r-full);
+	background-image: var(--nav-pill-gradient);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	border: var(--nav-pill-border);
+	box-shadow: var(--nav-pill-shadow-indicator);
+	transition:
+		transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+		width 420ms cubic-bezier(0.22, 1, 0.36, 1),
+		opacity var(--t-fast),
+		background-position 600ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow var(--t-base);
+	pointer-events: none;
+	opacity: 0;
+	z-index: 0;
+	will-change: transform, width;
+}
+
+.header__nav > ul > li > .nav-pill {
+	font-family: var(--font-sans);
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--c-white);
+	letter-spacing: 0.03em;
+	padding: var(--sp-2) var(--sp-3);
+	transition: color 220ms ease;
+	position: relative;
+	z-index: 1;
+	white-space: nowrap;
+	background: transparent;
+	border: 0;
+	text-decoration: none;
+}
+
+.nav-pill.dropdown-toggle {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	cursor: pointer;
+}
+
+.nav-pill.dropdown-toggle svg {
+	flex-shrink: 0;
+	transition: transform var(--t-fast);
+}
+
+.header__nav > ul > li > .nav-pill:hover:not(.active),
+.header__nav > ul > li > .nav-pill.dropdown-toggle:hover:not(.active) {
+	color: var(--c-gold);
+}
+
+.header__nav > ul > li > .nav-pill.active,
+.header__nav > ul > li > .nav-pill.dropdown-toggle.active {
+	color: var(--c-black);
+}
+
+.header__nav:not(.header__nav--indicator-ready) > ul > li > .nav-pill.active,
+.header__nav:not(.header__nav--indicator-ready)
+	> ul
+	> li
+	> .nav-pill.dropdown-toggle.active {
+	background-image: var(--nav-pill-gradient);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	border: var(--nav-pill-border);
+	border-radius: var(--r-xl);
+	box-shadow: var(--nav-pill-shadow-link);
+	transition:
+		color 220ms ease,
+		background-position 600ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 220ms ease;
+}
+
+.header__nav:not(.header__nav--indicator-ready)
+	> ul
+	> li
+	> .nav-pill.active:hover,
+.header__nav:not(.header__nav--indicator-ready)
+	> ul
+	> li
+	> .nav-pill.dropdown-toggle.active:hover {
+	background-position: 100% 100%;
+	box-shadow: var(--nav-pill-shadow-link-hover);
+}
+
+.header__nav--indicator-ready:has(.nav-pill.active:hover) .nav-pill__indicator,
+.header__nav--indicator-ready:has(.nav-pill.active:focus-visible)
+	.nav-pill__indicator {
+	background-position: 100% 100%;
+	box-shadow: var(--nav-pill-shadow-indicator-hover);
+}
+
+.header__nav.open > ul > li > .nav-pill.active,
+.header__nav.open > ul > li > .nav-pill.dropdown-toggle.active {
+	background-image: var(--nav-pill-gradient);
+	background-size: 200% 200%;
+	background-position: 0% 0%;
+	border: var(--nav-pill-border);
+	color: var(--c-black);
+	box-shadow: var(--nav-pill-shadow-mobile);
+	transition:
+		color 220ms ease,
+		background-position 600ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 220ms ease;
+}
+
+.header__nav.open > ul > li > .nav-pill.active:hover,
+.header__nav.open > ul > li > .nav-pill.dropdown-toggle.active:hover {
+	background-position: 100% 100%;
+	color: var(--c-black);
+}

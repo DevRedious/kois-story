@@ -5,7 +5,7 @@ module HomeHelper
   end
 
   def showcase_meta(koi)
-    parts = [ koi.variety, koi.size_cm.present? ? "#{koi.size_cm} cm" : nil, koi.age_class&.humanize ]
+    parts = [ koi.variety, koi.size_cm.present? ? "#{koi.size_cm} cm" : nil, age_class_label(koi.age_class) ]
     parts.compact.join(" · ")
   end
 

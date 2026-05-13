@@ -57,6 +57,33 @@
 	border-color: var(--c-black);
 }
 
+/* Showcase + catalogue — Voir la fiche: bordure bleu nuit, hover fond bleu nuit + texte blanc */
+#home-showcase .koi-card-cta--secondary,
+#main-content.catalogue .koi-card-cta--secondary {
+	background: var(--c-white);
+	color: var(--c-black);
+	border-color: var(--c-navy);
+	transition:
+		background var(--t-fast),
+		color var(--t-fast),
+		border-color var(--t-fast),
+		transform var(--t-fast);
+}
+
+#home-showcase .koi-card-cta--secondary:hover,
+#main-content.catalogue .koi-card-cta--secondary:hover {
+	background: var(--c-navy);
+	color: var(--c-white);
+	border-color: var(--c-navy);
+	transform: none;
+}
+
+#home-showcase .koi-card-cta--secondary:focus-visible,
+#main-content.catalogue .koi-card-cta--secondary:focus-visible {
+	outline: 2px solid var(--c-navy);
+	outline-offset: 2px;
+}
+
 /* ── EDITORIAL  grande card vedette (home) ─────────────────────── */
 .editorial {
 	display: flex;

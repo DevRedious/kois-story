@@ -9,7 +9,7 @@ module KoisHelper
   end
 
   def koi_meta(koi)
-    [ koi.variety, koi.size_cm.present? ? "#{koi.size_cm} cm" : nil, koi.age_class&.humanize ].compact.join(" · ")
+    [ koi.variety, koi.size_cm.present? ? "#{koi.size_cm} cm" : nil, age_class_label(koi.age_class) ].compact.join(" · ")
   end
 
   def koi_price(koi)
