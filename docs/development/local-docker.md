@@ -33,7 +33,7 @@ docker compose build
 docker compose up -d --wait db public admin
 docker compose exec -T admin bin/rails db:seed
 ruby script/docker_smoke.rb
-docker compose run --rm -e KOIS_APP_ROLE=all -e RAILS_ENV=test public bash -lc "unset DATABASE_URL; bin/rails test"
+docker compose run --rm -e KOIS_APP_ROLE=all -e RAILS_ENV=test public bin/rails test
 docker compose exec -T public bundle exec rubocop
 ```
 
@@ -56,6 +56,11 @@ Les services `public` et `admin` partagent la même base PostgreSQL Docker.
 Le routage reste séparé par rôle : les routes admin ne doivent pas répondre sur
 `:3000`, et les routes publiques ne doivent pas répondre sur `:3001` quand elles
 sont hors périmètre admin.
+
+Les tests Rails utilisent une base PostgreSQL séparée, `kois_story_test`, via
+`TEST_DATABASE_URL`. Ne pas contourner cela avec `unset DATABASE_URL` : la base
+de développement `kois_story_development` doit rester intacte après un
+`bin/rails test`.
 
 ## Commandes utiles
 
