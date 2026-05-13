@@ -1,0 +1,40 @@
+name: Daily Changelog Digest
+
+on:
+  schedule:
+    - cron: "0 9 * * *"
+      timezone: "Europe/Paris"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Date du digest a envoyer au format YYYY-MM-DD. Vide = hier, Europe/Paris."
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  discord-digest:
+    name: Send Discord changelog digest
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Paris
+      GH_TOKEN: ${{ github.token }}
+      CHANGELOG_REPOSITORY: ${{ github.repository }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_CHANGELOG_WEBHOOK_URL || secrets.DISCORD_RELEASE_WEBHOOK_URL }}
+      CHANGELOG_DIGEST_DATE: ${{ inputs.date }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Skip when Discord webhook is missing
+        if: ${{ env.DISCORD_WEBHOOK_URL == '' }}
+        run: echo "::notice::DISCORD_CHANGELOG_WEBHOOK_URL is not configured; changelog digest skipped."
+
+      - name: Send Discord digest
+        if: ${{ env.DISCORD_WEBHOOK_URL != '' }}
+        run: ruby .github/scripts/send_changelog_digest.rb DEV
