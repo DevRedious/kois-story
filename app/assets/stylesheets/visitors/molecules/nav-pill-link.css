@@ -84,7 +84,10 @@
 		box-shadow 220ms ease;
 }
 
-.header__nav:not(.header__nav--indicator-ready) > ul > li > .nav-pill.active:hover,
+.header__nav:not(.header__nav--indicator-ready)
+	> ul
+	> li
+	> .nav-pill.active:hover,
 .header__nav:not(.header__nav--indicator-ready)
 	> ul
 	> li
