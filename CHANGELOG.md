@@ -11,12 +11,14 @@ Each entry keeps its human author and short commit SHA for traceability.
 ## [2026-05-13]
 
 ### Changed
+- clean dev changelog history — Morgan (`20dacb8`)
 - stabilize changelog and release automation — Morgan (`7f6c3a0`)
 
 ### Fixed
 - use Brevo SMTP for production mailer — Morgan (`c147674`)
 
 ### Integration
+- Merge pull request #63: docs: clean DEV changelog history — Morgan (`1cf3b02`)
 - Merge pull request #62: docs: auto-update CHANGELOG — Automation (`acc0f79`)
 - auto-update CHANGELOG — Automation (`c842a3f`)
 - Merge pull request #61: ci: stabilize changelog and production release automation — Morgan (`afc6c9d`)
