@@ -10,16 +10,29 @@ Each entry keeps its human author and short commit SHA for traceability.
 
 ## [2026-05-13]
 
+### Added
+- nav-pill header, navy-gold WA CTAs, H1 sumi underline — Romain (`8c663e5`)
+- add navigation pill reuse implementation plan — Romain (`4041e54`)
+- add navigation pill reuse design spec — Romain (`9c6c64c`)
+- add Cursor session preflight skill — Romain (`a3c8634`)
+
 ### Changed
+- format nav-pill-link selectors for Biome — Romain (`af4b713`)
 - format Discord changelog mentions — Morgan (`76f1f00`)
 - clean dev changelog history — Morgan (`6f1089a`)
 - clean dev changelog history — Morgan (`20dacb8`)
 - stabilize changelog and release automation — Morgan (`7f6c3a0`)
 
 ### Fixed
+- satisfy Biome specificity and format rules — Romain (`3e6c760`)
+- remove trailing commas in hashes for RuboCop — Romain (`157f021`)
 - use Brevo SMTP for production mailer — Morgan (`c147674`)
 
 ### Integration
+- Merge pull request #69: Setup/local docker stack — Romain (`f90796c`)
+- Merge branch 'DEV' into setup/local-docker-stack — Romain (`aaf18ff`)
+- Merge pull request #68: docs: auto-update CHANGELOG — Automation (`1accfa1`)
+- auto-update CHANGELOG — Automation (`ef90fe2`)
 - Merge pull request #67: docs: format Discord changelog mentions — Morgan (`63b4bbe`)
 - Merge pull request #66: docs: auto-update CHANGELOG — Automation (`a520191`)
 - auto-update CHANGELOG — Automation (`85dd003`)
