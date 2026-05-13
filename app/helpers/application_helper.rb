@@ -24,6 +24,10 @@ module ApplicationHelper
     ENV["WHATSAPP_PHONE"].presence
   end
 
+  def customer_contact_email
+    ENV.fetch("CONTACT_EMAIL", "contact@kois-story.com")
+  end
+
   def whatsapp_icon(size: 24, extra_classes: nil)
     classes = [ "icon-wa", "icon-wa--#{size}", extra_classes ].compact.join(" ")
     content_tag(:span, class: classes, aria: { hidden: true }) do

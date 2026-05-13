@@ -72,10 +72,16 @@ DATABASE_URL=<url de la base partagee ou dediee au service>
 CLOUDINARY_CLOUD_NAME=<cloud name Cloudinary>
 CLOUDINARY_API_KEY=<api key Cloudinary>
 CLOUDINARY_API_SECRET=<api secret Cloudinary>
-RESEND_API_KEY=<api key Resend>
+SMTP_ADDRESS=smtp-relay.brevo.com
+SMTP_PORT=587
+SMTP_DOMAIN=kois-story.com
+SMTP_USERNAME=<identifiant SMTP Brevo>
+SMTP_PASSWORD=<mot de passe SMTP Brevo>
+SMTP_ENABLE_STARTTLS_AUTO=true
 ADMIN_EMAIL=<email destinataire admin>
+CONTACT_EMAIL=contact@kois-story.com
 WHATSAPP_PHONE=<telephone international sans +>
-MAILER_FROM=Koi's Story <no-reply@kois-story.com>
+MAILER_FROM=Kois Story <contact@kois-story.com>
 OTP_SECRET_KEY=<secret stable de 32+ octets>
 FORCE_SSL=true
 ASSUME_SSL=true
@@ -158,7 +164,7 @@ Ne pas lancer `db:seed` sur une base contenant deja des donnees sans relire
 - `/users/sign_in` charge pour les roles `admin` et `all`.
 - La connexion admin fonctionne.
 - Les formulaires critiques creent les donnees attendues.
-- L'envoi email fonctionne via Resend.
+- L'envoi email fonctionne via Brevo SMTP.
 - Les liens WhatsApp utilisent le bon numero.
 - Les uploads Cloudinary fonctionnent.
 - Les donnees survivent a un redeploiement.
@@ -167,8 +173,8 @@ Ne pas lancer `db:seed` sur une base contenant deja des donnees sans relire
 
 - Precompilation en erreur : verifier les logs Docker et les assets Rails.
 - Connexion ou 2FA en erreur : verifier `RAILS_MASTER_KEY` et `OTP_SECRET_KEY`.
-- Emails absents : verifier `RESEND_API_KEY`, `APP_HOST`, `PUBLIC_SITE_URL` et
-  `MAILER_FROM`.
+- Emails absents : verifier `SMTP_USERNAME`, `SMTP_PASSWORD`, `APP_HOST`,
+  `PUBLIC_SITE_URL` et `MAILER_FROM`.
 - Donnees absentes entre services : comparer les valeurs `DATABASE_URL`.
 - Healthcheck en erreur : garder `/up` en HTTP et verifier l'exclusion SSL Rails.
 

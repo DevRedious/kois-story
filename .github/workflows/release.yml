@@ -4,13 +4,20 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: production-release-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    if: ${{ github.ref == 'refs/heads/main' }}
 
     steps:
       - name: Checkout repository (full history)
@@ -23,24 +30,115 @@ jobs:
         with:
           tool: git-cliff
 
-      - name: Generate release notes with git-cliff
-        run: git-cliff --config cliff.toml --latest --strip header --output RELEASE_NOTES.md
-
-      - name: Get version from latest tag (or use date)
+      - name: Resolve production release tag
         id: version
         run: |
-          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-          if [ -z "$TAG" ]; then
-            echo "name=v$(date +'%Y.%m.%d')" >> $GITHUB_OUTPUT
+          set -euo pipefail
+
+          git fetch --force --tags
+
+          EXISTING_TAG=$(git tag --points-at HEAD --list "v*" | sort -V | tail -n 1 || true)
+
+          if [ -n "$EXISTING_TAG" ]; then
+            RELEASE_TAG="$EXISTING_TAG"
+            TAG_ALREADY_EXISTS=true
           else
-            echo "name=$TAG" >> $GITHUB_OUTPUT
+            BASE_TAG="v$(date -u +'%Y.%m.%d')"
+            RELEASE_TAG="$BASE_TAG"
+
+            if git rev-parse "$RELEASE_TAG" >/dev/null 2>&1; then
+              RELEASE_TAG="${BASE_TAG}.${GITHUB_RUN_NUMBER}"
+            fi
+
+            TAG_ALREADY_EXISTS=false
           fi
+
+          PREVIOUS_TAG=$(git tag --merged HEAD --list "v*" | grep -v "^${RELEASE_TAG}$" | sort -V | tail -n 1 || true)
+
+          echo "release_tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+          echo "previous_tag=$PREVIOUS_TAG" >> "$GITHUB_OUTPUT"
+          echo "tag_already_exists=$TAG_ALREADY_EXISTS" >> "$GITHUB_OUTPUT"
+
+      - name: Generate release notes with git-cliff
+        run: |
+          set -euo pipefail
+
+          if [ -n "${{ steps.version.outputs.previous_tag }}" ]; then
+            git-cliff --config cliff.toml "${{ steps.version.outputs.previous_tag }}..HEAD" --tag "${{ steps.version.outputs.release_tag }}" --strip header --output RELEASE_NOTES.md
+          else
+            git-cliff --config cliff.toml --tag "${{ steps.version.outputs.release_tag }}" --strip header --output RELEASE_NOTES.md
+          fi
+
+      - name: Create production tag
+        if: ${{ steps.version.outputs.tag_already_exists == 'false' }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "${{ steps.version.outputs.release_tag }}" -m "Release ${{ steps.version.outputs.release_tag }}"
+          git push origin "${{ steps.version.outputs.release_tag }}"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.version.outputs.name }}
-          name: Release ${{ steps.version.outputs.name }}
+          tag_name: ${{ steps.version.outputs.release_tag }}
+          name: Release ${{ steps.version.outputs.release_tag }}
           body_path: RELEASE_NOTES.md
           draft: false
           prerelease: false
+
+      - name: Notify Discord
+        env:
+          DISCORD_RELEASE_WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK_URL }}
+          RELEASE_TAG: ${{ steps.version.outputs.release_tag }}
+          PREVIOUS_TAG: ${{ steps.version.outputs.previous_tag }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${DISCORD_RELEASE_WEBHOOK_URL}" ]; then
+            echo "DISCORD_RELEASE_WEBHOOK_URL is not configured; skipping Discord notification."
+            exit 0
+          fi
+
+          python3 - <<'PY' > discord_payload.json
+          import json
+          import os
+          from pathlib import Path
+
+          tag = os.environ["RELEASE_TAG"]
+          previous_tag = os.environ.get("PREVIOUS_TAG") or "initial release"
+          repo = os.environ["GITHUB_REPOSITORY"]
+          sha = os.environ["GITHUB_SHA"][:7]
+          release_url = f"https://github.com/{repo}/releases/tag/{tag}"
+          notes = Path("RELEASE_NOTES.md").read_text(encoding="utf-8").strip()
+
+          if len(notes) > 3000:
+              notes = notes[:2950].rstrip() + "\n..."
+
+          payload = {
+              "username": "Koi's Story Releases",
+              "allowed_mentions": {"parse": []},
+              "embeds": [
+                  {
+                      "title": f"Production release {tag}",
+                      "url": release_url,
+                      "description": notes or "Release production publiee.",
+                      "color": 0xEAB21B,
+                      "fields": [
+                          {"name": "Branche", "value": "`main`", "inline": True},
+                          {"name": "Commit", "value": f"`{sha}`", "inline": True},
+                          {"name": "Depuis", "value": f"`{previous_tag}`", "inline": True},
+                          {"name": "GitHub Release", "value": f"[Voir la release]({release_url})", "inline": False},
+                      ],
+                  }
+              ],
+          }
+
+          print(json.dumps(payload))
+          PY
+
+          curl --fail --silent --show-error \
+            -X POST "$DISCORD_RELEASE_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            --data @discord_payload.json

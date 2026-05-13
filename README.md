@@ -134,7 +134,8 @@ The project documentation index is available in `docs/README.md`.
 
 ## Changelog
 
-Project history is tracked in `CHANGELOG.md`.
+Project history is tracked in `CHANGELOG.md`; release automation is documented in
+`docs/github/release_and_changelog.md`.
 
 ## Tech Stack
 
@@ -147,7 +148,7 @@ Project history is tracked in `CHANGELOG.md`.
 | Authentication   | Devise + devise-two-factor                                         |
 | Linter/Formatter | RuboCop + Biome                                                    |
 | Image upload     | CarrierWave + Cloudinary                                           |
-| Emails           | ActionMailer + Resend SMTP                                         |
+| Emails           | ActionMailer + Brevo SMTP                                          |
 | Hosting          | Coolify-ready Docker on VPS; Kamal config kept as legacy reference |
 
 ## Team
