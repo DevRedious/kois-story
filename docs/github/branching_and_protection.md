@@ -67,4 +67,5 @@ Re-verify the live settings in **Settings -> Branches** or **Rulesets**:
 
 - `CONTRIBUTING.md` - workflow and branch rules.
 - `.github/workflows/` - CI and release automation.
+- `docs/github/release_and_changelog.md` - changelog, release, and Discord notification flow.
 - `docs/deployment/coolify.md` - Coolify deployment target.

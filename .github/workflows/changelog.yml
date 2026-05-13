@@ -4,12 +4,22 @@ on:
   push:
     branches:
       - DEV
+    paths-ignore:
+      - CHANGELOG.md
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: changelog-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   changelog:
-    name: Generate CHANGELOG
+    name: Generate CHANGELOG PR
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'auto-update CHANGELOG') }}
     permissions:
       contents: write
       pull-requests: write
@@ -30,41 +40,54 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Generate CHANGELOG
+      - name: Generate unreleased CHANGELOG section
         run: |
-          DATE=$(date +%Y-%m-%d)
+          set -euo pipefail
 
-          # Force-update today's tag to HEAD
-          git tag -f "$DATE"
-          git push origin --force "refs/tags/$DATE"
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
 
-          # Find the previous tag (last one that isn't today's)
-          PREV_TAG=$(git tag --sort=version:refname | grep -v "^${DATE}" | tail -1)
+          path = Path("CHANGELOG.md")
+          content = path.read_text(encoding="utf-8")
+          content = re.sub(
+              r"\n## \[Unreleased\].*?(?=\n## \[|\Z)",
+              "\n",
+              content,
+              count=1,
+              flags=re.S,
+          )
+          path.write_text(content.lstrip(), encoding="utf-8")
+          PY
 
-          # Remove today's section from CHANGELOG if it already exists
-          if grep -q "^## \[${DATE}\]" CHANGELOG.md; then
-            python3 -c "
-          import re, sys
-          date = sys.argv[1]
-          with open('CHANGELOG.md') as f:
-              content = f.read()
-          content = re.sub(r'## \[' + re.escape(date) + r'\].*?(?=\n## \[)', '', content, flags=re.DOTALL)
-          with open('CHANGELOG.md', 'w') as f:
-              f.write(content)
-          " "$DATE"
+          PREVIOUS_PROD_TAG=$(git tag --merged HEAD --list "v*" --sort=version:refname | tail -n 1 || true)
+
+          if [ -n "$PREVIOUS_PROD_TAG" ]; then
+            git-cliff --config cliff.toml "${PREVIOUS_PROD_TAG}..HEAD" --unreleased --prepend CHANGELOG.md
+          else
+            git-cliff --config cliff.toml --unreleased --prepend CHANGELOG.md
           fi
 
-          # Generate and prepend today's section
-          if [ -n "$PREV_TAG" ]; then
-            git-cliff --config cliff.toml "${PREV_TAG}..HEAD" --tag "$DATE" --prepend CHANGELOG.md
+      - name: Check changelog bot token
+        id: changelog-token
+        env:
+          CHANGELOG_BOT_TOKEN: ${{ secrets.CHANGELOG_BOT_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${CHANGELOG_BOT_TOKEN}" ]; then
+            echo "::notice::CHANGELOG_BOT_TOKEN is not configured; skipping changelog PR creation."
+            echo "available=false" >> "$GITHUB_OUTPUT"
           else
-            git-cliff --config cliff.toml --tag "$DATE" --prepend CHANGELOG.md
+            echo "available=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Create Pull Request for CHANGELOG update
+        if: ${{ steps.changelog-token.outputs.available == 'true' }}
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "docs: auto-update CHANGELOG [skip ci]"
+          token: ${{ secrets.CHANGELOG_BOT_TOKEN }}
+          commit-message: "docs: auto-update CHANGELOG"
           branch: chore/auto-update-changelog
           delete-branch: true
           title: "docs: auto-update CHANGELOG"
