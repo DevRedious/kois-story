@@ -68,4 +68,22 @@ class MessageTest < ActiveSupport::TestCase
   ensure
     ENV["ADMIN_EMAIL"] = original_admin_email
   end
+
+  test "keeps the message when email delivery fails" do
+    original_admin_email = ENV["ADMIN_EMAIL"]
+    original_acknowledgement = MessageMailer.method(:acknowledgement)
+    ENV["ADMIN_EMAIL"] = nil
+    MessageMailer.define_singleton_method(:acknowledgement) { |_message| raise StandardError, "SMTP down" }
+
+    assert_difference("Message.count", 1) do
+      Message.create!(
+        sender_name: "Camille",
+        sender_email: "camille@example.com",
+        body: "Bonjour"
+      )
+    end
+  ensure
+    MessageMailer.define_singleton_method(:acknowledgement) { |message| original_acknowledgement.call(message) }
+    ENV["ADMIN_EMAIL"] = original_admin_email
+  end
 end

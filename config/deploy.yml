@@ -43,11 +43,11 @@ env:
     - CLOUDINARY_CLOUD_NAME
     - CLOUDINARY_API_KEY
     - CLOUDINARY_API_SECRET
-    - RESEND_API_KEY
+    - SMTP_USERNAME
+    - SMTP_PASSWORD
     - ADMIN_EMAIL
     - WHATSAPP_PHONE
     - APP_HOST
-    - MAILER_FROM
     - OTP_SECRET_KEY
     - ADMIN_PASSWORD
   clear:
@@ -71,6 +71,12 @@ env:
     # Enable these after pointing a real HTTPS domain at the VPS.
     FORCE_SSL: false
     ASSUME_SSL: false
+    SMTP_ADDRESS: smtp-relay.brevo.com
+    SMTP_PORT: 587
+    SMTP_DOMAIN: kois-story.com
+    SMTP_ENABLE_STARTTLS_AUTO: true
+    CONTACT_EMAIL: contact@kois-story.com
+    MAILER_FROM: "Kois Story <contact@kois-story.com>"
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
