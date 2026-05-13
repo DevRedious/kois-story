@@ -50,7 +50,7 @@ module ApplicationHelper
     "nisai" => "Nisai",
     "sansai" => "Sansai",
     "yonsai" => "Yonsai",
-    "gosai" => "Gosai",
+    "gosai" => "Gosai"
   }.freeze
 
   def age_class_label(age_class)

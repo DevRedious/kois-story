@@ -27,7 +27,7 @@ class Koi < ApplicationRecord
     sansai: 3,
     yonsai: 4,
     gosai: 5,
-    jumbo_tosai_hq: 6,
+    jumbo_tosai_hq: 6
   }
 
   validates :name, :variety, :price, :status, presence: true
