@@ -12,6 +12,17 @@ WEBHOOK_URL = ENV["DISCORD_WEBHOOK_URL"]
 REPOSITORY = ENV["GITHUB_REPOSITORY"] || ENV["CHANGELOG_REPOSITORY"] || "DevRedious/kois-story"
 SERVER_URL = ENV["GITHUB_SERVER_URL"] || "https://github.com"
 MAX_FIELD_LENGTH = 1024
+DIGEST_NOTIFY_ROLE_ID = "1492454204495630407"
+AUTHOR_MENTIONS = {
+  "Morgan" => "<@1460504189573796165>",
+  "Romain" => "<@440848317811916801>",
+  "Valentin" => "<@290952314204848129>",
+  "Automation" => "<@&1504001223903154188> <:githubdark:1504001990722719825>"
+}.freeze
+ALLOWED_MENTIONS = {
+  users: ["1460504189573796165", "440848317811916801", "290952314204848129"],
+  roles: [DIGEST_NOTIFY_ROLE_ID, "1504001223903154188"]
+}.freeze
 
 def target_date
   value = ENV["CHANGELOG_DIGEST_DATE"].to_s.strip
@@ -42,7 +53,10 @@ def fields_for(day_entries)
     entries = day_entries[category]
     next if entries.empty?
 
-    lines = entries.map { |entry| "- #{entry[:label]} — #{entry[:author]} (`#{entry[:sha]}`)" }
+    lines = entries.map do |entry|
+      author = AUTHOR_MENTIONS.fetch(entry[:author], entry[:author])
+      "- #{entry[:label]} — #{author} (`#{entry[:sha]}`)"
+    end
     split_lines(lines).each_with_index do |value, index|
       name = index.zero? ? category : "#{category} (suite #{index + 1})"
       fields << { name: name, value: value, inline: false }
@@ -77,16 +91,16 @@ end
 commit_count = day_entries.values.sum(&:length)
 payload = {
   username: "kois-story-changelog",
-  content: "Changelog DEV du #{date}",
-  allowed_mentions: { parse: [] },
+  content: "## Changelog DEV du #{date}\n\n||<@&#{DIGEST_NOTIFY_ROLE_ID}>||",
+  allowed_mentions: ALLOWED_MENTIONS,
   embeds: [{
     title: "Koi's Story — changelog du #{date}",
     description: "#{commit_count} changement#{commit_count > 1 ? 's' : ''} merge sur `DEV` hier.",
     url: "#{SERVER_URL}/#{REPOSITORY}/commits/DEV",
-    color: 13_938_487,
+    color: 13_938_232,
     fields: fields_for(day_entries),
     footer: { text: "Digest automatique quotidien — Europe/Paris" },
-    timestamp: Time.now.utc.iso8601
+    timestamp: Time.now.utc.iso8601(3)
   }]
 }
 
