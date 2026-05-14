@@ -23,7 +23,10 @@
 .shop-card__thumb {
 	position: relative;
 	aspect-ratio: 4 / 3;
-	background: var(--n-08);
+	background:
+		radial-gradient(circle at center, var(--c-gold-20) 0%, transparent 48%),
+		linear-gradient(145deg, rgba(234, 178, 27, 0.1), rgba(1, 19, 37, 0.06)),
+		var(--n-08);
 	overflow: hidden;
 }
 .shop-card__thumb img {
@@ -44,8 +47,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 3rem;
-	color: var(--n-17);
+	font-size: 3.35rem;
+	color: var(--c-bronze);
+	text-shadow: 0 10px 26px rgba(165, 130, 65, 0.35);
+	transition: transform var(--t-slow);
+}
+.shop-card:hover .shop-card__icon {
+	transform: scale(1.05);
 }
 
 .shop-card__thumb .badge {
@@ -86,23 +94,29 @@
 	display: block;
 	width: 100%;
 	padding: var(--sp-2) var(--sp-4);
-	background: transparent;
-	color: var(--c-wine);
-	border: 2px solid var(--c-wine);
+	background: var(--c-gold-10);
+	color: var(--c-black);
+	border: 2px solid var(--c-bronze);
 	border-radius: var(--r-full);
 	text-align: center;
 	font-family: var(--font-sans);
 	font-size: var(--text-sm);
 	font-weight: 700;
 	transition:
-		background var(--t-fast),
-		color var(--t-fast);
+		background-position 0.6s linear,
+		border-color var(--t-fast),
+		box-shadow var(--t-fast),
+		transform var(--t-fast);
 	text-decoration: none;
 	cursor: pointer;
 }
 .shop-card__btn:hover {
-	background: var(--c-wine);
-	color: var(--c-white);
+	background: linear-gradient(135deg, var(--c-gold), var(--c-bronze), var(--c-gold));
+	background-size: 200% 200%;
+	background-position: 100% 100%;
+	border-color: var(--c-gold);
+	box-shadow: 0 10px 24px rgba(234, 178, 27, 0.28);
+	transform: translateY(-1px);
 }
 
 /* ── SHOP SECTION ────────────────────────────────────────────────────── */
