@@ -26,3 +26,5 @@
 @import url("./visitors/azukari.css");
 @import url("./visitors/legal.css");
 @import url("./visitors/toast.css");
+@import url("./shared/select-control.css");
+@import url("./shared/select-dropdown.css");

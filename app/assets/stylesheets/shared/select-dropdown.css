@@ -1,0 +1,155 @@
+.select-native-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	overflow: hidden !important;
+	clip-path: inset(50%) !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+}
+
+.ks-select {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	font-family: var(--font-body, var(--font-sans, system-ui, sans-serif));
+}
+
+.filter-bar__inner > .ks-select,
+.filter-bar > .ks-select,
+.panel-toolbar > .ks-select,
+.page-header-toolbar > .ks-select {
+	width: auto;
+	min-width: 156px;
+}
+
+.ks-select.filter-select--desktop {
+	display: none;
+}
+
+.ks-select__button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	width: 100%;
+	min-height: 40px;
+	padding: 9px 44px 9px 13px;
+	color: var(--bleu-nuit, var(--c-navy, #011325));
+	font: inherit;
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-align: left;
+	background:
+		linear-gradient(135deg, rgba(234, 178, 27, 0.14), transparent 46%),
+		var(--blanc-pur, var(--c-white, #fff));
+	border: 1.5px solid rgba(165, 130, 65, 0.42);
+	border-radius: 8px;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.82) inset;
+	cursor: pointer;
+	transition:
+		border-color 160ms ease,
+		box-shadow 160ms ease,
+		transform 160ms ease;
+}
+
+.ks-select--compact .ks-select__button {
+	min-height: 36px;
+	padding-block: 7px;
+	font-size: 0.85rem;
+}
+
+.ks-select__button:hover,
+.ks-select.is-open .ks-select__button {
+	border-color: rgba(234, 178, 27, 0.82);
+	box-shadow:
+		0 0 0 3px rgba(234, 178, 27, 0.15),
+		0 12px 26px rgba(1, 19, 37, 0.12);
+}
+
+.ks-select__button:focus-visible {
+	outline: none;
+	border-color: var(--or-konishi, var(--c-gold, #eab21b));
+	box-shadow:
+		0 0 0 3px rgba(234, 178, 27, 0.2),
+		0 12px 26px rgba(1, 19, 37, 0.12);
+}
+
+.ks-select__label {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ks-select__icon {
+	position: absolute;
+	right: 14px;
+	width: 14px;
+	height: 10px;
+	background: currentColor;
+	clip-path: polygon(0 10%, 50% 100%, 100% 10%, 85% 0, 50% 62%, 15% 0);
+	transition: transform 180ms ease;
+}
+
+.ks-select.is-open .ks-select__icon {
+	transform: rotate(180deg);
+}
+
+.ks-select__menu {
+	position: absolute;
+	top: calc(100% + 7px);
+	left: 0;
+	z-index: 180;
+	width: max(100%, 220px);
+	max-height: 280px;
+	padding: 7px;
+	overflow-y: auto;
+	background:
+		linear-gradient(145deg, rgba(234, 178, 27, 0.14), transparent 34%),
+		rgba(1, 19, 37, 0.97);
+	border: 1px solid rgba(234, 178, 27, 0.3);
+	border-radius: 12px;
+	box-shadow: 0 20px 44px rgba(1, 19, 37, 0.3);
+}
+
+.ks-select__option {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	min-height: 34px;
+	padding: 8px 10px;
+	color: rgba(255, 255, 255, 0.86);
+	font: inherit;
+	font-size: 0.88rem;
+	font-weight: 650;
+	text-align: left;
+	background: transparent;
+	border: 0;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.ks-select__option:hover,
+.ks-select__option:focus-visible {
+	color: var(--bleu-nuit, var(--c-navy, #011325));
+	background: var(--or-konishi, var(--c-gold, #eab21b));
+	outline: none;
+}
+
+.ks-select__option.is-selected {
+	color: var(--bleu-nuit, var(--c-navy, #011325));
+	background: linear-gradient(135deg, #eab21b, #f4cf55);
+}
+
+.ks-select.is-disabled {
+	opacity: 0.55;
+	pointer-events: none;
+}
+
+@media (min-width: 901px) {
+	.ks-select.filter-select--desktop {
+		display: block;
+	}
+}

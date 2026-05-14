@@ -1,0 +1,102 @@
+/* Shared select/dropdown surface for public and admin UIs. */
+:root {
+	--select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10' fill='none'%3E%3Cpath d='M2 3l5 5 5-5' stroke='%23011325' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	--select-bg: var(--blanc-pur, var(--c-white, #fff));
+	--select-border: rgba(165, 130, 65, 0.42);
+	--select-border-hover: rgba(234, 178, 27, 0.76);
+	--select-ring: rgba(234, 178, 27, 0.18);
+	--select-shadow: 0 10px 24px rgba(1, 19, 37, 0.08);
+}
+
+select,
+.field__select,
+.filter-select,
+.filter-bar select,
+.panel-header .filter-bar select,
+.panel--koi-list .panel-header select,
+.u-panel-select,
+.u-toolbar-select-wide,
+.product-select,
+.order-tva-select,
+.theme-switcher select,
+.login-theme-switcher select {
+	appearance: none;
+	-webkit-appearance: none;
+	min-height: 40px;
+	padding-right: 44px;
+	color: var(--bleu-nuit, var(--c-navy, #011325));
+	font-weight: 600;
+	background-color: var(--select-bg);
+	background-image:
+		linear-gradient(135deg, rgba(234, 178, 27, 0.12), transparent 42%),
+		var(--select-arrow);
+	background-repeat: no-repeat;
+	background-position:
+		0 0,
+		right 14px center;
+	background-size:
+		100% 100%,
+		14px 10px;
+	border-color: var(--select-border);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+	cursor: pointer;
+	transition:
+		border-color 160ms ease,
+		box-shadow 160ms ease,
+		background-color 160ms ease,
+		color 160ms ease;
+}
+
+select:hover,
+.field__select:hover,
+.filter-select:hover,
+.filter-bar select:hover,
+.panel-header .filter-bar select:hover,
+.panel--koi-list .panel-header select:hover,
+.u-panel-select:hover,
+.u-toolbar-select-wide:hover,
+.product-select:hover,
+.order-tva-select:hover,
+.theme-switcher select:hover,
+.login-theme-switcher select:hover {
+	border-color: var(--select-border-hover);
+	box-shadow: var(--select-shadow);
+}
+
+select:focus,
+.field__select:focus,
+.filter-select:focus,
+.filter-bar select:focus,
+.panel-header .filter-bar select:focus,
+.panel--koi-list .panel-header select:focus,
+.u-panel-select:focus,
+.u-toolbar-select-wide:focus,
+.product-select:focus,
+.order-tva-select:focus,
+.theme-switcher select:focus,
+.login-theme-switcher select:focus {
+	border: 1.5px solid var(--or-konishi, var(--c-gold, #eab21b)) !important;
+	box-shadow:
+		0 0 0 3px var(--select-ring),
+		var(--select-shadow);
+	outline: none;
+}
+
+.filter-select.active {
+	border-color: var(--or-konishi, var(--c-gold, #eab21b));
+}
+
+select option {
+	color: var(--bleu-nuit, var(--c-navy, #011325));
+	background-color: var(--blanc-pur, var(--c-white, #fff));
+	font-weight: 600;
+}
+
+select option:checked {
+	color: var(--bleu-nuit, var(--c-navy, #011325));
+	background-color: var(--or-konishi, var(--c-gold, #eab21b));
+}
+
+select::-ms-expand {
+	display: none;
+}
