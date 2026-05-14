@@ -3,12 +3,20 @@
   <div class="shop-grid">
     <% items.each_with_index do |item, index| %>
       <article class="shop-card" data-animate="fade-up" data-delay="<%= index %>">
-        <div class="shop-card__thumb"><span class="badge"><%= item[:badge] %></span></div>
+        <div class="shop-card__thumb">
+          <span class="shop-card__icon" aria-hidden="true"><%= item[:icon] %></span>
+          <span class="badge"><%= item[:badge] %></span>
+        </div>
         <div class="shop-card__body">
           <h3 class="shop-card__name"><%= item[:name] %></h3>
           <p class="shop-card__desc"><%= item[:description] %></p>
         </div>
-        <div class="shop-card__footer"><button class="shop-card__btn" type="button">En savoir plus</button></div>
+        <div class="shop-card__footer">
+          <%= link_to "Demander conseil",
+                      root_path(anchor: "contact"),
+                      class: "shop-card__btn",
+                      aria: { label: "Demander conseil pour #{item[:name]}" } %>
+        </div>
       </article>
     <% end %>
   </div>

@@ -1,16 +1,32 @@
-<h2>Forgot your password?</h2>
+<% content_for :title, "Mot de passe oublié - Admin | Koi's Story" %>
+<% content_for :body_class, "login-page" %>
+<% content_for :extra_stylesheet, "admin_application" %>
+<% content_for :skip_default_footer, true %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div id="form-ui">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { id: "form", method: :post }) do |f| %>
+    <div id="form-body">
+      <div id="welcome-lines">
+        <%= image_tag "/logo_bg_circle_dark_v2.avif", alt: "Koi's Story", class: "login-logo-img" %>
+        <div id="welcome-line-1">Koi's Story</div>
+        <div id="welcome-line-2">Réinitialisation</div>
+      </div>
 
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-  </div>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="actions">
-    <%= f.submit "Send me password reset instructions" %>
-  </div>
-<% end %>
+      <div id="input-area">
+        <div class="form-inp">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Adresse email", required: true %>
+        </div>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <div id="submit-button-cvr">
+        <%= f.submit "Envoyer le lien", id: "submit-button" %>
+      </div>
+
+      <div id="forgot-pass">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  <% end %>
+</div>

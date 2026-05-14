@@ -1,0 +1,168 @@
+/* Shared polish for browser-native form controls. */
+input,
+textarea {
+	caret-color: var(--or-konishi, var(--c-gold, #eab21b));
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	appearance: none;
+	-webkit-appearance: none;
+	display: none;
+}
+
+input[type="number"] {
+	appearance: textfield;
+	-moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	appearance: none;
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"] {
+	color-scheme: light;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+	width: 18px;
+	height: 18px;
+	padding: 4px;
+	border-radius: 999px;
+	cursor: pointer;
+	background-color: rgba(var(--or-konishi-rgb, 234, 178, 27), 0.16);
+	transition:
+		background-color 0.16s ease,
+		transform 0.16s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover,
+input[type="time"]::-webkit-calendar-picker-indicator:hover {
+	background-color: rgba(var(--or-konishi-rgb, 234, 178, 27), 0.28);
+	transform: translateY(-1px);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+	border-color: rgba(var(--or-konishi-rgb, 234, 178, 27), 0.7);
+	box-shadow: 0 0 0 1000px var(--blanc-pur, var(--c-white, #fff)) inset;
+	-webkit-text-fill-color: var(--noir, var(--c-black, #000));
+	transition: background-color 9999s ease-in-out 0s;
+}
+
+input[type="checkbox"]:not(.toggle-input):not(#konishi-toggle) {
+	appearance: none;
+	-webkit-appearance: none;
+	display: inline-grid;
+	place-content: center;
+	width: 18px;
+	height: 18px;
+	margin: 0;
+	flex: 0 0 18px;
+	vertical-align: middle;
+	background:
+		linear-gradient(
+			135deg,
+			rgba(var(--or-konishi-rgb, 234, 178, 27), 0.1),
+			transparent
+		),
+		var(--blanc-pur, var(--c-white, #fff));
+	border: 1.5px solid rgba(var(--bronze-rgb, 165, 130, 65), 0.58);
+	border-radius: 5px;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72) inset;
+	cursor: pointer;
+	transition:
+		background 0.16s ease,
+		border-color 0.16s ease,
+		box-shadow 0.16s ease;
+}
+
+input[type="checkbox"]:not(.toggle-input):not(#konishi-toggle)::after {
+	content: "";
+	width: 10px;
+	height: 10px;
+	transform: scale(0);
+	transition: transform 0.12s ease;
+	background: var(--bleu-nuit, var(--c-navy, #011325));
+	clip-path: polygon(14% 44%, 0 60%, 38% 100%, 100% 18%, 83% 0, 36% 66%);
+}
+
+input[type="checkbox"]:not(.toggle-input):not(#konishi-toggle):checked {
+	background: linear-gradient(
+		135deg,
+		var(--or-konishi, #eab21b),
+		var(--bronze, #a58241)
+	);
+	border-color: var(--or-konishi, #eab21b);
+	box-shadow: 0 0 0 3px rgba(var(--or-konishi-rgb, 234, 178, 27), 0.18);
+}
+
+input[type="checkbox"]:not(.toggle-input):not(#konishi-toggle):checked::after,
+input[type="checkbox"]:not(.toggle-input):not(
+		#konishi-toggle
+	):indeterminate::after {
+	transform: scale(1);
+}
+
+input[type="checkbox"]:not(.toggle-input):not(
+		#konishi-toggle
+	):indeterminate::after {
+	height: 2px;
+	clip-path: none;
+	border-radius: 999px;
+}
+
+input[type="checkbox"]:not(.toggle-input):not(#konishi-toggle):focus-visible {
+	outline: none;
+	box-shadow:
+		0 0 0 3px rgba(var(--or-konishi-rgb, 234, 178, 27), 0.24),
+		0 8px 18px rgba(1, 19, 37, 0.1);
+}
+
+.filter-toggle input[type="checkbox"] {
+	width: 36px;
+	height: 20px;
+	flex-basis: 36px;
+	border-radius: var(--r-full, 999px);
+	place-content: initial;
+	background: var(--n-17);
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.filter-toggle input[type="checkbox"]::after {
+	width: 16px;
+	height: 16px;
+	clip-path: none;
+	background: var(--c-white, #fff);
+	transform: none;
+}
+
+.filter-toggle input[type="checkbox"]:checked::after {
+	transform: translateX(16px);
+}
+
+.filter-toggle
+	input[type="checkbox"]:not(.toggle-input):not(#konishi-toggle):checked {
+	background: var(--c-wine);
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.contact-form__human-label input[type="checkbox"] {
+	margin-top: 2px;
+}

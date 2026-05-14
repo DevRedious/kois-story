@@ -31,7 +31,7 @@ document.addEventListener("turbo:load", () => {
 		this.classList.remove("active");
 	});
 
-	document.addEventListener("click", (e) => {
+	document.addEventListener("click", async (e) => {
 		const copyButton = e.target.closest("[data-copy-target]");
 		if (copyButton) {
 			const target = document.querySelector(copyButton.dataset.copyTarget);
@@ -46,7 +46,9 @@ document.addEventListener("turbo:load", () => {
 		if (!logoutButton) return;
 
 		e.preventDefault();
-		if (!confirm("Voulez-vous vraiment vous déconnecter ?")) return;
+		const confirmation = window.AdminConfirm || ((message) => Promise.resolve(confirm(message)));
+		const confirmed = await confirmation("Voulez-vous vraiment vous déconnecter ?");
+		if (!confirmed) return;
 
 		const logoutForm = logoutButton.closest("form");
 		if (logoutForm) {

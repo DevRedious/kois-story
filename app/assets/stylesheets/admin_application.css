@@ -29,6 +29,8 @@
 @import url("./admin/pages/admin-responsive.css");
 @import url("./shared/select-control.css");
 @import url("./shared/select-dropdown.css");
+@import url("./shared/scrollbar.css");
+@import url("./shared/native-controls.css");
 
 *,
 *::before,

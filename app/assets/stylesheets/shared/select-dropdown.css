@@ -103,15 +103,20 @@
 	left: 0;
 	z-index: 180;
 	width: max(100%, 220px);
-	max-height: 280px;
+	max-height: 232px;
 	padding: 7px;
 	overflow-y: auto;
 	background:
-		linear-gradient(145deg, rgba(234, 178, 27, 0.14), transparent 34%),
-		rgba(1, 19, 37, 0.97);
-	border: 1px solid rgba(234, 178, 27, 0.3);
+		linear-gradient(145deg, rgba(234, 178, 27, 0.12), transparent 34%),
+		var(--blanc-pur, var(--c-white, #fff));
+	border: 1px solid rgba(165, 130, 65, 0.28);
 	border-radius: 12px;
-	box-shadow: 0 20px 44px rgba(1, 19, 37, 0.3);
+	box-shadow:
+		0 18px 36px rgba(1, 19, 37, 0.16),
+		0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+	scrollbar-color: var(--scrollbar-thumb, rgba(165, 130, 65, 0.72))
+		var(--scrollbar-track, rgba(1, 19, 37, 0.07));
+	scrollbar-width: thin;
 }
 
 .ks-select__option {
@@ -120,7 +125,7 @@
 	width: 100%;
 	min-height: 34px;
 	padding: 8px 10px;
-	color: rgba(255, 255, 255, 0.86);
+	color: var(--bleu-nuit, var(--c-navy, #011325));
 	font: inherit;
 	font-size: 0.88rem;
 	font-weight: 650;
@@ -129,18 +134,28 @@
 	border: 0;
 	border-radius: 8px;
 	cursor: pointer;
+	transition:
+		background 140ms ease,
+		color 140ms ease;
 }
 
 .ks-select__option:hover,
 .ks-select__option:focus-visible {
-	color: var(--bleu-nuit, var(--c-navy, #011325));
-	background: var(--or-konishi, var(--c-gold, #eab21b));
+	color: var(--blanc-pur, var(--c-white, #fff));
+	background: var(--bleu-nuit, var(--c-navy, #011325));
 	outline: none;
 }
 
 .ks-select__option.is-selected {
 	color: var(--bleu-nuit, var(--c-navy, #011325));
 	background: linear-gradient(135deg, #eab21b, #f4cf55);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+.ks-select__option.is-selected:hover,
+.ks-select__option.is-selected:focus-visible {
+	color: var(--bleu-nuit, var(--c-navy, #011325));
+	background: linear-gradient(135deg, #f0c43b, #eab21b);
 }
 
 .ks-select.is-disabled {

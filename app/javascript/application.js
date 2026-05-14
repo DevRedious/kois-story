@@ -9,3 +9,4 @@ import "visitors/toast";
 import "visitors/contact-form";
 import "visitors/turnstile";
 import "shared/select-dropdown";
+import "shared/scrollbar";
