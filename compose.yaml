@@ -22,13 +22,15 @@ services:
     command: >
       bash -lc "unset SOLID_QUEUE_IN_PUMA &&
       bundle install &&
-      bin/rails db:prepare"
+      bin/rails db:prepare &&
+      RAILS_ENV=test bin/rails db:prepare"
     env_file:
       - .env.local
     environment:
       BUNDLE_PATH: /bundle
       DATABASE_URL: postgres://kois_story:kois_story@db:5432/kois_story_development
       RAILS_ENV: development
+      TEST_DATABASE_URL: postgres://kois_story:kois_story@db:5432/kois_story_test
     depends_on:
       db:
         condition: service_healthy
@@ -55,6 +57,7 @@ services:
       PORT: "3000"
       PUBLIC_SITE_URL: http://localhost:3000
       RAILS_ENV: development
+      TEST_DATABASE_URL: postgres://kois_story:kois_story@db:5432/kois_story_test
     depends_on:
       db:
         condition: service_healthy
@@ -85,6 +88,7 @@ services:
       PORT: "3001"
       PUBLIC_SITE_URL: http://localhost:3000
       RAILS_ENV: development
+      TEST_DATABASE_URL: postgres://kois_story:kois_story@db:5432/kois_story_test
     depends_on:
       db:
         condition: service_healthy

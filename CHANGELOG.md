@@ -8,6 +8,19 @@ Each entry keeps its human author and short commit SHA for traceability.
 
 ---
 
+## [2026-05-14]
+
+### Fixed
+- improve navbar dropdown contrast — Morgan (`a1a260c`)
+- isolate Docker test database — Morgan (`e0b4378`)
+
+### Integration
+- Merge pull request #72: fix: improve navbar dropdown contrast — Morgan (`2097af8`)
+- Merge branch 'DEV' into codex/fix-navbar-dropdown-contrast — Morgan (`8438f68`)
+- Merge pull request #71: fix: isolate Docker test database — Morgan (`1bd8869`)
+
+---
+
 ## [2026-05-13]
 
 ### Added
@@ -29,6 +42,8 @@ Each entry keeps its human author and short commit SHA for traceability.
 - use Brevo SMTP for production mailer — Morgan (`c147674`)
 
 ### Integration
+- Merge pull request #70: docs: auto-update CHANGELOG — Automation (`afc9d90`)
+- auto-update CHANGELOG — Automation (`0f339ba`)
 - Merge pull request #69: Setup/local docker stack — Romain (`f90796c`)
 - Merge branch 'DEV' into setup/local-docker-stack — Romain (`aaf18ff`)
 - Merge pull request #68: docs: auto-update CHANGELOG — Automation (`1accfa1`)
