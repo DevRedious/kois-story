@@ -1,0 +1,46 @@
+:root {
+	--scrollbar-size: 8px;
+	--scrollbar-track: rgba(1, 19, 37, 0.07);
+	--scrollbar-thumb: rgba(165, 130, 65, 0.72);
+	--scrollbar-thumb-start: var(--or-konishi, var(--c-gold, #eab21b));
+	--scrollbar-thumb-end: var(--bronze, var(--c-bronze, #a58241));
+	--scrollbar-thumb-border: var(--blanc-pur, var(--c-white, #fff));
+}
+
+* {
+	scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+	scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+	width: var(--scrollbar-size);
+	height: var(--scrollbar-size);
+}
+
+*::-webkit-scrollbar-track {
+	background: var(--scrollbar-track);
+	border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: linear-gradient(
+		180deg,
+		var(--scrollbar-thumb-start),
+		var(--scrollbar-thumb-end)
+	);
+	background-clip: padding-box;
+	border: 2px solid var(--scrollbar-thumb-border);
+	border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(
+		180deg,
+		var(--scrollbar-thumb-start),
+		var(--scrollbar-thumb-end)
+	);
+}
+
+*::-webkit-scrollbar-corner {
+	background: transparent;
+}

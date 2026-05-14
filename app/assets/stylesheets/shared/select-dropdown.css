@@ -114,7 +114,8 @@
 	box-shadow:
 		0 18px 36px rgba(1, 19, 37, 0.16),
 		0 0 0 1px rgba(255, 255, 255, 0.7) inset;
-	scrollbar-color: rgba(165, 130, 65, 0.72) rgba(1, 19, 37, 0.07);
+	scrollbar-color: var(--scrollbar-thumb, rgba(165, 130, 65, 0.72))
+		var(--scrollbar-track, rgba(1, 19, 37, 0.07));
 	scrollbar-width: thin;
 }
 
@@ -123,13 +124,17 @@
 }
 
 .ks-select__menu::-webkit-scrollbar-track {
-	background: rgba(1, 19, 37, 0.06);
+	background: var(--scrollbar-track, rgba(1, 19, 37, 0.07));
 	border-radius: 999px;
 }
 
 .ks-select__menu::-webkit-scrollbar-thumb {
-	background: linear-gradient(180deg, #eab21b, #a58241);
-	border: 2px solid var(--blanc-pur, var(--c-white, #fff));
+	background: linear-gradient(
+		180deg,
+		var(--scrollbar-thumb-start, #eab21b),
+		var(--scrollbar-thumb-end, #a58241)
+	);
+	border: 2px solid var(--scrollbar-thumb-border, var(--blanc-pur, #fff));
 	border-radius: 999px;
 }
 
