@@ -1,6 +1,6 @@
 :root {
-	--scrollbar-size: 8px;
-	--scrollbar-track: rgba(165, 130, 65, 0.16);
+	--scrollbar-size: 7px;
+	--scrollbar-track: transparent;
 	--scrollbar-thumb: rgba(165, 130, 65, 0.72);
 	--scrollbar-thumb-start: var(--or-konishi, var(--c-gold, #eab21b));
 	--scrollbar-thumb-end: var(--bronze, var(--c-bronze, #a58241));
@@ -19,6 +19,12 @@
 *::-webkit-scrollbar-track {
 	background: var(--scrollbar-track);
 	border-radius: 999px;
+}
+
+*::-webkit-scrollbar-button {
+	display: none;
+	width: 0;
+	height: 0;
 }
 
 *::-webkit-scrollbar-thumb {
