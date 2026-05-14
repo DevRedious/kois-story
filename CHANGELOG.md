@@ -11,6 +11,13 @@ Each entry keeps its human author and short commit SHA for traceability.
 ## [2026-05-14]
 
 ### Changed
+- format product card styles — Morgan (`78aab66`)
+- polish product category cards — Morgan (`d2a2868`)
+- polish native browser controls — Morgan (`a33ebe2`)
+- replace viewport scrollbar with overlay thumb — Morgan (`ed5578f`)
+- make scrollbar tracks transparent — Morgan (`f4adbe2`)
+- apply branded scrollbars globally — Morgan (`be25001`)
+- soften select dropdown menus — Morgan (`5906054`)
 - unify select dropdown controls — Morgan (`272c3d1`)
 
 ### Fixed
@@ -18,7 +25,13 @@ Each entry keeps its human author and short commit SHA for traceability.
 - improve navbar dropdown contrast — Morgan (`a1a260c`)
 - isolate Docker test database — Morgan (`e0b4378`)
 
+### Removed
+- remove white scrollbar gutters — Morgan (`8f0f1fa`)
+
 ### Integration
+- Merge pull request #78: style: soften select dropdown menus — Morgan (`ad3a910`)
+- Merge pull request #77: docs: auto-update CHANGELOG — Automation (`ae54d62`)
+- auto-update CHANGELOG — Automation (`468b544`)
 - Merge pull request #76: style: unify select dropdown controls — Morgan (`c345add`)
 - Merge remote-tracking branch 'origin/DEV' into codex/style-select-dropdowns — Morgan (`d564bb4`)
 - Merge pull request #75: docs: auto-update CHANGELOG — Automation (`c2619dd`)
