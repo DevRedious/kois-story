@@ -134,7 +134,6 @@
 		var(--scrollbar-thumb-start, #eab21b),
 		var(--scrollbar-thumb-end, #a58241)
 	);
-	border: 2px solid var(--scrollbar-thumb-border, var(--blanc-pur, #fff));
 	border-radius: 999px;
 }
 
