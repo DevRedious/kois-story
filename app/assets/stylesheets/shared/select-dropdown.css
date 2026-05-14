@@ -119,30 +119,6 @@
 	scrollbar-width: thin;
 }
 
-.ks-select__menu::-webkit-scrollbar {
-	width: 8px;
-}
-
-.ks-select__menu::-webkit-scrollbar-track {
-	background: var(--scrollbar-track, rgba(1, 19, 37, 0.07));
-	border-radius: 999px;
-}
-
-.ks-select__menu::-webkit-scrollbar-button {
-	display: none;
-	width: 0;
-	height: 0;
-}
-
-.ks-select__menu::-webkit-scrollbar-thumb {
-	background: linear-gradient(
-		180deg,
-		var(--scrollbar-thumb-start, #eab21b),
-		var(--scrollbar-thumb-end, #a58241)
-	);
-	border-radius: 999px;
-}
-
 .ks-select__option {
 	display: flex;
 	align-items: center;

@@ -14,6 +14,7 @@
 *::-webkit-scrollbar {
 	width: var(--scrollbar-size);
 	height: var(--scrollbar-size);
+	background: transparent;
 }
 
 *::-webkit-scrollbar-track {
@@ -21,10 +22,22 @@
 	border-radius: 999px;
 }
 
+*::-webkit-scrollbar-track-piece {
+	background: transparent;
+}
+
 *::-webkit-scrollbar-button {
 	display: none;
 	width: 0;
 	height: 0;
+	background: transparent;
+}
+
+*::-webkit-scrollbar-button:single-button {
+	display: none;
+	width: 0;
+	height: 0;
+	background: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -46,4 +59,47 @@
 
 *::-webkit-scrollbar-corner {
 	background: transparent;
+}
+
+html.ks-custom-scrollbar {
+	scrollbar-width: none;
+}
+
+html.ks-custom-scrollbar::-webkit-scrollbar,
+html.ks-custom-scrollbar body::-webkit-scrollbar {
+	display: none;
+	width: 0;
+	height: 0;
+	background: transparent;
+}
+
+.ks-scrollbar-thumb {
+	position: fixed;
+	top: 0;
+	right: 2px;
+	z-index: 2147483000;
+	width: 5px;
+	height: var(--ks-scrollbar-height, 48px);
+	background: linear-gradient(
+		180deg,
+		var(--scrollbar-thumb-start),
+		var(--scrollbar-thumb-end)
+	);
+	border-radius: 999px;
+	opacity: 0;
+	pointer-events: auto;
+	touch-action: none;
+	transform: translateY(var(--ks-scrollbar-top, 0));
+	transition:
+		opacity 160ms ease,
+		width 160ms ease;
+}
+
+html.ks-custom-scrollbar-ready .ks-scrollbar-thumb {
+	opacity: 0.9;
+}
+
+html.ks-custom-scrollbar-ready .ks-scrollbar-thumb:hover,
+html.ks-custom-scrollbar-dragging .ks-scrollbar-thumb {
+	width: 7px;
 }

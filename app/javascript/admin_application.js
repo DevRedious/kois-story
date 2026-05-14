@@ -9,3 +9,4 @@ import "admin/orders";
 import "admin/payments";
 import "admin/bulk-actions";
 import "shared/select-dropdown";
+import "shared/scrollbar";
