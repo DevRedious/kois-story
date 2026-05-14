@@ -111,7 +111,12 @@
 	cursor: pointer;
 }
 .shop-card__btn:hover {
-	background: linear-gradient(135deg, var(--c-gold), var(--c-bronze), var(--c-gold));
+	background: linear-gradient(
+		135deg,
+		var(--c-gold),
+		var(--c-bronze),
+		var(--c-gold)
+	);
 	background-size: 200% 200%;
 	background-position: 100% 100%;
 	border-color: var(--c-gold);
