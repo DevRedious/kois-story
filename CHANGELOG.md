@@ -11,10 +11,14 @@ Each entry keeps its human author and short commit SHA for traceability.
 ## [2026-05-14]
 
 ### Fixed
+- stabilize admin koi photo upload layout — Morgan (`46689e1`)
 - improve navbar dropdown contrast — Morgan (`a1a260c`)
 - isolate Docker test database — Morgan (`e0b4378`)
 
 ### Integration
+- Merge pull request #74: fix: stabilize admin koi photo upload layout — Morgan (`79e67bd`)
+- Merge branch 'DEV' into codex/fix-admin-koi-photo-section — Morgan (`3d2aca5`)
+- Merge pull request #73: docs: auto-update CHANGELOG — Automation (`07c203f`)
 - Merge pull request #72: fix: improve navbar dropdown contrast — Morgan (`2097af8`)
 - Merge branch 'DEV' into codex/fix-navbar-dropdown-contrast — Morgan (`8438f68`)
 - Merge pull request #71: fix: isolate Docker test database — Morgan (`1bd8869`)
@@ -42,6 +46,7 @@ Each entry keeps its human author and short commit SHA for traceability.
 - use Brevo SMTP for production mailer — Morgan (`c147674`)
 
 ### Integration
+- auto-update CHANGELOG — Automation (`a388171`)
 - Merge pull request #70: docs: auto-update CHANGELOG — Automation (`afc9d90`)
 - auto-update CHANGELOG — Automation (`0f339ba`)
 - Merge pull request #69: Setup/local docker stack — Romain (`f90796c`)
