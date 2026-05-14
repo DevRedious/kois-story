@@ -27,6 +27,8 @@
 @import url("./admin/pages/accounting.css");
 @import url("./admin/pages/admin-resources.css");
 @import url("./admin/pages/admin-responsive.css");
+@import url("./shared/select-control.css");
+@import url("./shared/select-dropdown.css");
 
 *,
 *::before,
