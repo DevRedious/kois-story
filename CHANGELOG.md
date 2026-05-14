@@ -10,12 +10,19 @@ Each entry keeps its human author and short commit SHA for traceability.
 
 ## [2026-05-14]
 
+### Changed
+- unify select dropdown controls — Morgan (`272c3d1`)
+
 ### Fixed
 - stabilize admin koi photo upload layout — Morgan (`46689e1`)
 - improve navbar dropdown contrast — Morgan (`a1a260c`)
 - isolate Docker test database — Morgan (`e0b4378`)
 
 ### Integration
+- Merge pull request #76: style: unify select dropdown controls — Morgan (`c345add`)
+- Merge remote-tracking branch 'origin/DEV' into codex/style-select-dropdowns — Morgan (`d564bb4`)
+- Merge pull request #75: docs: auto-update CHANGELOG — Automation (`c2619dd`)
+- auto-update CHANGELOG — Automation (`71bdfbd`)
 - Merge pull request #74: fix: stabilize admin koi photo upload layout — Morgan (`79e67bd`)
 - Merge branch 'DEV' into codex/fix-admin-koi-photo-section — Morgan (`3d2aca5`)
 - Merge pull request #73: docs: auto-update CHANGELOG — Automation (`07c203f`)
