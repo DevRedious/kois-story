@@ -1,5 +1,6 @@
 import "@hotwired/turbo-rails";
 import "controllers";
+import "admin/confirm-dialog";
 import "admin/admin";
 import "admin/notifications";
 import "admin/kois";

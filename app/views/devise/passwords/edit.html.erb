@@ -1,25 +1,40 @@
-<h2>Change your password</h2>
+<% content_for :title, "Nouveau mot de passe - Admin | Koi's Story" %>
+<% content_for :body_class, "login-page" %>
+<% content_for :extra_stylesheet, "admin_application" %>
+<% content_for :skip_default_footer, true %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+<div id="form-ui">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { id: "form", method: :put }) do |f| %>
+    <div id="form-body">
+      <div id="welcome-lines">
+        <%= image_tag "/logo_bg_circle_dark_v2.avif", alt: "Koi's Story", class: "login-logo-img" %>
+        <div id="welcome-line-1">Koi's Story</div>
+        <div id="welcome-line-2">Nouveau mot de passe</div>
+      </div>
 
-  <div class="field">
-    <p><%= f.label :password, "New password" %></p>
-    <% if @minimum_password_length %>
-      <p><em>(<%= @minimum_password_length %> characters minimum)</em></p>
-    <% end %>
-    <p><%= f.password_field :password, autofocus: true, autocomplete: "new-password" %></p>
-  </div>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <p><%= f.label :password_confirmation, "Confirm new password" %></p>
-    <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
-  </div>
+      <div id="input-area">
+        <div class="form-inp">
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "Nouveau mot de passe", required: true %>
+        </div>
+        <div class="form-inp">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmer le mot de passe", required: true %>
+        </div>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+      <% if @minimum_password_length %>
+        <div class="cloudinary-note"><%= @minimum_password_length %> caractères minimum.</div>
+      <% end %>
 
-<%= render "devise/shared/links" %>
+      <div id="submit-button-cvr">
+        <%= f.submit "Changer le mot de passe", id: "submit-button" %>
+      </div>
+
+      <div id="forgot-pass">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  <% end %>
+</div>
